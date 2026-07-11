@@ -1,0 +1,176 @@
+/* Semantic type scale — implements the responsive sizing table in
+   docs/JAMEZZI_HOMEPAGE_SPEC.md §11. Each utility steps at md (tablet)
+   and lg (desktop) rather than scaling fluidly, matching the spec's
+   discrete mobile/tablet/desktop columns. */
+
+@utility text-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 14px;
+  }
+}
+
+@utility text-hero-headline {
+  font-family: var(--font-display);
+  font-size: 54px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 76px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 108px;
+  }
+}
+
+@utility text-section-headline {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 52px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 60px;
+  }
+}
+
+@utility text-feature-headline {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 36px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 42px;
+  }
+}
+
+@utility text-card-title {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 26px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 29px;
+  }
+}
+
+@utility text-subheading {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 21px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 23px;
+  }
+}
+
+@utility text-intro {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 20px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 21px;
+  }
+}
+
+@utility text-body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 17.5px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 18px;
+  }
+}
+
+@utility text-guide-body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 19px;
+  }
+}
+
+@utility text-nav {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+@utility text-button {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@utility text-supporting {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 16px;
+  }
+}
+
+@utility text-metadata {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+@utility text-legal {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
