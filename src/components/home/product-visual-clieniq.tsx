@@ -23,7 +23,7 @@ export function ProductVisualClienIQ() {
           </div>
         </div>
       </div>
-      <div className="rounded-control border-border border border-dashed p-3">
+      <div className="rounded-control bg-paper p-4">
         <p className="text-metadata text-muted">Opportunity Engine</p>
         <div className="mt-2 flex flex-wrap gap-2">
           <FocusTag>Missing services</FocusTag>

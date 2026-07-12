@@ -23,11 +23,11 @@ export function ProductVisualEndize() {
           />
         ))}
       </div>
-      <div className="rounded-control border-border border border-dashed p-3">
+      <div className="rounded-control bg-paper p-4">
         <p className="text-metadata text-muted">Prioritized action plan</p>
         <div className="mt-2 flex flex-wrap gap-2">
           <FocusTag>Next action</FocusTag>
-          <FocusTag>One missing requirement</FocusTag>
+          <FocusTag>Missing requirement</FocusTag>
         </div>
       </div>
     </div>

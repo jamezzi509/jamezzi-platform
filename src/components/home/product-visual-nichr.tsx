@@ -6,36 +6,42 @@ import {
 
 export function ProductVisualNichr() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
+    <div className="grid gap-8 sm:grid-cols-2">
       <div className="flex flex-col gap-6">
-        <PlaceholderTrack label="Opportunity score" fillPercent={72} />
+        <PlaceholderTrack
+          label="Opportunity score"
+          fillPercent={72}
+          tone="dark"
+        />
         <div>
-          <p className="text-metadata text-muted">Competition &amp; risk</p>
+          <p className="text-metadata text-night-muted">
+            Competition &amp; risk
+          </p>
           <div className="mt-2 flex flex-wrap gap-2">
-            <FocusTag>Competition</FocusTag>
-            <FocusTag>Risk</FocusTag>
+            <FocusTag tone="dark">Competition</FocusTag>
+            <FocusTag tone="dark">Risk</FocusTag>
           </div>
         </div>
         <div>
-          <p className="text-metadata text-muted">Monetization potential</p>
+          <p className="text-metadata text-night-muted">
+            Monetization potential
+          </p>
           <div className="mt-2 flex flex-wrap gap-2">
-            <FocusTag>Sponsorship</FocusTag>
-            <FocusTag>Affiliate</FocusTag>
-            <FocusTag>Products</FocusTag>
+            <FocusTag tone="dark">Sponsorship</FocusTag>
+            <FocusTag tone="dark">Affiliate</FocusTag>
+            <FocusTag tone="dark">Products</FocusTag>
           </div>
         </div>
-        <div className="rounded-control border-border border border-dashed p-3">
-          <p className="text-metadata text-muted">
-            One real YouTube niche example
-          </p>
-          <p className="text-supporting text-muted mt-1">
-            Sample niche preview — coming soon
-          </p>
+        <div>
+          <p className="text-metadata text-night-muted">Niche example</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <FocusTag tone="dark">Sample niche</FocusTag>
+          </div>
         </div>
       </div>
-      <div className="rounded-control bg-paper flex items-center justify-center p-4">
+      <div className="rounded-control bg-night-raised flex items-center justify-center p-4">
         <div className="w-full max-w-[220px]">
-          <RadarPlaceholder />
+          <RadarPlaceholder tone="dark" />
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ export function AboutSection() {
 
           <div className="lg:col-span-6 lg:col-start-7 lg:self-center">
             <p className="text-eyebrow text-indigo-dark">ABOUT JAMES</p>
-            <h2 className="text-section-headline text-ink mt-4">
+            <h2 className="text-editorial-headline text-ink mt-4">
               I build because I believe better tools should exist.
             </h2>
             <div className="text-body text-muted mt-6 flex flex-col gap-4">

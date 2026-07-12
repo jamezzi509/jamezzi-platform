@@ -3,7 +3,7 @@ import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { featuredProduct, supportingProducts } from "@/content/products";
 import { ProductFrame } from "@/components/home/product-frame";
-import { ProductVisualNichr } from "@/components/home/product-visual-nichr";
+import { NichrShowcase } from "@/components/home/nichr-showcase";
 import { ProductVisualEndize } from "@/components/home/product-visual-endize";
 import { ProductVisualClienIQ } from "@/components/home/product-visual-clieniq";
 
@@ -36,42 +36,8 @@ export function SelectedWork() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
-          <div className="lg:col-span-5">
-            <p className="text-metadata text-muted">
-              {featuredProduct.category}
-            </p>
-            <h3 className="text-feature-headline text-ink mt-3">
-              {featuredProduct.headline}
-            </h3>
-            <p className="text-body text-muted mt-4">
-              {featuredProduct.description}
-            </p>
-            <ul className="text-supporting text-muted mt-5 flex flex-wrap gap-x-2 gap-y-1">
-              {featuredProduct.proof.map((item, index) => (
-                <li key={item} className="flex items-center gap-2">
-                  {index > 0 && <span aria-hidden="true">·</span>}
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <CtaLink
-              href={featuredProduct.href}
-              variant="link"
-              className="mt-6"
-            >
-              {featuredProduct.actionLabel}
-              <ArrowRightIcon className="size-4" />
-            </CtaLink>
-          </div>
-          <div className="lg:col-span-7">
-            <ProductFrame
-              accent={accents.nichr}
-              productName={featuredProduct.name}
-            >
-              <ProductVisualNichr />
-            </ProductFrame>
-          </div>
+        <div className="mt-16">
+          <NichrShowcase product={featuredProduct} />
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-8">

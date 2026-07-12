@@ -1,25 +1,60 @@
-export function FocusTag({ children }: { children: string }) {
+import { cn } from "@/lib/cn";
+
+type Tone = "light" | "dark";
+
+const focusTagTone: Record<Tone, string> = {
+  light: "border-border bg-paper text-ink",
+  dark: "border-night-border bg-night-raised text-night-text",
+};
+
+export function FocusTag({
+  children,
+  tone = "light",
+}: {
+  children: string;
+  tone?: Tone;
+}) {
   return (
-    <span className="rounded-control border-border bg-paper text-metadata text-ink inline-flex items-center border px-3 py-1.5">
+    <span
+      className={cn(
+        "rounded-control text-metadata inline-flex items-center border px-3 py-1.5",
+        focusTagTone[tone],
+      )}
+    >
       {children}
     </span>
   );
 }
 
+const trackLabelTone: Record<Tone, string> = {
+  light: "text-muted",
+  dark: "text-night-muted",
+};
+
+const trackBaseTone: Record<Tone, string> = {
+  light: "bg-border/60",
+  dark: "bg-night-border",
+};
+
 export function PlaceholderTrack({
   label,
   fillPercent,
+  tone = "light",
 }: {
   label: string;
   fillPercent: number;
+  tone?: Tone;
 }) {
   return (
     <div>
-      <p className="text-metadata text-muted">{label}</p>
+      <p className={cn("text-metadata", trackLabelTone[tone])}>{label}</p>
       <div
         role="img"
         aria-label={`${label} — illustrative placeholder`}
-        className="bg-border/60 mt-2 h-2 w-full overflow-hidden rounded-full"
+        className={cn(
+          "mt-2 h-2 w-full overflow-hidden rounded-full",
+          trackBaseTone[tone],
+        )}
       >
         <div
           className="h-full rounded-full bg-[var(--accent)]"
@@ -32,7 +67,12 @@ export function PlaceholderTrack({
 
 const RADAR_AXES = 7;
 
-export function RadarPlaceholder() {
+const radarGridTone: Record<Tone, string> = {
+  light: "text-border",
+  dark: "text-night-border",
+};
+
+export function RadarPlaceholder({ tone = "light" }: { tone?: Tone }) {
   const center = 60;
   const radius = 48;
   const sampleShape = [0.55, 0.7, 0.4, 0.85, 0.6, 0.75, 0.5];
@@ -53,7 +93,7 @@ export function RadarPlaceholder() {
   return (
     <svg
       viewBox="0 0 120 120"
-      className="text-border size-full"
+      className={cn("size-full", radarGridTone[tone])}
       role="img"
       aria-label="Illustrative seven-dimension opportunity radar chart placeholder"
     >
@@ -85,7 +125,7 @@ export function RadarPlaceholder() {
       <polygon
         points={shapePoints}
         fill="var(--accent)"
-        fillOpacity="0.18"
+        fillOpacity="0.28"
         stroke="var(--accent)"
         strokeWidth="2"
       />

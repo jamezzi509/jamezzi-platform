@@ -1,19 +1,24 @@
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
+import {
+  CoursesGlyph,
+  BooksGlyph,
+  EventsGlyph,
+} from "@/components/home/academy-glyphs";
 
 const learningPaths = [
   {
-    index: "01",
+    Glyph: CoursesGlyph,
     title: "Online Courses",
     copy: "Structured learning you can follow at your own pace.",
   },
   {
-    index: "02",
+    Glyph: BooksGlyph,
     title: "Books",
     copy: "Practical guides you can keep and revisit.",
   },
   {
-    index: "03",
+    Glyph: EventsGlyph,
     title: "Events & Seminars",
     copy: "Occasional in-person sessions where James teaches practical technology, digital skills, and entrepreneurship.",
   },
@@ -35,19 +40,19 @@ export function AcademySection() {
         </div>
 
         <ol className="divide-night-border border-night-border mt-16 flex flex-col divide-y border-y">
-          {learningPaths.map((path) => (
+          {learningPaths.map(({ Glyph, title, copy }) => (
             <li
-              key={path.index}
-              className="flex flex-col gap-3 py-8 sm:flex-row sm:items-baseline sm:gap-8"
+              key={title}
+              className="flex flex-col gap-5 py-8 sm:flex-row sm:items-center sm:gap-8"
             >
-              <span className="text-metadata text-night-muted">
-                {path.index}
+              <span className="border-night-border bg-night-raised rounded-control flex size-16 shrink-0 items-center justify-center border p-3">
+                <Glyph />
               </span>
               <div className="max-w-xl">
                 <h3 className="text-feature-headline text-night-text">
-                  {path.title}
+                  {title}
                 </h3>
-                <p className="text-body text-night-muted mt-2">{path.copy}</p>
+                <p className="text-body text-night-muted mt-2">{copy}</p>
               </div>
             </li>
           ))}

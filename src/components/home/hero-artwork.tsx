@@ -7,17 +7,92 @@ export function HeroArtwork() {
       aria-hidden="true"
       focusable="false"
     >
-      {/* translucent planes */}
+      <defs>
+        <linearGradient
+          id="jz-hero-plane-a"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stopColor="var(--color-indigo)"
+            stopOpacity="0.22"
+          />
+          <stop
+            offset="100%"
+            stopColor="var(--color-violet)"
+            stopOpacity="0.1"
+          />
+        </linearGradient>
+        <linearGradient
+          id="jz-hero-plane-b"
+          x1="100%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
+          <stop offset="0%" stopColor="var(--color-violet)" stopOpacity="0.2" />
+          <stop
+            offset="100%"
+            stopColor="var(--color-indigo)"
+            stopOpacity="0.06"
+          />
+        </linearGradient>
+        <linearGradient
+          id="jz-hero-plane-coral"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
+          <stop offset="0%" stopColor="var(--color-coral)" stopOpacity="0.14" />
+          <stop
+            offset="100%"
+            stopColor="var(--color-violet)"
+            stopOpacity="0.04"
+          />
+        </linearGradient>
+        <pattern
+          id="jz-hero-dots"
+          width="30"
+          height="30"
+          patternUnits="userSpaceOnUse"
+        >
+          <circle
+            cx="2"
+            cy="2"
+            r="1.4"
+            fill="var(--color-indigo)"
+            opacity="0.55"
+          />
+        </pattern>
+      </defs>
+
+      {/* fine dot-grid texture, right two-thirds of the field */}
+      <rect
+        x="640"
+        y="-60"
+        width="1020"
+        height="1160"
+        fill="url(#jz-hero-dots)"
+        opacity="0.4"
+      />
+
+      {/* layered translucent planes */}
       <g style={{ mixBlendMode: "multiply" }}>
         <polygon
-          points="880,-60 1660,40 1500,460 800,300"
-          fill="var(--color-indigo)"
-          opacity="0.12"
+          points="760,-80 1680,120 1560,560 700,340"
+          fill="url(#jz-hero-plane-a)"
         />
         <polygon
-          points="580,90 1200,250 1000,610 430,420"
-          fill="var(--color-violet)"
-          opacity="0.1"
+          points="880,180 1640,20 1600,540 980,660"
+          fill="url(#jz-hero-plane-b)"
+        />
+        <polygon
+          points="1120,-40 1500,60 1420,320 1060,240"
+          fill="url(#jz-hero-plane-coral)"
         />
         <polygon
           points="-120,510 610,660 460,1060 -220,960"
@@ -25,58 +100,88 @@ export function HeroArtwork() {
           opacity="0.55"
         />
         <polygon
-          points="140,650 500,750 400,1010 70,900"
+          points="140,650 560,720 480,1030 60,960"
           fill="var(--color-violet)"
+          opacity="0.09"
+        />
+        <polygon
+          points="1180,560 1620,640 1560,980 1140,900"
+          fill="var(--color-indigo)"
           opacity="0.08"
         />
       </g>
 
-      {/* construction lines */}
-      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.3">
-        <line x1="1600" y1="-580" x2="0" y2="120" />
-        <line x1="1600" y1="-360" x2="0" y2="340" />
-        <line x1="1600" y1="-140" x2="0" y2="560" />
-        <line x1="1600" y1="80" x2="0" y2="780" />
-        <line x1="1600" y1="300" x2="0" y2="1000" />
-        <line x1="1600" y1="520" x2="0" y2="1220" />
+      {/* primary construction lines, upper-right to lower-left */}
+      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.32">
+        <line x1="1600" y1="-680" x2="0" y2="60" />
+        <line x1="1600" y1="-500" x2="0" y2="240" />
+        <line x1="1600" y1="-320" x2="0" y2="420" />
+        <line x1="1600" y1="-140" x2="0" y2="600" />
+        <line x1="1600" y1="40" x2="0" y2="780" />
+        <line x1="1600" y1="220" x2="0" y2="960" />
+        <line x1="1600" y1="400" x2="0" y2="1140" />
       </g>
       <g
         stroke="var(--color-violet)"
         strokeWidth="1"
-        opacity="0.22"
+        opacity="0.2"
         strokeDasharray="2 10"
       >
-        <line x1="1600" y1="-260" x2="0" y2="440" />
-        <line x1="1600" y1="200" x2="0" y2="900" />
+        <line x1="1600" y1="-360" x2="0" y2="340" />
+        <line x1="1600" y1="60" x2="0" y2="760" />
+        <line x1="1600" y1="480" x2="0" y2="1180" />
       </g>
 
-      {/* tick marks along one construction line */}
-      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.35">
-        <line x1="1240" y1="188" x2="1252" y2="164" />
-        <line x1="1080" y1="248" x2="1092" y2="224" />
-        <line x1="920" y1="308" x2="932" y2="284" />
-        <line x1="760" y1="368" x2="772" y2="344" />
-        <line x1="600" y1="428" x2="612" y2="404" />
-        <line x1="440" y1="488" x2="452" y2="464" />
+      {/* crosshatch — faint opposing diagonal for a woven, textured feel */}
+      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.1">
+        <line x1="900" y1="-80" x2="1680" y2="620" />
+        <line x1="1080" y1="-80" x2="1680" y2="440" />
+        <line x1="700" y1="120" x2="1400" y2="820" />
+        <line x1="520" y1="280" x2="1180" y2="900" />
       </g>
 
-      {/* contour lines */}
+      {/* tick marks along two construction lines */}
+      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.38">
+        <line x1="1240" y1="88" x2="1252" y2="64" />
+        <line x1="1080" y1="148" x2="1092" y2="124" />
+        <line x1="920" y1="208" x2="932" y2="184" />
+        <line x1="760" y1="268" x2="772" y2="244" />
+        <line x1="600" y1="328" x2="612" y2="304" />
+        <line x1="440" y1="388" x2="452" y2="364" />
+      </g>
+      <g stroke="var(--color-violet)" strokeWidth="1" opacity="0.3">
+        <line x1="1360" y1="500" x2="1372" y2="476" />
+        <line x1="1200" y1="560" x2="1212" y2="536" />
+        <line x1="1040" y1="620" x2="1052" y2="596" />
+        <line x1="880" y1="680" x2="892" y2="656" />
+      </g>
+
+      {/* contour lines — nested, topographic layering */}
       <g
         fill="none"
         stroke="var(--color-violet)"
-        opacity="0.28"
+        opacity="0.3"
         strokeWidth="1.5"
       >
-        <path d="M 1500 120 C 1250 60, 950 180, 820 380 C 700 560, 780 760, 620 880" />
-        <path d="M 1560 240 C 1300 200, 1040 300, 920 480 C 800 660, 860 820, 700 940" />
+        <path d="M 1560 60 C 1300 0, 980 130, 840 340 C 700 550, 800 760, 640 900" />
+        <path d="M 1600 200 C 1360 150, 1080 260, 960 460 C 840 660, 900 830, 740 960" />
       </g>
       <g
         fill="none"
         stroke="var(--color-indigo)"
-        opacity="0.18"
+        opacity="0.2"
         strokeWidth="1.5"
       >
-        <path d="M 1400 40 C 1180 20, 900 120, 780 300 C 660 480, 700 660, 540 800" />
+        <path d="M 1460 -40 C 1220 -80, 920 60, 800 260 C 680 460, 720 640, 560 780" />
+        <path d="M 1600 380 C 1400 340, 1160 420, 1060 580 C 960 740, 1000 880, 860 980" />
+      </g>
+      <g
+        fill="none"
+        stroke="var(--color-coral)"
+        opacity="0.16"
+        strokeWidth="1.5"
+      >
+        <path d="M 1380 140 C 1180 110, 960 220, 880 380" />
       </g>
 
       {/* rough coral marks, upper right, resolving toward lower left */}
@@ -84,17 +189,32 @@ export function HeroArtwork() {
         <path
           d="M 1300 90 Q 1330 60, 1360 92 T 1420 85"
           strokeWidth="3"
-          opacity="0.55"
+          opacity="0.6"
         />
         <path
           d="M 1250 160 Q 1275 140, 1300 168"
           strokeWidth="2.5"
+          opacity="0.45"
+        />
+        <path
+          d="M 1400 200 Q 1420 178, 1444 200"
+          strokeWidth="2.5"
           opacity="0.4"
+        />
+        <path
+          d="M 1130 260 Q 1152 240, 1176 262"
+          strokeWidth="2"
+          opacity="0.32"
         />
         <path
           d="M 980 340 Q 1000 322, 1022 342"
           strokeWidth="2"
-          opacity="0.28"
+          opacity="0.26"
+        />
+        <path
+          d="M 860 420 Q 878 404, 898 422"
+          strokeWidth="1.75"
+          opacity="0.2"
         />
       </g>
 

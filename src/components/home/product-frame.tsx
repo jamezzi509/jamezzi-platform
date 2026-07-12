@@ -17,26 +17,13 @@ export function ProductFrame({
   return (
     <figure
       className={cn(
-        "rounded-frame border-border shadow-showcase overflow-hidden border bg-white",
+        "rounded-showcase border-border shadow-showcase overflow-hidden border bg-white",
         className,
       )}
+      style={{ "--accent": accent } as React.CSSProperties}
     >
-      <div className="border-border bg-paper flex items-center gap-2 border-b px-4 py-3">
-        <span aria-hidden="true" className="flex gap-1.5">
-          <span className="bg-border size-2 rounded-full" />
-          <span className="bg-border size-2 rounded-full" />
-          <span className="bg-border size-2 rounded-full" />
-        </span>
-        <span className="text-metadata text-muted">
-          {productName} — sample preview
-        </span>
-      </div>
-      <div
-        className="p-6"
-        style={{ "--accent": accent } as React.CSSProperties}
-      >
-        {children}
-      </div>
+      <div className="h-1" style={{ background: accent }} />
+      <div className="p-6 md:p-8">{children}</div>
       <figcaption className="sr-only">
         Illustrative placeholder preview of the {productName} interface. Final
         product screenshots will replace this artwork.

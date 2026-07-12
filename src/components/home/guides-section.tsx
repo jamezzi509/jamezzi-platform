@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { dominantGuide, supportingGuides } from "@/content/guides";
+import { GuideArtwork } from "@/components/home/guide-artwork";
 
 export function GuidesSection() {
   return (
@@ -24,7 +25,9 @@ export function GuidesSection() {
             href={dominantGuide.href}
             className="group lg:col-span-7 lg:col-start-1"
           >
-            <div className="rounded-showcase border-border aspect-[16/10] border bg-white" />
+            <div className="rounded-showcase border-border relative aspect-[16/10] overflow-hidden border bg-white">
+              <GuideArtwork />
+            </div>
             <p className="text-metadata text-muted mt-6">Guide</p>
             <h3 className="text-card-title text-ink duration-control ease-primary group-hover:text-indigo-dark mt-2 transition-colors">
               {dominantGuide.title}

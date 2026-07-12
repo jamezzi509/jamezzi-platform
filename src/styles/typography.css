@@ -33,6 +33,24 @@
 }
 
 @utility text-section-headline {
+  font-family: var(--font-sans);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 52px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 60px;
+  }
+}
+
+/* Reserved for the hero and intentionally selected editorial statements
+   (e.g. About James) — not the default for every section heading. */
+@utility text-editorial-headline {
   font-family: var(--font-display);
   font-size: 40px;
   font-weight: 500;
