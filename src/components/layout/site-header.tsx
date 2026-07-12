@@ -70,7 +70,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 lg:hidden">
           <Link
             href={academyNav.href}
-            className="text-nav text-indigo-dark font-semibold"
+            className="rounded-control border-indigo/30 bg-indigo-light text-nav text-indigo-dark duration-control ease-primary hover:border-indigo flex min-h-11 items-center border px-3 font-semibold transition-colors"
           >
             {academyNav.label}
           </Link>

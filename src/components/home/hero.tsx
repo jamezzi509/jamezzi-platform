@@ -20,7 +20,7 @@ export function Hero() {
           </h1>
           <p className="hero-enter hero-enter-3 text-intro text-muted mt-6 max-w-xl">
             I design and build practical digital products—and turn what I know
-            into courses, books, and live training.
+            into courses, books, and seminars.
           </p>
           <div className="hero-enter hero-enter-4 mt-9 flex flex-wrap items-center gap-4">
             <CtaLink href="#selected-work" variant="primary">

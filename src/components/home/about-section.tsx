@@ -37,8 +37,8 @@ export function AboutSection() {
                 people can put to use.
               </p>
               <p>
-                I also turn that experience into practical courses, books,
-                seminars, and live training through Jamezzi Academy.
+                I also turn that experience into practical courses, books, and
+                in-person seminars through Jamezzi Academy.
               </p>
             </div>
             <CtaLink href="/about" variant="link" className="mt-6">
