@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
@@ -8,14 +9,14 @@ export function AboutSection() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="relative lg:col-span-5 lg:col-start-1">
-            <div
-              role="img"
-              aria-label="Photo of James Alexandre in his workspace — coming soon"
-              className="rounded-card border-border bg-paper flex aspect-[4/5] w-full max-w-sm items-end overflow-hidden border p-6 lg:max-w-none"
-            >
-              <p className="text-metadata text-muted">
-                Photo placeholder — final photograph pending
-              </p>
+            <div className="rounded-card border-border relative aspect-[5/4] w-full overflow-hidden border">
+              <Image
+                src="/about/james-alexandre.webp"
+                alt="James Alexandre working on a laptop."
+                fill
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover object-[center_55%]"
+              />
             </div>
           </div>
 
