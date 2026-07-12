@@ -24,13 +24,13 @@
   letter-spacing: -0.01em;
 
   @media (width >= theme(--breakpoint-md)) {
-    font-size: 72px;
+    font-size: 66px;
     line-height: 1;
   }
 
   @media (width >= theme(--breakpoint-lg)) {
-    font-size: 100px;
-    line-height: 0.92;
+    font-size: 80px;
+    line-height: 0.96;
   }
 }
 
