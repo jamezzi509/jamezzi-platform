@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
+import { StatusBadge } from "@/components/home/status-badge";
 import type { Product } from "@/types/content";
-import { ProductVisualNichr } from "@/components/home/product-visual-nichr";
 
 function NichrBackdrop() {
   return (
@@ -54,6 +55,7 @@ export function NichrShowcase({ product }: { product: Product }) {
               style={{ background: "var(--color-nichr-accent)" }}
             />
             <span className="text-metadata text-night-muted">NICHR</span>
+            <StatusBadge status={product.status} tone="dark" />
           </div>
           <p className="text-metadata text-night-muted mt-4">
             {product.category}
@@ -78,7 +80,15 @@ export function NichrShowcase({ product }: { product: Product }) {
           </CtaLink>
         </div>
         <div className="lg:col-span-7">
-          <ProductVisualNichr />
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px] sm:aspect-[16/9] lg:aspect-[2/1] xl:aspect-[2782/910]">
+            <Image
+              src={product.image.src}
+              alt={product.image.alt}
+              fill
+              sizes="(min-width: 1024px) 700px, 100vw"
+              className="object-cover object-left-top"
+            />
+          </div>
         </div>
       </div>
     </div>

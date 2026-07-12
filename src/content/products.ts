@@ -5,6 +5,7 @@ export const products: Product[] = [
     slug: "nichr",
     name: "Nichr",
     featured: true,
+    status: "launching-soon",
     category: "AI-Powered YouTube Opportunity Intelligence",
     headline: "Discover the YouTube opportunity before everyone else does.",
     description:
@@ -23,11 +24,16 @@ export const products: Product[] = [
       "Monetization potential",
       "One real YouTube niche example",
     ],
+    image: {
+      src: "/portfolio/nichr.webp",
+      alt: "Nichr opportunity database showing multilingual content opportunities, scores, growth, and competition.",
+    },
   },
   {
     slug: "endize",
     name: "Endize",
     featured: false,
+    status: "launching-soon",
     category: "Business & Contract Readiness",
     headline: "Know what's holding your business back.",
     description:
@@ -45,11 +51,16 @@ export const products: Product[] = [
       "Prioritized action plan",
       "One missing requirement",
     ],
+    image: {
+      src: "/portfolio/endize.webp",
+      alt: "Endize business readiness result showing a score of 74 out of 100 and prioritized next steps.",
+    },
   },
   {
     slug: "clieniq",
     name: "clienIQ",
     featured: false,
+    status: "launching-soon",
     category: "Agency CRM & Operations",
     headline: "Built around how service agencies actually work.",
     description:
@@ -63,6 +74,10 @@ export const products: Product[] = [
       "Missing services",
       "Recommended next action",
     ],
+    image: {
+      src: "/portfolio/clieniq.webp",
+      alt: "clienIQ agency dashboard showing its Opportunity Engine and untapped client revenue.",
+    },
   },
 ];
 

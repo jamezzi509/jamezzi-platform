@@ -1,21 +1,14 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
+import { StatusBadge } from "@/components/home/status-badge";
 import { featuredProduct, supportingProducts } from "@/content/products";
-import { ProductFrame } from "@/components/home/product-frame";
 import { NichrShowcase } from "@/components/home/nichr-showcase";
-import { ProductVisualEndize } from "@/components/home/product-visual-endize";
-import { ProductVisualClienIQ } from "@/components/home/product-visual-clieniq";
 
-const supportingVisuals = {
-  endize: ProductVisualEndize,
-  clieniq: ProductVisualClienIQ,
-} as const;
-
-const accents = {
-  nichr: "var(--color-nichr-accent)",
-  endize: "var(--color-endize-accent)",
-  clieniq: "var(--color-clieniq-accent)",
+const imageAspect = {
+  endize: "aspect-[1464/1030]",
+  clieniq: "aspect-[1114/700]",
 } as const;
 
 export function SelectedWork() {
@@ -41,41 +34,41 @@ export function SelectedWork() {
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-8">
-          {supportingProducts.map((product) => {
-            const Visual =
-              supportingVisuals[product.slug as "endize" | "clieniq"];
-            return (
-              <article key={product.slug} className="flex flex-col">
+          {supportingProducts.map((product) => (
+            <article key={product.slug} className="flex flex-col">
+              <div className="flex items-center gap-2">
                 <p className="text-metadata text-muted">{product.category}</p>
-                <h3 className="text-feature-headline text-ink mt-3">
-                  {product.headline}
-                </h3>
-                <p className="text-body text-muted mt-4">
-                  {product.description}
-                </p>
-                <ul className="text-supporting text-muted mt-5 flex flex-wrap gap-x-2 gap-y-1">
-                  {product.proof.map((item, index) => (
-                    <li key={item} className="flex items-center gap-2">
-                      {index > 0 && <span aria-hidden="true">·</span>}
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <CtaLink href={product.href} variant="link" className="mt-6">
-                  {product.actionLabel}
-                  <ArrowRightIcon className="size-4" />
-                </CtaLink>
-                <div className="mt-6">
-                  <ProductFrame
-                    accent={accents[product.slug]}
-                    productName={product.name}
-                  >
-                    <Visual />
-                  </ProductFrame>
-                </div>
-              </article>
-            );
-          })}
+                <StatusBadge status={product.status} />
+              </div>
+              <h3 className="text-feature-headline text-ink mt-3">
+                {product.headline}
+              </h3>
+              <p className="text-body text-muted mt-4">{product.description}</p>
+              <ul className="text-supporting text-muted mt-5 flex flex-wrap gap-x-2 gap-y-1">
+                {product.proof.map((item, index) => (
+                  <li key={item} className="flex items-center gap-2">
+                    {index > 0 && <span aria-hidden="true">·</span>}
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <CtaLink href={product.href} variant="link" className="mt-6">
+                {product.actionLabel}
+                <ArrowRightIcon className="size-4" />
+              </CtaLink>
+              <div
+                className={`rounded-showcase border-border shadow-showcase relative mt-6 w-full overflow-hidden border ${imageAspect[product.slug as "endize" | "clieniq"]}`}
+              >
+                <Image
+                  src={product.image.src}
+                  alt={product.image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </article>
+          ))}
         </div>
 
         <div className="mt-14 flex justify-center">

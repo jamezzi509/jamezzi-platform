@@ -28,4 +28,17 @@ describe("products content", () => {
       expect(product.href.startsWith("/")).toBe(true);
     }
   });
+
+  it("marks every homepage product as launching soon", () => {
+    for (const product of products) {
+      expect(product.status).toBe("launching-soon");
+    }
+  });
+
+  it("gives every product a real image with meaningful alt text", () => {
+    for (const product of products) {
+      expect(product.image.src.endsWith(".webp")).toBe(true);
+      expect(product.image.alt.length).toBeGreaterThan(20);
+    }
+  });
 });

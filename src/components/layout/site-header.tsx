@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { Container } from "@/components/ui/container";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { JamezziMark } from "@/components/layout/jamezzi-mark";
 import { cn } from "@/lib/cn";
 
 export function SiteHeader() {
@@ -36,10 +37,11 @@ export function SiteHeader() {
       >
         <Link
           href="/"
-          className="text-nav text-ink font-semibold"
+          className="flex items-center gap-2"
           aria-label={`${site.name} — Home`}
         >
-          {site.name}
+          <JamezziMark heightPx={28} priority />
+          <span className="text-nav text-ink font-semibold">{site.name}</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -54,7 +56,7 @@ export function SiteHeader() {
           ))}
           <Link
             href={academyNav.href}
-            className="rounded-control border-indigo/30 bg-indigo-light text-nav text-indigo-dark duration-control ease-primary hover:border-indigo border px-3 py-1.5 font-semibold transition-colors"
+            className="text-button duration-control ease-primary bg-indigo hover:bg-indigo-dark flex h-11 items-center rounded-[10px] px-[18px] text-white transition hover:-translate-y-px"
           >
             {academyNav.label}
           </Link>
@@ -70,7 +72,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 lg:hidden">
           <Link
             href={academyNav.href}
-            className="rounded-control border-indigo/30 bg-indigo-light text-nav text-indigo-dark duration-control ease-primary hover:border-indigo flex min-h-11 items-center border px-3 font-semibold transition-colors"
+            className="text-button duration-control ease-primary bg-indigo hover:bg-indigo-dark flex min-h-11 items-center rounded-[10px] px-4 text-white transition hover:-translate-y-px"
           >
             {academyNav.label}
           </Link>

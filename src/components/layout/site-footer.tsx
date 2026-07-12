@@ -3,6 +3,7 @@ import { site } from "@/content/site";
 import { footerGroups, legalLinks } from "@/content/footer";
 import { socialLinks } from "@/content/social";
 import { Container } from "@/components/ui/container";
+import { JamezziMark } from "@/components/layout/jamezzi-mark";
 import {
   FacebookIcon,
   LinkedInIcon,
@@ -23,9 +24,12 @@ export function SiteFooter() {
       <Container className="py-16 lg:py-20">
         <div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
           <div className="col-span-4 md:col-span-8 lg:col-span-4">
-            <p className="text-nav font-semibold tracking-wide">
-              {site.name.toUpperCase()}
-            </p>
+            <div className="flex items-center gap-2">
+              <JamezziMark heightPx={24} />
+              <p className="text-nav font-semibold tracking-wide">
+                {site.name.toUpperCase()}
+              </p>
+            </div>
             <p className="text-body text-night-muted mt-4">{site.tagline}</p>
             <p className="text-body text-night-muted mt-2">
               {site.description}

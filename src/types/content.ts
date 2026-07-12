@@ -21,10 +21,13 @@ export interface FooterLinkGroup {
   links: NavLink[];
 }
 
+export type ProductStatus = "launching-soon" | "live";
+
 export interface Product {
   slug: "nichr" | "endize" | "clieniq";
   name: string;
   featured: boolean;
+  status: ProductStatus;
   category: string;
   headline: string;
   description: string;
@@ -32,6 +35,16 @@ export interface Product {
   actionLabel: string;
   href: string;
   visualFocus: string[];
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+export interface PortfolioExtra {
+  slug: "pepinye" | "roadize";
+  name: string;
+  status: ProductStatus;
 }
 
 export interface Guide {

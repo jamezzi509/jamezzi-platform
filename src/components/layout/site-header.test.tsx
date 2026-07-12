@@ -35,13 +35,24 @@ describe("SiteHeader", () => {
     ]);
   });
 
-  it("styles the mobile Academy link as a distinguished button with a 44px touch target", () => {
+  it("styles the mobile Academy link as a solid indigo button with a 44px touch target", () => {
     render(<SiteHeader />);
     const academyLinks = screen.getAllByRole("link", { name: "Academy" });
     const mobileAcademyLink = academyLinks[academyLinks.length - 1];
 
-    expect(mobileAcademyLink.className).toContain("bg-indigo-light");
-    expect(mobileAcademyLink.className).toContain("rounded-control");
+    expect(mobileAcademyLink.className).toContain("bg-indigo");
+    expect(mobileAcademyLink.className).toContain("text-white");
+    expect(mobileAcademyLink.className).toContain("rounded-[10px]");
     expect(mobileAcademyLink.className).toContain("min-h-11");
+  });
+
+  it("uses the Jamezzi symbol and wordmark as the only Home link", () => {
+    render(<SiteHeader />);
+    const homeLink = screen.getByRole("link", { name: /jamezzi — home/i });
+    const img = homeLink.querySelector("img");
+
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("alt", "");
+    expect(homeLink).toHaveTextContent("Jamezzi");
   });
 });
