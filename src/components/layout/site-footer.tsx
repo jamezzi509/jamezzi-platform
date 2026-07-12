@@ -21,13 +21,13 @@ const socialIcons = {
 export function SiteFooter() {
   return (
     <footer className="bg-night text-night-text">
-      <Container className="py-16 lg:py-20">
+      <Container className="py-12 lg:py-14">
         <div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
           <div className="col-span-4 md:col-span-8 lg:col-span-4">
             <div className="flex items-center gap-2">
-              <JamezziMark heightPx={24} />
-              <p className="text-nav font-semibold tracking-wide">
-                {site.name.toUpperCase()}
+              <JamezziMark heightPx={32} className="h-[22px] lg:h-7" />
+              <p className="font-display text-[17px] font-medium tracking-tight lg:text-[20px]">
+                {site.name}
               </p>
             </div>
             <p className="text-body text-night-muted mt-4">{site.tagline}</p>
@@ -46,7 +46,7 @@ export function SiteFooter() {
                       aria-label={social.label}
                       className="rounded-control border-night-border text-night-text duration-control ease-primary hover:border-night-text flex size-11 items-center justify-center border transition-colors"
                     >
-                      <SocialIcon className="size-5" />
+                      <SocialIcon className="size-6" />
                     </Link>
                   </li>
                 );
@@ -62,7 +62,7 @@ export function SiteFooter() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={1.75}
-                    className="size-5"
+                    className="size-6"
                     aria-hidden="true"
                     focusable="false"
                   >
@@ -97,7 +97,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="border-night-border mt-12 flex flex-col gap-4 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-night-border mt-8 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-legal text-night-muted">
             © 2026 {site.legalName}. All rights reserved.
           </p>

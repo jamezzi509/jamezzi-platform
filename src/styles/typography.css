@@ -24,11 +24,13 @@
   letter-spacing: -0.01em;
 
   @media (width >= theme(--breakpoint-md)) {
-    font-size: 76px;
+    font-size: 72px;
+    line-height: 1;
   }
 
   @media (width >= theme(--breakpoint-lg)) {
-    font-size: 108px;
+    font-size: 100px;
+    line-height: 0.92;
   }
 }
 
@@ -52,17 +54,17 @@
    (e.g. About James) — not the default for every section heading. */
 @utility text-editorial-headline {
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.01em;
 
   @media (width >= theme(--breakpoint-md)) {
-    font-size: 52px;
+    font-size: 44px;
   }
 
   @media (width >= theme(--breakpoint-lg)) {
-    font-size: 60px;
+    font-size: 48px;
   }
 }
 
@@ -79,6 +81,25 @@
 
   @media (width >= theme(--breakpoint-lg)) {
     font-size: 42px;
+  }
+}
+
+/* One level down from text-feature-headline — used where the feature
+   headline scale reads too large in context (Nichr showcase, Academy
+   offering titles) without affecting the shared utility elsewhere. */
+@utility text-feature-headline-sm {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+
+  @media (width >= theme(--breakpoint-md)) {
+    font-size: 32px;
+  }
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 36px;
   }
 }
 
@@ -158,6 +179,10 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1.2;
+
+  @media (width >= theme(--breakpoint-lg)) {
+    font-size: 17px;
+  }
 }
 
 @utility text-button {

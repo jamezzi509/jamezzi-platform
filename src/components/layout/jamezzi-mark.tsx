@@ -23,7 +23,7 @@ export function JamezziMark({
       width={Math.round(heightPx * ASPECT)}
       height={heightPx}
       priority={priority}
-      className={cn("shrink-0", className)}
+      className={cn("w-auto shrink-0", className)}
     />
   );
 }

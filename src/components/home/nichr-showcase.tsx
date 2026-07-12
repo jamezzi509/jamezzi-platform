@@ -47,7 +47,7 @@ export function NichrShowcase({ product }: { product: Product }) {
   return (
     <div className="rounded-showcase bg-night relative overflow-hidden">
       <NichrBackdrop />
-      <div className="relative grid gap-10 p-8 md:p-12 lg:grid-cols-12 lg:items-center lg:gap-12 lg:p-16">
+      <div className="relative grid gap-8 p-8 md:p-10 lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-12">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-2">
             <span
@@ -57,16 +57,16 @@ export function NichrShowcase({ product }: { product: Product }) {
             <span className="text-metadata text-night-muted">NICHR</span>
             <StatusBadge status={product.status} tone="dark" />
           </div>
-          <p className="text-metadata text-night-muted mt-4">
+          <p className="text-metadata text-night-muted mt-3">
             {product.category}
           </p>
-          <h3 className="text-feature-headline text-night-text mt-3">
+          <h3 className="text-feature-headline-sm text-night-text mt-2">
             {product.headline}
           </h3>
-          <p className="text-body text-night-muted mt-4">
+          <p className="text-body text-night-muted mt-3">
             {product.description}
           </p>
-          <ul className="text-supporting text-night-muted mt-5 flex flex-wrap gap-x-2 gap-y-1">
+          <ul className="text-supporting text-night-muted mt-4 flex flex-wrap gap-x-2 gap-y-1">
             {product.proof.map((item, index) => (
               <li key={item} className="flex items-center gap-2">
                 {index > 0 && <span aria-hidden="true">·</span>}
@@ -74,7 +74,7 @@ export function NichrShowcase({ product }: { product: Product }) {
               </li>
             ))}
           </ul>
-          <CtaLink href={product.href} variant="link-inverse" className="mt-6">
+          <CtaLink href={product.href} variant="link-inverse" className="mt-5">
             {product.actionLabel}
             <ArrowRightIcon className="size-4" />
           </CtaLink>

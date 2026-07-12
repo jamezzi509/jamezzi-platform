@@ -26,9 +26,11 @@ export function GuidesSection() {
             className="group lg:col-span-7 lg:col-start-1"
           >
             <div className="rounded-showcase border-border relative aspect-[16/10] overflow-hidden border bg-white">
-              <GuideArtwork />
+              <GuideArtwork variant={dominantGuide.artwork} />
             </div>
-            <p className="text-metadata text-muted mt-6">Guide</p>
+            <p className="text-metadata text-muted mt-6">
+              {dominantGuide.category} · {dominantGuide.readingTime}
+            </p>
             <h3 className="text-card-title text-ink duration-control ease-primary group-hover:text-indigo-dark mt-2 transition-colors">
               {dominantGuide.title}
             </h3>
@@ -39,12 +41,19 @@ export function GuidesSection() {
               <Link
                 key={guide.slug}
                 href={guide.href}
-                className="group py-6 first:pt-0"
+                className="group flex gap-4 py-6 first:pt-0"
               >
-                <p className="text-metadata text-muted">Guide</p>
-                <h3 className="text-card-title text-ink duration-control ease-primary group-hover:text-indigo-dark mt-2 transition-colors">
-                  {guide.title}
-                </h3>
+                <div className="rounded-card border-border relative aspect-[4/3] w-24 shrink-0 overflow-hidden border bg-white">
+                  <GuideArtwork variant={guide.artwork} />
+                </div>
+                <div>
+                  <p className="text-metadata text-muted">
+                    {guide.category} · {guide.readingTime}
+                  </p>
+                  <h3 className="text-card-title text-ink duration-control ease-primary group-hover:text-indigo-dark mt-2 transition-colors">
+                    {guide.title}
+                  </h3>
+                </div>
               </Link>
             ))}
           </div>

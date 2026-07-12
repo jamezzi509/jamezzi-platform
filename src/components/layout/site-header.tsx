@@ -32,16 +32,18 @@ export function SiteHeader() {
       <Container
         className={cn(
           "flex items-center justify-between",
-          scrolled ? "py-3" : "py-5",
+          scrolled ? "py-3 lg:h-16 lg:py-0" : "py-5 lg:h-20 lg:py-0",
         )}
       >
         <Link
           href="/"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2.5"
           aria-label={`${site.name} — Home`}
         >
-          <JamezziMark heightPx={28} priority />
-          <span className="text-nav text-ink font-semibold">{site.name}</span>
+          <JamezziMark heightPx={36} className="h-[30px] lg:h-9" priority />
+          <span className="font-display text-ink text-[21px] font-medium tracking-tight lg:text-[26px]">
+            {site.name}
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -56,7 +58,7 @@ export function SiteHeader() {
           ))}
           <Link
             href={academyNav.href}
-            className="text-button duration-control ease-primary bg-indigo hover:bg-indigo-dark flex h-11 items-center rounded-[10px] px-[18px] text-white transition hover:-translate-y-px"
+            className="text-button duration-control ease-primary bg-indigo hover:bg-indigo-dark flex h-10 items-center rounded-[10px] px-4 text-white transition hover:-translate-y-px"
           >
             {academyNav.label}
           </Link>

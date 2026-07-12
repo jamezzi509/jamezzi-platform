@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 type Variant =
   | "primary"
   | "secondary"
+  | "dark"
   | "inverse"
   | "outline-inverse"
   | "link"
@@ -29,6 +30,7 @@ const variantClasses: Record<Variant, string> = {
     filledBase,
     "border border-border bg-transparent text-ink hover:bg-white",
   ),
+  dark: cn(filledBase, "bg-ink text-white hover:bg-ink/85"),
   inverse: cn(filledBase, "bg-paper text-ink hover:bg-white"),
   "outline-inverse": cn(
     filledBase,

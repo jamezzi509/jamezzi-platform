@@ -7,20 +7,20 @@ export function AboutSection() {
   return (
     <section className="bg-white py-20 lg:py-32">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="relative lg:col-span-5 lg:col-start-1">
+        <div className="grid gap-10 lg:grid-cols-[42%_58%] lg:items-center lg:gap-12">
+          <div className="relative">
             <div className="rounded-card border-border relative aspect-[5/4] w-full overflow-hidden border">
               <Image
                 src="/about/james-alexandre.webp"
                 alt="James Alexandre working on a laptop."
                 fill
-                sizes="(min-width: 1024px) 480px, 100vw"
+                sizes="(min-width: 1024px) 420px, 100vw"
                 className="object-cover object-[center_55%]"
               />
             </div>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7 lg:self-center">
+          <div>
             <p className="text-eyebrow text-indigo-dark">ABOUT JAMES</p>
             <h2 className="text-editorial-headline text-ink mt-4">
               I build because I believe better tools should exist.

@@ -3,8 +3,8 @@ import { CtaLink } from "@/components/ui/cta-link";
 
 export function OpportunityCta() {
   return (
-    <section className="bg-indigo py-20 text-white lg:py-28">
-      <Container className="flex flex-col items-start gap-6 lg:items-center lg:text-center">
+    <section className="bg-indigo py-16 text-white lg:py-20">
+      <Container className="flex flex-col items-start gap-5 lg:items-center lg:text-center">
         <p className="text-eyebrow text-indigo-light">
           LET&rsquo;S WORK TOGETHER
         </p>
@@ -15,7 +15,7 @@ export function OpportunityCta() {
           I&rsquo;m open to selected product collaborations, digital projects,
           partnerships, and speaking or seminar invitations.
         </p>
-        <CtaLink href="/contact" variant="inverse">
+        <CtaLink href="/contact" variant="dark">
           Start a Conversation
         </CtaLink>
       </Container>

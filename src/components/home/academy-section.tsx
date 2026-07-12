@@ -39,17 +39,17 @@ export function AcademySection() {
           </p>
         </div>
 
-        <ol className="divide-night-border border-night-border mt-16 flex flex-col divide-y border-y">
+        <ol className="divide-night-border border-night-border mt-12 flex flex-col divide-y border-y">
           {learningPaths.map(({ Glyph, title, copy }) => (
             <li
               key={title}
-              className="flex flex-col gap-5 py-8 sm:flex-row sm:items-center sm:gap-8"
+              className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:gap-8"
             >
-              <span className="border-night-border bg-night-raised rounded-control flex size-16 shrink-0 items-center justify-center border p-3">
+              <span className="border-night-border bg-night-raised rounded-control flex size-14 shrink-0 items-center justify-center border p-2.5">
                 <Glyph />
               </span>
               <div className="max-w-xl">
-                <h3 className="text-feature-headline text-night-text">
+                <h3 className="text-feature-headline-sm text-night-text">
                   {title}
                 </h3>
                 <p className="text-body text-night-muted mt-2">{copy}</p>
@@ -58,7 +58,7 @@ export function AcademySection() {
           ))}
         </ol>
 
-        <div className="mt-12 flex flex-wrap items-center gap-4">
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <CtaLink href="/academy" variant="inverse">
             Explore Jamezzi Academy
           </CtaLink>
@@ -67,7 +67,7 @@ export function AcademySection() {
           </CtaLink>
           <CtaLink
             href="/contact?type=seminar-or-speaking"
-            variant="link-inverse"
+            variant="outline-inverse"
           >
             Invite James to Speak
           </CtaLink>

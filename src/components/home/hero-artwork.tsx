@@ -77,7 +77,7 @@ export function HeroArtwork() {
         width="1020"
         height="1160"
         fill="url(#jz-hero-dots)"
-        opacity="0.4"
+        opacity="0.26"
       />
 
       {/* layered translucent planes */}
@@ -112,7 +112,7 @@ export function HeroArtwork() {
       </g>
 
       {/* primary construction lines, upper-right to lower-left */}
-      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.32">
+      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.2">
         <line x1="1600" y1="-680" x2="0" y2="60" />
         <line x1="1600" y1="-500" x2="0" y2="240" />
         <line x1="1600" y1="-320" x2="0" y2="420" />
@@ -124,7 +124,7 @@ export function HeroArtwork() {
       <g
         stroke="var(--color-violet)"
         strokeWidth="1"
-        opacity="0.2"
+        opacity="0.13"
         strokeDasharray="2 10"
       >
         <line x1="1600" y1="-360" x2="0" y2="340" />
@@ -133,7 +133,7 @@ export function HeroArtwork() {
       </g>
 
       {/* crosshatch — faint opposing diagonal for a woven, textured feel */}
-      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.1">
+      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.07">
         <line x1="900" y1="-80" x2="1680" y2="620" />
         <line x1="1080" y1="-80" x2="1680" y2="440" />
         <line x1="700" y1="120" x2="1400" y2="820" />
@@ -141,7 +141,7 @@ export function HeroArtwork() {
       </g>
 
       {/* tick marks along two construction lines */}
-      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.38">
+      <g stroke="var(--color-indigo)" strokeWidth="1" opacity="0.28">
         <line x1="1240" y1="88" x2="1252" y2="64" />
         <line x1="1080" y1="148" x2="1092" y2="124" />
         <line x1="920" y1="208" x2="932" y2="184" />
@@ -149,7 +149,7 @@ export function HeroArtwork() {
         <line x1="600" y1="328" x2="612" y2="304" />
         <line x1="440" y1="388" x2="452" y2="364" />
       </g>
-      <g stroke="var(--color-violet)" strokeWidth="1" opacity="0.3">
+      <g stroke="var(--color-violet)" strokeWidth="1" opacity="0.22">
         <line x1="1360" y1="500" x2="1372" y2="476" />
         <line x1="1200" y1="560" x2="1212" y2="536" />
         <line x1="1040" y1="620" x2="1052" y2="596" />
@@ -160,7 +160,7 @@ export function HeroArtwork() {
       <g
         fill="none"
         stroke="var(--color-violet)"
-        opacity="0.3"
+        opacity="0.22"
         strokeWidth="1.5"
       >
         <path d="M 1560 60 C 1300 0, 980 130, 840 340 C 700 550, 800 760, 640 900" />
@@ -169,7 +169,7 @@ export function HeroArtwork() {
       <g
         fill="none"
         stroke="var(--color-indigo)"
-        opacity="0.2"
+        opacity="0.15"
         strokeWidth="1.5"
       >
         <path d="M 1460 -40 C 1220 -80, 920 60, 800 260 C 680 460, 720 640, 560 780" />

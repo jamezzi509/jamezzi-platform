@@ -52,6 +52,9 @@ export interface Guide {
   title: string;
   href: string;
   dominant: boolean;
+  category: string;
+  readingTime: string;
+  artwork: "decision" | "signals" | "readiness";
   dek?: string;
 }
 
