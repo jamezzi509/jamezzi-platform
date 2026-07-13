@@ -32,7 +32,7 @@ export function SiteHeader() {
       <Container
         className={cn(
           "flex items-center justify-between",
-          scrolled ? "py-3 lg:h-16 lg:py-0" : "py-5 lg:h-20 lg:py-0",
+          scrolled ? "py-3 lg:h-[72px] lg:py-0" : "py-5 lg:h-[72px] lg:py-0",
         )}
       >
         <Link

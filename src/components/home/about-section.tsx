@@ -5,11 +5,11 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 
 export function AboutSection() {
   return (
-    <section className="bg-white py-20 lg:py-32">
+    <section className="bg-white py-20 lg:py-24">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[42%_58%] lg:items-center lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-[42%_58%] lg:items-start lg:gap-12">
           <div className="relative">
-            <div className="rounded-card border-border relative aspect-[5/4] w-full overflow-hidden border">
+            <div className="rounded-card border-border relative aspect-[4/3] w-full overflow-hidden border">
               <Image
                 src="/about/james-alexandre.webp"
                 alt="James Alexandre working on a laptop."

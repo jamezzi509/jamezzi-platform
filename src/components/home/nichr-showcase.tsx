@@ -45,16 +45,20 @@ function NichrBackdrop() {
 
 export function NichrShowcase({ product }: { product: Product }) {
   return (
-    <div className="rounded-showcase bg-night relative overflow-hidden">
+    <div className="bg-night relative overflow-hidden rounded-[15px] lg:h-[556px]">
       <NichrBackdrop />
-      <div className="relative grid gap-8 p-8 md:p-10 lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-12">
-        <div className="lg:col-span-5">
+      <div className="relative grid gap-8 p-8 md:p-10 lg:h-full lg:grid-cols-12 lg:items-stretch lg:gap-8 lg:p-8">
+        <div className="flex flex-col justify-center lg:col-span-4">
           <div className="flex items-center gap-2">
             <span
-              className="size-2 rounded-full"
+              className="flex size-6 items-center justify-center rounded-md text-[13px] font-bold text-white"
               style={{ background: "var(--color-nichr-accent)" }}
-            />
-            <span className="text-metadata text-night-muted">NICHR</span>
+            >
+              N
+            </span>
+            <span className="text-nav text-night-text font-semibold">
+              Nichr
+            </span>
             <StatusBadge status={product.status} tone="dark" />
           </div>
           <p className="text-metadata text-night-muted mt-3">
@@ -63,10 +67,10 @@ export function NichrShowcase({ product }: { product: Product }) {
           <h3 className="text-feature-headline-sm text-night-text mt-2">
             {product.headline}
           </h3>
-          <p className="text-body text-night-muted mt-3">
+          <p className="text-body text-night-muted mt-2">
             {product.description}
           </p>
-          <ul className="text-supporting text-night-muted mt-4 flex flex-wrap gap-x-2 gap-y-1">
+          <ul className="text-supporting text-night-muted mt-3 flex flex-wrap gap-x-2 gap-y-1">
             {product.proof.map((item, index) => (
               <li key={item} className="flex items-center gap-2">
                 {index > 0 && <span aria-hidden="true">·</span>}
@@ -74,18 +78,22 @@ export function NichrShowcase({ product }: { product: Product }) {
               </li>
             ))}
           </ul>
-          <CtaLink href={product.href} variant="link-inverse" className="mt-5">
+          <CtaLink
+            href={product.href}
+            variant="primary"
+            className="mt-4 self-start"
+          >
             {product.actionLabel}
             <ArrowRightIcon className="size-4" />
           </CtaLink>
         </div>
-        <div className="lg:col-span-7">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px] sm:aspect-[16/9] lg:aspect-[2/1] xl:aspect-[2782/910]">
+        <div className="lg:col-span-8 lg:h-full">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px] sm:aspect-[16/9] lg:aspect-auto lg:h-full">
             <Image
               src={product.image.src}
               alt={product.image.alt}
               fill
-              sizes="(min-width: 1024px) 700px, 100vw"
+              sizes="(min-width: 1024px) 900px, 100vw"
               className="object-cover object-left-top"
             />
           </div>

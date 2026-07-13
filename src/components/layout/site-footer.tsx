@@ -21,7 +21,7 @@ const socialIcons = {
 export function SiteFooter() {
   return (
     <footer className="bg-night text-night-text">
-      <Container className="py-12 lg:py-14">
+      <Container className="py-10">
         <div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
           <div className="col-span-4 md:col-span-8 lg:col-span-4">
             <div className="flex items-center gap-2">
@@ -30,12 +30,12 @@ export function SiteFooter() {
                 {site.name}
               </p>
             </div>
-            <p className="text-body text-night-muted mt-4">{site.tagline}</p>
-            <p className="text-body text-night-muted mt-2">
+            <p className="text-body text-night-muted mt-3">{site.tagline}</p>
+            <p className="text-body text-night-muted mt-1.5">
               {site.description}
             </p>
 
-            <ul className="mt-6 flex items-center gap-3">
+            <ul className="mt-4 flex items-center gap-3">
               {socialLinks.map((social) => {
                 const SocialIcon =
                   socialIcons[social.label as keyof typeof socialIcons];
@@ -81,7 +81,7 @@ export function SiteFooter() {
               className="col-span-2 md:col-span-4 lg:col-span-4"
             >
               <p className="text-metadata text-night-muted">{group.heading}</p>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-3 space-y-2">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -97,7 +97,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="border-night-border mt-8 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-night-border mt-6 flex flex-col gap-4 border-t pt-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-legal text-night-muted">
             © 2026 {site.legalName}. All rights reserved.
           </p>

@@ -23,11 +23,11 @@
   }
 
   @media (width >= theme(--breakpoint-lg)) {
-    padding-inline: 48px;
+    padding-inline: 32px;
   }
 
   @media (width >= theme(--breakpoint-xl)) {
-    padding-inline: 64px;
+    padding-inline: 52px;
   }
 }
 

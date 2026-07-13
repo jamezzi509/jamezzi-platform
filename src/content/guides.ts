@@ -9,6 +9,7 @@ export const guides: Guide[] = [
     category: "Product Strategy",
     readingTime: "6 min read",
     artwork: "decision",
+    dek: "The framework I use to evaluate ideas for clarity—so I build fewer things, but better ones.",
   },
   {
     slug: "before-you-choose-a-youtube-niche-study-these-seven-signals",
@@ -18,6 +19,7 @@ export const guides: Guide[] = [
     category: "Content Research",
     readingTime: "8 min read",
     artwork: "signals",
+    dek: "Use data, not guesswork, to find niches with real potential.",
   },
   {
     slug: "why-good-businesses-still-lose-contract-opportunities",
@@ -27,6 +29,7 @@ export const guides: Guide[] = [
     category: "Business Development",
     readingTime: "7 min read",
     artwork: "readiness",
+    dek: "The hidden gaps that cost deals—and how to fix them fast.",
   },
 ];
 
