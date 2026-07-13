@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
-import { HeroArtwork } from "@/components/home/hero-artwork";
 import { HeroArtworkParallax } from "@/components/home/hero-artwork-parallax";
 
 export function Hero() {
@@ -9,9 +9,19 @@ export function Hero() {
       {/* Mobile/tablet: full-bleed artwork behind the centered text (unchanged composition). */}
       <div className="absolute inset-0 lg:left-[38%]">
         <HeroArtworkParallax>
-          <HeroArtwork />
+          <Image
+            src="/brand/hero-artwork.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
         </HeroArtworkParallax>
       </div>
+
+      {/* Mobile/tablet contrast scrim — the artwork is far busier than the old SVG pattern, so text needs a lightened backdrop below lg. */}
+      <div className="from-paper via-paper/85 absolute inset-0 bg-gradient-to-b to-transparent lg:hidden" />
 
       <Container className="relative z-10 flex min-h-[100svh] flex-col justify-center pt-28 pb-16 lg:min-h-[740px] lg:pb-20">
         <div className="max-w-xl lg:max-w-[520px]">
