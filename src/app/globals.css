@@ -31,6 +31,23 @@
   }
 }
 
+@utility hero-artwork-mask {
+  @media (width >= theme(--breakpoint-lg)) {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 30%,
+      black 48%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 30%,
+      black 48%
+    );
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

@@ -6,8 +6,8 @@ import { HeroArtworkParallax } from "@/components/home/hero-artwork-parallax";
 export function Hero() {
   return (
     <section className="bg-paper relative min-h-[100svh] overflow-hidden lg:min-h-[740px]">
-      {/* Mobile/tablet: full-bleed artwork behind the centered text (unchanged composition). */}
-      <div className="absolute inset-0 lg:left-[38%]">
+      {/* Full-bleed artwork; a soft mask fades it in from ~30-48% across on desktop so it dissolves into the text panel instead of reading as a separate block. */}
+      <div className="hero-artwork-mask absolute inset-0">
         <HeroArtworkParallax>
           <Image
             src="/brand/hero-artwork-v2.webp"
