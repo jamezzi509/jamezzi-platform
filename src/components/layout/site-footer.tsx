@@ -22,7 +22,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-night text-night-text">
       <Container className="py-10">
-        <div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
+        <div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-8">
           <div className="col-span-4 md:col-span-8 lg:col-span-3">
             <div className="flex items-center gap-2.5">
               <JamezziMark heightPx={40} className="h-7 lg:h-8" />
@@ -30,11 +30,12 @@ export function SiteFooter() {
                 {site.name}
               </p>
             </div>
-            <p className="text-body text-night-muted mt-3">{site.tagline}</p>
-            <p className="text-body text-night-muted mt-1.5">
+            <p className="text-body text-night-muted mt-3">
               {site.description}
             </p>
           </div>
+
+          <div className="hidden lg:col-span-1 lg:block" aria-hidden="true" />
 
           {footerGroups.map((group) => (
             <nav
@@ -60,7 +61,7 @@ export function SiteFooter() {
 
           <nav
             aria-label="Connect"
-            className="col-span-4 md:col-span-8 lg:col-span-3"
+            className="col-span-4 md:col-span-8 lg:col-span-2"
           >
             <p className="text-metadata text-night-muted">Connect</p>
             <ul className="mt-3 space-y-2">
@@ -73,7 +74,7 @@ export function SiteFooter() {
                       href={social.href}
                       className="text-body text-night-text duration-control ease-primary flex items-center gap-2 transition-colors hover:text-white"
                     >
-                      <SocialIcon className="size-4" />
+                      <SocialIcon className="size-5" />
                       {social.label}
                     </Link>
                   </li>
@@ -89,7 +90,7 @@ export function SiteFooter() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={1.75}
-                    className="size-4"
+                    className="size-5"
                     aria-hidden="true"
                     focusable="false"
                   >

@@ -6,19 +6,16 @@ export const footerGroups: FooterLinkGroup[] = [
     links: [
       { label: "Portfolio", href: "/portfolio" },
       { label: "Guides", href: "/guides" },
-      { label: "About James", href: "/about" },
+      { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
     ],
   },
   {
     heading: "Academy",
     links: [
-      { label: "Online Courses", href: "/academy/courses" },
+      { label: "Courses", href: "/academy/courses" },
       { label: "Books", href: "/academy/books" },
       { label: "Events & Seminars", href: "/academy/events" },
-      { label: "Get Seminar Updates", href: "/academy/seminar-updates" },
-      { label: "Academy Help", href: "/academy/help" },
-      { label: "Student Sign In", href: "/sign-in" },
     ],
   },
 ];
