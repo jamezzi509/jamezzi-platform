@@ -26,7 +26,7 @@ export function SiteHeader() {
         "duration-control ease-primary fixed inset-x-0 top-0 z-40 transition-all",
         scrolled
           ? "border-border bg-paper/90 border-b backdrop-blur-sm"
-          : "bg-paper/55 border-b border-transparent backdrop-blur-sm",
+          : "border-b border-transparent bg-transparent",
       )}
     >
       <Container
@@ -46,29 +46,31 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           {primaryNav.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-nav text-ink duration-control ease-primary hover:text-indigo transition-colors"
+              className="text-nav text-ink duration-control ease-primary bg-paper/45 hover:bg-paper/70 rounded-full px-3 py-1.5 backdrop-blur-sm transition-colors hover:text-indigo"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href={academyNav.href}
-            className="text-button duration-control ease-primary bg-indigo hover:bg-indigo-dark flex h-10 items-center rounded-[10px] px-4 text-white transition hover:-translate-y-px"
+            className="text-button duration-control ease-primary bg-indigo hover:bg-indigo-dark ml-3 flex h-10 items-center rounded-[10px] px-4 text-white transition hover:-translate-y-px"
           >
             {academyNav.label}
           </Link>
-          <LanguageSwitcher />
-          <Link
-            href={signInNav.href}
-            className="text-nav text-ink duration-control ease-primary hover:text-indigo transition-colors"
-          >
-            {signInNav.label}
-          </Link>
+          <div className="ml-3 flex items-center gap-1">
+            <LanguageSwitcher />
+            <Link
+              href={signInNav.href}
+              className="text-nav text-ink duration-control ease-primary bg-paper/45 hover:bg-paper/70 rounded-full px-3 py-1.5 backdrop-blur-sm transition-colors hover:text-indigo"
+            >
+              {signInNav.label}
+            </Link>
+          </div>
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">

@@ -22,10 +22,10 @@ export function LanguageSwitcher({ inverse = false }: { inverse?: boolean }) {
         aria-expanded={open}
         onClick={() => setOpen(!open)}
         className={cn(
-          "rounded-control text-nav duration-control ease-primary flex min-h-11 items-center gap-1 px-2 transition-colors",
+          "text-nav duration-control ease-primary flex min-h-11 items-center gap-1 rounded-full px-3 transition-colors",
           inverse
             ? "text-night-text hover:text-white"
-            : "text-ink hover:text-indigo",
+            : "bg-paper/45 hover:bg-paper/70 text-ink backdrop-blur-sm hover:text-indigo",
         )}
       >
         {locales.find((locale) => locale.code === activeLocale)?.label}
