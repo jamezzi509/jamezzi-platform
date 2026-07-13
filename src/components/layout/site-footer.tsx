@@ -24,9 +24,9 @@ export function SiteFooter() {
       <Container className="py-10">
         <div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
           <div className="col-span-4 md:col-span-8 lg:col-span-4">
-            <div className="flex items-center gap-2">
-              <JamezziMark heightPx={32} className="h-[22px] lg:h-7" />
-              <p className="font-display text-[17px] font-medium tracking-tight lg:text-[20px]">
+            <div className="flex items-center gap-2.5">
+              <JamezziMark heightPx={40} className="h-7 lg:h-8" />
+              <p className="font-display text-[21px] font-medium tracking-tight lg:text-[24px]">
                 {site.name}
               </p>
             </div>
