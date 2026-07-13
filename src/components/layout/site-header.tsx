@@ -26,7 +26,7 @@ export function SiteHeader() {
         "duration-control ease-primary fixed inset-x-0 top-0 z-40 transition-all",
         scrolled
           ? "border-border bg-paper/90 border-b backdrop-blur-sm"
-          : "border-b border-transparent bg-transparent",
+          : "bg-paper/55 border-b border-transparent backdrop-blur-sm",
       )}
     >
       <Container
