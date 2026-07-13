@@ -40,8 +40,8 @@ export function SiteHeader() {
           className="flex items-center gap-2.5"
           aria-label={`${site.name} — Home`}
         >
-          <JamezziMark heightPx={36} className="h-[30px] lg:h-9" priority />
-          <span className="font-display text-ink text-[21px] font-medium tracking-tight lg:text-[26px]">
+          <JamezziMark heightPx={40} className="h-8 lg:h-10" priority />
+          <span className="font-display text-ink text-[23px] font-medium tracking-tight lg:text-[28px]">
             {site.name}
           </span>
         </Link>
