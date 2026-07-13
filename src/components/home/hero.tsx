@@ -10,7 +10,7 @@ export function Hero() {
       <div className="absolute inset-0 lg:left-[38%]">
         <HeroArtworkParallax>
           <Image
-            src="/brand/hero-artwork.webp"
+            src="/brand/hero-artwork-v2.webp"
             alt=""
             fill
             priority
