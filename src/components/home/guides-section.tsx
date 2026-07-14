@@ -30,7 +30,7 @@ export function GuidesSection() {
               href={guide.href}
               className="group flex flex-col"
             >
-              <div className="rounded-card border-border relative aspect-[2/1] overflow-hidden border bg-white">
+              <div className="rounded-card border-border relative aspect-[4/3] overflow-hidden border bg-white">
                 {guide.coverImage ? (
                   <Image
                     src={guide.coverImage}
