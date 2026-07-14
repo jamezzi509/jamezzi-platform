@@ -20,7 +20,8 @@ export const guides: Guide[] = [
     category: "Content Research",
     readingTime: "8 min read",
     artwork: "signals",
-    dek: "Use data, not guesswork, to find niches with real potential.",
+    dek: "Seven practical signals to study before committing your time, energy, and money to a YouTube niche.",
+    coverImage: "/guides/youtube-niche-seven-signals.webp",
   },
   {
     slug: "why-good-businesses-still-lose-contract-opportunities",
