@@ -56,6 +56,7 @@ export interface Guide {
   readingTime: string;
   artwork: "decision" | "signals" | "readiness";
   dek?: string;
+  coverImage?: string;
 }
 
 export type ContactInquiryType =

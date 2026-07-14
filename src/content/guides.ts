@@ -7,9 +7,10 @@ export const guides: Guide[] = [
     href: "/guides/how-i-decide-whether-an-idea-is-worth-building",
     dominant: true,
     category: "Product Strategy",
-    readingTime: "6 min read",
+    readingTime: "8 min read",
     artwork: "decision",
-    dek: "The framework I use to evaluate ideas for clarity—so I build fewer things, but better ones.",
+    dek: "The practical questions I use to separate an interesting idea from a problem worth solving.",
+    coverImage: "/guides/idea-worth-building.webp",
   },
   {
     slug: "before-you-choose-a-youtube-niche-study-these-seven-signals",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -30,7 +31,17 @@ export function GuidesSection() {
               className="group flex flex-col"
             >
               <div className="rounded-card border-border relative aspect-[2/1] overflow-hidden border bg-white">
-                <GuideArtwork variant={guide.artwork} />
+                {guide.coverImage ? (
+                  <Image
+                    src={guide.coverImage}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <GuideArtwork variant={guide.artwork} />
+                )}
               </div>
               <p className="text-metadata text-muted mt-3">
                 {guide.category} · {guide.readingTime}
