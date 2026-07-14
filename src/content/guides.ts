@@ -31,7 +31,8 @@ export const guides: Guide[] = [
     category: "Business Development",
     readingTime: "7 min read",
     artwork: "readiness",
-    dek: "The hidden gaps that cost deals—and how to fix them fast.",
+    dek: "A capable business can still lose opportunities when its registrations, documents, positioning, and response process are not contract-ready.",
+    coverImage: "/guides/businesses-lose-contract-opportunities.webp",
   },
 ];
 
