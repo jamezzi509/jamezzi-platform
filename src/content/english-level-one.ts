@@ -3,6 +3,7 @@ export interface EnglishLessonSummary {
   title: string;
   outcome: string;
   available: boolean;
+  moduleNumber: number;
 }
 
 export const englishLevelOneLessons: EnglishLessonSummary[] = [
@@ -11,60 +12,70 @@ export const englishLevelOneLessons: EnglishLessonSummary[] = [
     title: "Byenveni! (Welcome)",
     outcome: "Greet someone and understand how English sentences work.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "my-name-is",
     title: "My Name Is…",
     outcome: "Introduce yourself and ask another person’s name.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "please-thank-you-yes-no",
     title: "Please, Thank You, Yes, and No",
     outcome: "Use four essential words naturally and politely.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "english-alphabet",
     title: "Alfabè a (The Alphabet)",
     outcome: "Know the letter names and when to use capitals.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "letter-sounds",
     title: "Letters and Their Sounds",
     outcome: "Hear and repeat common English letter sounds.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "pronunciation-basics",
     title: "Your First Pronunciation Tools",
     outcome: "Notice mouth position, rhythm, and sounds without fear.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "most-useful-words",
     title: "Words You Will Use Every Day",
     outcome: "Recognize and use a small set of high-value English words.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "i-am",
     title: "I Am…",
     outcome: "Say who you are and how you feel.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "i-have",
     title: "I Have…",
     outcome: "Talk simply about what you have.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "simple-questions",
     title: "Your First Questions",
     outcome: "Ask and answer a few useful questions.",
     available: true,
+    moduleNumber: 1,
   },
   {
     slug: "first-conversation-mission",
@@ -72,5 +83,76 @@ export const englishLevelOneLessons: EnglishLessonSummary[] = [
     outcome:
       "Combine greetings, an introduction, and a question in one mission.",
     available: true,
+    moduleNumber: 1,
+  },
+  {
+    slug: "am-is-are",
+    title: "Am, Is, Are",
+    outcome: "Match the right form of to be to every pronoun.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "to-be-contractions",
+    title: "A Shorter Way — Contractions",
+    outcome: "Use I'm, you're, and he's naturally in conversation.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "to-be-negatives",
+    title: "I Am Not… — Negatives",
+    outcome: "Say what is not true using am not, isn't, and aren't.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "to-be-questions",
+    title: "Are You…? — Questions",
+    outcome: "Ask and answer simple yes/no questions with to be.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "describing-people",
+    title: "Describing People",
+    outcome: "Describe someone's height, character, and personality.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "describing-feelings",
+    title: "Describing Feelings",
+    outcome: "Express how you feel using to be.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "describing-places-things",
+    title: "Describing Places and Things",
+    outcome: "Describe a place or object with to be and an adjective.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "talking-about-weather",
+    title: "Talking About the Weather",
+    outcome: "Talk about the weather using It is.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "jobs-and-family",
+    title: "Jobs and Family",
+    outcome: "Talk about someone's job or your family relationships.",
+    available: true,
+    moduleNumber: 2,
+  },
+  {
+    slug: "to-be-mission",
+    title: "Describe Your World",
+    outcome: "Combine everything from Module 2 into one real description.",
+    available: true,
+    moduleNumber: 2,
   },
 ];

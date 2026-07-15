@@ -3,11 +3,19 @@ import { englishLevelOneLessons } from "@/content/english-level-one";
 import { englishPremiumLessons } from "@/content/english-lessons-premium";
 
 describe("First English curriculum", () => {
-  it("moves from first words to a real conversation mission", () => {
+  it("moves from first words through each module's mission lesson", () => {
     expect(englishLevelOneLessons[0].slug).toBe("hello-and-goodbye");
-    expect(englishLevelOneLessons.at(-1)?.slug).toBe(
-      "first-conversation-mission",
+
+    const moduleOneLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 1,
     );
+    expect(moduleOneLessons.at(-1)?.slug).toBe("first-conversation-mission");
+
+    const moduleTwoLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 2,
+    );
+    expect(moduleTwoLessons[0]?.slug).toBe("am-is-are");
+    expect(moduleTwoLessons.at(-1)?.slug).toBe("to-be-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {

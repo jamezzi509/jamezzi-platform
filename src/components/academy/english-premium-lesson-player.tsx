@@ -208,7 +208,17 @@ export function EnglishPremiumLessonPlayer({
     (item) => item.slug === lesson.slug,
   );
   const totalLessons = englishLevelOneLessons.length;
-  const progressPercent = Math.round(((lessonIndex + 1) / totalLessons) * 100);
+  const currentModuleNumber =
+    englishLevelOneLessons[lessonIndex]?.moduleNumber ?? 1;
+  const moduleLessons = englishLevelOneLessons.filter(
+    (item) => item.moduleNumber === currentModuleNumber,
+  );
+  const moduleLessonIndex = moduleLessons.findIndex(
+    (item) => item.slug === lesson.slug,
+  );
+  const moduleProgressPercent = Math.round(
+    ((moduleLessonIndex + 1) / moduleLessons.length) * 100,
+  );
   const prevLesson =
     lessonIndex > 0 ? englishLevelOneLessons[lessonIndex - 1] : null;
   const nextLesson =
@@ -265,17 +275,17 @@ export function EnglishPremiumLessonPlayer({
           <p className="text-muted mb-2 text-[12.5px]">
             English for Beginners <span className="text-indigo-dark">·</span>{" "}
             {lesson.moduleTitle} <span className="text-indigo-dark">·</span>{" "}
-            Leson {lessonIndex + 1}
+            Leson {moduleLessonIndex + 1}
           </p>
           <div className="mb-2 flex items-center gap-2.5">
             <div className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full">
               <div
                 className="bg-indigo h-full rounded-full"
-                style={{ width: `${progressPercent}%` }}
+                style={{ width: `${moduleProgressPercent}%` }}
               />
             </div>
             <span className="text-muted shrink-0 text-[11.5px] whitespace-nowrap">
-              Modil 1 · {progressPercent}%
+              Modil {currentModuleNumber} · {moduleProgressPercent}%
             </span>
           </div>
           <div className="flex items-center justify-between text-[12.5px]">
