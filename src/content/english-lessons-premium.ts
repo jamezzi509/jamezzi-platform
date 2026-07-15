@@ -14027,6 +14027,797 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: ekri yon ti imèl klè." },
     ],
   },
+  {
+    slug: "story-the-new-job",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "📖",
+    heroTitle: "Istwa: Nouvo Djòb la",
+    heroLede: "Li yon ti istwa epi aprann vokabilè, gramè, ak ekri ansanm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann yon ti istwa epi pale de kòmanse yon bagay nouvo.",
+    whatYouWillLearn: "vokabilè ak gramè nan yon ti istwa sou yon nouvo djòb",
+    prerequisite: "Ou fin Modil 16 — Baz Ekriti",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Li istwa a de fwa: yon fwa pou plezi, yon fwa pou detay.",
+    understandBody:
+      "**Maria got a new job last week.** **She was nervous on her first day, but her coworkers were friendly.** **Now she loves her new job.** Yon ti istwa senp ak yon bon fen.",
+    seeItInAction: [
+      { line: "Maria got a new job last week.", tag: "Kòmansman", emoji: "💼" },
+      {
+        line: "She was nervous on her first day, but her coworkers were friendly.",
+        tag: "Defi",
+        emoji: "😰",
+      },
+      { line: "Now she loves her new job.", tag: "Fen", emoji: "😊" },
+    ],
+    patternBuilderIntro: "Klike sou chak pati istwa a pou wè wòl li.",
+    patternBuilderOptions: [
+      { chipLabel: "Start", display: "Maria got a new job last week." },
+      { chipLabel: "Challenge", display: "She was nervous on her first day." },
+      { chipLabel: "End", display: "Now she loves her new job." },
+    ],
+    vocabulary: [
+      {
+        word: "Nervous",
+        ipa: "/ˈnɜːrvəs/",
+        kreyol: "Nève",
+        example: "She was nervous on her first day.",
+      },
+      {
+        word: "Coworker",
+        ipa: "/ˈkoʊwɜːrkər/",
+        kreyol: "Kòlèg travay",
+        example: "Her coworkers were friendly.",
+      },
+      {
+        word: "Friendly",
+        ipa: "/ˈfrɛndli/",
+        kreyol: "Emab",
+        example: "They were very friendly.",
+      },
+      {
+        word: "Got",
+        ipa: "/gɒt/",
+        kreyol: "Resevwa/Jwenn (tan pase)",
+        example: "She got a new job.",
+      },
+      {
+        word: "Now",
+        ipa: "/naʊ/",
+        kreyol: "Kounye a",
+        example: "Now she loves her job.",
+      },
+    ],
+    pronunciationWord: "Nervous",
+    pronunciationIpa: "/ˈnɜːrvəs/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, aksan an sou premye — “NER-vuhs”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “got”, “was”, ak “were” se fòm tan pase iregilye — yo pa pran “-ed”.",
+    mistakeWrong:
+      "She getted a new job. She was nervous, but coworkers was friendly.",
+    mistakeCorrect:
+      "She got a new job. She was nervous, but her coworkers were friendly.",
+    mistakeWhy:
+      "**Poukisa:** “Got” (pa “getted”) se tan pase “get”. “Was” ale ak yon sèl moun (she was), “were” ale ak plizyè moun (coworkers were).",
+    practice: {
+      prompt: "Kijan Maria te santi l nan premye jou travay li?",
+      options: ["Kontan", "Nève", "Fatige", "Anmède"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li te nève.",
+      wrongFeedback: "❌ Eseye ankò — relire istwa a.",
+    },
+    thinkEmoji: "📖",
+    thinkPrompt:
+      "Pale sou premye jou OU nan yon travay oswa yon lekòl: kijan ou te santi w?",
+    thinkPlaceholder: "On my first day, I felt...",
+    aiPrompt:
+      "Hi! Can you read me a short story about someone starting a new job, then ask me a comprehension question and a discussion question about my own experience?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon istwa.",
+    missionTask:
+      "🎯 Jodi a, ekri de fraz sou yon fwa OU te kòmanse yon bagay nouvo.",
+    recap: [
+      { emoji: "💼", text: "Maria got a new job." },
+      { emoji: "😰", text: "She was nervous, but coworkers were friendly." },
+      { emoji: "⚠️", text: "Got (pa getted), was/were kòrèk selon moun." },
+      {
+        emoji: "🎯",
+        text: "Misyon: ekri sou yon fwa ou kòmanse yon bagay nouvo.",
+      },
+    ],
+  },
+  {
+    slug: "story-a-rainy-day",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "🌧️",
+    heroTitle: "Istwa: Yon Jou Lapli",
+    heroLede: "Li yon ti istwa epi aprann vokabilè, gramè, ak ekri ansanm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann yon ti istwa epi dekri pwòp jou lapli pa w.",
+    whatYouWillLearn: "vokabilè ak gramè nan yon ti istwa sou yon jou lapli",
+    prerequisite: "Leson 1 — Istwa: Nouvo Djòb la",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Li istwa a de fwa: yon fwa pou plezi, yon fwa pou detay.",
+    understandBody:
+      "**It was raining hard on Saturday.** **Instead of going outside, Ana stayed home and read a book.** **She made hot tea and felt cozy all afternoon.** Yon ti istwa kalm sou yon jou lakay.",
+    seeItInAction: [
+      {
+        line: "It was raining hard on Saturday.",
+        tag: "Kòmansman",
+        emoji: "🌧️",
+      },
+      {
+        line: "Instead of going outside, Ana stayed home and read a book.",
+        tag: "Aksyon",
+        emoji: "📚",
+      },
+      {
+        line: "She made hot tea and felt cozy all afternoon.",
+        tag: "Fen",
+        emoji: "☕",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati istwa a pou wè wòl li.",
+    patternBuilderOptions: [
+      { chipLabel: "Start", display: "It was raining hard on Saturday." },
+      { chipLabel: "Action", display: "Ana stayed home and read a book." },
+      { chipLabel: "End", display: "She made hot tea and felt cozy." },
+    ],
+    vocabulary: [
+      {
+        word: "Instead of",
+        ipa: "/ɪnˈstɛd əv/",
+        kreyol: "Olye de",
+        example: "Instead of going outside, she stayed home.",
+      },
+      {
+        word: "Stayed",
+        ipa: "/steɪd/",
+        kreyol: "Rete (tan pase)",
+        example: "She stayed home.",
+      },
+      {
+        word: "Cozy",
+        ipa: "/ˈkoʊzi/",
+        kreyol: "Byen konfòtab",
+        example: "She felt cozy all afternoon.",
+      },
+      {
+        word: "Hard",
+        ipa: "/hɑːrd/",
+        kreyol: "Fò",
+        example: "It was raining hard.",
+      },
+      {
+        word: "Afternoon",
+        ipa: "/ˌæftərˈnuːn/",
+        kreyol: "Apre midi",
+        example: "All afternoon.",
+      },
+    ],
+    pronunciationWord: "Cozy",
+    pronunciationIpa: "/ˈkoʊzi/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “KOH-zee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “was raining” (yon aksyon k ap kontinye) ak “stayed”/“made”/“felt” (aksyon fini) — de fòm tan pase diferan nan menm istwa.",
+    mistakeWrong:
+      "It rained hard on Saturday. Instead of going outside, Ana was staying home.",
+    mistakeCorrect:
+      "It was raining hard on Saturday. Instead of going outside, Ana stayed home.",
+    mistakeWhy:
+      "**Poukisa:** “Was raining” montre yon aksyon k ap kontinye nan background (tan an t ap tonbe), pandan “stayed”, “read”, “made”, “felt” montre aksyon fini yo yon apre lòt.",
+    practice: {
+      prompt: "Kisa Ana te fè olye de ale deyò?",
+      options: [
+        "Li te ale nan magazen.",
+        "Li rete lakay li li yon liv.",
+        "Li te rele yon zanmi.",
+        "Li te dòmi tout jounen.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li rete lakay li li yon liv.",
+      wrongFeedback: "❌ Eseye ankò — relire istwa a.",
+    },
+    thinkEmoji: "🌧️",
+    thinkPrompt: "Dekri sa OU fè nan yon jou lapli:",
+    thinkPlaceholder: "On a rainy day, I usually...",
+    aiPrompt:
+      "Hi! Can you read me a short story about a rainy day at home, then ask me what I like to do when it rains?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon istwa.",
+    missionTask: "🎯 Jodi a, ekri de fraz sou jou lapli ideyal OU.",
+    recap: [
+      { emoji: "🌧️", text: "It was raining hard on Saturday." },
+      { emoji: "📚", text: "Instead of + aksyon = olye de." },
+      { emoji: "☕", text: "She felt cozy all afternoon." },
+      { emoji: "🎯", text: "Misyon: dekri jou lapli ideyal ou." },
+    ],
+  },
+  {
+    slug: "story-lost-phone",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "📱",
+    heroTitle: "Istwa: Telefòn Pèdi a",
+    heroLede: "Li yon ti istwa epi aprann vokabilè, gramè, ak ekri ansanm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann yon ti istwa sou pèdi yon bagay ak jwenn èd.",
+    whatYouWillLearn: "vokabilè ak gramè nan yon ti istwa sou yon telefòn pèdi",
+    prerequisite: "Leson 2 — Istwa: Yon Jou Lapli",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Li istwa a de fwa: yon fwa pou plezi, yon fwa pou detay.",
+    understandBody:
+      "**David lost his phone at the park.** **He looked everywhere but couldn't find it.** **Finally, a kind stranger called his number and returned it.** Yon istwa ak yon bon fen apre yon pwoblèm.",
+    seeItInAction: [
+      {
+        line: "David lost his phone at the park.",
+        tag: "Pwoblèm",
+        emoji: "😟",
+      },
+      {
+        line: "He looked everywhere but couldn't find it.",
+        tag: "Eseye",
+        emoji: "🔍",
+      },
+      {
+        line: "A kind stranger called his number and returned it.",
+        tag: "Solisyon",
+        emoji: "🙏",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati istwa a pou wè wòl li.",
+    patternBuilderOptions: [
+      { chipLabel: "Problem", display: "David lost his phone at the park." },
+      {
+        chipLabel: "Try",
+        display: "He looked everywhere but couldn't find it.",
+      },
+      { chipLabel: "Solution", display: "A kind stranger returned it." },
+    ],
+    vocabulary: [
+      {
+        word: "Lost",
+        ipa: "/lɒst/",
+        kreyol: "Pèdi (tan pase)",
+        example: "David lost his phone.",
+      },
+      {
+        word: "Everywhere",
+        ipa: "/ˈɛvriwɛər/",
+        kreyol: "Toupatou",
+        example: "He looked everywhere.",
+      },
+      {
+        word: "Couldn't",
+        ipa: "/ˈkʊdənt/",
+        kreyol: "Pa t kapab",
+        example: "He couldn't find it.",
+      },
+      {
+        word: "Stranger",
+        ipa: "/ˈstreɪndʒər/",
+        kreyol: "Etranje (moun ou pa konnen)",
+        example: "A kind stranger helped him.",
+      },
+      {
+        word: "Returned",
+        ipa: "/rɪˈtɜːrnd/",
+        kreyol: "Remèt (tan pase)",
+        example: "She returned his phone.",
+      },
+    ],
+    pronunciationWord: "Stranger",
+    pronunciationIpa: "/ˈstreɪndʒər/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “STREYN-jər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “he not could find it” — lòd mo a mal; “couldn't” deja gen “not” ladan l.",
+    mistakeWrong: "He not could find it.",
+    mistakeCorrect: "He couldn't find it.",
+    mistakeWhy:
+      "**Poukisa:** “Couldn't” se fòm negatif tan pase pou “can” — li deja konplè, pa bezwen ajoute “not” yon lòt fwa ni chanje lòd mo yo.",
+    practice: {
+      prompt: "Kiyès ki ede David jwenn telefòn li?",
+      options: [
+        "Yon kòlèg travay",
+        "Yon etranje janti",
+        "Frè li",
+        "Pèsonn pa ede l",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yon etranje janti ede l.",
+      wrongFeedback: "❌ Eseye ankò — relire istwa a.",
+    },
+    thinkEmoji: "📱",
+    thinkPrompt: "Èske OU janm pèdi yon bagay enpòtan? Rakonte sa k te pase:",
+    thinkPlaceholder: "One time, I lost...",
+    aiPrompt:
+      "Hi! Can you read me a short story about someone losing their phone and getting help, then ask me if I've ever lost something important?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon istwa.",
+    missionTask: "🎯 Jodi a, ekri sa OU ta fè si ou pèdi telefòn ou.",
+    recap: [
+      { emoji: "😟", text: "David lost his phone." },
+      { emoji: "🔍", text: "He looked everywhere but couldn't find it." },
+      { emoji: "🙏", text: "A kind stranger returned it." },
+      { emoji: "🎯", text: "Misyon: di sa ou ta fè si ou pèdi telefòn ou." },
+    ],
+  },
+  {
+    slug: "story-first-day-of-school",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "🎒",
+    heroTitle: "Istwa: Premye Jou Lekòl",
+    heroLede: "Li yon ti istwa epi aprann vokabilè, gramè, ak ekri ansanm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann yon ti istwa sou santi w timid ak fè yon nouvo zanmi.",
+    whatYouWillLearn: "vokabilè ak gramè nan yon ti istwa sou premye jou lekòl",
+    prerequisite: "Leson 3 — Istwa: Telefòn Pèdi a",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Li istwa a de fwa: yon fwa pou plezi, yon fwa pou detay.",
+    understandBody:
+      "**It was Ben's first day of school in a new country.** **He didn't know anyone and felt shy.** **By lunchtime, he had made two new friends.** Yon istwa sou chanjman ak amitye.",
+    seeItInAction: [
+      {
+        line: "It was Ben's first day of school in a new country.",
+        tag: "Kòmansman",
+        emoji: "🎒",
+      },
+      {
+        line: "He didn't know anyone and felt shy.",
+        tag: "Sentiman",
+        emoji: "😳",
+      },
+      {
+        line: "By lunchtime, he had made two new friends.",
+        tag: "Fen",
+        emoji: "🤝",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati istwa a pou wè wòl li.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Start",
+        display: "It was Ben's first day in a new country.",
+      },
+      { chipLabel: "Feeling", display: "He didn't know anyone and felt shy." },
+      {
+        chipLabel: "End",
+        display: "By lunchtime, he had made two new friends.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Shy",
+        ipa: "/ʃaɪ/",
+        kreyol: "Timid",
+        example: "He felt shy on his first day.",
+      },
+      {
+        word: "Anyone",
+        ipa: "/ˈɛniwʌn/",
+        kreyol: "Nenpòt moun",
+        example: "He didn't know anyone.",
+      },
+      {
+        word: "By lunchtime",
+        ipa: "/baɪ ˈlʌntʃtaɪm/",
+        kreyol: "Rive lè manje midi",
+        example: "By lunchtime, he felt better.",
+      },
+      {
+        word: "Made friends",
+        ipa: "/meɪd frɛndz/",
+        kreyol: "Fè zanmi",
+        example: "He made two new friends.",
+      },
+      {
+        word: "Country",
+        ipa: "/ˈkʌntri/",
+        kreyol: "Peyi",
+        example: "A new country.",
+      },
+    ],
+    pronunciationWord: "Shy",
+    pronunciationIpa: "/ʃaɪ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** yon sèl silab, “SHY” — kout ak klè.",
+    pronunciationMistake:
+      "**Erè komen:** “had made” montre yon bagay ki fèt AVAN yon lòt moman nan tan pase — pa konfonn li ak senp “made”.",
+    mistakeWrong:
+      "By lunchtime, he made two new friends yesterday morning. (melanje tan)",
+    mistakeCorrect: "By lunchtime, he had made two new friends.",
+    mistakeWhy:
+      "**Poukisa:** “Had made” (tan pase plis-ke-pafè) montre yon bagay ki te fèt AVAN yon lòt moman nan istwa a (lè manje midi). Se yon fòm ki montre lòd de bagay nan tan pase.",
+    practice: {
+      prompt: "Konbyen zanmi Ben fè rive lè manje midi?",
+      options: ["Youn", "De", "Twa", "Okenn"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li fè de nouvo zanmi.",
+      wrongFeedback: "❌ Eseye ankò — relire istwa a.",
+    },
+    thinkEmoji: "🎒",
+    thinkPrompt: "Rakonte yon fwa OU te santi w timid nan yon kote nouvo:",
+    thinkPlaceholder: "One time I felt shy was...",
+    aiPrompt:
+      "Hi! Can you read me a short story about a shy kid on the first day of school, then ask me about a time I felt shy somewhere new?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon istwa.",
+    missionTask: "🎯 Jodi a, ekri sou yon fwa OU te rankontre yon nouvo zanmi.",
+    recap: [
+      { emoji: "😳", text: "He didn't know anyone and felt shy." },
+      { emoji: "🤝", text: "By lunchtime, he had made two new friends." },
+      { emoji: "⚠️", text: '"Had made" montre yon bagay ki fèt avan.' },
+      {
+        emoji: "🎯",
+        text: "Misyon: rakonte yon fwa ou rankontre yon nouvo zanmi.",
+      },
+    ],
+  },
+  {
+    slug: "story-a-surprise-party",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "🎉",
+    heroTitle: "Istwa: Fèt Sipriz la",
+    heroLede: "Li yon ti istwa epi aprann vokabilè, gramè, ak ekri ansanm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann yon ti istwa ki gen dyalòg ak yon sipriz kontan.",
+    whatYouWillLearn: "vokabilè ak gramè nan yon ti istwa sou yon fèt sipriz",
+    prerequisite: "Leson 4 — Istwa: Premye Jou Lekòl",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Li istwa a de fwa: yon fwa pou plezi, yon fwa pou detay.",
+    understandBody:
+      '**"Surprise!" everyone shouted when Sofia walked in.** **She had no idea her friends were planning a party for her birthday.** **Her eyes filled with happy tears.** Yon istwa emosyonèl ak yon bèl fen.',
+    seeItInAction: [
+      {
+        line: '"Surprise!" everyone shouted when Sofia walked in.',
+        tag: "Moman sipriz",
+        emoji: "🎉",
+      },
+      {
+        line: "She had no idea her friends were planning a party.",
+        tag: "Kontèks",
+        emoji: "🤔",
+      },
+      {
+        line: "Her eyes filled with happy tears.",
+        tag: "Emosyon",
+        emoji: "😭",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati istwa a pou wè wòl li.",
+    patternBuilderOptions: [
+      { chipLabel: "Surprise", display: '"Surprise!" everyone shouted.' },
+      { chipLabel: "Context", display: "She had no idea about the party." },
+      { chipLabel: "Emotion", display: "Her eyes filled with happy tears." },
+    ],
+    vocabulary: [
+      {
+        word: "Shouted",
+        ipa: "/ˈʃaʊtɪd/",
+        kreyol: "Rele fò (tan pase)",
+        example: 'Everyone shouted "Surprise!"',
+      },
+      {
+        word: "Had no idea",
+        ipa: "/hæd noʊ aɪˈdiːə/",
+        kreyol: "Pa t gen okenn lide",
+        example: "She had no idea about the party.",
+      },
+      {
+        word: "Planning",
+        ipa: "/ˈplænɪŋ/",
+        kreyol: "K ap planifye",
+        example: "They were planning a surprise.",
+      },
+      {
+        word: "Tears",
+        ipa: "/tɪərz/",
+        kreyol: "Dlo nan je",
+        example: "Her eyes filled with happy tears.",
+      },
+      {
+        word: "Walked in",
+        ipa: "/wɔːkt ɪn/",
+        kreyol: "Antre (mache antre)",
+        example: "She walked in and everyone shouted.",
+      },
+    ],
+    pronunciationWord: "Surprise",
+    pronunciationIpa: "/sərˈpraɪz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, aksan an sou dezyèm — “sər-PRAIZ”.",
+    pronunciationMistake:
+      '**Erè komen:** pa bliye mete siy sitasyon (" ") lè yon moun ap pale dirèkteman nan yon istwa.',
+    mistakeWrong: "Surprise! everyone shouted when Sofia walked in.",
+    mistakeCorrect: '"Surprise!" everyone shouted when Sofia walked in.',
+    mistakeWhy:
+      "**Poukisa:** Lè w ekri yon bagay yon moun di dirèkteman, mete l ant siy sitasyon (“ ”) pou lekti a konnen se pawòl yon moun k ap pale.",
+    practice: {
+      prompt: "Kijan Sofia te reyaji lè li wè sipriz la?",
+      options: [
+        "Li te fache.",
+        "Je li te ranpli ak dlo kontan.",
+        "Li pa t remake anyen.",
+        "Li te pè.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Je li te ranpli ak dlo kontan.",
+      wrongFeedback: "❌ Eseye ankò — relire istwa a.",
+    },
+    thinkEmoji: "🎉",
+    thinkPrompt:
+      "Èske OU janm resevwa oswa bay yon sipriz? Rakonte sa k te pase:",
+    thinkPlaceholder: "One time, I was surprised when...",
+    aiPrompt:
+      "Hi! Can you read me a short story about a surprise birthday party, then ask me about a surprise I've experienced?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon istwa.",
+    missionTask:
+      "🎯 Jodi a, ekri de fraz sou yon sipriz OU te resevwa oswa bay.",
+    recap: [
+      { emoji: "🎉", text: '"Surprise!" everyone shouted.' },
+      { emoji: "😭", text: "Her eyes filled with happy tears." },
+      {
+        emoji: "⚠️",
+        text: "Mete siy sitasyon lè yon moun ap pale dirèkteman.",
+      },
+      { emoji: "🎯", text: "Misyon: rakonte yon sipriz ou te viv." },
+    ],
+  },
+  {
+    slug: "story-moving-to-a-new-city",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "🏙️",
+    heroTitle: "Istwa: Demenaje nan Yon Nouvo Vil",
+    heroLede: "Li yon ti istwa epi aprann vokabilè, gramè, ak ekri ansanm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann yon ti istwa sou yon gwo desizyon ak yon nouvo kòmansman.",
+    whatYouWillLearn: "vokabilè ak gramè nan yon ti istwa sou demenaje",
+    prerequisite: "Leson 5 — Istwa: Fèt Sipriz la",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Li istwa a de fwa: yon fwa pou plezi, yon fwa pou detay.",
+    understandBody:
+      "**After months of thinking about it, Carlos decided to move to a new city for work.** **It was scary to leave everything familiar, but he was excited for a fresh start.** Yon istwa sou chanjman ak kouraj.",
+    seeItInAction: [
+      {
+        line: "After months of thinking about it, Carlos decided to move.",
+        tag: "Desizyon",
+        emoji: "🤔",
+      },
+      {
+        line: "It was scary to leave everything familiar.",
+        tag: "Difikilte",
+        emoji: "😨",
+      },
+      {
+        line: "He was excited for a fresh start.",
+        tag: "Esperans",
+        emoji: "✨",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati istwa a pou wè wòl li.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Decision",
+        display: "Carlos decided to move to a new city.",
+      },
+      {
+        chipLabel: "Fear",
+        display: "It was scary to leave everything familiar.",
+      },
+      { chipLabel: "Hope", display: "He was excited for a fresh start." },
+    ],
+    vocabulary: [
+      {
+        word: "Decided",
+        ipa: "/dɪˈsaɪdɪd/",
+        kreyol: "Deside (tan pase)",
+        example: "Carlos decided to move.",
+      },
+      {
+        word: "Scary",
+        ipa: "/ˈskɛəri/",
+        kreyol: "Ki fè pè",
+        example: "It was scary to leave.",
+      },
+      {
+        word: "Familiar",
+        ipa: "/fəˈmɪljər/",
+        kreyol: "Familye/Konnen byen",
+        example: "He left everything familiar.",
+      },
+      {
+        word: "Fresh start",
+        ipa: "/frɛʃ stɑːrt/",
+        kreyol: "Nouvo kòmansman",
+        example: "He wanted a fresh start.",
+      },
+      {
+        word: "Excited",
+        ipa: "/ɪkˈsaɪtɪd/",
+        kreyol: "Eksite/Kontan anpil",
+        example: "He was excited for the change.",
+      },
+    ],
+    pronunciationWord: "Familiar",
+    pronunciationIpa: "/fəˈmɪljər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab lè w pale vit — “fuh-MIL-yər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “After thinking about it months” — lòd mo a mal; “After months of thinking about it” se lòd kòrèk la.",
+    mistakeWrong: "After thinking about it months, Carlos decided to move.",
+    mistakeCorrect:
+      "After months of thinking about it, Carlos decided to move.",
+    mistakeWhy:
+      "**Poukisa:** Ekspresyon “after + [kantite tan] + of + -ing” gen yon lòd fikse an Anglè: “after months of thinking”, pa lòt jan.",
+    practice: {
+      prompt: "Poukisa Carlos te deside demenaje?",
+      options: [
+        "Pou fanmi li",
+        "Pou travay",
+        "Pou lekòl",
+        "Pa gen rezon mansyone",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li demenaje pou travay.",
+      wrongFeedback: "❌ Eseye ankò — relire istwa a.",
+    },
+    thinkEmoji: "🏙️",
+    thinkPrompt:
+      "Èske OU ta demenaje nan yon nouvo vil? Poukisa oswa poukisa non?",
+    thinkPlaceholder: "I would / wouldn't move because...",
+    aiPrompt:
+      "Hi! Can you read me a short story about someone moving to a new city for work, then ask me if I would move somewhere new and why?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon istwa.",
+    missionTask:
+      "🎯 Jodi a, ekri sou yon gwo desizyon OU te pran (oswa ta renmen pran).",
+    recap: [
+      { emoji: "🤔", text: "After months of thinking about it..." },
+      { emoji: "😨", text: "It was scary to leave everything familiar." },
+      { emoji: "✨", text: "He was excited for a fresh start." },
+      { emoji: "🎯", text: "Misyon: ekri sou yon gwo desizyon ou." },
+    ],
+  },
+  {
+    slug: "stories-mission",
+    moduleTitle: "Modil 17: Istwa an Anglè",
+    illustrationKey: "emoji",
+    heroEmoji: "✍️",
+    heroTitle: "Ekri Pwòp Istwa Ou",
+    heroLede:
+      "Se lè a pou konbine tout sa ou aprann nan Modil 17 pou ekri PWÒP istwa ou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab ekri yon ti istwa kout, konplè, an Anglè.",
+    whatYouWillLearn:
+      "kijan pou ekri yon ti istwa konplè ak yon kòmansman, mitan, ak fen",
+    prerequisite: "Leson 6 — Istwa: Demenaje nan Yon Nouvo Vil",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Tout istwa bon gen twa pati: yon kòmansman, yon defi, ak yon fen.",
+    understandBody:
+      "**Start:** Kisa k ap pase? Kiyès ki ladan l? **Middle:** Ki pwoblèm oswa moman enpòtan ki rive? **End:** Kijan sa fini?",
+    seeItInAction: [
+      {
+        line: "One day, I decided to try something new.",
+        tag: "Kòmansman",
+        emoji: "🌱",
+      },
+      {
+        line: "It was difficult at first, but I didn't give up.",
+        tag: "Mitan (defi)",
+        emoji: "💪",
+      },
+      { line: "In the end, I felt proud of myself.", tag: "Fen", emoji: "🏆" },
+    ],
+    patternBuilderIntro: "Klike sou chak pati pou wè yon modèl istwa.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Start",
+        display: "One day, I decided to try something new.",
+      },
+      {
+        chipLabel: "Middle",
+        display: "It was difficult at first, but I didn't give up.",
+      },
+      { chipLabel: "End", display: "In the end, I felt proud of myself." },
+    ],
+    vocabulary: [
+      {
+        word: "Story",
+        ipa: "/ˈstɔːri/",
+        kreyol: "Istwa",
+        example: "Write your own story.",
+      },
+      {
+        word: "Beginning",
+        ipa: "/bɪˈgɪnɪŋ/",
+        kreyol: "Kòmansman",
+        example: "Every story has a beginning.",
+      },
+      {
+        word: "Middle",
+        ipa: "/ˈmɪdəl/",
+        kreyol: "Mitan",
+        example: "The middle has the challenge.",
+      },
+      {
+        word: "Ending",
+        ipa: "/ˈɛndɪŋ/",
+        kreyol: "Fen",
+        example: "Every story needs an ending.",
+      },
+      {
+        word: "Proud",
+        ipa: "/praʊd/",
+        kreyol: "Fyè",
+        example: "I felt proud of myself.",
+      },
+    ],
+    pronunciationWord: "Proud",
+    pronunciationIpa: "/praʊd/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** yon sèl silab, “PROWD” — son “ow” tankou nan “now”.",
+    pronunciationMistake:
+      "**Erè komen:** pa ekri yon istwa ki gen sèlman kòmansman san mitan ak fen — yon istwa bon bezwen tout twa pati yo.",
+    mistakeWrong: "One day, I tried something new. The end.",
+    mistakeCorrect:
+      "One day, I tried something new. It was hard, but I kept going. In the end, I felt proud.",
+    mistakeWhy:
+      "**Poukisa:** Yon istwa konplè bezwen yon defi nan mitan an ak yon fen ki montre rezilta a — san sa, li son enkonplè.",
+    practice: {
+      prompt: "Ki twa pati yon bon istwa toujou genyen?",
+      options: [
+        "Kòmansman, mitan, fen",
+        "Vokabilè, gramè, ponktyasyon",
+        "Kesyon, repons, opinyon",
+        "Non, laj, vil",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Kòmansman, mitan (defi), ak fen.",
+      wrongFeedback: "❌ Eseye ankò — panse ak estrikti yon istwa.",
+    },
+    thinkEmoji: "✍️",
+    thinkPrompt: "Kòmanse ekri pwòp istwa ou: ki sitiyasyon ou vle rakonte?",
+    thinkPlaceholder: "One day, I...",
+    aiPrompt:
+      "Hi! Can you help me write a short 3-4 sentence story in English with a beginning, a challenge, and an ending, then give me feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike ekri pwòp istwa ou.",
+    missionTask:
+      "🎯 Jodi a, ekri pwòp ti istwa ou (3-4 fraz) ak yon kòmansman, yon defi, ak yon fen.",
+    recap: [
+      { emoji: "🌱", text: "Kòmansman: kisa k ap pase?" },
+      { emoji: "💪", text: "Mitan: ki defi ki rive?" },
+      { emoji: "🏆", text: "Fen: kijan sa fini?" },
+      { emoji: "🎓", text: "Ou fini Modil 17 — Istwa an Anglè!" },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {

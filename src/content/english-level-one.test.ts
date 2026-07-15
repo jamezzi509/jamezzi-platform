@@ -100,6 +100,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleSixteenLessons[0]?.slug).toBe("capitalization");
     expect(moduleSixteenLessons.at(-1)?.slug).toBe("writing-mission");
+
+    const moduleSeventeenLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 17,
+    );
+    expect(moduleSeventeenLessons[0]?.slug).toBe("story-the-new-job");
+    expect(moduleSeventeenLessons.at(-1)?.slug).toBe("stories-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {
