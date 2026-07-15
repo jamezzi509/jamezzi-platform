@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { primaryNav, academyNav, signInNav } from "@/content/navigation";
 import { site } from "@/content/site";
@@ -12,6 +13,8 @@ import { cn } from "@/lib/cn";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const forcePaperHeader = pathname.startsWith("/academy");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 48);
@@ -24,7 +27,7 @@ export function SiteHeader() {
     <header
       className={cn(
         "duration-control ease-primary fixed inset-x-0 top-0 z-40 transition-all",
-        scrolled
+        scrolled || forcePaperHeader
           ? "border-border bg-paper/90 border-b backdrop-blur-sm"
           : "border-b border-transparent bg-transparent",
       )}
@@ -32,7 +35,9 @@ export function SiteHeader() {
       <Container
         className={cn(
           "flex items-center justify-between",
-          scrolled ? "py-3 lg:h-[72px] lg:py-0" : "py-5 lg:h-[72px] lg:py-0",
+          scrolled || forcePaperHeader
+            ? "py-3 lg:h-[72px] lg:py-0"
+            : "py-5 lg:h-[72px] lg:py-0",
         )}
       >
         <Link
@@ -51,7 +56,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-nav text-ink duration-control ease-primary bg-paper/45 hover:bg-paper/70 rounded-full px-3 py-1.5 backdrop-blur-sm transition-colors hover:text-indigo"
+              className="text-nav text-ink duration-control ease-primary bg-paper/45 hover:bg-paper/70 hover:text-indigo rounded-full px-3 py-1.5 backdrop-blur-sm transition-colors"
             >
               {link.label}
             </Link>
@@ -66,7 +71,7 @@ export function SiteHeader() {
             <LanguageSwitcher />
             <Link
               href={signInNav.href}
-              className="text-nav text-ink duration-control ease-primary bg-paper/45 hover:bg-paper/70 rounded-full px-3 py-1.5 backdrop-blur-sm transition-colors hover:text-indigo"
+              className="text-nav text-ink duration-control ease-primary bg-paper/45 hover:bg-paper/70 hover:text-indigo rounded-full px-3 py-1.5 backdrop-blur-sm transition-colors"
             >
               {signInNav.label}
             </Link>

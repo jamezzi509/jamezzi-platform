@@ -87,14 +87,14 @@ export function NichrShowcase({ product }: { product: Product }) {
             <ArrowRightIcon className="size-4" />
           </CtaLink>
         </div>
-        <div className="lg:col-span-8 lg:h-full">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px] sm:aspect-[16/9] lg:aspect-auto lg:h-full">
+        <div className="flex items-center lg:col-span-8 lg:h-full">
+          <div className="border-night-border relative aspect-[16/9] w-full overflow-hidden rounded-[10px] border bg-[#f7f8fb] shadow-[0_22px_60px_rgba(0,0,0,0.28)]">
             <Image
               src={product.image.src}
               alt={product.image.alt}
               fill
               sizes="(min-width: 1024px) 900px, 100vw"
-              className="object-cover object-left-top"
+              className="object-contain"
             />
           </div>
         </div>

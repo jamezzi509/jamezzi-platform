@@ -45,6 +45,14 @@ export interface PortfolioExtra {
   slug: "pepinye" | "roadize";
   name: string;
   status: ProductStatus;
+  category: string;
+  headline: string;
+  description: string;
+  proof: string[];
+  image: {
+    src: string;
+    alt: string;
+  };
 }
 
 export interface Guide {

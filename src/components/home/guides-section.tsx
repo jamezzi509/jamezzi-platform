@@ -23,7 +23,7 @@ export function GuidesSection() {
           </CtaLink>
         </div>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_1fr_1fr]">
+        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {guides.map((guide) => (
             <Link
               key={guide.slug}

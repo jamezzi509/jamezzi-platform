@@ -32,7 +32,7 @@ export function SelectedWork() {
           {supportingProducts.map((product) => (
             <article
               key={product.slug}
-              className="rounded-showcase border-border shadow-showcase flex flex-col border bg-white p-6 lg:h-[548px]"
+              className="rounded-showcase border-border shadow-showcase flex flex-col border bg-white p-6"
             >
               <div className="flex items-center gap-2">
                 <p className="text-metadata text-muted">{product.category}</p>
@@ -48,13 +48,13 @@ export function SelectedWork() {
                 {product.actionLabel}
                 <ArrowRightIcon className="size-4" />
               </CtaLink>
-              <div className="relative mt-4 h-[220px] w-full overflow-hidden rounded-[10px] lg:h-[248px]">
+              <div className="border-border relative mt-5 aspect-[16/10] w-full overflow-hidden rounded-[10px] border bg-[#f7f8fb]">
                 <Image
                   src={product.image.src}
                   alt={product.image.alt}
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover object-top"
+                  className="object-contain"
                 />
               </div>
             </article>
