@@ -6455,6 +6455,929 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: rakonte yon jounen ak vèb pisan." },
     ],
   },
+  {
+    slug: "meeting-someone",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🤝",
+    heroTitle: "Rankontre Yon Moun",
+    heroLede:
+      "Yon konvèsasyon reyèl pa sèlman salitasyon — li gen ti pale sou tan, sou lavi, ak yon fason poli pou fini.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab mennen yon ti konvèsasyon konplè ak yon moun nouvo.",
+    whatYouWillLearn: "fraz pou kòmanse, kontinye, ak fini yon konvèsasyon",
+    prerequisite: "Ou fin Modil 7 — Vèb Pisan Pati 2",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon konvèsasyon reyèl gen yon kòmansman, yon mitan, ak yon fen.",
+    understandBody:
+      "**Hi, how are you?** **I'm good, thanks. And you?** **It was nice meeting you!** Twa etap sa yo fè yon ti chat kout men konplè.",
+    seeItInAction: [
+      { line: "Hi, how are you?", tag: "Kòmanse", emoji: "👋" },
+      {
+        line: "I'm good, thanks. And you?",
+        tag: "Reponn + mande tou",
+        emoji: "😊",
+      },
+      { line: "It was nice meeting you!", tag: "Fini", emoji: "🤝" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Start", display: "Hi, how are you?" },
+      { chipLabel: "Respond", display: "I'm good, thanks. And you?" },
+      { chipLabel: "End", display: "It was nice meeting you!" },
+    ],
+    vocabulary: [
+      {
+        word: "How are you",
+        ipa: "/haʊ ɑːr juː/",
+        kreyol: "Kijan ou ye",
+        example: "Hi, how are you?",
+      },
+      {
+        word: "Thanks",
+        ipa: "/θæŋks/",
+        kreyol: "Mèsi",
+        example: "I'm good, thanks.",
+      },
+      {
+        word: "And you",
+        ipa: "/ænd juː/",
+        kreyol: "Epi ou menm",
+        example: "I'm good. And you?",
+      },
+      {
+        word: "Nice meeting you",
+        ipa: "/naɪs ˈmiːtɪŋ juː/",
+        kreyol: "Kontan rankontre w",
+        example: "It was nice meeting you!",
+      },
+      {
+        word: "See you soon",
+        ipa: "/siː juː suːn/",
+        kreyol: "Wè w byento",
+        example: "See you soon!",
+      },
+    ],
+    pronunciationWord: "Nice meeting you",
+    pronunciationIpa: "/naɪs ˈmiːtɪŋ juː/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** pale dousman, fraz sa a gen twa mo kole ansanm.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Nice to meeting you” — se “Nice to meet you” oswa “It was nice meeting you”.",
+    mistakeWrong: "Nice to meeting you.",
+    mistakeCorrect: "Nice to meet you.",
+    mistakeWhy:
+      "**Poukisa:** Apre “to”, vèb la rete nan fòm debaz (meet). Men apre “was”, ou itilize fòm “-ing” (meeting).",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou fini yon premye rankont:",
+      options: [
+        "Nice to meeting you.",
+        "It was nice meeting you.",
+        "It was nice meet you.",
+        "Nice meet you.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “was” swiv ak fòm “-ing”.",
+    },
+    thinkEmoji: "🤝",
+    thinkPrompt:
+      "Ekri yon ti konvèsasyon ak twa etap (kòmanse, kontinye, fini):",
+    thinkPlaceholder: "Hi, how are you? ...",
+    aiPrompt:
+      "Hi! Can you play a stranger I'm meeting for the first time, so I can practice a full short conversation from start to finish?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike yon konvèsasyon konplè.",
+    missionTask:
+      "🎯 Jodi a, mennen yon ti konvèsasyon konplè (kòmanse, mitan, fen) ak yon moun.",
+    recap: [
+      { emoji: "👋", text: "Kòmanse: Hi, how are you?" },
+      { emoji: "😊", text: "Kontinye: I'm good, thanks. And you?" },
+      { emoji: "🤝", text: "Fini: It was nice meeting you!" },
+      { emoji: "🎯", text: "Misyon: mennen yon konvèsasyon konplè." },
+    ],
+  },
+  {
+    slug: "at-the-restaurant",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🍽️",
+    heroTitle: "Nan Restoran",
+    heroLede: "Yon vizit nan restoran swiv yon lòd senp: chwazi, mande, peye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab fè lòd nan yon restoran ak konfyans.",
+    whatYouWillLearn: "fraz pou mande meni, fè lòd, ak peye nan restoran",
+    prerequisite: "Leson 1 — Rankontre Yon Moun",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Yon vizit restoran gen twa etap: chwazi, mande, peye.",
+    understandBody:
+      "**Can I see the menu, please?** **I'd like the chicken, please.** **Can I have the check, please?** Twa fraz sa yo ka mennen w nan tout yon repa.",
+    seeItInAction: [
+      { line: "Can I see the menu, please?", tag: "Mande meni", emoji: "📋" },
+      { line: "I'd like the chicken, please.", tag: "Fè lòd", emoji: "🍗" },
+      {
+        line: "Can I have the check, please?",
+        tag: "Mande fakti",
+        emoji: "🧾",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Menu", display: "Can I see the menu, please?" },
+      { chipLabel: "Order", display: "I'd like the chicken, please." },
+      { chipLabel: "Check", display: "Can I have the check, please?" },
+    ],
+    vocabulary: [
+      {
+        word: "Menu",
+        ipa: "/ˈmɛnjuː/",
+        kreyol: "Meni",
+        example: "Can I see the menu?",
+      },
+      {
+        word: "Order",
+        ipa: "/ˈɔːrdər/",
+        kreyol: "Lòd",
+        example: "I'd like to order.",
+      },
+      {
+        word: "Check",
+        ipa: "/tʃɛk/",
+        kreyol: "Fakti",
+        example: "Can I have the check?",
+      },
+      {
+        word: "Water",
+        ipa: "/ˈwɔːtər/",
+        kreyol: "Dlo",
+        example: "Can I have some water?",
+      },
+      {
+        word: "Delicious",
+        ipa: "/dɪˈlɪʃəs/",
+        kreyol: "Bon anpil",
+        example: "This is delicious!",
+      },
+    ],
+    pronunciationWord: "I'd like",
+    pronunciationIpa: "/aɪd laɪk/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “I'd” se yon kontraksyon “I would” — di li tankou “ayd”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I want” tou sèk nan yon restoran — “I'd like” pi poli.",
+    mistakeWrong: "I want the chicken.",
+    mistakeCorrect: "I'd like the chicken, please.",
+    mistakeWhy:
+      "**Poukisa:** “I want” ka sonnen brak nan yon sitiyasyon fòmèl. “I'd like” + “please” pi poli pou yon lòd nan restoran.",
+    practice: {
+      prompt: "Chwazi fraz ki pi poli pou fè yon lòd:",
+      options: [
+        "I want the chicken.",
+        "I'd like the chicken, please.",
+        "Give me the chicken.",
+        "Chicken now.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chèche fraz ki pi poli a.",
+    },
+    thinkEmoji: "🍽️",
+    thinkPrompt: "Ekri yon lòd ou ta fè nan yon restoran:",
+    thinkPlaceholder: "I'd like...",
+    aiPrompt:
+      "Hi! Can you play a waiter and take my order, so I can practice ordering food politely in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike fè lòd nan restoran.",
+    missionTask:
+      "🎯 Jodi a, pratike fè yon lòd konplè nan yon restoran (imajinè oswa reyèl).",
+    recap: [
+      { emoji: "📋", text: "Can I see the menu, please?" },
+      { emoji: "🍗", text: "I'd like the chicken, please." },
+      { emoji: "🧾", text: "Can I have the check, please?" },
+      { emoji: "🎯", text: "Misyon: pratike fè yon lòd konplè." },
+    ],
+  },
+  {
+    slug: "at-the-store",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🛍️",
+    heroTitle: "Nan Magazen",
+    heroLede:
+      "Nan magazen, ou souvan mande si yo genyen yon bagay, konbyen li koute, epi ou peye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab achte yon bagay nan yon magazen ak konfyans.",
+    whatYouWillLearn: "fraz pou mande gwosè, pri, ak peye nan yon magazen",
+    prerequisite: "Leson 2 — Nan Restoran",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon vizit magazen swiv yon lòd senp tou: mande, verifye pri, achte.",
+    understandBody:
+      "**Do you have this in a different size?** **How much is this?** **I'll take it.** Twa fraz sa yo ka mennen w nan tout yon vizit magazen.",
+    seeItInAction: [
+      {
+        line: "Do you have this in a different size?",
+        tag: "Mande yon lòt gwosè",
+        emoji: "👕",
+      },
+      { line: "How much is this?", tag: "Mande pri", emoji: "💵" },
+      { line: "I'll take it.", tag: "Deside achte", emoji: "🛍️" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Size", display: "Do you have this in a different size?" },
+      { chipLabel: "Price", display: "How much is this?" },
+      { chipLabel: "Buy", display: "I'll take it." },
+    ],
+    vocabulary: [
+      {
+        word: "Size",
+        ipa: "/saɪz/",
+        kreyol: "Gwosè",
+        example: "Do you have a different size?",
+      },
+      {
+        word: "Price",
+        ipa: "/praɪs/",
+        kreyol: "Pri",
+        example: "What is the price?",
+      },
+      {
+        word: "Cash",
+        ipa: "/kæʃ/",
+        kreyol: "Lajan kach",
+        example: "I'll pay cash.",
+      },
+      {
+        word: "Card",
+        ipa: "/kɑːrd/",
+        kreyol: "Kat",
+        example: "I'll pay by card.",
+      },
+      {
+        word: "Receipt",
+        ipa: "/rɪˈsiːt/",
+        kreyol: "Resi",
+        example: "Can I have a receipt?",
+      },
+    ],
+    pronunciationWord: "I'll take it",
+    pronunciationIpa: "/aɪl teɪk ɪt/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “I'll” se “I will” — di li vit, tankou “ayl”.",
+    pronunciationMistake: "**Erè komen:** pa di “How much this?” — manke “is”.",
+    mistakeWrong: "How much this?",
+    mistakeCorrect: "How much is this?",
+    mistakeWhy:
+      "**Poukisa:** Fraz la bezwen vèb “is” — “How much is this?”, pa jis “How much this?”",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou mande pri:",
+      options: [
+        "How much this?",
+        "How much is this?",
+        "How much are this?",
+        "How this much?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — manke “is”.",
+    },
+    thinkEmoji: "🛍️",
+    thinkPrompt: "Ekri yon fraz ou ta itilize nan yon magazen:",
+    thinkPlaceholder: "Do you have...? / How much is...?",
+    aiPrompt:
+      "Hi! Can you play a store clerk and help me practice asking about size, price, and paying for something?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike achte nan magazen.",
+    missionTask:
+      "🎯 Jodi a, pratike mande pri yon bagay ak “How much is this?”",
+    recap: [
+      { emoji: "👕", text: "Do you have this in a different size?" },
+      { emoji: "💵", text: "How much is this?" },
+      { emoji: "🛍️", text: "I'll take it." },
+      { emoji: "🎯", text: "Misyon: pratike mande pri yon bagay." },
+    ],
+  },
+  {
+    slug: "taxi-and-airport",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🚕",
+    heroTitle: "Taksi ak Ayewopò",
+    heroLede:
+      "Vwayaje mande fraz senp pou pran yon taksi oswa jwenn chemen w nan yon ayewopò.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pran yon taksi ak jwenn chemen w nan yon ayewopò.",
+    whatYouWillLearn: "fraz pou taksi ak ayewopò",
+    prerequisite: "Leson 3 — Nan Magazen",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Vwayaje mande fraz senp pou taksi ak ayewopò.",
+    understandBody:
+      "**Can you take me to the airport?** **Where is my gate?** Fraz sa yo ede w mande direksyon ak enfòmasyon lè w ap vwayaje.",
+    seeItInAction: [
+      { line: "Can you take me to the airport?", tag: "Taksi", emoji: "🚕" },
+      { line: "Where is my gate?", tag: "Ayewopò", emoji: "✈️" },
+      { line: "How much does the ride cost?", tag: "Pri kous", emoji: "💵" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Taxi", display: "Can you take me to the airport?" },
+      { chipLabel: "Gate", display: "Where is my gate?" },
+      { chipLabel: "Price", display: "How much does the ride cost?" },
+    ],
+    vocabulary: [
+      {
+        word: "Airport",
+        ipa: "/ˈɛərpɔːrt/",
+        kreyol: "Ayewopò",
+        example: "Take me to the airport.",
+      },
+      {
+        word: "Gate",
+        ipa: "/geɪt/",
+        kreyol: "Pòt anbakman",
+        example: "Where is my gate?",
+      },
+      {
+        word: "Ride",
+        ipa: "/raɪd/",
+        kreyol: "Kous",
+        example: "How much does the ride cost?",
+      },
+      {
+        word: "Luggage",
+        ipa: "/ˈlʌgɪdʒ/",
+        kreyol: "Bagaj",
+        example: "This is my luggage.",
+      },
+      {
+        word: "Flight",
+        ipa: "/flaɪt/",
+        kreyol: "Vòl",
+        example: "My flight is at 6.",
+      },
+    ],
+    pronunciationWord: "Luggage",
+    pronunciationIpa: "/ˈlʌgɪdʒ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “LUH-gij”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “baggages” — “luggage” pa chanje nan pliryèl, tankou “fish”.",
+    mistakeWrong: "I have three luggages.",
+    mistakeCorrect: "I have three pieces of luggage.",
+    mistakeWhy:
+      "**Poukisa:** “Luggage” se yon mo ou pa ka konte dirèkteman — itilize “pieces of luggage” pou konte.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou mande yon taksi ale ayewopò a:",
+      options: [
+        "Take me airport.",
+        "Can you take me to the airport?",
+        "I airport go.",
+        "Airport, please taxi.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chèche fraz konplè, poli a.",
+    },
+    thinkEmoji: "🚕",
+    thinkPrompt: "Ekri yon fraz ou ta itilize nan yon taksi oswa yon ayewopò:",
+    thinkPlaceholder: "Can you take me to...?",
+    aiPrompt:
+      "Hi! Can you play a taxi driver or an airport worker and help me practice asking for a ride or finding my gate?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike taksi ak ayewopò.",
+    missionTask:
+      "🎯 Jodi a, pratike mande yon taksi ale yon kote ak “Can you take me to...?”",
+    recap: [
+      { emoji: "🚕", text: "Can you take me to the airport?" },
+      { emoji: "✈️", text: "Where is my gate?" },
+      { emoji: "⚠️", text: "“Luggage” pa chanje nan pliryèl." },
+      { emoji: "🎯", text: "Misyon: pratike mande yon taksi." },
+    ],
+  },
+  {
+    slug: "at-the-doctor",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🤒",
+    heroTitle: "Kay Doktè",
+    heroLede: "Doktè bezwen konnen ki sa ou santi ak depi ki lè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab eksplike yon senptòm bay yon doktè.",
+    whatYouWillLearn: "fraz pou eksplike senptòm ak reponn kesyon doktè",
+    prerequisite: "Leson 4 — Taksi ak Ayewopò",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Doktè bezwen konnen ki sa ou santi ak depi ki lè.",
+    understandBody:
+      "**I don't feel well.** **I have a fever and a headache.** **How long have you felt this way?** Fraz sa yo ede yon vizit doktè mache byen.",
+    seeItInAction: [
+      { line: "I don't feel well.", tag: "Eksplike pwoblèm", emoji: "🤒" },
+      {
+        line: "I have a fever and a headache.",
+        tag: "Detay senptòm",
+        emoji: "🤕",
+      },
+      {
+        line: "How long have you felt this way?",
+        tag: "Kesyon doktè",
+        emoji: "⏰",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz pou wè li nan kontèks.",
+    patternBuilderOptions: [
+      { chipLabel: "Not well", display: "I don't feel well." },
+      { chipLabel: "Symptoms", display: "I have a fever and a headache." },
+      { chipLabel: "Question", display: "How long have you felt this way?" },
+    ],
+    vocabulary: [
+      {
+        word: "Fever",
+        ipa: "/ˈfiːvər/",
+        kreyol: "Lafyèv",
+        example: "I have a fever.",
+      },
+      {
+        word: "Headache",
+        ipa: "/ˈhɛdeɪk/",
+        kreyol: "Tèt fè mal",
+        example: "I have a headache.",
+      },
+      { word: "Sick", ipa: "/sɪk/", kreyol: "Malad", example: "I feel sick." },
+      {
+        word: "Pain",
+        ipa: "/peɪn/",
+        kreyol: "Doulè",
+        example: "I have pain here.",
+      },
+      {
+        word: "Medicine",
+        ipa: "/ˈmɛdsɪn/",
+        kreyol: "Medikaman",
+        example: "I need medicine.",
+      },
+    ],
+    pronunciationWord: "Fever",
+    pronunciationIpa: "/ˈfiːvər/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “FEE-vər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I am sick fever” — itilize “have” pou senptòm.",
+    mistakeWrong: "I am fever.",
+    mistakeCorrect: "I have a fever.",
+    mistakeWhy:
+      "**Poukisa:** Menm règ ak Modil 3 — senptòm swiv “have”, pa “to be”. “I have a fever”, pa “I am fever”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou eksplike yon senptòm:",
+      options: ["I am fever.", "I have a fever.", "I fever.", "I feving."],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — senptòm swiv “have”.",
+    },
+    thinkEmoji: "🤒",
+    thinkPrompt: "Ekri kijan ou ta eksplike yon senptòm bay yon doktè:",
+    thinkPlaceholder: "I don't feel well. I have...",
+    aiPrompt:
+      "Hi! Can you play a doctor and ask me about my symptoms, so I can practice explaining how I feel?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike eksplike senptòm.",
+    missionTask:
+      "🎯 Jodi a, pratike eksplike yon senptòm ak “I don't feel well” epi “I have...”",
+    recap: [
+      { emoji: "🤒", text: "I don't feel well." },
+      { emoji: "🤕", text: "I have a fever/headache." },
+      { emoji: "⚠️", text: "Senptòm swiv “have”, pa “to be”." },
+      { emoji: "🎯", text: "Misyon: pratike eksplike yon senptòm." },
+    ],
+  },
+  {
+    slug: "bank-and-hotel",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🏦",
+    heroTitle: "Bank ak Otèl",
+    heroLede: "Bank ak otèl mande dokiman ak fòm senp pou konplete yon sèvis.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab jere yon vizit bank ak yon check-in otèl.",
+    whatYouWillLearn: "fraz pou bank ak otèl",
+    prerequisite: "Leson 5 — Kay Doktè",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Bank ak otèl mande dokiman ak fòm senp.",
+    understandBody:
+      "**I'd like to open an account.** **I have a reservation.** **Can I see your ID, please?** Twa fraz sa yo mennen w nan yon vizit bank oswa otèl.",
+    seeItInAction: [
+      { line: "I'd like to open an account.", tag: "Bank", emoji: "🏦" },
+      { line: "I have a reservation.", tag: "Otèl", emoji: "🏨" },
+      { line: "Can I see your ID, please?", tag: "Mande dokiman", emoji: "🪪" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Bank", display: "I'd like to open an account." },
+      { chipLabel: "Hotel", display: "I have a reservation." },
+      { chipLabel: "ID", display: "Can I see your ID, please?" },
+    ],
+    vocabulary: [
+      {
+        word: "Account",
+        ipa: "/əˈkaʊnt/",
+        kreyol: "Kont",
+        example: "I'd like to open an account.",
+      },
+      {
+        word: "Reservation",
+        ipa: "/ˌrɛzərˈveɪʃən/",
+        kreyol: "Rezèvasyon",
+        example: "I have a reservation.",
+      },
+      {
+        word: "ID",
+        ipa: "/aɪ diː/",
+        kreyol: "Kat idantite",
+        example: "Can I see your ID?",
+      },
+      {
+        word: "Deposit",
+        ipa: "/dɪˈpɒzɪt/",
+        kreyol: "Depo",
+        example: "I'd like to make a deposit.",
+      },
+      {
+        word: "Room",
+        ipa: "/ruːm/",
+        kreyol: "Chanm",
+        example: "My room number is 12.",
+      },
+    ],
+    pronunciationWord: "Reservation",
+    pronunciationIpa: "/ˌrɛzərˈveɪʃən/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou “VEY” — “rez-ər-VEY-shuhn”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I have reservation” — manke “a” devan “reservation”.",
+    mistakeWrong: "I have reservation.",
+    mistakeCorrect: "I have a reservation.",
+    mistakeWhy:
+      "**Poukisa:** Yon non ou ka konte (reservation) toujou bezwen “a”/“an” lè w ap pale de yon sèl.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou check-in nan yon otèl:",
+      options: [
+        "I have reservation.",
+        "I have a reservation.",
+        "I reservation.",
+        "I am reservation.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — manke “a”.",
+    },
+    thinkEmoji: "🏦",
+    thinkPrompt: "Ekri yon fraz ou ta itilize nan yon bank oswa yon otèl:",
+    thinkPlaceholder: "I'd like to... / I have a reservation...",
+    aiPrompt:
+      "Hi! Can you play a bank teller or hotel receptionist and help me practice opening an account or checking in?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike bank ak otèl.",
+    missionTask:
+      "🎯 Jodi a, pratike di “I have a reservation” oswa “I'd like to open an account”.",
+    recap: [
+      { emoji: "🏦", text: "I'd like to open an account." },
+      { emoji: "🏨", text: "I have a reservation." },
+      { emoji: "🪪", text: "Can I see your ID, please?" },
+      { emoji: "🎯", text: "Misyon: pratike yon sèvis bank oswa otèl." },
+    ],
+  },
+  {
+    slug: "phone-call",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "📞",
+    heroTitle: "Yon Apèl Telefòn",
+    heroLede:
+      "Yon apèl telefòn gen fraz espesyal pou kòmanse, kontinye, ak fini.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab mennen yon apèl telefòn senp.",
+    whatYouWillLearn: "fraz pou kòmanse, kontinye, ak fini yon apèl telefòn",
+    prerequisite: "Leson 6 — Bank ak Otèl",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon apèl telefòn gen fraz espesyal ki diferan de yon konvèsasyon fasafas.",
+    understandBody:
+      "**Hello, this is Marie.** **Can I speak to James, please?** **I'll call you back.** Fraz sa yo espesyal pou telefòn, pa itilize nan konvèsasyon fasafas.",
+    seeItInAction: [
+      { line: "Hello, this is Marie.", tag: "Reponn/kòmanse", emoji: "📞" },
+      {
+        line: "Can I speak to James, please?",
+        tag: "Mande yon moun",
+        emoji: "🙋",
+      },
+      { line: "I'll call you back.", tag: "Fini apèl", emoji: "👋" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Start", display: "Hello, this is Marie." },
+      { chipLabel: "Ask for", display: "Can I speak to James, please?" },
+      { chipLabel: "End", display: "I'll call you back." },
+    ],
+    vocabulary: [
+      {
+        word: "Speak to",
+        ipa: "/spiːk tuː/",
+        kreyol: "Pale ak",
+        example: "Can I speak to James?",
+      },
+      {
+        word: "Call back",
+        ipa: "/kɔːl bæk/",
+        kreyol: "Rele ankò",
+        example: "I'll call you back.",
+      },
+      {
+        word: "Hold on",
+        ipa: "/hoʊld ɒn/",
+        kreyol: "Tann yon moman",
+        example: "Hold on, please.",
+      },
+      {
+        word: "Message",
+        ipa: "/ˈmɛsɪdʒ/",
+        kreyol: "Mesaj",
+        example: "Can I leave a message?",
+      },
+      {
+        word: "Busy",
+        ipa: "/ˈbɪzi/",
+        kreyol: "Okipe/Liy okipe",
+        example: "The line is busy.",
+      },
+    ],
+    pronunciationWord: "Hold on",
+    pronunciationIpa: "/hoʊld ɒn/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de mo klè, pa kole yo twòp.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “This is speaking Marie” — se “This is Marie” oswa “Marie speaking”.",
+    mistakeWrong: "This is speaking Marie.",
+    mistakeCorrect: "This is Marie.",
+    mistakeWhy:
+      "**Poukisa:** Nan telefòn, ou di “This is [non ou]” pou prezante tèt ou — “speaking” pa nesesè isit la.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou prezante tèt ou nan telefòn:",
+      options: [
+        "This is speaking Marie.",
+        "This is Marie.",
+        "I Marie speaking.",
+        "Speaking Marie this is.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “This is [non]” senp.",
+    },
+    thinkEmoji: "📞",
+    thinkPrompt: "Ekri yon ti apèl telefòn ak twa etap:",
+    thinkPlaceholder: "Hello, this is... Can I speak to...?",
+    aiPrompt:
+      "Hi! Can you play someone I'm calling on the phone, so I can practice a short phone conversation from start to finish?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike yon apèl telefòn.",
+    missionTask: "🎯 Jodi a, pratike yon ti apèl telefòn imajinè ak twa etap.",
+    recap: [
+      { emoji: "📞", text: "Hello, this is [non ou]." },
+      { emoji: "🙋", text: "Can I speak to...?" },
+      { emoji: "👋", text: "I'll call you back." },
+      { emoji: "🎯", text: "Misyon: pratike yon apèl telefòn." },
+    ],
+  },
+  {
+    slug: "whatsapp-and-email",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "💬",
+    heroTitle: "WhatsApp ak Imèl",
+    heroLede:
+      "Mesaj ekri gen pwòp règ li — kout ak dekontrakte pou WhatsApp, pi fòmèl pou imèl.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab ekri yon mesaj WhatsApp ak yon imèl senp.",
+    whatYouWillLearn: "diferans ant ton WhatsApp (dekontrakte) ak imèl (fòmèl)",
+    prerequisite: "Leson 7 — Yon Apèl Telefòn",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "WhatsApp dekontrakte, imèl pi fòmèl.",
+    understandBody:
+      "**Hey! Are you free today?** (WhatsApp — kout, senp) **Dear Mr. Alexandre, I am writing to...** (Imèl — pi fòmèl, plis detay). Konnen kilès ki apwopriye pou chak sitiyasyon.",
+    seeItInAction: [
+      { line: "Hey! Are you free today?", tag: "WhatsApp", emoji: "💬" },
+      {
+        line: "Dear Mr. Alexandre, I am writing to...",
+        tag: "Imèl fòmèl",
+        emoji: "📧",
+      },
+      { line: "Best regards, Marie", tag: "Fini imèl", emoji: "✍️" },
+    ],
+    patternBuilderIntro: "Klike sou chak fòma pou wè yon egzanp.",
+    patternBuilderOptions: [
+      { chipLabel: "WhatsApp", display: "Hey! Are you free today?" },
+      {
+        chipLabel: "Email start",
+        display: "Dear Mr. Alexandre, I am writing to...",
+      },
+      { chipLabel: "Email end", display: "Best regards, Marie" },
+    ],
+    vocabulary: [
+      {
+        word: "Free",
+        ipa: "/friː/",
+        kreyol: "Disponib",
+        example: "Are you free today?",
+      },
+      {
+        word: "Dear",
+        ipa: "/dɪər/",
+        kreyol: "Chè (fòmèl)",
+        example: "Dear Mr. Alexandre,",
+      },
+      {
+        word: "Regards",
+        ipa: "/rɪˈgɑːrdz/",
+        kreyol: "Salitasyon (fòmèl)",
+        example: "Best regards, Marie",
+      },
+      {
+        word: "Attachment",
+        ipa: "/əˈtætʃmənt/",
+        kreyol: "Fichye jwenn",
+        example: "Please see the attachment.",
+      },
+      {
+        word: "Reply",
+        ipa: "/rɪˈplaɪ/",
+        kreyol: "Reponn",
+        example: "Please reply soon.",
+      },
+    ],
+    pronunciationWord: "Regards",
+    pronunciationIpa: "/rɪˈgɑːrdz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “ri-GARDZ”.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize “Hey!” nan yon imèl fòmèl — itilize “Dear [non]” pito.",
+    mistakeWrong: "Hey Mr. Alexandre, I need help.",
+    mistakeCorrect: "Dear Mr. Alexandre, I am writing to ask for your help.",
+    mistakeWhy:
+      "**Poukisa:** “Hey” twò dekontrakte pou yon imèl fòmèl bay yon moun ou pa konnen byen — “Dear” pi apwopriye.",
+    practice: {
+      prompt: "Ki fraz ki kòrèk pou kòmanse yon imèl fòmèl?",
+      options: [
+        "Hey! What's up?",
+        "Dear Mr. Alexandre,",
+        "Yo!",
+        "Sup Alexandre",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chèche fòm fòmèl la.",
+    },
+    thinkEmoji: "💬",
+    thinkPrompt: "Ekri yon ti mesaj WhatsApp epi kòmansman yon imèl fòmèl:",
+    thinkPlaceholder: "Hey! ... / Dear ...,",
+    aiPrompt:
+      "Hi! Can you show me the difference between a casual WhatsApp message and a formal email for the same request?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike WhatsApp ak imèl.",
+    missionTask:
+      "🎯 Jodi a, ekri yon ti mesaj WhatsApp epi yon fraz kòmansman imèl fòmèl.",
+    recap: [
+      { emoji: "💬", text: "WhatsApp: kout, dekontrakte." },
+      { emoji: "📧", text: "Imèl: “Dear...” ak “Best regards,”." },
+      { emoji: "⚠️", text: "Pa itilize “Hey” nan yon imèl fòmèl." },
+      { emoji: "🎯", text: "Misyon: ekri yon mesaj ak yon kòmansman imèl." },
+    ],
+  },
+  {
+    slug: "conversations-mission",
+    moduleTitle: "Modil 8: Konvèsasyon Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🌟",
+    heroTitle: "Nenpòt Sitiyasyon",
+    heroLede:
+      "Konbine sa ou aprann pou fè fas ak nenpòt sitiyasyon chak jou — restoran, magazen, doktè, bank, otèl, telefòn, ak mesaj.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab mande èd ak jere yon sitiyasyon inatandi.",
+    whatYouWillLearn: "kijan pou mande èd ak jere yon sitiyasyon w pa t prevwa",
+    prerequisite: "Leson 8 — WhatsApp ak Imèl",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Twa fraz ka sove w nan prèske nenpòt sitiyasyon.",
+    understandBody:
+      "**Excuse me, can you help me?** **I'm sorry, I don't understand. Can you repeat?** **Thank you so much for your help!** Twa fraz sa yo mache nan restoran, magazen, bank, oswa nenpòt lòt kote.",
+    seeItInAction: [
+      {
+        line: "Excuse me, can you help me?",
+        tag: "Mande èd nenpòt kote",
+        emoji: "🙋",
+      },
+      {
+        line: "I'm sorry, I don't understand. Can you repeat?",
+        tag: "Lè ou pa konprann",
+        emoji: "❓",
+      },
+      {
+        line: "Thank you so much for your help!",
+        tag: "Remèsiman",
+        emoji: "🙏",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz sekou pou wè li.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask for help", display: "Excuse me, can you help me?" },
+      {
+        chipLabel: "Don't understand",
+        display: "I'm sorry, I don't understand.",
+      },
+      { chipLabel: "Thank you", display: "Thank you so much for your help!" },
+    ],
+    vocabulary: [
+      {
+        word: "Excuse me",
+        ipa: "/ɪkˈskjuːz miː/",
+        kreyol: "Eskize mwen",
+        example: "Excuse me, can you help me?",
+      },
+      {
+        word: "Understand",
+        ipa: "/ˌʌndərˈstænd/",
+        kreyol: "Konprann",
+        example: "I don't understand.",
+      },
+      {
+        word: "Repeat",
+        ipa: "/rɪˈpiːt/",
+        kreyol: "Repete",
+        example: "Can you repeat that?",
+      },
+      {
+        word: "Help",
+        ipa: "/hɛlp/",
+        kreyol: "Ede",
+        example: "Can you help me?",
+      },
+      {
+        word: "Situation",
+        ipa: "/ˌsɪtʃuˈeɪʃən/",
+        kreyol: "Sitiyasyon",
+        example: "This is a new situation.",
+      },
+    ],
+    pronunciationWord: "Excuse me",
+    pronunciationIpa: "/ɪkˈskjuːz miː/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de mo, aksan an sou “SKYOOZ”.",
+    pronunciationMistake:
+      "**Erè komen:** pa gen wont mande yon moun repete — “Can you repeat?” se yon fraz nòmal, itil chak jou.",
+    mistakeWrong: "(Ou rete san mo lè ou pa konprann)",
+    mistakeCorrect: "I'm sorry, I don't understand. Can you repeat?",
+    mistakeWhy:
+      "**Poukisa:** Pi bon pou mande yon moun repete pase pou rete san w pa konprann — se yon fraz moun itilize chak jou, menm moun ki pale Anglè byen.",
+    practice: {
+      prompt: "Ki fraz ki kòrèk lè ou pa konprann yon bagay?",
+      options: [
+        "I don't care.",
+        "I'm sorry, I don't understand. Can you repeat?",
+        "That's wrong.",
+        "I know everything.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback:
+        "❌ Eseye ankò — chèche fraz ki mande yon repetisyon poliman.",
+    },
+    thinkEmoji: "🌟",
+    thinkPrompt:
+      "Ekri yon sitiyasyon chak jou epi twa fraz ou ta itilize ladan l:",
+    thinkPlaceholder: "Situation: ... Excuse me...",
+    aiPrompt:
+      "Hi! Can you give me a surprise everyday situation (like at a store, doctor, or on the phone) and let me practice handling it using what I've learned?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 8 ansanm.",
+    missionTask:
+      "🎯 Jodi a, chwazi yon sitiyasyon chak jou (restoran, magazen, doktè, elatriye) epi pratike jere li ak fraz ou aprann nan Modil 8.",
+    recap: [
+      { emoji: "🙋", text: "Excuse me, can you help me? — mache nenpòt kote." },
+      { emoji: "❓", text: "Pa gen wont mande yon moun repete." },
+      { emoji: "🎓", text: "Ou fini Modil 8 — Konvèsasyon Chak Jou!" },
+      { emoji: "🎯", text: "Misyon: jere yon sitiyasyon chak jou." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
