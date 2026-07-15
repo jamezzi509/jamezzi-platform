@@ -82,6 +82,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleThirteenLessons[0]?.slug).toBe("job-interview");
     expect(moduleThirteenLessons.at(-1)?.slug).toBe("work-mission");
+
+    const moduleFourteenLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 14,
+    );
+    expect(moduleFourteenLessons[0]?.slug).toBe("listening-greetings");
+    expect(moduleFourteenLessons.at(-1)?.slug).toBe("listening-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {

@@ -11736,6 +11736,902 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: rakonte yon jounen travay." },
     ],
   },
+  {
+    slug: "listening-greetings",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Rankontre Yon Moun",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg kote de moun ap prezante tèt yo.",
+    whatYouWillLearn:
+      "kijan pou konprann yon dyalòg kout ant de moun k ap rankontre",
+    prerequisite: "Ou fin Modil 13 — Anglè Pou Travay",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**A: Hi! What's your name?** **B: I'm Maria. Nice to meet you.** **A: Nice to meet you too. Where are you from?** Se yon dyalòg kout ant de moun ki fèk rankontre.",
+    seeItInAction: [
+      { line: "Hi! What's your name?", tag: "Moun A", emoji: "🙋" },
+      { line: "I'm Maria. Nice to meet you.", tag: "Moun B", emoji: "🙋‍♀️" },
+      {
+        line: "Nice to meet you too. Where are you from?",
+        tag: "Moun A",
+        emoji: "🙋",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask name", display: "Hi! What's your name?" },
+      { chipLabel: "Answer", display: "I'm Maria. Nice to meet you." },
+      { chipLabel: "Ask origin", display: "Where are you from?" },
+    ],
+    vocabulary: [
+      {
+        word: "Meet",
+        ipa: "/miːt/",
+        kreyol: "Rankontre",
+        example: "Nice to meet you.",
+      },
+      {
+        word: "Name",
+        ipa: "/neɪm/",
+        kreyol: "Non",
+        example: "What's your name?",
+      },
+      {
+        word: "From",
+        ipa: "/frʌm/",
+        kreyol: "Sot nan",
+        example: "Where are you from?",
+      },
+      {
+        word: "Too",
+        ipa: "/tuː/",
+        kreyol: "Tou",
+        example: "Nice to meet you too.",
+      },
+      {
+        word: "Conversation",
+        ipa: "/ˌkɒnvərˈseɪʃən/",
+        kreyol: "Konvèsasyon",
+        example: "Listen to the conversation.",
+      },
+    ],
+    pronunciationWord: "Conversation",
+    pronunciationIpa: "/ˌkɒnvərˈseɪʃən/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou “SEY” — “kon-vər-SEY-shuhn”.",
+    pronunciationMistake:
+      "**Erè komen:** pa eseye tradwi chak mo yon-a-yon lè w ap tande — konsantre sou sans jeneral la dabò.",
+    mistakeWrong: "Tradwi chak mo separeman pandan w ap tande.",
+    mistakeCorrect: "Tande dyalòg la antye anvan w chèche detay.",
+    mistakeWhy:
+      "**Poukisa:** Lè w eseye tradwi chak mo pandan w ap tande, ou rate rès fraz la. Pi bon fason: tande antye a dabò, epi tounen gade detay yo.",
+    practice: {
+      prompt: "Kisa non fanm nan nan dyalòg la?",
+      options: ["Maria", "Ana", "Sara", "Julia"],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Non fanm nan se Maria.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt: "Ekri yon fraz sou kisa Moun A mande Moun B nan dyalòg la:",
+    thinkPlaceholder: "Person A asked...",
+    aiPrompt:
+      "Hi! Can you read me a short two-person dialogue where they introduce themselves, then ask me a comprehension question about it?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann dyalòg.",
+    missionTask:
+      "🎯 Jodi a, li dyalòg la awotvwa epi reponn: ki kote Moun B ta ka soti?",
+    recap: [
+      { emoji: "🎧", text: "Tande antye anvan w chèche detay." },
+      { emoji: "🙋", text: "Hi! What's your name?" },
+      { emoji: "🙋‍♀️", text: "I'm Maria. Nice to meet you." },
+      { emoji: "🎯", text: "Misyon: reponn kesyon konpreyansyon an." },
+    ],
+  },
+  {
+    slug: "listening-family",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Pale de Fanmi",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg sou fanmi.",
+    whatYouWillLearn: "kijan pou konprann yon dyalòg kout sou fanmi",
+    prerequisite: "Leson 1 — Tande: Rankontre Yon Moun",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**A: Do you have brothers or sisters?** **B: Yes, I have two brothers and one sister.** **A: That's a big family!** Se yon dyalòg kout sou fanmi.",
+    seeItInAction: [
+      { line: "Do you have brothers or sisters?", tag: "Moun A", emoji: "🙋" },
+      {
+        line: "Yes, I have two brothers and one sister.",
+        tag: "Moun B",
+        emoji: "🙋‍♀️",
+      },
+      { line: "That's a big family!", tag: "Moun A", emoji: "🙋" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask", display: "Do you have brothers or sisters?" },
+      {
+        chipLabel: "Answer",
+        display: "Yes, I have two brothers and one sister.",
+      },
+      { chipLabel: "React", display: "That's a big family!" },
+    ],
+    vocabulary: [
+      {
+        word: "Brother",
+        ipa: "/ˈbrʌðər/",
+        kreyol: "Frè",
+        example: "I have two brothers.",
+      },
+      {
+        word: "Sister",
+        ipa: "/ˈsɪstər/",
+        kreyol: "Sè",
+        example: "I have one sister.",
+      },
+      {
+        word: "Big",
+        ipa: "/bɪg/",
+        kreyol: "Gwo",
+        example: "That's a big family.",
+      },
+      {
+        word: "Both",
+        ipa: "/boʊθ/",
+        kreyol: "Toude",
+        example: "I have both a brother and a sister.",
+      },
+      {
+        word: "Total",
+        ipa: "/ˈtoʊtəl/",
+        kreyol: "Total",
+        example: "Three siblings in total.",
+      },
+    ],
+    pronunciationWord: "Both",
+    pronunciationIpa: "/boʊθ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** mete lang ou ant dan ou pou son “th” la, tankou nan “think”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye adisyone tout moun yo ansanm lè w ap konte fanmi nan yon dyalòg.",
+    mistakeWrong: "Konte sèlman youn nan de nimewo yo mansyone.",
+    mistakeCorrect: "Adisyone tout moun yo mansyone ansanm.",
+    mistakeWhy:
+      "**Poukisa:** Lè w tande “two brothers and one sister”, ou dwe adisyone yo ansanm (2+1=3) pou konnen total fanmi an.",
+    practice: {
+      prompt: "Konbyen frè ak sè moun nan genyen antou?",
+      options: ["2", "3", "4", "1"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! De frè plis yon sè fè twa antou.",
+      wrongFeedback: "❌ Eseye ankò — adisyone frè yo ak sè a ansanm.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt: "Ekri yon fraz sou pwòp fanmi ou, tankou nan dyalòg la:",
+    thinkPlaceholder: "I have... brothers and... sisters.",
+    aiPrompt:
+      "Hi! Can you read me a short dialogue about someone's family, then ask me how many siblings they have in total?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann dyalòg sou fanmi.",
+    missionTask:
+      "🎯 Jodi a, di konbyen frè ak sè OU genyen, tankou moun nan dyalòg la.",
+    recap: [
+      { emoji: "🎧", text: "Adisyone chif yo lè w ap tande." },
+      { emoji: "👨‍👩‍👧‍👦", text: "Two brothers and one sister = three." },
+      { emoji: "🎯", text: "Misyon: di konbyen frè/sè ou genyen." },
+      { emoji: "✅", text: "Ou konprann yon dyalòg sou fanmi." },
+    ],
+  },
+  {
+    slug: "listening-at-the-store",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Nan Magazen an",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg pandan yon moun ap achte.",
+    whatYouWillLearn: "kijan pou konprann yon dyalòg kout nan yon magazen",
+    prerequisite: "Leson 2 — Tande: Pale de Fanmi",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**A: Excuse me, how much is this shirt?** **B: It's fifteen dollars.** **A: Can I pay with a card?** Se yon dyalòg kout nan yon magazen.",
+    seeItInAction: [
+      {
+        line: "Excuse me, how much is this shirt?",
+        tag: "Kliyan",
+        emoji: "🙋",
+      },
+      { line: "It's fifteen dollars.", tag: "Vandè", emoji: "🧑‍💼" },
+      { line: "Can I pay with a card?", tag: "Kliyan", emoji: "🙋" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask price", display: "Excuse me, how much is this shirt?" },
+      { chipLabel: "Answer", display: "It's fifteen dollars." },
+      { chipLabel: "Pay", display: "Can I pay with a card?" },
+    ],
+    vocabulary: [
+      {
+        word: "Shirt",
+        ipa: "/ʃɜːrt/",
+        kreyol: "Chemiz",
+        example: "How much is this shirt?",
+      },
+      {
+        word: "Dollar",
+        ipa: "/ˈdɒlər/",
+        kreyol: "Dola",
+        example: "It's fifteen dollars.",
+      },
+      {
+        word: "Pay",
+        ipa: "/peɪ/",
+        kreyol: "Peye",
+        example: "Can I pay with a card?",
+      },
+      {
+        word: "Price",
+        ipa: "/praɪs/",
+        kreyol: "Pri",
+        example: "What's the price?",
+      },
+      {
+        word: "Cash",
+        ipa: "/kæʃ/",
+        kreyol: "Kach",
+        example: "I'll pay with cash.",
+      },
+    ],
+    pronunciationWord: "Fifteen",
+    pronunciationIpa: "/ˌfɪfˈtiːn/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “fif-TEEN”, pa “FIF-teen”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “fifteen” (15) ak “fifty” (50) — yo sonnen pre menm men se de chif diferan.",
+    mistakeWrong: "Konprann “fifteen” tankou li se 50.",
+    mistakeCorrect: "Fifteen = 15, fifty = 50 — de chif diferan.",
+    mistakeWhy:
+      "**Poukisa:** “Fifteen” (aksan sou dezyèm silab) ak “fifty” (aksan sou premye) sonnen sanble pou zòrèy ki pa abitye — koute byen ki silab ki gen aksan an.",
+    practice: {
+      prompt: "Konbyen chemiz la koute nan dyalòg la?",
+      options: ["$50", "$15", "$5", "$150"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Chemiz la koute $15.",
+      wrongFeedback: "❌ Eseye ankò — koute byen “fifteen” pa “fifty”.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt: "Ekri yon fraz pou mande pri yon bagay nan yon magazen:",
+    thinkPlaceholder: "Excuse me, how much is...",
+    aiPrompt:
+      "Hi! Can you read me a short shopping dialogue with a price in it, then ask me how much the item costs?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann pri lè w tande.",
+    missionTask: "🎯 Jodi a, di pri yon bagay ou achte dènyèman an Anglè.",
+    recap: [
+      { emoji: "🎧", text: "Fifteen (15) pa fifty (50)." },
+      { emoji: "🧑‍💼", text: "It's fifteen dollars." },
+      { emoji: "💳", text: "Can I pay with a card?" },
+      { emoji: "🎯", text: "Misyon: di pri yon bagay ou achte." },
+    ],
+  },
+  {
+    slug: "listening-at-the-restaurant",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Nan Restoran an",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg pandan yon moun ap kòmande manje.",
+    whatYouWillLearn: "kijan pou konprann yon dyalòg kout nan yon restoran",
+    prerequisite: "Leson 3 — Tande: Nan Magazen an",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**Waiter: Are you ready to order?** **Customer: Yes, I'd like the chicken, please.** **Waiter: Would you like anything to drink?** Se yon dyalòg kout nan yon restoran.",
+    seeItInAction: [
+      { line: "Are you ready to order?", tag: "Sèvè", emoji: "🧑‍🍳" },
+      {
+        line: "Yes, I'd like the chicken, please.",
+        tag: "Kliyan",
+        emoji: "🙋",
+      },
+      { line: "Would you like anything to drink?", tag: "Sèvè", emoji: "🧑‍🍳" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask order", display: "Are you ready to order?" },
+      { chipLabel: "Order", display: "Yes, I'd like the chicken, please." },
+      { chipLabel: "Ask drink", display: "Would you like anything to drink?" },
+    ],
+    vocabulary: [
+      {
+        word: "Order",
+        ipa: "/ˈɔːrdər/",
+        kreyol: "Kòmande",
+        example: "Are you ready to order?",
+      },
+      {
+        word: "Chicken",
+        ipa: "/ˈtʃɪkɪn/",
+        kreyol: "Poul",
+        example: "I'd like the chicken.",
+      },
+      {
+        word: "Drink",
+        ipa: "/drɪŋk/",
+        kreyol: "Bwè / Bwason",
+        example: "Anything to drink?",
+      },
+      {
+        word: "Ready",
+        ipa: "/ˈrɛdi/",
+        kreyol: "Pare",
+        example: "Are you ready?",
+      },
+      {
+        word: "Water",
+        ipa: "/ˈwɔːtər/",
+        kreyol: "Dlo",
+        example: "Just water, thank you.",
+      },
+    ],
+    pronunciationWord: "Ready",
+    pronunciationIpa: "/ˈrɛdi/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “RED-dee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa manke tande mo kout tankou “I'd” — li son tankou “ide” men vle di “I would”.",
+    mistakeWrong: "Pa rekonèt “I'd” tankou yon fòm kout pou “I would”.",
+    mistakeCorrect:
+      "“I'd like...” = “I would like...” (yon fason politès pou mande).",
+    mistakeWhy:
+      "**Poukisa:** “I'd” se yon kontraksyon pou “I would” — li son kout men li gen tout sans “I would like”.",
+    practice: {
+      prompt: "Kisa kliyan an kòmande pou manje?",
+      options: ["Fish", "Chicken", "Rice", "Salad"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Kliyan an kòmande chicken.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt:
+      "Ekri sa OU ta kòmande nan yon restoran, tankou nan dyalòg la:",
+    thinkPlaceholder: "I'd like...",
+    aiPrompt:
+      "Hi! Can you read me a short restaurant ordering dialogue, then ask me what the customer ordered?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon dyalòg restoran.",
+    missionTask: "🎯 Jodi a, di sa ou ta kòmande nan yon restoran an Anglè.",
+    recap: [
+      { emoji: "🎧", text: "“I'd like” = “I would like”." },
+      { emoji: "🧑‍🍳", text: "Are you ready to order?" },
+      { emoji: "🍗", text: "I'd like the chicken, please." },
+      { emoji: "🎯", text: "Misyon: di sa ou ta kòmande." },
+    ],
+  },
+  {
+    slug: "listening-phone-call",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Yon Kout Fil",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg nan yon kout fil.",
+    whatYouWillLearn: "kijan pou konprann yon dyalòg kout nan telefòn",
+    prerequisite: "Leson 4 — Tande: Nan Restoran an",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**A: Hello, this is Sarah.** **B: Hi Sarah, can I speak to David?** **A: Sorry, he's not here right now.** Se yon dyalòg kout nan yon kout fil.",
+    seeItInAction: [
+      { line: "Hello, this is Sarah.", tag: "Moun A", emoji: "📞" },
+      { line: "Hi Sarah, can I speak to David?", tag: "Moun B", emoji: "📱" },
+      { line: "Sorry, he's not here right now.", tag: "Moun A", emoji: "📞" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Answer", display: "Hello, this is Sarah." },
+      { chipLabel: "Ask for", display: "Can I speak to David?" },
+      { chipLabel: "Explain", display: "Sorry, he's not here right now." },
+    ],
+    vocabulary: [
+      {
+        word: "Speak",
+        ipa: "/spiːk/",
+        kreyol: "Pale",
+        example: "Can I speak to David?",
+      },
+      {
+        word: "Sorry",
+        ipa: "/ˈsɒri/",
+        kreyol: "Padon / Eskize",
+        example: "Sorry, he's not here.",
+      },
+      {
+        word: "Right now",
+        ipa: "/raɪt naʊ/",
+        kreyol: "Kounye a menm",
+        example: "He's not here right now.",
+      },
+      {
+        word: "Call back",
+        ipa: "/kɔːl bæk/",
+        kreyol: "Rele ankò",
+        example: "Can he call back later?",
+      },
+      {
+        word: "Message",
+        ipa: "/ˈmɛsɪdʒ/",
+        kreyol: "Mesaj",
+        example: "Can I leave a message?",
+      },
+    ],
+    pronunciationWord: "Sorry",
+    pronunciationIpa: "/ˈsɒri/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “SOR-ree”.",
+    pronunciationMistake:
+      "**Erè komen:** pa panse “this is Sarah” vle di Sarah ap gade yon bagay — se konsa moun prezante tèt yo nan telefòn.",
+    mistakeWrong: "Konfonn “this is Sarah” ak yon lòt sans.",
+    mistakeCorrect: "“This is Sarah” = fason yo prezante tèt yo nan telefòn.",
+    mistakeWhy:
+      "**Poukisa:** Nan telefòn, moun di “This is [non]” pou prezante tèt yo, pa “I am [non]” tankou nan lòt sitiyasyon.",
+    practice: {
+      prompt: "Kiyès ki pa la nan dyalòg la?",
+      options: ["Sarah", "David", "Maria", "John"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! David pa la.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt:
+      "Ekri fason ou ta reponn si yon moun mande pou pale ak yon moun ki pa la:",
+    thinkPlaceholder: "Sorry, he's/she's not here right now...",
+    aiPrompt:
+      "Hi! Can you read me a short phone call dialogue where one person is asking for someone who isn't there, then ask me who's missing?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon kout fil.",
+    missionTask: "🎯 Jodi a, ekri fason ou ta reponn telefòn lan Anglè.",
+    recap: [
+      { emoji: "🎧", text: "“This is [non]” nan telefòn." },
+      { emoji: "📞", text: "Can I speak to...?" },
+      { emoji: "🙏", text: "Sorry, he's not here right now." },
+      { emoji: "🎯", text: "Misyon: ekri fason ou reponn telefòn." },
+    ],
+  },
+  {
+    slug: "listening-at-the-doctor",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Kay Doktè a",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg kay doktè.",
+    whatYouWillLearn: "kijan pou konprann yon dyalòg kout kay doktè",
+    prerequisite: "Leson 5 — Tande: Yon Kout Fil",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**Doctor: What's wrong today?** **Patient: I have a headache and I feel tired.** **Doctor: Let's check your temperature.** Se yon dyalòg kout kay doktè.",
+    seeItInAction: [
+      { line: "What's wrong today?", tag: "Doktè", emoji: "🩺" },
+      {
+        line: "I have a headache and I feel tired.",
+        tag: "Pasyan",
+        emoji: "🤒",
+      },
+      { line: "Let's check your temperature.", tag: "Doktè", emoji: "🩺" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask", display: "What's wrong today?" },
+      { chipLabel: "Describe", display: "I have a headache and I feel tired." },
+      { chipLabel: "Check", display: "Let's check your temperature." },
+    ],
+    vocabulary: [
+      {
+        word: "Headache",
+        ipa: "/ˈhɛdeɪk/",
+        kreyol: "Tèt fè mal",
+        example: "I have a headache.",
+      },
+      {
+        word: "Tired",
+        ipa: "/ˈtaɪərd/",
+        kreyol: "Fatige",
+        example: "I feel tired.",
+      },
+      {
+        word: "Temperature",
+        ipa: "/ˈtɛmprətʃər/",
+        kreyol: "Tanperati",
+        example: "Let's check your temperature.",
+      },
+      {
+        word: "Wrong",
+        ipa: "/rɒŋ/",
+        kreyol: "Pa nòmal (pwoblèm)",
+        example: "What's wrong today?",
+      },
+      {
+        word: "Feel",
+        ipa: "/fiːl/",
+        kreyol: "Santi",
+        example: "I feel tired.",
+      },
+    ],
+    pronunciationWord: "Temperature",
+    pronunciationIpa: "/ˈtɛmprətʃər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab lè w pale vit — “TEM-pruh-chər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa manke tande de sentòm ki mansyone youn apre lòt nan menm fraz la.",
+    mistakeWrong: "Sèlman tande premye sentòm nan epi rate dezyèm nan.",
+    mistakeCorrect: "Tande tout lis sentòm yo nan yon fraz ki gen “and”.",
+    mistakeWhy:
+      "**Poukisa:** Lè yon fraz gen “and” ant de sentòm (“a headache and I feel tired”), tande toude, pa sèlman premye a.",
+    practice: {
+      prompt: "Ki de sentòm pasyan an genyen?",
+      options: [
+        "Fever and cough",
+        "Headache and tired",
+        "Stomachache and cold",
+        "Nothing",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li gen tèt fè mal ak li fatige.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt: "Ekri yon fraz pou dekri kijan ou santi w jodi a:",
+    thinkPlaceholder: "I have... I feel...",
+    aiPrompt:
+      "Hi! Can you read me a short doctor-patient dialogue about symptoms, then ask me what the patient's symptoms are?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon dyalòg doktè.",
+    missionTask:
+      "🎯 Jodi a, di kijan ou santi w jodi a an Anglè, tankou pasyan an.",
+    recap: [
+      { emoji: "🎧", text: "Tande tout sentòm ki nan yon fraz ak “and”." },
+      { emoji: "🩺", text: "What's wrong today?" },
+      { emoji: "🤒", text: "I have a headache and I feel tired." },
+      { emoji: "🎯", text: "Misyon: di kijan ou santi w." },
+    ],
+  },
+  {
+    slug: "listening-technology",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Yon Pwoblèm Teknoloji",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg sou yon pwoblèm teknoloji.",
+    whatYouWillLearn:
+      "kijan pou konprann yon dyalòg kout sou yon pwoblèm teknoloji",
+    prerequisite: "Leson 6 — Tande: Kay Doktè a",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**A: My internet is very slow today.** **B: Did you restart your router?** **A: Not yet, let me try that.** Se yon dyalòg kout sou yon pwoblèm teknoloji.",
+    seeItInAction: [
+      { line: "My internet is very slow today.", tag: "Moun A", emoji: "🐌" },
+      { line: "Did you restart your router?", tag: "Moun B", emoji: "🔄" },
+      { line: "Not yet, let me try that.", tag: "Moun A", emoji: "👍" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Problem", display: "My internet is very slow today." },
+      { chipLabel: "Suggest", display: "Did you restart your router?" },
+      { chipLabel: "Respond", display: "Not yet, let me try that." },
+    ],
+    vocabulary: [
+      {
+        word: "Restart",
+        ipa: "/riːˈstɑːrt/",
+        kreyol: "Redemare",
+        example: "Did you restart your router?",
+      },
+      {
+        word: "Router",
+        ipa: "/ˈraʊtər/",
+        kreyol: "Routè",
+        example: "Restart your router.",
+      },
+      {
+        word: "Slow",
+        ipa: "/sloʊ/",
+        kreyol: "Lan",
+        example: "My internet is slow.",
+      },
+      {
+        word: "Not yet",
+        ipa: "/nɒt jɛt/",
+        kreyol: "Poko",
+        example: "Not yet, let me try that.",
+      },
+      {
+        word: "Try",
+        ipa: "/traɪ/",
+        kreyol: "Eseye",
+        example: "Let me try that.",
+      },
+    ],
+    pronunciationWord: "Restart",
+    pronunciationIpa: "/riːˈstɑːrt/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, aksan an sou dezyèm — “ri-START”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “Not yet” (poko fè l) ak “No” (non, mwen p ap fè l) — de sans diferan.",
+    mistakeWrong: "Konprann “Not yet” tankou “No”.",
+    mistakeCorrect: "“Not yet” vle di li pa ko fèt, men l ap fèt.",
+    mistakeWhy:
+      "**Poukisa:** “Not yet” montre entansyon pou fè bagay la pita, alò se yon repons diferan de “No” (refi total).",
+    practice: {
+      prompt: "Ki pwoblèm moun nan genyen nan dyalòg la?",
+      options: [
+        "Forgot password",
+        "Slow internet",
+        "Phone broken",
+        "No battery",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Entènèt la lan.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt:
+      "Ekri yon fraz sou yon pwoblèm teknoloji ou te genyen dènyèman:",
+    thinkPlaceholder: "My... was/is...",
+    aiPrompt:
+      "Hi! Can you read me a short dialogue about a tech problem, then ask me what the problem was?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon pwoblèm teknoloji.",
+    missionTask:
+      "🎯 Jodi a, di yon pwoblèm teknoloji ou te genyen dènyèman an Anglè.",
+    recap: [
+      { emoji: "🎧", text: "“Not yet” pa menm bagay ak “No”." },
+      { emoji: "🐌", text: "My internet is very slow today." },
+      { emoji: "🔄", text: "Did you restart your router?" },
+      { emoji: "🎯", text: "Misyon: di yon pwoblèm teknoloji ou te genyen." },
+    ],
+  },
+  {
+    slug: "listening-at-work",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande: Pwograme Yon Reyinyon",
+    heroLede: "Tande yon dyalòg kout epi konprann sa k ap pase.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon ti dyalòg pandan de moun ap pwograme yon reyinyon.",
+    whatYouWillLearn:
+      "kijan pou konprann yon dyalòg kout nan yon anviwònman travay",
+    prerequisite: "Leson 7 — Tande: Yon Pwoblèm Teknoloji",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Li dyalòg la de fwa, epi eseye konprann san w pa tradwi chak mo.",
+    understandBody:
+      "**A: Can we schedule the meeting for Friday?** **B: Friday works for me. What time?** **A: Let's say 10 AM.** Se yon dyalòg kout nan yon anviwònman travay.",
+    seeItInAction: [
+      {
+        line: "Can we schedule the meeting for Friday?",
+        tag: "Moun A",
+        emoji: "📅",
+      },
+      { line: "Friday works for me. What time?", tag: "Moun B", emoji: "👍" },
+      { line: "Let's say 10 AM.", tag: "Moun A", emoji: "⏰" },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Propose",
+        display: "Can we schedule the meeting for Friday?",
+      },
+      { chipLabel: "Agree", display: "Friday works for me. What time?" },
+      { chipLabel: "Confirm time", display: "Let's say 10 AM." },
+    ],
+    vocabulary: [
+      {
+        word: "Schedule",
+        ipa: "/ˈskɛdʒuːl/",
+        kreyol: "Pwograme",
+        example: "Can we schedule the meeting?",
+      },
+      {
+        word: "Works for me",
+        ipa: "/wɜːrks fɔːr miː/",
+        kreyol: "Sa bon pou mwen",
+        example: "Friday works for me.",
+      },
+      { word: "Time", ipa: "/taɪm/", kreyol: "Lè", example: "What time?" },
+      {
+        word: "AM",
+        ipa: "/eɪ ɛm/",
+        kreyol: "Nan maten (avan midi)",
+        example: "Let's say 10 AM.",
+      },
+      {
+        word: "Confirm",
+        ipa: "/kənˈfɜːrm/",
+        kreyol: "Konfime",
+        example: "Let's confirm the time.",
+      },
+    ],
+    pronunciationWord: "Schedule",
+    pronunciationIpa: "/ˈskɛdʒuːl/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “SKE-jool”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “10 AM” (10è maten) ak “10 PM” (10è swa) — de moman diferan nan jounen an.",
+    mistakeWrong: "Konprann “AM” tankou li vle di swa.",
+    mistakeCorrect: "“AM” = maten, “PM” = apre midi/swa.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, “AM” toujou vle di anvan midi (maten), “PM” apre midi. Konfonn yo ka fè w rate yon randevou nèt.",
+    practice: {
+      prompt: "Ki lè reyinyon an ye nan dyalòg la?",
+      options: ["9 AM", "10 AM", "11 AM", "Friday afternoon"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Reyinyon an se a 10 AM.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt: "Ekri yon fraz pou pwograme yon reyinyon imajinè:",
+    thinkPlaceholder: "Can we schedule... for...",
+    aiPrompt:
+      "Hi! Can you read me a short dialogue about scheduling a meeting, then ask me what day and time they agreed on?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann yon dyalòg travay.",
+    missionTask:
+      "🎯 Jodi a, pwograme yon reyinyon imajinè: chwazi yon jou ak yon lè an Anglè.",
+    recap: [
+      { emoji: "🎧", text: "AM = maten, PM = apre midi/swa." },
+      { emoji: "📅", text: "Can we schedule the meeting for Friday?" },
+      { emoji: "⏰", text: "Let's say 10 AM." },
+      { emoji: "🎯", text: "Misyon: pwograme yon reyinyon imajinè." },
+    ],
+  },
+  {
+    slug: "listening-mission",
+    moduleTitle: "Modil 14: Konprann Lè W Tande",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Tande ak Konprann",
+    heroLede:
+      "Se lè a pou konbine tout sa ou aprann nan Modil 14 nan yon dyalòg pi long.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konprann yon dyalòg ki gen plizyè sijè ansanm.",
+    whatYouWillLearn:
+      "kijan pou konprann yon dyalòg pi long ki melanje plizyè sijè",
+    prerequisite: "Leson 8 — Tande: Pwograme Yon Reyinyon",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Yon dyalòg reyèl souvan melanje plizyè sijè ansanm.",
+    understandBody:
+      "**A: Hi Marc, how are you?** **B: I'm good, but my Wi-Fi isn't working.** **A: That's annoying. Are we still meeting at 3 PM?** **B: Yes, I'll be there. See you soon!**",
+    seeItInAction: [
+      { line: "Hi Marc, how are you?", tag: "Salitasyon", emoji: "🙋" },
+      {
+        line: "I'm good, but my Wi-Fi isn't working.",
+        tag: "Pwoblèm",
+        emoji: "📶",
+      },
+      {
+        line: "Are we still meeting at 3 PM?",
+        tag: "Konfime randevou",
+        emoji: "⏰",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak liy pou tande fraz la pale.",
+    patternBuilderOptions: [
+      { chipLabel: "Greet", display: "Hi Marc, how are you?" },
+      {
+        chipLabel: "Problem",
+        display: "I'm good, but my Wi-Fi isn't working.",
+      },
+      { chipLabel: "Confirm", display: "Are we still meeting at 3 PM?" },
+    ],
+    vocabulary: [
+      {
+        word: "Annoying",
+        ipa: "/əˈnɔɪɪŋ/",
+        kreyol: "Anmerdan",
+        example: "That's annoying.",
+      },
+      {
+        word: "Still",
+        ipa: "/stɪl/",
+        kreyol: "Toujou (kontinye)",
+        example: "Are we still meeting?",
+      },
+      { word: "Soon", ipa: "/suːn/", kreyol: "Talè", example: "See you soon!" },
+      {
+        word: "Working",
+        ipa: "/ˈwɜːrkɪŋ/",
+        kreyol: "K ap mache",
+        example: "My Wi-Fi isn't working.",
+      },
+      {
+        word: "Understand",
+        ipa: "/ˌʌndərˈstænd/",
+        kreyol: "Konprann",
+        example: "I understand the dialogue.",
+      },
+    ],
+    pronunciationWord: "Understand",
+    pronunciationIpa: "/ˌʌndərˈstænd/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou dènye — “un-dər-STAND”.",
+    pronunciationMistake:
+      "**Erè komen:** pa panse yon dyalòg dwe gen yon sèl sijè — anpil fwa li melanje plizyè bagay (yon pwoblèm PLIS yon randevou).",
+    mistakeWrong: "Sispann tande apre premye enfòmasyon an.",
+    mistakeCorrect:
+      "Kontinye tande — souvan gen plis pase yon enfòmasyon nan menm dyalòg la.",
+    mistakeWhy:
+      "**Poukisa:** Nan dyalòg sa a, gen toude yon pwoblèm (Wi-Fi) AK yon randevou (3 PM) — si w sispann tande twò bonè, ou rate dezyèm enfòmasyon an.",
+    practice: {
+      prompt: "Ki pwoblèm Marc genyen, epi ki lè randevou a?",
+      options: [
+        "Phone broken, 3 PM",
+        "Wi-Fi not working, 3 PM",
+        "Wi-Fi not working, 10 AM",
+        "No problem, 3 PM",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Wi-Fi Marc a pa mache, e randevou a se 3 PM.",
+      wrongFeedback: "❌ Eseye ankò — relire dyalòg la antye.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt:
+      "Ekri yon ti dyalòg pa w ki melanje yon pwoblèm ak yon randevou, ak omwen kat mo Modil 14:",
+    thinkPlaceholder: "Hi, how are you? ... but ... Are we still...",
+    aiPrompt:
+      "Hi! Can you read me a longer dialogue that mixes a small problem with a scheduling detail, then quiz me on both pieces of information?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike konprann dyalòg ki melanje plizyè sijè.",
+    missionTask:
+      "🎯 Jodi a, tande (oswa li) yon dyalòg an Anglè epi ekri toude enfòmasyon prensipal yo.",
+    recap: [
+      { emoji: "🎧", text: "Yon dyalòg ka melanje plizyè sijè." },
+      { emoji: "📶", text: "I'm good, but my Wi-Fi isn't working." },
+      { emoji: "🎓", text: "Ou fini Modil 14 — Konprann Lè W Tande!" },
+      { emoji: "🎯", text: "Misyon: ekri de enfòmasyon prensipal yon dyalòg." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
