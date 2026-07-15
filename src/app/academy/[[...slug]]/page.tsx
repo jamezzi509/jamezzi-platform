@@ -159,7 +159,10 @@ function AcademyHub() {
                 href={`/academy/books/${book.slug}`}
                 className="group"
               >
-                <div className="border-border relative aspect-[2/3] overflow-hidden rounded-[14px] border bg-white p-2 shadow-[0_14px_35px_rgba(29,24,46,0.08)]">
+                <div
+                  className="border-border relative w-full overflow-hidden rounded-[14px] border bg-white p-2 shadow-[0_14px_35px_rgba(29,24,46,0.08)]"
+                  style={{ aspectRatio: "2 / 3" }}
+                >
                   <Image
                     src={book.cover}
                     alt={`Cover of ${book.title}`}

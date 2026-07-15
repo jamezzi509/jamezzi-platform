@@ -27,7 +27,10 @@ export function BookLibrary() {
           <div className="grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
             {academyBooks.map((book, index) => (
               <article key={book.slug} className="group">
-                <div className="bg-paper border-border relative aspect-[2/3] overflow-hidden rounded-[18px] border p-3 shadow-[0_18px_45px_rgba(29,24,46,0.08)] sm:p-5">
+                <div
+                  className="bg-paper border-border relative w-full overflow-hidden rounded-[18px] border p-3 shadow-[0_18px_45px_rgba(29,24,46,0.08)] sm:p-5"
+                  style={{ aspectRatio: "2 / 3" }}
+                >
                   <Image
                     src={book.cover}
                     alt={`Cover of ${book.title}`}
@@ -70,7 +73,10 @@ export function BookDetail({ book }: { book: AcademyBook }) {
             ← All Books
           </Link>
           <div className="mt-7 grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-20">
-            <div className="border-border relative mx-auto aspect-[2/3] w-full max-w-md overflow-hidden rounded-[24px] border bg-white p-5 shadow-[0_24px_60px_rgba(29,24,46,0.1)]">
+            <div
+              className="border-border relative mx-auto w-full max-w-md overflow-hidden rounded-[24px] border bg-white p-5 shadow-[0_24px_60px_rgba(29,24,46,0.1)]"
+              style={{ aspectRatio: "2 / 3" }}
+            >
               <Image
                 src={book.cover}
                 alt={`Cover of ${book.title}`}
