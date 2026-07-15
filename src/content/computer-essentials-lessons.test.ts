@@ -51,6 +51,16 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleSixLessons.at(-1)?.slug).toBe("email-mastery-mission");
   });
 
+  it("Module 7 starts with installing-and-uninstalling-apps and ends with its mission", () => {
+    const moduleSevenLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 7,
+    );
+    expect(moduleSevenLessons[0]?.slug).toBe(
+      "installing-and-uninstalling-apps",
+    );
+    expect(moduleSevenLessons.at(-1)?.slug).toBe("mobile-devices-mission");
+  });
+
   it("gives screenshots-and-screen-recording steps for all four platforms", () => {
     const lesson = computerPremiumLessons.find(
       (item) => item.slug === "screenshots-and-screen-recording",

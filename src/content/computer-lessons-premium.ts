@@ -4148,6 +4148,787 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 6 — Metrize Imèl!" },
     ],
   },
+  {
+    slug: "installing-and-uninstalling-apps",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "📲",
+    heroTitle: "Enstale ak Dezenstale Aplikasyon",
+    heroLede:
+      "Yon 'magazen' ofisyèl egziste pou chak platfòm pou ajoute nouvo zouti.",
+    goal: "🎯 Objektif: enstale ak dezenstale aplikasyon an sekirite sou nenpòt aparèy.",
+    simpleExplanation:
+      "Chak platfòm gen yon 'magazen' ofisyèl kote ou telechaje aplikasyon: **Play Store** sou Android, **App Store** sou iPhone/Mac, ak **Microsoft Store** sou Windows. Ou chèche non aplikasyon an, klike 'Enstale', epi li parèt sou aparèy ou. Dezenstale mache menm jan, an lòt sans.",
+    howItWorks: [
+      "Louvri magazen aplikasyon ofisyèl platfòm ou (Play Store, App Store, Microsoft Store)",
+      "Chèche non aplikasyon an epi klike 'Enstale' (Install)",
+      "Pou retire l, kenbe ikòn nan oswa ale nan Settings epi chwazi 'Dezenstale' (Uninstall)",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing an app store interface with an install button and several app icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/installing-and-uninstalling-apps.webp`,
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Louvri Microsoft Store, chèche non aplikasyon an, epi klike 'Get' oswa 'Install'. Pou dezenstale, right-click sou aplikasyon an nan Start Menu epi chwazi 'Uninstall'.",
+      },
+      {
+        platform: "mac",
+        steps:
+          "Louvri App Store, chèche non aplikasyon an, epi klike 'Get' oswa 'Install'. Pou dezenstale, deplase aplikasyon an soti nan dosye Applications pou al nan Trash.",
+      },
+      {
+        platform: "android",
+        steps:
+          "Louvri Play Store, chèche non aplikasyon an, epi klike 'Install'. Pou dezenstale, kenbe ikòn nan sou ekran akèy la epi chwazi 'Uninstall'.",
+        illustrationPrompt:
+          "A realistic photograph of an Android smartphone screen showing the Google Play Store app page with an install button, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+        illustrationSrc: `${illustrationBase}/installing-and-uninstalling-apps-android.webp`,
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Louvri App Store, chèche non aplikasyon an, epi tape 'Get'. Pou dezenstale, kenbe ikòn nan sou ekran akèy la epi chwazi 'Remove App'.",
+        illustrationPrompt:
+          "A realistic photograph of an iPhone screen showing the Apple App Store app page with a Get button, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+        illustrationSrc: `${illustrationBase}/installing-and-uninstalling-apps-iphone.webp`,
+      },
+    ],
+    digitalWords: [
+      {
+        word: "Magazen Aplikasyon (App Store)",
+        definition: "Sit ofisyèl kote ou telechaje aplikasyon pou aparèy ou.",
+        example: "Play Store se magazen aplikasyon ofisyèl Android la.",
+      },
+      {
+        word: "Enstale (Install)",
+        definition: "Ajoute yon aplikasyon sou aparèy ou pou ka itilize l.",
+        example: "Enstale WhatsApp pou kominike ak fanmi ou.",
+      },
+      {
+        word: "Dezenstale (Uninstall)",
+        definition: "Retire yon aplikasyon nèt sou aparèy ou.",
+        example: "Dezenstale aplikasyon ou pa itilize ankò pou libere plas.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si telefòn ou ap mache dousman paske li gen twòp aplikasyon, dezenstale sa ou pa itilize depi plizyè mwa pou libere plas ak amelyore vitès.",
+    mistakeWrong:
+      "Telechaje aplikasyon soti nan yon lyen oswa sit ki pa magazen ofisyèl la.",
+    mistakeCorrect:
+      "Telechaje sèlman soti nan Play Store, App Store, oswa Microsoft Store.",
+    mistakeWhy:
+      "⚠️ Aplikasyon ki soti nan sous ki pa ofisyèl ka gen viris oswa lojisyèl danjere ki vòlè enfòmasyon ou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou verifye si yon aplikasyon nan magazen an se yon aplikasyon lejitim anvan ou enstale l.",
+    aiPrompt:
+      "Hi! How can I tell if an app in the app store is legitimate and safe before I install it?",
+    mission:
+      "🎯 Misyon: chèche yon aplikasyon nan magazen ofisyèl aparèy ou epi gade paj enfòmasyon li san enstale l si ou pa bezwen l.",
+    quiz: {
+      prompt: "Ki kote ou dwe toujou telechaje aplikasyon?",
+      options: [
+        "Nenpòt lyen yon moun voye ba ou",
+        "Magazen ofisyèl platfòm ou (Play Store, App Store, Microsoft Store)",
+        "Yon imèl sispèk",
+        "Yon rezo sosyal",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Toujou itilize magazen ofisyèl la.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sekirite aplikasyon ou enstale.",
+    },
+    recap: [
+      { emoji: "📲", text: "Chak platfòm gen yon magazen aplikasyon ofisyèl." },
+      { emoji: "⬇️", text: "Enstale = ajoute; Dezenstale = retire." },
+      { emoji: "🛡️", text: "Telechaje sèlman nan sous ofisyèl." },
+      {
+        emoji: "🎯",
+        text: "Misyon: chèche yon aplikasyon nan magazen ofisyèl la.",
+      },
+    ],
+  },
+  {
+    slug: "managing-storage",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "💾",
+    heroTitle: "Jere Plas Estokaj",
+    heroLede: "Chak aparèy gen yon limit sou konbyen li ka kenbe.",
+    goal: "🎯 Objektif: konprann sa ki ranpli estokaj ou epi libere plas.",
+    simpleExplanation:
+      "**Estokaj** (storage) se plas total aparèy ou ka kenbe: foto, videyo, aplikasyon, ak dokiman. Lè estokaj la prèske plen, aparèy ou ka vin dousman oswa refize telechaje nouvo bagay. Foto ak videyo souvan pran plis plas pase tout rès la.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a storage settings panel with a simple colorful bar chart breaking down storage usage, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/managing-storage.webp`,
+    digitalWords: [
+      {
+        word: "Estokaj (Storage)",
+        definition:
+          "Plas total aparèy ou ka kenbe fichye, foto, ak aplikasyon.",
+        example: "Verifye estokaj ou lè telefòn ap mache dousman.",
+      },
+      {
+        word: "Plas Plen (Storage Full)",
+        definition: "Lè aparèy ou pa gen plis plas pou nouvo bagay.",
+        example: "Yon mesaj 'plas plen' parèt lè ou eseye pran yon nouvo foto.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si telefòn ou refize pran nouvo foto ak yon mesaj 'estokaj plen', ale nan Settings pou wè kisa k ap pran plis plas — souvan se videyo ou pa gade ankò.",
+    mistakeWrong:
+      "Kenbe tout foto ak videyo sou telefòn nèt, san janm netwaye.",
+    mistakeCorrect:
+      "Backup ak efase videyo ak foto ou pa bezwen sou aparèy la regilyèman.",
+    mistakeWhy:
+      "⚠️ Yon aparèy ki plen nèt ka vin dousman, echwe pou fè mizajou, oswa refize pran nouvo foto enpòtan yo.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou verifye ki aplikasyon oswa fichye k ap pran plis plas sou telefòn ou.",
+    aiPrompt:
+      "Hi! Can you explain how to check what's taking up the most storage space on my phone?",
+    mission:
+      "🎯 Misyon: verifye konbyen estokaj ou itilize ak konbyen ki rete nan Settings aparèy ou.",
+    quiz: {
+      prompt: "Kisa ki souvan pran plis plas nan estokaj yon telefòn?",
+      options: [
+        "Kontak yo",
+        "Foto ak videyo",
+        "Modpas yo",
+        "Non aplikasyon yo",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Foto ak videyo pran plis plas.",
+      wrongFeedback: "❌ Eseye ankò — panse ak fichye ki pi gwo yo.",
+    },
+    recap: [
+      { emoji: "💾", text: "Estokaj = plas total aparèy ou ka kenbe." },
+      { emoji: "📸", text: "Foto/videyo souvan pran plis plas." },
+      { emoji: "🧹", text: "Netwaye regilyèman evite plas plen." },
+      { emoji: "🎯", text: "Misyon: verifye estokaj ou itilize." },
+    ],
+  },
+  {
+    slug: "photos-and-your-gallery",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "🖼️",
+    heroTitle: "Foto ak Galri Ou",
+    heroLede: "Kote tout foto ak videyo telefòn ou rasanble ansanm.",
+    goal: "🎯 Objektif: navige, òganize, ak pataje foto nan galri telefòn ou.",
+    simpleExplanation:
+      "**Galri** (Gallery/Photos) se aplikasyon kote tout foto ak videyo telefòn ou parèt otomatikman, òganize pa dat. Ou ka kreye albòm pou gwoupe foto ki sanble, epi pataje yo dirèkteman ak fanmi ak zanmi.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a photo gallery app with a grid of colorful photo thumbnails, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/photos-and-your-gallery.webp`,
+    digitalWords: [
+      {
+        word: "Galri (Gallery/Photos)",
+        definition: "Aplikasyon kote tout foto ak videyo telefòn ou parèt.",
+        example: "Louvri Galri pou wè foto ou pran semenn pase.",
+      },
+      {
+        word: "Albòm (Album)",
+        definition: "Yon gwoup foto ou mete ansanm sou yon tèm.",
+        example: "Kreye yon albòm 'Fèt Anivèsè 2024' pou tout foto sa yo.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou pran 100 foto nan yon maryaj, kreye yon albòm apa pou yo, olye de kite yo mele ak tout lòt foto ou yo — pi fasil pou pataje pita.",
+    mistakeWrong: "Kite tout foto mele ansanm san okenn albòm, ane apre ane.",
+    mistakeCorrect: "Kreye albòm pou moman enpòtan pou jwenn yo pi fasil pita.",
+    mistakeWhy:
+      "⚠️ San albòm, jwenn foto yon evènman espesifik pami dè milye lòt foto vin difisil ak long.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou kreye yon albòm nan galri telefòn ou epi pataje l ak lòt moun.",
+    aiPrompt:
+      "Hi! Can you explain how to create a photo album on my phone and share it with family members?",
+    mission:
+      "🎯 Misyon: kreye yon albòm nan galri telefòn ou epi mete twa foto ladan l.",
+    quiz: {
+      prompt: "Kisa yon albòm fè pou foto ou yo?",
+      options: [
+        "Li efase yo otomatikman",
+        "Li gwoupe foto ki sanble ansanm sou yon tèm",
+        "Li konprese yo",
+        "Li voye yo bay tout kontak ou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Albòm gwoupe foto ki sanble.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki fè jwenn foto pi fasil.",
+    },
+    recap: [
+      { emoji: "🖼️", text: "Galri kenbe tout foto/videyo telefòn ou." },
+      { emoji: "📁", text: "Albòm gwoupe foto ki sanble." },
+      { emoji: "📤", text: "Pataje foto dirèkteman ak fanmi/zanmi." },
+      { emoji: "🎯", text: "Misyon: kreye yon albòm ak twa foto." },
+    ],
+  },
+  {
+    slug: "messages-and-calls",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "💬",
+    heroTitle: "Mesaj ak Apèl",
+    heroLede: "De fason debaz pou rete konekte ak moun ou renmen yo.",
+    goal: "🎯 Objektif: voye mesaj tèks epi fè apèl ak konfyans.",
+    simpleExplanation:
+      "**Mesaj tèks** (SMS) voye yon ti mesaj ekri bay yon lòt telefòn. **Apèl** konekte w vwa-a-vwa ak yon lòt moun. De aplikasyon debaz sa yo egziste sou tout telefòn, separe de aplikasyon tankou WhatsApp ki mande entènèt.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a messaging app conversation thread with speech bubble icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/messages-and-calls.webp`,
+    digitalWords: [
+      {
+        word: "Mesaj Tèks (SMS)",
+        definition: "Ti mesaj ekri ou voye bay yon lòt telefòn, san entènèt.",
+        example: "Voye yon SMS bay yon zanmi pou konfime lè rankont lan.",
+      },
+      {
+        word: "Apèl (Call)",
+        definition: "Konvèsasyon vwa-a-vwa ak yon lòt moun sou telefòn.",
+        example: "Fè yon apèl bay manman ou pou pran nouvèl li.",
+      },
+    ],
+    realLifeExample:
+      "💡 SMS ak apèl regilye mache menm san entènèt, sèlman ak siyal telefòn — itil lè ou pa gen Wi-Fi oswa done disponib.",
+    mistakeWrong: "Panse SMS ak apèl mande entènèt tankou WhatsApp.",
+    mistakeCorrect:
+      "Konprann SMS ak apèl regilye mache ak siyal telefòn, pa entènèt.",
+    mistakeWhy:
+      "⚠️ Konfonn de sa yo ka fè w panse ou pa ka kominike lè ou pa gen entènèt, alòske SMS/apèl toujou mache.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant yon SMS regilye ak yon mesaj WhatsApp.",
+    aiPrompt:
+      "Hi! What's the difference between a regular text message (SMS) and a WhatsApp message?",
+    mission:
+      "🎯 Misyon: voye yon SMS oswa fè yon apèl tès bay yon kontak ou fè konfyans.",
+    quiz: {
+      prompt: "Kisa SMS ak apèl regilye bezwen pou mache?",
+      options: [
+        "Wi-Fi sèlman",
+        "Siyal telefòn (pa entènèt)",
+        "Yon kont Gmail",
+        "Yon aplikasyon espesyal",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yo mache ak siyal telefòn, pa entènèt.",
+      wrongFeedback: "❌ Eseye ankò — panse ak diferans ant sa ak WhatsApp.",
+    },
+    recap: [
+      { emoji: "💬", text: "SMS voye mesaj ekri san entènèt." },
+      { emoji: "📞", text: "Apèl konekte vwa-a-vwa." },
+      { emoji: "📶", text: "Yo mache ak siyal telefòn, pa Wi-Fi." },
+      { emoji: "🎯", text: "Misyon: voye yon SMS oswa fè yon apèl tès." },
+    ],
+  },
+  {
+    slug: "managing-contacts",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "👤",
+    heroTitle: "Jere Kontak Ou",
+    heroLede: "Yon kanè adrès dijital ki kenbe tout moun ou bezwen jwenn.",
+    goal: "🎯 Objektif: sovgade, chèche, ak òganize kontak ou.",
+    simpleExplanation:
+      "**Kontak** yo se kanè adrès dijital telefòn ou — non, nimewo, ak pafwa imèl chak moun ou konnen. Chak fwa ou sovgade yon nouvo nimewo ak yon non, ou pa bezwen sonje l pa kè ankò.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a contacts app list with profile icons and names, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/managing-contacts.webp`,
+    digitalWords: [
+      {
+        word: "Kontak (Contact)",
+        definition:
+          "Yon antre nan kanè adrès telefòn ou ak non ak nimewo yon moun.",
+        example: "Kreye yon kontak pou dòktè ou pou jwenn nimewo l fasil.",
+      },
+      {
+        word: "Sovgade Kontak (Save Contact)",
+        definition: "Ajoute yon nouvo moun nan kanè adrès telefòn ou.",
+        example: "Sovgade nimewo nouvo zanmi ou apre premye apèl la.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si yon moun rele ou epi ou pa sovgade nimewo l, pwochen fwa telefòn ou p ap montre non li — sèlman nimewo a, ki pa itil pou sonje ki moun sa ye.",
+    mistakeWrong: "Pa janm sovgade nouvo nimewo, konte sou memwa sèlman.",
+    mistakeCorrect:
+      "Sovgade chak nouvo kontak imedyatman apre premye kontak la.",
+    mistakeWhy:
+      "⚠️ San kontak sovgade, ou ka rate apèl enpòtan paske telefòn ou pa rekonèt ki moun k ap rele.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou òganize kontak ou an gwoup (fanmi, travay, zanmi).",
+    aiPrompt:
+      "Hi! Can you explain how to organize my phone contacts into groups like 'Family', 'Work', and 'Friends'?",
+    mission:
+      "🎯 Misyon: sovgade yon nouvo kontak nan telefòn ou ak non ak nimewo konplè.",
+    quiz: {
+      prompt: "Poukisa ou ta dwe sovgade nouvo nimewo yo?",
+      options: [
+        "Pou aparèy ou mache pi vit",
+        "Pou telefòn ou rekonèt ki moun k ap rele pwochen fwa",
+        "Pou efase istwa apèl",
+        "Li pa nesesè ditou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa ede telefòn ou rekonèt moun k ap rele.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ki rive lè ou pa sovgade yon nimewo.",
+    },
+    recap: [
+      { emoji: "👤", text: "Kontak = kanè adrès dijital telefòn ou." },
+      { emoji: "💾", text: "Sovgade chak nouvo nimewo imedyatman." },
+      { emoji: "👨‍👩‍👧", text: "Ou ka òganize kontak an gwoup." },
+      { emoji: "🎯", text: "Misyon: sovgade yon nouvo kontak." },
+    ],
+  },
+  {
+    slug: "software-updates",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "🔄",
+    heroTitle: "Mizajou Lojisyèl",
+    heroLede:
+      "Yon amelyorasyon rejilyè ki kenbe aparèy ou an sekirite ak byen mache.",
+    goal: "🎯 Objektif: konprann poukisa mizajou enpòtan epi enstale yo an sekirite.",
+    simpleExplanation:
+      "Yon **mizajou** (update) se yon nouvo vèsyon lojisyèl aparèy ou (oswa yon aplikasyon) ki ranje bug, amelyore sekirite, epi pafwa ajoute nouvo fonksyon. Enstale mizajou regilyèman kenbe aparèy ou an sekirite kont move moun.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a software update progress screen with a download progress bar, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/software-updates.webp`,
+    digitalWords: [
+      {
+        word: "Mizajou (Update)",
+        definition:
+          "Yon nouvo vèsyon lojisyèl ki ranje pwoblèm ak amelyore sekirite.",
+        example: "Enstale mizajou telefòn ou lè yon notifikasyon parèt.",
+      },
+      {
+        word: "Mizajou Otomatik (Auto-Update)",
+        definition:
+          "Paramèt ki fè aparèy ou enstale mizajou san ou pa bezwen fè l manyèlman.",
+        example: "Aktive mizajou otomatik pou pa janm bliye.",
+      },
+    ],
+    realLifeExample:
+      "💡 Move moun jwenn fason pou antre nan telefòn ki gen vye lojisyèl — mizajou regilyèman fèmen pòt sa yo epi kenbe ou an sekirite.",
+    mistakeWrong: "Toujou 'ranvwaye' mizajou epi pa janm enstale yo.",
+    mistakeCorrect: "Enstale mizajou pi vit posib, sitou mizajou sekirite.",
+    mistakeWhy:
+      "⚠️ Yon aparèy ki pa mete ajou vin pi vilnerab a viris ak arnak ak tan.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou aktive mizajou otomatik sou telefòn oswa òdinatè ou.",
+    aiPrompt:
+      "Hi! Can you explain how to turn on automatic software updates on my phone or computer?",
+    mission:
+      "🎯 Misyon: verifye si gen mizajou ki disponib sou aparèy ou epi enstale l si genyen.",
+    quiz: {
+      prompt: "Poukisa mizajou enpòtan?",
+      options: [
+        "Yo fè telefòn ou pi lou",
+        "Yo ranje bug epi amelyore sekirite",
+        "Yo efase tout kontak ou",
+        "Yo pa gen okenn efè",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Mizajou ranje bug ak amelyore sekirite.",
+      wrongFeedback: "❌ Eseye ankò — panse ak wòl sekirite mizajou yo.",
+    },
+    recap: [
+      { emoji: "🔄", text: "Mizajou ranje bug ak amelyore sekirite." },
+      { emoji: "🛡️", text: "Vye lojisyèl pi vilnerab a viris." },
+      { emoji: "⚙️", text: "Aktive mizajou otomatik si posib." },
+      { emoji: "🎯", text: "Misyon: enstale yon mizajou ki disponib." },
+    ],
+  },
+  {
+    slug: "bluetooth-basics",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "🔵",
+    heroTitle: "Debaz Bluetooth",
+    heroLede: "Yon siyal san fil pou distans kout ki konekte aparèy pre ou.",
+    goal: "🎯 Objektif: konekte yon aparèy Bluetooth (kouvrichèf, hotspot) ak telefòn ou.",
+    simpleExplanation:
+      "**Bluetooth** se yon siyal san fil pou distans kout ki konekte de aparèy san entènèt — tankou yon kouvrichèf san fil, yon opalè, oswa yon volan machin. Kontrèman ak Wi-Fi, Bluetooth pa mande yon routè, sèlman de aparèy ki toupre.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a Bluetooth pairing panel with wireless headphones nearby on a table, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/bluetooth-basics.webp`,
+    digitalWords: [
+      {
+        word: "Bluetooth",
+        definition:
+          "Siyal san fil pou distans kout ki konekte de aparèy san entènèt.",
+        example: "Konekte kouvrichèf ou ak telefòn ou pa Bluetooth.",
+      },
+      {
+        word: "Pairing (Kouple)",
+        definition: "Aksyon konekte de aparèy Bluetooth pou premye fwa.",
+        example: "Fè pairing ak yon opalè Bluetooth nan mezon w.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou vle koute mizik san fil ki sòti telefòn ou dirèkteman nan zòrèy ou, konekte yon kouvrichèf pa Bluetooth — san bezwen okenn fil.",
+    mistakeWrong: "Kite Bluetooth aktive tout tan menm lè ou pa itilize l.",
+    mistakeCorrect: "Etenn Bluetooth lè ou pa itilize l pou ekonomize batri.",
+    mistakeWhy:
+      "⚠️ Bluetooth aktive san rezon vide batri telefòn ou pi vit san avantaj reyèl.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou fè pairing yon nouvo aparèy Bluetooth ak telefòn ou pou premye fwa.",
+    aiPrompt:
+      "Hi! Can you explain step by step how to pair new Bluetooth headphones with my phone for the first time?",
+    mission:
+      "🎯 Misyon: aktive Bluetooth sou aparèy ou epi gade ki aparèy toupre li detekte.",
+    quiz: {
+      prompt: "Ki diferans genyen ant Bluetooth ak Wi-Fi?",
+      options: [
+        "Pa gen okenn diferans",
+        "Bluetooth konekte aparèy pre ou san routè; Wi-Fi bezwen yon routè",
+        "Bluetooth pi rapid pase Wi-Fi toujou",
+        "Wi-Fi sèlman pou kouvrichèf",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Bluetooth pa bezwen yon routè.",
+      wrongFeedback: "❌ Eseye ankò — panse ak wòl yon routè.",
+    },
+    recap: [
+      { emoji: "🔵", text: "Bluetooth konekte aparèy pre ou san entènèt." },
+      { emoji: "🎧", text: "Itil pou kouvrichèf, opalè, elatriye." },
+      { emoji: "🔋", text: "Etenn li lè ou pa itilize l pou sove batri." },
+      {
+        emoji: "🎯",
+        text: "Misyon: aktive Bluetooth epi detekte aparèy toupre.",
+      },
+    ],
+  },
+  {
+    slug: "mobile-hotspot",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "📡",
+    heroTitle: "Hotspot Mobil",
+    heroLede: "Transfòme telefòn ou an yon ti routè Wi-Fi pòtatif.",
+    goal: "🎯 Objektif: pataje entènèt telefòn ou ak yon lòt aparèy.",
+    simpleExplanation:
+      "Yon **hotspot mobil** transfòme done selilè telefòn ou an yon siyal Wi-Fi ke lòt aparèy (yon laptòp, yon lòt telefòn) ka konekte sou li. Itil lè ou gen entènèt sou telefòn ou men pa gen Wi-Fi disponib pou lòt aparèy la.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone displaying a mobile hotspot settings toggle screen next to a laptop, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/mobile-hotspot.webp`,
+    platformExamples: [
+      {
+        platform: "android",
+        steps:
+          "Ale nan Settings > Network & Internet > Hotspot & Tethering, aktive 'Wi-Fi Hotspot', epi itilize modpas ki parèt pou konekte lòt aparèy la.",
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Ale nan Settings > Personal Hotspot, aktive l, epi itilize modpas ki parèt pou konekte lòt aparèy la.",
+      },
+    ],
+    digitalWords: [
+      {
+        word: "Hotspot Mobil (Mobile Hotspot)",
+        definition:
+          "Fonksyon ki pataje done selilè telefòn ou kòm Wi-Fi ak lòt aparèy.",
+        example: "Aktive hotspot lè laptòp ou pa gen Wi-Fi disponib.",
+      },
+      {
+        word: "Tethering",
+        definition:
+          "Yon lòt non pou pataje entènèt telefòn ou ak yon lòt aparèy.",
+        example: "Tethering itil lè ou vwayaje san Wi-Fi lakay ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou nan yon kote ki pa gen Wi-Fi men ou bezwen itilize laptòp ou pou yon rezon ijan, aktive hotspot telefòn ou pou konekte laptòp la sou entènèt telefòn ou.",
+    mistakeWrong:
+      "Kite hotspot aktive tout tan san sèvi ak li, oswa itilize l san limit.",
+    mistakeCorrect:
+      "Etenn hotspot lè ou fini itilize l, epi swiv itilizasyon done ou pandan ou konekte.",
+    mistakeWhy:
+      "⚠️ Hotspot itilize done selilè ou vit, sitou pou aktivite tankou videyo — sa ka fini done mwa a byen vit.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou pwoteje hotspot ou ak yon bon modpas pou moun etranj pa konekte san pèmisyon.",
+    aiPrompt:
+      "Hi! How do I make sure my mobile hotspot has a strong password so strangers can't connect to it without permission?",
+    mission:
+      "🎯 Misyon: aktive hotspot telefòn ou epi verifye ki modpas li itilize.",
+    quiz: {
+      prompt: "Kisa yon hotspot mobil fè?",
+      options: [
+        "Li chaje batri telefòn ou",
+        "Li pataje entènèt telefòn ou kòm Wi-Fi ak lòt aparèy",
+        "Li efase istwa navigasyon",
+        "Li konekte w sou Bluetooth",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Hotspot pataje entènèt telefòn ou.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ki rive lè laptòp pa gen Wi-Fi.",
+    },
+    recap: [
+      { emoji: "📡", text: "Hotspot pataje entènèt telefòn kòm Wi-Fi." },
+      { emoji: "💻", text: "Itil lè lòt aparèy pa gen Wi-Fi." },
+      { emoji: "📊", text: "Itilize done selilè vit — swiv itilizasyon." },
+      { emoji: "🎯", text: "Misyon: aktive epi verifye hotspot ou." },
+    ],
+  },
+  {
+    slug: "settings-tour",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "⚙️",
+    heroTitle: "Yon Vizit nan Settings",
+    heroLede:
+      "Aplikasyon ki kontwole tout lòt aplikasyon ak fonksyon aparèy ou.",
+    goal: "🎯 Objektif: navige nan Settings telefòn ou ak konfyans.",
+    simpleExplanation:
+      "**Settings** se aplikasyon santral kote ou kontwole tout bagay sou telefòn ou: Wi-Fi, Bluetooth, notifikasyon, sekirite, ak plis ankò. Li ka sanble konplike premye fwa, men li toujou òganize an kategori klè.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a settings app menu with various category icons like Wi-Fi, sound, and display, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/settings-tour.webp`,
+    digitalWords: [
+      {
+        word: "Settings",
+        definition:
+          "Aplikasyon santral kote ou kontwole tout paramèt aparèy ou.",
+        example: "Ale nan Settings pou chanje modpas Wi-Fi ou wè.",
+      },
+      {
+        word: "Kategori (Category)",
+        definition: "Yon gwoup paramèt ki sanble ansanm nan Settings.",
+        example: "'Sound' se yon kategori ki gen tout paramèt son.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou pa konnen ki kote pou jwenn yon paramèt espesifik, itilize bawo rechèch anndan Settings la — tape yon mo kle epi li mennen w dirèkteman la.",
+    mistakeWrong: "Evite antre nan Settings paske li sanble twò konplike.",
+    mistakeCorrect:
+      "Eksplore Settings piti piti — chak kategori gen yon rezon klè pou egziste.",
+    mistakeWhy:
+      "⚠️ Anpil pwoblèm kouran (son ki ba, notifikasyon ki twòp) gen yon solisyon senp nan Settings, si ou pa pè eksplore l.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI eksplike sa yon kategori espesifik nan Settings fè si ou pa sèten.",
+    aiPrompt:
+      "Hi! Can you explain what the 'Accessibility' section in phone Settings is for?",
+    mission:
+      "🎯 Misyon: louvri Settings epi eksplore twa kategori diferan pou wè sa yo genyen.",
+    quiz: {
+      prompt: "Kisa ou ka fè si ou pa jwenn yon paramèt nan Settings?",
+      options: [
+        "Bay legen",
+        "Itilize bawo rechèch anndan Settings la",
+        "Dezenstale aplikasyon an",
+        "Restat telefòn nan",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Bawo rechèch la mennen w dirèkteman.",
+      wrongFeedback: "❌ Eseye ankò — panse ak yon zouti anndan Settings.",
+    },
+    recap: [
+      { emoji: "⚙️", text: "Settings kontwole tout paramèt aparèy ou." },
+      { emoji: "🗂️", text: "Òganize an kategori klè." },
+      { emoji: "🔍", text: "Itilize rechèch anndan Settings si ou pèdi." },
+      { emoji: "🎯", text: "Misyon: eksplore twa kategori nan Settings." },
+    ],
+  },
+  {
+    slug: "file-sharing-between-devices",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "📤",
+    heroTitle: "Pataje Fichye Ant Aparèy",
+    heroLede:
+      "Voye yon foto oswa fichye bay yon moun toupre ou san email oswa done.",
+    goal: "🎯 Objektif: pataje fichye ant aparèy san entènèt oswa email.",
+    simpleExplanation:
+      "**AirDrop** (iPhone/Mac) ak **Nearby Share** (Android) kite w voye foto oswa fichye dirèkteman bay yon aparèy toupre ou, san entènèt ni email. Ou ka tou voye fichye pa WhatsApp si moun nan pa toupre ou fizikman.",
+    illustrationPrompt:
+      "A realistic photograph of two smartphones close together with a subtle visual sharing effect between them, symbolizing wireless file transfer, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/file-sharing-between-devices.webp`,
+    platformExamples: [
+      {
+        platform: "android",
+        steps:
+          "Chwazi foto/fichye a, tape 'Pataje' (Share), chwazi 'Nearby Share', epi chwazi aparèy toupre ou.",
+        illustrationPrompt:
+          "A realistic photograph of an Android smartphone screen showing the Nearby Share sharing panel with nearby device icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+        illustrationSrc: `${illustrationBase}/file-sharing-between-devices-android.webp`,
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Chwazi foto/fichye a, tape bouton Pataje (kare ak flèch anwo), chwazi 'AirDrop', epi tape sou moun toupre ou.",
+        illustrationPrompt:
+          "A realistic photograph of an iPhone screen showing the AirDrop sharing panel with nearby contact icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+        illustrationSrc: `${illustrationBase}/file-sharing-between-devices-iphone.webp`,
+      },
+    ],
+    digitalWords: [
+      {
+        word: "AirDrop",
+        definition:
+          "Zouti Apple pou pataje fichye ant iPhone/Mac toupre, san entènèt.",
+        example: "Voye yon foto bay yon zanmi pa AirDrop nan yon rankont.",
+      },
+      {
+        word: "Nearby Share",
+        definition: "Zouti Android pou pataje fichye ak aparèy Android toupre.",
+        example: "Itilize Nearby Share pou voye yon videyo bay yon kolèg.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou ak yon zanmi toude gen iPhone epi nou nan menm pyès, voye foto rankont lan pa AirDrop pran sèlman kèk segonn — pi rapid pase voye pa imèl.",
+    mistakeWrong:
+      "Voye chak foto pa email oswa WhatsApp menm lè moun nan toupre ou.",
+    mistakeCorrect:
+      "Itilize AirDrop oswa Nearby Share lè moun nan toupre ou fizikman — pi rapid ak pa itilize done.",
+    mistakeWhy:
+      "⚠️ Voye pa email/WhatsApp itilize entènèt ak done san rezon lè yon transfè dirèk san fil ta pi rapid ak pi fasil.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant AirDrop, Nearby Share, ak voye fichye pa WhatsApp.",
+    aiPrompt:
+      "Hi! What's the difference between AirDrop, Nearby Share, and just sending a file through WhatsApp? When should I use each one?",
+    mission:
+      "🎯 Misyon: pataje yon foto ak yon moun toupre ou lè l pa AirDrop, Nearby Share, oswa WhatsApp.",
+    quiz: {
+      prompt:
+        "Ki avantaj AirDrop/Nearby Share genyen sou email pou pataje ak yon moun toupre ou?",
+      options: [
+        "Yo pi rapid epi pa itilize done",
+        "Yo sèlman mache pou videyo",
+        "Yo mande yon kont Gmail",
+        "Yo pi dousman pase email",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Pi rapid epi san done, lè moun nan toupre ou.",
+      wrongFeedback: "❌ Eseye ankò — panse ak vitès ak done itilize.",
+    },
+    recap: [
+      {
+        emoji: "📤",
+        text: "AirDrop (Apple) ak Nearby Share (Android) pataje fichye toupre.",
+      },
+      { emoji: "⚡", text: "Pi rapid pase email, san itilize done." },
+      { emoji: "💬", text: "WhatsApp itil si moun nan pa toupre ou fizikman." },
+      { emoji: "🎯", text: "Misyon: pataje yon foto ak yon moun toupre ou." },
+    ],
+  },
+  {
+    slug: "mobile-backups",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "☁️",
+    heroTitle: "Backup Telefòn Ou",
+    heroLede:
+      "Yon dezyèm kopi tout sa ki sou telefòn ou, an sekirite nan cloud la.",
+    goal: "🎯 Objektif: aktive backup otomatik pou telefòn ou.",
+    simpleExplanation:
+      "Yon **backup telefòn** sovgade foto, kontak, ak paramèt ou nan cloud la (iCloud pou iPhone, Google pou Android). Si telefòn ou pèdi, vòle, oswa kraze, ou ka jwenn tout bagay ankò sou yon nouvo telefòn.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing automatic phone backup — a smartphone with a subtle upward arrow light effect suggesting data syncing to the cloud, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/mobile-backups.webp`,
+    platformExamples: [
+      {
+        platform: "android",
+        steps:
+          "Ale nan Settings > Google > Backup, epi aktive 'Backup by Google One' pou sovgade foto, kontak, ak paramèt otomatikman.",
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Ale nan Settings > [non ou] > iCloud > iCloud Backup, epi aktive l pou sovgade telefòn ou otomatikman.",
+      },
+    ],
+    digitalWords: [
+      {
+        word: "Backup Telefòn (Phone Backup)",
+        definition: "Yon kopi tout done telefòn ou, sovgade nan cloud la.",
+        example: "Backup telefòn ou pwoteje foto si li pèdi.",
+      },
+      {
+        word: "iCloud / Google Backup",
+        definition:
+          "Sèvis cloud Apple (iCloud) ak Google ki fè backup otomatik.",
+        example: "iCloud sovgade tout foto iPhone ou otomatikman.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si telefòn ou tonbe nan dlo epi li kraze nèt, men backup te aktive, ou ka jwenn tout foto ak kontak ou ankò sou yon nouvo telefòn — san pèt.",
+    mistakeWrong:
+      "Panse foto ou an sekirite paske yo 'sou telefòn' san backup aktive.",
+    mistakeCorrect:
+      "Aktive backup otomatik pou pwoteje kont pèt, vòl, oswa kraze aparèy.",
+    mistakeWhy:
+      "⚠️ San backup, si telefòn ou pèdi oswa kraze, tout foto ak kontak ka disparèt pou tout bon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI verifye si backup telefòn ou aktive kounye a epi ki lè dènye backup te fèt.",
+    aiPrompt:
+      "Hi! Can you explain how to check if my phone's automatic backup is turned on, and when my last backup happened?",
+    mission:
+      "🎯 Misyon: verifye si backup otomatik aktive sou telefòn ou, epi limen l si li pa aktive.",
+    quiz: {
+      prompt: "Kisa ki rive foto ou si telefòn ou pèdi men backup te aktive?",
+      options: [
+        "Yo disparèt pou tout bon",
+        "Ou ka jwenn yo ankò sou yon nouvo telefòn",
+        "Yo tounen an PDF",
+        "Yo ale nan Spam",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Backup pwoteje foto ou menm si telefòn lan pèdi.",
+      wrongFeedback: "❌ Eseye ankò — panse ak rezon backup egziste.",
+    },
+    recap: [
+      { emoji: "☁️", text: "Backup sovgade done telefòn ou nan cloud la." },
+      { emoji: "📱", text: "iCloud (iPhone) ak Google Backup (Android)." },
+      { emoji: "🛡️", text: "Pwoteje kont pèt, vòl, oswa kraze aparèy." },
+      { emoji: "🎯", text: "Misyon: verifye backup otomatik telefòn ou." },
+    ],
+  },
+  {
+    slug: "mobile-devices-mission",
+    moduleTitle: "Modil 7: Aparèy Mobil",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Aparèy Mobil",
+    heroLede:
+      "Konbine tout konpetans Modil 7 pou jwenn plis nan telefòn ou chak jou.",
+    goal: "🎯 Objektif: jwenn plis nan Android oswa iPhone ou chak jou.",
+    simpleExplanation:
+      "Ou fèk aprann: enstale/dezenstale aplikasyon, jere estokaj, foto/galri, mesaj/apèl, kontak, mizajou, Bluetooth, hotspot, Settings, pataje fichye, ak backup. Misyon sa a mande w konbine plizyè nan konpetans sa yo.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently using a smartphone in a bright everyday setting, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/mobile-devices-mission.webp`,
+    digitalWords: [
+      {
+        word: "Metriz Aparèy Mobil",
+        definition:
+          "Kapasite pou jwenn plis nan yon telefòn Android oswa iPhone chak jou.",
+        example: "Metriz aparèy mobil ede w rete konekte san estrès.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki metrize telefòn li jere estokaj li byen, backup done li, epi pataje fichye rapid san depann sou lòt moun pou ede l.",
+    mistakeWrong:
+      "Panse ou dwe konnen tout fonksyon telefòn ou anvan ou vin konfyan.",
+    mistakeCorrect:
+      "Konprann konpetans debaz sa yo ase pou kòmanse ak konfyans — rès la vin natirèl ak pratik.",
+    mistakeWhy:
+      "⚠️ Atann pèfeksyon anvan ou eksplore telefòn ou anpeche w dekouvri fonksyon itil ki deja la.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI konsèy sou kijan pou kontinye aprann sou telefòn espesifik ou (Android oswa iPhone).",
+    aiPrompt:
+      "Hi! I just learned the basics of using my phone (apps, storage, photos, backups, file sharing). What should I focus on learning next?",
+    mission:
+      "🎯 Misyon Final Modil 7: verifye backup ou, libere plas si nesesè, epi pataje yon foto ak yon moun toupre ou.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 7 la?",
+      options: [
+        "Vin yon enjenyè telefòn",
+        "Jwenn plis nan Android oswa iPhone ou chak jou",
+        "Memorize tout aplikasyon ki egziste",
+        "Efase tout kontak chak jou",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Objektif la se jwenn plis nan telefòn ou chak jou.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 7 la.",
+    },
+    recap: [
+      { emoji: "📲", text: "Enstale/dezenstale aplikasyon, jere estokaj." },
+      { emoji: "🖼️", text: "Foto/galri, mesaj/apèl, kontak, mizajou." },
+      { emoji: "📤", text: "Bluetooth, hotspot, pataje fichye, backup." },
+      { emoji: "🎓", text: "Ou fini Modil 7 — Aparèy Mobil!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {
