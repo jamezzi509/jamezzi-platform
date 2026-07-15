@@ -2179,6 +2179,1017 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: ekri yon ti paragraf sou tèt ou." },
     ],
   },
+  {
+    slug: "have-and-has",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "🤲",
+    heroTitle: "Have ak Has",
+    heroLede:
+      "Menm jan ak “to be”, vèb “to have” gen de fòm: “have” pou pifò pwonon, “has” pou he/she/it.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi have oswa has dapre pwonon an.",
+    whatYouWillLearn: "ki fòm (have/has) ki mache ak chak pwonon",
+    prerequisite: "Ou fin Modil 2 — Vèb Pisan #1 (To Be)",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "I/You/We/They pran “have”. He/She/It pran “has”.",
+    understandBody:
+      "**I have a car.** **She has a car.** Se menm vèb la, “to have”, men li chanje fòm selon ki moun w ap pale de li — menm jan ak “to be”.",
+    seeItInAction: [
+      { line: "I have a phone.", tag: "I → have", emoji: "💬" },
+      { line: "She has a phone.", tag: "He/She/It → has", emoji: "💬" },
+      { line: "They have a car.", tag: "You/We/They → have", emoji: "💬" },
+    ],
+    patternBuilderIntro:
+      "Klike sou yon pwonon pou wè ki fòm vèb “to have” ki mache ak li.",
+    patternBuilderOptions: [
+      { chipLabel: "I", display: "I have a phone." },
+      { chipLabel: "She", display: "She has a phone." },
+      { chipLabel: "They", display: "They have a car." },
+    ],
+    vocabulary: [
+      {
+        word: "Car",
+        ipa: "/kɑːr/",
+        kreyol: "Machin",
+        example: "She has a car.",
+      },
+      { word: "Book", ipa: "/bʊk/", kreyol: "Liv", example: "I have a book." },
+      {
+        word: "Pet",
+        ipa: "/pɛt/",
+        kreyol: "Bèt kay",
+        example: "He has a pet.",
+      },
+      {
+        word: "Job",
+        ipa: "/dʒɒb/",
+        kreyol: "Travay",
+        example: "She has a job.",
+      },
+      {
+        word: "Plan",
+        ipa: "/plæn/",
+        kreyol: "Plan",
+        example: "They have a plan.",
+      },
+    ],
+    pronunciationWord: "Has",
+    pronunciationIpa: "/hæz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “z” nan fen “has” dwe tande, pa “s”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “have” pou he/she/it — se “has”.",
+    mistakeWrong: "She have a car.",
+    mistakeCorrect: "She has a car.",
+    mistakeWhy:
+      "**Poukisa:** He/She/It toujou pran “has”, jamè “have” — menm règ ak am/is/are.",
+    practice: {
+      prompt: "Konplete: He ___ a new phone.",
+      options: ["have", "has", "having", "had"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “He” pran ki fòm?",
+    },
+    thinkEmoji: "🤲",
+    thinkPrompt: "Ekri twa fraz, chak youn ak have oswa has:",
+    thinkPlaceholder: "I have... / She has...",
+    aiPrompt:
+      "Hi! Can you give me 5 different pronouns and let me practice choosing have or has correctly?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike chwazi have/has.",
+    missionTask:
+      "🎯 Jodi a, di twa fraz sou sa moun nan fanmi w genyen, ak have oswa has.",
+    recap: [
+      { emoji: "🤲", text: "I/You/We/They → have, He/She/It → has." },
+      { emoji: "🧩", text: "Se menm vèb “to have” a, de fòm sèlman." },
+      { emoji: "⚠️", text: "Pa janm di “She have” — se “She has”." },
+      { emoji: "🎯", text: "Misyon: di twa fraz ak have/has." },
+    ],
+  },
+  {
+    slug: "have-contractions",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "✂️",
+    heroTitle: "Kontraksyon Ak Have",
+    heroLede:
+      "Menm jan ak to be, “have” ka vin kout tou: I've, you've, we've. Men atansyon — “he's” ka vle di “he is” OSWA “he has”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize kontraksyon ak “have” san w pa konfonn yo ak “to be”.",
+    whatYouWillLearn: "kontraksyon ak have, ak jan pou pa konfonn yo ak to be",
+    prerequisite: "Leson 1 — Have ak Has",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Kontèks montre si “'s” vle di “is” oswa “has”.",
+    understandBody:
+      "**I have** vin **I've**. Men **he's** ka vle di **he is** OSWA **he has**. Gade rès fraz la pou konnen sans lan: **He's tired** (is) kont **He's got a car** (has).",
+    seeItInAction: [
+      { line: "I've got a question.", tag: "I have → I've", emoji: "💬" },
+      { line: "We've got time.", tag: "We have → we've", emoji: "💬" },
+      {
+        line: "He's got a car.",
+        tag: "He has → he's (atansyon!)",
+        emoji: "💬",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pwonon pou wè fòm kout li.",
+    patternBuilderOptions: [
+      { chipLabel: "I have", display: "I've" },
+      { chipLabel: "You have", display: "You've" },
+      { chipLabel: "We have", display: "We've" },
+    ],
+    vocabulary: [
+      {
+        word: "Got",
+        ipa: "/gɒt/",
+        kreyol: "Genyen (fòm kout)",
+        example: "I've got an idea.",
+      },
+      {
+        word: "Question",
+        ipa: "/ˈkwɛstʃən/",
+        kreyol: "Kesyon",
+        example: "I've got a question.",
+      },
+      {
+        word: "Time",
+        ipa: "/taɪm/",
+        kreyol: "Tan",
+        example: "We've got time.",
+      },
+      {
+        word: "Tired",
+        ipa: "/ˈtaɪərd/",
+        kreyol: "Fatige",
+        example: "He's tired.",
+      },
+      {
+        word: "Car",
+        ipa: "/kɑːr/",
+        kreyol: "Machin",
+        example: "He's got a car.",
+      },
+    ],
+    pronunciationWord: "I've",
+    pronunciationIpa: "/aɪv/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “I've” sonnen tankou “ayv”, yon sèl silab.",
+    pronunciationMistake:
+      "**Erè komen:** pa sipoze “he's” toujou vle di “he is” — gade kontèks la.",
+    mistakeWrong: "He's a car.",
+    mistakeCorrect: "He's got a car.",
+    mistakeWhy:
+      "**Poukisa:** “He's” pou kont li pa ka swiv yon non dirèkteman pou vle di “has”. Ou bezwen “got” apre: **He's got a car**. San “got”, “He's a car” ta vle di “He is a car”, ki pa gen sans.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou di “He has a car”:",
+      options: [
+        "He's a car.",
+        "He's got a car.",
+        "He've a car.",
+        "He has got car.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ou bezwen “got” apre “he's”.",
+    },
+    thinkEmoji: "✂️",
+    thinkPrompt:
+      "Ekri de fraz ak kontraksyon “have” (I've, we've, they've...):",
+    thinkPlaceholder: "I've got...",
+    aiPrompt:
+      "Hi! Can you say 5 sentences using 'have' and ask me to rewrite each one using contractions like I've or he's got?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike kontraksyon have yo.",
+    missionTask:
+      "🎯 Jodi a, itilize yon kontraksyon ak “have” (I've got, we've got...) yon fwa jodi a.",
+    recap: [
+      { emoji: "✂️", text: "I've, you've, we've, they've — kontraksyon klè." },
+      { emoji: "⚠️", text: "“He's”/“She's” ka vle di “is” OSWA “has”." },
+      { emoji: "🔑", text: "Ajoute “got” apre “'s” lè l vle di “has”." },
+      { emoji: "🎯", text: "Misyon: itilize yon kontraksyon have jodi a." },
+    ],
+  },
+  {
+    slug: "have-questions",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "❓",
+    heroTitle: "Èske Ou Genyen...?",
+    heroLede:
+      "Kontrèman ak “to be”, “have” pa chanje plas ak pwonon an pou fè yon kesyon — ou bezwen ajoute “do” oswa “does”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab poze ak reponn kesyon ak “have” lè w itilize do/does.",
+    whatYouWillLearn: "kijan pou itilize “do”/“does” pou poze kesyon ak have",
+    prerequisite: "Leson 2 — Kontraksyon Ak Have",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Have” pa chanje plas tankou “to be” — ou bezwen “do” oswa “does”.",
+    understandBody:
+      "Kontrèman ak “to be”, “have” pa ka chanje plas ak pwonon an pou fè yon kesyon. Ou bezwen ajoute **Do** (I/you/we/they) oswa **Does** (he/she/it) devan: **Do you have a car?** **Does she have a car?**",
+    seeItInAction: [
+      { line: "Do you have a car?", tag: "Do + you/we/they", emoji: "💬" },
+      { line: "Does she have a car?", tag: "Does + he/she/it", emoji: "💬" },
+      { line: "Yes, I do. / No, I don't.", tag: "Repons kout", emoji: "💬" },
+    ],
+    patternBuilderIntro: "Klike sou chak pwonon pou wè kesyon ki koresponn.",
+    patternBuilderOptions: [
+      { chipLabel: "You", display: "Do you have a car?" },
+      { chipLabel: "She", display: "Does she have a car?" },
+      { chipLabel: "They", display: "Do they have a car?" },
+    ],
+    vocabulary: [
+      {
+        word: "Do",
+        ipa: "/duː/",
+        kreyol: "(mo pou kesyon)",
+        example: "Do you have time?",
+      },
+      {
+        word: "Does",
+        ipa: "/dʌz/",
+        kreyol: "(mo pou kesyon, li/li)",
+        example: "Does he have a car?",
+      },
+      {
+        word: "Change",
+        ipa: "/tʃeɪndʒ/",
+        kreyol: "Monnen",
+        example: "Do you have change?",
+      },
+      {
+        word: "Extra",
+        ipa: "/ˈɛkstrə/",
+        kreyol: "An plis",
+        example: "Do you have an extra pen?",
+      },
+      {
+        word: "Minute",
+        ipa: "/ˈmɪnɪt/",
+        kreyol: "Minit",
+        example: "Do you have a minute?",
+      },
+    ],
+    pronunciationWord: "Does",
+    pronunciationIpa: "/dʌz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “does” sonnen tankou “duz”, pa “dohz”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Have you a car?” — sa se yon ansyen fòm Britanik, pa itilize l jodi a.",
+    mistakeWrong: "Have you a car?",
+    mistakeCorrect: "Do you have a car?",
+    mistakeWhy:
+      "**Poukisa:** An Anglè modèn, “have” bezwen “do”/“does” pou fè yon kesyon kòrèk — pa chanje plas ak pwonon an tankou “to be”.",
+    practice: {
+      prompt: "Chwazi kesyon ki kòrèk pou “she”:",
+      options: [
+        "Has she a car?",
+        "Does she have a car?",
+        "Do she has a car?",
+        "She has a car?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “she” pran “does”.",
+    },
+    thinkEmoji: "❓",
+    thinkPrompt: "Ekri yon kesyon ak “have” ou ta poze yon zanmi:",
+    thinkPlaceholder: "Do you have...?",
+    aiPrompt:
+      "Hi! Can you ask me 5 simple yes/no questions using 'do you have' or 'does he/she have', and let me practice answering?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike poze kesyon ak have.",
+    missionTask:
+      "🎯 Jodi a, poze yon zanmi yon kesyon ak “Do you have...?” oswa “Does she have...?”",
+    recap: [
+      { emoji: "❓", text: "“Do” (I/you/we/they) + have pou fè kesyon." },
+      { emoji: "🔑", text: "“Does” (he/she/it) + have pou fè kesyon." },
+      { emoji: "✅", text: "Repons kout: Yes, I do. / No, I don't." },
+      { emoji: "🎯", text: "Misyon: poze yon kesyon ak have jodi a." },
+    ],
+  },
+  {
+    slug: "have-negatives",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "🚫",
+    heroTitle: "Mwen Pa Genyen — Negatif",
+    heroLede:
+      "Pou di ou PA genyen yon bagay, ajoute “don't” oswa “doesn't” devan “have”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab di yon fraz negatif ak “have” san w pa mele.",
+    whatYouWillLearn:
+      "kijan pou ajoute “don't”/“doesn't” pou fè negatif ak have",
+    prerequisite: "Leson 3 — Kesyon Ak Have",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Menm mo ki fè kesyon an (do/does) fè negatif la tou.",
+    understandBody:
+      "**I don't have** (I/you/we/they). **She doesn't have** (he/she/it). Menm règ ak kesyon an — “have” toujou bezwen do/does, menm pou negatif.",
+    seeItInAction: [
+      { line: "I don't have time.", tag: "I/you/we/they + don't", emoji: "💬" },
+      {
+        line: "She doesn't have a car.",
+        tag: "He/she/it + doesn't",
+        emoji: "💬",
+      },
+      { line: "We don't have any money.", tag: "Negatif", emoji: "💬" },
+    ],
+    patternBuilderIntro: "Klike sou chak pwonon pou wè fòm negatif li.",
+    patternBuilderOptions: [
+      { chipLabel: "I", display: "I don't have time." },
+      { chipLabel: "She", display: "She doesn't have a car." },
+      { chipLabel: "We", display: "We don't have money." },
+    ],
+    vocabulary: [
+      {
+        word: "Don't",
+        ipa: "/doʊnt/",
+        kreyol: "Pa (I/you/we/they)",
+        example: "I don't have time.",
+      },
+      {
+        word: "Doesn't",
+        ipa: "/ˈdʌzənt/",
+        kreyol: "Pa (he/she/it)",
+        example: "She doesn't have a car.",
+      },
+      {
+        word: "Any",
+        ipa: "/ˈɛni/",
+        kreyol: "Okenn",
+        example: "We don't have any money.",
+      },
+      {
+        word: "Enough",
+        ipa: "/ɪˈnʌf/",
+        kreyol: "Ase",
+        example: "I don't have enough time.",
+      },
+      {
+        word: "Idea",
+        ipa: "/aɪˈdiːə/",
+        kreyol: "Lide",
+        example: "I don't have an idea.",
+      },
+    ],
+    pronunciationWord: "Doesn't",
+    pronunciationIpa: "/ˈdʌzənt/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab — “DUZ-uhnt”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “She don't have” — “she” pran “doesn't”, pa “don't”.",
+    mistakeWrong: "She don't have a car.",
+    mistakeCorrect: "She doesn't have a car.",
+    mistakeWhy:
+      "**Poukisa:** He/She/It toujou pran “doesn't”, menm jan yo pran “has” nan fraz pozitif — jamè “don't”.",
+    practice: {
+      prompt: "Chwazi fraz negatif ki kòrèk pou “he”:",
+      options: [
+        "He don't have time.",
+        "He doesn't have time.",
+        "He not have time.",
+        "He no have time.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “he” pran “doesn't”.",
+    },
+    thinkEmoji: "🚫",
+    thinkPrompt: "Ekri yon fraz sou yon bagay ou PA genyen kounye a:",
+    thinkPlaceholder: "I don't have...",
+    aiPrompt:
+      "Hi! Can you say 5 true sentences with have/has, and let me practice turning each one into a negative with don't or doesn't?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike fraz negatif ak have.",
+    missionTask:
+      "🎯 Jodi a, di yon fraz vre sou yon bagay ou PA genyen, ak don't oswa doesn't.",
+    recap: [
+      { emoji: "🚫", text: "I/you/we/they + don't have." },
+      { emoji: "🔑", text: "He/she/it + doesn't have." },
+      { emoji: "⚠️", text: "Pa janm di “She don't” — se “She doesn't”." },
+      { emoji: "🎯", text: "Misyon: di yon bagay ou pa genyen." },
+    ],
+  },
+  {
+    slug: "talking-about-had",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "🕰️",
+    heroTitle: "Had — Pale De Tan Lontan",
+    heroLede:
+      "“Had” se fòm tan pase pou “have” ak “has” — li sèvi pou di sa ou te genyen anvan.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “had” pou pale de sa ou te genyen nan tan pase.",
+    whatYouWillLearn: "kijan pou itilize “had”, fòm tan pase pou have/has",
+    prerequisite: "Leson 4 — Negatif",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Had” rete menm pou tout pwonon — pa gen “haved” oswa “hads”.",
+    understandBody:
+      "Kontrèman ak “have/has” ki chanje selon pwonon, **had** rete menm pou tout moun: I had, you had, he had, they had. Li montre yon bagay ou te genyen AVAN, ki pa vre ankò kounye a.",
+    seeItInAction: [
+      { line: "I had a bike when I was young.", tag: "Tan pase", emoji: "💬" },
+      { line: "She had a question yesterday.", tag: "Tan pase", emoji: "💬" },
+      { line: "We had a great day.", tag: "Tan pase", emoji: "💬" },
+    ],
+    patternBuilderIntro: "Klike sou chak pwonon pou wè “had” nan yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "I", display: "I had a bike." },
+      { chipLabel: "She", display: "She had a question." },
+      { chipLabel: "We", display: "We had a great day." },
+    ],
+    vocabulary: [
+      {
+        word: "Yesterday",
+        ipa: "/ˈjɛstərdeɪ/",
+        kreyol: "Yè",
+        example: "I had a meeting yesterday.",
+      },
+      {
+        word: "Bike",
+        ipa: "/baɪk/",
+        kreyol: "Bisiklèt",
+        example: "I had a bike.",
+      },
+      {
+        word: "Young",
+        ipa: "/jʌŋ/",
+        kreyol: "Jèn",
+        example: "When I was young...",
+      },
+      {
+        word: "Meeting",
+        ipa: "/ˈmiːtɪŋ/",
+        kreyol: "Reyinyon",
+        example: "She had a meeting.",
+      },
+      {
+        word: "Great",
+        ipa: "/greɪt/",
+        kreyol: "Ekselan",
+        example: "We had a great day.",
+      },
+    ],
+    pronunciationWord: "Had",
+    pronunciationIpa: "/hæd/",
+    mouthTip: "**Ti konsèy pou bouch ou:** yon sèl silab kout, son “æ” ouvè.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “haved” — “had” rete menm pou tout moun.",
+    mistakeWrong: "I haved a bike.",
+    mistakeCorrect: "I had a bike.",
+    mistakeWhy:
+      "**Poukisa:** “Had” se yon fòm iregilye — li pa pran “-ed” tankou anpil lòt vèb tan pase.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou pale de yè:",
+      options: [
+        "I have a meeting yesterday.",
+        "I had a meeting yesterday.",
+        "I haved a meeting yesterday.",
+        "I has a meeting yesterday.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ou bezwen fòm tan pase a.",
+    },
+    thinkEmoji: "🕰️",
+    thinkPrompt: "Ekri yon fraz sou yon bagay ou te genyen nan tan lontan:",
+    thinkPlaceholder: "I had...",
+    aiPrompt:
+      "Hi! Can you ask me what I had when I was a child, and help me answer using 'had' correctly?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “had”.",
+    missionTask:
+      "🎯 Jodi a, di yon fraz sou yon bagay ou te genyen nan tan lontan, ak “had”.",
+    recap: [
+      { emoji: "🕰️", text: "“Had” se fòm tan pase pou have/has." },
+      {
+        emoji: "🔗",
+        text: "Rete menm pou tout pwonon: I had, she had, they had.",
+      },
+      { emoji: "⚠️", text: "Pa gen “haved” — “had” se yon fòm iregilye." },
+      { emoji: "🎯", text: "Misyon: di yon bagay ou te genyen anvan." },
+    ],
+  },
+  {
+    slug: "have-family",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "👨‍👩‍👧‍👦",
+    heroTitle: "Fanmi Ou",
+    heroLede:
+      "Itilize “have” pou di konbyen moun ou genyen nan fanmi w — frè, sè, timoun, elatriye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de gwosè fanmi w ak “have”.",
+    whatYouWillLearn: "vokabilè fanmi, ak kijan pou konte moun ak “have”",
+    prerequisite: "Leson 5 — Had",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Have” prezante konbyen moun ou genyen nan fanmi w.",
+    understandBody:
+      "**I have two brothers.** **She has one sister.** Kontrèman ak Modil 2 ki te itilize “to be” pou prezante moun (“This is my sister”), isit la nou itilize “have” pou konte yo.",
+    seeItInAction: [
+      { line: "I have two brothers.", tag: "Konte", emoji: "👦" },
+      { line: "She has one sister.", tag: "Konte", emoji: "👧" },
+      {
+        line: "We have a big family.",
+        tag: "Deskripsyon jeneral",
+        emoji: "👨‍👩‍👧‍👦",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak moun pou wè yon fraz sou fanmi.",
+    patternBuilderOptions: [
+      { chipLabel: "Brothers", display: "I have two brothers." },
+      { chipLabel: "Sister", display: "She has one sister." },
+      { chipLabel: "Children", display: "They have three children." },
+    ],
+    vocabulary: [
+      {
+        word: "Brother",
+        ipa: "/ˈbrʌðər/",
+        kreyol: "Frè",
+        example: "I have two brothers.",
+      },
+      {
+        word: "Sister",
+        ipa: "/ˈsɪstər/",
+        kreyol: "Sè",
+        example: "She has one sister.",
+      },
+      {
+        word: "Children",
+        ipa: "/ˈtʃɪldrən/",
+        kreyol: "Timoun",
+        example: "They have three children.",
+      },
+      {
+        word: "Cousin",
+        ipa: "/ˈkʌzən/",
+        kreyol: "Kouzen/Kouzin",
+        example: "I have many cousins.",
+      },
+      {
+        word: "Grandparents",
+        ipa: "/ˈgrænˌpɛərənts/",
+        kreyol: "Granparan",
+        example: "We have loving grandparents.",
+      },
+    ],
+    pronunciationWord: "Children",
+    pronunciationIpa: "/ˈtʃɪldrən/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, “CHIL-druhn” — pa “childs”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “childs” — fòm pliryèl la se “children”.",
+    mistakeWrong: "I have three childs.",
+    mistakeCorrect: "I have three children.",
+    mistakeWhy:
+      "**Poukisa:** “Child” gen yon fòm pliryèl iregilye: “children”, pa “childs”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I have three childs.",
+        "I have three children.",
+        "I has three children.",
+        "I have three child.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “child” pliryèl se “children”.",
+    },
+    thinkEmoji: "👨‍👩‍👧‍👦",
+    thinkPrompt: "Ekri konbyen frè/sè ou genyen ak “have”:",
+    thinkPlaceholder: "I have...",
+    aiPrompt:
+      "Hi! Can you ask me about my family — how many brothers, sisters, or children I have — and help me answer using 'have'?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike pale de fanmi w.",
+    missionTask:
+      "🎯 Jodi a, di konbyen manm fanmi ou genyen (frè, sè, timoun) ak “have”.",
+    recap: [
+      { emoji: "👨‍👩‍👧‍👦", text: "“Have” konte moun nan fanmi w." },
+      { emoji: "⚠️", text: "“Children”, pa “childs” — fòm iregilye." },
+      { emoji: "🔗", text: "I/we/they have, he/she has." },
+      { emoji: "🎯", text: "Misyon: di konbyen moun ki nan fanmi w." },
+    ],
+  },
+  {
+    slug: "have-money",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "💵",
+    heroTitle: "Pale De Lajan",
+    heroLede:
+      "Itilize “have” pou di konbyen lajan ou genyen, oswa sa ou bezwen.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de lajan ak “have”.",
+    whatYouWillLearn:
+      "vokabilè lajan, ak kijan pou itilize “have” pou pale de li",
+    prerequisite: "Leson 6 — Fanmi Ou",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Have” dekri konbyen lajan ou genyen, oswa sa ou bezwen.",
+    understandBody:
+      "**I have $20.** **I don't have enough money.** Menm modèl “have” la sèvi pou lajan, konbine ak sa ou aprann deja sou negatif ak kesyon.",
+    seeItInAction: [
+      { line: "I have $20.", tag: "Kantite lajan", emoji: "💵" },
+      { line: "I don't have enough money.", tag: "Manke lajan", emoji: "💸" },
+      { line: "Do you have change?", tag: "Mande monnen", emoji: "❓" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz ki koresponn.",
+    patternBuilderOptions: [
+      { chipLabel: "Amount", display: "I have $20." },
+      { chipLabel: "Not enough", display: "I don't have enough money." },
+      { chipLabel: "Ask", display: "Do you have change?" },
+    ],
+    vocabulary: [
+      {
+        word: "Money",
+        ipa: "/ˈmʌni/",
+        kreyol: "Lajan",
+        example: "I don't have enough money.",
+      },
+      {
+        word: "Change",
+        ipa: "/tʃeɪndʒ/",
+        kreyol: "Monnen",
+        example: "Do you have change?",
+      },
+      {
+        word: "Cash",
+        ipa: "/kæʃ/",
+        kreyol: "Lajan kach",
+        example: "I have some cash.",
+      },
+      {
+        word: "Enough",
+        ipa: "/ɪˈnʌf/",
+        kreyol: "Ase",
+        example: "I don't have enough.",
+      },
+      {
+        word: "Price",
+        ipa: "/praɪs/",
+        kreyol: "Pri",
+        example: "Do you have the price?",
+      },
+    ],
+    pronunciationWord: "Enough",
+    pronunciationIpa: "/ɪˈnʌf/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “gh” la sonnen tankou “f” — “ee-NUFF”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “enough” apre “money” lè w vle di ou manke lajan.",
+    mistakeWrong: "I don't have money for that.",
+    mistakeCorrect: "I don't have enough money for that.",
+    mistakeWhy:
+      "**Poukisa:** “I don't have money” ta vle di ou pa gen okenn lajan ditou. “I don't have enough money” montre ou gen kèk, men pa ase.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou mande monnen:",
+      options: [
+        "You have change?",
+        "Do you have change?",
+        "Have you change?",
+        "Does you have change?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — kijan ou fè yon kesyon ak have?",
+    },
+    thinkEmoji: "💵",
+    thinkPrompt: "Ekri yon fraz sou lajan, ak “have”:",
+    thinkPlaceholder: "I have... / I don't have...",
+    aiPrompt:
+      "Hi! Can you play a cashier and ask me if I have change or enough money, so I can practice answering with 'have'?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike pale de lajan.",
+    missionTask:
+      "🎯 Jodi a, di yon fraz sou lajan ak “have”, tankou “I have...” oswa “Do you have change?”",
+    recap: [
+      { emoji: "💵", text: "“Have” dekri konbyen lajan ou genyen." },
+      {
+        emoji: "💸",
+        text: "“I don't have enough money” ≠ “I don't have money”.",
+      },
+      {
+        emoji: "❓",
+        text: "“Do you have change?” se yon kesyon itil chak jou.",
+      },
+      { emoji: "🎯", text: "Misyon: di yon fraz sou lajan jodi a." },
+    ],
+  },
+  {
+    slug: "have-ideas",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "💡",
+    heroTitle: "Pataje Lide",
+    heroLede:
+      "Itilize “have” pou prezante yon lide, yon plan, oswa yon kesyon.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pataje yon lide oswa yon plan ak “have”.",
+    whatYouWillLearn: "kijan pou itilize “have” pou pataje lide ak plan",
+    prerequisite: "Leson 7 — Pale De Lajan",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Have” prezante yon lide, yon plan, oswa yon opinyon.",
+    understandBody:
+      "**I have an idea.** **She has a plan.** **We have a question.** Menm mo “have” la ouvri pòt pou pataje sa ki nan tèt ou ak lòt moun.",
+    seeItInAction: [
+      { line: "I have an idea.", tag: "Lide", emoji: "💡" },
+      { line: "She has a plan.", tag: "Plan", emoji: "📋" },
+      { line: "We have a question.", tag: "Kesyon", emoji: "❓" },
+    ],
+    patternBuilderIntro: "Klike sou chak kalite lide pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Idea", display: "I have an idea." },
+      { chipLabel: "Plan", display: "She has a plan." },
+      { chipLabel: "Question", display: "We have a question." },
+    ],
+    vocabulary: [
+      {
+        word: "Idea",
+        ipa: "/aɪˈdiːə/",
+        kreyol: "Lide",
+        example: "I have an idea.",
+      },
+      {
+        word: "Plan",
+        ipa: "/plæn/",
+        kreyol: "Plan",
+        example: "She has a plan.",
+      },
+      {
+        word: "Question",
+        ipa: "/ˈkwɛstʃən/",
+        kreyol: "Kesyon",
+        example: "We have a question.",
+      },
+      {
+        word: "Opinion",
+        ipa: "/əˈpɪnjən/",
+        kreyol: "Opinyon",
+        example: "I have an opinion.",
+      },
+      {
+        word: "Suggestion",
+        ipa: "/səˈdʒɛstʃən/",
+        kreyol: "Sijesyon",
+        example: "He has a suggestion.",
+      },
+    ],
+    pronunciationWord: "Idea",
+    pronunciationIpa: "/aɪˈdiːə/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou “DEE” — “eye-DEE-uh”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “an” devan “idea” — li kòmanse ak yon son vwayèl.",
+    mistakeWrong: "I have a idea.",
+    mistakeCorrect: "I have an idea.",
+    mistakeWhy:
+      "**Poukisa:** Itilize “an” (pa “a”) devan yon mo ki kòmanse ak yon son vwayèl, tankou “idea”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I have a idea.",
+        "I have an idea.",
+        "I has an idea.",
+        "I have idea.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “idea” kòmanse ak yon son vwayèl.",
+    },
+    thinkEmoji: "💡",
+    thinkPrompt: "Ekri yon lide ou genyen, ak “have”:",
+    thinkPlaceholder: "I have an idea...",
+    aiPrompt:
+      "Hi! Can you ask me if I have any ideas or plans for this week, and help me answer using 'have'?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike pataje lide.",
+    missionTask:
+      "🎯 Jodi a, pataje yon lide oswa yon plan ou genyen ak yon moun, ak “I have...”",
+    recap: [
+      { emoji: "💡", text: "“Have” prezante lide, plan, ak opinyon." },
+      { emoji: "⚠️", text: "“An idea”, pa “a idea” — son vwayèl la konte." },
+      {
+        emoji: "🔗",
+        text: "I have an idea. She has a plan. We have a question.",
+      },
+      { emoji: "🎯", text: "Misyon: pataje yon lide jodi a." },
+    ],
+  },
+  {
+    slug: "have-problems",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "🤕",
+    heroTitle: "Pale De Pwoblèm",
+    heroLede:
+      "Itilize “have” pou dekri yon pwoblèm oswa yon doulè fizik tou — pa sèlman objè oswa lide.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de yon pwoblèm oswa yon doulè ak “have”.",
+    whatYouWillLearn: "kijan pou itilize “have” pou pwoblèm ak doulè",
+    prerequisite: "Leson 8 — Pataje Lide",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Have” dekri yon pwoblèm oswa yon doulè fizik tou.",
+    understandBody:
+      "**I have a problem.** **He has a headache.** Menm mo “have” la ka prezante yon defi oswa yon doulè, egzakteman jan li prezante yon objè oswa yon lide.",
+    seeItInAction: [
+      { line: "I have a problem.", tag: "Pwoblèm jeneral", emoji: "😟" },
+      { line: "He has a headache.", tag: "Doulè fizik", emoji: "🤕" },
+      {
+        line: "We have a question about this.",
+        tag: "Pwoblèm/Konfizyon",
+        emoji: "❓",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Problem", display: "I have a problem." },
+      { chipLabel: "Headache", display: "He has a headache." },
+      { chipLabel: "Question", display: "We have a question about this." },
+    ],
+    vocabulary: [
+      {
+        word: "Problem",
+        ipa: "/ˈprɒbləm/",
+        kreyol: "Pwoblèm",
+        example: "I have a problem.",
+      },
+      {
+        word: "Headache",
+        ipa: "/ˈhɛdeɪk/",
+        kreyol: "Tèt fè mal",
+        example: "He has a headache.",
+      },
+      {
+        word: "Trouble",
+        ipa: "/ˈtrʌbəl/",
+        kreyol: "Difikilte",
+        example: "I have trouble sleeping.",
+      },
+      {
+        word: "Doubt",
+        ipa: "/daʊt/",
+        kreyol: "Dout",
+        example: "I have a doubt about this.",
+      },
+      {
+        word: "Solution",
+        ipa: "/səˈluːʃən/",
+        kreyol: "Solisyon",
+        example: "She has a solution.",
+      },
+    ],
+    pronunciationWord: "Headache",
+    pronunciationIpa: "/ˈhɛdeɪk/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de mo kole ansanm — “HED-eyk”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I am headache” — “headache” se yon bagay ou GENYEN, pa yon bagay ou YE.",
+    mistakeWrong: "I am headache.",
+    mistakeCorrect: "I have a headache.",
+    mistakeWhy:
+      "**Poukisa:** Doulè fizik yo swiv “have”, pa “to be”, an Anglè — “I have a headache”, pa “I am headache”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I am headache.",
+        "I have a headache.",
+        "I has headache.",
+        "I have headache.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — doulè swiv “have”, ak “a” devan.",
+    },
+    thinkEmoji: "🤕",
+    thinkPrompt: "Ekri yon fraz sou yon pwoblèm oswa yon doulè, ak “have”:",
+    thinkPlaceholder: "I have a problem...",
+    aiPrompt:
+      "Hi! Can you ask me if I have any problems or aches today, and help me answer using 'have' correctly?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike pale de pwoblèm.",
+    missionTask:
+      "🎯 Jodi a, di yon fraz sou yon pwoblèm oswa yon doulè ou genyen, ak “have”.",
+    recap: [
+      { emoji: "🤕", text: "Doulè fizik swiv “have”, pa “to be”." },
+      { emoji: "😟", text: "“Have a problem” prezante yon defi." },
+      { emoji: "🔗", text: "I have a problem. He has a headache." },
+      { emoji: "🎯", text: "Misyon: pale de yon pwoblèm ou genyen." },
+    ],
+  },
+  {
+    slug: "have-mission",
+    moduleTitle: "Modil 3: Vèb Pisan #2 -- To Have",
+    illustrationKey: "emoji",
+    heroEmoji: "🎒",
+    heroTitle: "Sa Ou Genyen",
+    heroLede:
+      "Se lè a pou mete tout sa ou aprann nan Modil 3 ansanm — fanmi w, lajan w, lide w, ak pwoblèm ou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konbine plizyè fraz “have” pou dekri sa ou genyen.",
+    whatYouWillLearn:
+      "kijan pou konbine tout sa ou aprann nan Modil 3 nan yon sèl deskripsyon",
+    prerequisite: "Leson 9 — Pale De Pwoblèm",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Plizyè fraz “have” ansanm dekri lavi w antye.",
+    understandBody:
+      "Ou ka kòmanse ak fanmi w, ale nan lajan w oswa lide w, epi fini ak yon pwoblèm ou genyen — tout ak menm vèb “have” a. **Se konsa moun pataje lavi yo an Anglè.**",
+    seeItInAction: [
+      { line: "I have two brothers.", tag: "Fanmi", emoji: "👨‍👩‍👧‍👦" },
+      { line: "I have an idea for my business.", tag: "Lide", emoji: "💡" },
+      { line: "I have a small problem today.", tag: "Pwoblèm", emoji: "🤕" },
+    ],
+    patternBuilderIntro: "Klike sou chak pati pou wè kijan yo kole ansanm.",
+    patternBuilderOptions: [
+      { chipLabel: "1. Fanmi", display: "I have two brothers." },
+      { chipLabel: "2. Lide", display: "I have an idea." },
+      { chipLabel: "3. Pwoblèm", display: "I have a small problem." },
+    ],
+    vocabulary: [
+      {
+        word: "Life",
+        ipa: "/laɪf/",
+        kreyol: "Lavi",
+        example: "This is my life.",
+      },
+      {
+        word: "Business",
+        ipa: "/ˈbɪznɪs/",
+        kreyol: "Biznis",
+        example: "I have an idea for my business.",
+      },
+      {
+        word: "Small",
+        ipa: "/smɔːl/",
+        kreyol: "Piti",
+        example: "I have a small problem.",
+      },
+      {
+        word: "Today",
+        ipa: "/təˈdeɪ/",
+        kreyol: "Jodi a",
+        example: "I have a plan today.",
+      },
+      {
+        word: "Everything",
+        ipa: "/ˈɛvriθɪŋ/",
+        kreyol: "Tout bagay",
+        example: "I have everything I need.",
+      },
+    ],
+    pronunciationWord: "Everything",
+    pronunciationIpa: "/ˈɛvriθɪŋ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** twa silab, “EV-ree-thing”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye kole plizyè fraz “have” kout ansanm pou rakonte yon istwa konplè.",
+    mistakeWrong: "I have brothers idea problem.",
+    mistakeCorrect: "I have brothers. I have an idea. I have a problem.",
+    mistakeWhy:
+      "**Poukisa:** Chak lide (fanmi, lide, pwoblèm) bezwen pwòp fraz “have” pa li — pa antase yo tout ansanm san estrikti.",
+    practice: {
+      prompt: "Ki fraz ki byen konstwi?",
+      options: [
+        "I have brothers idea.",
+        "I have a brother and an idea.",
+        "I brothers have idea.",
+        "Brothers I have idea.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — sèvi ak “and” pou konekte de lide.",
+    },
+    thinkEmoji: "🎒",
+    thinkPrompt:
+      "Ekri yon ti paragraf sou sa ou genyen ak omwen 3 fraz “have”:",
+    thinkPlaceholder: "I have... I have... I have...",
+    aiPrompt:
+      "Hi! Can you listen to a short description of what I have — family, ideas, and challenges — using 'have' sentences, and give me friendly feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 3 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri oswa di yon ti paragraf sou sa ou genyen: fanmi w, yon lide, ak yon pwoblèm — tout ak “have”.",
+    recap: [
+      { emoji: "🎒", text: "Plizyè fraz “have” ansanm dekri lavi w antye." },
+      { emoji: "🧩", text: "Fanmi + lide + pwoblèm = yon deskripsyon konplè." },
+      { emoji: "🎓", text: "Ou fini Modil 3 — Vèb Pisan #2 (To Have)!" },
+      { emoji: "🎯", text: "Misyon: ekri yon ti paragraf sou sa ou genyen." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
