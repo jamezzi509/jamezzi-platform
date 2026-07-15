@@ -1397,6 +1397,828 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 2 — Fè Konesans Ak Òdinatè Ou!" },
     ],
   },
+  {
+    slug: "the-desktop",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "🖥️",
+    heroTitle: "Desktop la",
+    heroLede: "Premye bagay ou wè lè òdinatè a fin limen.",
+    goal: "🎯 Objektif: konprann sa desktop la ye epi kijan pou kenbe l òganize.",
+    simpleExplanation:
+      "**Desktop la** se premye ekran ou wè lè òdinatè a fin limen — tankou tab travay vityèl ou. Ou ka mete **ikòn** (ti imaj) sou li pou jwenn dosye ak aplikasyon rapid. Yon **fon ekran (wallpaper)** se imaj ki dèyè tout bagay.",
+    illustrationPrompt:
+      "A realistic photograph of a clean, organized computer desktop screen with a few neatly arranged file icons and a nature wallpaper, modern laptop, natural lighting, professional product photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/the-desktop.webp`,
+    digitalWords: [
+      {
+        word: "Desktop",
+        definition:
+          "Premye ekran ou wè lè òdinatè a limen, tankou yon tab travay.",
+        example: "Mete dosye enpòtan yo sou desktop la pou jwenn yo vit.",
+      },
+      {
+        word: "Ikòn",
+        definition: "Yon ti imaj ki reprezante yon dosye oswa yon aplikasyon.",
+        example: "Double-klike sou ikòn nan pou louvri l.",
+      },
+      {
+        word: "Fon Ekran (Wallpaper)",
+        definition: "Imaj ki parèt dèyè tout ikòn sou desktop la.",
+        example: "Chanje fon ekran ou ak yon foto ou renmen.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou gen anpil dosye gaye sou desktop ou, li ka fè l difisil pou jwenn sa ou bezwen — tankou yon biwo ki plen ak papye gaye toupatou.",
+    mistakeWrong: "Kite dè santèn ikòn gaye san lòd sou desktop la.",
+    mistakeCorrect:
+      "Kenbe sèlman kèk dosye enpòtan sou desktop la, mete rès la nan dosye.",
+    mistakeWhy:
+      "⚠️ Yon desktop plen fè l pi difisil pou jwenn sa ou bezwen vit, epi li ka ralanti òdinatè a si gen anpil gwo fichye.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy sou kijan pou òganize dosye ou yo yon fason ki lojik pou lavi w.",
+    aiPrompt:
+      "Hi! Can you suggest a simple folder organization system for someone who's just starting to use a computer?",
+    mission:
+      "🎯 Misyon: gade desktop yon òdinatè (pa w oswa yon moun ou konnen) epi konte konbyen ikòn ki genyen sou li.",
+    quiz: {
+      prompt: "Kisa desktop la ye?",
+      options: [
+        "Yon aplikasyon espesifik",
+        "Premye ekran ou wè lè òdinatè a limen",
+        "Yon kalite klavye",
+        "Yon pò USB",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Se premye ekran ou wè.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ou wè an premye lè òdinatè a limen.",
+    },
+    recap: [
+      { emoji: "🖥️", text: "Desktop = premye ekran, tankou yon tab travay." },
+      { emoji: "🖼️", text: "Ikòn reprezante dosye ak aplikasyon." },
+      { emoji: "🧹", text: "Kenbe desktop la òganize." },
+      { emoji: "🎯", text: "Misyon: konte ikòn sou yon desktop." },
+    ],
+  },
+  {
+    slug: "taskbar-dock-and-start-menu",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "📊",
+    heroTitle: "Taskbar, Dock, ak Start Menu",
+    heroLede:
+      "Yon bann ki toujou la pou montre ou sa k ap mache ak kijan pou louvri plis.",
+    goal: "🎯 Objektif: itilize taskbar/dock la pou louvri aplikasyon ak wè sa k ap mache.",
+    simpleExplanation:
+      "Sou **Windows**, yon **taskbar** rete anba ekran an ak yon bouton **Start** pou jwenn tout aplikasyon ou. Sou **Mac**, yon **dock** rete anba (oswa sou kote) ak ikòn aplikasyon ou itilize souvan. Tou de fè menm bagay la: montre ou sa k ap mache epi kite ou louvri nouvo bagay.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a taskbar at the bottom with several colorful app icons, warm ambient lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/taskbar-dock-and-start-menu.webp`,
+    digitalWords: [
+      {
+        word: "Taskbar",
+        definition: "Bann anba ekran Windows ki montre aplikasyon k ap mache.",
+        example:
+          "Klike sou ikòn nan taskbar la pou retounen nan yon aplikasyon.",
+      },
+      {
+        word: "Dock",
+        definition: "Bann sou Mac ki montre aplikasyon ou itilize souvan.",
+        example: "Ajoute yon aplikasyon nan dock la pou jwenn li vit.",
+      },
+      {
+        word: "Start Menu",
+        definition: "Meni sou Windows kote ou jwenn tout aplikasyon ou.",
+        example: "Klike sou Start pou chèche yon aplikasyon.",
+      },
+    ],
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Taskbar la rete FIKS anba ekran an. Klike sou bouton Windows (Start) pou wè tout aplikasyon ou, oswa klike sou yon ikòn ki deja nan taskbar la pou louvri l.",
+      },
+      {
+        platform: "mac",
+        steps:
+          "Dock la rete anba (oswa sou kote) ekran an. Klike sou nenpòt ikòn pou louvri aplikasyon an. Yon ti pwen anba yon ikòn montre aplikasyon an ap mache deja.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou pa jwenn fenèt ou t ap itilize a, gade nan taskbar/dock la — li ka toujou ouvè, jis kache dèyè yon lòt fenèt.",
+    mistakeWrong:
+      "Louvri menm aplikasyon an plizyè fwa paske ou pa wè li deja ouvè.",
+    mistakeCorrect:
+      "Gade taskbar/dock la anvan ou louvri yon nouvo kopi menm aplikasyon an.",
+    mistakeWhy:
+      "⚠️ Louvri menm aplikasyon an plizyè fwa ralanti òdinatè a san rezon — yon ti gade nan taskbar/dock la evite sa.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou epingle (pin) yon aplikasyon ou itilize souvan nan taskbar/dock la pou jwenn li pi vit.",
+    aiPrompt:
+      "Hi! Can you explain how to pin my favorite apps to the taskbar (Windows) or dock (Mac) so I can open them faster?",
+    mission:
+      "🎯 Misyon: gade taskbar/dock yon òdinatè epi idantifye ki aplikasyon k ap mache kounye a.",
+    quiz: {
+      prompt: "Ki objektif prensipal taskbar/dock la?",
+      options: [
+        "Chaje batri a",
+        "Montre aplikasyon k ap mache ak kite ou louvri lòt",
+        "Konekte ak entènèt",
+        "Enprime dokiman",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Li montre aplikasyon k ap mache ak kite ou louvri lòt.",
+      wrongFeedback: "❌ Eseye ankò — panse ak wòl bann sa a.",
+    },
+    recap: [
+      {
+        emoji: "📊",
+        text: "Taskbar (Windows) / Dock (Mac) montre aplikasyon k ap mache.",
+      },
+      { emoji: "🪟", text: "Start Menu bay aksè a tout aplikasyon Windows." },
+      { emoji: "👀", text: "Gade la anvan ou louvri yon dezyèm kopi." },
+      { emoji: "🎯", text: "Misyon: idantifye aplikasyon k ap mache." },
+    ],
+  },
+  {
+    slug: "finder-and-file-explorer",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "📁",
+    heroTitle: "Finder ak File Explorer",
+    heroLede: "Aplikasyon ki fèt egzakteman pou navige nan dosye ou yo.",
+    goal: "🎯 Objektif: itilize Finder (Mac) oswa File Explorer (Windows) pou jwenn fichye ou.",
+    simpleExplanation:
+      "**File Explorer** se aplikasyon sou Windows ki kite ou navige nan tout dosye ak fichye ou. **Finder** se menm bagay la sou Mac. Tou de gen menm objektif: gade, chèche, epi jere fichye ou yo.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a file browser window with folder icons organized in a grid, clean modern interface, natural lighting, professional tech photography, no readable text needed",
+    illustrationSrc: `${illustrationBase}/finder-and-file-explorer.webp`,
+    digitalWords: [
+      {
+        word: "File Explorer",
+        definition: "Aplikasyon Windows pou navige nan dosye ak fichye.",
+        example: "Louvri File Explorer pou jwenn yon foto ou telechaje.",
+      },
+      {
+        word: "Finder",
+        definition: "Aplikasyon Mac pou navige nan dosye ak fichye.",
+        example: "Itilize Finder pou chèche yon dokiman sou Mac ou.",
+      },
+      {
+        word: "Navige",
+        definition: "Deplase soti nan yon dosye pou rive nan yon lòt.",
+        example:
+          "Navige nan dosye Downloads pou jwenn fichye ou fèk telechaje.",
+      },
+    ],
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Klike sou ikòn File Explorer (yon dosye jòn) nan taskbar la, oswa peze tous Windows + E ansanm.",
+        illustrationPrompt:
+          "A clean, accurate screenshot mockup of a Windows 11 File Explorer window showing a sidebar with Quick access, Desktop, Downloads, Documents, and Pictures, and a main area with folder icons in a grid, authentic modern Windows 11 UI design, light theme, crisp legible interface",
+        illustrationSrc: `${illustrationBase}/finder-and-file-explorer-windows.webp`,
+      },
+      {
+        platform: "mac",
+        steps:
+          "Klike sou ikòn Finder (yon figi ble/blan) nan dock la, oswa klike sou desktop la epi peze Cmd + N.",
+        illustrationPrompt:
+          "A clean, accurate screenshot mockup of a macOS Finder window showing a sidebar with Favorites, Desktop, Downloads, Documents, and a main area with folder icons in a grid, authentic macOS Sonoma UI design, light theme, crisp legible interface",
+        illustrationSrc: `${illustrationBase}/finder-and-file-explorer-mac.webp`,
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou telechaje yon fichye sou entènèt, li rive nan dosye 'Downloads' — ouvri File Explorer oswa Finder epi klike sou 'Downloads' pou jwenn li.",
+    mistakeWrong:
+      "Pèdi tan chèche yon fichye nan chak aplikasyon youn apre lòt.",
+    mistakeCorrect:
+      "Itilize bawo rechèch File Explorer/Finder la pou jwenn yon fichye vit pa non li.",
+    mistakeWhy:
+      "⚠️ File Explorer ak Finder gen yon bawo rechèch entegre ki fè w jwenn yon fichye pi vit pase w ap gade nan chak dosye youn pa youn.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou chèche yon fichye espesifik ak File Explorer/Finder si ou pa sèten ki dosye li ye.",
+    aiPrompt:
+      "Hi! Can you explain how to search for a specific file by name using File Explorer or Finder?",
+    mission:
+      "🎯 Misyon: louvri File Explorer (oswa Finder) epi navige rive nan dosye Downloads.",
+    quiz: {
+      prompt: "Ki non aplikasyon pou navige fichye a sou Mac?",
+      options: ["File Explorer", "Finder", "Taskbar", "Dock"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Finder se aplikasyon Mac la.",
+      wrongFeedback: "❌ Eseye ankò — File Explorer se pou Windows.",
+    },
+    recap: [
+      { emoji: "📁", text: "File Explorer = Windows, Finder = Mac." },
+      { emoji: "🔍", text: "Itilize bawo rechèch pou jwenn fichye vit." },
+      { emoji: "⬇️", text: "Fichye telechaje rive nan dosye Downloads." },
+      { emoji: "🎯", text: "Misyon: navige rive nan dosye Downloads." },
+    ],
+  },
+  {
+    slug: "working-with-windows",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "🪟",
+    heroTitle: "Travay Ak Fenèt",
+    heroLede: "Chak aplikasyon ouvri nan yon 'fenèt' ou ka jere.",
+    goal: "🎯 Objektif: minimize, maximize, ak fèmen yon fenèt ak konfyans.",
+    simpleExplanation:
+      "Chak fwa ou louvri yon aplikasyon, li parèt nan yon **fenèt**. Nan kwen anwo fenèt la, ou jwenn twa bouton: **minimize** (kache fenèt la san fèmen l), **maximize** (fè l ranpli tout ekran an), ak **fèmen** (fèmen fenèt la nèt).",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an open application window with visible minimize, maximize, and close buttons in the corner, clean modern interface, natural lighting, professional tech photography",
+    illustrationSrc: `${illustrationBase}/working-with-windows.webp`,
+    digitalWords: [
+      {
+        word: "Minimize",
+        definition: "Kache yon fenèt san fèmen l, ou ka retounen sou li pita.",
+        example: "Minimize fenèt la pou wè desktop la yon segonn.",
+      },
+      {
+        word: "Maximize",
+        definition: "Fè yon fenèt ranpli tout ekran an.",
+        example: "Maximize fenèt videyo a pou wè l pi gwo.",
+      },
+      {
+        word: "Fèmen (Close)",
+        definition: "Fèmen yon fenèt nèt — aplikasyon an sispann mache.",
+        example: "Fèmen fenèt ou pa itilize ankò pou ekonomize memwa.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou vle gade de aplikasyon an menm tan, minimize youn epi maximize lòt la, oswa mete yo kòtakòt sou ekran an.",
+    mistakeWrong:
+      "Fèmen yon fenèt lè ou vle senpleman kache l pou yon ti moman.",
+    mistakeCorrect:
+      "Itilize minimize lè ou vle kenbe travay ou san fèmen aplikasyon an.",
+    mistakeWhy:
+      "⚠️ Fèmen yon aplikasyon ka fè ou pèdi travay ou pa t sovgade — minimize se pi sekiritè lè ou jis vle l soti nan wout ou pou yon ti moman.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou mete de fenèt kòtakòt sou menm ekran an pou konpare yo.",
+    aiPrompt:
+      "Hi! Can you explain how to put two windows side by side on the same screen?",
+    mission:
+      "🎯 Misyon: louvri yon aplikasyon epi eseye minimize, maximize, ak fèmen li.",
+    quiz: {
+      prompt: "Ki bouton kache yon fenèt san fèmen aplikasyon an?",
+      options: ["Fèmen", "Maximize", "Minimize", "Restart"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Minimize kache san fèmen.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak mo ki vle di 'fè l pi piti/kache'.",
+    },
+    recap: [
+      { emoji: "➖", text: "Minimize kache fenèt la san fèmen l." },
+      { emoji: "⬜", text: "Maximize fè l ranpli tout ekran an." },
+      { emoji: "❌", text: "Fèmen sispann aplikasyon an nèt." },
+      { emoji: "🎯", text: "Misyon: eseye tout twa bouton yo." },
+    ],
+  },
+  {
+    slug: "right-click-and-drag-drop",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "🖱️",
+    heroTitle: "Right-Click ak Drag & Drop",
+    heroLede: "De aksyon senp ki debloke anpil fonksyon kache.",
+    goal: "🎯 Objektif: itilize right-click ak drag-and-drop pou fè plis ak sourit/trackpad ou.",
+    simpleExplanation:
+      "**Right-click** (klike ak bouton dwat sourit la, oswa touche ak de dwèt sou trackpad) louvri yon ti meni ak plis opsyon. **Drag and drop** vle di kenbe yon bagay ak sourit/dwèt epi deplase l yon lòt kote anvan ou lage l.",
+    illustrationPrompt:
+      "A realistic photograph of a hand using a laptop trackpad with a two-finger gesture, or a mouse with the right button highlighted, clean minimal desk, natural lighting, professional product photography",
+    illustrationSrc: `${illustrationBase}/right-click-and-drag-drop.webp`,
+    digitalWords: [
+      {
+        word: "Right-Click",
+        definition: "Klike ak bouton dwat sourit la pou louvri plis opsyon.",
+        example: "Right-click sou yon fichye pou wè opsyon rename.",
+      },
+      {
+        word: "Drag and Drop",
+        definition:
+          "Kenbe yon bagay epi deplase l yon lòt kote anvan ou lage l.",
+        example: "Drag yon fichye epi drop li nan yon lòt dosye.",
+      },
+      {
+        word: "Meni Kontèks",
+        definition: "Ti lis opsyon ki parèt lè ou right-click.",
+        example: "Meni kontèks la gen opsyon 'Copy', 'Delete', 'Rename'.",
+      },
+    ],
+    realLifeExample:
+      "💡 Pou chanje non yon fichye, right-click sou li epi chwazi 'Rename' nan meni kontèks la — pi rapid pase chèche yon bouton nan yon meni.",
+    mistakeWrong: "Panse right-click ap 'kraze' oswa efase yon bagay.",
+    mistakeCorrect:
+      "Konprann right-click sèlman montre opsyon — li pa fè anyen pou kont li.",
+    mistakeWhy:
+      "⚠️ Right-click san danje — li jis louvri yon meni ak plis opsyon. Aksyon an sèlman fèt si ou chwazi yon bagay nan meni an apre.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kisa yon opsyon espesifik nan meni kontèks la fè si ou pa sèten.",
+    aiPrompt:
+      "Hi! I right-clicked on a file and see options like 'Cut', 'Copy', 'Rename', and 'Properties'. Can you explain what each one does?",
+    mission:
+      "🎯 Misyon: right-click sou yon ikòn epi gade tout opsyon ki parèt, san ou pa chwazi anyen.",
+    quiz: {
+      prompt: "Kisa ki pase lè ou right-click sou yon ikòn?",
+      options: [
+        "Fichye a efase otomatikman",
+        "Yon meni ak plis opsyon louvri",
+        "Aplikasyon an fèmen",
+        "Òdinatè a fè yon Restart",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yon meni ak plis opsyon louvri.",
+      wrongFeedback:
+        "❌ Eseye ankò — right-click pa fè anyen danjere pou kont li.",
+    },
+    recap: [
+      { emoji: "🖱️", text: "Right-click louvri yon meni ak plis opsyon." },
+      { emoji: "✋", text: "Drag and drop deplase yon bagay yon lòt kote." },
+      { emoji: "✅", text: "Right-click san danje pou kont li." },
+      {
+        emoji: "🎯",
+        text: "Misyon: right-click sou yon ikòn epi gade opsyon yo.",
+      },
+    ],
+  },
+  {
+    slug: "keyboard-shortcuts",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "⌨️",
+    heroTitle: "Rakousi Klavye (Keyboard Shortcuts)",
+    heroLede:
+      "Kat konbinezon kle ki ap fè w gen konfyans nan nenpòt aplikasyon.",
+    goal: "🎯 Objektif: itilize rakousi klavye pou copy, paste, undo, ak redo.",
+    simpleExplanation:
+      "Yon **rakousi klavye** se lè ou kenbe plizyè kle ansanm pou fè yon aksyon vit, san sourit. Sou Windows, ou itilize **Ctrl**; sou Mac, ou itilize **Cmd (⌘)**. Kat rakousi ki pi itil yo: Copy (kopye), Paste (kole), Undo (anile), ak Redo (refè).",
+    howItWorks: [
+      "Copy: Ctrl+C (Windows) oswa Cmd+C (Mac) — kopye sa ou seleksyone",
+      "Paste: Ctrl+V (Windows) oswa Cmd+V (Mac) — kole sa ou kopye a",
+      "Undo: Ctrl+Z (Windows) oswa Cmd+Z (Mac) — anile dènye aksyon w",
+      "Redo: Ctrl+Y (Windows) oswa Cmd+Shift+Z (Mac) — refè sa ou anile a",
+    ],
+    illustrationPrompt:
+      "A realistic close-up photograph of hands typing on a keyboard with fingers positioned as if pressing a keyboard shortcut combination, natural lighting, shallow depth of field, professional product photography",
+    illustrationSrc: `${illustrationBase}/keyboard-shortcuts.webp`,
+    digitalWords: [
+      {
+        word: "Copy (Kopye)",
+        definition: "Fè yon dupliya sa ou seleksyone, san retire l.",
+        example: "Seleksyone tèks la epi peze Ctrl+C pou kopye l.",
+      },
+      {
+        word: "Paste (Kole)",
+        definition: "Mete sa ou kopye a yon lòt kote.",
+        example: "Peze Ctrl+V pou kole tèks ou kopye a.",
+      },
+      {
+        word: "Undo (Anile)",
+        definition: "Retounen yon etap an aryè, anile dènye aksyon an.",
+        example: "Peze Ctrl+Z si ou efase yon bagay pa aksidan.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou efase yon paragraf antye pa aksidan pandan ou ap ekri yon dokiman, peze Ctrl+Z (oswa Cmd+Z) imedyatman pou fè l retounen.",
+    mistakeWrong:
+      "Retape yon tèks antye ou efase pa aksidan, olye de anile aksyon an.",
+    mistakeCorrect:
+      "Peze Ctrl+Z (oswa Cmd+Z) imedyatman pou anile dènye aksyon an.",
+    mistakeWhy:
+      "⚠️ Retape yon bagay ou efase pa aksidan pèdi tan pou anyen — Undo egziste egzakteman pou sitiyasyon sa a.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki lòt rakousi klavye itil ki egziste pou aplikasyon espesifik ou itilize souvan.",
+    aiPrompt:
+      "Hi! Besides copy, paste, undo, and redo, what are three other useful keyboard shortcuts every beginner should know?",
+    mission:
+      "🎯 Misyon: ekri yon fraz nan yon dokiman, kopye l ak Ctrl/Cmd+C, epi kole l yon lòt kote ak Ctrl/Cmd+V.",
+    quiz: {
+      prompt: "Ki rakousi klavye anile dènye aksyon ou fè a?",
+      options: ["Ctrl/Cmd+C", "Ctrl/Cmd+V", "Ctrl/Cmd+Z", "Ctrl/Cmd+P"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Ctrl/Cmd+Z anile dènye aksyon an.",
+      wrongFeedback: "❌ Eseye ankò — Z se pou 'anile' (undo).",
+    },
+    recap: [
+      { emoji: "📋", text: "Ctrl/Cmd+C = Copy." },
+      { emoji: "📥", text: "Ctrl/Cmd+V = Paste." },
+      { emoji: "↩️", text: "Ctrl/Cmd+Z = Undo." },
+      { emoji: "🎯", text: "Misyon: pratike copy ak paste." },
+    ],
+  },
+  {
+    slug: "settings-and-personalization",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "⚙️",
+    heroTitle: "Settings ak Pèsonalizasyon",
+    heroLede: "Fè aparèy ou sanble ak fonksyone jan OU vle.",
+    goal: "🎯 Objektif: jwenn ak ajiste paramèt debaz yon aparèy.",
+    simpleExplanation:
+      "**Settings** (Paramèt) se kote ou ajiste jan aparèy ou fonksyone: limyè ekran, volim, notifikasyon, mòd fonse (dark mode), gwosè tèks, elatriye. Konsèp la menm jan sou Windows, Mac, Android, ak iPhone — se sèlman kote yo mete l ki chanje.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone or laptop showing a colorful settings menu interface with sliders and toggle switches, warm natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/settings-and-personalization.webp`,
+    digitalWords: [
+      {
+        word: "Settings (Paramèt)",
+        definition: "Kote ou ajiste jan yon aparèy fonksyone ak parèt.",
+        example: "Ale nan Settings pou chanje volim otomatik la.",
+      },
+      {
+        word: "Dark Mode (Mòd Fonse)",
+        definition: "Yon tèm ekran ki itilize koulè fonse olye de klere.",
+        example: "Limen Dark Mode pou pwoteje je ou lannwit.",
+      },
+      {
+        word: "Notifikasyon",
+        definition: "Ti mesaj ki parèt sou ekran pou avize w de yon bagay.",
+        example: "Jere notifikasyon pou yo pa deranje w twòp.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si tèks sou telefòn ou two piti pou li, ou ka ale nan Settings > Display epi ogmante gwosè tèks la san ou pa bezwen achte yon lòt telefòn.",
+    mistakeWrong:
+      "Panse ou dwe achte yon nouvo aparèy si li pa 'sanble byen' pou ou.",
+    mistakeCorrect:
+      "Eksplore Settings pou ajiste tèks, koulè, ak limyè jan ki bon pou ou.",
+    mistakeWhy:
+      "⚠️ Anpil moun pa reyalize konbyen yo ka pèsonalize yon aparèy — Settings genyen plis pouvwa pase moun panse.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou jwenn yon paramèt espesifik si ou pa jwenn li nan meni Settings la.",
+    aiPrompt:
+      "Hi! I want to make the text bigger on my phone or computer. Can you tell me where to find that setting?",
+    mission:
+      "🎯 Misyon: ale nan Settings yon aparèy epi eseye chanje youn: limyè, volim, oswa dark mode.",
+    quiz: {
+      prompt: "Ki sa ki rete menm konsèp sou Windows, Mac, Android, ak iPhone?",
+      options: [
+        "Kote Settings ye egzakteman",
+        "Konsèp Settings la — ajiste jan aparèy la fonksyone",
+        "Non chak bouton",
+        "Koulè meni an",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Konsèp la menm, plas la sèlman ki chanje.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki pa chanje ant platfòm yo.",
+    },
+    recap: [
+      { emoji: "⚙️", text: "Settings ajiste jan aparèy la fonksyone." },
+      { emoji: "🌙", text: "Dark Mode itilize koulè fonse." },
+      { emoji: "🔤", text: "Ou ka ogmante gwosè tèks nan Settings." },
+      { emoji: "🎯", text: "Misyon: chanje yon paramèt sou yon aparèy." },
+    ],
+  },
+  {
+    slug: "sound-and-notifications",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "🔔",
+    heroTitle: "Son ak Notifikasyon",
+    heroLede: "Kontwole sa ou tande ak sa ki enteronp ou.",
+    goal: "🎯 Objektif: kontwole volim ak jere notifikasyon pou yo pa deranje w twòp.",
+    simpleExplanation:
+      "Ou deja konnen kijan pou ajiste **volim**. Kounye a, ann pale de **notifikasyon** — ti mesaj ki parèt sou ekran an lè ou resevwa yon imèl, mesaj, oswa mizajou. Twòp notifikasyon an menm tan ka fè ou santi w debòde — ou ka kontwole ki aplikasyon gen dwa voye yo.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone showing a notification banner on its lock screen, soft ambient lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/sound-and-notifications.webp`,
+    digitalWords: [
+      {
+        word: "Notifikasyon",
+        definition: "Ti mesaj ki parèt pou avize w de yon bagay nouvo.",
+        example: "Yon notifikasyon parèt lè ou resevwa yon mesaj WhatsApp.",
+      },
+      {
+        word: "Do Not Disturb",
+        definition: "Mòd ki fèmen tout notifikasyon pou yon ti tan.",
+        example: "Limen Do Not Disturb pandan ou ap dòmi.",
+      },
+      {
+        word: "Aktive/Dezaktive",
+        definition: "Limen oswa fèmen yon fonksyon.",
+        example: "Dezaktive notifikasyon pou yon aplikasyon espesifik.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si telefòn ou 'sonnen' san rete pandan yon reyinyon, limen 'Do Not Disturb' (Pa Deranje) pou fèmen tout notifikasyon pou yon ti tan.",
+    mistakeWrong: "Kite notifikasyon tout aplikasyon aktive san chwa.",
+    mistakeCorrect:
+      "Dezaktive notifikasyon pou aplikasyon ki pa vrèman enpòtan pou ou.",
+    mistakeWhy:
+      "⚠️ Twòp notifikasyon ka fè w santi w toujou strese oswa distrè — chwazi ki aplikasyon vrèman merite deranje w ede konsantrasyon ou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou limite notifikasyon a sèlman aplikasyon ki vrèman enpòtan pou ou.",
+    aiPrompt:
+      "Hi! My phone gets too many notifications. Can you explain how to turn off notifications for specific apps I don't need alerts from?",
+    mission:
+      "🎯 Misyon: gade lis notifikasyon ou epi dezaktive youn ki pa vrèman itil.",
+    quiz: {
+      prompt: "Kisa 'Do Not Disturb' fè?",
+      options: [
+        "Li ogmante volim lan",
+        "Li fèmen tout notifikasyon pou yon ti tan",
+        "Li chaje batri a",
+        "Li fè yon Restart",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li fèmen tout notifikasyon pou yon ti tan.",
+      wrongFeedback: "❌ Eseye ankò — panse ak non 'Pa Deranje'.",
+    },
+    recap: [
+      { emoji: "🔔", text: "Notifikasyon avize w de yon bagay nouvo." },
+      { emoji: "🌙", text: "Do Not Disturb fèmen yo pou yon ti tan." },
+      { emoji: "🎚️", text: "Ou ka chwazi ki aplikasyon gen dwa voye yo." },
+      { emoji: "🎯", text: "Misyon: dezaktive yon notifikasyon ou pa bezwen." },
+    ],
+  },
+  {
+    slug: "screenshots-and-screen-recording",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "📸",
+    heroTitle: "Screenshots ak Anrejistreman Ekran",
+    heroLede: "Kaptire egzakteman sa ki sou ekran ou, an foto oswa an videyo.",
+    goal: "🎯 Objektif: pran yon screenshot sou nenpòt platfòm.",
+    simpleExplanation:
+      "Yon **screenshot** se yon foto de tout sa ki sou ekran ou kounye a. Chak platfòm gen pwòp fason pou fè l — konbinezon kle sou Windows/Mac, oswa bouton fizik sou telefòn.",
+    illustrationPrompt:
+      "A realistic photograph of a hand holding a smartphone with a camera shutter icon overlay effect suggesting a screenshot being taken, modern clean background, professional tech photography, no readable text needed",
+    illustrationSrc: `${illustrationBase}/screenshots-and-screen-recording.webp`,
+    digitalWords: [
+      {
+        word: "Screenshot",
+        definition: "Yon foto de tout sa ki sou ekran ou kounye a.",
+        example: "Pran yon screenshot pou montre yon moun yon mesaj erè.",
+      },
+      {
+        word: "Anrejistreman Ekran",
+        definition: "Yon videyo de tout sa k ap pase sou ekran ou.",
+        example:
+          "Fè yon anrejistreman ekran pou montre kijan pou fè yon bagay.",
+      },
+    ],
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Peze tous Windows + Shift + S pou chwazi yon zòn espesifik, oswa peze PrtScn pou tout ekran an. Foto a sovgade epi ou ka kole l ak Ctrl+V.",
+        illustrationPrompt:
+          "A clean, accurate screenshot mockup of the Windows 11 Snipping Tool screen selection overlay, showing a dimmed screen with a rectangular selection area being drawn, small toolbar with rectangle, window, and freeform selection icons at the top, authentic modern Windows 11 UI design",
+        illustrationSrc: `${illustrationBase}/screenshots-and-screen-recording-windows.webp`,
+      },
+      {
+        platform: "mac",
+        steps:
+          "Peze Cmd + Shift + 4 epi trase yon zòn ak sourit la pou pran yon screenshot. Peze Cmd + Shift + 3 pou tout ekran an. Foto a sovgade otomatikman sou desktop la.",
+        illustrationPrompt:
+          "A clean, accurate screenshot mockup of macOS screenshot selection mode, showing crosshair cursor and a dimmed screen with a rectangular selection area, small floating toolbar below the selection, authentic macOS Sonoma UI design",
+        illustrationSrc: `${illustrationBase}/screenshots-and-screen-recording-mac.webp`,
+      },
+      {
+        platform: "android",
+        steps:
+          "Kenbe bouton Aliminyen ak bouton Volim Ba ansanm pandan yon segonn. Yon ti son oswa flash konfime screenshot la pran.",
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Kenbe bouton Kote (Side) ak bouton Volim Wo ansanm pandan yon segonn. Yon apèsi parèt nan kwen anba goch ekran an.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si yon aplikasyon montre yon mesaj erè, pran yon screenshot epi voye l bay yon moun k ap ede w — pi klè pase eseye dekri l ak mo.",
+    mistakeWrong:
+      "Eseye dekri yon erè ekran ak mo konplike olye de pran yon screenshot.",
+    mistakeCorrect:
+      "Pran yon screenshot epi voye l dirèkteman — pi klè pou tout moun.",
+    mistakeWhy:
+      "⚠️ Yon imaj montre egzakteman sa k ap pase — pafwa pi fasil pase eseye eksplike yon mesaj erè teknik ak mo.",
+    aiExplanation:
+      "🤖 Ou ka voye yon screenshot bay yon AI (ki aksepte imaj) epi mande l eksplike sa ki sou ekran an oswa rezoud yon pwoblèm ou wè.",
+    aiPrompt:
+      "Hi! Can you explain the easiest way to take a screenshot on my specific device (Windows, Mac, Android, or iPhone)?",
+    mission:
+      "🎯 Misyon: pran yon screenshot sou aparèy ou swiv etap platfòm ou.",
+    quiz: {
+      prompt: "Ki konbinezon kle pran yon screenshot sou Mac?",
+      options: [
+        "Cmd + Shift + 4",
+        "Ctrl + V",
+        "Windows + E",
+        "Bouton Aliminyen + Volim",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Cmd + Shift + 4 pran yon screenshot sou Mac.",
+      wrongFeedback: "❌ Eseye ankò — chèche konbinezon Mac la.",
+    },
+    recap: [
+      { emoji: "📸", text: "Screenshot = foto de tout sa ki sou ekran ou." },
+      { emoji: "🖥️", text: "Windows: Windows+Shift+S. Mac: Cmd+Shift+4." },
+      { emoji: "📱", text: "Telefòn: bouton aliminyen + volim." },
+      { emoji: "🎯", text: "Misyon: pran yon screenshot sou aparèy ou." },
+    ],
+  },
+  {
+    slug: "typing-accented-characters",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "✍️",
+    heroTitle: "Ekri Karaktè ak Aksan",
+    heroLede: "Kijan pou ekri é, è, à, ak ò san yon klavye espesyal.",
+    goal: "🎯 Objektif: ekri karaktè ak aksan sou nenpòt klavye.",
+    simpleExplanation:
+      "Klavye estanda pa gen tous pou é, è, à, ò dirèkteman, men chak platfòm gen yon fason pou ekri yo — swa ak yon konbinezon kle, swa ak yon apiye long (long press) sou telefòn.",
+    illustrationPrompt:
+      "A realistic close-up photograph of hands typing on a laptop keyboard with a focus on special character keys, natural lighting, shallow depth of field, professional product photography",
+    illustrationSrc: `${illustrationBase}/typing-accented-characters.webp`,
+    digitalWords: [
+      {
+        word: "Aksan",
+        definition: "Ti mak sou yon lèt (tankou é, è, à) ki chanje son li.",
+        example: "Mo 'kreyòl' gen yon aksan sou 'o' a.",
+      },
+      {
+        word: "Long Press (Apiye Long)",
+        definition: "Kenbe dwèt ou sou yon tous pi lontan pase yon senp tape.",
+        example: "Long press sou 'e' pou wè opsyon 'é', 'è', 'ê'.",
+      },
+    ],
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Kenbe tous Alt epi tape yon kòd nimewo sou klavye nimerik la: é = Alt+0233, è = Alt+0232, à = Alt+0224, ò = Alt+0242.",
+      },
+      {
+        platform: "mac",
+        steps:
+          "Kenbe tous Option epi peze lèt ki matche ak aksan an (egzanp: Option+E pou aksan egi), apre sa tape lèt ou vle a: é = Option+E, e.",
+      },
+      {
+        platform: "android",
+        steps:
+          "Kenbe dwèt ou pi lontan sou lèt debaz la (egzanp 'e') sou klavye telefòn nan, epi yon ti meni ak opsyon aksan yo (é, è, ê) parèt pou ou chwazi.",
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Kenbe dwèt ou pi lontan sou lèt debaz la (egzanp 'e') sou klavye telefòn nan, epi yon ti meni ak opsyon aksan yo parèt pou ou chwazi.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou ekri yon mesaj an fransè oswa kreyòl sou telefòn ou, kenbe dwèt ou pi lontan sou lèt la pou jwenn vèsyon ak aksan an, olye de kopye-kole l chak fwa.",
+    mistakeWrong: "Kopye-kole yon lèt ak aksan chak fwa ou bezwen l.",
+    mistakeCorrect:
+      "Aprann konbinezon kle oswa long-press platfòm ou pou ekri aksan dirèkteman.",
+    mistakeWhy:
+      "⚠️ Kopye-kole chak fwa pèdi tan anpil — yon fwa ou aprann teknik platfòm ou, li vin otomatik ak vit.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou aktive yon klavye ki gen aksan yo dirèkteman sou li, si ou ekri souvan an fransè oswa kreyòl.",
+    aiPrompt:
+      "Hi! I write in French and Haitian Creole often. Can you explain how to add a keyboard layout with accented characters on my phone or computer?",
+    mission:
+      "🎯 Misyon: ekri yon mo ak omwen yon aksan (tankou 'kreyòl' oswa 'café') sou aparèy ou.",
+    quiz: {
+      prompt: "Kijan pou ekri yon aksan sou telefòn (Android oswa iPhone)?",
+      options: [
+        "Peze Alt + yon nimewo",
+        "Kenbe dwèt ou pi lontan sou lèt debaz la",
+        "Peze Ctrl + Z",
+        "Se pa posib sou telefòn",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Long-press montre opsyon aksan yo.",
+      wrongFeedback: "❌ Eseye ankò — Alt+nimewo se pou Windows, pa telefòn.",
+    },
+    recap: [
+      { emoji: "✍️", text: "Chak platfòm gen yon fason pou ekri aksan." },
+      { emoji: "⌨️", text: "Windows: Alt+kòd. Mac: Option+lèt." },
+      { emoji: "📱", text: "Telefòn: long-press sou lèt la." },
+      { emoji: "🎯", text: "Misyon: ekri yon mo ak yon aksan." },
+    ],
+  },
+  {
+    slug: "multi-tasking",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "🔀",
+    heroTitle: "Multi-Tasking",
+    heroLede: "Jere plizyè aplikasyon an menm tan san pèdi fil panse w.",
+    goal: "🎯 Objektif: chanje ant aplikasyon vit, epi itilize de aplikasyon an menm tan.",
+    simpleExplanation:
+      "**Multi-tasking** vle di itilize plizyè aplikasyon nan menm moman an. Ou ka **chanje** rapid ant yo ak yon rakousi klavye, oswa mete de fenèt **kòtakòt** (split screen) pou wè yo tou de an menm tan.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing two application windows arranged side by side in split screen mode, clean modern desk, natural lighting, professional tech photography, no readable text needed",
+    illustrationSrc: `${illustrationBase}/multi-tasking.webp`,
+    digitalWords: [
+      {
+        word: "Multi-Tasking",
+        definition: "Itilize plizyè aplikasyon nan menm moman an.",
+        example: "Mwen ap fè multi-tasking ant imèl mwen ak yon dokiman.",
+      },
+      {
+        word: "Split Screen",
+        definition: "Mete de fenèt kòtakòt sou menm ekran an.",
+        example: "Itilize split screen pou konpare de dokiman.",
+      },
+      {
+        word: "Chanje Aplikasyon",
+        definition: "Pase vit soti nan yon aplikasyon pou ale nan yon lòt.",
+        example: "Chanje aplikasyon ak Alt+Tab (Windows) oswa Cmd+Tab (Mac).",
+      },
+    ],
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Kenbe Alt epi peze Tab plizyè fwa pou chanje ant aplikasyon k ap mache yo. Lage kle yo lè ou wè aplikasyon ou vle a seleksyone.",
+      },
+      {
+        platform: "mac",
+        steps:
+          "Kenbe Cmd epi peze Tab plizyè fwa pou chanje ant aplikasyon k ap mache yo. Lage kle yo lè ou wè aplikasyon ou vle a seleksyone.",
+      },
+    ],
+    realLifeExample:
+      "💡 Pandan ou ap ekri yon imèl epi ou bezwen verifye yon dat nan yon lòt dokiman, itilize Alt+Tab (oswa Cmd+Tab) pou chanje rapid ant de a san fèmen youn.",
+    mistakeWrong:
+      "Fèmen yon aplikasyon nèt pou verifye yon lòt, epi rekòmanse.",
+    mistakeCorrect:
+      "Itilize Alt+Tab (oswa Cmd+Tab) pou chanje ant aplikasyon san fèmen anyen.",
+    mistakeWhy:
+      "⚠️ Fèmen ak relouvri yon aplikasyon chak fwa pèdi tan — chanje ant yo ak yon rakousi pi rapid anpil.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou konfigire split screen sou aparèy espesifik ou si ou pa jwenn opsyon an fasil.",
+    aiPrompt:
+      "Hi! Can you explain how to put two windows side by side (split screen) on my computer or phone?",
+    mission:
+      "🎯 Misyon: louvri de aplikasyon epi chanje ant yo ak Alt+Tab (oswa Cmd+Tab).",
+    quiz: {
+      prompt: "Ki rakousi chanje ant aplikasyon sou Windows?",
+      options: ["Ctrl+C", "Alt+Tab", "Cmd+V", "Windows+E"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Alt+Tab chanje ant aplikasyon sou Windows.",
+      wrongFeedback: "❌ Eseye ankò — panse ak konbinezon ki gen 'Tab'.",
+    },
+    recap: [
+      {
+        emoji: "🔀",
+        text: "Multi-tasking = itilize plizyè aplikasyon ansanm.",
+      },
+      { emoji: "⌨️", text: "Alt+Tab (Windows) / Cmd+Tab (Mac) chanje rapid." },
+      { emoji: "🪟", text: "Split screen mete de fenèt kòtakòt." },
+      { emoji: "🎯", text: "Misyon: chanje ant de aplikasyon." },
+    ],
+  },
+  {
+    slug: "using-your-computer-mission",
+    moduleTitle: "Modil 3: Itilize Òdinatè Ou",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Itilize Òdinatè Ou",
+    heroLede:
+      "Se lè a pou konbine tout konpetans Modil 3 nan yon sesyon konfyan.",
+    goal: "🎯 Objektif: itilize tout konpetans Modil 3 yo ansanm nan yon vrè sesyon.",
+    simpleExplanation:
+      "Ou fèk aprann: desktop, taskbar/dock, File Explorer/Finder, jere fenèt, right-click, drag-and-drop, rakousi klavye, Settings, son/notifikasyon, screenshot, aksan, ak multi-tasking. Misyon sa a mande w konbine plizyè nan konpetans sa yo nan yon sèl sesyon.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently working on a laptop with multiple windows visible on screen, focused and comfortable expression, warm natural lighting, professional lifestyle photography",
+    illustrationSrc: `${illustrationBase}/using-your-computer-mission.webp`,
+    digitalWords: [
+      {
+        word: "Flwidite (Fluency)",
+        definition: "Kapasite pou fè yon bagay san reflechi twòp, natirèlman.",
+        example: "Objektif ou se genyen flwidite nan itilize yon òdinatè.",
+      },
+    ],
+    realLifeExample:
+      "💡 Konbine plizyè konpetans (louvri File Explorer, drag yon fichye, pran yon screenshot, kole l ak Ctrl+V) se egzakteman jan moun alèz itilize yon òdinatè chak jou.",
+    mistakeWrong:
+      "Panse ou dwe fè chak konpetans yon sèl fwa pou 'fini' ak yo.",
+    mistakeCorrect:
+      "Konprann w ap kontinye pratike konpetans sa yo chak fwa ou itilize yon òdinatè.",
+    mistakeWhy:
+      "⚠️ Konpetans sa yo vin natirèl ak repetisyon — pa gen yon 'fini', se yon abitid ou bati ti pa ti pa.",
+    aiExplanation:
+      "🤖 Kounye a ou ka dekri yon travay konplè bay yon AI (egzanp: 'jwenn yon fichye, kopye l, epi mete l yon lòt kote') epi mande konsèy si ou bloke.",
+    aiPrompt:
+      "Hi! I just learned how to use windows, right-click, keyboard shortcuts, screenshots, and multi-tasking. Can you give me a small real-world task that combines several of these skills?",
+    mission:
+      "🎯 Misyon Final Modil 3: louvri File Explorer/Finder, jwenn yon fichye, pran yon screenshot de li, epi kole screenshot la nan yon dokiman ak Ctrl/Cmd+V.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 3 la?",
+      options: [
+        "Memorize non chak bouton sou òdinatè a",
+        "Konbine konpetans navigasyon debaz pou itilize òdinatè ak konfyans",
+        "Vin yon pwogramè",
+        "Reparasyon aparèy kraze",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Objektif la se konbine konpetans ak konfyans.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 3 la.",
+    },
+    recap: [
+      { emoji: "📁", text: "Desktop, taskbar/dock, File Explorer/Finder." },
+      { emoji: "🪟", text: "Jere fenèt, right-click, drag-and-drop." },
+      {
+        emoji: "⌨️",
+        text: "Rakousi klavye, screenshot, aksan, multi-tasking.",
+      },
+      { emoji: "🎓", text: "Ou fini Modil 3 — Itilize Òdinatè Ou!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {

@@ -19,6 +19,30 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleTwoLessons.at(-1)?.slug).toBe("meet-your-computer-mission");
   });
 
+  it("Module 3 starts with the desktop and ends with its mission", () => {
+    const moduleThreeLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 3,
+    );
+    expect(moduleThreeLessons[0]?.slug).toBe("the-desktop");
+    expect(moduleThreeLessons.at(-1)?.slug).toBe("using-your-computer-mission");
+  });
+
+  it("gives screenshots-and-screen-recording steps for all four platforms", () => {
+    const lesson = computerPremiumLessons.find(
+      (item) => item.slug === "screenshots-and-screen-recording",
+    );
+    expect(lesson?.platformExamples?.map((p) => p.platform)).toEqual([
+      "windows",
+      "mac",
+      "android",
+      "iphone",
+    ]);
+    const withImages = lesson?.platformExamples?.filter(
+      (p) => p.illustrationSrc,
+    );
+    expect(withImages?.map((p) => p.platform)).toEqual(["windows", "mac"]);
+  });
+
   it("gives restart-vs-shutdown real platform-specific screenshots", () => {
     const lesson = computerPremiumLessons.find(
       (item) => item.slug === "restart-vs-shutdown",
