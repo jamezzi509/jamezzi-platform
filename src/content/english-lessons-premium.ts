@@ -12632,6 +12632,973 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: ekri de enfòmasyon prensipal yon dyalòg." },
     ],
   },
+  {
+    slug: "small-talk-basics",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "☕",
+    heroTitle: "Baz Ti Pale (Small Talk)",
+    heroLede: "Small talk se yon konvèsasyon lejè anvan yon sijè serye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab kòmanse yon ti konvèsasyon lejè.",
+    whatYouWillLearn: "fraz debaz pou kòmanse small talk",
+    prerequisite: "Ou fin Modil 14 — Konprann Lè W Tande",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Small talk se yon konvèsasyon lejè anvan yon sijè serye.",
+    understandBody:
+      "**How's it going?** **Nice weather today, isn't it?** **Any big plans for the weekend?** Twa fraz sa yo kòmanse prèske nenpòt small talk an Anglè.",
+    seeItInAction: [
+      { line: "How's it going?", tag: "Salitasyon lejè", emoji: "👋" },
+      {
+        line: "Nice weather today, isn't it?",
+        tag: "Move tan/bon tan",
+        emoji: "☀️",
+      },
+      { line: "Any big plans for the weekend?", tag: "Wikenn", emoji: "📅" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Greeting", display: "How's it going?" },
+      { chipLabel: "Weather", display: "Nice weather today, isn't it?" },
+      { chipLabel: "Weekend", display: "Any big plans for the weekend?" },
+    ],
+    vocabulary: [
+      {
+        word: "Small talk",
+        ipa: "/smɔːl tɔːk/",
+        kreyol: "Ti pale (konvèsasyon lejè)",
+        example: "Let's make some small talk.",
+      },
+      {
+        word: "Weather",
+        ipa: "/ˈwɛðər/",
+        kreyol: "Tan (klima)",
+        example: "Nice weather today.",
+      },
+      {
+        word: "Plans",
+        ipa: "/plænz/",
+        kreyol: "Plan",
+        example: "Any plans for the weekend?",
+      },
+      {
+        word: "Isn't it?",
+        ipa: "/ˈɪzənt ɪt/",
+        kreyol: "Pa vre?",
+        example: "Nice weather, isn't it?",
+      },
+      {
+        word: "Going",
+        ipa: "/ˈgoʊɪŋ/",
+        kreyol: "K ap mache",
+        example: "How's it going?",
+      },
+    ],
+    pronunciationWord: "Weather",
+    pronunciationIpa: "/ˈwɛðər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** mete lang ou ant dan ou pou son “th” la nan mitan mo a.",
+    pronunciationMistake:
+      "**Erè komen:** pa reponn “How's it going?” tankou se yon vrè kesyon medikal — se jis yon fason politès pou di “Bonjou”.",
+    mistakeWrong:
+      "Reponn “How's it going?” ak yon long istwa detaye sou lavi w.",
+    mistakeCorrect: "Reponn kout: “Good, thanks! And you?”",
+    mistakeWhy:
+      "**Poukisa:** “How's it going?” se pito yon salitasyon pase yon kesyon reyèl — yon repons kout ak politès (“Good, thanks!”) pi natirèl pase yon istwa long.",
+    practice: {
+      prompt: "Yon moun mande w “How's it going?” Ki repons ki pi natirèl?",
+      options: [
+        "Well, yesterday I woke up at 6 AM and then...",
+        "Good, thanks! And you?",
+        "Why do you ask?",
+        "I don't know.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yon repons kout ak politès se sa ki pi natirèl.",
+      wrongFeedback: "❌ Eseye ankò — chwazi repons ki pi kout ak natirèl.",
+    },
+    thinkEmoji: "☕",
+    thinkPrompt:
+      "Ekri yon fraz small talk ou ta itilize ak yon moun ou fèk rankontre:",
+    thinkPlaceholder: "Nice weather today, isn't it? / How's it going?",
+    aiPrompt:
+      "Hi! Can you practice some short small talk with me — weather, weekend plans — and give me feedback on how natural my responses sound?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike small talk.",
+    missionTask:
+      "🎯 Jodi a, ekri yon ti echanj small talk (de-twa fraz) tankou nan leson an.",
+    recap: [
+      { emoji: "☕", text: "Small talk se yon konvèsasyon lejè." },
+      { emoji: "👋", text: "How's it going?" },
+      { emoji: "☀️", text: "Nice weather today, isn't it?" },
+      { emoji: "🎯", text: "Misyon: ekri yon ti echanj small talk." },
+    ],
+  },
+  {
+    slug: "common-idioms-part-1",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "🐱",
+    heroTitle: "Ekspresyon Popilè, Pati 1",
+    heroLede:
+      "Yon idiom pa gen sans literal — li gen yon sans espesyal moun konnen.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann ak itilize senk ekspresyon popilè an Anglè.",
+    whatYouWillLearn: "senk ekspresyon (idioms) chak jou moun itilize",
+    prerequisite: "Leson 1 — Baz Ti Pale (Small Talk)",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon idiom pa gen sans literal — li gen yon sans espesyal moun konnen.",
+    understandBody:
+      "**It's raining cats and dogs.** (Lapli ap tonbe anpil) **That's a piece of cake.** (Sa fasil anpil) **Break a leg!** (Bòn chans!) Twa idiom sa yo pami pi popilè yo.",
+    seeItInAction: [
+      {
+        line: "It's raining cats and dogs.",
+        tag: "Lapli ap tonbe anpil",
+        emoji: "🌧️",
+      },
+      { line: "That's a piece of cake.", tag: "Sa fasil anpil", emoji: "🍰" },
+      { line: "Break a leg!", tag: "Bòn chans!", emoji: "🍀" },
+    ],
+    patternBuilderIntro: "Klike sou chak idiom pou wè sans li.",
+    patternBuilderOptions: [
+      { chipLabel: "Rain", display: "It's raining cats and dogs." },
+      { chipLabel: "Easy", display: "That's a piece of cake." },
+      { chipLabel: "Luck", display: "Break a leg!" },
+    ],
+    vocabulary: [
+      {
+        word: "Idiom",
+        ipa: "/ˈɪdiəm/",
+        kreyol: "Ekspresyon (sans espesyal)",
+        example: "That's a common idiom.",
+      },
+      {
+        word: "Piece of cake",
+        ipa: "/piːs əv keɪk/",
+        kreyol: "Fasil anpil",
+        example: "The test was a piece of cake.",
+      },
+      {
+        word: "Break a leg",
+        ipa: "/breɪk ə lɛg/",
+        kreyol: "Bòn chans",
+        example: "Break a leg on your interview!",
+      },
+      {
+        word: "Raining cats and dogs",
+        ipa: "/reɪnɪŋ kæts ænd dɒgz/",
+        kreyol: "Lapli ap tonbe anpil",
+        example: "It's raining cats and dogs outside.",
+      },
+      {
+        word: "Meaning",
+        ipa: "/ˈmiːnɪŋ/",
+        kreyol: "Sans",
+        example: "What's the meaning of this idiom?",
+      },
+    ],
+    pronunciationWord: "Idiom",
+    pronunciationIpa: "/ˈɪdiəm/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou premye — “ID-ee-uhm”.",
+    pronunciationMistake:
+      "**Erè komen:** pa eseye tradwi yon idiom mo pou mo — “raining cats and dogs” pa vle di bèt ap tonbe nan syèl la!",
+    mistakeWrong: "Tradwi “It's raining cats and dogs” mo pou mo.",
+    mistakeCorrect:
+      "Konprann li vle di “Lapli ap tonbe anpil” — pa yon tradiksyon literal.",
+    mistakeWhy:
+      "**Poukisa:** Idiom yo gen yon sans espesyal ki pa vin dirèkteman de mo yo. Aprann sans lan tankou yon sèl inite, pa tradwi chak mo separeman.",
+    practice: {
+      prompt: "Kisa “That's a piece of cake” vle di?",
+      options: [
+        "Se gen yon gato pou manje.",
+        "Sa fasil anpil.",
+        "Sa difisil anpil.",
+        "Mwen grangou.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li vle di sa fasil anpil.",
+      wrongFeedback: "❌ Eseye ankò — se pa yon sans literal.",
+    },
+    thinkEmoji: "🐱",
+    thinkPrompt:
+      "Ekri yon fraz ak youn nan twa idiom yo pou dekri yon sitiyasyon reyèl ou:",
+    thinkPlaceholder: "That was a piece of cake because...",
+    aiPrompt:
+      'Hi! Can you teach me the meaning of "it\'s raining cats and dogs," "a piece of cake," and "break a leg" with example sentences?',
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike idiom yo.",
+    missionTask:
+      "🎯 Jodi a, itilize youn nan twa idiom yo nan yon fraz sou pwòp lavi w.",
+    recap: [
+      { emoji: "🌧️", text: "It's raining cats and dogs = anpil lapli." },
+      { emoji: "🍰", text: "A piece of cake = fasil anpil." },
+      { emoji: "🍀", text: "Break a leg = bòn chans." },
+      { emoji: "🎯", text: "Misyon: itilize yon idiom nan yon fraz reyèl." },
+    ],
+  },
+  {
+    slug: "common-idioms-part-2",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "📚",
+    heroTitle: "Ekspresyon Popilè, Pati 2",
+    heroLede: "Kontinye aprann idiom moun itilize chak jou nan konvèsasyon.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konprann ak itilize senk lòt ekspresyon popilè.",
+    whatYouWillLearn: "senk lòt idiom chak jou moun itilize",
+    prerequisite: "Leson 2 — Ekspresyon Popilè, Pati 1",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Idiom sa yo parèt souvan nan lekòl, sante, ak lajan.",
+    understandBody:
+      "**I need to hit the books tonight.** (Mwen bezwen etidye) **I'm feeling a little under the weather.** (Mwen pa santi m byen) **That car costs an arm and a leg.** (Machin sa a koute anpil kòb) Twa idiom sa yo popilè tou.",
+    seeItInAction: [
+      { line: "I need to hit the books tonight.", tag: "Etidye", emoji: "📚" },
+      {
+        line: "I'm feeling a little under the weather.",
+        tag: "Malad",
+        emoji: "🤒",
+      },
+      {
+        line: "That car costs an arm and a leg.",
+        tag: "Chè anpil",
+        emoji: "💰",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak idiom pou wè sans li.",
+    patternBuilderOptions: [
+      { chipLabel: "Study", display: "I need to hit the books tonight." },
+      { chipLabel: "Sick", display: "I'm feeling a little under the weather." },
+      { chipLabel: "Expensive", display: "That car costs an arm and a leg." },
+    ],
+    vocabulary: [
+      {
+        word: "Hit the books",
+        ipa: "/hɪt ðə bʊks/",
+        kreyol: "Etidye di",
+        example: "I need to hit the books tonight.",
+      },
+      {
+        word: "Under the weather",
+        ipa: "/ˈʌndər ðə ˈwɛðər/",
+        kreyol: "Pa santi w byen",
+        example: "I'm under the weather today.",
+      },
+      {
+        word: "Arm and a leg",
+        ipa: "/ɑːrm ænd ə lɛg/",
+        kreyol: "Anpil kòb (chè anpil)",
+        example: "It costs an arm and a leg.",
+      },
+      {
+        word: "Bite the bullet",
+        ipa: "/baɪt ðə ˈbʊlɪt/",
+        kreyol: "Aksepte yon bagay difisil",
+        example: "I'll just bite the bullet and do it.",
+      },
+      {
+        word: "Once in a while",
+        ipa: "/wʌns ɪn ə waɪl/",
+        kreyol: "Detanzantan",
+        example: "I go there once in a while.",
+      },
+    ],
+    pronunciationWord: "Under the weather",
+    pronunciationIpa: "/ˈʌndər ðə ˈwɛðər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** relye twa mo yo ansanm san w pa fè poz — “un-der-thuh-WEH-ther”.",
+    pronunciationMistake:
+      "**Erè komen:** pa panse “under the weather” pale de move tan reyèl — li vle di ou malad oswa ou pa santi w byen.",
+    mistakeWrong: "Panse “I'm under the weather” vle di gen move tan deyò.",
+    mistakeCorrect: "“I'm under the weather” = mwen pa santi m byen (malad).",
+    mistakeWhy:
+      "**Poukisa:** Menm si idiom lan gen mo “weather” ladan, sans lan pa gen anyen pou wè ak klima — se yon fason pou di w malad.",
+    practice: {
+      prompt: "Kisa “I'm feeling a little under the weather” vle di?",
+      options: [
+        "Gen lapli deyò.",
+        "Mwen pa santi m byen.",
+        "Mwen kontan anpil.",
+        "Mwen ap vwayaje.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li vle di w pa santi w byen.",
+      wrongFeedback: "❌ Eseye ankò — se pa yon sans literal.",
+    },
+    thinkEmoji: "📚",
+    thinkPrompt: "Ekri yon fraz ak youn nan twa idiom yo sou pwòp lavi w:",
+    thinkPlaceholder: "I need to hit the books because...",
+    aiPrompt:
+      'Hi! Can you teach me the meaning of "hit the books," "under the weather," and "cost an arm and a leg" with example sentences?',
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike lòt idiom yo.",
+    missionTask:
+      "🎯 Jodi a, itilize youn nan twa idiom yo nan yon fraz sou pwòp lavi w.",
+    recap: [
+      { emoji: "📚", text: "Hit the books = etidye di." },
+      { emoji: "🤒", text: "Under the weather = malad." },
+      { emoji: "💰", text: "Cost an arm and a leg = chè anpil." },
+      { emoji: "🎯", text: "Misyon: itilize yon idiom nan yon fraz reyèl." },
+    ],
+  },
+  {
+    slug: "tone-and-politeness",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "🎭",
+    heroTitle: "Ton ak Politès",
+    heroLede: "Menm mesaj la ka son dirèk oswa politès, dapre mo ou chwazi.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab adousi yon fraz dirèk pou li son pi politès.",
+    whatYouWillLearn: "kijan pou adousi yon fraz dirèk pou li son politès",
+    prerequisite: "Leson 3 — Ekspresyon Popilè, Pati 2",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Menm mesaj la ka son dirèk oswa politès, dapre mo ou chwazi.",
+    understandBody:
+      "**Give me that.** → **Could you pass me that, please?** **Close the door.** → **Would you mind closing the door?** Dezyèm vèsyon yo son pi dou ak pi politès.",
+    seeItInAction: [
+      { line: "Could you pass me that, please?", tag: "Politès", emoji: "🙏" },
+      {
+        line: "Would you mind closing the door?",
+        tag: "Trè politès",
+        emoji: "😊",
+      },
+      { line: "Give me that.", tag: "Twò dirèk", emoji: "⚠️" },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz pou konpare ton yo.",
+    patternBuilderOptions: [
+      { chipLabel: "Polite", display: "Could you pass me that, please?" },
+      { chipLabel: "Very polite", display: "Would you mind closing the door?" },
+      { chipLabel: "Too direct", display: "Give me that." },
+    ],
+    vocabulary: [
+      {
+        word: "Polite",
+        ipa: "/pəˈlaɪt/",
+        kreyol: "Politès",
+        example: "That sounds more polite.",
+      },
+      {
+        word: "Would you mind...?",
+        ipa: "/wʊd juː maɪnd/",
+        kreyol: "Èske sa ta deranje w si...",
+        example: "Would you mind closing the door?",
+      },
+      {
+        word: "Could you...?",
+        ipa: "/kʊd juː/",
+        kreyol: "Èske ou ta ka...",
+        example: "Could you help me, please?",
+      },
+      {
+        word: "Direct",
+        ipa: "/dəˈrɛkt/",
+        kreyol: "Dirèk",
+        example: "That sounds too direct.",
+      },
+      {
+        word: "Soften",
+        ipa: "/ˈsɒfən/",
+        kreyol: "Adousi",
+        example: "Soften your request.",
+      },
+    ],
+    pronunciationWord: "Would you mind",
+    pronunciationIpa: "/wʊd juː maɪnd/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “would you” souvan son tankou “WUD-jə” lè moun pale vit.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize enperatif tou sèk (“Give me that.”) ak moun ou pa konnen byen — sa son twò dirèk an Anglè.",
+    mistakeWrong: "Give me that.",
+    mistakeCorrect: "Could you pass me that, please?",
+    mistakeWhy:
+      "**Poukisa:** Nan kilti angle, mande yon bagay ak “Could you...please?” son pi politès pase yon lòd dirèk, menm ak moun ou konnen byen.",
+    practice: {
+      prompt: "Ki vèsyon ki pi politès pou mande yon moun fèmen pòt la?",
+      options: [
+        "Close the door.",
+        "Would you mind closing the door?",
+        "Door. Now.",
+        "Close it.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a pi politès.",
+      wrongFeedback: "❌ Eseye ankò — chwazi vèsyon ki pi dou.",
+    },
+    thinkEmoji: "🎭",
+    thinkPrompt:
+      "Chanje yon lòd dirèk an yon mande politès, tankou nan leson an:",
+    thinkPlaceholder: 'Instead of "Give me...", I\'ll say "Could you..."',
+    aiPrompt:
+      "Hi! Can you give me a few direct sentences and help me turn them into more polite requests in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike adousi fraz ou.",
+    missionTask:
+      "🎯 Jodi a, chanje yon lòd dirèk ou ta itilize an yon mande politès.",
+    recap: [
+      { emoji: "🎭", text: "Menm mesaj la, de ton diferan." },
+      { emoji: "🙏", text: "Could you..., please?" },
+      { emoji: "😊", text: "Would you mind...?" },
+      { emoji: "🎯", text: "Misyon: adousi yon lòd dirèk." },
+    ],
+  },
+  {
+    slug: "humor-and-sarcasm",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "😏",
+    heroTitle: "Imè ak Sarkas",
+    heroLede:
+      "Pafwa moun di kontrè de sa yo panse, ak yon ton espesyal — sa rele sarkas.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab rekonèt lè yon moun ap fè blag oswa itilize sarkas.",
+    whatYouWillLearn: "kijan pou rekonèt imè ak sarkas nan konvèsasyon",
+    prerequisite: "Leson 4 — Ton ak Politès",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Pafwa moun di kontrè de sa yo panse, ak yon ton espesyal — sa rele sarkas.",
+    understandBody:
+      "**Oh great, more rain.** (Lè moun pa kontan, pa vrèman kontan) **Yeah, right.** (Mwen pa kwè sa) **Nice job... not.** Sarkas mande w koute TON an, pa sèlman mo yo.",
+    seeItInAction: [
+      { line: "Oh great, more rain.", tag: "Sarkas (pa kontan)", emoji: "🙄" },
+      { line: "Yeah, right.", tag: "Mwen pa kwè sa", emoji: "😏" },
+      { line: "I'm just kidding!", tag: "Blag", emoji: "😄" },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz pou wè sitiyasyon li itilize a.",
+    patternBuilderOptions: [
+      { chipLabel: "Sarcasm", display: "Oh great, more rain." },
+      { chipLabel: "Disbelief", display: "Yeah, right." },
+      { chipLabel: "Joking", display: "I'm just kidding!" },
+    ],
+    vocabulary: [
+      {
+        word: "Sarcasm",
+        ipa: "/ˈsɑːrkæzəm/",
+        kreyol: "Sarkas",
+        example: "That was sarcasm, not a real complaint.",
+      },
+      {
+        word: "Joke",
+        ipa: "/dʒoʊk/",
+        kreyol: "Blag",
+        example: "I'm just kidding, it was a joke.",
+      },
+      {
+        word: "Kidding",
+        ipa: "/ˈkɪdɪŋ/",
+        kreyol: "Ap fè blag",
+        example: "I'm just kidding!",
+      },
+      {
+        word: "Seriously",
+        ipa: "/ˈsɪəriəsli/",
+        kreyol: "Serye",
+        example: "Are you being serious or joking?",
+      },
+      {
+        word: "Funny",
+        ipa: "/ˈfʌni/",
+        kreyol: "Komik",
+        example: "That's funny!",
+      },
+    ],
+    pronunciationWord: "Sarcasm",
+    pronunciationIpa: "/ˈsɑːrkæzəm/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou premye — “SAR-ka-zuhm”.",
+    pronunciationMistake:
+      "**Erè komen:** pa pran chak mo literalman — si yon moun di “Oh great” ak yon ton fatige apre yon move nouvèl, se sarkas, pa yon vrè kontantman.",
+    mistakeWrong: "Panse “Oh great, more rain” vle di moun nan kontan.",
+    mistakeCorrect: "Rekonèt ton an montre moun nan pa kontan (sarkas).",
+    mistakeWhy:
+      "**Poukisa:** Nan sarkas, mo yo di yon bagay men ton ak sitiyasyon an montre kontrè a. Koute kontèks la ak ton an, pa sèlman mo yo.",
+    practice: {
+      prompt:
+        "Yon moun di “Oh great, more rain” ak yon ton fatige. Kisa sa vle di reyèlman?",
+      options: [
+        "Li kontan wè lapli.",
+        "Li pa kontan wè lapli (sarkas).",
+        "Li paka tande.",
+        "Li ap mande yon parapli.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Se sarkas — li pa kontan.",
+      wrongFeedback: "❌ Eseye ankò — panse ak ton fatige a.",
+    },
+    thinkEmoji: "😏",
+    thinkPrompt: "Ekri yon fraz sarkastik ou ta di lè yon bagay pa ale byen:",
+    thinkPlaceholder: "Oh great, ...",
+    aiPrompt:
+      "Hi! Can you give me a few example sentences that use sarcasm and help me understand what they really mean?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike rekonèt sarkas.",
+    missionTask:
+      "🎯 Jodi a, ekri yon fraz sarkastik kout ak eksplike sa li vrèman vle di.",
+    recap: [
+      {
+        emoji: "😏",
+        text: "Sarkas: mo yo di yon bagay, ton an montre kontrè a.",
+      },
+      { emoji: "🙄", text: "Oh great, more rain. (sarkas)" },
+      { emoji: "😄", text: "I'm just kidding! (blag)" },
+      { emoji: "🎯", text: "Misyon: ekri yon fraz sarkastik ak eksplike li." },
+    ],
+  },
+  {
+    slug: "compliments-and-responses",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "🌟",
+    heroTitle: "Konpliman ak Repons",
+    heroLede:
+      "Nan kilti angle, moun aksepte konpliman ak yon senp “Thank you”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab bay yon konpliman ak reponn youn natirèlman.",
+    whatYouWillLearn: "kijan pou bay ak reponn yon konpliman natirèlman",
+    prerequisite: "Leson 5 — Imè ak Sarkas",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Nan kilti angle, moun aksepte konpliman ak yon senp “Thank you”.",
+    understandBody:
+      "**I love your shirt!** **Thank you! I got it last week.** Nan anpil kilti Anglè, refize yon konpliman twòp (“Oh no, it's old”) ka son etranj — pito aksepte l senpman.",
+    seeItInAction: [
+      { line: "I love your shirt!", tag: "Konpliman", emoji: "🌟" },
+      {
+        line: "Thank you! I got it last week.",
+        tag: "Repons natirèl",
+        emoji: "😊",
+      },
+      {
+        line: "That's very kind of you.",
+        tag: "Lòt fason pou reponn",
+        emoji: "🙏",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz pou wè fason li itilize a.",
+    patternBuilderOptions: [
+      { chipLabel: "Give", display: "I love your shirt!" },
+      { chipLabel: "Respond", display: "Thank you! I got it last week." },
+      { chipLabel: "Alt. response", display: "That's very kind of you." },
+    ],
+    vocabulary: [
+      {
+        word: "Compliment",
+        ipa: "/ˈkɒmplɪmənt/",
+        kreyol: "Konpliman",
+        example: "Thank you for the compliment.",
+      },
+      {
+        word: "Kind",
+        ipa: "/kaɪnd/",
+        kreyol: "Janti",
+        example: "That's very kind of you.",
+      },
+      {
+        word: "Appreciate",
+        ipa: "/əˈpriːʃieɪt/",
+        kreyol: "Apresye",
+        example: "I really appreciate that.",
+      },
+      {
+        word: "Flattered",
+        ipa: "/ˈflætərd/",
+        kreyol: "Flate",
+        example: "I'm flattered, thank you.",
+      },
+      {
+        word: "Accept",
+        ipa: "/əkˈsɛpt/",
+        kreyol: "Aksepte",
+        example: "Accept the compliment gracefully.",
+      },
+    ],
+    pronunciationWord: "Appreciate",
+    pronunciationIpa: "/əˈpriːʃieɪt/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou dezyèm — “uh-PREE-shee-eyt”.",
+    pronunciationMistake:
+      "**Erè komen:** pa refize yon konpliman twòp fò (“No, no, it's ugly”) — sa ka fè lòt moun nan santi l mal alèz.",
+    mistakeWrong: "No, no, it's really old and ugly.",
+    mistakeCorrect: "Thank you! That's very kind of you.",
+    mistakeWhy:
+      "**Poukisa:** Nan kilti angle, refize yon konpliman twò fò son etranj. Pi natirèl pou senpleman di “Thank you” epi aksepte l.",
+    practice: {
+      prompt: "Yon moun di “I love your shoes!” Ki repons ki pi natirèl?",
+      options: [
+        "No, they're ugly.",
+        "Thank you! That's very kind of you.",
+        "Why do you say that?",
+        "I don't like them either.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Aksepte konpliman an senpleman.",
+      wrongFeedback: "❌ Eseye ankò — pa refize konpliman an.",
+    },
+    thinkEmoji: "🌟",
+    thinkPrompt:
+      "Ekri yon konpliman ou ta bay yon zanmi ak fason li ta reponn:",
+    thinkPlaceholder: "I love your... Thank you!",
+    aiPrompt:
+      "Hi! Can you give me compliments in English and help me practice responding naturally, without over-refusing them?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike bay ak resevwa konpliman.",
+    missionTask:
+      "🎯 Jodi a, bay yon moun (reyèl oswa imajinè) yon konpliman an Anglè.",
+    recap: [
+      { emoji: "🌟", text: "I love your shirt!" },
+      { emoji: "😊", text: "Thank you! (repons senp)" },
+      { emoji: "⚠️", text: "Pa refize konpliman twòp." },
+      { emoji: "🎯", text: "Misyon: bay yon konpliman an Anglè." },
+    ],
+  },
+  {
+    slug: "saying-no-politely",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "🙅",
+    heroTitle: "Di Non Politès",
+    heroLede:
+      "Yon “no” tou sèk ka son twò dirèk — moun anglè ajoute yon eksplikasyon oswa yon regrè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab refize yon envitasyon oswa yon demann san w pa son grosye.",
+    whatYouWillLearn: "kijan pou di non politès san w pa son grosye",
+    prerequisite: "Leson 6 — Konpliman ak Repons",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon “no” tou sèk ka son twò dirèk — moun anglè ajoute yon eksplikasyon oswa yon regrè.",
+    understandBody:
+      "**I'd love to, but I can't.** **Thanks for asking, but I already have plans.** **Maybe next time!** Twa fraz sa yo refize san w pa son grosye.",
+    seeItInAction: [
+      { line: "I'd love to, but I can't.", tag: "Refi dou", emoji: "😔" },
+      {
+        line: "Thanks for asking, but I already have plans.",
+        tag: "Eksplikasyon",
+        emoji: "📅",
+      },
+      { line: "Maybe next time!", tag: "Kite pòt la louvri", emoji: "🙂" },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz pou wè fason li itilize a.",
+    patternBuilderOptions: [
+      { chipLabel: "Soft no", display: "I'd love to, but I can't." },
+      {
+        chipLabel: "Explain",
+        display: "Thanks for asking, but I already have plans.",
+      },
+      { chipLabel: "Leave door open", display: "Maybe next time!" },
+    ],
+    vocabulary: [
+      {
+        word: "I'd love to, but...",
+        ipa: "/aɪd lʌv tuː bʌt/",
+        kreyol: "Mwen ta renmen, men...",
+        example: "I'd love to, but I can't.",
+      },
+      {
+        word: "Unfortunately",
+        ipa: "/ʌnˈfɔːrtʃənətli/",
+        kreyol: "Malerezman",
+        example: "Unfortunately, I'm busy.",
+      },
+      {
+        word: "Busy",
+        ipa: "/ˈbɪzi/",
+        kreyol: "Okipe",
+        example: "I'm busy that day.",
+      },
+      {
+        word: "Rain check",
+        ipa: "/reɪn tʃɛk/",
+        kreyol: "Yon lòt fwa (ekspresyon)",
+        example: "Can I take a rain check?",
+      },
+      {
+        word: "Decline",
+        ipa: "/dɪˈklaɪn/",
+        kreyol: "Refize (politès)",
+        example: "I have to decline this time.",
+      },
+    ],
+    pronunciationWord: "Unfortunately",
+    pronunciationIpa: "/ʌnˈfɔːrtʃənətli/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** senk silab, ale dousman — “un-FOR-chuh-nut-lee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di sèlman “No” tou sèk pou refize yon envitasyon — sa ka son grosye an Anglè, menm si se pa entansyon w.",
+    mistakeWrong: "No.",
+    mistakeCorrect: "I'd love to, but I can't this time.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, yon “No” tou sèl san eksplikasyon souvan son twò dirèk oswa frèt. Ajoute yon ti eksplikasyon oswa regrè fè li son pi politès.",
+    practice: {
+      prompt: "Yon zanmi envite w soti, men ou okipe. Ki repons ki pi politès?",
+      options: [
+        "No.",
+        "I'd love to, but I already have plans.",
+        "I don't want to.",
+        "Never.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a politès e klè.",
+      wrongFeedback: "❌ Eseye ankò — chwazi repons ki pi politès.",
+    },
+    thinkEmoji: "🙅",
+    thinkPrompt: "Ekri yon fason politès pou refize yon envitasyon imajinè:",
+    thinkPlaceholder: "I'd love to, but...",
+    aiPrompt:
+      'Hi! Can you invite me to something in English and let me practice politely declining without just saying "no"?',
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike refize politès.",
+    missionTask:
+      "🎯 Jodi a, ekri yon fason politès pou refize yon envitasyon imajinè.",
+    recap: [
+      { emoji: "🙅", text: "Pa di “No” tou sèk san eksplikasyon." },
+      { emoji: "😔", text: "I'd love to, but I can't." },
+      { emoji: "🙂", text: "Maybe next time!" },
+      { emoji: "🎯", text: "Misyon: refize yon envitasyon politès." },
+    ],
+  },
+  {
+    slug: "cultural-notes-us-canada",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "🌎",
+    heroTitle: "Nòt Kilti: Etazini ak Kanada",
+    heroLede: "Kèk abitid small talk chanje selon kote ou ye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen kèk abitid kiltirèl komen nan Etazini ak Kanada.",
+    whatYouWillLearn:
+      "kèk abitid kiltirèl komen pou small talk nan Etazini/Kanada",
+    prerequisite: "Leson 7 — Di Non Politès",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Kèk abitid small talk chanje selon kote ou ye.",
+    understandBody:
+      '**"How are you?" is often just a greeting, not a real question.** Moun souvan pale de move tan (weather) pou kòmanse yon konvèsasyon. Sijè tankou lajan oswa laj ka trè prive.',
+    seeItInAction: [
+      {
+        line: '"How are you?" is often just a greeting.',
+        tag: "Salitasyon",
+        emoji: "👋",
+      },
+      {
+        line: "Talking about the weather is a safe topic.",
+        tag: "Sijè san danje",
+        emoji: "☀️",
+      },
+      {
+        line: "Asking about salary or age can feel too personal.",
+        tag: "Sijè prive",
+        emoji: "🤐",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak nòt kiltirèl pou wè plis detay.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Greeting",
+        display: '"How are you?" is often just a greeting.',
+      },
+      {
+        chipLabel: "Safe topic",
+        display: "Talking about the weather is a safe topic.",
+      },
+      {
+        chipLabel: "Private",
+        display: "Asking about salary or age can feel too personal.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Culture",
+        ipa: "/ˈkʌltʃər/",
+        kreyol: "Kilti",
+        example: "That's part of the culture.",
+      },
+      {
+        word: "Personal",
+        ipa: "/ˈpɜːrsənəl/",
+        kreyol: "Prive/Pèsonèl",
+        example: "That question feels too personal.",
+      },
+      {
+        word: "Safe topic",
+        ipa: "/seɪf ˈtɒpɪk/",
+        kreyol: "Sijè san danje",
+        example: "Weather is a safe topic.",
+      },
+      {
+        word: "Common",
+        ipa: "/ˈkɒmən/",
+        kreyol: "Komen",
+        example: "That's a common habit here.",
+      },
+      {
+        word: "Habit",
+        ipa: "/ˈhæbɪt/",
+        kreyol: "Abitid",
+        example: "It's a cultural habit.",
+      },
+    ],
+    pronunciationWord: "Culture",
+    pronunciationIpa: "/ˈkʌltʃər/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “KUL-chər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa mande yon moun ou fèk rankontre konbyen lajan li fè oswa ki laj li genyen — sa ka son twò prive nan Etazini/Kanada.",
+    mistakeWrong: "How much money do you make?",
+    mistakeCorrect: "Nice weather today, isn't it?",
+    mistakeWhy:
+      "**Poukisa:** Nan Etazini ak Kanada, kesyon sou lajan, laj, ak relijyon souvan konsidere prive nan yon premye konvèsasyon. Tan (weather) se yon sijè san danje.",
+    practice: {
+      prompt:
+        "Ki sijè ki pi san danje pou kòmanse yon konvèsasyon ak yon moun ou fèk rankontre?",
+      options: ["Salary", "Age", "The weather", "Religion"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Tan (weather) se yon sijè san danje.",
+      wrongFeedback: "❌ Eseye ankò — chwazi sijè ki pi san danje.",
+    },
+    thinkEmoji: "🌎",
+    thinkPrompt:
+      "Ekri yon sijè small talk ou panse ki san danje, tankou nan leson an:",
+    thinkPlaceholder: "A safe topic to talk about is...",
+    aiPrompt:
+      "Hi! Can you tell me a few small talk topics that are common and safe in the US or Canada, and a few that people usually avoid?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike sijè small talk san danje.",
+    missionTask:
+      "🎯 Jodi a, di de sijè small talk ki san danje, ak youn ki pi prive.",
+    recap: [
+      { emoji: "👋", text: '"How are you?" souvan se jis yon salitasyon.' },
+      { emoji: "☀️", text: "Weather se yon sijè san danje." },
+      { emoji: "🤐", text: "Lajan/laj ka son twò prive." },
+      { emoji: "🎯", text: "Misyon: idantifye sijè san danje ak sijè prive." },
+    ],
+  },
+  {
+    slug: "idioms-mission",
+    moduleTitle: "Modil 15: Ekspresyon ak Kilti",
+    illustrationKey: "emoji",
+    heroEmoji: "🗣️",
+    heroTitle: "Pale Natirèl",
+    heroLede:
+      "Se lè a pou konbine idiom, ton, ak small talk Modil 15 nan yon vrè echanj.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab fè yon ti konvèsasyon ki son natirèl, pa jis kòrèk gramatikalman.",
+    whatYouWillLearn:
+      "kijan pou konbine idiom, ton, ak small talk nan yon echanj",
+    prerequisite: "Leson 8 — Nòt Kilti: Etazini ak Kanada",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Pale natirèl mande plis pase gramè kòrèk — li mande ton ak abitid kiltirèl tou.",
+    understandBody:
+      "**A: How's it going?** **B: Good, thanks! A little under the weather, but okay.** **A: Sorry to hear that. Feel better soon!** Echanj sa a konbine small talk, yon idiom, ak politès.",
+    seeItInAction: [
+      { line: "How's it going?", tag: "Small talk", emoji: "👋" },
+      {
+        line: "A little under the weather, but okay.",
+        tag: "Idiom",
+        emoji: "🤒",
+      },
+      {
+        line: "Sorry to hear that. Feel better soon!",
+        tag: "Politès",
+        emoji: "🙏",
+      },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak liy pou wè ki eleman Modil 15 li itilize.",
+    patternBuilderOptions: [
+      { chipLabel: "Small talk", display: "How's it going?" },
+      { chipLabel: "Idiom", display: "A little under the weather, but okay." },
+      { chipLabel: "Polite", display: "Sorry to hear that. Feel better soon!" },
+    ],
+    vocabulary: [
+      {
+        word: "Natural",
+        ipa: "/ˈnætʃərəl/",
+        kreyol: "Natirèl",
+        example: "That sounds natural.",
+      },
+      {
+        word: "Sound like",
+        ipa: "/saʊnd laɪk/",
+        kreyol: "Sonnen tankou",
+        example: "That doesn't sound like a native speaker.",
+      },
+      {
+        word: "Native speaker",
+        ipa: "/ˈneɪtɪv ˈspiːkər/",
+        kreyol: "Moun ki pale lang lan natifnatal",
+        example: "She sounds like a native speaker.",
+      },
+      {
+        word: "Fluent",
+        ipa: "/ˈfluːənt/",
+        kreyol: "Kouran",
+        example: "He speaks fluent English.",
+      },
+      {
+        word: "Comfortable",
+        ipa: "/ˈkʌmftərbəl/",
+        kreyol: "Alèz",
+        example: "I feel comfortable in conversation now.",
+      },
+    ],
+    pronunciationWord: "Comfortable",
+    pronunciationIpa: "/ˈkʌmftərbəl/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab lè w pale vit — “KUMF-tər-bəl”, pa kat.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize yon fraz twò literal (tradiksyon dirèk) lè yon idiom oswa yon fraz natirèl ta pi bon.",
+    mistakeWrong:
+      "I have a small illness in my body today. (tradiksyon twò literal)",
+    mistakeCorrect: "I'm feeling a little under the weather today.",
+    mistakeWhy:
+      "**Poukisa:** Yon fraz ki tradwi mo pou mo soti nan Kreyòl ka son etranj an Anglè. Itilize ekspresyon natirèl moun deja konnen, tankou “under the weather”.",
+    practice: {
+      prompt:
+        "Ki repons ki son pi natirèl lè yon moun mande “How's it going?” epi ou pa santi w two byen?",
+      options: [
+        "I have a small illness in my body today.",
+        "A little under the weather, but okay.",
+        "My body is not working correctly.",
+        "I am experiencing physical difficulty.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a son natirèl ak natif.",
+      wrongFeedback: "❌ Eseye ankò — chwazi vèsyon ki pi natirèl.",
+    },
+    thinkEmoji: "🗣️",
+    thinkPrompt:
+      "Ekri yon ti echanj (3 liy) ki konbine small talk, yon idiom, ak politès:",
+    thinkPlaceholder: "How's it going? ... Sorry to hear that...",
+    aiPrompt:
+      "Hi! Can you have a short natural conversation with me using small talk, one idiom, and a polite response, then tell me if my replies sound natural?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 15 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri yon ti echanj twa liy ki konbine small talk, yon idiom, ak yon repons politès.",
+    recap: [
+      { emoji: "🗣️", text: "Pale natirèl mande plis pase gramè kòrèk." },
+      { emoji: "🤒", text: "Konbine idiom ak small talk nan menm echanj." },
+      { emoji: "🎓", text: "Ou fini Modil 15 — Ekspresyon ak Kilti!" },
+      { emoji: "🎯", text: "Misyon: ekri yon echanj natirèl twa liy." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
