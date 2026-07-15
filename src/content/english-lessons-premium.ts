@@ -7378,6 +7378,904 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: jere yon sitiyasyon chak jou." },
     ],
   },
+  {
+    slug: "i-like-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "❤️",
+    heroTitle: "I Like...",
+    heroLede:
+      "“I like” se yonn nan premye fason pou pataje sa ou renmen — mete yon non oswa yon vèb “-ing” apre l.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab di sa ou renmen ak sa ou pa renmen.",
+    whatYouWillLearn: "kijan pou itilize “I like” ak “I don't like”",
+    prerequisite: "Ou fin Modil 8 — Konvèsasyon Chak Jou",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“I like” + non OSWA vèb-ing.",
+    understandBody:
+      "**I like coffee.** **I like reading.** Apre “like”, ou ka mete yon bagay (coffee) oswa yon aktivite ak “-ing” (reading).",
+    seeItInAction: [
+      { line: "I like coffee.", tag: "Bagay", emoji: "☕" },
+      { line: "I like reading.", tag: "Aktivite (-ing)", emoji: "📖" },
+      { line: "I don't like loud music.", tag: "Negatif", emoji: "🎵" },
+    ],
+    patternBuilderIntro: "Klike sou chak fòm pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Thing", display: "I like coffee." },
+      { chipLabel: "Activity", display: "I like reading." },
+      { chipLabel: "Negative", display: "I don't like loud music." },
+    ],
+    vocabulary: [
+      {
+        word: "Like",
+        ipa: "/laɪk/",
+        kreyol: "Renmen",
+        example: "I like coffee.",
+      },
+      {
+        word: "Coffee",
+        ipa: "/ˈkɔːfi/",
+        kreyol: "Kafe",
+        example: "I like coffee.",
+      },
+      {
+        word: "Reading",
+        ipa: "/ˈriːdɪŋ/",
+        kreyol: "Li (aktivite)",
+        example: "I like reading.",
+      },
+      {
+        word: "Loud",
+        ipa: "/laʊd/",
+        kreyol: "Fò (bri)",
+        example: "I don't like loud music.",
+      },
+      {
+        word: "Music",
+        ipa: "/ˈmjuːzɪk/",
+        kreyol: "Mizik",
+        example: "I like music.",
+      },
+    ],
+    pronunciationWord: "Reading",
+    pronunciationIpa: "/ˈriːdɪŋ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “ee” long nan kòmansman, “REE-ding”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I like read” — vèb apre “like” pran “-ing”.",
+    mistakeWrong: "I like read.",
+    mistakeCorrect: "I like reading.",
+    mistakeWhy:
+      "**Poukisa:** Lè yon vèb vini apre “like” pou dekri yon aktivite w renmen, li pran fòm “-ing”: reading, cooking, dancing.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I like read.",
+        "I like reading.",
+        "I like to reading.",
+        "I likes reading.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — vèb la pran “-ing”.",
+    },
+    thinkEmoji: "❤️",
+    thinkPrompt: "Ekri de fraz sou sa ou renmen ak sa ou pa renmen:",
+    thinkPlaceholder: "I like... / I don't like...",
+    aiPrompt:
+      "Hi! Can you ask me what I like and don't like, and help me answer using the correct verb forms?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “I like”.",
+    missionTask: "🎯 Jodi a, di twa bagay ou renmen ak yon bagay ou pa renmen.",
+    recap: [
+      { emoji: "❤️", text: "“I like” + non oswa vèb-ing." },
+      { emoji: "📖", text: "I like reading, cooking, dancing." },
+      { emoji: "⚠️", text: "Vèb apre “like” pran “-ing”." },
+      { emoji: "🎯", text: "Misyon: di sa ou renmen ak sa ou pa renmen." },
+    ],
+  },
+  {
+    slug: "can-i-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🙋",
+    heroTitle: "Can I...?",
+    heroLede: "“Can I” mande pèmisyon poliman pou fè yon bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab mande pèmisyon ak “Can I”.",
+    whatYouWillLearn: "kijan pou mande pèmisyon poliman ak “Can I”",
+    prerequisite: "Leson 1 — I Like...",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Can I” + vèb debaz mande pèmisyon.",
+    understandBody:
+      "**Can I open the window?** **Can I ask you a question?** Fraz sa a mande yon moun si ou gen dwa fè yon bagay.",
+    seeItInAction: [
+      { line: "Can I open the window?", tag: "Mande pèmisyon", emoji: "🪟" },
+      { line: "Can I ask you a question?", tag: "Mande pèmisyon", emoji: "❓" },
+      {
+        line: "Yes, of course. / Sorry, you can't.",
+        tag: "Repons",
+        emoji: "✅",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon kesyon.",
+    patternBuilderOptions: [
+      { chipLabel: "Window", display: "Can I open the window?" },
+      { chipLabel: "Question", display: "Can I ask you a question?" },
+      { chipLabel: "Answer", display: "Yes, of course." },
+    ],
+    vocabulary: [
+      {
+        word: "Can I",
+        ipa: "/kæn aɪ/",
+        kreyol: "Èske m ka",
+        example: "Can I open the window?",
+      },
+      {
+        word: "Of course",
+        ipa: "/ʌv kɔːrs/",
+        kreyol: "Va sanzatann",
+        example: "Yes, of course.",
+      },
+      {
+        word: "Sorry",
+        ipa: "/ˈsɒri/",
+        kreyol: "Padon",
+        example: "Sorry, you can't.",
+      },
+      {
+        word: "Window",
+        ipa: "/ˈwɪndoʊ/",
+        kreyol: "Fenèt",
+        example: "Can I open the window?",
+      },
+      {
+        word: "Question",
+        ipa: "/ˈkwɛstʃən/",
+        kreyol: "Kesyon",
+        example: "Can I ask a question?",
+      },
+    ],
+    pronunciationWord: "Of course",
+    pronunciationIpa: "/ʌv kɔːrs/",
+    mouthTip: "**Ti konsèy pou bouch ou:** “of” sonnen tankou “uv”, pa “off”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Can I to open” — pa gen “to” apre “can”.",
+    mistakeWrong: "Can I to open the window?",
+    mistakeCorrect: "Can I open the window?",
+    mistakeWhy:
+      "**Poukisa:** Apre “can”, vèb la rete nan fòm debaz, san “to” — “Can I open”, pa “Can I to open”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "Can I to open the window?",
+        "Can I open the window?",
+        "Can I opening the window?",
+        "Can I opens the window?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pa gen “to” apre “can”.",
+    },
+    thinkEmoji: "🙋",
+    thinkPrompt: "Ekri yon kesyon “Can I” ou ta poze:",
+    thinkPlaceholder: "Can I...?",
+    aiPrompt:
+      "Hi! Can you let me practice asking for permission using 'Can I...?' in different situations, and respond naturally?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “Can I”.",
+    missionTask:
+      "🎯 Jodi a, mande pèmisyon yon moun ak “Can I...?” pou yon bagay reyèl.",
+    recap: [
+      { emoji: "🙋", text: "“Can I” + vèb debaz mande pèmisyon." },
+      { emoji: "⚠️", text: "Pa gen “to” apre “can”." },
+      { emoji: "✅", text: "Yes, of course. / Sorry, you can't." },
+      { emoji: "🎯", text: "Misyon: mande pèmisyon ak “Can I”." },
+    ],
+  },
+  {
+    slug: "would-you-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "😊",
+    heroTitle: "Would You...?",
+    heroLede:
+      "“Would you” mande yon moun fè yon bagay, oswa ofri yon bagay, poliman.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab fè demand ak ofri poliman ak “Would you”.",
+    whatYouWillLearn: "kijan pou fè demand ak ofri poliman ak “Would you”",
+    prerequisite: "Leson 2 — Can I...?",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Would you” pi poli pase yon lòd dirèk.",
+    understandBody:
+      "**Would you close the door, please?** **Would you like some coffee?** “Would you” fè yon demand oswa yon ofri san w pa sonnen brak.",
+    seeItInAction: [
+      {
+        line: "Would you close the door, please?",
+        tag: "Mande poliman",
+        emoji: "🚪",
+      },
+      { line: "Would you like some coffee?", tag: "Ofri", emoji: "☕" },
+      { line: "Yes, I would. / No, thank you.", tag: "Repons", emoji: "😊" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Request", display: "Would you close the door, please?" },
+      { chipLabel: "Offer", display: "Would you like some coffee?" },
+      { chipLabel: "Answer", display: "Yes, I would." },
+    ],
+    vocabulary: [
+      {
+        word: "Would you",
+        ipa: "/wʊd juː/",
+        kreyol: "Ou ta vle",
+        example: "Would you like some coffee?",
+      },
+      {
+        word: "Close",
+        ipa: "/kloʊz/",
+        kreyol: "Fèmen",
+        example: "Would you close the door?",
+      },
+      {
+        word: "Door",
+        ipa: "/dɔːr/",
+        kreyol: "Pòt",
+        example: "Close the door, please.",
+      },
+      {
+        word: "Some",
+        ipa: "/sʌm/",
+        kreyol: "Yon ti kras",
+        example: "Would you like some coffee?",
+      },
+      {
+        word: "Thank you",
+        ipa: "/θæŋk juː/",
+        kreyol: "Mèsi",
+        example: "No, thank you.",
+      },
+    ],
+    pronunciationWord: "Would you",
+    pronunciationIpa: "/wʊd juː/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** nan pale vit, li ka sonnen tankou “wood-ja”.",
+    pronunciationMistake:
+      "**Erè komen:** pa reponn “Yes, I want” pou yon ofrann — se “Yes, I would” oswa “Yes, please”.",
+    mistakeWrong: "Would you like coffee? Yes, I want.",
+    mistakeCorrect: "Would you like coffee? Yes, I would. / Yes, please.",
+    mistakeWhy:
+      "**Poukisa:** Reponn yon kesyon “Would you” ak “I would” oswa “please”, pa “I want” — sa kenbe ton poli a.",
+    practice: {
+      prompt: "Chwazi repons ki pi poli pou “Would you like some coffee?”",
+      options: [
+        "Yes, I want.",
+        "Yes, I would.",
+        "Give me coffee.",
+        "Coffee now.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chèche repons ki pi poli a.",
+    },
+    thinkEmoji: "😊",
+    thinkPrompt: "Ekri yon demand oswa yon ofri poliman ak “Would you”:",
+    thinkPlaceholder: "Would you...?",
+    aiPrompt:
+      "Hi! Can you offer me something using 'Would you like...?' and let me practice accepting or declining politely?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “Would you”.",
+    missionTask: "🎯 Jodi a, fè yon demand poliman ak “Would you...?”",
+    recap: [
+      { emoji: "😊", text: "“Would you” mande oswa ofri poliman." },
+      { emoji: "☕", text: "Would you like some coffee?" },
+      { emoji: "✅", text: "Yes, I would. / No, thank you." },
+      { emoji: "🎯", text: "Misyon: fè yon demand ak “Would you”." },
+    ],
+  },
+  {
+    slug: "there-is-there-are-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "📍",
+    heroTitle: "There Is / There Are",
+    heroLede:
+      "Ranfòse “There is”/“There are” pou dekri nenpòt sitiyasyon, pa jis sa ki nan kay la.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “There is”/“There are” nan plizyè sitiyasyon.",
+    whatYouWillLearn: "itilize “There is”/“There are” pi lwen pase kay la",
+    prerequisite: "Leson 3 — Would You...?",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“There is”/“There are” dekri sa ki egziste nenpòt kote.",
+    understandBody:
+      "**There is a problem.** **There are many people here.** **Is there a bank near here?** Menm modèl ou aprann nan Modil 4 la, men kounye a pou nenpòt sitiyasyon — pwoblèm, moun, kesyon.",
+    seeItInAction: [
+      { line: "There is a problem.", tag: "Yon sèl bagay", emoji: "⚠️" },
+      { line: "There are many people here.", tag: "Plizyè bagay", emoji: "👥" },
+      { line: "Is there a bank near here?", tag: "Kesyon", emoji: "🏦" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Problem", display: "There is a problem." },
+      { chipLabel: "People", display: "There are many people here." },
+      { chipLabel: "Question", display: "Is there a bank near here?" },
+    ],
+    vocabulary: [
+      {
+        word: "Problem",
+        ipa: "/ˈprɒbləm/",
+        kreyol: "Pwoblèm",
+        example: "There is a problem.",
+      },
+      {
+        word: "People",
+        ipa: "/ˈpiːpəl/",
+        kreyol: "Moun",
+        example: "There are many people.",
+      },
+      {
+        word: "Near",
+        ipa: "/nɪər/",
+        kreyol: "Toupre",
+        example: "Is there a bank near here?",
+      },
+      {
+        word: "Bank",
+        ipa: "/bæŋk/",
+        kreyol: "Bank",
+        example: "Is there a bank near here?",
+      },
+      {
+        word: "Many",
+        ipa: "/ˈmɛni/",
+        kreyol: "Anpil",
+        example: "There are many people.",
+      },
+    ],
+    pronunciationWord: "There are",
+    pronunciationIpa: "/ðɛər ɑːr/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de mo kole ansanm nan pale vit, “thair-ar”.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize “there is” pou plizyè bagay — “there are many people”, pa “there is many people”.",
+    mistakeWrong: "There is many people here.",
+    mistakeCorrect: "There are many people here.",
+    mistakeWhy:
+      "**Poukisa:** “Many people” se plizyè — bezwen “there are”, pa “there is”, menm règ nou wè nan Modil 4.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou mande si gen yon bank toupre:",
+      options: [
+        "Is there a bank near here?",
+        "Is bank there near here?",
+        "There a bank near here?",
+        "Are there a bank near here?",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback:
+        "❌ Eseye ankò — “bank” se yon sèl bagay, itilize “is there”.",
+    },
+    thinkEmoji: "📍",
+    thinkPrompt:
+      "Ekri yon fraz “There is”/“There are” sou kote ou ye kounye a:",
+    thinkPlaceholder: "There is... / There are...",
+    aiPrompt:
+      "Hi! Can you ask me if there's a problem, or how many people are somewhere, so I can practice there is/there are?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike “There is/are”.",
+    missionTask:
+      "🎯 Jodi a, dekri yon sitiyasyon reyèl ak “There is” oswa “There are”.",
+    recap: [
+      { emoji: "📍", text: "“There is” yon sèl bagay, “there are” plizyè." },
+      { emoji: "🏦", text: "Is there a bank near here?" },
+      { emoji: "⚠️", text: "Pa konfonn is/are ak kantite a." },
+      { emoji: "🎯", text: "Misyon: dekri yon sitiyasyon ak There is/are." },
+    ],
+  },
+  {
+    slug: "want-and-would-like-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🙏",
+    heroTitle: "I Want / I'd Like",
+    heroLede:
+      "“I want” dirèk, “I'd like” pi poli — de fason pou mande menm bagay la.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen kilè pou itilize “want” ak kilè pou itilize “would like”.",
+    whatYouWillLearn: "diferans ant “I want” (dirèk) ak “I'd like” (poli)",
+    prerequisite: "Leson 4 — There Is / There Are",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“I want” dirèk, “I'd like” pi poli — menm sans lan.",
+    understandBody:
+      "**I want water.** **I'd like some water, please.** Tou de vle di menm bagay la, men “I'd like” sonnen pi poli — itil nan sitiyasyon fòmèl tankou restoran.",
+    seeItInAction: [
+      { line: "I want water.", tag: "Dirèk", emoji: "💧" },
+      { line: "I'd like some water, please.", tag: "Poli", emoji: "🙏" },
+      { line: "What do you want to do today?", tag: "Kesyon", emoji: "❓" },
+    ],
+    patternBuilderIntro: "Klike sou chak fòm pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Want", display: "I want water." },
+      { chipLabel: "Would like", display: "I'd like some water, please." },
+      { chipLabel: "Question", display: "What do you want to do today?" },
+    ],
+    vocabulary: [
+      { word: "Want", ipa: "/wɒnt/", kreyol: "Vle", example: "I want water." },
+      {
+        word: "Would like",
+        ipa: "/wʊd laɪk/",
+        kreyol: "Ta renmen",
+        example: "I'd like some water.",
+      },
+      {
+        word: "Please",
+        ipa: "/pliːz/",
+        kreyol: "Souple",
+        example: "I'd like water, please.",
+      },
+      {
+        word: "Today",
+        ipa: "/təˈdeɪ/",
+        kreyol: "Jodi a",
+        example: "What do you want today?",
+      },
+      {
+        word: "Water",
+        ipa: "/ˈwɔːtər/",
+        kreyol: "Dlo",
+        example: "I want water.",
+      },
+    ],
+    pronunciationWord: "I'd like",
+    pronunciationIpa: "/aɪd laɪk/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “I'd” se “I would” kout, di li tankou “ayd”.",
+    pronunciationMistake:
+      "**Erè komen:** nan yon sitiyasyon fòmèl (restoran, biwo), “I want” ka sonnen twò dirèk — “I'd like” pi apwopriye.",
+    mistakeWrong: "I want the chicken. (nan yon restoran fòmèl)",
+    mistakeCorrect: "I'd like the chicken, please.",
+    mistakeWhy:
+      "**Poukisa:** Nan sitiyasyon fòmèl (restoran, biwo), “I'd like” + “please” sonnen pi poli pase “I want” tou sèk.",
+    practice: {
+      prompt: "Ki fraz ki pi poli pou yon lòd nan restoran?",
+      options: [
+        "I want the chicken.",
+        "I'd like the chicken, please.",
+        "Give me chicken.",
+        "Chicken now.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chèche fòm ki pi poli a.",
+    },
+    thinkEmoji: "🙏",
+    thinkPrompt: "Ekri menm demand lan de fason: “I want” epi “I'd like”:",
+    thinkPlaceholder: "I want... / I'd like...",
+    aiPrompt:
+      "Hi! Can you help me practice the difference between 'I want' and 'I'd like' in casual versus formal situations?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike want/would like.",
+    missionTask:
+      "🎯 Jodi a, di yon demand de fason: youn ak “I want”, youn ak “I'd like”.",
+    recap: [
+      { emoji: "🙏", text: "“I want” dirèk, “I'd like” poli." },
+      { emoji: "🍽️", text: "Itilize “I'd like” nan sitiyasyon fòmèl." },
+      { emoji: "💧", text: "I want water. I'd like some water, please." },
+      { emoji: "🎯", text: "Misyon: di yon demand de fason diferan." },
+    ],
+  },
+  {
+    slug: "going-to-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🗓️",
+    heroTitle: "I'm Going To...",
+    heroLede: "“I'm going to” pale de yon plan ou deja gen pou lavni.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de plan lavni ak “I'm going to”.",
+    whatYouWillLearn: "kijan pou pale de plan lavni ak “going to”",
+    prerequisite: "Leson 5 — I Want / I'd Like",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“I'm going to” + vèb debaz pale de yon plan.",
+    understandBody:
+      "**I'm going to study tonight.** **We're going to visit my family.** “Going to” montre yon bagay ou deja deside fè, pa jis yon lide sou lè.",
+    seeItInAction: [
+      { line: "I'm going to study tonight.", tag: "Plan", emoji: "📚" },
+      { line: "We're going to visit my family.", tag: "Plan", emoji: "👨‍👩‍👧" },
+      {
+        line: "What are you going to do this weekend?",
+        tag: "Kesyon plan",
+        emoji: "❓",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak plan pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Study", display: "I'm going to study tonight." },
+      { chipLabel: "Visit", display: "We're going to visit my family." },
+      {
+        chipLabel: "Question",
+        display: "What are you going to do this weekend?",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Going to",
+        ipa: "/ˈgoʊɪŋ tuː/",
+        kreyol: "Pral",
+        example: "I'm going to study.",
+      },
+      {
+        word: "Tonight",
+        ipa: "/təˈnaɪt/",
+        kreyol: "Aswè a",
+        example: "I'm going to study tonight.",
+      },
+      {
+        word: "Visit",
+        ipa: "/ˈvɪzɪt/",
+        kreyol: "Vizite",
+        example: "We're going to visit my family.",
+      },
+      {
+        word: "Weekend",
+        ipa: "/ˈwiːkɛnd/",
+        kreyol: "Wikenn",
+        example: "What are you doing this weekend?",
+      },
+      {
+        word: "Plan",
+        ipa: "/plæn/",
+        kreyol: "Plan",
+        example: "I have a plan.",
+      },
+    ],
+    pronunciationWord: "Going to",
+    pronunciationIpa: "/ˈgoʊɪŋ tuː/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** nan pale vit, moun konn di “gonna” — men ekri li “going to”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “to be” (am/is/are) devan “going to”.",
+    mistakeWrong: "I going to study tonight.",
+    mistakeCorrect: "I'm going to study tonight.",
+    mistakeWhy:
+      "**Poukisa:** “Going to” toujou bezwen “to be” devan li — “I'm going to”, “She's going to”, “They're going to”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I going to study.",
+        "I'm going to study.",
+        "I go to study.",
+        "I am go to study.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — manke “to be” la.",
+    },
+    thinkEmoji: "🗓️",
+    thinkPrompt: "Ekri yon plan ou genyen pou wikenn sa a, ak “going to”:",
+    thinkPlaceholder: "I'm going to...",
+    aiPrompt:
+      "Hi! Can you ask me what I'm going to do this weekend, and help me answer using 'going to'?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “going to”.",
+    missionTask:
+      "🎯 Jodi a, di yon plan ou genyen pou wikenn sa a, ak “I'm going to”.",
+    recap: [
+      { emoji: "🗓️", text: "“Going to” pale de yon plan lavni." },
+      { emoji: "🔗", text: "To be (am/is/are) + going to + vèb." },
+      { emoji: "📚", text: "I'm going to study tonight." },
+      { emoji: "🎯", text: "Misyon: di yon plan pou wikenn sa a." },
+    ],
+  },
+  {
+    slug: "i-need-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🆘",
+    heroTitle: "I Need...",
+    heroLede: "“I need” montre yon bezwen — pi fò pase “want”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen diferans ant “I need” ak “I want”.",
+    whatYouWillLearn: "diferans ant “need” (bezwen) ak “want” (vle)",
+    prerequisite: "Leson 6 — I'm Going To...",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Need” pi fò pase “want” — se yon bagay ou pa ka viv san li.",
+    understandBody:
+      "**I need help.** **I need more time.** “Need” montre yon bagay ki nesesè, pa jis yon preferans tankou “want”.",
+    seeItInAction: [
+      { line: "I need help.", tag: "Bezwen", emoji: "🆘" },
+      { line: "I need more time.", tag: "Bezwen", emoji: "⏰" },
+      { line: "Do you need anything?", tag: "Kesyon", emoji: "❓" },
+    ],
+    patternBuilderIntro: "Klike sou chak bezwen pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Help", display: "I need help." },
+      { chipLabel: "Time", display: "I need more time." },
+      { chipLabel: "Question", display: "Do you need anything?" },
+    ],
+    vocabulary: [
+      {
+        word: "Need",
+        ipa: "/niːd/",
+        kreyol: "Bezwen",
+        example: "I need help.",
+      },
+      { word: "Help", ipa: "/hɛlp/", kreyol: "Èd", example: "I need help." },
+      {
+        word: "More",
+        ipa: "/mɔːr/",
+        kreyol: "Plis",
+        example: "I need more time.",
+      },
+      {
+        word: "Time",
+        ipa: "/taɪm/",
+        kreyol: "Tan",
+        example: "I need more time.",
+      },
+      {
+        word: "Anything",
+        ipa: "/ˈɛniθɪŋ/",
+        kreyol: "Nenpòt bagay",
+        example: "Do you need anything?",
+      },
+    ],
+    pronunciationWord: "Need",
+    pronunciationIpa: "/niːd/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “ee” long, tankou “need” an Kreyòl si w ta ekri l.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I need to money” — “need” + non pa bezwen “to”.",
+    mistakeWrong: "I need to money.",
+    mistakeCorrect: "I need money.",
+    mistakeWhy:
+      "**Poukisa:** “Need” + yon non (money) pa bezwen “to”. “To” sèlman itil lè “need” swiv ak yon vèb: “I need to go”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I need to money.",
+        "I need money.",
+        "I needs money.",
+        "I need for money.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pa gen “to” devan yon non.",
+    },
+    thinkEmoji: "🆘",
+    thinkPrompt: "Ekri yon bagay ou bezwen vre kounye a, ak “I need”:",
+    thinkPlaceholder: "I need...",
+    aiPrompt:
+      "Hi! Can you ask me what I need right now, and help me answer using 'I need' correctly?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “I need”.",
+    missionTask: "🎯 Jodi a, di yon bagay ou bezwen vre kounye a, ak “I need”.",
+    recap: [
+      { emoji: "🆘", text: "“Need” pi fò pase “want”." },
+      { emoji: "⏰", text: "I need help. I need more time." },
+      { emoji: "⚠️", text: "“Need” + non pa bezwen “to”." },
+      { emoji: "🎯", text: "Misyon: di yon bagay ou bezwen." },
+    ],
+  },
+  {
+    slug: "i-dont-pattern",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🤷",
+    heroTitle: "I Don't...",
+    heroLede: "Ranfòse “I don't” pou fè fraz negatif ki itil chak jou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “I don't” nan plizyè sitiyasyon chak jou.",
+    whatYouWillLearn: "fraz “I don't” ki itil chak jou",
+    prerequisite: "Leson 7 — I Need...",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“I don't” + vèb debaz fè yon fraz negatif chak jou.",
+    understandBody:
+      "**I don't know.** **I don't understand.** **I don't have time today.** Twa fraz sa yo pami pi itil yo an Anglè chak jou.",
+    seeItInAction: [
+      { line: "I don't know.", tag: "Pa konnen", emoji: "🤷" },
+      { line: "I don't understand.", tag: "Pa konprann", emoji: "❓" },
+      { line: "I don't have time today.", tag: "Konbinezon", emoji: "⏰" },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz pou wè li.",
+    patternBuilderOptions: [
+      { chipLabel: "Don't know", display: "I don't know." },
+      { chipLabel: "Don't understand", display: "I don't understand." },
+      { chipLabel: "Don't have time", display: "I don't have time today." },
+    ],
+    vocabulary: [
+      {
+        word: "Know",
+        ipa: "/noʊ/",
+        kreyol: "Konnen",
+        example: "I don't know.",
+      },
+      {
+        word: "Understand",
+        ipa: "/ˌʌndərˈstænd/",
+        kreyol: "Konprann",
+        example: "I don't understand.",
+      },
+      {
+        word: "Care",
+        ipa: "/kɛər/",
+        kreyol: "Enterese",
+        example: "I don't care.",
+      },
+      {
+        word: "Mind",
+        ipa: "/maɪnd/",
+        kreyol: "Deranje",
+        example: "I don't mind.",
+      },
+      {
+        word: "Today",
+        ipa: "/təˈdeɪ/",
+        kreyol: "Jodi a",
+        example: "I don't have time today.",
+      },
+    ],
+    pronunciationWord: "Don't",
+    pronunciationIpa: "/doʊnt/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “oh” long, tankou “dohnt”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I not know” — bezwen “don't”, pa jis “not”.",
+    mistakeWrong: "I not know.",
+    mistakeCorrect: "I don't know.",
+    mistakeWhy:
+      "**Poukisa:** Pou fè yon fraz negatif ak yon vèb aksyon (know, understand), ou bezwen “don't”/“doesn't”, pa jis “not”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: ["I not know.", "I don't know.", "I no know.", "I isn't know."],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — bezwen “don't”.",
+    },
+    thinkEmoji: "🤷",
+    thinkPrompt: "Ekri de fraz “I don't” ou itilize souvan:",
+    thinkPlaceholder: "I don't...",
+    aiPrompt:
+      "Hi! Can you ask me questions I might not know the answer to, so I can practice saying 'I don't know' and similar phrases?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike “I don't”.",
+    missionTask:
+      "🎯 Jodi a, itilize “I don't know” oswa “I don't understand” yon fwa jodi a.",
+    recap: [
+      { emoji: "🤷", text: "I don't know. I don't understand." },
+      { emoji: "⏰", text: "I don't have time today." },
+      { emoji: "⚠️", text: "“Don't”, pa jis “not”, pou vèb aksyon." },
+      { emoji: "🎯", text: "Misyon: itilize “I don't” jodi a." },
+    ],
+  },
+  {
+    slug: "patterns-mission",
+    moduleTitle: "Modil 9: Modèl Anglè Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🧩",
+    heroTitle: "Konstwi Ak Modèl Yo",
+    heroLede:
+      "Se lè a pou konbine plizyè modèl Modil 9 pou fè fraz konplè, natirèl.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab konbine plizyè modèl nan yon sèl konvèsasyon.",
+    whatYouWillLearn:
+      "kijan pou konbine modèl Modil 9 yo nan yon konvèsasyon natirèl",
+    prerequisite: "Leson 8 — I Don't...",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Plizyè modèl ansanm fè yon konvèsasyon sonnen natirèl.",
+    understandBody:
+      "**I like coffee, but I need water right now.** Konekte de modèl ak “but”, “and”, oswa “so” fè fraz ou sonnen tankou yon moun ki pale Anglè natirèlman, pa jis fraz izole.",
+    seeItInAction: [
+      {
+        line: "I like coffee, but I need water right now.",
+        tag: "Konbine",
+        emoji: "☕💧",
+      },
+      {
+        line: "Would you like to go? I'm going to leave soon.",
+        tag: "Konbine",
+        emoji: "🚪",
+      },
+      {
+        line: "There is a problem, and I don't know how to fix it.",
+        tag: "Konbine",
+        emoji: "⚠️",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak konbinezon pou wè li.",
+    patternBuilderOptions: [
+      { chipLabel: "Like + Need", display: "I like coffee, but I need water." },
+      {
+        chipLabel: "Would + Going to",
+        display: "Would you like to go? I'm going to leave soon.",
+      },
+      {
+        chipLabel: "There is + Don't",
+        display: "There is a problem, and I don't know how to fix it.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "But",
+        ipa: "/bʌt/",
+        kreyol: "Men",
+        example: "I like coffee, but I need water.",
+      },
+      {
+        word: "And",
+        ipa: "/ænd/",
+        kreyol: "Epi",
+        example: "There is a problem, and I don't know.",
+      },
+      {
+        word: "So",
+        ipa: "/soʊ/",
+        kreyol: "Kidonk",
+        example: "I'm tired, so I'm going to sleep.",
+      },
+      {
+        word: "Right now",
+        ipa: "/raɪt naʊ/",
+        kreyol: "Kounye a menm",
+        example: "I need water right now.",
+      },
+      {
+        word: "Soon",
+        ipa: "/suːn/",
+        kreyol: "Byento",
+        example: "I'm going to leave soon.",
+      },
+    ],
+    pronunciationWord: "Right now",
+    pronunciationIpa: "/raɪt naʊ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de mo klè, san w pa kole yo.",
+    pronunciationMistake:
+      "**Erè komen:** pa antase twòp modèl nan yon sèl fraz — de oswa twa ase pou li rete klè.",
+    mistakeWrong: "I like coffee I need water I want tea I don't know.",
+    mistakeCorrect: "I like coffee, but I need water right now.",
+    mistakeWhy:
+      "**Poukisa:** Twòp lide nan yon sèl fraz mele koute a. Chwazi de lide, konekte yo ak “but”/“and”/“so”, epi fè yon lòt fraz pou rès la.",
+    practice: {
+      prompt: "Ki fraz ki byen konstwi?",
+      options: [
+        "I like coffee I need water.",
+        "I like coffee, but I need water right now.",
+        "Coffee like I water need.",
+        "I like, need, want, don't know.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — konekte ak “but”.",
+    },
+    thinkEmoji: "🧩",
+    thinkPrompt: "Ekri twa fraz ki konbine omwen de modèl Modil 9 chak youn:",
+    thinkPlaceholder: "I like..., but I need...",
+    aiPrompt:
+      "Hi! Can you listen to me combine different patterns like 'I like', 'I need', 'there is', and 'I'm going to' into natural sentences, and give me feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 9 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri oswa di twa fraz ki chak konbine omwen de modèl Modil 9.",
+    recap: [
+      { emoji: "🧩", text: "Konbine modèl ak “but”, “and”, “so”." },
+      { emoji: "🔗", text: "De oswa twa modèl ase pou yon fraz klè." },
+      { emoji: "🎓", text: "Ou fini Modil 9 — Modèl Anglè Yo!" },
+      { emoji: "🎯", text: "Misyon: konbine plizyè modèl nan fraz ou." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
