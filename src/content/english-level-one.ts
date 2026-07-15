@@ -947,4 +947,33 @@ export const englishLevelOneLessons: EnglishLessonSummary[] = [
     available: true,
     moduleNumber: 15,
   },
+  {
+    slug: "capitalization",
+    title: "Capitalization",
+    outcome: "Know when to use a capital letter and when not to.",
+    available: true,
+    moduleNumber: 16,
+  },
+  {
+    slug: "punctuation-basics",
+    title: "Punctuation Basics",
+    outcome: "Use periods, commas, question marks, and apostrophes correctly.",
+    available: true,
+    moduleNumber: 16,
+  },
+  {
+    slug: "paragraph-structure",
+    title: "Paragraph Structure",
+    outcome: "Organize a short paragraph around one clear idea.",
+    available: true,
+    moduleNumber: 16,
+  },
+  {
+    slug: "writing-mission",
+    title: "Write It Clearly",
+    outcome:
+      "Combine capitalization, punctuation, and structure in a real email.",
+    available: true,
+    moduleNumber: 16,
+  },
 ];

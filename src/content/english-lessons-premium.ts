@@ -13599,6 +13599,434 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: ekri yon echanj natirèl twa liy." },
     ],
   },
+  {
+    slug: "capitalization",
+    moduleTitle: "Modil 16: Baz Ekriti",
+    illustrationKey: "emoji",
+    heroEmoji: "🔠",
+    heroTitle: "Lèt Majiskil (Capitalization)",
+    heroLede:
+      "Yon lèt majiskil nan move kote ka fè yon tèks pwofesyonèl son ka enfòmèl.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen ki lè pou itilize yon lèt majiskil.",
+    whatYouWillLearn: "règ debaz pou lèt majiskil an Anglè",
+    prerequisite: "Ou fin Modil 15 — Ekspresyon ak Kilti",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading: "Kat sitiyasyon toujou mande yon lèt majiskil an Anglè.",
+    understandBody:
+      "**I** always has a capital letter. **M**onday, **J**anuary, and **M**aria all start with a capital. The first word of a sentence always starts with a capital too.",
+    seeItInAction: [
+      {
+        line: "I am learning English.",
+        tag: '"I" toujou majiskil',
+        emoji: "🔤",
+      },
+      { line: "My birthday is in January.", tag: "Mwa yo", emoji: "📅" },
+      { line: "Maria lives in Miami.", tag: "Non moun ak vil", emoji: "👤" },
+    ],
+    patternBuilderIntro: "Klike sou chak règ pou wè yon egzanp.",
+    patternBuilderOptions: [
+      { chipLabel: '"I"', display: "I am learning English." },
+      { chipLabel: "Months", display: "My birthday is in January." },
+      { chipLabel: "Names", display: "Maria lives in Miami." },
+    ],
+    vocabulary: [
+      {
+        word: "Capital letter",
+        ipa: "/ˈkæpɪtəl ˈlɛtər/",
+        kreyol: "Lèt majiskil",
+        example: "Start with a capital letter.",
+      },
+      {
+        word: "Sentence",
+        ipa: "/ˈsɛntəns/",
+        kreyol: "Fraz",
+        example: "Every sentence starts with a capital.",
+      },
+      {
+        word: "Proper noun",
+        ipa: "/ˈprɒpər naʊn/",
+        kreyol: "Non pwòp (moun, vil, mwa...)",
+        example: "Maria and January are proper nouns.",
+      },
+      {
+        word: "Lowercase",
+        ipa: "/ˈloʊərkeɪs/",
+        kreyol: "Lèt miniskil",
+        example: "Most words stay lowercase.",
+      },
+      {
+        word: "Rule",
+        ipa: "/ruːl/",
+        kreyol: "Règ",
+        example: "This is an easy rule to remember.",
+      },
+    ],
+    pronunciationWord: "Capital",
+    pronunciationIpa: "/ˈkæpɪtəl/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou premye — “KAP-i-tuhl”.",
+    pronunciationMistake:
+      "**Erè komen:** pa ekri “i” an miniskil lè li reprezante ou menm — se toujou “I” an majiskil an Anglè, menm nan mitan yon fraz.",
+    mistakeWrong: "i am learning english.",
+    mistakeCorrect: "I am learning English.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, “I” (mwen) toujou ekri an majiskil, kèlkeswa kote li ye nan fraz la. Non lang tankou “English” tou toujou majiskil.",
+    practice: {
+      prompt: "Ki fraz ki ekri kòrèkteman?",
+      options: [
+        "i live in miami.",
+        "I live in Miami.",
+        "I live in miami.",
+        "i Live in Miami.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! “I” ak “Miami” toude majiskil.",
+      wrongFeedback: "❌ Eseye ankò — gade “I” ak non vil la.",
+    },
+    thinkEmoji: "🔠",
+    thinkPrompt:
+      "Ekri yon fraz ak non ou ak mwa nesans ou, ak lèt majiskil kòrèk:",
+    thinkPlaceholder: "My name is... My birthday is in...",
+    aiPrompt:
+      "Hi! Can you give me a few sentences with capitalization mistakes and let me practice fixing them?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike lèt majiskil.",
+    missionTask:
+      "🎯 Jodi a, ekri twa fraz sou tèt ou ak lèt majiskil kòrèk pou chak.",
+    recap: [
+      { emoji: "🔠", text: '"I" toujou majiskil.' },
+      { emoji: "📅", text: "Mwa ak jou nan semèn nan toujou majiskil." },
+      { emoji: "👤", text: "Non moun ak vil toujou majiskil." },
+      { emoji: "🎯", text: "Misyon: ekri twa fraz ak lèt majiskil kòrèk." },
+    ],
+  },
+  {
+    slug: "punctuation-basics",
+    moduleTitle: "Modil 16: Baz Ekriti",
+    illustrationKey: "emoji",
+    heroEmoji: "❓",
+    heroTitle: "Baz Ponktyasyon",
+    heroLede: "Kat siy ponktyasyon debaz chanje jan yon fraz li ak konprann.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize pwen, virgil, pwen entèwogasyon, ak apostwòf kòrèkteman.",
+    whatYouWillLearn:
+      "kijan pou itilize pwen, virgil, pwen entèwogasyon, ak apostwòf",
+    prerequisite: "Leson 1 — Lèt Majiskil (Capitalization)",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading: "Chak siy ponktyasyon gen yon travay presi.",
+    understandBody:
+      "**I work every day.** (pwen fèmen yon fraz) **What time is it?** (pwen entèwogasyon mande yon kesyon) **I like coffee, tea, and juice.** (virgil separe yon lis)",
+    seeItInAction: [
+      { line: "I work every day.", tag: "Pwen (.)", emoji: "🔵" },
+      { line: "What time is it?", tag: "Pwen entèwogasyon (?)", emoji: "❓" },
+      {
+        line: "I like coffee, tea, and juice.",
+        tag: "Virgil (,)",
+        emoji: "〰️",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak siy pou wè yon egzanp.",
+    patternBuilderOptions: [
+      { chipLabel: "Period", display: "I work every day." },
+      { chipLabel: "Question mark", display: "What time is it?" },
+      { chipLabel: "Comma", display: "I like coffee, tea, and juice." },
+    ],
+    vocabulary: [
+      {
+        word: "Period",
+        ipa: "/ˈpɪəriəd/",
+        kreyol: "Pwen",
+        example: "End the sentence with a period.",
+      },
+      {
+        word: "Comma",
+        ipa: "/ˈkɒmə/",
+        kreyol: "Virgil",
+        example: "Use a comma in a list.",
+      },
+      {
+        word: "Question mark",
+        ipa: "/ˈkwɛstʃən mɑːrk/",
+        kreyol: "Pwen entèwogasyon",
+        example: "Add a question mark.",
+      },
+      {
+        word: "Apostrophe",
+        ipa: "/əˈpɒstrəfi/",
+        kreyol: "Apostwòf",
+        example: '"Don\'t" needs an apostrophe.',
+      },
+      {
+        word: "Punctuation",
+        ipa: "/ˌpʌŋktʃuˈeɪʃən/",
+        kreyol: "Ponktyasyon",
+        example: "Punctuation changes meaning.",
+      },
+    ],
+    pronunciationWord: "Punctuation",
+    pronunciationIpa: "/ˌpʌŋktʃuˈeɪʃən/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou “EY” — “punk-choo-EY-shuhn”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye apostwòf la nan kontraksyon tankou “don't”, “it's”, ak “I'm” — san li, mo a ka chanje sans.",
+    mistakeWrong: "Its raining. (san apostwòf, sans lan chanje)",
+    mistakeCorrect: "It's raining.",
+    mistakeWhy:
+      "**Poukisa:** “Its” (san apostwòf) montre posesyon (“its color”), pandan “It's” (ak apostwòf) vle di “It is”. Yo son menm men gen de sans diferan.",
+    practice: {
+      prompt: "Ki fraz ki ekri kòrèkteman?",
+      options: [
+        "Its raining today",
+        "It's raining today.",
+        "Its raining today.",
+        "It's raining today",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Apostwòf la ak pwen an toude nesesè.",
+      wrongFeedback: "❌ Eseye ankò — chèche ni apostwòf ni pwen fen fraz la.",
+    },
+    thinkEmoji: "❓",
+    thinkPrompt: "Ekri yon fraz ak yon lis (itilize omwen de virgil):",
+    thinkPlaceholder: "I like..., ..., and...",
+    aiPrompt:
+      "Hi! Can you give me a few sentences missing punctuation and let me practice adding periods, commas, question marks, and apostrophes?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike ponktyasyon.",
+    missionTask:
+      "🎯 Jodi a, ekri twa fraz: youn ak pwen, youn ak pwen entèwogasyon, youn ak virgil.",
+    recap: [
+      { emoji: "🔵", text: "Pwen (.) fèmen yon fraz." },
+      { emoji: "❓", text: "Pwen entèwogasyon (?) mande yon kesyon." },
+      { emoji: "〰️", text: "Virgil (,) separe yon lis." },
+      { emoji: "🎯", text: "Misyon: ekri twa fraz ak ponktyasyon kòrèk." },
+    ],
+  },
+  {
+    slug: "paragraph-structure",
+    moduleTitle: "Modil 16: Baz Ekriti",
+    illustrationKey: "emoji",
+    heroEmoji: "📝",
+    heroTitle: "Estrikti Paragraf",
+    heroLede:
+      "Yon bon paragraf gen yon sèl ide prensipal, plis detay ki soutni li.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab òganize yon ti paragraf kout ak klè.",
+    whatYouWillLearn: "kijan pou òganize yon paragraf kout ak yon sèl ide klè",
+    prerequisite: "Leson 2 — Baz Ponktyasyon",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 4 min lekti",
+    completionTime: "✅ ~7 min pou konplete",
+    understandHeading:
+      "Yon bon paragraf gen yon sèl ide prensipal, plis detay ki soutni li.",
+    understandBody:
+      "**I love my job.** (ide prensipal) **I work with kind people.** (detay 1) **I also learn something new every day.** (detay 2) Twa fraz sa yo fè yon ti paragraf klè.",
+    seeItInAction: [
+      { line: "I love my job.", tag: "Ide prensipal", emoji: "💡" },
+      { line: "I work with kind people.", tag: "Detay 1", emoji: "1️⃣" },
+      {
+        line: "I also learn something new every day.",
+        tag: "Detay 2",
+        emoji: "2️⃣",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati pou wè wòl li nan paragraf la.",
+    patternBuilderOptions: [
+      { chipLabel: "Main idea", display: "I love my job." },
+      { chipLabel: "Detail 1", display: "I work with kind people." },
+      {
+        chipLabel: "Detail 2",
+        display: "I also learn something new every day.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Paragraph",
+        ipa: "/ˈpærəgræf/",
+        kreyol: "Paragraf",
+        example: "Write one short paragraph.",
+      },
+      {
+        word: "Main idea",
+        ipa: "/meɪn aɪˈdiːə/",
+        kreyol: "Ide prensipal",
+        example: "What's the main idea?",
+      },
+      {
+        word: "Detail",
+        ipa: "/ˈdiːteɪl/",
+        kreyol: "Detay",
+        example: "Add one supporting detail.",
+      },
+      {
+        word: "Also",
+        ipa: "/ˈɔːlsoʊ/",
+        kreyol: "Osi/Tou",
+        example: "I also learn every day.",
+      },
+      {
+        word: "Support",
+        ipa: "/səˈpɔːrt/",
+        kreyol: "Soutni",
+        example: "This detail supports the main idea.",
+      },
+    ],
+    pronunciationWord: "Paragraph",
+    pronunciationIpa: "/ˈpærəgræf/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou premye — “PA-ruh-graf”.",
+    pronunciationMistake:
+      "**Erè komen:** pa melanje plizyè ide prensipal diferan nan menm ti paragraf — rete sou YON sèl ide, ak detay ki soutni li.",
+    mistakeWrong: "I love my job. My sister lives in Boston. I like pizza.",
+    mistakeCorrect:
+      "I love my job. I work with kind people, and I learn every day.",
+    mistakeWhy:
+      "**Poukisa:** Yon paragraf klè rete sou yon sèl sijè. Melanje plizyè ide ki pa gen rapò fè li difisil pou lekti a swiv panse ou.",
+    practice: {
+      prompt: "Ki fraz ki PA soutni ide “I love my job”?",
+      options: [
+        "I work with kind people.",
+        "I also learn something new every day.",
+        "My sister lives in Boston.",
+        "I enjoy going to work.",
+      ],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Fraz sa a pa gen rapò ak travay la.",
+      wrongFeedback: "❌ Eseye ankò — chèche fraz ki soti nan sijè a.",
+    },
+    thinkEmoji: "📝",
+    thinkPrompt:
+      "Ekri yon ti paragraf twa fraz: yon ide prensipal ak de detay ki soutni li:",
+    thinkPlaceholder: "I love... I... I also...",
+    aiPrompt:
+      "Hi! Can you give me a main idea sentence and help me write two supporting details to make a short paragraph?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike estrikti paragraf.",
+    missionTask:
+      "🎯 Jodi a, ekri yon ti paragraf twa fraz sou yon bagay ou renmen.",
+    recap: [
+      { emoji: "💡", text: "Yon paragraf gen yon sèl ide prensipal." },
+      { emoji: "1️⃣", text: "Detay yo soutni ide prensipal la." },
+      { emoji: "⚠️", text: "Pa melanje plizyè sijè nan menm ti paragraf." },
+      { emoji: "🎯", text: "Misyon: ekri yon ti paragraf twa fraz." },
+    ],
+  },
+  {
+    slug: "writing-mission",
+    moduleTitle: "Modil 16: Baz Ekriti",
+    illustrationKey: "emoji",
+    heroEmoji: "✉️",
+    heroTitle: "Ekri Klè",
+    heroLede:
+      "Se lè a pou konbine lèt majiskil, ponktyasyon, ak estrikti paragraf nan yon vrè imèl.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab ekri yon ti imèl kout ki byen òganize.",
+    whatYouWillLearn:
+      "kijan pou konbine tout règ ekriti Modil 16 nan yon imèl kout",
+    prerequisite: "Leson 3 — Estrikti Paragraf",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon imèl travay byen ekri konbine tout sa ou aprann nan Modil 16.",
+    understandBody:
+      "**Dear Mr. Lopez, I am writing to apply for the job. I have two years of experience, and I am ready to start soon. Best regards, Maria.** Sa a se yon egzanp imèl kout, byen òganize.",
+    seeItInAction: [
+      { line: "Dear Mr. Lopez,", tag: "Majiskil + Virgil", emoji: "🔠" },
+      {
+        line: "I am writing to apply for the job.",
+        tag: "Ide prensipal",
+        emoji: "💡",
+      },
+      {
+        line: "I have two years of experience, and I am ready to start soon.",
+        tag: "Detay",
+        emoji: "1️⃣",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati pou wè wòl li nan imèl la.",
+    patternBuilderOptions: [
+      { chipLabel: "Greeting", display: "Dear Mr. Lopez," },
+      { chipLabel: "Main idea", display: "I am writing to apply for the job." },
+      {
+        chipLabel: "Detail",
+        display:
+          "I have two years of experience, and I am ready to start soon.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Apply",
+        ipa: "/əˈplaɪ/",
+        kreyol: "Aplike",
+        example: "I am writing to apply for the job.",
+      },
+      {
+        word: "Clear",
+        ipa: "/klɪər/",
+        kreyol: "Klè",
+        example: "Write in a clear way.",
+      },
+      {
+        word: "Organized",
+        ipa: "/ˈɔːrgənaɪzd/",
+        kreyol: "Byen òganize",
+        example: "This email is organized.",
+      },
+      {
+        word: "Draft",
+        ipa: "/dræft/",
+        kreyol: "Bwouyon",
+        example: "This is my first draft.",
+      },
+      {
+        word: "Proofread",
+        ipa: "/ˈpruːfriːd/",
+        kreyol: "Relire pou korije",
+        example: "Always proofread your email.",
+      },
+    ],
+    pronunciationWord: "Organized",
+    pronunciationIpa: "/ˈɔːrgənaɪzd/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou premye — “OR-guh-naizd”.",
+    pronunciationMistake:
+      "**Erè komen:** pa voye yon imèl san w pa relise l — ti erè lèt majiskil oswa ponktyasyon fè yon imèl travay son mwens pwofesyonèl.",
+    mistakeWrong: "dear mr lopez i am writing to apply for the job",
+    mistakeCorrect: "Dear Mr. Lopez, I am writing to apply for the job.",
+    mistakeWhy:
+      "**Poukisa:** San lèt majiskil ak ponktyasyon, yon imèl pwofesyonèl vin difisil pou li e li son mwens serye. Toujou relise anvan w voye.",
+    practice: {
+      prompt: "Ki vèsyon ki byen ekri pou kòmanse yon imèl travay?",
+      options: [
+        "dear mr lopez i am writing to apply",
+        "Dear Mr. Lopez, I am writing to apply for the job.",
+        "DEAR MR LOPEZ I AM WRITING TO APPLY",
+        "dear Mr. Lopez i am Writing to apply",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Majiskil ak ponktyasyon kòrèk toupatou.",
+      wrongFeedback: "❌ Eseye ankò — gade majiskil ak ponktyasyon yo byen.",
+    },
+    thinkEmoji: "✉️",
+    thinkPrompt:
+      "Ekri twa fraz yon imèl kout pou aplike pou yon djòb, ak majiskil ak ponktyasyon kòrèk:",
+    thinkPlaceholder: "Dear..., I am writing to...",
+    aiPrompt:
+      "Hi! Can you check a short job application email I write for capitalization, punctuation, and clear paragraph structure?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike ekri yon imèl klè.",
+    missionTask:
+      "🎯 Jodi a, ekri yon ti imèl twa fraz (salitasyon, ide prensipal, detay) ak majiskil ak ponktyasyon kòrèk.",
+    recap: [
+      { emoji: "🔠", text: "Konbine majiskil, ponktyasyon, ak estrikti." },
+      { emoji: "✉️", text: "Dear Mr./Ms. [Non], ..." },
+      { emoji: "🎓", text: "Ou fini Modil 16 — Baz Ekriti!" },
+      { emoji: "🎯", text: "Misyon: ekri yon ti imèl klè." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
