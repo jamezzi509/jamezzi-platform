@@ -32,9 +32,9 @@ export function EnglishLevelOnePage() {
           </div>
           <div className="border-border border-y py-6">
             <p className="text-body text-ink">
-              By the end of this level, you can greet someone, introduce
-              yourself, use essential polite words, and take part in a short
-              first conversation.
+              Start with greetings and your first sentences, then build toward
+              describing yourself, your things, and your daily life — new
+              modules open here as they&rsquo;re built.
             </p>
             <Link
               href="/academy/courses/english-for-beginners/placement"

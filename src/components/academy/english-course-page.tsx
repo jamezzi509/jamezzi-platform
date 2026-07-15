@@ -1,7 +1,10 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { englishLevels } from "@/content/english-course";
+import { englishModules } from "@/content/english-course";
+import { englishLevelOneLessons } from "@/content/english-level-one";
+import { cn } from "@/lib/cn";
 
 export function EnglishCoursePage() {
   return (
@@ -36,7 +39,7 @@ export function EnglishCoursePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <CtaLink href="/academy/courses/english-for-beginners/level-1">
-                Start Level 1 <ArrowRightIcon className="size-4" />
+                Start Learning <ArrowRightIcon className="size-4" />
               </CtaLink>
               <CtaLink href="#course-path" variant="secondary">
                 See the Course Path
@@ -56,43 +59,49 @@ export function EnglishCoursePage() {
             <h2 className="text-editorial-headline text-ink mt-4">
               Start simple. Build toward real confidence.
             </h2>
+            <p className="text-body text-muted mt-4 max-w-2xl">
+              18 modules, built one at a time. Modules with lessons ready are
+              open now — the rest are coming soon.
+            </p>
           </div>
 
           <div className="border-border mt-12 grid border-t lg:grid-cols-2">
-            {englishLevels.map((level) => (
-              <article
-                id={level.number === 1 ? "level-1" : undefined}
-                key={level.number}
-                className="border-border scroll-mt-28 border-b py-9 lg:px-8 lg:odd:border-r lg:odd:pl-0 lg:even:pr-0"
-              >
-                <p className="text-eyebrow text-indigo-dark">
-                  LEVEL {level.number}
-                </p>
-                <h3 className="text-feature-headline-sm text-ink mt-4">
-                  {level.title}
-                </h3>
-                <p className="text-body text-muted mt-3">{level.promise}</p>
-                <ul className="mt-6 flex flex-wrap gap-2">
-                  {level.topics.map((topic) => (
-                    <li
-                      key={topic}
-                      className="border-border text-metadata text-ink bg-paper rounded-full border px-3 py-2"
+            {englishModules.map((module) => {
+              const firstLesson = englishLevelOneLessons.find(
+                (lesson) => lesson.moduleNumber === module.number,
+              );
+              const available = Boolean(firstLesson);
+
+              return (
+                <article
+                  key={module.number}
+                  className={cn(
+                    "border-border scroll-mt-28 border-b py-9 lg:px-8 lg:odd:border-r lg:odd:pl-0 lg:even:pr-0",
+                    !available && "opacity-60",
+                  )}
+                >
+                  <p className="text-eyebrow text-indigo-dark">
+                    MODULE {module.number}
+                  </p>
+                  <h3 className="text-feature-headline-sm text-ink mt-4">
+                    {module.title}
+                  </h3>
+                  <p className="text-body text-muted mt-3">{module.promise}</p>
+                  {available && firstLesson ? (
+                    <CtaLink
+                      href={`/academy/courses/english-for-beginners/level-1/${firstLesson.slug}`}
+                      variant="link"
+                      className="mt-7"
                     >
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-                {level.number === 1 && (
-                  <CtaLink
-                    href="/academy/courses/english-for-beginners/level-1"
-                    variant="link"
-                    className="mt-7"
-                  >
-                    Open Level 1 <ArrowRightIcon className="size-4" />
-                  </CtaLink>
-                )}
-              </article>
-            ))}
+                      Open Module {module.number}{" "}
+                      <ArrowRightIcon className="size-4" />
+                    </CtaLink>
+                  ) : (
+                    <p className="text-metadata text-muted mt-7">Coming soon</p>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </Container>
       </section>
@@ -164,4 +173,3 @@ function AccessRow({
     </article>
   );
 }
-import Image from "next/image";
