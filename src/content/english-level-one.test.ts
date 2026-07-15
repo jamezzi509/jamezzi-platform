@@ -22,6 +22,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleThreeLessons[0]?.slug).toBe("have-and-has");
     expect(moduleThreeLessons.at(-1)?.slug).toBe("have-mission");
+
+    const moduleFourLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 4,
+    );
+    expect(moduleFourLessons[0]?.slug).toBe("days-of-the-week");
+    expect(moduleFourLessons.at(-1)?.slug).toBe("daily-life-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {

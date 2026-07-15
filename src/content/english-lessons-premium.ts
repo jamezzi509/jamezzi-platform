@@ -3190,6 +3190,822 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: ekri yon ti paragraf sou sa ou genyen." },
     ],
   },
+  {
+    slug: "days-of-the-week",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "📅",
+    heroTitle: "Jou Nan Semèn Nan",
+    heroLede:
+      "Chak jou gen yon non an Anglè — konnen yo ede w pale de plan ou, orè travay ou, ak lavi chak jou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen tout 7 jou nan semèn nan ak kijan pou pale de yo.",
+    whatYouWillLearn: "non 7 jou yo, ak kijan pou pale de sa ou fè chak jou",
+    prerequisite: "Ou fin Modil 3 — Vèb Pisan #2 (To Have)",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Semèn Anglè a souvan kòmanse ak Sunday, pa Monday.",
+    understandBody:
+      "Nan anpil kalandriye Anglè, semèn nan kòmanse ak **Sunday**, kontrèman ak kalandriye ou konn itilize. Konnen lòd la ede w konprann orè ak plan pi byen.",
+    seeItInAction: [
+      { line: "Today is Monday.", tag: "Jodi a", emoji: "📅" },
+      { line: "I work from Monday to Friday.", tag: "Orè travay", emoji: "💼" },
+      {
+        line: "Saturday and Sunday are my days off.",
+        tag: "Wikenn",
+        emoji: "🎉",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak jou pou wè li nan yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Monday", display: "Today is Monday." },
+      { chipLabel: "Friday", display: "I work until Friday." },
+      { chipLabel: "Sunday", display: "Sunday is a day off." },
+    ],
+    vocabulary: [
+      {
+        word: "Monday",
+        ipa: "/ˈmʌndeɪ/",
+        kreyol: "Lendi",
+        example: "Today is Monday.",
+      },
+      {
+        word: "Friday",
+        ipa: "/ˈfraɪdeɪ/",
+        kreyol: "Vandredi",
+        example: "I work until Friday.",
+      },
+      {
+        word: "Saturday",
+        ipa: "/ˈsætərdeɪ/",
+        kreyol: "Samdi",
+        example: "Saturday is a day off.",
+      },
+      {
+        word: "Sunday",
+        ipa: "/ˈsʌndeɪ/",
+        kreyol: "Dimanch",
+        example: "Sunday is a day off.",
+      },
+      {
+        word: "Weekend",
+        ipa: "/ˈwiːkɛnd/",
+        kreyol: "Wikenn",
+        example: "I rest on the weekend.",
+      },
+    ],
+    pronunciationWord: "Wednesday",
+    pronunciationIpa: "/ˈwɛnzdeɪ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** pa pwononse “d” nan mitan an — “WENZ-day”, pa “wed-nes-day”.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize “in” devan yon jou — itilize “on”.",
+    mistakeWrong: "I work in Monday.",
+    mistakeCorrect: "I work on Monday.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, ou itilize “on” devan yon jou presi (on Monday), “in” devan yon mwa oswa yon sezon (in July).",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I work in Monday.",
+        "I work on Monday.",
+        "I work at Monday.",
+        "I work Monday on.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ki ti mo ki mache ak yon jou?",
+    },
+    thinkEmoji: "📅",
+    thinkPrompt: "Ekri yon fraz sou sa ou fè yon jou espesifik nan semèn nan:",
+    thinkPlaceholder: "On Monday, I...",
+    aiPrompt:
+      "Hi! Can you ask me what I do on different days of the week, and help me answer using 'on' correctly?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike jou yo.",
+    missionTask:
+      "🎯 Jodi a, di ki jou ou ye jodi a, epi yon bagay ou fè jou sa a.",
+    recap: [
+      {
+        emoji: "📅",
+        text: "7 jou: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday.",
+      },
+      { emoji: "🔑", text: "Itilize “on” devan yon jou: on Monday." },
+      { emoji: "🎉", text: "Saturday ak Sunday se souvan wikenn nan." },
+      { emoji: "🎯", text: "Misyon: di ki jou ou ye jodi a." },
+    ],
+  },
+  {
+    slug: "my-daily-routine",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🌅",
+    heroTitle: "Woutin Chak Jou Mwen",
+    heroLede:
+      "Aprann vèb ki dekri sa ou fè chak jou, soti nan maten rive nan aswè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab rakonte woutin chak jou ou ak vèb senp.",
+    whatYouWillLearn: "vèb pou dekri woutin chak jou, ak moman jounen an",
+    prerequisite: "Leson 1 — Jou Nan Semèn Nan",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Woutin ou se yon istwa senp ki repete chak jou.",
+    understandBody:
+      "**I wake up at 6. I eat breakfast. I go to work.** Chak vèb sa yo se yon etap nan jounen w. Ansanm, yo rakonte istwa jounen ou, soti nan maten rive nan aswè.",
+    seeItInAction: [
+      { line: "I wake up early in the morning.", tag: "Maten", emoji: "🌅" },
+      { line: "I eat lunch in the afternoon.", tag: "Aprèmidi", emoji: "🍽️" },
+      { line: "I go to sleep at night.", tag: "Aswè", emoji: "🌙" },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè yon fraz woutin.",
+    patternBuilderOptions: [
+      { chipLabel: "Morning", display: "I wake up in the morning." },
+      { chipLabel: "Afternoon", display: "I eat lunch in the afternoon." },
+      { chipLabel: "Night", display: "I go to sleep at night." },
+    ],
+    vocabulary: [
+      {
+        word: "Wake up",
+        ipa: "/weɪk ʌp/",
+        kreyol: "Reveye",
+        example: "I wake up at 6.",
+      },
+      {
+        word: "Breakfast",
+        ipa: "/ˈbrɛkfəst/",
+        kreyol: "Manje maten",
+        example: "I eat breakfast.",
+      },
+      {
+        word: "Work",
+        ipa: "/wɜːrk/",
+        kreyol: "Travay",
+        example: "I go to work.",
+      },
+      {
+        word: "Afternoon",
+        ipa: "/ˌæftərˈnuːn/",
+        kreyol: "Aprèmidi",
+        example: "I eat lunch in the afternoon.",
+      },
+      {
+        word: "Night",
+        ipa: "/naɪt/",
+        kreyol: "Aswè/Lannwit",
+        example: "I go to sleep at night.",
+      },
+    ],
+    pronunciationWord: "Breakfast",
+    pronunciationIpa: "/ˈbrɛkfəst/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, “BREK-fust” — pa pwononse “ea” tankou nan “eat”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “in the night” — itilize “at night”.",
+    mistakeWrong: "I sleep in the night.",
+    mistakeCorrect: "I sleep at night.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, ou itilize “in the” pou morning/afternoon/evening, men “at” pou “night” — se yon eksepsyon pou memorize.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I sleep in the night.",
+        "I sleep at night.",
+        "I sleep on night.",
+        "I sleep the night.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “night” se yon eksepsyon.",
+    },
+    thinkEmoji: "🌅",
+    thinkPrompt: "Ekri twa fraz sou woutin ou: maten, aprèmidi, aswè:",
+    thinkPlaceholder:
+      "In the morning, I... In the afternoon, I... At night, I...",
+    aiPrompt:
+      "Hi! Can you ask me what I do in the morning, afternoon, and at night, and help me answer with simple routine verbs?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike woutin ou.",
+    missionTask:
+      "🎯 Jodi a, rakonte woutin ou pou yon jounen, ak omwen twa etap (maten, aprèmidi, aswè).",
+    recap: [
+      { emoji: "🌅", text: "Wake up, eat breakfast, go to work, sleep." },
+      {
+        emoji: "🔑",
+        text: "“In the” morning/afternoon/evening, men “at” night.",
+      },
+      { emoji: "📖", text: "Woutin ou se yon ti istwa chak jou." },
+      { emoji: "🎯", text: "Misyon: rakonte woutin ou pou yon jounen." },
+    ],
+  },
+  {
+    slug: "around-the-house",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🏠",
+    heroTitle: "Nan Kay La",
+    heroLede:
+      "Chak chanm nan kay la gen yon aktivite ki mache ak li — konnen non yo ede w dekri kay ou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab non chanm nan yon kay ak sa ou fè nan chak youn.",
+    whatYouWillLearn: "non chanm yo nan yon kay, ak aktivite ki mache ak yo",
+    prerequisite: "Leson 2 — Woutin Chak Jou Mwen",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Chak chanm nan kay la gen yon aktivite ki mache ak li.",
+    understandBody:
+      "**I cook in the kitchen. I sleep in the bedroom.** Konnen non chanm yo ede w dekri kay ou ak sa ou fè nan chak kote.",
+    seeItInAction: [
+      { line: "I cook in the kitchen.", tag: "Kizin", emoji: "🍳" },
+      { line: "I sleep in the bedroom.", tag: "Chanm dòmi", emoji: "🛏️" },
+      { line: "I watch TV in the living room.", tag: "Salon", emoji: "📺" },
+    ],
+    patternBuilderIntro: "Klike sou chak chanm pou wè aktivite ki mache ak li.",
+    patternBuilderOptions: [
+      { chipLabel: "Kitchen", display: "I cook in the kitchen." },
+      { chipLabel: "Bedroom", display: "I sleep in the bedroom." },
+      { chipLabel: "Living room", display: "I watch TV in the living room." },
+    ],
+    vocabulary: [
+      {
+        word: "Kitchen",
+        ipa: "/ˈkɪtʃən/",
+        kreyol: "Kizin",
+        example: "I cook in the kitchen.",
+      },
+      {
+        word: "Bedroom",
+        ipa: "/ˈbɛdruːm/",
+        kreyol: "Chanm dòmi",
+        example: "I sleep in the bedroom.",
+      },
+      {
+        word: "Bathroom",
+        ipa: "/ˈbæθruːm/",
+        kreyol: "Twalèt",
+        example: "I take a shower in the bathroom.",
+      },
+      {
+        word: "Living room",
+        ipa: "/ˈlɪvɪŋ ruːm/",
+        kreyol: "Salon",
+        example: "We watch TV in the living room.",
+      },
+      {
+        word: "Yard",
+        ipa: "/jɑːrd/",
+        kreyol: "Lakou",
+        example: "The kids play in the yard.",
+      },
+    ],
+    pronunciationWord: "Kitchen",
+    pronunciationIpa: "/ˈkɪtʃən/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “KIT-chuhn”.",
+    pronunciationMistake: "**Erè komen:** pa bliye “the” devan non chanm nan.",
+    mistakeWrong: "I cook in kitchen.",
+    mistakeCorrect: "I cook in the kitchen.",
+    mistakeWhy:
+      "**Poukisa:** Lè w ap pale de yon chanm presi nan kay ou, ou bezwen “the” devan non li.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I sleep in bedroom.",
+        "I sleep in the bedroom.",
+        "I sleep the bedroom.",
+        "I sleep on bedroom.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — manke “the”.",
+    },
+    thinkEmoji: "🏠",
+    thinkPrompt: "Dekri yon chanm nan kay ou ak sa ou fè ladan l:",
+    thinkPlaceholder: "In my..., I...",
+    aiPrompt:
+      "Hi! Can you ask me what I do in different rooms of my house, and help me answer using 'in the'?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike pale de kay ou.",
+    missionTask:
+      "🎯 Jodi a, non twa chanm nan kay ou epi di sa ou fè nan chak youn.",
+    recap: [
+      { emoji: "🏠", text: "Kitchen, bedroom, bathroom, living room, yard." },
+      { emoji: "🔑", text: "Toujou mete “the” devan non chanm nan." },
+      { emoji: "🍳", text: "Chak chanm gen yon aktivite ki mache ak li." },
+      { emoji: "🎯", text: "Misyon: dekri twa chanm nan kay ou." },
+    ],
+  },
+  {
+    slug: "things-in-the-house",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🛋️",
+    heroTitle: "Bagay Nan Kay La",
+    heroLede:
+      "Chak chanm gen bagay presi ladan l. Itilize “There is” ak “There are” pou dekri yo.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab dekri sa ki nan yon chanm ak “There is”/“There are”.",
+    whatYouWillLearn:
+      "kijan pou itilize “There is”/“There are”, ak non bagay nan kay la",
+    prerequisite: "Leson 3 — Nan Kay La",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“There is” pou yon sèl bagay, “There are” pou plizyè.",
+    understandBody:
+      "**There is a bed in my bedroom.** **There are two chairs in my kitchen.** Itilize “There is” lè gen yon sèl bagay, “There are” lè gen plizyè.",
+    seeItInAction: [
+      { line: "There is a bed in my room.", tag: "Yon sèl bagay", emoji: "🛏️" },
+      {
+        line: "There are two chairs in the kitchen.",
+        tag: "Plizyè bagay",
+        emoji: "🪑",
+      },
+      {
+        line: "There is a refrigerator in the kitchen.",
+        tag: "Aparèy",
+        emoji: "🧊",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak bagay pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Bed (1)", display: "There is a bed." },
+      { chipLabel: "Chairs (2)", display: "There are two chairs." },
+      { chipLabel: "Refrigerator (1)", display: "There is a refrigerator." },
+    ],
+    vocabulary: [
+      {
+        word: "Bed",
+        ipa: "/bɛd/",
+        kreyol: "Kabann",
+        example: "There is a bed in my room.",
+      },
+      {
+        word: "Table",
+        ipa: "/ˈteɪbəl/",
+        kreyol: "Tab",
+        example: "There is a table in the kitchen.",
+      },
+      {
+        word: "Chair",
+        ipa: "/tʃɛər/",
+        kreyol: "Chèz",
+        example: "There are two chairs.",
+      },
+      {
+        word: "Refrigerator",
+        ipa: "/rɪˈfrɪdʒəreɪtər/",
+        kreyol: "Frijidè",
+        example: "There is a refrigerator.",
+      },
+      {
+        word: "Sofa",
+        ipa: "/ˈsoʊfə/",
+        kreyol: "Kanape",
+        example: "There is a sofa in the living room.",
+      },
+    ],
+    pronunciationWord: "Refrigerator",
+    pronunciationIpa: "/rɪˈfrɪdʒəreɪtər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** mo long, li pi fasil di “fridge” nan konvèsasyon.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “There is two chairs” — pou plizyè bagay, itilize “There are”.",
+    mistakeWrong: "There is two chairs.",
+    mistakeCorrect: "There are two chairs.",
+    mistakeWhy:
+      "**Poukisa:** “There is” se pou yon sèl bagay. Lè gen plizyè (two chairs), ou bezwen “There are”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "There is two chairs.",
+        "There are two chairs.",
+        "There a two chairs.",
+        "There am two chairs.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “two chairs” se plizyè.",
+    },
+    thinkEmoji: "🛋️",
+    thinkPrompt:
+      "Dekri twa bagay nan yon chanm nan kay ou, ak “There is”/“There are”:",
+    thinkPlaceholder: "There is... There are...",
+    aiPrompt:
+      "Hi! Can you ask me what's in my kitchen or bedroom, and help me answer using 'There is' or 'There are'?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike dekri bagay nan kay ou.",
+    missionTask:
+      "🎯 Jodi a, dekri twa bagay ki nan yon chanm lakay ou, ak “There is”/“There are”.",
+    recap: [
+      { emoji: "🛏️", text: "“There is” pou yon sèl bagay." },
+      { emoji: "🪑", text: "“There are” pou plizyè bagay." },
+      { emoji: "🧊", text: "Bed, table, chair, refrigerator, sofa." },
+      { emoji: "🎯", text: "Misyon: dekri twa bagay nan yon chanm." },
+    ],
+  },
+  {
+    slug: "my-family-vocabulary",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "👵",
+    heroTitle: "Fanmi Elaji Mwen",
+    heroLede:
+      "Fanmi ou pi laj pase paran ak frè/sè ou. Ann ale pi lwen ak grandparents, aunt, uncle, ak lòt.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab non manm fanmi elaji w yo.",
+    whatYouWillLearn: "vokabilè fanmi elaji: granparan, matant, tonton, neve",
+    prerequisite: "Leson 4 — Bagay Nan Kay La",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Fanmi ou pi laj pase sèlman paran ak frè/sè.",
+    understandBody:
+      "Ou deja aprann **brother**, **sister**, ak **parents** nan Modil 2. Kounye a, ann ale pi lwen: **grandparents, aunt, uncle, niece, nephew**.",
+    seeItInAction: [
+      { line: "My grandmother lives with us.", tag: "Granparan", emoji: "👵" },
+      { line: "I have an aunt in Miami.", tag: "Matant", emoji: "👩" },
+      { line: "My nephew is five years old.", tag: "Neve", emoji: "👶" },
+    ],
+    patternBuilderIntro: "Klike sou chak manm fanmi pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Grandmother", display: "My grandmother lives with us." },
+      { chipLabel: "Aunt", display: "I have an aunt in Miami." },
+      { chipLabel: "Nephew", display: "My nephew is five years old." },
+    ],
+    vocabulary: [
+      {
+        word: "Grandmother",
+        ipa: "/ˈgrænˌmʌðər/",
+        kreyol: "Grann",
+        example: "My grandmother lives with us.",
+      },
+      {
+        word: "Grandfather",
+        ipa: "/ˈgrænˌfɑːðər/",
+        kreyol: "Granpè",
+        example: "My grandfather is 80.",
+      },
+      {
+        word: "Aunt",
+        ipa: "/ænt/",
+        kreyol: "Matant",
+        example: "I have an aunt in Miami.",
+      },
+      {
+        word: "Uncle",
+        ipa: "/ˈʌŋkəl/",
+        kreyol: "Tonton",
+        example: "My uncle works far away.",
+      },
+      {
+        word: "Nephew",
+        ipa: "/ˈnɛfjuː/",
+        kreyol: "Neve",
+        example: "My nephew is five years old.",
+      },
+    ],
+    pronunciationWord: "Nephew",
+    pronunciationIpa: "/ˈnɛfjuː/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “NEF-yoo”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “niece” (fi) ak “nephew” (gason).",
+    mistakeWrong: "My niece is a boy.",
+    mistakeCorrect: "My nephew is a boy.",
+    mistakeWhy:
+      "**Poukisa:** “Niece” se pou yon fi, “nephew” se pou yon gason — de mo diferan selon sèks moun nan.",
+    practice: {
+      prompt: "Ki mo ki kòrèk pou yon matant?",
+      options: ["Uncle", "Aunt", "Grandmother", "Nephew"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — matant se yon fi.",
+    },
+    thinkEmoji: "👵",
+    thinkPrompt:
+      "Ekri sou yon manm fanmi elaji ou (matant, tonton, granparan):",
+    thinkPlaceholder: "My aunt/uncle/grandmother...",
+    aiPrompt:
+      "Hi! Can you ask me about my extended family — aunts, uncles, grandparents — and help me answer using the right vocabulary?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike vokabilè fanmi elaji.",
+    missionTask:
+      "🎯 Jodi a, non twa manm nan fanmi elaji w, ak yon ti detay sou chak.",
+    recap: [
+      { emoji: "👵", text: "Grandmother, grandfather — granparan." },
+      { emoji: "👩", text: "Aunt, uncle — matant, tonton." },
+      { emoji: "👶", text: "Niece (fi), nephew (gason)." },
+      { emoji: "🎯", text: "Misyon: non twa manm fanmi elaji w." },
+    ],
+  },
+  {
+    slug: "friends-and-neighbors",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🤝",
+    heroTitle: "Zanmi ak Vwazen",
+    heroLede:
+      "Pa tout moun ou konnen se fanmi — kèk se zanmi, vwazen, oswa kondisip.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab non moun ki toutotou w ki pa fanmi.",
+    whatYouWillLearn: "vokabilè pou zanmi, vwazen, ak kondisip",
+    prerequisite: "Leson 5 — Fanmi Elaji Mwen",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Zanmi, vwazen, ak kondisip se moun ki enpòtan tou.",
+    understandBody:
+      "**She is my best friend.** **He is my neighbor.** **We are classmates.** Menm jan ak fanmi, ou ka itilize “to be” pou prezante moun sa yo nan lavi w.",
+    seeItInAction: [
+      { line: "She is my best friend.", tag: "Pi bon zanmi", emoji: "🤝" },
+      { line: "He is my neighbor.", tag: "Vwazen", emoji: "🏠" },
+      { line: "We are classmates.", tag: "Kondisip", emoji: "🎓" },
+    ],
+    patternBuilderIntro: "Klike sou chak relasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Friend", display: "She is my best friend." },
+      { chipLabel: "Neighbor", display: "He is my neighbor." },
+      { chipLabel: "Classmate", display: "We are classmates." },
+    ],
+    vocabulary: [
+      {
+        word: "Friend",
+        ipa: "/frɛnd/",
+        kreyol: "Zanmi",
+        example: "She is my friend.",
+      },
+      {
+        word: "Best friend",
+        ipa: "/bɛst frɛnd/",
+        kreyol: "Pi bon zanmi",
+        example: "She is my best friend.",
+      },
+      {
+        word: "Neighbor",
+        ipa: "/ˈneɪbər/",
+        kreyol: "Vwazen",
+        example: "He is my neighbor.",
+      },
+      {
+        word: "Classmate",
+        ipa: "/ˈklæsmeɪt/",
+        kreyol: "Kondisip",
+        example: "We are classmates.",
+      },
+      {
+        word: "Roommate",
+        ipa: "/ˈruːmmeɪt/",
+        kreyol: "Moun k ap viv avè w",
+        example: "He is my roommate.",
+      },
+    ],
+    pronunciationWord: "Neighbor",
+    pronunciationIpa: "/ˈneɪbər/",
+    mouthTip: "**Ti konsèy pou bouch ou:** “gh” la pa pwononse — “NAY-bər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “friend” ak “boyfriend/girlfriend” — “friend” tou senp se yon zanmi.",
+    mistakeWrong: "He is my boyfriend.",
+    mistakeCorrect: "He is my friend.",
+    mistakeWhy:
+      "**Poukisa:** “Friend” se yon zanmi tou senp. “Boyfriend”/“girlfriend” gen yon sans romantik — pa itilize yo pou yon senp zanmi.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou yon moun ki abite bò kote w:",
+      options: [
+        "He is my classmate.",
+        "He is my neighbor.",
+        "He is my nephew.",
+        "He is my aunt.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ki mo ki vle di moun ki abite bò kote w?",
+    },
+    thinkEmoji: "🤝",
+    thinkPrompt: "Ekri sou yon zanmi oswa yon vwazen ou genyen:",
+    thinkPlaceholder: "My friend/neighbor...",
+    aiPrompt:
+      "Hi! Can you ask me about my friends, neighbors, and classmates, and help me answer using 'to be'?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike pale de zanmi ak vwazen.",
+    missionTask:
+      "🎯 Jodi a, prezante yon zanmi oswa yon vwazen ou genyen, ak “to be”.",
+    recap: [
+      {
+        emoji: "🤝",
+        text: "Friend, best friend, neighbor, classmate, roommate.",
+      },
+      { emoji: "⚠️", text: "“Friend” ≠ “boyfriend/girlfriend”." },
+      { emoji: "🔗", text: "Itilize “to be” pou prezante moun sa yo." },
+      { emoji: "🎯", text: "Misyon: prezante yon zanmi oswa vwazen." },
+    ],
+  },
+  {
+    slug: "pets-and-animals",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "🐕",
+    heroTitle: "Bèt Kay ak Bèt",
+    heroLede:
+      "Anpil moun genyen yon bèt kay ki fè pati fanmi yo. Aprann pale de yo ak “have”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de bèt kay ak “have”.",
+    whatYouWillLearn: "non bèt kay komen, ak kijan pou pale de yo",
+    prerequisite: "Leson 6 — Zanmi ak Vwazen",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Have” prezante bèt kay ou, tankou fanmi ou.",
+    understandBody:
+      "**I have a dog.** **My cat is very small.** Itilize “have” pou di ki bèt kay ou genyen, epi “to be” pou dekri li.",
+    seeItInAction: [
+      { line: "I have a dog.", tag: "Chen", emoji: "🐕" },
+      { line: "My cat is very small.", tag: "Chat", emoji: "🐈" },
+      { line: "Do you have any pets?", tag: "Kesyon", emoji: "❓" },
+    ],
+    patternBuilderIntro: "Klike sou chak bèt pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Dog", display: "I have a dog." },
+      { chipLabel: "Cat", display: "My cat is small." },
+      { chipLabel: "Bird", display: "She has a bird." },
+    ],
+    vocabulary: [
+      { word: "Dog", ipa: "/dɔːg/", kreyol: "Chen", example: "I have a dog." },
+      {
+        word: "Cat",
+        ipa: "/kæt/",
+        kreyol: "Chat",
+        example: "My cat is small.",
+      },
+      {
+        word: "Bird",
+        ipa: "/bɜːrd/",
+        kreyol: "Zwazo",
+        example: "She has a bird.",
+      },
+      {
+        word: "Fish",
+        ipa: "/fɪʃ/",
+        kreyol: "Pwason",
+        example: "We have two fish.",
+      },
+      {
+        word: "Pet",
+        ipa: "/pɛt/",
+        kreyol: "Bèt kay",
+        example: "Do you have any pets?",
+      },
+    ],
+    pronunciationWord: "Pet",
+    pronunciationIpa: "/pɛt/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “e” kout, tankou “pet” an Kreyòl si w ta ekri l.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “fishes” pou pliryèl — “fish” rete menm pou yon sèl oswa plizyè.",
+    mistakeWrong: "I have three fishes.",
+    mistakeCorrect: "I have three fish.",
+    mistakeWhy:
+      "**Poukisa:** “Fish” se yon mo espesyal ki pa chanje fòm nan pliryèl — “one fish, two fish”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I have three fishes.",
+        "I have three fish.",
+        "I has three fish.",
+        "I have three fishs.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “fish” pa chanje nan pliryèl.",
+    },
+    thinkEmoji: "🐕",
+    thinkPrompt: "Ekri sou yon bèt kay ou genyen oswa ou ta renmen genyen:",
+    thinkPlaceholder: "I have a... / I would like a...",
+    aiPrompt:
+      "Hi! Can you ask me if I have any pets, and help me describe them using have and to be?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike pale de bèt kay.",
+    missionTask:
+      "🎯 Jodi a, di si ou genyen yon bèt kay (oswa ou ta renmen genyen youn), ak yon ti deskripsyon.",
+    recap: [
+      { emoji: "🐕", text: "Dog, cat, bird, fish, pet." },
+      { emoji: "⚠️", text: "“Fish” pa chanje fòm nan pliryèl." },
+      { emoji: "🔗", text: "“Have” prezante bèt kay, “to be” dekri li." },
+      { emoji: "🎯", text: "Misyon: pale de yon bèt kay." },
+    ],
+  },
+  {
+    slug: "daily-life-mission",
+    moduleTitle: "Modil 4: Vokabilè Chak Jou",
+    illustrationKey: "emoji",
+    heroEmoji: "📖",
+    heroTitle: "Yon Jounen Nan Lavi Mwen",
+    heroLede:
+      "Se lè a pou konbine woutin ou, kay ou, fanmi ou, ak bèt kay ou nan yon sèl istwa.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab rakonte yon jounen konplè nan lavi w.",
+    whatYouWillLearn:
+      "kijan pou konbine tout sa ou aprann nan Modil 4 nan yon istwa",
+    prerequisite: "Leson 7 — Bèt Kay ak Bèt",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Yon jounen nan lavi w se yon istwa ak plizyè pati.",
+    understandBody:
+      "Ou ka kòmanse ak woutin ou, ale nan kay ou, mansyone fanmi ou, epi fini ak bèt kay ou — tout nan yon sèl istwa senp. **Se konsa moun rakonte jounen yo an Anglè.**",
+    seeItInAction: [
+      {
+        line: "I wake up at 6 and eat breakfast in the kitchen.",
+        tag: "Maten",
+        emoji: "🌅",
+      },
+      {
+        line: "My family and I eat dinner together at night.",
+        tag: "Fanmi",
+        emoji: "👨‍👩‍👧‍👦",
+      },
+      {
+        line: "I have a small dog who sleeps in my room.",
+        tag: "Bèt kay",
+        emoji: "🐕",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak pati pou wè kijan istwa a bati.",
+    patternBuilderOptions: [
+      { chipLabel: "1. Woutin", display: "I wake up at 6." },
+      { chipLabel: "2. Kay/Fanmi", display: "We eat dinner in the kitchen." },
+      { chipLabel: "3. Bèt kay", display: "My dog sleeps in my room." },
+    ],
+    vocabulary: [
+      {
+        word: "Together",
+        ipa: "/təˈgɛðər/",
+        kreyol: "Ansanm",
+        example: "We eat dinner together.",
+      },
+      {
+        word: "Dinner",
+        ipa: "/ˈdɪnər/",
+        kreyol: "Manje aswè",
+        example: "We eat dinner at 7.",
+      },
+      {
+        word: "Story",
+        ipa: "/ˈstɔːri/",
+        kreyol: "Istwa",
+        example: "This is my daily story.",
+      },
+      {
+        word: "Usually",
+        ipa: "/ˈjuːʒuəli/",
+        kreyol: "Dabitid",
+        example: "I usually wake up early.",
+      },
+      {
+        word: "Life",
+        ipa: "/laɪf/",
+        kreyol: "Lavi",
+        example: "This is a day in my life.",
+      },
+    ],
+    pronunciationWord: "Usually",
+    pronunciationIpa: "/ˈjuːʒuəli/",
+    mouthTip: "**Ti konsèy pou bouch ou:** twa silab, “YOO-zhoo-uh-lee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye konekte fraz ou yo ak “and” oswa “then” pou istwa a koule byen.",
+    mistakeWrong: "I wake up. I eat breakfast. I go to work.",
+    mistakeCorrect: "I wake up, eat breakfast, and go to work.",
+    mistakeWhy:
+      "**Poukisa:** Konekte aksyon yo ak “and” fè istwa a sonnen pi natirèl, olye de plizyè ti fraz kout youn apre lòt.",
+    practice: {
+      prompt: "Ki vèsyon ki sonnen pi natirèl?",
+      options: [
+        "I wake up. I eat. I work.",
+        "I wake up, eat breakfast, and go to work.",
+        "Wake up eat work I.",
+        "I wake, breakfast, work.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — konekte aksyon yo ak “and”.",
+    },
+    thinkEmoji: "📖",
+    thinkPrompt: "Ekri yon ti istwa sou yon jounen tipik ou, ak omwen 4 fraz:",
+    thinkPlaceholder: "I wake up... Then I... In the evening...",
+    aiPrompt:
+      "Hi! Can you listen to a short story about my typical day — my routine, my house, my family, and my pet — and give me friendly feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 4 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri oswa di yon ti istwa sou yon jounen nan lavi w, ak woutin, kay, fanmi, ak/oswa bèt kay.",
+    recap: [
+      { emoji: "📖", text: "Yon jounen se yon istwa ak plizyè pati." },
+      {
+        emoji: "🔗",
+        text: "Konekte fraz ak “and”/“then” pou li koule pi byen.",
+      },
+      { emoji: "🎓", text: "Ou fini Modil 4 — Vokabilè Chak Jou!" },
+      { emoji: "🎯", text: "Misyon: rakonte yon jounen nan lavi w." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
