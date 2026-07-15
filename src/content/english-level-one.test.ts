@@ -40,6 +40,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleSixLessons[0]?.slug).toBe("action-verbs-conjugation");
     expect(moduleSixLessons.at(-1)?.slug).toBe("action-verbs-mission");
+
+    const moduleSevenLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 7,
+    );
+    expect(moduleSevenLessons[0]?.slug).toBe("do-does-did");
+    expect(moduleSevenLessons.at(-1)?.slug).toBe("power-verbs-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {

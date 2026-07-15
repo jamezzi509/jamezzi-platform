@@ -5765,6 +5765,696 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: rakonte yon jounen aktif ou." },
     ],
   },
+  {
+    slug: "do-does-did",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "✅",
+    heroTitle: "Do, Does, ak Did",
+    heroLede:
+      "“Do” se yon vèb aksyon (fè yon bagay), men li sèvi tou pou ede fòme kesyon ak negatif — ou deja wè sa ak “have”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen lè pou itilize do, does, ak did.",
+    whatYouWillLearn: "diferans ant do/does (prezan) ak did (tan pase)",
+    prerequisite: "Ou fin Modil 6 — Vèb Aksyon Yo",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Do” gen de wòl: yon aksyon, ak yon zouti pou kesyon/negatif.",
+    understandBody:
+      "**I do my homework.** (aksyon) **Do you like coffee?** (kesyon). “Does” se fòm he/she/it, “did” se tan pase pou tou de — menm jan nou te wè ak “have” nan Modil 3.",
+    seeItInAction: [
+      { line: "I do my homework every night.", tag: "Aksyon", emoji: "📝" },
+      { line: "Does she like coffee?", tag: "Kesyon (he/she/it)", emoji: "☕" },
+      { line: "I did my homework yesterday.", tag: "Tan pase", emoji: "✅" },
+    ],
+    patternBuilderIntro: "Klike sou chak fòm pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Do", display: "I do my homework." },
+      { chipLabel: "Does", display: "Does she like coffee?" },
+      { chipLabel: "Did", display: "I did my homework yesterday." },
+    ],
+    vocabulary: [
+      { word: "Do", ipa: "/duː/", kreyol: "Fè", example: "I do my homework." },
+      {
+        word: "Does",
+        ipa: "/dʌz/",
+        kreyol: "Fè (he/she/it)",
+        example: "Does she like coffee?",
+      },
+      {
+        word: "Did",
+        ipa: "/dɪd/",
+        kreyol: "Te fè",
+        example: "I did my homework yesterday.",
+      },
+      {
+        word: "Homework",
+        ipa: "/ˈhoʊmwɜːrk/",
+        kreyol: "Devwa",
+        example: "I do my homework.",
+      },
+      {
+        word: "Yesterday",
+        ipa: "/ˈjɛstərdeɪ/",
+        kreyol: "Yè",
+        example: "I did it yesterday.",
+      },
+    ],
+    pronunciationWord: "Does",
+    pronunciationIpa: "/dʌz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “does” sonnen tankou “duz”, pa “dohz”.",
+    pronunciationMistake:
+      "**Erè komen:** apre “does”, vèb la rete nan fòm debaz — pa ajoute “-s” de fwa.",
+    mistakeWrong: "Does she likes coffee?",
+    mistakeCorrect: "Does she like coffee?",
+    mistakeWhy:
+      "**Poukisa:** “Does” deja pote “-s” la. Vèb ki vini apre l (like) rete nan fòm debaz, san lòt “-s”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "Does she likes coffee?",
+        "Does she like coffee?",
+        "Do she like coffee?",
+        "Did she likes coffee?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — vèb la rete debaz apre “does”.",
+    },
+    thinkEmoji: "✅",
+    thinkPrompt:
+      "Ekri yon fraz ak “do”, yon lòt ak “does”, epi yon lòt ak “did”:",
+    thinkPlaceholder: "I do... / She does... / I did...",
+    aiPrompt:
+      "Hi! Can you ask me questions using 'do you' and 'does he/she', and also ask what I did yesterday?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike do/does/did.",
+    missionTask:
+      "🎯 Jodi a, di yon bagay ou fè chak jou (do/does), epi yon bagay ou te fè yè (did).",
+    recap: [
+      { emoji: "✅", text: "“Do”/“does” pou prezan, “did” pou tan pase." },
+      { emoji: "🔗", text: "Does she like...? Do you like...?" },
+      { emoji: "⚠️", text: "Vèb la rete debaz apre does/did." },
+      { emoji: "🎯", text: "Misyon: di sa ou fè jodi a ak sa ou te fè yè." },
+    ],
+  },
+  {
+    slug: "make-and-take",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "🍲",
+    heroTitle: "Make ak Take",
+    heroLede: "“Make” kreye yon bagay, “take” pran yon bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “make” ak “take” kòrèkteman.",
+    whatYouWillLearn: "diferans ant “make” (kreye) ak “take” (pran)",
+    prerequisite: "Leson 1 — Do, Does, ak Did",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Make” kreye yon bagay nouvo, “take” pran yon bagay ki la deja.",
+    understandBody:
+      "**I make dinner every night.** **She takes a photo.** “Make a decision”, pa “do a decision” — kèk mo mache espesifikman ak “make” oswa “take”.",
+    seeItInAction: [
+      { line: "I make dinner every night.", tag: "Kreye", emoji: "🍲" },
+      { line: "She takes a photo.", tag: "Pran", emoji: "📸" },
+      {
+        line: "We make a decision together.",
+        tag: "Kreye yon desizyon",
+        emoji: "🤝",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Make dinner", display: "I make dinner every night." },
+      { chipLabel: "Take a photo", display: "She takes a photo." },
+      { chipLabel: "Make a decision", display: "We make a decision together." },
+    ],
+    vocabulary: [
+      {
+        word: "Make",
+        ipa: "/meɪk/",
+        kreyol: "Fè/Kreye",
+        example: "I make dinner.",
+      },
+      {
+        word: "Take",
+        ipa: "/teɪk/",
+        kreyol: "Pran",
+        example: "She takes a photo.",
+      },
+      {
+        word: "Decision",
+        ipa: "/dɪˈsɪʒən/",
+        kreyol: "Desizyon",
+        example: "We make a decision.",
+      },
+      {
+        word: "Photo",
+        ipa: "/ˈfoʊtoʊ/",
+        kreyol: "Foto",
+        example: "She takes a photo.",
+      },
+      {
+        word: "Together",
+        ipa: "/təˈgɛðər/",
+        kreyol: "Ansanm",
+        example: "We make a decision together.",
+      },
+    ],
+    pronunciationWord: "Decision",
+    pronunciationIpa: "/dɪˈsɪʒən/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “di-SIZH-uhn”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “do a decision” — se “make a decision”.",
+    mistakeWrong: "I do a decision.",
+    mistakeCorrect: "I make a decision.",
+    mistakeWhy:
+      "**Poukisa:** Kèk mo toujou mache ansanm ak yon vèb presi — “make a decision” se youn nan yo, pa “do”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I do a decision.",
+        "I make a decision.",
+        "I take a decision.",
+        "I give a decision.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “decision” mache ak “make”.",
+    },
+    thinkEmoji: "🍲",
+    thinkPrompt: "Ekri yon fraz ak “make” epi yon lòt ak “take”:",
+    thinkPlaceholder: "I make... / I take...",
+    aiPrompt:
+      "Hi! Can you ask me what I make and what I take in my daily life, so I can practice these verbs?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike make/take.",
+    missionTask:
+      "🎯 Jodi a, di yon bagay ou fè (make) epi yon bagay ou pran (take) chak jou.",
+    recap: [
+      { emoji: "🍲", text: "“Make” kreye, “take” pran." },
+      { emoji: "🤝", text: "Make a decision, take a photo." },
+      { emoji: "⚠️", text: "Pa di “do a decision” — se “make”." },
+      { emoji: "🎯", text: "Misyon: di sa ou fè ak sa ou pran." },
+    ],
+  },
+  {
+    slug: "put-and-get",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "🔑",
+    heroTitle: "Put ak Get",
+    heroLede:
+      "“Put” mete yon bagay yon kote, “get” resevwa oswa jwenn yon bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “put” ak “get” kòrèkteman.",
+    whatYouWillLearn: "kijan pou itilize “put” ak “get” nan fraz chak jou",
+    prerequisite: "Leson 2 — Make ak Take",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Put” mete yon kote, “get” resevwa oswa jwenn.",
+    understandBody:
+      "**I put my keys on the table.** **She gets a call every morning.** “Get up” vle di leve — yon ekspresyon itil chak jou.",
+    seeItInAction: [
+      { line: "I put my keys on the table.", tag: "Mete", emoji: "🔑" },
+      { line: "She gets a call every morning.", tag: "Resevwa", emoji: "📞" },
+      { line: "I get up at 6.", tag: "Leve (get up)", emoji: "⏰" },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Put", display: "I put my keys on the table." },
+      { chipLabel: "Get (call)", display: "She gets a call every morning." },
+      { chipLabel: "Get up", display: "I get up at 6." },
+    ],
+    vocabulary: [
+      {
+        word: "Put",
+        ipa: "/pʊt/",
+        kreyol: "Mete",
+        example: "I put my keys on the table.",
+      },
+      {
+        word: "Get",
+        ipa: "/gɛt/",
+        kreyol: "Resevwa/Jwenn",
+        example: "She gets a call.",
+      },
+      {
+        word: "Keys",
+        ipa: "/kiːz/",
+        kreyol: "Kle",
+        example: "I put my keys down.",
+      },
+      {
+        word: "Table",
+        ipa: "/ˈteɪbəl/",
+        kreyol: "Tab",
+        example: "I put it on the table.",
+      },
+      {
+        word: "Call",
+        ipa: "/kɔːl/",
+        kreyol: "Apèl",
+        example: "She gets a call every morning.",
+      },
+    ],
+    pronunciationWord: "Put",
+    pronunciationIpa: "/pʊt/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “oo” kout, tankou “put” an Kreyòl si w ta ekri l.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “She get a call” — se “She gets a call”.",
+    mistakeWrong: "She get a call every morning.",
+    mistakeCorrect: "She gets a call every morning.",
+    mistakeWhy:
+      "**Poukisa:** Menm règ -s/-es la toujou aplike — “she” bezwen “gets”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I put my keys in the table.",
+        "I put my keys on the table.",
+        "I put my keys at the table.",
+        "I puts my keys on the table.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — itilize “on” pou yon sifas.",
+    },
+    thinkEmoji: "🔑",
+    thinkPrompt: "Ekri yon fraz ak “put” epi yon lòt ak “get”:",
+    thinkPlaceholder: "I put... / I get...",
+    aiPrompt:
+      "Hi! Can you ask me where I put my things and what time I get up, so I can practice put and get?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike put/get.",
+    missionTask:
+      "🎯 Jodi a, di kote ou mete yon bagay (put) ak ki lè ou leve (get up).",
+    recap: [
+      { emoji: "🔑", text: "“Put” mete, “get” resevwa/jwenn." },
+      { emoji: "⏰", text: "“Get up” vle di leve." },
+      { emoji: "📞", text: "She gets a call every morning." },
+      { emoji: "🎯", text: "Misyon: di kote ou mete yon bagay." },
+    ],
+  },
+  {
+    slug: "give-and-bring",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "🎁",
+    heroTitle: "Give ak Bring",
+    heroLede: "“Give” bay yon bagay, “bring” pote yon bagay avè w.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “give” ak “bring” kòrèkteman.",
+    whatYouWillLearn: "diferans ant “give” (bay) ak “bring” (pote)",
+    prerequisite: "Leson 3 — Put ak Get",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Give” transfere yon bagay bay yon moun, “bring” pote li ale yon kote.",
+    understandBody:
+      "**I give my mother a gift.** **Bring your book to class.** “Give” fokis sou moun ki resevwa, “bring” fokis sou pote yon bagay soti yon kote ale yon lòt.",
+    seeItInAction: [
+      { line: "I give my mother a gift.", tag: "Bay", emoji: "🎁" },
+      { line: "Bring your book to class.", tag: "Pote", emoji: "📚" },
+      { line: "She gives good advice.", tag: "Bay konsèy", emoji: "💡" },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Give a gift", display: "I give my mother a gift." },
+      { chipLabel: "Bring a book", display: "Bring your book to class." },
+      { chipLabel: "Give advice", display: "She gives good advice." },
+    ],
+    vocabulary: [
+      {
+        word: "Give",
+        ipa: "/gɪv/",
+        kreyol: "Bay",
+        example: "I give my mother a gift.",
+      },
+      {
+        word: "Bring",
+        ipa: "/brɪŋ/",
+        kreyol: "Pote",
+        example: "Bring your book to class.",
+      },
+      {
+        word: "Gift",
+        ipa: "/gɪft/",
+        kreyol: "Kado",
+        example: "I give a gift.",
+      },
+      {
+        word: "Advice",
+        ipa: "/ədˈvaɪs/",
+        kreyol: "Konsèy",
+        example: "She gives good advice.",
+      },
+      {
+        word: "Class",
+        ipa: "/klæs/",
+        kreyol: "Klas",
+        example: "Bring your book to class.",
+      },
+    ],
+    pronunciationWord: "Bring",
+    pronunciationIpa: "/brɪŋ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “ng” nan fen mo a, pa pwononse “g” separeman.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “bring” (pote vin isit) ak “take” (pote ale lòt kote).",
+    mistakeWrong: "Take your book to class. (lè w ap pale de kote w ye a)",
+    mistakeCorrect: "Bring your book to class.",
+    mistakeWhy:
+      "**Poukisa:** “Bring” pote yon bagay VÈ kote moun k ap pale a oswa yon kote y ap ale ansanm; “take” pote li LWEN.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I give my mother a gift.",
+        "I gives my mother a gift.",
+        "I giving my mother a gift.",
+        "I gave my mother a gift. (jodi a)",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “I” pa pran “-s”.",
+    },
+    thinkEmoji: "🎁",
+    thinkPrompt: "Ekri yon fraz ak “give” epi yon lòt ak “bring”:",
+    thinkPlaceholder: "I give... / Bring...",
+    aiPrompt:
+      "Hi! Can you ask me what I usually give people and what I bring with me every day, so I can practice give and bring?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike give/bring.",
+    missionTask:
+      "🎯 Jodi a, di yon bagay ou bay (give) yon moun, ak yon bagay ou toujou pote (bring) avè w.",
+    recap: [
+      { emoji: "🎁", text: "“Give” bay, “bring” pote." },
+      { emoji: "💡", text: "She gives good advice." },
+      { emoji: "⚠️", text: "“Bring” vin vè, “take” ale lwen." },
+      { emoji: "🎯", text: "Misyon: di sa ou bay ak sa ou pote." },
+    ],
+  },
+  {
+    slug: "become-and-find",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "👩‍⚕️",
+    heroTitle: "Become ak Find",
+    heroLede: "“Become” vin yon bagay, “find” jwenn yon bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “become” ak “find” kòrèkteman.",
+    whatYouWillLearn: "kijan pou pale de chanjman (become) ak dekouvèt (find)",
+    prerequisite: "Leson 4 — Give ak Bring",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Become” dekri yon chanjman, “find” dekri yon dekouvèt.",
+    understandBody:
+      "**She wants to become a doctor.** **I can't find my phone.** “Become” montre yon moun ap transfòme an yon lòt bagay; “find” montre ou jwenn yon bagay ou t ap chèche.",
+    seeItInAction: [
+      { line: "She wants to become a doctor.", tag: "Vin", emoji: "👩‍⚕️" },
+      { line: "I can't find my phone.", tag: "Jwenn", emoji: "📱" },
+      { line: "He became a teacher.", tag: "Vin (tan pase)", emoji: "👨‍🏫" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Become", display: "She wants to become a doctor." },
+      { chipLabel: "Find", display: "I can't find my phone." },
+      { chipLabel: "Became", display: "He became a teacher." },
+    ],
+    vocabulary: [
+      {
+        word: "Become",
+        ipa: "/bɪˈkʌm/",
+        kreyol: "Vin",
+        example: "She wants to become a doctor.",
+      },
+      {
+        word: "Find",
+        ipa: "/faɪnd/",
+        kreyol: "Jwenn",
+        example: "I can't find my phone.",
+      },
+      {
+        word: "Doctor",
+        ipa: "/ˈdɒktər/",
+        kreyol: "Doktè",
+        example: "She wants to become a doctor.",
+      },
+      {
+        word: "Lost",
+        ipa: "/lɔːst/",
+        kreyol: "Pèdi",
+        example: "My phone is lost.",
+      },
+      {
+        word: "Became",
+        ipa: "/bɪˈkeɪm/",
+        kreyol: "Te vin (tan pase)",
+        example: "He became a teacher.",
+      },
+    ],
+    pronunciationWord: "Become",
+    pronunciationIpa: "/bɪˈkʌm/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “bi-KUHM”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “become” pou jwenn yon bagay ki pèdi — se “find”.",
+    mistakeWrong: "I can't become my phone.",
+    mistakeCorrect: "I can't find my phone.",
+    mistakeWhy:
+      "**Poukisa:** “Become” se pou yon chanjman idantite/eta, pa pou lokalize yon bagay ki pèdi — “find” se mo kòrèk la.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I can't become my phone.",
+        "I can't find my phone.",
+        "I can't take my phone.",
+        "I can't put my phone.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — jwenn yon bagay pèdi se “find”.",
+    },
+    thinkEmoji: "👩‍⚕️",
+    thinkPrompt: "Ekri yon fraz ak “become” epi yon lòt ak “find”:",
+    thinkPlaceholder: "I want to become... / I can't find...",
+    aiPrompt:
+      "Hi! Can you ask me what I want to become in the future, and if there's anything I can't find right now?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike become/find.",
+    missionTask:
+      "🎯 Jodi a, di sa ou vle vin (become) yon jou, ak yon bagay ou te jwenn (find) dènyèman.",
+    recap: [
+      { emoji: "👩‍⚕️", text: "“Become” montre yon chanjman." },
+      { emoji: "📱", text: "“Find” montre yon dekouvèt." },
+      { emoji: "🔗", text: "Became = tan pase pou become." },
+      { emoji: "🎯", text: "Misyon: di sa ou vle vin, ak sa ou te jwenn." },
+    ],
+  },
+  {
+    slug: "keep-and-leave",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "🚪",
+    heroTitle: "Keep ak Leave",
+    heroLede: "“Keep” kenbe yon bagay, “leave” kite yon kote oswa yon bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “keep” ak “leave” kòrèkteman.",
+    whatYouWillLearn: "diferans ant “keep” (kenbe) ak “leave” (kite)",
+    prerequisite: "Leson 5 — Become ak Find",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Keep” kenbe, “leave” kite.",
+    understandBody:
+      "**I keep my promises.** **I leave home at 7.** “Keep” pale de kenbe yon bagay avè w, “leave” pale de kite yon kote oswa yon bagay dèyè.",
+    seeItInAction: [
+      { line: "I keep my promises.", tag: "Kenbe", emoji: "🤝" },
+      { line: "I leave home at 7.", tag: "Kite", emoji: "🚪" },
+      { line: "Keep the change.", tag: "Kenbe (lajan)", emoji: "💵" },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Keep", display: "I keep my promises." },
+      { chipLabel: "Leave", display: "I leave home at 7." },
+      { chipLabel: "Keep change", display: "Keep the change." },
+    ],
+    vocabulary: [
+      {
+        word: "Keep",
+        ipa: "/kiːp/",
+        kreyol: "Kenbe",
+        example: "I keep my promises.",
+      },
+      {
+        word: "Leave",
+        ipa: "/liːv/",
+        kreyol: "Kite",
+        example: "I leave home at 7.",
+      },
+      {
+        word: "Promise",
+        ipa: "/ˈprɒmɪs/",
+        kreyol: "Pwomès",
+        example: "I keep my promises.",
+      },
+      {
+        word: "Home",
+        ipa: "/hoʊm/",
+        kreyol: "Lakay",
+        example: "I leave home at 7.",
+      },
+      {
+        word: "Change",
+        ipa: "/tʃeɪndʒ/",
+        kreyol: "Monnen",
+        example: "Keep the change.",
+      },
+    ],
+    pronunciationWord: "Leave",
+    pronunciationIpa: "/liːv/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “ee” long — “leeve”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “leave” (kite) ak “live” (viv) — yo sonnen prèske menm jan.",
+    mistakeWrong: "I live home at 7.",
+    mistakeCorrect: "I leave home at 7.",
+    mistakeWhy:
+      "**Poukisa:** “Leave” (kite yon kote) ak “live” (viv/rete) sonnen sanble men gen sans totalman diferan.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou di ou kite kay la:",
+      options: [
+        "I live home at 7.",
+        "I leave home at 7.",
+        "I keep home at 7.",
+        "I take home at 7.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — kite se “leave”.",
+    },
+    thinkEmoji: "🚪",
+    thinkPrompt: "Ekri yon fraz ak “keep” epi yon lòt ak “leave”:",
+    thinkPlaceholder: "I keep... / I leave...",
+    aiPrompt:
+      "Hi! Can you ask me what time I leave home and what things I always keep, so I can practice keep and leave?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike keep/leave.",
+    missionTask:
+      "🎯 Jodi a, di ki lè ou kite (leave) kay ou, ak yon bagay ou toujou kenbe (keep).",
+    recap: [
+      { emoji: "🚪", text: "“Keep” kenbe, “leave” kite." },
+      { emoji: "⚠️", text: "“Leave” ≠ “live” — atansyon pwononsyasyon." },
+      { emoji: "🤝", text: "I keep my promises." },
+      { emoji: "🎯", text: "Misyon: di sa ou kenbe ak ki lè ou kite." },
+    ],
+  },
+  {
+    slug: "power-verbs-mission",
+    moduleTitle: "Modil 7: Vèb Pisan Pati 2",
+    illustrationKey: "emoji",
+    heroEmoji: "💪",
+    heroTitle: "Vèb Pisan Nan Lavi Chak Jou",
+    heroLede:
+      "Se lè a pou konbine tout vèb pisan Modil 7 yo pou rakonte yon jounen reyèl.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize plizyè vèb pisan nan yon sèl istwa.",
+    whatYouWillLearn: "kijan pou konbine vèb pisan Modil 7 yo nan yon istwa",
+    prerequisite: "Leson 6 — Keep ak Leave",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Vèb pisan yo travay ansanm pou rakonte yon jounen konplè.",
+    understandBody:
+      "**I get up, make breakfast, and leave home.** Chak vèb pisan ou aprann nan Modil 7 la ka konekte ak lòt yo pou rakonte yon istwa reyèl.",
+    seeItInAction: [
+      {
+        line: "I get up, make breakfast, and leave home.",
+        tag: "Maten",
+        emoji: "🌅",
+      },
+      { line: "I take the bus and do my work.", tag: "Jounen", emoji: "🚌" },
+      {
+        line: "I keep my promises and give my best.",
+        tag: "Valè",
+        emoji: "💪",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè fraz li.",
+    patternBuilderOptions: [
+      { chipLabel: "Morning", display: "I get up and make breakfast." },
+      { chipLabel: "Day", display: "I take the bus and do my work." },
+      { chipLabel: "Values", display: "I keep my promises." },
+    ],
+    vocabulary: [
+      { word: "Bus", ipa: "/bʌs/", kreyol: "Bis", example: "I take the bus." },
+      {
+        word: "Best",
+        ipa: "/bɛst/",
+        kreyol: "Pi bon nan tèt li",
+        example: "I give my best.",
+      },
+      {
+        word: "Promise",
+        ipa: "/ˈprɒmɪs/",
+        kreyol: "Pwomès",
+        example: "I keep my promises.",
+      },
+      {
+        word: "Everyday",
+        ipa: "/ˈɛvrideɪ/",
+        kreyol: "Chak jou",
+        example: "These are everyday verbs.",
+      },
+      {
+        word: "Together",
+        ipa: "/təˈgɛðər/",
+        kreyol: "Ansanm",
+        example: "These verbs work together.",
+      },
+    ],
+    pronunciationWord: "Everyday",
+    pronunciationIpa: "/ˈɛvrideɪ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** twa silab, “EV-ree-day”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye konjige chak vèb kòrèkteman selon sijè a, menm nan yon istwa long.",
+    mistakeWrong: "He get up, make breakfast, and leave home.",
+    mistakeCorrect: "He gets up, makes breakfast, and leaves home.",
+    mistakeWhy:
+      "**Poukisa:** Si sijè a se “he”, TOUT vèb yo nan fraz la bezwen “-s”/“-es”, pa jis premye a.",
+    practice: {
+      prompt: "Ki vèsyon ki kòrèk pou “he”?",
+      options: [
+        "He get up and make breakfast.",
+        "He gets up and makes breakfast.",
+        "He getting up and making breakfast.",
+        "He got up and made breakfast. (jodi a)",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — tout vèb yo bezwen “-s” pou “he”.",
+    },
+    thinkEmoji: "💪",
+    thinkPrompt:
+      "Ekri yon ti istwa sou jounen ou ak omwen kat vèb pisan Modil 7:",
+    thinkPlaceholder: "I get up, ... , and ...",
+    aiPrompt:
+      "Hi! Can you listen to a short story about my day using verbs like get, make, take, give, keep, and leave, and give me friendly feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 7 ansanm.",
+    missionTask:
+      "🎯 Jodi a, rakonte yon jounen ou ak omwen kat vèb pisan diferan nan Modil 7.",
+    recap: [
+      { emoji: "💪", text: "Vèb pisan yo konekte pou rakonte yon istwa." },
+      { emoji: "⚠️", text: "Tout vèb nan fraz la konjige selon sijè a." },
+      { emoji: "🎓", text: "Ou fini Modil 7 — Vèb Pisan Pati 2!" },
+      { emoji: "🎯", text: "Misyon: rakonte yon jounen ak vèb pisan." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
