@@ -3,11 +3,19 @@
 import Link from "next/link";
 import { useState } from "react";
 import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
+import {
+  englishInteractiveLessons,
+  getEnglishInteractiveLesson,
+  type EnglishInteractiveLesson,
+  type LessonChoice,
+} from "@/content/english-lessons";
 import { cn } from "@/lib/cn";
 
 const steps = ["Learn", "Listen", "Choose", "Practice", "Mission"] as const;
 
-export function EnglishLessonPlayer() {
+export function EnglishLessonPlayer({ lessonSlug }: { lessonSlug: string }) {
+  const lesson =
+    getEnglishInteractiveLesson(lessonSlug) ?? englishInteractiveLessons[0];
   const [step, setStep] = useState(0);
   const [answer, setAnswer] = useState<string | null>(null);
   const [complete, setComplete] = useState(false);
@@ -17,7 +25,22 @@ export function EnglishLessonPlayer() {
     window.speechSynthesis.cancel();
     const voice = new SpeechSynthesisUtterance(word);
     voice.lang = "en-US";
-    voice.rate = 0.78;
+    const availableVoices = window.speechSynthesis.getVoices();
+    const preferredNames = [
+      "Samantha",
+      "Ava",
+      "Google US English",
+      "Aria",
+      "Jenny",
+    ];
+    voice.voice =
+      preferredNames
+        .map((name) => availableVoices.find((item) => item.name.includes(name)))
+        .find(Boolean) ??
+      availableVoices.find((item) => item.lang === "en-US") ??
+      null;
+    voice.rate = 0.88;
+    voice.pitch = 1;
     window.speechSynthesis.speak(voice);
   }
 
@@ -33,7 +56,7 @@ export function EnglishLessonPlayer() {
       ) as string[];
       window.localStorage.setItem(
         englishProgressStorageKey,
-        JSON.stringify(Array.from(new Set([...saved, "hello-and-goodbye"]))),
+        JSON.stringify(Array.from(new Set([...saved, lesson.slug]))),
       );
     } finally {
       setComplete(true);
@@ -66,7 +89,7 @@ export function EnglishLessonPlayer() {
         <aside className="border-border hidden border-r bg-white p-8 lg:block">
           <p className="text-eyebrow text-indigo-dark">LESSON 1</p>
           <h1 className="font-display text-ink mt-3 text-3xl leading-tight">
-            Hello and Goodbye
+            {lesson.title}
           </h1>
           <ol className="mt-10 space-y-5">
             {steps.map((label, index) => (
@@ -99,15 +122,25 @@ export function EnglishLessonPlayer() {
               <Completion />
             ) : (
               <>
-                {step === 0 && <LearnStep speak={speak} />}
-                {step === 1 && <ListenStep speak={speak} />}
+                {step === 0 && <LearnStep lesson={lesson} speak={speak} />}
+                {step === 1 && <ListenStep lesson={lesson} speak={speak} />}
                 {step === 2 && (
-                  <ChoiceStep answer={answer} setAnswer={setAnswer} />
+                  <QuestionStep
+                    eyebrow="CHOOSE"
+                    choice={lesson.choice}
+                    answer={answer}
+                    setAnswer={setAnswer}
+                  />
                 )}
                 {step === 3 && (
-                  <PracticeStep answer={answer} setAnswer={setAnswer} />
+                  <QuestionStep
+                    eyebrow="PRACTICE"
+                    choice={lesson.practice}
+                    answer={answer}
+                    setAnswer={setAnswer}
+                  />
                 )}
-                {step === 4 && <MissionStep />}
+                {step === 4 && <MissionStep lesson={lesson} />}
 
                 <div className="border-border mt-10 flex items-center justify-between border-t pt-6">
                   <button
@@ -168,17 +201,30 @@ function StepHeading({
   );
 }
 
-function LearnStep({ speak }: { speak: (word: string) => void }) {
+function LearnStep({
+  lesson,
+  speak,
+}: {
+  lesson: EnglishInteractiveLesson;
+  speak: (word: string) => void;
+}) {
   return (
     <div>
       <StepHeading
         eyebrow="LEARN"
-        title="Two words. Two moments."
-        copy="Use Hello when you meet someone. Use Goodbye when you leave."
+        title={lesson.learnTitle}
+        copy={lesson.learnCopy}
       />
       <div className="grid gap-5 sm:grid-cols-2">
-        <WordCard emoji="👋" moment="MEETING" word="Hello" speak={speak} />
-        <WordCard emoji="🚶" moment="LEAVING" word="Goodbye" speak={speak} />
+        {lesson.words.map((item) => (
+          <WordCard
+            key={item.word}
+            emoji={item.emoji}
+            moment={item.context}
+            word={item.word}
+            speak={speak}
+          />
+        ))}
       </div>
     </div>
   );
@@ -213,23 +259,29 @@ function WordCard({
   );
 }
 
-function ListenStep({ speak }: { speak: (word: string) => void }) {
+function ListenStep({
+  lesson,
+  speak,
+}: {
+  lesson: EnglishInteractiveLesson;
+  speak: (word: string) => void;
+}) {
   return (
     <div className="text-center">
       <StepHeading
         eyebrow="LISTEN & REPEAT"
-        title="Hello"
+        title={lesson.listenWord}
         copy="Listen. Then say the word aloud. You do not need a perfect accent."
       />
       <button
         type="button"
-        onClick={() => speak("Hello")}
+        onClick={() => speak(lesson.listenWord)}
         className="bg-indigo mx-auto grid size-28 place-items-center rounded-full text-4xl text-white shadow-[0_18px_45px_rgba(79,70,229,0.3)]"
-        aria-label="Play Hello pronunciation"
+        aria-label={`Play ${lesson.listenWord} pronunciation`}
       >
         🔊
       </button>
-      <p className="text-body text-muted mt-7">heh · LOH</p>
+      <p className="text-body text-muted mt-7">{lesson.phonetic}</p>
     </div>
   );
 }
@@ -239,35 +291,22 @@ interface AnswerProps {
   setAnswer: (answer: string) => void;
 }
 
-function ChoiceStep(props: AnswerProps) {
+function QuestionStep({
+  eyebrow,
+  choice,
+  ...props
+}: AnswerProps & { eyebrow: string; choice: LessonChoice }) {
   return (
     <div>
       <StepHeading
-        eyebrow="CHOOSE"
-        title="Someone walks into the room and waves."
-        copy="What do you say?"
-      />
-      <AnswerButtons
-        {...props}
-        correct="Hello"
-        options={["Hello", "Goodbye"]}
-      />
-    </div>
-  );
-}
-
-function PracticeStep(props: AnswerProps) {
-  return (
-    <div>
-      <StepHeading
-        eyebrow="PRACTICE"
-        title="You are leaving your friend."
+        eyebrow={eyebrow}
+        title={choice.prompt}
         copy="Choose the word that fits the moment."
       />
       <AnswerButtons
         {...props}
-        correct="Goodbye"
-        options={["Goodbye", "Hello"]}
+        correct={choice.correct}
+        options={choice.options}
       />
     </div>
   );
@@ -315,19 +354,17 @@ function AnswerButtons({
   );
 }
 
-function MissionStep() {
+function MissionStep({ lesson }: { lesson: EnglishInteractiveLesson }) {
   return (
     <div>
       <StepHeading
         eyebrow="REAL-LIFE MISSION"
         title="Use English once today."
-        copy="Say Hello when you meet someone, or Goodbye when you leave. One real moment is enough."
+        copy={lesson.mission}
       />
       <div className="bg-night rounded-showcase text-night-text p-7 sm:p-10">
         <p className="text-eyebrow text-night-muted">YOU CAN NOW</p>
-        <p className="font-display mt-3 text-3xl">
-          Greet someone and end a simple conversation.
-        </p>
+        <p className="font-display mt-3 text-3xl">{lesson.outcome}</p>
       </div>
     </div>
   );

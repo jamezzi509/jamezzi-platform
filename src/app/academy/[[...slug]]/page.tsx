@@ -202,9 +202,9 @@ export default async function AcademyPage({
     slug[0] === "courses" &&
     slug[1] === "english-for-beginners" &&
     slug[2] === "level-1" &&
-    slug[3] === "hello-and-goodbye"
+    slug[3]
   ) {
-    return <EnglishWelcomeLesson />;
+    return <EnglishWelcomeLesson lessonSlug={slug[3]} />;
   }
 
   if (
