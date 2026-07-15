@@ -9909,6 +9909,925 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: rakonte yon jounen ak vèb fraz." },
     ],
   },
+  {
+    slug: "computer-and-phone",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "💻",
+    heroTitle: "Computer ak Phone",
+    heroLede: "Vokabilè debaz pou pale de aparèy ou itilize chak jou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen vokabilè debaz pou computer ak phone.",
+    whatYouWillLearn: "vokabilè pou computer ak phone",
+    prerequisite: "Ou fin Modil 11 — Vèb Fraz Yo",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Chak aparèy gen vokabilè pa li, men anpil aksyon rete menm.",
+    understandBody:
+      "**I use my computer for work.** **My phone battery is low.** Aprann non aparèy yo ak eta debaz yo — battery, screen, charge.",
+    seeItInAction: [
+      { line: "I use my computer for work.", tag: "Òdinatè", emoji: "💻" },
+      { line: "My phone battery is low.", tag: "Telefòn", emoji: "🔋" },
+      { line: "Can you charge my phone?", tag: "Chaje", emoji: "🔌" },
+    ],
+    patternBuilderIntro: "Klike sou chak aparèy pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Computer", display: "I use my computer for work." },
+      { chipLabel: "Phone", display: "My phone battery is low." },
+      { chipLabel: "Charge", display: "Can you charge my phone?" },
+    ],
+    vocabulary: [
+      {
+        word: "Computer",
+        ipa: "/kəmˈpjuːtər/",
+        kreyol: "Òdinatè",
+        example: "I use my computer for work.",
+      },
+      {
+        word: "Phone",
+        ipa: "/foʊn/",
+        kreyol: "Telefòn",
+        example: "My phone battery is low.",
+      },
+      {
+        word: "Battery",
+        ipa: "/ˈbætəri/",
+        kreyol: "Batri",
+        example: "My battery is low.",
+      },
+      {
+        word: "Screen",
+        ipa: "/skriːn/",
+        kreyol: "Ekran",
+        example: "My screen is broken.",
+      },
+      {
+        word: "Charge",
+        ipa: "/tʃɑːrdʒ/",
+        kreyol: "Chaje",
+        example: "Can you charge my phone?",
+      },
+    ],
+    pronunciationWord: "Computer",
+    pronunciationIpa: "/kəmˈpjuːtər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “kuhm-PYOO-tər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “My battery is empty” pou telefòn — itilize “low” oswa “dead”.",
+    mistakeWrong: "My phone battery is empty.",
+    mistakeCorrect: "My phone battery is low.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, ou di batri a “low” (fèb) oswa “dead” (fini nèt), pa “empty” (ki pito pou yon boutèy oswa yon bwat).",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou di batri w prèske fini:",
+      options: [
+        "My battery is empty.",
+        "My battery is low.",
+        "My battery is open.",
+        "My battery is closed.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “low”.",
+    },
+    thinkEmoji: "💻",
+    thinkPrompt: "Ekri yon fraz sou aparèy ou itilize chak jou:",
+    thinkPlaceholder: "I use my...",
+    aiPrompt:
+      "Hi! Can you ask me what devices I use every day and help me describe them in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike vokabilè aparèy.",
+    missionTask:
+      "🎯 Jodi a, di ki aparèy ou itilize chak jou ak kijan ou pran swen li.",
+    recap: [
+      { emoji: "💻", text: "Computer, phone — aparèy chak jou." },
+      { emoji: "🔋", text: "Battery, screen, charge." },
+      { emoji: "⚠️", text: '"Low"/"dead", pa "empty" pou batri.' },
+      { emoji: "🎯", text: "Misyon: di ki aparèy ou itilize." },
+    ],
+  },
+  {
+    slug: "internet-and-wifi",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "📶",
+    heroTitle: "Internet ak Wi-Fi",
+    heroLede: "Konekte ak entènèt se yon aksyon chak jou kounye a.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de koneksyon entènèt ou.",
+    whatYouWillLearn: "vokabilè pou internet ak Wi-Fi",
+    prerequisite: "Leson 1 — Computer ak Phone",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Mande sou Wi-Fi se yon nan premye fraz w ap bezwen prèske tout kote.",
+    understandBody:
+      "**Do you have Wi-Fi here?** **My internet is slow today.** Konnen kijan pou pale de koneksyon w ede w prèske tout kote ou ale.",
+    seeItInAction: [
+      { line: "Do you have Wi-Fi here?", tag: "Mande Wi-Fi", emoji: "📶" },
+      {
+        line: "My internet is slow today.",
+        tag: "Dekri koneksyon",
+        emoji: "🐌",
+      },
+      { line: "I'm connected to the internet.", tag: "Konekte", emoji: "🌐" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Ask", display: "Do you have Wi-Fi here?" },
+      { chipLabel: "Describe", display: "My internet is slow today." },
+      { chipLabel: "Connected", display: "I'm connected to the internet." },
+    ],
+    vocabulary: [
+      {
+        word: "Internet",
+        ipa: "/ˈɪntərnɛt/",
+        kreyol: "Entènèt",
+        example: "My internet is slow.",
+      },
+      {
+        word: "Wi-Fi",
+        ipa: "/ˈwaɪfaɪ/",
+        kreyol: "Wi-Fi",
+        example: "Do you have Wi-Fi?",
+      },
+      {
+        word: "Connect",
+        ipa: "/kəˈnɛkt/",
+        kreyol: "Konekte",
+        example: "I'm connected to the internet.",
+      },
+      {
+        word: "Slow",
+        ipa: "/sloʊ/",
+        kreyol: "Lan",
+        example: "My internet is slow today.",
+      },
+      {
+        word: "Signal",
+        ipa: "/ˈsɪgnəl/",
+        kreyol: "Siyal",
+        example: "I have a weak signal.",
+      },
+    ],
+    pronunciationWord: "Wi-Fi",
+    pronunciationIpa: "/ˈwaɪfaɪ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “WHY-fy”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I am in the internet” — se “I'm on the internet” oswa “connected to the internet”.",
+    mistakeWrong: "I am in the internet.",
+    mistakeCorrect: "I'm on the internet.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, ou itilize “on” (pa “in”) pou di ou ap navige sou entènèt — “on the internet”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I am in the internet.",
+        "I'm on the internet.",
+        "I am at the internet.",
+        "I am internet.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “on the internet”.",
+    },
+    thinkEmoji: "📶",
+    thinkPrompt: "Ekri yon fraz sou koneksyon entènèt ou kounye a:",
+    thinkPlaceholder: "My internet is...",
+    aiPrompt:
+      "Hi! Can you ask me about my internet connection and help me describe it in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike internet/Wi-Fi.",
+    missionTask:
+      "🎯 Jodi a, mande yon moun “Do you have Wi-Fi here?” nan yon sitiyasyon imajinè.",
+    recap: [
+      { emoji: "📶", text: "Do you have Wi-Fi here?" },
+      { emoji: "🐌", text: "My internet is slow today." },
+      { emoji: "⚠️", text: '"On the internet", pa "in the internet".' },
+      { emoji: "🎯", text: "Misyon: mande sou Wi-Fi yon kote." },
+    ],
+  },
+  {
+    slug: "email-basics",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "📧",
+    heroTitle: "Baz Imèl",
+    heroLede: "Imèl gen pwòp vokabilè li: voye, resevwa, jwenn.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de imèl ak vokabilè debaz li.",
+    whatYouWillLearn: "vokabilè pou voye, resevwa, ak jwenn imèl",
+    prerequisite: "Leson 2 — Internet ak Wi-Fi",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Imèl gen pwòp vokabilè li: voye, resevwa, jwenn.",
+    understandBody:
+      "**I sent you an email.** **Did you receive my message?** **Please check your inbox.** Twa fraz sa yo mennen w nan tout yon echanj imèl.",
+    seeItInAction: [
+      { line: "I sent you an email.", tag: "Voye", emoji: "📤" },
+      { line: "Did you receive my message?", tag: "Resevwa", emoji: "📥" },
+      { line: "Please check your inbox.", tag: "Bwat resepsyon", emoji: "📬" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Sent", display: "I sent you an email." },
+      { chipLabel: "Receive", display: "Did you receive my message?" },
+      { chipLabel: "Inbox", display: "Please check your inbox." },
+    ],
+    vocabulary: [
+      {
+        word: "Email",
+        ipa: "/ˈiːmeɪl/",
+        kreyol: "Imèl",
+        example: "I sent you an email.",
+      },
+      {
+        word: "Send",
+        ipa: "/sɛnd/",
+        kreyol: "Voye",
+        example: "I'll send it now.",
+      },
+      {
+        word: "Receive",
+        ipa: "/rɪˈsiːv/",
+        kreyol: "Resevwa",
+        example: "Did you receive it?",
+      },
+      {
+        word: "Inbox",
+        ipa: "/ˈɪnbɒks/",
+        kreyol: "Bwat resepsyon",
+        example: "Check your inbox.",
+      },
+      {
+        word: "Attachment",
+        ipa: "/əˈtætʃmənt/",
+        kreyol: "Fichye jwenn",
+        example: "See the attachment.",
+      },
+    ],
+    pronunciationWord: "Receive",
+    pronunciationIpa: "/rɪˈsiːv/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “ri-SEEV”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I received an email to you” — se “I sent you an email” oswa “I received your email”.",
+    mistakeWrong: "I received an email to you.",
+    mistakeCorrect: "I sent you an email.",
+    mistakeWhy:
+      "**Poukisa:** “Send” se lè OU voye. “Receive” se lè OU jwenn yon bagay. Pa mele de direksyon yo.",
+    practice: {
+      prompt: "Ou fenk voye yon imèl bay yon zanmi. Ki fraz ki kòrèk?",
+      options: [
+        "I received you an email.",
+        "I sent you an email.",
+        "I inbox you an email.",
+        "I attach you an email.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ou VOYE, se “sent”.",
+    },
+    thinkEmoji: "📧",
+    thinkPrompt: "Ekri yon fraz sou yon imèl ou voye oswa resevwa:",
+    thinkPlaceholder: "I sent... / I received...",
+    aiPrompt:
+      "Hi! Can you ask me about an email I sent or received, and help me use the right vocabulary?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike vokabilè imèl.",
+    missionTask:
+      "🎯 Jodi a, di yon fraz sou yon imèl ou voye oswa resevwa dènyèman.",
+    recap: [
+      { emoji: "📤", text: "“Send” se lè ou voye." },
+      { emoji: "📥", text: "“Receive” se lè ou jwenn." },
+      { emoji: "📬", text: "Check your inbox." },
+      { emoji: "🎯", text: "Misyon: pale de yon imèl ou voye/resevwa." },
+    ],
+  },
+  {
+    slug: "passwords-and-security",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "🔒",
+    heroTitle: "Modpas ak Sekirite",
+    heroLede: "Pwoteje kont ou mande vokabilè presi.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de modpas ak sekirite kont ou.",
+    whatYouWillLearn: "vokabilè pou password, login, ak account",
+    prerequisite: "Leson 3 — Baz Imèl",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Pwoteje kont ou mande vokabilè presi.",
+    understandBody:
+      "**I forgot my password.** **Please create a strong password.** **I need to log in to my account.** Twa fraz sa yo itil chak fwa ou jere yon kont sou entènèt.",
+    seeItInAction: [
+      { line: "I forgot my password.", tag: "Bliye modpas", emoji: "🔒" },
+      { line: "Please create a strong password.", tag: "Kreye", emoji: "💪" },
+      {
+        line: "I need to log in to my account.",
+        tag: "Konekte kont",
+        emoji: "🔑",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Forgot", display: "I forgot my password." },
+      { chipLabel: "Create", display: "Please create a strong password." },
+      { chipLabel: "Log in", display: "I need to log in to my account." },
+    ],
+    vocabulary: [
+      {
+        word: "Password",
+        ipa: "/ˈpæswɜːrd/",
+        kreyol: "Modpas",
+        example: "I forgot my password.",
+      },
+      {
+        word: "Login",
+        ipa: "/ˈlɒgɪn/",
+        kreyol: "Koneksyon (kont)",
+        example: "I need to log in.",
+      },
+      {
+        word: "Account",
+        ipa: "/əˈkaʊnt/",
+        kreyol: "Kont",
+        example: "This is my account.",
+      },
+      {
+        word: "Forgot",
+        ipa: "/fərˈgɒt/",
+        kreyol: "Bliye",
+        example: "I forgot my password.",
+      },
+      {
+        word: "Strong",
+        ipa: "/strɒŋ/",
+        kreyol: "Fò",
+        example: "Use a strong password.",
+      },
+    ],
+    pronunciationWord: "Password",
+    pronunciationIpa: "/ˈpæswɜːrd/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “PAS-wərd”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I forget my password” pou yon bagay ki deja pase — se “I forgot” (tan pase).",
+    mistakeWrong: "I forget my password. (jodi a, li deja rive)",
+    mistakeCorrect: "I forgot my password.",
+    mistakeWhy:
+      "**Poukisa:** Si ou deja pa sonje modpas la KOUNYE A, itilize tan pase “forgot”, pa “forget” (prezan).",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk lè ou pa sonje modpas ou kounye a:",
+      options: [
+        "I forget my password.",
+        "I forgot my password.",
+        "I forgetting my password.",
+        "I forgets my password.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — itilize tan pase.",
+    },
+    thinkEmoji: "🔒",
+    thinkPrompt: "Ekri yon fraz sou yon modpas oswa yon kont:",
+    thinkPlaceholder: "I need to... / I forgot...",
+    aiPrompt:
+      "Hi! Can you ask me about creating a strong password or logging into an account, so I can practice this vocabulary?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike password/login/account.",
+    missionTask: "🎯 Jodi a, ekri yon fraz sou yon fwa ou te bliye yon modpas.",
+    recap: [
+      { emoji: "🔒", text: "Password, login, account." },
+      { emoji: "⚠️", text: '"I forgot" (tan pase), pa "I forget".' },
+      { emoji: "💪", text: "Please create a strong password." },
+      { emoji: "🎯", text: "Misyon: pale de yon modpas ou bliye." },
+    ],
+  },
+  {
+    slug: "browser-and-website",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "🌐",
+    heroTitle: "Navigatè ak Sit Entènèt",
+    heroLede: "Navige sou entènèt mande vokabilè presi tou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab navige sou entènèt ak vokabilè kòrèk.",
+    whatYouWillLearn: "vokabilè pou browser, website, ak link",
+    prerequisite: "Leson 4 — Modpas ak Sekirite",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Navige sou entènèt mande vokabilè presi tou.",
+    understandBody:
+      "**Open your browser.** **What is the website address?** **Click on the link.** Twa fraz sa yo ede w navige sou entènèt ak konfyans.",
+    seeItInAction: [
+      { line: "Open your browser.", tag: "Ouvri navigatè", emoji: "🌐" },
+      { line: "What is the website address?", tag: "Adrès sit", emoji: "🔗" },
+      { line: "Click on the link.", tag: "Klike", emoji: "👆" },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Browser", display: "Open your browser." },
+      { chipLabel: "Website", display: "What is the website address?" },
+      { chipLabel: "Click", display: "Click on the link." },
+    ],
+    vocabulary: [
+      {
+        word: "Browser",
+        ipa: "/ˈbraʊzər/",
+        kreyol: "Navigatè",
+        example: "Open your browser.",
+      },
+      {
+        word: "Website",
+        ipa: "/ˈwɛbsaɪt/",
+        kreyol: "Sit entènèt",
+        example: "What is the website?",
+      },
+      {
+        word: "Link",
+        ipa: "/lɪŋk/",
+        kreyol: "Lyen",
+        example: "Click on the link.",
+      },
+      { word: "Click", ipa: "/klɪk/", kreyol: "Klike", example: "Click here." },
+      {
+        word: "Search",
+        ipa: "/sɜːrtʃ/",
+        kreyol: "Chèche",
+        example: "Search for it online.",
+      },
+    ],
+    pronunciationWord: "Browser",
+    pronunciationIpa: "/ˈbraʊzər/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “BRAU-zər”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Click in the link” — se “Click on the link”.",
+    mistakeWrong: "Click in the link.",
+    mistakeCorrect: "Click on the link.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, ou “click on” yon bagay, pa “click in”. Se yon ekspresyon fikse.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "Click in the link.",
+        "Click on the link.",
+        "Click at the link.",
+        "Click to the link.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “click on”.",
+    },
+    thinkEmoji: "🌐",
+    thinkPrompt: "Ekri yon fraz sou jan ou navige sou entènèt:",
+    thinkPlaceholder: "I open... I click...",
+    aiPrompt:
+      "Hi! Can you ask me how I search for things online and help me use browser, website, and link correctly?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike browser/website/link.",
+    missionTask: "🎯 Jodi a, ekri yon fraz sou kijan ou jwenn yon sit entènèt.",
+    recap: [
+      { emoji: "🌐", text: "Browser, website, link." },
+      { emoji: "👆", text: "Click on the link." },
+      { emoji: "⚠️", text: '"Click on", pa "click in".' },
+      { emoji: "🎯", text: "Misyon: pale de kijan ou navige sou entènèt." },
+    ],
+  },
+  {
+    slug: "download-and-upload",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "⬇️",
+    heroTitle: "Download ak Upload",
+    heroLede:
+      "“Download” pran yon bagay soti sou entènèt, “upload” voye yon bagay ale sou entènèt.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize download ak upload kòrèkteman.",
+    whatYouWillLearn: "diferans ant “download” ak “upload”",
+    prerequisite: "Leson 5 — Navigatè ak Sit Entènèt",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Download” pran, “upload” voye — de direksyon opoze.",
+    understandBody:
+      "**I need to download this file.** (soti sou entènèt vin nan aparèy ou) **I'll upload the photos later.** (soti nan aparèy ou ale sou entènèt).",
+    seeItInAction: [
+      { line: "I need to download this file.", tag: "Download", emoji: "⬇️" },
+      { line: "I'll upload the photos later.", tag: "Upload", emoji: "⬆️" },
+      { line: "The download is almost done.", tag: "Prèske fini", emoji: "⏳" },
+    ],
+    patternBuilderIntro: "Klike sou chak direksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Download", display: "I need to download this file." },
+      { chipLabel: "Upload", display: "I'll upload the photos later." },
+      { chipLabel: "Almost done", display: "The download is almost done." },
+    ],
+    vocabulary: [
+      {
+        word: "Download",
+        ipa: "/ˈdaʊnloʊd/",
+        kreyol: "Telechaje (pran)",
+        example: "Download this file.",
+      },
+      {
+        word: "Upload",
+        ipa: "/ˈʌploʊd/",
+        kreyol: "Telechaje (voye)",
+        example: "I'll upload the photos.",
+      },
+      {
+        word: "File",
+        ipa: "/faɪl/",
+        kreyol: "Fichye",
+        example: "I need to download this file.",
+      },
+      {
+        word: "Photo",
+        ipa: "/ˈfoʊtoʊ/",
+        kreyol: "Foto",
+        example: "I'll upload the photos.",
+      },
+      {
+        word: "Almost",
+        ipa: "/ˈɔːlmoʊst/",
+        kreyol: "Prèske",
+        example: "The download is almost done.",
+      },
+    ],
+    pronunciationWord: "Download",
+    pronunciationIpa: "/ˈdaʊnloʊd/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de mo kole ansanm, aksan an sou “down”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “download” (pran soti) ak “upload” (voye ale) — direksyon yo opoze.",
+    mistakeWrong: "I need to upload this file from the internet.",
+    mistakeCorrect: "I need to download this file from the internet.",
+    mistakeWhy:
+      "**Poukisa:** Yon fichye ki soti SOU ENTÈNÈT vin nan aparèy ou, se “download”. “Upload” se lè ou voye yon bagay SOTI nan aparèy ou ale sou entènèt.",
+    practice: {
+      prompt: "Ou vle pran yon fichye soti sou entènèt. Ki mo ki kòrèk?",
+      options: ["Upload", "Download", "Update", "Setting"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pran soti sou entènèt se “download”.",
+    },
+    thinkEmoji: "⬇️",
+    thinkPrompt: "Ekri yon fraz ak “download” epi yon lòt ak “upload”:",
+    thinkPlaceholder: "I need to download... / I'll upload...",
+    aiPrompt:
+      "Hi! Can you give me situations and let me choose between download and upload?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike download/upload.",
+    missionTask:
+      "🎯 Jodi a, ekri yon fraz sou yon bagay ou download oswa upload dènyèman.",
+    recap: [
+      { emoji: "⬇️", text: "“Download” pran soti sou entènèt." },
+      { emoji: "⬆️", text: "“Upload” voye ale sou entènèt." },
+      { emoji: "📁", text: "File, photo." },
+      { emoji: "🎯", text: "Misyon: pale de yon fichye ou download/upload." },
+    ],
+  },
+  {
+    slug: "tech-settings",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "⚙️",
+    heroTitle: "Paramèt (Settings)",
+    heroLede: "“Settings” chanje jan yon aparèy oswa yon app fonksyone.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab navige nan paramèt yon aparèy oswa yon app.",
+    whatYouWillLearn: "vokabilè pou settings, notifications, ak update",
+    prerequisite: "Leson 6 — Download ak Upload",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Settings” chanje jan yon aparèy oswa yon app fonksyone.",
+    understandBody:
+      "**Go to your settings.** **I need to change my settings.** **Turn on notifications in settings.** Paramèt yo kontwole tout bagay sou aparèy ou.",
+    seeItInAction: [
+      { line: "Go to your settings.", tag: "Ale nan paramèt", emoji: "⚙️" },
+      { line: "I need to change my settings.", tag: "Chanje", emoji: "🔧" },
+      {
+        line: "Turn on notifications in settings.",
+        tag: "Notifikasyon",
+        emoji: "🔔",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Go to", display: "Go to your settings." },
+      { chipLabel: "Change", display: "I need to change my settings." },
+      {
+        chipLabel: "Notifications",
+        display: "Turn on notifications in settings.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Settings",
+        ipa: "/ˈsɛtɪŋz/",
+        kreyol: "Paramèt",
+        example: "Go to your settings.",
+      },
+      {
+        word: "Change",
+        ipa: "/tʃeɪndʒ/",
+        kreyol: "Chanje",
+        example: "I need to change my settings.",
+      },
+      {
+        word: "Notifications",
+        ipa: "/ˌnoʊtɪfɪˈkeɪʃənz/",
+        kreyol: "Notifikasyon",
+        example: "Turn on notifications.",
+      },
+      {
+        word: "App",
+        ipa: "/æp/",
+        kreyol: "Aplikasyon",
+        example: "Open the app.",
+      },
+      {
+        word: "Update",
+        ipa: "/ˈʌpdeɪt/",
+        kreyol: "Mizajou",
+        example: "Install the update.",
+      },
+    ],
+    pronunciationWord: "Notifications",
+    pronunciationIpa: "/ˌnoʊtɪfɪˈkeɪʃənz/",
+    mouthTip: "**Ti konsèy pou bouch ou:** senk silab, aksan an sou “KAY”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “settings” tankou se yon sèl bagay ou ka konte — li toujou pliryèl an Anglè.",
+    mistakeWrong: "Go to your setting.",
+    mistakeCorrect: "Go to your settings.",
+    mistakeWhy:
+      "**Poukisa:** “Settings” toujou rete nan fòm pliryèl an Anglè, menm lè w ap pale de yon sèl chanjman.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "Go to your setting.",
+        "Go to your settings.",
+        "Go to you settings.",
+        "Go to a settings.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “settings” toujou pliryèl.",
+    },
+    thinkEmoji: "⚙️",
+    thinkPrompt:
+      "Ekri yon fraz sou yon paramèt ou chanje nan yon app oswa aparèy:",
+    thinkPlaceholder: "I changed my settings to...",
+    aiPrompt:
+      "Hi! Can you ask me about settings I've changed on my phone or an app, so I can practice this vocabulary?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike settings/notifications/update.",
+    missionTask:
+      "🎯 Jodi a, di yon paramèt ou ta renmen chanje sou yon aparèy oswa yon app.",
+    recap: [
+      { emoji: "⚙️", text: "Settings toujou pliryèl an Anglè." },
+      { emoji: "🔔", text: "Turn on notifications in settings." },
+      { emoji: "🔧", text: "I need to change my settings." },
+      { emoji: "🎯", text: "Misyon: pale de yon paramèt ou ta chanje." },
+    ],
+  },
+  {
+    slug: "ai-and-chatgpt",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "🤖",
+    heroTitle: "AI ak ChatGPT",
+    heroLede: "Vokabilè pou zouti AI ki vin nòmal nan lavi chak jou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de jan ou itilize AI ak ChatGPT.",
+    whatYouWillLearn: "vokabilè pou AI, ChatGPT, ak prompt",
+    prerequisite: "Leson 7 — Paramèt (Settings)",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "AI vin fè pati lavi chak jou, tankou telefòn ak entènèt.",
+    understandBody:
+      "**I use ChatGPT to help me write.** **AI can translate languages quickly.** Vokabilè sa a ap vin pi enpòtan chak jou pou moun k ap aprann Anglè.",
+    seeItInAction: [
+      {
+        line: "I use ChatGPT to help me write.",
+        tag: "Itilize AI",
+        emoji: "🤖",
+      },
+      { line: "Can you ask AI for help?", tag: "Mande èd", emoji: "❓" },
+      {
+        line: "AI can translate languages quickly.",
+        tag: "Tradiksyon",
+        emoji: "🌍",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Use", display: "I use ChatGPT to help me write." },
+      { chipLabel: "Ask", display: "Can you ask AI for help?" },
+      {
+        chipLabel: "Translate",
+        display: "AI can translate languages quickly.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "AI",
+        ipa: "/eɪ aɪ/",
+        kreyol: "Entelijans Atifisyèl",
+        example: "AI can help you.",
+      },
+      {
+        word: "ChatGPT",
+        ipa: "/tʃæt dʒiː piː tiː/",
+        kreyol: "ChatGPT (non zouti)",
+        example: "I use ChatGPT to help me write.",
+      },
+      {
+        word: "Prompt",
+        ipa: "/prɒmpt/",
+        kreyol: "Enstriksyon (bay AI)",
+        example: "Write a good prompt.",
+      },
+      {
+        word: "Translate",
+        ipa: "/trænzˈleɪt/",
+        kreyol: "Tradwi",
+        example: "AI can translate languages.",
+      },
+      {
+        word: "Quickly",
+        ipa: "/ˈkwɪkli/",
+        kreyol: "Vit",
+        example: "AI works quickly.",
+      },
+    ],
+    pronunciationWord: "Translate",
+    pronunciationIpa: "/trænzˈleɪt/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “tranz-LEYT”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I use AI for help me” — se “I use AI to help me”.",
+    mistakeWrong: "I use AI for help me write.",
+    mistakeCorrect: "I use AI to help me write.",
+    mistakeWhy:
+      "**Poukisa:** Apre “use [bagay]”, itilize “to” + vèb debaz pou eksplike objektif la: “to help me write”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I use AI for help me write.",
+        "I use AI to help me write.",
+        "I use AI help me write.",
+        "I use AI helping me write.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “to help”.",
+    },
+    thinkEmoji: "🤖",
+    thinkPrompt: "Ekri yon fraz sou kijan ou itilize (oswa ta itilize) AI:",
+    thinkPlaceholder: "I use AI to...",
+    aiPrompt:
+      "Hi! Can you ask me how I use AI tools like ChatGPT in my daily life, and help me answer using the right vocabulary?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike vokabilè AI.",
+    missionTask:
+      "🎯 Jodi a, di yon fason ou itilize (oswa ta itilize) AI pou ede w.",
+    recap: [
+      { emoji: "🤖", text: "AI, ChatGPT, prompt." },
+      { emoji: "🌍", text: "AI can translate languages quickly." },
+      { emoji: "⚠️", text: '"Use AI to help", pa "use AI for help".' },
+      { emoji: "🎯", text: "Misyon: pale de kijan ou itilize AI." },
+    ],
+  },
+  {
+    slug: "technology-mission",
+    moduleTitle: "Modil 12: Anglè Pou Teknoloji",
+    illustrationKey: "emoji",
+    heroEmoji: "📱",
+    heroTitle: "Itilize Teknoloji",
+    heroLede:
+      "Se lè a pou konbine vokabilè teknoloji Modil 12 pou dekri jan ou itilize aparèy ou chak jou.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab rakonte yon jounen teknoloji konplè.",
+    whatYouWillLearn:
+      "kijan pou konbine tout vokabilè teknoloji Modil 12 nan yon istwa",
+    prerequisite: "Leson 8 — AI ak ChatGPT",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Yon jounen teknoloji tipik itilize anpil nan vokabilè Modil 12 la.",
+    understandBody:
+      "**I connect to Wi-Fi and check my email.** **I download files and use ChatGPT for work.** Konbine plizyè aksyon teknoloji rakonte yon jounen konplè.",
+    seeItInAction: [
+      {
+        line: "I connect to Wi-Fi and check my email.",
+        tag: "Maten",
+        emoji: "📧",
+      },
+      {
+        line: "I download files and use ChatGPT for work.",
+        tag: "Travay",
+        emoji: "🤖",
+      },
+      {
+        line: "I forgot my password, so I reset it.",
+        tag: "Pwoblèm",
+        emoji: "🔑",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè fraz la.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Morning",
+        display: "I connect to Wi-Fi and check my email.",
+      },
+      { chipLabel: "Work", display: "I download files and use ChatGPT." },
+      { chipLabel: "Problem", display: "I forgot my password, so I reset it." },
+    ],
+    vocabulary: [
+      {
+        word: "Reset",
+        ipa: "/riːˈsɛt/",
+        kreyol: "Reyajiste",
+        example: "I reset my password.",
+      },
+      {
+        word: "Device",
+        ipa: "/dɪˈvaɪs/",
+        kreyol: "Aparèy",
+        example: "This is my device.",
+      },
+      {
+        word: "Online",
+        ipa: "/ˈɒnlaɪn/",
+        kreyol: "Sou entènèt",
+        example: "I work online.",
+      },
+      {
+        word: "Technology",
+        ipa: "/tɛkˈnɒlədʒi/",
+        kreyol: "Teknoloji",
+        example: "I use technology every day.",
+      },
+      {
+        word: "Everyday",
+        ipa: "/ˈɛvrideɪ/",
+        kreyol: "Chak jou",
+        example: "These are everyday tools.",
+      },
+    ],
+    pronunciationWord: "Technology",
+    pronunciationIpa: "/tɛkˈnɒlədʒi/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou dezyèm — “tek-NOL-uh-jee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye konjige chak vèb kòrèkteman menm nan yon fraz ki gen plizyè aksyon teknoloji.",
+    mistakeWrong: "I connects to Wi-Fi and checks my email. (lè sijè a se I)",
+    mistakeCorrect: "I connect to Wi-Fi and check my email.",
+    mistakeWhy:
+      "**Poukisa:** Sijè “I” pa janm pran “-s” sou vèb la, menm nan yon fraz ak plizyè vèb aksyon konekte.",
+    practice: {
+      prompt: "Ki vèsyon ki kòrèk pou “I”?",
+      options: [
+        "I connects to Wi-Fi and checks email.",
+        "I connect to Wi-Fi and check email.",
+        "I connecting to Wi-Fi and checking email.",
+        "I connected to Wi-Fi and checked email. (jodi a)",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “I” pa pran “-s”.",
+    },
+    thinkEmoji: "📱",
+    thinkPrompt:
+      "Ekri yon ti istwa sou jan ou itilize teknoloji chak jou, ak omwen kat mo Modil 12:",
+    thinkPlaceholder: "I connect to Wi-Fi, ... , and ...",
+    aiPrompt:
+      "Hi! Can you listen to a short story about how I use technology every day — Wi-Fi, email, passwords, AI — and give me friendly feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 12 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri oswa di yon ti istwa sou jan ou itilize teknoloji nan yon jounen tipik.",
+    recap: [
+      {
+        emoji: "📱",
+        text: "Konbine vokabilè teknoloji pou rakonte yon istwa.",
+      },
+      { emoji: "⚠️", text: '"I" pa janm pran "-s" sou vèb la.' },
+      { emoji: "🎓", text: "Ou fini Modil 12 — Anglè Pou Teknoloji!" },
+      { emoji: "🎯", text: "Misyon: rakonte yon jounen teknoloji." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {

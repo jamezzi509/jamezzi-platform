@@ -70,6 +70,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleElevenLessons[0]?.slug).toBe("look-up-for-after");
     expect(moduleElevenLessons.at(-1)?.slug).toBe("phrasal-verbs-mission");
+
+    const moduleTwelveLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 12,
+    );
+    expect(moduleTwelveLessons[0]?.slug).toBe("computer-and-phone");
+    expect(moduleTwelveLessons.at(-1)?.slug).toBe("technology-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {
