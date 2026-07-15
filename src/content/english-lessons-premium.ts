@@ -8276,6 +8276,1016 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: konbine plizyè modèl nan fraz ou." },
     ],
   },
+  {
+    slug: "apostrophe-confusion",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "✂️",
+    heroTitle: "Your/You're, Its/It's, Their/They're",
+    heroLede:
+      "Twa konfizyon ki menm rasin: yon mo posesyon pa janm gen apostwòf, men yon kontraksyon toujou genyen youn.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant your/you're, its/it's, ak their/they're.",
+    whatYouWillLearn:
+      "règ apostwòf la: posesyon pa gen apostwòf, kontraksyon genyen",
+    prerequisite: "Ou fin Modil 9 — Modèl Anglè Yo",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Yon apostwòf montre de mo kole ansanm, pa posesyon.",
+    understandBody:
+      "**Your** montre posesyon (pou ou). **You're** = “you are”. Menm modèl la pou **its** (posesyon) ak **it's** (“it is”), ak **their** (posesyon) ak **they're** (“they are”).",
+    seeItInAction: [
+      { line: "Your book is on the table.", tag: "Posesyon", emoji: "📚" },
+      { line: "You're welcome.", tag: "Kontraksyon (you are)", emoji: "😊" },
+      { line: "The dog wagged its tail.", tag: "Posesyon (its)", emoji: "🐕" },
+    ],
+    patternBuilderIntro: "Klike sou chak mo pou wè li nan yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Your", display: "Your book is on the table." },
+      { chipLabel: "You're", display: "You're welcome." },
+      { chipLabel: "Its", display: "The dog wagged its tail." },
+    ],
+    vocabulary: [
+      {
+        word: "Your",
+        ipa: "/jʊər/",
+        kreyol: "Pou ou (posesyon)",
+        example: "Your book is here.",
+      },
+      {
+        word: "You're",
+        ipa: "/jʊər/",
+        kreyol: "Ou ye (you are)",
+        example: "You're welcome.",
+      },
+      {
+        word: "Its",
+        ipa: "/ɪts/",
+        kreyol: "Pou li (posesyon)",
+        example: "The dog wagged its tail.",
+      },
+      {
+        word: "It's",
+        ipa: "/ɪts/",
+        kreyol: "Li ye (it is)",
+        example: "It's raining.",
+      },
+      {
+        word: "Their",
+        ipa: "/ðɛər/",
+        kreyol: "Pou yo (posesyon)",
+        example: "That is their house.",
+      },
+    ],
+    pronunciationWord: "They're",
+    pronunciationIpa: "/ðɛər/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “their”, “there”, ak “they're” sonnen menm jan — kontèks fè diferans.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Your welcome” — se “You're welcome” (you are welcome).",
+    mistakeWrong: "Your welcome.",
+    mistakeCorrect: "You're welcome.",
+    mistakeWhy:
+      "**Poukisa:** “Your welcome” pa gen sans (posesyon + welcome). “You're welcome” = “you are welcome”, repons apre yon mèsi.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "Your welcome.",
+        "You're welcome.",
+        "Your're welcome.",
+        "Yours welcome.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — bezwen kontraksyon an.",
+    },
+    thinkEmoji: "✂️",
+    thinkPrompt:
+      "Ekri twa fraz, chak youn ak yon pè diferan (your/you're, its/it's, their/they're):",
+    thinkPlaceholder: "Your... You're... Its...",
+    aiPrompt:
+      "Hi! Can you give me 6 sentences with blanks, and let me choose between your/you're, its/it's, and their/they're?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike règ apostwòf la.",
+    missionTask:
+      "🎯 Jodi a, ekri twa fraz kòrèk ak your/you're, its/it's, ak their/they're.",
+    recap: [
+      { emoji: "✂️", text: "Posesyon pa gen apostwòf: your, its, their." },
+      {
+        emoji: "🔗",
+        text: "Kontraksyon toujou gen apostwòf: you're, it's, they're.",
+      },
+      { emoji: "⚠️", text: "“You're welcome” = “you are welcome”." },
+      { emoji: "🎯", text: "Misyon: ekri twa fraz kòrèk." },
+    ],
+  },
+  {
+    slug: "to-too-two",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "2️⃣",
+    heroTitle: "To, Too, ak Two",
+    heroLede: "Twa mo ki sonnen menm jan, twa sans totalman diferan.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant to, too, ak two.",
+    whatYouWillLearn:
+      "sans diferan pou to (direksyon), too (tou/twòp), ak two (2)",
+    prerequisite: "Leson 1 — Your/You're, Its/It's, Their/They're",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Menm son, twa sans diferan.",
+    understandBody:
+      "**To** montre direksyon (go to school). **Too** vle di “tou” oswa “twòp”. **Two** se chif 2. Kontèks la fè w konnen kilès pou itilize.",
+    seeItInAction: [
+      { line: "I go to school.", tag: "Direksyon (to)", emoji: "🏫" },
+      { line: "I'm hungry too.", tag: "Tou/menm bagay (too)", emoji: "🍽️" },
+      { line: "I have two brothers.", tag: "Chif 2 (two)", emoji: "👬" },
+    ],
+    patternBuilderIntro: "Klike sou chak sans pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "To", display: "I go to school." },
+      { chipLabel: "Too", display: "I'm hungry too." },
+      { chipLabel: "Two", display: "I have two brothers." },
+    ],
+    vocabulary: [
+      {
+        word: "To",
+        ipa: "/tuː/",
+        kreyol: "Vè/nan (direksyon)",
+        example: "I go to school.",
+      },
+      {
+        word: "Too",
+        ipa: "/tuː/",
+        kreyol: "Tou/Twòp",
+        example: "I'm hungry too.",
+      },
+      {
+        word: "Two",
+        ipa: "/tuː/",
+        kreyol: "De (chif)",
+        example: "I have two brothers.",
+      },
+      {
+        word: "Also",
+        ipa: "/ˈɔːlsoʊ/",
+        kreyol: "Tou (sinonim too)",
+        example: "I like it too / also.",
+      },
+      {
+        word: "Brothers",
+        ipa: "/ˈbrʌðərz/",
+        kreyol: "Frè",
+        example: "I have two brothers.",
+      },
+    ],
+    pronunciationWord: "Too",
+    pronunciationIpa: "/tuː/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** tou twa mo yo sonnen menm jan — “too”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I have to brothers” pou chif 2 — se “two”.",
+    mistakeWrong: "I have to brothers.",
+    mistakeCorrect: "I have two brothers.",
+    mistakeWhy:
+      "**Poukisa:** Chif 2 ekri “two”, pa “to”. “To” se pou direksyon (go to), “too” se pou “tou/twòp”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I have to brothers.",
+        "I have too brothers.",
+        "I have two brothers.",
+        "I have tu brothers.",
+      ],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chif 2 ekri “two”.",
+    },
+    thinkEmoji: "2️⃣",
+    thinkPrompt: "Ekri twa fraz, chak youn ak to, too, oswa two:",
+    thinkPlaceholder: "I go to... I like it too. I have two...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between to, too, and two?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike to/too/two.",
+    missionTask: "🎯 Jodi a, ekri twa fraz kòrèk ak to, too, ak two.",
+    recap: [
+      { emoji: "🏫", text: "“To” montre direksyon." },
+      { emoji: "🍽️", text: "“Too” vle di tou oswa twòp." },
+      { emoji: "👬", text: "“Two” se chif 2." },
+      { emoji: "🎯", text: "Misyon: ekri twa fraz ak to/too/two." },
+    ],
+  },
+  {
+    slug: "then-vs-than",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "⏱️",
+    heroTitle: "Then kont Than",
+    heroLede: "“Then” montre lè, “than” konpare de bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant then ak than.",
+    whatYouWillLearn: "diferans ant “then” (lè) ak “than” (konparezon)",
+    prerequisite: "Leson 2 — To, Too, ak Two",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Then” pou lè, “than” pou konpare.",
+    understandBody:
+      "**I eat, then I sleep.** (sekans, lè) **She is taller than me.** (konparezon). Yon sèl lèt diferan, men de sans totalman diferan.",
+    seeItInAction: [
+      { line: "I eat, then I sleep.", tag: "Lè (sekans)", emoji: "⏰" },
+      { line: "She is taller than me.", tag: "Konparezon", emoji: "📏" },
+      { line: "I'd rather walk than drive.", tag: "Konparezon", emoji: "🚶" },
+    ],
+    patternBuilderIntro: "Klike sou chak sans pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Then (time)", display: "I eat, then I sleep." },
+      { chipLabel: "Than (compare)", display: "She is taller than me." },
+      { chipLabel: "Than (prefer)", display: "I'd rather walk than drive." },
+    ],
+    vocabulary: [
+      {
+        word: "Then",
+        ipa: "/ðɛn/",
+        kreyol: "Answit",
+        example: "I eat, then I sleep.",
+      },
+      {
+        word: "Than",
+        ipa: "/ðæn/",
+        kreyol: "Pase (konparezon)",
+        example: "She is taller than me.",
+      },
+      {
+        word: "Taller",
+        ipa: "/ˈtɔːlər/",
+        kreyol: "Pi wo",
+        example: "She is taller than me.",
+      },
+      {
+        word: "Rather",
+        ipa: "/ˈræðər/",
+        kreyol: "Pito",
+        example: "I'd rather walk than drive.",
+      },
+      {
+        word: "Drive",
+        ipa: "/draɪv/",
+        kreyol: "Kondi",
+        example: "I'd rather walk than drive.",
+      },
+    ],
+    pronunciationWord: "Than",
+    pronunciationIpa: "/ðæn/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “a” ouvè nan “than”, diferan de “e” nan “then”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “taller then me” — konparezon itilize “than”.",
+    mistakeWrong: "She is taller then me.",
+    mistakeCorrect: "She is taller than me.",
+    mistakeWhy:
+      "**Poukisa:** “Than” itilize pou konpare de bagay (taller than). “Then” itilize pou lè/sekans (eat, then sleep).",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "She is taller then me.",
+        "She is taller than me.",
+        "She is tall then me.",
+        "She is tall than me.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — konparezon itilize “than”.",
+    },
+    thinkEmoji: "⏱️",
+    thinkPrompt: "Ekri yon fraz ak “then” epi yon lòt ak “than”:",
+    thinkPlaceholder: "First..., then... / ...is bigger than...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between then and than?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike then/than.",
+    missionTask: "🎯 Jodi a, ekri yon fraz ak “then” epi yon lòt ak “than”.",
+    recap: [
+      { emoji: "⏰", text: "“Then” pou lè/sekans." },
+      { emoji: "📏", text: "“Than” pou konparezon." },
+      { emoji: "⚠️", text: "Yon sèl lèt diferan, de sans diferan." },
+      { emoji: "🎯", text: "Misyon: ekri de fraz ak then/than." },
+    ],
+  },
+  {
+    slug: "look-see-watch",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "👀",
+    heroTitle: "Look, See, ak Watch",
+    heroLede: "Twa fason pou itilize zye ou, twa sans diferan.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant look, see, ak watch.",
+    whatYouWillLearn:
+      "diferans ant look (dirije atansyon), see (wè san eksprè), ak watch (gade atantivman)",
+    prerequisite: "Leson 3 — Then kont Than",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Twa fason pou itilize zye ou, twa nivo atansyon diferan.",
+    understandBody:
+      "**Look at this!** (dirije atansyon w espre) **I see a bird.** (wè san w pa eseye) **I watch movies.** (gade yon bagay ki ap deplase, atantivman).",
+    seeItInAction: [
+      { line: "Look at this!", tag: "Dirije atansyon", emoji: "👀" },
+      { line: "I see a bird.", tag: "Wè san eksprè", emoji: "🐦" },
+      {
+        line: "I watch movies on Fridays.",
+        tag: "Gade atantivman",
+        emoji: "🎬",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak vèb pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Look", display: "Look at this!" },
+      { chipLabel: "See", display: "I see a bird." },
+      { chipLabel: "Watch", display: "I watch movies on Fridays." },
+    ],
+    vocabulary: [
+      {
+        word: "Look",
+        ipa: "/lʊk/",
+        kreyol: "Dirije zye w",
+        example: "Look at this!",
+      },
+      { word: "See", ipa: "/siː/", kreyol: "Wè", example: "I see a bird." },
+      {
+        word: "Watch",
+        ipa: "/wɒtʃ/",
+        kreyol: "Gade atantivman",
+        example: "I watch movies.",
+      },
+      {
+        word: "Bird",
+        ipa: "/bɜːrd/",
+        kreyol: "Zwazo",
+        example: "I see a bird.",
+      },
+      {
+        word: "Movie",
+        ipa: "/ˈmuːvi/",
+        kreyol: "Fim",
+        example: "I watch a movie.",
+      },
+    ],
+    pronunciationWord: "Watch",
+    pronunciationIpa: "/wɒtʃ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “ch” klè nan fen mo a.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I look TV” — itilize “watch” pou televizyon ak fim.",
+    mistakeWrong: "I look TV every night.",
+    mistakeCorrect: "I watch TV every night.",
+    mistakeWhy:
+      "**Poukisa:** “Watch” itilize pou yon bagay w ap gade atantivman pandan yon tan (TV, movies, sports). “Look” se yon dirèksyon zye kout.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I look TV every night.",
+        "I watch TV every night.",
+        "I see TV every night.",
+        "I looking TV every night.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — televizyon itilize “watch”.",
+    },
+    thinkEmoji: "👀",
+    thinkPrompt: "Ekri twa fraz, chak youn ak look, see, oswa watch:",
+    thinkPlaceholder: "Look at... I see... I watch...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between look, see, and watch?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike look/see/watch.",
+    missionTask: "🎯 Jodi a, ekri twa fraz ak look, see, ak watch.",
+    recap: [
+      { emoji: "👀", text: "“Look” dirije atansyon zye w." },
+      { emoji: "🐦", text: "“See” wè san w pa eseye." },
+      { emoji: "🎬", text: "“Watch” gade atantivman (TV, fim)." },
+      { emoji: "🎯", text: "Misyon: ekri twa fraz ak look/see/watch." },
+    ],
+  },
+  {
+    slug: "say-tell-speak-talk",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "🗣️",
+    heroTitle: "Say, Tell, Speak, ak Talk",
+    heroLede: "Kat vèb pou kominike, chak youn ak yon règ presi.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant say, tell, speak, ak talk.",
+    whatYouWillLearn:
+      "règ chak vèb: say + pawòl, tell + moun, speak/talk + konvèsasyon",
+    prerequisite: "Leson 4 — Look, See, ak Watch",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Tell” toujou swiv ak yon moun, “say” pa bezwen.",
+    understandBody:
+      "**She said hello.** (say + pawòl, san moun dirèkteman) **She told me a secret.** (tell + moun) **Do you speak English?** (speak + lang) **Let's talk.** (talk = konvèsasyon jeneral).",
+    seeItInAction: [
+      { line: "She said hello.", tag: "Say + pawòl", emoji: "💬" },
+      { line: "She told me a secret.", tag: "Tell + moun", emoji: "🤫" },
+      { line: "Do you speak English?", tag: "Speak + lang", emoji: "🗣️" },
+    ],
+    patternBuilderIntro: "Klike sou chak vèb pou wè règ li.",
+    patternBuilderOptions: [
+      { chipLabel: "Say", display: "She said hello." },
+      { chipLabel: "Tell", display: "She told me a secret." },
+      { chipLabel: "Speak", display: "Do you speak English?" },
+    ],
+    vocabulary: [
+      {
+        word: "Say",
+        ipa: "/seɪ/",
+        kreyol: "Di (pawòl)",
+        example: "She said hello.",
+      },
+      {
+        word: "Tell",
+        ipa: "/tɛl/",
+        kreyol: "Di (bay yon moun)",
+        example: "She told me a secret.",
+      },
+      {
+        word: "Speak",
+        ipa: "/spiːk/",
+        kreyol: "Pale (yon lang)",
+        example: "Do you speak English?",
+      },
+      {
+        word: "Talk",
+        ipa: "/tɔːk/",
+        kreyol: "Pale (konvèsasyon)",
+        example: "Let's talk.",
+      },
+      {
+        word: "Secret",
+        ipa: "/ˈsiːkrɪt/",
+        kreyol: "Sekrè",
+        example: "She told me a secret.",
+      },
+    ],
+    pronunciationWord: "Told",
+    pronunciationIpa: "/toʊld/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “oh” long, “tohld”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “She said me hello” — “say” pa pran yon moun dirèkteman apre li.",
+    mistakeWrong: "She said me hello.",
+    mistakeCorrect: "She told me hello. / She said hello to me.",
+    mistakeWhy:
+      "**Poukisa:** “Tell” pran yon moun dirèkteman apre li (tell me). “Say” bezwen “to” devan moun nan (say to me), oswa pa gen moun ditou.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "She said me a secret.",
+        "She told me a secret.",
+        "She talk me a secret.",
+        "She speak me a secret.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “tell” pran yon moun dirèkteman.",
+    },
+    thinkEmoji: "🗣️",
+    thinkPrompt: "Ekri kat fraz, chak youn ak say, tell, speak, oswa talk:",
+    thinkPlaceholder: "She said... She told... I speak... Let's talk...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between say, tell, speak, and talk?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike say/tell/speak/talk.",
+    missionTask: "🎯 Jodi a, ekri kat fraz ak say, tell, speak, ak talk.",
+    recap: [
+      { emoji: "💬", text: "“Say” + pawòl (san moun dirèkteman)." },
+      { emoji: "🤫", text: "“Tell” + moun dirèkteman." },
+      { emoji: "🗣️", text: "“Speak”/“Talk” pou lang ak konvèsasyon." },
+      { emoji: "🎯", text: "Misyon: ekri kat fraz ak kat vèb yo." },
+    ],
+  },
+  {
+    slug: "listen-vs-hear",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "👂",
+    heroTitle: "Listen kont Hear",
+    heroLede: "“Hear” pase san eksprè, “listen” se yon chwa atansyon.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant listen ak hear.",
+    whatYouWillLearn:
+      "diferans ant “hear” (san eksprè) ak “listen” (chwa atansyon)",
+    prerequisite: "Leson 5 — Say, Tell, Speak, ak Talk",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Hear” pase san w pa eseye, “listen” se yon chwa.",
+    understandBody:
+      "**I hear music outside.** (san w pa eseye, li rive nan zòrèy ou) **I listen to music every day.** (yon chwa, ak atansyon). Menm diferans ak look/see.",
+    seeItInAction: [
+      { line: "I hear music outside.", tag: "San eksprè", emoji: "👂" },
+      {
+        line: "I listen to music every day.",
+        tag: "Chwa atansyon",
+        emoji: "🎧",
+      },
+      { line: "Can you hear me?", tag: "Kesyon", emoji: "❓" },
+    ],
+    patternBuilderIntro: "Klike sou chak vèb pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Hear", display: "I hear music outside." },
+      { chipLabel: "Listen", display: "I listen to music every day." },
+      { chipLabel: "Question", display: "Can you hear me?" },
+    ],
+    vocabulary: [
+      {
+        word: "Hear",
+        ipa: "/hɪər/",
+        kreyol: "Tande (san eksprè)",
+        example: "I hear music outside.",
+      },
+      {
+        word: "Listen",
+        ipa: "/ˈlɪsən/",
+        kreyol: "Koute (ak atansyon)",
+        example: "I listen to music.",
+      },
+      {
+        word: "Outside",
+        ipa: "/ˌaʊtˈsaɪd/",
+        kreyol: "Deyò",
+        example: "I hear music outside.",
+      },
+      {
+        word: "Sound",
+        ipa: "/saʊnd/",
+        kreyol: "Son",
+        example: "What is that sound?",
+      },
+      {
+        word: "Quiet",
+        ipa: "/ˈkwaɪət/",
+        kreyol: "Kalm/San bri",
+        example: "Please be quiet.",
+      },
+    ],
+    pronunciationWord: "Hear",
+    pronunciationIpa: "/hɪər/",
+    mouthTip: "**Ti konsèy pou bouch ou:** “hear” ak “here” sonnen menm jan.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “to” apre “listen” — “listen music” pa kòrèk.",
+    mistakeWrong: "I hear to music every day.",
+    mistakeCorrect: "I listen to music every day.",
+    mistakeWhy:
+      "**Poukisa:** Lè se yon chwa ak atansyon (ekout mizik espre), itilize “listen to”. “Hear” pa bezwen “to” epi li pou son ki rive san w pa eseye.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou yon aktivite ou chwazi fè:",
+      options: [
+        "I hear to music every day.",
+        "I listen to music every day.",
+        "I hear music every day. (chwa)",
+        "I listen music every day.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — yon chwa ak atansyon se “listen to”.",
+    },
+    thinkEmoji: "👂",
+    thinkPrompt: "Ekri yon fraz ak “hear” epi yon lòt ak “listen”:",
+    thinkPlaceholder: "I hear... / I listen to...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between hear and listen?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike listen/hear.",
+    missionTask: "🎯 Jodi a, ekri yon fraz ak “hear” epi yon lòt ak “listen”.",
+    recap: [
+      { emoji: "👂", text: "“Hear” pase san w pa eseye." },
+      { emoji: "🎧", text: "“Listen to” se yon chwa ak atansyon." },
+      { emoji: "⚠️", text: "“Listen” toujou pran “to”." },
+      { emoji: "🎯", text: "Misyon: ekri de fraz ak hear/listen." },
+    ],
+  },
+  {
+    slug: "much-many-few-little",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "🔢",
+    heroTitle: "Much, Many, Few, ak Little",
+    heroLede: "Konte oswa pa konte detèmine ki mo pou itilize.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant much/many ak few/little.",
+    whatYouWillLearn:
+      "kilè pou itilize many/few (konte) ak much/little (pa konte)",
+    prerequisite: "Leson 6 — Listen kont Hear",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Konte oswa pa konte detèmine ki mo pou itilize.",
+    understandBody:
+      "**How many books?** (konte) **How much water?** (pa konte). **A few friends** (kèk, konte). **A little water** (yon ti kras, pa konte).",
+    seeItInAction: [
+      { line: "How many books do you have?", tag: "Konte (many)", emoji: "📚" },
+      {
+        line: "How much water do you need?",
+        tag: "Pa konte (much)",
+        emoji: "💧",
+      },
+      { line: "I have a few friends.", tag: "Kèk, konte (few)", emoji: "👫" },
+    ],
+    patternBuilderIntro: "Klike sou chak mo pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Many", display: "How many books do you have?" },
+      { chipLabel: "Much", display: "How much water do you need?" },
+      { chipLabel: "Few", display: "I have a few friends." },
+    ],
+    vocabulary: [
+      {
+        word: "Many",
+        ipa: "/ˈmɛni/",
+        kreyol: "Anpil (konte)",
+        example: "How many books?",
+      },
+      {
+        word: "Much",
+        ipa: "/mʌtʃ/",
+        kreyol: "Anpil (pa konte)",
+        example: "How much water?",
+      },
+      {
+        word: "Few",
+        ipa: "/fjuː/",
+        kreyol: "Kèk (konte)",
+        example: "A few friends.",
+      },
+      {
+        word: "Little",
+        ipa: "/ˈlɪtəl/",
+        kreyol: "Yon ti kras (pa konte)",
+        example: "A little water.",
+      },
+      {
+        word: "Countable",
+        ipa: "/ˈkaʊntəbəl/",
+        kreyol: "Ou ka konte l",
+        example: "Books are countable.",
+      },
+    ],
+    pronunciationWord: "Little",
+    pronunciationIpa: "/ˈlɪtəl/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “LIT-uhl”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “a little friends” — “friends” konte, itilize “a few”.",
+    mistakeWrong: "I have a little friends.",
+    mistakeCorrect: "I have a few friends.",
+    mistakeWhy:
+      "**Poukisa:** “Friends” se yon bagay ou ka konte (one friend, two friends), kidonk “a few”, pa “a little” ki se pou bagay ou pa ka konte.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I have a little friends.",
+        "I have a few friends.",
+        "I have much friends.",
+        "I have many water.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “friends” konte.",
+    },
+    thinkEmoji: "🔢",
+    thinkPrompt: "Ekri kat fraz, chak youn ak many, much, few, oswa little:",
+    thinkPlaceholder: "How many...? How much...? A few... A little...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between many, much, few, and little?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike much/many/few/little.",
+    missionTask:
+      "🎯 Jodi a, ekri de fraz — youn ak yon bagay ou ka konte, youn ak yon bagay ou pa ka konte.",
+    recap: [
+      { emoji: "📚", text: "“Many”/“Few” pou bagay ou ka konte." },
+      { emoji: "💧", text: "“Much”/“Little” pou bagay ou pa ka konte." },
+      { emoji: "⚠️", text: "“Friends” konte, “water” pa konte." },
+      { emoji: "🎯", text: "Misyon: ekri de fraz ak mo kantite yo." },
+    ],
+  },
+  {
+    slug: "borrow-lend-bring-take",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "🤝",
+    heroTitle: "Borrow/Lend, Bring/Take",
+    heroLede: "Direksyon yon echanj detèmine ki vèb pou itilize.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant borrow/lend ak bring/take.",
+    whatYouWillLearn:
+      "direksyon echanj: borrow (resevwa), lend (bay), bring (pote vin), take (pote ale)",
+    prerequisite: "Leson 7 — Much, Many, Few, ak Little",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Direksyon an fè diferans ant chak pè vèb sa yo.",
+    understandBody:
+      "**Can I borrow your pen?** (mwen resevwa) **I can lend you my pen.** (mwen bay). Menm lojik ak bring (pote vin) ak take (pote ale) nou wè nan Modil 7.",
+    seeItInAction: [
+      { line: "Can I borrow your pen?", tag: "Ou resevwa", emoji: "🖊️" },
+      { line: "I can lend you my pen.", tag: "Ou bay", emoji: "🤝" },
+      { line: "Bring your book to class.", tag: "Pote vin isit", emoji: "📚" },
+    ],
+    patternBuilderIntro: "Klike sou chak direksyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Borrow", display: "Can I borrow your pen?" },
+      { chipLabel: "Lend", display: "I can lend you my pen." },
+      { chipLabel: "Bring", display: "Bring your book to class." },
+    ],
+    vocabulary: [
+      {
+        word: "Borrow",
+        ipa: "/ˈbɒroʊ/",
+        kreyol: "Prete (resevwa)",
+        example: "Can I borrow your pen?",
+      },
+      {
+        word: "Lend",
+        ipa: "/lɛnd/",
+        kreyol: "Prete (bay)",
+        example: "I can lend you my pen.",
+      },
+      {
+        word: "Bring",
+        ipa: "/brɪŋ/",
+        kreyol: "Pote (vin isit)",
+        example: "Bring your book.",
+      },
+      {
+        word: "Take",
+        ipa: "/teɪk/",
+        kreyol: "Pote (ale lòt kote)",
+        example: "Take your umbrella.",
+      },
+      {
+        word: "Pen",
+        ipa: "/pɛn/",
+        kreyol: "Plim",
+        example: "Can I borrow your pen?",
+      },
+    ],
+    pronunciationWord: "Borrow",
+    pronunciationIpa: "/ˈbɒroʊ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “BOR-oh”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “borrow” (ou resevwa) ak “lend” (ou bay) — yo se opoze.",
+    mistakeWrong: "Can I lend your pen? (lè w vle pran li)",
+    mistakeCorrect: "Can I borrow your pen?",
+    mistakeWhy:
+      "**Poukisa:** Lè OU vle pran yon bagay pou yon ti tan, se “borrow”. Lè OU bay yon bagay bay yon moun, se “lend”.",
+    practice: {
+      prompt: "Ou vle pran plim zanmi w pou yon ti tan. Ki fraz ki kòrèk?",
+      options: [
+        "Can I lend your pen?",
+        "Can I borrow your pen?",
+        "Can I take your pen forever?",
+        "Can I bring your pen?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ou vle RESEVWA, se “borrow”.",
+    },
+    thinkEmoji: "🤝",
+    thinkPrompt: "Ekri yon fraz ak “borrow” epi yon lòt ak “lend”:",
+    thinkPlaceholder: "Can I borrow...? / I can lend...",
+    aiPrompt:
+      "Hi! Can you give me situations and let me choose between borrow, lend, bring, and take?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike borrow/lend/bring/take.",
+    missionTask: "🎯 Jodi a, ekri yon fraz ak “borrow” epi yon lòt ak “lend”.",
+    recap: [
+      { emoji: "🖊️", text: "“Borrow” — ou resevwa pou yon ti tan." },
+      { emoji: "🤝", text: "“Lend” — ou bay pou yon ti tan." },
+      { emoji: "📚", text: "“Bring” vin vè, “take” ale lwen." },
+      { emoji: "🎯", text: "Misyon: ekri de fraz ak borrow/lend." },
+    ],
+  },
+  {
+    slug: "teach-learn-job-work",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "👩‍🏫",
+    heroTitle: "Teach/Learn, Job/Work",
+    heroLede:
+      "Direksyon konesans (teach/learn) ak konte oswa pa konte (job/work).",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab chwazi byen ant teach/learn ak job/work.",
+    whatYouWillLearn:
+      "diferans ant teach/learn (direksyon konesans) ak job/work (konte/pa konte)",
+    prerequisite: "Leson 8 — Borrow/Lend, Bring/Take",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Teach” bay konesans, “learn” resevwa li.",
+    understandBody:
+      "**She teaches English.** (bay konesans) **I learn English.** (resevwa konesans). Menm jan an, **a job** se yon travay presi ou ka konte (a new job), men **work** se aktivite jeneral, pa konte.",
+    seeItInAction: [
+      { line: "She teaches English.", tag: "Bay konesans", emoji: "👩‍🏫" },
+      { line: "I learn English.", tag: "Resevwa konesans", emoji: "📖" },
+      { line: "I have a new job.", tag: "Job (konte)", emoji: "💼" },
+    ],
+    patternBuilderIntro: "Klike sou chak vèb pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Teach", display: "She teaches English." },
+      { chipLabel: "Learn", display: "I learn English." },
+      { chipLabel: "Job", display: "I have a new job." },
+    ],
+    vocabulary: [
+      {
+        word: "Teach",
+        ipa: "/tiːtʃ/",
+        kreyol: "Anseye",
+        example: "She teaches English.",
+      },
+      {
+        word: "Learn",
+        ipa: "/lɜːrn/",
+        kreyol: "Aprann",
+        example: "I learn English.",
+      },
+      {
+        word: "Job",
+        ipa: "/dʒɒb/",
+        kreyol: "Travay (yon pòs presi)",
+        example: "I have a new job.",
+      },
+      {
+        word: "Work",
+        ipa: "/wɜːrk/",
+        kreyol: "Travay (jeneral)",
+        example: "I go to work.",
+      },
+      {
+        word: "Teacher",
+        ipa: "/ˈtiːtʃər/",
+        kreyol: "Pwofesè",
+        example: "She is a teacher.",
+      },
+    ],
+    pronunciationWord: "Teach",
+    pronunciationIpa: "/tiːtʃ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “ee” long, “teetch”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “She learns me English” — moun ki BAY konesans se “teach”.",
+    mistakeWrong: "She learns me English.",
+    mistakeCorrect: "She teaches me English.",
+    mistakeWhy:
+      "**Poukisa:** Pwofesè a BAY konesans, kidonk “teach”. Elèv la RESEVWA konesans, kidonk “learn”. De direksyon opoze.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou yon pwofesè:",
+      options: [
+        "She learns English to students.",
+        "She teaches English to students.",
+        "She works English to students.",
+        "She jobs English to students.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pwofesè a BAY konesans.",
+    },
+    thinkEmoji: "👩‍🏫",
+    thinkPrompt: "Ekri yon fraz ak “teach” epi yon lòt ak “learn”:",
+    thinkPlaceholder: "I teach... / I learn...",
+    aiPrompt:
+      "Hi! Can you give me sentences with blanks and let me choose between teach, learn, job, and work?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike teach/learn/job/work.",
+    missionTask: "🎯 Jodi a, ekri yon fraz ak “teach” epi yon lòt ak “learn”.",
+    recap: [
+      { emoji: "👩‍🏫", text: "“Teach” bay konesans." },
+      { emoji: "📖", text: "“Learn” resevwa konesans." },
+      { emoji: "💼", text: "“Job” konte, “work” pa konte." },
+      { emoji: "🎯", text: "Misyon: ekri de fraz ak teach/learn." },
+    ],
+  },
+  {
+    slug: "confusing-english-mission",
+    moduleTitle: "Modil 10: Anglè Konfizyon",
+    illustrationKey: "emoji",
+    heroEmoji: "🎯",
+    heroTitle: "Fè Diferans Lan",
+    heroLede:
+      "Se lè a pou konbine tout mo konfizyon Modil 10 yo pou pale ak ekri kòrèkteman.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize plizyè pè mo konfizyon kòrèkteman nan yon sèl konvèsasyon.",
+    whatYouWillLearn: "kijan pou konbine tout mo konfizyon Modil 10 kòrèkteman",
+    prerequisite: "Leson 9 — Teach/Learn, Job/Work",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Konnen diferans lan se sa ki fè Anglè ou sonnen kòrèk.",
+    understandBody:
+      "**You're right, your book is there, not their book.** Fraz sa a sèl itilize kat nan mo konfizyon Modil 10 yo, kòrèkteman. Se egzakteman sa Modil 10 prepare w pou fè.",
+    seeItInAction: [
+      {
+        line: "You're right, your book is there, not their book.",
+        tag: "Konbine",
+        emoji: "📚",
+      },
+      {
+        line: "I listen to music, then I watch TV.",
+        tag: "Konbine",
+        emoji: "🎧",
+      },
+      {
+        line: "She teaches me a few things about her job.",
+        tag: "Konbine",
+        emoji: "💼",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak fraz konbine pou wè li.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Apostrophes",
+        display: "You're right, your book is there.",
+      },
+      {
+        chipLabel: "Then/Listen",
+        display: "I listen to music, then I watch TV.",
+      },
+      {
+        chipLabel: "Teach/Few/Job",
+        display: "She teaches me a few things about her job.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Correct",
+        ipa: "/kəˈrɛkt/",
+        kreyol: "Kòrèk",
+        example: "That sentence is correct.",
+      },
+      {
+        word: "Mistake",
+        ipa: "/mɪˈsteɪk/",
+        kreyol: "Erè",
+        example: "That was a small mistake.",
+      },
+      {
+        word: "Difference",
+        ipa: "/ˈdɪfərəns/",
+        kreyol: "Diferans",
+        example: "Do you know the difference?",
+      },
+      {
+        word: "Careful",
+        ipa: "/ˈkɛərfəl/",
+        kreyol: "Atansyone",
+        example: "Be careful with these words.",
+      },
+      {
+        word: "Practice",
+        ipa: "/ˈpræktɪs/",
+        kreyol: "Pratike",
+        example: "Practice makes it easier.",
+      },
+    ],
+    pronunciationWord: "Difference",
+    pronunciationIpa: "/ˈdɪfərəns/",
+    mouthTip: "**Ti konsèy pou bouch ou:** twa silab, “DIF-rəns”.",
+    pronunciationMistake:
+      "**Erè komen:** pa gen wont fè erè ak mo konfizyon sa yo — menm moun ki pale Anglè natifnatal konn mele yo pafwa.",
+    mistakeWrong: "(Ou evite pale paske ou pè fè yon erè)",
+    mistakeCorrect: "You practice, and little by little, it becomes easier.",
+    mistakeWhy:
+      "**Poukisa:** Pi bon pou eseye ak fè erè pase pou pa pale ditou. Chak pratike fè w pi alèz ak mo konfizyon sa yo.",
+    practice: {
+      prompt: "Chwazi fraz ki byen konstwi:",
+      options: [
+        "Your right, they're book is there.",
+        "You're right, their book is there.",
+        "You're right, there book is their.",
+        "Your right, there book is they're.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — gade chak mo pre pre.",
+    },
+    thinkEmoji: "🎯",
+    thinkPrompt: "Ekri yon ti paragraf ak omwen kat pè mo konfizyon Modil 10:",
+    thinkPlaceholder: "You're... your... then... than...",
+    aiPrompt:
+      "Hi! Can you write a short paragraph using several confusing word pairs (your/you're, then/than, few/little, etc.) with some mistakes, and let me find and fix them?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 10 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri yon ti paragraf ki itilize omwen kat pè mo konfizyon Modil 10, kòrèkteman.",
+    recap: [
+      { emoji: "🎯", text: "Konnen diferans lan fè Anglè ou sonnen kòrèk." },
+      { emoji: "💪", text: "Pratike fè mo konfizyon yo vin fasil." },
+      { emoji: "🎓", text: "Ou fini Modil 10 — Anglè Konfizyon!" },
+      {
+        emoji: "🎯",
+        text: "Misyon: ekri yon paragraf ak kat pè mo konfizyon.",
+      },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
