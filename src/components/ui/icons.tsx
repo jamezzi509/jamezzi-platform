@@ -153,6 +153,24 @@ export function GraduationCapIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function BookOpenIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <path d="M3.5 5.5A2.5 2.5 0 0 1 6 3h4a2 2 0 0 1 2 2v15a2.5 2.5 0 0 0-2.5-2.5h-6z" />
+      <path d="M20.5 5.5A2.5 2.5 0 0 0 18 3h-4a2 2 0 0 0-2 2v15a2.5 2.5 0 0 1 2.5-2.5h6z" />
+    </Icon>
+  );
+}
+
+export function CalendarIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <rect width="18" height="17" x="3" y="4" rx="2" />
+      <path d="M8 2v4M16 2v4M3 9h18" />
+    </Icon>
+  );
+}
+
 export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

@@ -14,7 +14,12 @@ import { EnglishPlacementQuiz } from "@/components/academy/english-placement-qui
 import { EnglishWelcomeLesson } from "@/components/academy/english-welcome-lesson";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
-import { ArrowRightIcon } from "@/components/ui/icons";
+import {
+  ArrowRightIcon,
+  BookOpenIcon,
+  CalendarIcon,
+  GraduationCapIcon,
+} from "@/components/ui/icons";
 import { academyBooks } from "@/content/books";
 import { courses, launchingFirstCourses } from "@/content/courses";
 import { titleFromSlug } from "@/lib/format";
@@ -119,7 +124,7 @@ function AcademyHub() {
         </Container>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-12 lg:py-14">
         <Container>
           <div className="grid gap-5 md:grid-cols-3">
             <PathwayCard
@@ -127,18 +132,21 @@ function AcademyHub() {
               title="Online Courses"
               copy="Structured lessons and practical workflows you can follow at your own pace."
               href="/academy/courses"
+              icon="courses"
             />
             <PathwayCard
               number="02"
               title="Books"
               copy="Useful references in Kreyòl that stay close while you do the work."
               href="/academy/books"
+              icon="books"
             />
             <PathwayCard
               number="03"
               title="Events & Seminars"
               copy="Occasional live sessions for learning, questions, and real conversation."
               href="/academy/seminar-updates"
+              icon="events"
             />
           </div>
         </Container>
@@ -376,21 +384,42 @@ function PathwayCard({
   title,
   copy,
   href,
+  icon,
 }: {
   number: string;
   title: string;
   copy: string;
   href: string;
+  icon: "courses" | "books" | "events";
 }) {
+  const iconStyles = {
+    courses: "bg-[#efedff] text-indigo-dark",
+    books: "bg-[#e8f7f0] text-[#08785b]",
+    events: "bg-[#fff0eb] text-[#e35b48]",
+  };
+  const iconContent = {
+    courses: <GraduationCapIcon className="size-6" />,
+    books: <BookOpenIcon className="size-6" />,
+    events: <CalendarIcon className="size-6" />,
+  };
   return (
     <Link
       href={href}
-      className="border-border group bg-paper rounded-[20px] border p-7 transition-transform duration-300 hover:-translate-y-1 lg:p-9"
+      className="border-border group rounded-[18px] border bg-[#fbfaf8] p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(29,24,46,0.07)] lg:p-7"
     >
-      <p className="text-metadata text-indigo-dark">{number}</p>
-      <h2 className="text-card-title text-ink mt-5">{title}</h2>
-      <p className="text-body text-muted mt-3">{copy}</p>
-      <span className="text-button text-indigo-dark mt-6 inline-flex items-center gap-2">
+      <div className="flex items-center justify-between">
+        <span
+          className={`flex size-12 items-center justify-center rounded-full ${iconStyles[icon]}`}
+        >
+          {iconContent[icon]}
+        </span>
+        <span className="text-metadata text-muted/70">{number}</span>
+      </div>
+      <h2 className="font-display text-ink mt-6 text-[2rem] leading-tight">
+        {title}
+      </h2>
+      <p className="text-body text-muted mt-3 max-w-sm">{copy}</p>
+      <span className="text-button text-indigo-dark mt-5 inline-flex items-center gap-2">
         Explore <ArrowRightIcon className="size-4" />
       </span>
     </Link>
