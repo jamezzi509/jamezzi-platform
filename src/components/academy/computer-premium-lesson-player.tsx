@@ -200,7 +200,7 @@ export function ComputerPremiumLessonPlayer({
         {currentKey === "learn" && (
           <>
             <div className="mb-7">
-              <div className="relative mb-4.5 h-[220px] w-full overflow-hidden rounded-[18px]">
+              <div className="relative mb-4.5 aspect-[16/9] w-full overflow-hidden rounded-[18px]">
                 <Image
                   src={lesson.illustrationSrc}
                   alt=""

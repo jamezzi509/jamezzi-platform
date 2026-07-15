@@ -481,9 +481,9 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
     illustrationSrc: `${illustrationBase}/what-is-an-operating-system.webp`,
     digitalWords: [
       {
-        word: "OS (Sistèm Dopewasyon)",
+        word: "Sistèm Dopewasyon (OS)",
         definition: "Pwogram debaz ki fè tout lòt bagay nan aparèy la mache.",
-        example: "Windows, macOS, Android, ak iOS se OS.",
+        example: "Windows, macOS, Android, ak iOS se sistèm dopewasyon.",
       },
       {
         word: "Aplikasyon",
@@ -518,10 +518,19 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       wrongFeedback: "❌ Eseye ankò — panse ak 'manadjè envizib' la.",
     },
     recap: [
-      { emoji: "⚙️", text: "OS = pwogram prensipal ki kontwole aparèy la." },
-      { emoji: "🏠", text: "OS se 'kay', aplikasyon yo se 'mèb'." },
-      { emoji: "🔄", text: "Mizajou OS kenbe aparèy la an sekirite." },
-      { emoji: "🎯", text: "Misyon: idantifye OS aparèy ou." },
+      {
+        emoji: "⚙️",
+        text: "Sistèm dopewasyon = pwogram prensipal ki kontwole aparèy la.",
+      },
+      {
+        emoji: "🏠",
+        text: "Sistèm dopewasyon se 'kay', aplikasyon yo se 'mèb'.",
+      },
+      {
+        emoji: "🔄",
+        text: "Mizajou sistèm dopewasyon kenbe aparèy la an sekirite.",
+      },
+      { emoji: "🎯", text: "Misyon: idantifye sistèm dopewasyon aparèy ou." },
     ],
   },
   {

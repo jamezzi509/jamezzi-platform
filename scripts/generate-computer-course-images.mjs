@@ -55,6 +55,9 @@ for (const lesson of computerPremiumLessons) {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash-image",
       contents: lesson.illustrationPrompt,
+      config: {
+        imageConfig: { aspectRatio: "16:9" },
+      },
     });
     const parts = response.candidates?.[0]?.content?.parts ?? [];
     const imagePart = parts.find((part) => part.inlineData?.data);
