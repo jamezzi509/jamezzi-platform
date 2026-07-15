@@ -6,16 +6,6 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 import type { CourseSummary } from "@/content/courses";
 
 const previews = {
-  "computer-internet-essentials": {
-    image: "/images/academy/courses/computer-internet-essentials.webp",
-    promise:
-      "Build the everyday computer confidence needed to learn, communicate, and work more independently.",
-    outcomes: [
-      "Navigate a computer and organize files with confidence",
-      "Use browsers, email, and common online tools more safely",
-      "Handle essential digital tasks modern work expects",
-    ],
-  },
   "digital-marketing-ai": {
     image: "/images/academy/courses/digital-marketing-ai.webp",
     promise:

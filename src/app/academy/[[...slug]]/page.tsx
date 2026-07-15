@@ -8,6 +8,9 @@ import {
   CoursePreviewPage,
   hasCoursePreview,
 } from "@/components/academy/course-preview-page";
+import { ComputerCoursePage } from "@/components/academy/computer-course-page";
+import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
+import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishFinalExam } from "@/components/academy/english-final-exam";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
@@ -22,6 +25,7 @@ import {
   GraduationCapIcon,
 } from "@/components/ui/icons";
 import { academyBooks } from "@/content/books";
+import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
 import { courses, launchingFirstCourses } from "@/content/courses";
 import { titleFromSlug } from "@/lib/format";
 
@@ -80,6 +84,35 @@ export async function generateMetadata({
       title: "Final Exam — English for Beginners",
       description:
         "Take the comprehensive final exam across all 18 modules of English for Beginners and earn your certificate.",
+    };
+  }
+
+  if (
+    slug?.[0] === "courses" &&
+    slug[1] === "computer-internet-essentials" &&
+    slug[2] === "lessons" &&
+    slug[3]
+  ) {
+    const lesson = computerEssentialsLessons.find(
+      (item) => item.slug === slug[3],
+    );
+    return {
+      title: lesson
+        ? `${lesson.title} — Computer & Internet Essentials`
+        : "Computer & Internet Essentials",
+      description: lesson?.outcome ?? "Computer & Internet Essentials lesson.",
+    };
+  }
+
+  if (
+    slug?.[0] === "courses" &&
+    slug[1] === "computer-internet-essentials" &&
+    slug[2] === "lessons"
+  ) {
+    return {
+      title: "Lessons — Computer & Internet Essentials",
+      description:
+        "Concepts before buttons — build real digital confidence, one lesson at a time.",
     };
   }
 
@@ -340,6 +373,27 @@ export default async function AcademyPage({
     slug[2] === "level-1"
   ) {
     return <EnglishLevelOnePage />;
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "computer-internet-essentials" &&
+    slug[2] === "lessons" &&
+    slug[3]
+  ) {
+    return <ComputerEssentialsLessonDetail lessonSlug={slug[3]} />;
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "computer-internet-essentials" &&
+    slug[2] === "lessons"
+  ) {
+    return <ComputerEssentialsPage />;
+  }
+
+  if (slug[0] === "courses" && slug[1] === "computer-internet-essentials") {
+    return <ComputerCoursePage />;
   }
 
   if (slug[0] === "courses" && slug[1] === "english-for-beginners") {
