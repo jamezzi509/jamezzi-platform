@@ -59,6 +59,10 @@
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
 
+  /* English for Beginners premium lesson shell only */
+  --font-fraunces: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-lesson-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+
   /* Max container width */
   --container-max: 1340px;
 }

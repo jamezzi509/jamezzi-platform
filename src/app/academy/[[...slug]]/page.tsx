@@ -4,6 +4,7 @@ import { ComingSoon } from "@/components/coming-soon";
 import { CourseLibrary } from "@/components/academy/course-library";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
+import { EnglishPlacementQuiz } from "@/components/academy/english-placement-quiz";
 import { EnglishWelcomeLesson } from "@/components/academy/english-welcome-lesson";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
@@ -24,6 +25,18 @@ export async function generateMetadata({
 
   if (course) {
     return { title: course.title, description: course.description };
+  }
+
+  if (
+    slug?.[0] === "courses" &&
+    slug[1] === "english-for-beginners" &&
+    slug[2] === "placement"
+  ) {
+    return {
+      title: "Placement Quiz — English for Beginners",
+      description:
+        "Answer 15 quick questions so we know exactly where to start you in English for Beginners.",
+    };
   }
 
   if (slug?.[0] === "courses" && !slug[1]) {
@@ -197,6 +210,14 @@ export default async function AcademyPage({
   if (!slug?.length) return <AcademyHub />;
 
   if (slug[0] === "courses" && !slug[1]) return <CourseLibrary />;
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "english-for-beginners" &&
+    slug[2] === "placement"
+  ) {
+    return <EnglishPlacementQuiz />;
+  }
 
   if (
     slug[0] === "courses" &&

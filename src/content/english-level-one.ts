@@ -8,8 +8,8 @@ export interface EnglishLessonSummary {
 export const englishLevelOneLessons: EnglishLessonSummary[] = [
   {
     slug: "hello-and-goodbye",
-    title: "Hello and Goodbye",
-    outcome: "Greet someone and end a simple conversation.",
+    title: "Byenveni! (Welcome)",
+    outcome: "Greet someone and understand how English sentences work.",
     available: true,
   },
   {
@@ -26,8 +26,8 @@ export const englishLevelOneLessons: EnglishLessonSummary[] = [
   },
   {
     slug: "english-alphabet",
-    title: "The English Alphabet",
-    outcome: "Recognize uppercase and lowercase English letters.",
+    title: "Alfabè a (The Alphabet)",
+    outcome: "Know the letter names and when to use capitals.",
     available: true,
   },
   {

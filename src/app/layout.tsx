@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { dmSans, newsreader } from "@/fonts";
+import { dmSans, fraunces, ibmPlexMono, newsreader } from "@/fonts";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { site } from "@/content/site";
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${newsreader.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${newsreader.variable} ${fraunces.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <body className="bg-paper text-ink flex min-h-full flex-col">
         <a

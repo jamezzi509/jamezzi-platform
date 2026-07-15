@@ -36,6 +36,12 @@ export function EnglishLevelOnePage() {
               yourself, use essential polite words, and take part in a short
               first conversation.
             </p>
+            <Link
+              href="/academy/courses/english-for-beginners/placement"
+              className="text-button text-indigo-dark mt-5 inline-flex items-center gap-2"
+            >
+              Already know some English? Take the placement quiz →
+            </Link>
           </div>
         </header>
 
