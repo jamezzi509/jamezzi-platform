@@ -56,6 +56,21 @@ export function EnglishLevelOneLessons() {
           />
         ))}
       </ol>
+
+      <Link
+        href="/academy/courses/english-for-beginners/final-exam"
+        className="border-border bg-paper mt-8 flex min-h-14 items-center justify-between rounded-[14px] border px-5 py-4"
+      >
+        <span>
+          <span className="text-card-title text-ink block">Final Exam</span>
+          <span className="text-body text-muted">
+            {completedCount === englishLevelOneLessons.length
+              ? "Take the exam and earn your certificate."
+              : "Unlocks once you finish all 18 modules."}
+          </span>
+        </span>
+        <ArrowRightIcon className="text-indigo-dark size-4 shrink-0" />
+      </Link>
     </div>
   );
 }

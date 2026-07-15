@@ -9,6 +9,7 @@ import {
   hasCoursePreview,
 } from "@/components/academy/course-preview-page";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
+import { EnglishFinalExam } from "@/components/academy/english-final-exam";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
 import { EnglishPlacementQuiz } from "@/components/academy/english-placement-quiz";
 import { EnglishWelcomeLesson } from "@/components/academy/english-welcome-lesson";
@@ -67,6 +68,18 @@ export async function generateMetadata({
       title: "Placement Quiz — English for Beginners",
       description:
         "Answer 15 quick questions so we know exactly where to start you in English for Beginners.",
+    };
+  }
+
+  if (
+    slug?.[0] === "courses" &&
+    slug[1] === "english-for-beginners" &&
+    slug[2] === "final-exam"
+  ) {
+    return {
+      title: "Final Exam — English for Beginners",
+      description:
+        "Take the comprehensive final exam across all 18 modules of English for Beginners and earn your certificate.",
     };
   }
 
@@ -302,6 +315,14 @@ export default async function AcademyPage({
     slug[2] === "placement"
   ) {
     return <EnglishPlacementQuiz />;
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "english-for-beginners" &&
+    slug[2] === "final-exam"
+  ) {
+    return <EnglishFinalExam />;
   }
 
   if (
