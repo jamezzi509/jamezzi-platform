@@ -10828,6 +10828,914 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: rakonte yon jounen teknoloji." },
     ],
   },
+  {
+    slug: "job-interview",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "💼",
+    heroTitle: "Antretyen Djòb",
+    heroLede: "Reponn kesyon antretyen ak konfyans, menm si w nève.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab reponn kesyon debaz nan yon antretyen djòb.",
+    whatYouWillLearn: "kijan pou reponn kesyon antretyen djòb debaz",
+    prerequisite: "Ou fin Modil 12 — Anglè Pou Teknoloji",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading: "Yon antretyen djòb suiv yon patrik kesyon prevwa.",
+    understandBody:
+      "**Tell me about yourself.** **Why do you want this job?** **What are your strengths?** Twa kesyon sa yo parèt nan prèske chak antretyen.",
+    seeItInAction: [
+      { line: "Tell me about yourself.", tag: "Kesyon ouvèti", emoji: "🙋" },
+      { line: "Why do you want this job?", tag: "Motivasyon", emoji: "🎯" },
+      { line: "What are your strengths?", tag: "Fòs ou", emoji: "💪" },
+    ],
+    patternBuilderIntro: "Klike sou chak kesyon pou wè yon repons kout.",
+    patternBuilderOptions: [
+      { chipLabel: "Yourself", display: "Tell me about yourself." },
+      { chipLabel: "Why", display: "Why do you want this job?" },
+      { chipLabel: "Strengths", display: "What are your strengths?" },
+    ],
+    vocabulary: [
+      {
+        word: "Interview",
+        ipa: "/ˈɪntərvjuː/",
+        kreyol: "Antretyen",
+        example: "I have a job interview.",
+      },
+      {
+        word: "Resume",
+        ipa: "/ˈrɛzʊmeɪ/",
+        kreyol: "CV",
+        example: "I sent my resume.",
+      },
+      {
+        word: "Experience",
+        ipa: "/ɪkˈspɪəriəns/",
+        kreyol: "Eksperyans",
+        example: "I have three years of experience.",
+      },
+      {
+        word: "Strength",
+        ipa: "/strɛŋθ/",
+        kreyol: "Fòs (kalite)",
+        example: "My strength is teamwork.",
+      },
+      {
+        word: "Available",
+        ipa: "/əˈveɪləbəl/",
+        kreyol: "Disponib",
+        example: "I'm available to start Monday.",
+      },
+    ],
+    pronunciationWord: "Experience",
+    pronunciationIpa: "/ɪkˈspɪəriəns/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou dezyèm — “ik-SPEE-ree-uhns”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I have experience in cooking since 3 years” — se “I have three years of experience”.",
+    mistakeWrong: "I have experience in cooking since 3 years.",
+    mistakeCorrect: "I have three years of experience in cooking.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, ou mete kantite tan an DEVAN “experience”: “three years of experience”, pa “since 3 years”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I have experience since 3 years.",
+        "I have three years of experience.",
+        "I have experience in 3 years.",
+        "I have 3 years experience since.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback:
+        "❌ Eseye ankò — mete kantite tan an devan “of experience”.",
+    },
+    thinkEmoji: "💼",
+    thinkPrompt:
+      "Ekri yon fraz pou reponn “Tell me about yourself” nan yon antretyen:",
+    thinkPlaceholder: "I am... I have experience in...",
+    aiPrompt:
+      "Hi! Can you act as a job interviewer and ask me common interview questions in simple English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike antretyen djòb.",
+    missionTask: "🎯 Jodi a, ekri repons ou pou “Why do you want this job?”",
+    recap: [
+      { emoji: "💼", text: "Tell me about yourself." },
+      { emoji: "🎯", text: "Why do you want this job?" },
+      {
+        emoji: "⚠️",
+        text: '"Three years of experience", pa "experience since 3 years".',
+      },
+      { emoji: "🎯", text: "Misyon: reponn “Why do you want this job?”" },
+    ],
+  },
+  {
+    slug: "customer-service",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "🎧",
+    heroTitle: "Sèvis Kliyantèl",
+    heroLede: "Ede yon kliyan ak rete kalm menm lè gen yon pwoblèm.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab ede yon kliyan ak jere yon plent politikman.",
+    whatYouWillLearn: "vokabilè pou ede kliyan ak jere plent",
+    prerequisite: "Leson 1 — Antretyen Djòb",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading: "Sèvis kliyantèl mande politès menm lè gen yon pwoblèm.",
+    understandBody:
+      "**How can I help you today?** **I'm sorry for the inconvenience.** **Let me fix that for you.** Twa fraz sa yo kalme prèske nenpòt sitiyasyon.",
+    seeItInAction: [
+      { line: "How can I help you today?", tag: "Akeyi", emoji: "🎧" },
+      { line: "I'm sorry for the inconvenience.", tag: "Eskiz", emoji: "🙏" },
+      { line: "Let me fix that for you.", tag: "Rezoud", emoji: "🔧" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Greet", display: "How can I help you today?" },
+      { chipLabel: "Apologize", display: "I'm sorry for the inconvenience." },
+      { chipLabel: "Fix", display: "Let me fix that for you." },
+    ],
+    vocabulary: [
+      {
+        word: "Customer",
+        ipa: "/ˈkʌstəmər/",
+        kreyol: "Kliyan",
+        example: "The customer is waiting.",
+      },
+      {
+        word: "Complaint",
+        ipa: "/kəmˈpleɪnt/",
+        kreyol: "Plent",
+        example: "I have a complaint.",
+      },
+      {
+        word: "Refund",
+        ipa: "/ˈriːfʌnd/",
+        kreyol: "Ranbousman",
+        example: "Can I get a refund?",
+      },
+      {
+        word: "Inconvenience",
+        ipa: "/ˌɪnkənˈviːniəns/",
+        kreyol: "Deranjman",
+        example: "Sorry for the inconvenience.",
+      },
+      {
+        word: "Resolve",
+        ipa: "/rɪˈzɒlv/",
+        kreyol: "Rezoud",
+        example: "We will resolve this quickly.",
+      },
+    ],
+    pronunciationWord: "Inconvenience",
+    pronunciationIpa: "/ˌɪnkənˈviːniəns/",
+    mouthTip: "**Ti konsèy pou bouch ou:** senk silab, aksan an sou “VEEN”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Sorry for the problem” yon fason two dirèk — pito di “Sorry for the inconvenience”.",
+    mistakeWrong: "Sorry for the problem.",
+    mistakeCorrect: "I'm sorry for the inconvenience.",
+    mistakeWhy:
+      "**Poukisa:** Nan sèvis kliyantèl, “I'm sorry for the inconvenience” son plis pwofesyonèl e plis kalm pase “sorry for the problem”.",
+    practice: {
+      prompt: "Ki fraz ki pi pwofesyonèl pou eskize yon pwoblèm ak yon kliyan?",
+      options: [
+        "Sorry for the problem.",
+        "I'm sorry for the inconvenience.",
+        "That's not my problem.",
+        "Sorry, whatever.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chwazi fraz ki pi pwofesyonèl.",
+    },
+    thinkEmoji: "🎧",
+    thinkPrompt: "Ekri yon fraz pou eskize yon kliyan pou yon reta:",
+    thinkPlaceholder: "I'm sorry for...",
+    aiPrompt:
+      "Hi! Can you act as an upset customer with a small problem and let me practice responding politely in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike sèvis kliyantèl.",
+    missionTask:
+      "🎯 Jodi a, ekri fason ou ta reponn yon kliyan ki gen yon plent.",
+    recap: [
+      { emoji: "🎧", text: "How can I help you today?" },
+      { emoji: "🙏", text: "I'm sorry for the inconvenience." },
+      { emoji: "🔧", text: "Let me fix that for you." },
+      { emoji: "🎯", text: "Misyon: reponn yon kliyan ki gen plent." },
+    ],
+  },
+  {
+    slug: "business-emails",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "📨",
+    heroTitle: "Imèl Pwofesyonèl",
+    heroLede: "Yon imèl travay suiv yon estrikti klè: salitasyon, kò, fèmti.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab ekri yon imèl pwofesyonèl kout.",
+    whatYouWillLearn: "estrikti yon imèl pwofesyonèl an Anglè",
+    prerequisite: "Leson 2 — Sèvis Kliyantèl",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Yon imèl travay suiv yon estrikti klè: salitasyon, kò, fèmti.",
+    understandBody:
+      "**Dear Mr. Smith,** **I am writing to ask about...** **Best regards,** Twa pati sa yo fòme prèske chak imèl pwofesyonèl.",
+    seeItInAction: [
+      { line: "Dear Mr. Smith,", tag: "Salitasyon", emoji: "👋" },
+      { line: "I am writing to ask about...", tag: "Objektif", emoji: "✍️" },
+      { line: "Best regards,", tag: "Fèmti", emoji: "🤝" },
+    ],
+    patternBuilderIntro: "Klike sou chak pati pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Greeting", display: "Dear Mr. Smith," },
+      { chipLabel: "Purpose", display: "I am writing to ask about..." },
+      { chipLabel: "Closing", display: "Best regards," },
+    ],
+    vocabulary: [
+      {
+        word: "Regarding",
+        ipa: "/rɪˈgɑːrdɪŋ/",
+        kreyol: "Konsènan",
+        example: "Regarding your email, ...",
+      },
+      {
+        word: "Attach",
+        ipa: "/əˈtætʃ/",
+        kreyol: "Jwenn (pyès jwen)",
+        example: "I attached the file.",
+      },
+      {
+        word: "Reply",
+        ipa: "/rɪˈplaɪ/",
+        kreyol: "Reponn",
+        example: "Please reply by Friday.",
+      },
+      {
+        word: "Regards",
+        ipa: "/rɪˈgɑːrdz/",
+        kreyol: "Salitasyon (fèmti)",
+        example: "Best regards,",
+      },
+      {
+        word: "Follow up",
+        ipa: "/ˈfɒloʊ ʌp/",
+        kreyol: "Swiv apre",
+        example: "I'll follow up next week.",
+      },
+    ],
+    pronunciationWord: "Regarding",
+    pronunciationIpa: "/rɪˈgɑːrdɪŋ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou dezyèm — “ri-GAR-ding”.",
+    pronunciationMistake:
+      "**Erè komen:** pa fèmen yon imèl pwofesyonèl ak “Bye” — itilize “Best regards,” oswa “Sincerely,”.",
+    mistakeWrong: "Bye, John",
+    mistakeCorrect: "Best regards, John",
+    mistakeWhy:
+      "**Poukisa:** “Bye” twò kazyèl pou yon imèl travay. “Best regards,” oswa “Sincerely,” son pwofesyonèl.",
+    practice: {
+      prompt: "Chwazi pi bon fason pou fèmen yon imèl pwofesyonèl:",
+      options: ["Bye,", "Best regards,", "See ya,", "Later,"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chwazi opsyon ki pi pwofesyonèl.",
+    },
+    thinkEmoji: "📨",
+    thinkPrompt:
+      "Ekri yon liy ouvèti pou yon imèl travay ki mande yon enfòmasyon:",
+    thinkPlaceholder: "I am writing to ask about...",
+    aiPrompt:
+      "Hi! Can you help me write a short, professional email in English asking about a job opening?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike imèl pwofesyonèl.",
+    missionTask:
+      "🎯 Jodi a, ekri twa liy yon imèl pwofesyonèl: salitasyon, objektif, fèmti.",
+    recap: [
+      { emoji: "👋", text: "Dear Mr./Ms. [Non]," },
+      { emoji: "✍️", text: "I am writing to ask about..." },
+      { emoji: "🤝", text: "Best regards, pa “Bye”." },
+      { emoji: "🎯", text: "Misyon: ekri twa liy yon imèl pwofesyonèl." },
+    ],
+  },
+  {
+    slug: "meetings",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "🗓️",
+    heroTitle: "Reyinyon",
+    heroLede: "Reyinyon gen fraz espesifik pou kòmanse, pataje, ak fini.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab patisipe nan yon reyinyon ak konfyans.",
+    whatYouWillLearn: "fraz pou patisipe nan yon reyinyon travay",
+    prerequisite: "Leson 3 — Imèl Pwofesyonèl",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Reyinyon gen fraz espesifik pou kòmanse, pataje, ak fini.",
+    understandBody:
+      "**Let's get started.** **Can I add something?** **Let's schedule a follow-up.** Twa fraz sa yo kouvri kòmansman, kontribisyon, ak fen yon reyinyon.",
+    seeItInAction: [
+      { line: "Let's get started.", tag: "Kòmanse", emoji: "▶️" },
+      { line: "Can I add something?", tag: "Pataje ide", emoji: "🙋" },
+      { line: "Let's schedule a follow-up.", tag: "Fen", emoji: "📅" },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Start", display: "Let's get started." },
+      { chipLabel: "Contribute", display: "Can I add something?" },
+      { chipLabel: "Schedule", display: "Let's schedule a follow-up." },
+    ],
+    vocabulary: [
+      {
+        word: "Agenda",
+        ipa: "/əˈdʒɛndə/",
+        kreyol: "Pwogram (lòd jou)",
+        example: "Here is today's agenda.",
+      },
+      {
+        word: "Schedule",
+        ipa: "/ˈskɛdʒuːl/",
+        kreyol: "Orè / Pwograme",
+        example: "Let's schedule a meeting.",
+      },
+      {
+        word: "Postpone",
+        ipa: "/poʊstˈpoʊn/",
+        kreyol: "Ranvwaye",
+        example: "We need to postpone the meeting.",
+      },
+      {
+        word: "Deadline",
+        ipa: "/ˈdɛdlaɪn/",
+        kreyol: "Dat limit",
+        example: "The deadline is Friday.",
+      },
+      {
+        word: "Update",
+        ipa: "/ˈʌpdeɪt/",
+        kreyol: "Nouvèl / Mizajou",
+        example: "Can you give an update?",
+      },
+    ],
+    pronunciationWord: "Schedule",
+    pronunciationIpa: "/ˈskɛdʒuːl/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “SKE-jool”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I have a meeting the Friday” — pa mete “the” devan yon jou nan semèn nan konsa.",
+    mistakeWrong: "The meeting is the Friday.",
+    mistakeCorrect: "The meeting is on Friday.",
+    mistakeWhy:
+      "**Poukisa:** Devan yon jou nan semèn nan (Monday, Friday...), itilize “on”, pa “the”: “on Friday”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "The meeting is the Friday.",
+        "The meeting is on Friday.",
+        "The meeting is at Friday.",
+        "The meeting is in Friday.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “on Friday”.",
+    },
+    thinkEmoji: "🗓️",
+    thinkPrompt: "Ekri yon fraz pou pataje yon ide nan yon reyinyon imajinè:",
+    thinkPlaceholder: "Can I add something? I think...",
+    aiPrompt:
+      "Hi! Can you run a short mock work meeting with me and let me practice starting it, sharing an idea, and closing it?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike reyinyon.",
+    missionTask:
+      "🎯 Jodi a, ekri twa fraz ou ta itilize nan yon reyinyon travay.",
+    recap: [
+      { emoji: "▶️", text: "Let's get started." },
+      { emoji: "🙋", text: "Can I add something?" },
+      { emoji: "⚠️", text: '"On Friday", pa "the Friday".' },
+      { emoji: "🎯", text: "Misyon: ekri fraz pou yon reyinyon." },
+    ],
+  },
+  {
+    slug: "remote-work",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "🏠",
+    heroTitle: "Travay Adistans",
+    heroLede: "Travay adistans mande vokabilè pou orè, zouti, ak kominikasyon.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de jan ou travay adistans.",
+    whatYouWillLearn: "vokabilè pou travay adistans",
+    prerequisite: "Leson 4 — Reyinyon",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Travay adistans mande vokabilè pou orè, zouti, ak kominikasyon.",
+    understandBody:
+      "**I work from home.** **I'm online from 9 to 5.** **Let's hop on a call.** Twa fraz sa yo debaz nan lavi yon travayè adistans.",
+    seeItInAction: [
+      { line: "I work from home.", tag: "Travay lakay", emoji: "🏠" },
+      { line: "I'm online from 9 to 5.", tag: "Orè", emoji: "⏰" },
+      { line: "Let's hop on a call.", tag: "Rele", emoji: "📞" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Home", display: "I work from home." },
+      { chipLabel: "Hours", display: "I'm online from 9 to 5." },
+      { chipLabel: "Call", display: "Let's hop on a call." },
+    ],
+    vocabulary: [
+      {
+        word: "Remote",
+        ipa: "/rɪˈmoʊt/",
+        kreyol: "Adistans",
+        example: "I have a remote job.",
+      },
+      {
+        word: "Deadline",
+        ipa: "/ˈdɛdlaɪn/",
+        kreyol: "Dat limit",
+        example: "I meet every deadline.",
+      },
+      {
+        word: "Availability",
+        ipa: "/əˌveɪləˈbɪləti/",
+        kreyol: "Disponiblite",
+        example: "What is your availability?",
+      },
+      {
+        word: "Timezone",
+        ipa: "/ˈtaɪmzoʊn/",
+        kreyol: "Zòn orè",
+        example: "We are in different timezones.",
+      },
+      {
+        word: "Task",
+        ipa: "/tæsk/",
+        kreyol: "Tach",
+        example: "I finished the task.",
+      },
+    ],
+    pronunciationWord: "Availability",
+    pronunciationIpa: "/əˌveɪləˈbɪləti/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** sis silab, ale dousman — “uh-vey-luh-BIL-uh-tee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I work in home” — se “I work from home”.",
+    mistakeWrong: "I work in home.",
+    mistakeCorrect: "I work from home.",
+    mistakeWhy:
+      "**Poukisa:** Ekspresyon fikse a se “work from home” (pa “in home”) — se konsa tout moun di li an Anglè.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I work in home.",
+        "I work from home.",
+        "I work at home to.",
+        "I work on home.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “from home”.",
+    },
+    thinkEmoji: "🏠",
+    thinkPrompt:
+      "Ekri yon fraz sou orè travay ou (oswa orè ou ta renmen genyen):",
+    thinkPlaceholder: "I'm online from... to...",
+    aiPrompt:
+      "Hi! Can you ask me about my remote work schedule and help me describe it in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike vokabilè travay adistans.",
+    missionTask: "🎯 Jodi a, ekri yon fraz sou orè travay adistans ou.",
+    recap: [
+      { emoji: "🏠", text: "I work from home." },
+      { emoji: "⏰", text: "I'm online from 9 to 5." },
+      { emoji: "📞", text: "Let's hop on a call." },
+      { emoji: "🎯", text: "Misyon: pale de orè travay adistans ou." },
+    ],
+  },
+  {
+    slug: "freelancing-and-invoices",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "🧾",
+    heroTitle: "Freelance ak Fakti",
+    heroLede: "Yon freelancer bezwen pale de pri, kontra, ak peman.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab pale de travay freelance ak mande yon peman.",
+    whatYouWillLearn: "vokabilè pou freelance, kontra, ak fakti",
+    prerequisite: "Leson 5 — Travay Adistans",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading: "Yon freelancer bezwen pale de pri, kontra, ak peman.",
+    understandBody:
+      "**I'm a freelancer.** **Here is my invoice for this project.** **When can I expect payment?** Twa fraz sa yo debaz nan travay endepandan.",
+    seeItInAction: [
+      { line: "I'm a freelancer.", tag: "Prezante tèt ou", emoji: "🧑‍💻" },
+      {
+        line: "Here is my invoice for this project.",
+        tag: "Fakti",
+        emoji: "🧾",
+      },
+      { line: "When can I expect payment?", tag: "Peman", emoji: "💵" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Introduce", display: "I'm a freelancer." },
+      { chipLabel: "Invoice", display: "Here is my invoice for this project." },
+      { chipLabel: "Payment", display: "When can I expect payment?" },
+    ],
+    vocabulary: [
+      {
+        word: "Freelancer",
+        ipa: "/ˈfriːlænsər/",
+        kreyol: "Travayè endepandan",
+        example: "I'm a freelancer.",
+      },
+      {
+        word: "Invoice",
+        ipa: "/ˈɪnvɔɪs/",
+        kreyol: "Fakti",
+        example: "I sent the invoice.",
+      },
+      {
+        word: "Payment",
+        ipa: "/ˈpeɪmənt/",
+        kreyol: "Peman",
+        example: "I'm waiting for payment.",
+      },
+      {
+        word: "Contract",
+        ipa: "/ˈkɒntrækt/",
+        kreyol: "Kontra",
+        example: "Please sign the contract.",
+      },
+      {
+        word: "Rate",
+        ipa: "/reɪt/",
+        kreyol: "Pri (pa èdtan/pwojè)",
+        example: "My rate is $20 per hour.",
+      },
+    ],
+    pronunciationWord: "Invoice",
+    pronunciationIpa: "/ˈɪnvɔɪs/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, aksan an sou premye — “IN-voys”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “Send me the money paper” — se “Send me the invoice”.",
+    mistakeWrong: "Send me the money paper.",
+    mistakeCorrect: "Send me the invoice.",
+    mistakeWhy:
+      "**Poukisa:** Dokiman ki mande peman an gen yon non presi an Anglè: “invoice”, pa yon tradiksyon literal.",
+    practice: {
+      prompt: "Ki mo ki dekri dokiman ki mande peman pou yon travay?",
+      options: ["Contract", "Invoice", "Resume", "Agenda"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “invoice”.",
+    },
+    thinkEmoji: "🧾",
+    thinkPrompt: "Ekri yon fraz pou mande yon kliyan lè w ap resevwa peman:",
+    thinkPlaceholder: "When can I expect payment for...",
+    aiPrompt:
+      "Hi! Can you act as a client and let me practice explaining my freelance rate and sending an invoice in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike freelance/fakti/peman.",
+    missionTask:
+      "🎯 Jodi a, ekri yon fraz kout pou mande yon kliyan konsènan peman.",
+    recap: [
+      { emoji: "🧑‍💻", text: "I'm a freelancer." },
+      { emoji: "🧾", text: "Here is my invoice." },
+      { emoji: "💵", text: "When can I expect payment?" },
+      { emoji: "🎯", text: "Misyon: mande yon kliyan konsènan peman." },
+    ],
+  },
+  {
+    slug: "working-with-clients",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "🤝",
+    heroTitle: "Travay ak Kliyan",
+    heroLede: "Yon bon relasyon ak kliyan kòmanse ak kominikasyon klè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab kominike ak yon kliyan sou yon pwojè.",
+    whatYouWillLearn: "vokabilè pou kominike ak yon kliyan sou yon pwojè",
+    prerequisite: "Leson 6 — Freelance ak Fakti",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Yon bon relasyon ak kliyan kòmanse ak kominikasyon klè.",
+    understandBody:
+      "**I'll have this ready by Friday.** **Can you clarify what you need?** **I'll send an update soon.** Twa fraz sa yo bati konfyans ak yon kliyan.",
+    seeItInAction: [
+      { line: "I'll have this ready by Friday.", tag: "Angajman", emoji: "📅" },
+      {
+        line: "Can you clarify what you need?",
+        tag: "Klarifikasyon",
+        emoji: "❓",
+      },
+      { line: "I'll send an update soon.", tag: "Swiv", emoji: "📩" },
+    ],
+    patternBuilderIntro: "Klike sou chak etap pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Commit", display: "I'll have this ready by Friday." },
+      { chipLabel: "Clarify", display: "Can you clarify what you need?" },
+      { chipLabel: "Update", display: "I'll send an update soon." },
+    ],
+    vocabulary: [
+      {
+        word: "Clarify",
+        ipa: "/ˈklærəfaɪ/",
+        kreyol: "Klarifye",
+        example: "Can you clarify that?",
+      },
+      {
+        word: "Feedback",
+        ipa: "/ˈfiːdbæk/",
+        kreyol: "Reyaksyon (opinyon)",
+        example: "I'd like your feedback.",
+      },
+      {
+        word: "Revision",
+        ipa: "/rɪˈvɪʒən/",
+        kreyol: "Korije/Chanjman",
+        example: "I made a small revision.",
+      },
+      {
+        word: "Approve",
+        ipa: "/əˈpruːv/",
+        kreyol: "Apwouve",
+        example: "Please approve the design.",
+      },
+      {
+        word: "Ready",
+        ipa: "/ˈrɛdi/",
+        kreyol: "Pare",
+        example: "It will be ready by Friday.",
+      },
+    ],
+    pronunciationWord: "Clarify",
+    pronunciationIpa: "/ˈklærəfaɪ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** twa silab, aksan an sou premye — “KLA-ri-fai”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I will ready by Friday” — se “I'll have this ready by Friday”.",
+    mistakeWrong: "I will ready by Friday.",
+    mistakeCorrect: "I'll have this ready by Friday.",
+    mistakeWhy:
+      "**Poukisa:** “Ready” se yon adjektif, li bezwen vèb “have” pou fè yon fraz konplè: “I'll have this ready”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou di yon travay ap fini vandredi:",
+      options: [
+        "I will ready by Friday.",
+        "I'll have this ready by Friday.",
+        "I ready this by Friday.",
+        "I am ready this Friday.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — se “I'll have this ready”.",
+    },
+    thinkEmoji: "🤝",
+    thinkPrompt: "Ekri yon fraz pou bay yon kliyan yon mizajou sou yon pwojè:",
+    thinkPlaceholder: "I'll send an update about...",
+    aiPrompt:
+      "Hi! Can you act as a client asking about a project's progress, and let me practice giving a clear update in English?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike kominikasyon ak kliyan.",
+    missionTask:
+      "🎯 Jodi a, ekri yon mizajou kout pou yon kliyan sou yon pwojè imajinè.",
+    recap: [
+      { emoji: "📅", text: "I'll have this ready by Friday." },
+      { emoji: "❓", text: "Can you clarify what you need?" },
+      { emoji: "📩", text: "I'll send an update soon." },
+      { emoji: "🎯", text: "Misyon: bay yon kliyan yon mizajou." },
+    ],
+  },
+  {
+    slug: "presentations-and-networking",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "🎤",
+    heroTitle: "Prezantasyon ak Rezo",
+    heroLede:
+      "Prezante yon ide ak rankontre moun nan travay itilize fraz sanble.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab kòmanse yon prezantasyon ak prezante tèt ou nan yon evènman travay.",
+    whatYouWillLearn: "fraz pou prezantasyon ak rezo pwofesyonèl",
+    prerequisite: "Leson 7 — Travay ak Kliyan",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Prezante yon ide ak rankontre moun nan travay itilize fraz sanble.",
+    understandBody:
+      "**Today, I'll be talking about...** **What do you do for work?** **Here's my business card.** Twa fraz sa yo itil nan yon prezantasyon ak nan yon evènman rezo.",
+    seeItInAction: [
+      {
+        line: "Today, I'll be talking about...",
+        tag: "Prezantasyon",
+        emoji: "🎤",
+      },
+      { line: "What do you do for work?", tag: "Rezo", emoji: "🤝" },
+      { line: "Here's my business card.", tag: "Kontak", emoji: "📇" },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Present", display: "Today, I'll be talking about..." },
+      { chipLabel: "Network", display: "What do you do for work?" },
+      { chipLabel: "Card", display: "Here's my business card." },
+    ],
+    vocabulary: [
+      {
+        word: "Presentation",
+        ipa: "/ˌprɛzənˈteɪʃən/",
+        kreyol: "Prezantasyon",
+        example: "I have a presentation today.",
+      },
+      {
+        word: "Audience",
+        ipa: "/ˈɔːdiəns/",
+        kreyol: "Piblik",
+        example: "The audience asked questions.",
+      },
+      {
+        word: "Network",
+        ipa: "/ˈnɛtwɜːrk/",
+        kreyol: "Rezo (kontak)",
+        example: "I'm building my network.",
+      },
+      {
+        word: "Introduce",
+        ipa: "/ˌɪntrəˈdjuːs/",
+        kreyol: "Prezante",
+        example: "Let me introduce myself.",
+      },
+      {
+        word: "Connection",
+        ipa: "/kəˈnɛkʃən/",
+        kreyol: "Koneksyon (relasyon)",
+        example: "She's a great connection.",
+      },
+    ],
+    pronunciationWord: "Presentation",
+    pronunciationIpa: "/ˌprɛzənˈteɪʃən/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** kat silab, aksan an sou “TEY” — “prez-uhn-TEY-shuhn”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “What is your job?” tou sèk nan yon evènman rezo — pito di “What do you do?”, li son pi natirèl.",
+    mistakeWrong: "What is your job?",
+    mistakeCorrect: "What do you do?",
+    mistakeWhy:
+      "**Poukisa:** Nan yon evènman rezo kazyèl, “What do you do?” son pi natirèl ak pi amikal pase “What is your job?”, ki ka son twò dirèk.",
+    practice: {
+      prompt:
+        "Ki fraz ki pi natirèl pou mande yon moun sou travay li nan yon evènman rezo?",
+      options: [
+        "What is your job?",
+        "What do you do?",
+        "Tell your job.",
+        "Job, please?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — chwazi opsyon ki pi natirèl.",
+    },
+    thinkEmoji: "🎤",
+    thinkPrompt: "Ekri yon fraz pou prezante tèt ou nan yon evènman travay:",
+    thinkPlaceholder: "Hi, I'm... I work as...",
+    aiPrompt:
+      "Hi! Can you act as someone I just met at a work networking event and let me practice introducing myself?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike prezantasyon ak rezo.",
+    missionTask:
+      "🎯 Jodi a, ekri yon fraz pou prezante tèt ou nan yon evènman rezo imajinè.",
+    recap: [
+      { emoji: "🎤", text: "Today, I'll be talking about..." },
+      {
+        emoji: "🤝",
+        text: '"What do you do?" pi natirèl pase "What is your job?"',
+      },
+      { emoji: "📇", text: "Here's my business card." },
+      { emoji: "🎯", text: "Misyon: prezante tèt ou nan yon evènman rezo." },
+    ],
+  },
+  {
+    slug: "work-mission",
+    moduleTitle: "Modil 13: Anglè Pou Travay",
+    illustrationKey: "emoji",
+    heroEmoji: "📊",
+    heroTitle: "Yon Jounen nan Travay",
+    heroLede:
+      "Se lè a pou konbine vokabilè travay Modil 13 pou rakonte yon jounen travay konplè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab rakonte yon jounen travay konplè an Anglè.",
+    whatYouWillLearn:
+      "kijan pou konbine tout vokabilè travay Modil 13 nan yon istwa",
+    prerequisite: "Leson 8 — Prezantasyon ak Rezo",
+    difficultyLabel: "🟡 Mwayen",
+    readingTime: "⏱ 6 min lekti",
+    completionTime: "✅ ~9 min pou konplete",
+    understandHeading:
+      "Yon jounen travay tipik itilize anpil nan vokabilè Modil 13 la.",
+    understandBody:
+      "**I checked my email and joined a meeting.** **I sent an invoice to a client.** **I gave a short presentation.** Konbine plizyè aksyon travay rakonte yon jounen konplè.",
+    seeItInAction: [
+      {
+        line: "I checked my email and joined a meeting.",
+        tag: "Maten",
+        emoji: "📧",
+      },
+      { line: "I sent an invoice to a client.", tag: "Aprè midi", emoji: "🧾" },
+      { line: "I gave a short presentation.", tag: "Fen jounen", emoji: "🎤" },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè fraz la.",
+    patternBuilderOptions: [
+      {
+        chipLabel: "Morning",
+        display: "I checked my email and joined a meeting.",
+      },
+      { chipLabel: "Afternoon", display: "I sent an invoice to a client." },
+      { chipLabel: "End of day", display: "I gave a short presentation." },
+    ],
+    vocabulary: [
+      {
+        word: "Colleague",
+        ipa: "/ˈkɒliːg/",
+        kreyol: "Kòlèg",
+        example: "My colleague helped me.",
+      },
+      {
+        word: "Project",
+        ipa: "/ˈprɒdʒɛkt/",
+        kreyol: "Pwojè",
+        example: "I finished the project.",
+      },
+      {
+        word: "Report",
+        ipa: "/rɪˈpɔːrt/",
+        kreyol: "Rapò",
+        example: "I wrote a report.",
+      },
+      {
+        word: "Career",
+        ipa: "/kəˈrɪər/",
+        kreyol: "Karyè",
+        example: "I love my career.",
+      },
+      {
+        word: "Workplace",
+        ipa: "/ˈwɜːrkpleɪs/",
+        kreyol: "Espas travay",
+        example: "This is a good workplace.",
+      },
+    ],
+    pronunciationWord: "Colleague",
+    pronunciationIpa: "/ˈkɒliːg/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** de silab, aksan an sou premye — “KOL-eeg”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye konjige chak vèb kòrèkteman menm nan yon istwa ak plizyè aksyon travay.",
+    mistakeWrong: "I checks my email and joins a meeting. (lè sijè a se I)",
+    mistakeCorrect: "I checked my email and joined a meeting.",
+    mistakeWhy:
+      "**Poukisa:** Sijè “I” pa janm pran “-s” sou vèb la; itilize yon tan konsistan (isit la, tan pase) pou tout aksyon yo.",
+    practice: {
+      prompt: "Ki vèsyon ki kòrèk pou rakonte yon jounen ki deja pase?",
+      options: [
+        "I check my email and join a meeting. (jodi a li deja fini)",
+        "I checked my email and joined a meeting.",
+        "I checking my email and joining a meeting.",
+        "I checks my email and joins a meeting.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback:
+        "❌ Eseye ankò — itilize tan pase pou yon jounen ki deja fini.",
+    },
+    thinkEmoji: "📊",
+    thinkPrompt:
+      "Ekri yon ti istwa sou yon jounen travay, ak omwen kat mo Modil 13:",
+    thinkPlaceholder: "I checked my email, ... , and ...",
+    aiPrompt:
+      "Hi! Can you listen to a short story about my workday — emails, meetings, a client, a presentation — and give me friendly feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 13 ansanm.",
+    missionTask:
+      "🎯 Jodi a, ekri oswa di yon ti istwa sou yon jounen travay konplè, imajinè oswa reyèl.",
+    recap: [
+      { emoji: "📊", text: "Konbine vokabilè travay pou rakonte yon istwa." },
+      { emoji: "⚠️", text: "Itilize yon tan konsistan pou tout aksyon yo." },
+      { emoji: "🎓", text: "Ou fini Modil 13 — Anglè Pou Travay!" },
+      { emoji: "🎯", text: "Misyon: rakonte yon jounen travay." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
