@@ -1,5 +1,5 @@
 /**
- * Premium "Computer & Internet Essentials" lesson content — Module 1.
+ * Premium "Computer & Internet Essentials" lesson content.
  * Dedicated shell per break-the-fear-brief.md: Goal, Simple explanation
  * (concept first), Illustration, platform examples (only where the how
  * genuinely differs), Real-life example, Common mistake, AI explanation,
@@ -18,6 +18,8 @@ export type ComputerPlatform = "windows" | "mac" | "android" | "iphone";
 export interface PlatformExample {
   platform: ComputerPlatform;
   steps: string;
+  illustrationPrompt?: string;
+  illustrationSrc?: string;
 }
 
 export interface ComputerQuizItem {
@@ -779,6 +781,620 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
         emoji: "🎯",
         text: "Misyon: ekri yon paragraf sou pwòp sitiyasyon dijital ou.",
       },
+    ],
+  },
+  {
+    slug: "the-monitor",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🖥️",
+    heroTitle: "Ekran an (Monitor)",
+    heroLede: "Fenèt ou itilize pou wè tout sa òdinatè a ap fè.",
+    goal: "🎯 Objektif: konnen wòl ekran an epi ki jan pou ajiste li.",
+    simpleExplanation:
+      "**Ekran an** (oswa 'monitor') se pati ki montre ou tout sa k ap pase nan òdinatè a — tèks, imaj, videyo. Sou yon laptop, ekran an kole ak klavye a. Sou yon desktop, li souvan yon pyès apa, konekte ak yon kab.",
+    illustrationPrompt:
+      "A realistic photograph of a modern computer monitor on a desk displaying a colorful abstract screensaver, clean home office setting, soft natural lighting, professional product photography, no readable text visible on screen",
+    illustrationSrc: `${illustrationBase}/the-monitor.webp`,
+    digitalWords: [
+      {
+        word: "Ekran (Monitor)",
+        definition: "Pati ki montre imaj ak tèks òdinatè a.",
+        example: "Ekran mwen an gwo ase pou m travay konfòtableman.",
+      },
+      {
+        word: "Rezolisyon",
+        definition: "Klète yon imaj sou ekran an.",
+        example: "Yon ekran ak bon rezolisyon montre tèks pi klè.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ekran ou two fonse oswa two klere, ou ka ajiste 'brightness' (limyè) li nan paramèt aparèy la san ou pa bezwen achte yon lòt ekran.",
+    mistakeWrong: "Panse yon ekran fonse oswa ki pa reponn vle di li kraze.",
+    mistakeCorrect:
+      "Verifye si ekran an limen, si kab la byen konekte, anvan ou panse li kraze.",
+    mistakeWhy:
+      "⚠️ Anpil 'pwoblèm ekran' se senpleman yon kab ki pa byen konekte oswa yon paramèt limyè ki twò ba — verifye sa anvan ou enkyete w.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou ajiste limyè oswa gwosè tèks sou ekran ou si ou pa jwenn paramèt la fasil.",
+    aiPrompt:
+      "Hi! Can you explain, step by step, how to adjust the brightness on a computer monitor?",
+    mission:
+      "🎯 Misyon: gade yon ekran (òdinatè, telefòn, oswa tablèt) epi ajiste limyè li yon fwa.",
+    quiz: {
+      prompt: "Sou yon laptop, kote ekran an ye?",
+      options: [
+        "Li toujou yon pyès apa",
+        "Li kole ak klavye a",
+        "Li anndan sourit la",
+        "Pa gen ekran sou yon laptop",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sou yon laptop, ekran an kole ak klavye a.",
+      wrongFeedback: "❌ Eseye ankò — panse ak fòm yon laptop.",
+    },
+    recap: [
+      { emoji: "🖥️", text: "Ekran an montre tout sa òdinatè a ap fè." },
+      { emoji: "💡", text: "Ou ka ajiste limyè ekran an nan paramèt." },
+      { emoji: "🔌", text: "Verifye kab la anvan ou panse ekran an kraze." },
+      { emoji: "🎯", text: "Misyon: ajiste limyè yon ekran." },
+    ],
+  },
+  {
+    slug: "keyboard-basics",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "⌨️",
+    heroTitle: "Baz Klavye a",
+    heroLede:
+      "Ou pa bezwen konnen chak tous — jis kèk kle ou pral itilize chak jou.",
+    goal: "🎯 Objektif: rekonèt kle debaz ou pral itilize souvan sou yon klavye.",
+    simpleExplanation:
+      "Yon klavye gen anpil tous, men ou pral sèlman itilize yon ti kantite yo souvan: lèt ak chif, **Espas** (barrespas), **Antre** (Enter, pou konfime oswa ale liy), **Efase** (Backspace/Delete), ak **Shift** (pou lèt majiskil).",
+    illustrationPrompt:
+      "A realistic photograph of a modern computer keyboard close-up, soft natural lighting, shallow depth of field, clean minimal desk setting, professional product photography",
+    illustrationSrc: `${illustrationBase}/keyboard-basics.webp`,
+    digitalWords: [
+      {
+        word: "Enter (Antre)",
+        definition: "Kle ki konfime yon aksyon oswa ale nan yon nouvo liy.",
+        example: "Peze Enter apre ou fin ekri rechèch ou.",
+      },
+      {
+        word: "Backspace",
+        definition: "Kle ki efase karaktè dèyè kursè a.",
+        example: "Itilize Backspace pou korije yon fòt tape.",
+      },
+      {
+        word: "Shift",
+        definition: "Kle ou kenbe pou ekri an lèt majiskil oswa siy espesyal.",
+        example: "Kenbe Shift epi peze yon lèt pou li vin majiskil.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou ekri yon imèl epi ou fè yon fòt, peze Backspace pou efase l epi kontinye tape.",
+    mistakeWrong: "Efase tout sa ou ekri epi rekòmanse lè ou fè yon sèl fòt.",
+    mistakeCorrect:
+      "Itilize Backspace pou efase sèlman karaktè ki mal la, epi kontinye.",
+    mistakeWhy:
+      "⚠️ Rekòmanse tout yon tèks pou yon sèl fòt pèdi tan pou anyen — Backspace fèt egzakteman pou sa.",
+    aiExplanation:
+      "🤖 Si ou vle aprann tape pi vit, ou ka mande yon AI pou konseye w sou eksèsis pou pratike tape san gade klavye a.",
+    aiPrompt:
+      "Hi! Can you give me three simple exercises to practice typing faster without looking at the keyboard?",
+    mission:
+      "🎯 Misyon: tape non ou nan yon dokiman oswa yon mesaj, epi itilize Backspace pou korije omwen yon fòt.",
+    quiz: {
+      prompt: "Ki kle ou itilize pou efase yon karaktè ou fenk tape?",
+      options: ["Shift", "Enter", "Backspace", "Espas"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Backspace efase karaktè dèyè kursè a.",
+      wrongFeedback: "❌ Eseye ankò — chèche kle ki 'efase' a.",
+    },
+    recap: [
+      { emoji: "⌨️", text: "Ou bezwen sèlman kèk kle chak jou." },
+      { emoji: "↩️", text: "Enter konfime oswa ale yon nouvo liy." },
+      { emoji: "⌫", text: "Backspace efase yon fòt." },
+      { emoji: "🎯", text: "Misyon: tape non ou epi korije yon fòt." },
+    ],
+  },
+  {
+    slug: "mouse-and-trackpad",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🖱️",
+    heroTitle: "Sourit ak Trackpad",
+    heroLede:
+      "De zouti diferan, men menm objektif: kontwole kote ou ye sou ekran an.",
+    goal: "🎯 Objektif: itilize yon sourit oswa yon trackpad pou navige ekran an.",
+    simpleExplanation:
+      "Yon **sourit** se yon zouti separe ou deplase sou tab la. Yon **trackpad** se pati plat anba klavye laptop la ou glise dwèt ou sou li. Tou de fè menm bagay: deplase yon ti flèch (kursè) sou ekran an, epi klike pou chwazi yon bagay.",
+    illustrationPrompt:
+      "A realistic photograph of a hand resting on a laptop trackpad next to a wireless computer mouse on a wooden desk, natural lighting, professional product photography, no text visible",
+    illustrationSrc: `${illustrationBase}/mouse-and-trackpad.webp`,
+    digitalWords: [
+      {
+        word: "Kursè",
+        definition: "Ti flèch sou ekran an ki montre kote sourit ou ye.",
+        example: "Deplase kursè a sou bouton an epi klike.",
+      },
+      {
+        word: "Klike",
+        definition:
+          "Peze bouton sourit la (oswa touche trackpad la) pou chwazi yon bagay.",
+        example: "Klike de fwa vit pou louvri yon dosye.",
+      },
+      {
+        word: "Double-klike",
+        definition: "Klike de fwa vit youn apre lòt.",
+        example: "Double-klike sou yon ikòn pou louvri l.",
+      },
+    ],
+    realLifeExample:
+      "💡 Pou louvri yon dosye sou desktop la, ou ka double-klike sou li ak yon sourit, oswa touche l de fwa ak yon trackpad.",
+    mistakeWrong: "Klike anpil fwa vit lè yon bagay pa reponn imedyatman.",
+    mistakeCorrect:
+      "Klike yon sèl fwa epi tann yon ti moman anvan ou eseye ankò.",
+    mistakeWhy:
+      "⚠️ Klike plizyè fwa lè yon aplikasyon ap chaje ka louvri l plizyè fwa an menm tan, sa ka mele bagay yo pi mal.",
+    aiExplanation:
+      "🤖 Si sourit ou oswa trackpad ou pa reponn byen, ou ka mande yon AI pou konseye w kijan pou verifye si li konekte oswa si li bezwen chaje.",
+    aiPrompt:
+      "Hi! My computer mouse isn't responding. Can you give me a simple checklist to troubleshoot it?",
+    mission:
+      "🎯 Misyon: itilize sourit oswa trackpad ou pou double-klike sou yon ikòn epi louvri l.",
+    quiz: {
+      prompt: "Kisa yon trackpad ye?",
+      options: [
+        "Yon sourit separe ou deplase sou tab la",
+        "Pati plat anba klavye laptop la",
+        "Yon kle sou klavye a",
+        "Yon kalite ekran",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Trackpad la se pati plat anba klavye laptop la.",
+      wrongFeedback: "❌ Eseye ankò — panse ak kote li ye sou yon laptop.",
+    },
+    recap: [
+      { emoji: "🖱️", text: "Sourit ak trackpad fè menm travay la." },
+      { emoji: "➡️", text: "Yo deplase kursè a sou ekran an." },
+      {
+        emoji: "🖱️",
+        text: "Klike yon sèl fwa, tann, epi eseye ankò si sa nesesè.",
+      },
+      { emoji: "🎯", text: "Misyon: double-klike sou yon ikòn." },
+    ],
+  },
+  {
+    slug: "webcam-and-microphone",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "📷",
+    heroTitle: "Webcam ak Mikwofòn",
+    heroLede: "De zouti ki kite lòt moun wè ak tande ou nan yon apèl videyo.",
+    goal: "🎯 Objektif: konprann wòl webcam ak mikwofòn nan yon apèl videyo.",
+    simpleExplanation:
+      "Yon **webcam** se yon ti kamera ki kite lòt moun WÈ ou pandan yon apèl videyo (tankou Zoom oswa WhatsApp videyo). Yon **mikwofòn** se sa ki kite yo TANDE ou. Anpil laptop ak telefòn gen tou de deja enstale.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop open showing a video call interface with a person visible on screen, warm home lighting, professional lifestyle photography, no readable text visible on screen",
+    illustrationSrc: `${illustrationBase}/webcam-and-microphone.webp`,
+    digitalWords: [
+      {
+        word: "Webcam",
+        definition: "Ti kamera ki kite lòt moun wè ou nan yon apèl videyo.",
+        example: "Limen webcam ou anvan ou antre nan reyinyon an.",
+      },
+      {
+        word: "Mikwofòn",
+        definition: "Zouti ki kaptire vwa ou pou lòt moun tande.",
+        example: "Mete mikwofòn ou an silans lè ou pa ap pale.",
+      },
+      {
+        word: "Silans (Mute)",
+        definition: "Fèmen mikwofòn ou pou pèsonn pa tande son bò kote w.",
+        example: "Mete telefòn ou an silans pandan reyinyon an.",
+      },
+    ],
+    realLifeExample:
+      "💡 Nan yon apèl Zoom, si lòt moun di yo pa tande ou, verifye si mikwofòn ou an silans (mute) anvan ou panse gen yon pwoblèm pi grav.",
+    mistakeWrong: "Panse yon apèl videyo kraze paske pèsonn pa tande ou.",
+    mistakeCorrect: "Verifye si mikwofòn ou an silans anvan ou sispann eseye.",
+    mistakeWhy:
+      "⚠️ Rezon #1 moun pa tande yon moun nan yon apèl videyo se senpleman mikwofòn lan an silans — verifye sa anvan tout lòt bagay.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou tès webcam ak mikwofòn ou anvan yon apèl enpòtan, pou w pa gen sipriz.",
+    aiPrompt:
+      "Hi! Can you give me a quick checklist to test my webcam and microphone before an important video call?",
+    mission:
+      "🎯 Misyon: louvri yon aplikasyon videyo (Zoom, WhatsApp, oswa Google Meet) epi verifye webcam ak mikwofòn ou mache.",
+    quiz: {
+      prompt: "Poukisa moun pa tande ou souvan nan yon apèl videyo?",
+      options: [
+        "Webcam ou pa limen",
+        "Mikwofòn ou an silans (mute)",
+        "Ekran ou two fonse",
+        "Klavye ou pa konekte",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Mikwofòn an silans se rezon #1.",
+      wrongFeedback: "❌ Eseye ankò — panse ak son, pa imaj.",
+    },
+    recap: [
+      { emoji: "📷", text: "Webcam kite moun wè ou." },
+      { emoji: "🎙️", text: "Mikwofòn kite moun tande ou." },
+      { emoji: "🔇", text: "Verifye mute anvan tout lòt bagay." },
+      { emoji: "🎯", text: "Misyon: tès webcam ak mikwofòn ou." },
+    ],
+  },
+  {
+    slug: "speakers-and-sound",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🔊",
+    heroTitle: "Speakers ak Son",
+    heroLede: "Kijan son soti nan aparèy ou pou rive nan zòrèy ou.",
+    goal: "🎯 Objektif: konprann kijan pou kontwole son sou aparèy ou.",
+    simpleExplanation:
+      "**Speakers** (opalè) se zouti ki fè ou tande son — mizik, videyo, apèl. Yo ka anndan aparèy la deja, oswa yo ka aparèy separe ou konekte. Ou ka ajiste volim (fò/ba) nan paramèt oswa ak bouton espesyal.",
+    illustrationPrompt:
+      "A realistic photograph of small modern desktop speakers on either side of a laptop, warm cozy lighting, clean desk setup, professional product photography",
+    illustrationSrc: `${illustrationBase}/speakers-and-sound.webp`,
+    digitalWords: [
+      {
+        word: "Volim",
+        definition: "Fòs son an — fò oswa ba.",
+        example: "Bese volim lan si mizik la twò fò.",
+      },
+      {
+        word: "Kaskèt (Headphones)",
+        definition: "Aparèy ou mete sou zòrèy pou tande san deranje lòt moun.",
+        example: "Mete kaskèt ou pou koute mizik trankil.",
+      },
+      {
+        word: "Bluetooth",
+        definition: "Fason pou konekte aparèy son san fisl.",
+        example: "Konekte kaskèt Bluetooth ou ak telefòn ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou nan yon espas piblik, mete kaskèt ou olye pou w kite volim lan fò sou speakers aparèy la — sa respekte moun bò kote w.",
+    mistakeWrong:
+      "Panse aparèy la 'pa gen son' lè volim lan senpleman ba anpil.",
+    mistakeCorrect: "Verifye volim lan anvan ou panse gen yon pwoblèm pi grav.",
+    mistakeWhy:
+      "⚠️ Anpil fwa 'pa gen son' se senpleman volim lan ki fèmen oswa trò ba — yon verifikasyon rapid regle sa.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou konekte kaskèt Bluetooth ou pou premye fwa si ou pa sèten kijan pou fè l.",
+    aiPrompt:
+      "Hi! Can you explain, step by step, how to connect Bluetooth headphones to a phone or laptop for the first time?",
+    mission:
+      "🎯 Misyon: ajiste volim yon aparèy epi eseye konekte kaskèt (ak fisl oswa Bluetooth) si ou genyen.",
+    quiz: {
+      prompt: "Ki premye bagay pou verifye si ou pa tande okenn son?",
+      options: [
+        "Si klavye a konekte",
+        "Si volim lan ba oswa fèmen",
+        "Si ekran an limen",
+        "Si sourit la mache",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Verifye volim lan anvan tout lòt bagay.",
+      wrongFeedback: "❌ Eseye ankò — panse ak son, pa lòt pati aparèy la.",
+    },
+    recap: [
+      { emoji: "🔊", text: "Speakers fè ou tande son." },
+      { emoji: "🎧", text: "Kaskèt bon pou espas piblik." },
+      { emoji: "🔉", text: "Verifye volim anvan ou panse gen pwoblèm." },
+      { emoji: "🎯", text: "Misyon: ajiste volim epi konekte kaskèt." },
+    ],
+  },
+  {
+    slug: "usb-and-hdmi",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🔌",
+    heroTitle: "USB ak HDMI",
+    heroLede: "De pò ou pral rekonèt sou prèske tout òdinatè.",
+    goal: "🎯 Objektif: rekonèt pò USB ak pò HDMI, epi konnen ki sa yo fè.",
+    simpleExplanation:
+      "Yon **pò USB** se yon ti twou rektang ou konekte kle USB, sourit, klavye, oswa telefòn ou pou chaje. Yon **pò HDMI** pi gwo, li konekte òdinatè a ak yon ekran oswa televizyon pou montre imaj/videyo.",
+    illustrationPrompt:
+      "A realistic close-up photograph of the side of a laptop showing USB and HDMI ports with cables plugged in, clean modern desk setting, natural lighting, professional product photography",
+    illustrationSrc: `${illustrationBase}/usb-and-hdmi.webp`,
+    digitalWords: [
+      {
+        word: "USB",
+        definition:
+          "Yon pò ki konekte kle USB, sourit, klavye, ak lòt akseswa.",
+        example: "Mete kle USB ou nan pò USB a pou kopye foto.",
+      },
+      {
+        word: "HDMI",
+        definition: "Yon pò ki konekte òdinatè a ak yon ekran oswa televizyon.",
+        example: "Konekte laptop ou ak televizyon ak yon kab HDMI.",
+      },
+      {
+        word: "Pò (Port)",
+        definition: "Ti twou sou yon aparèy kote ou konekte yon kab.",
+        example: "Chèche pò ki matche ak kab ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Pou montre yon prezantasyon sou yon gwo televizyon nan yon reyinyon, ou konekte laptop ou ak televizyon an ak yon kab HDMI.",
+    mistakeWrong: "Fòse yon kab antre nan yon pò ki pa matche fòm li.",
+    mistakeCorrect: "Verifye fòm pò a matche fòm kab la anvan ou pouse.",
+    mistakeWhy:
+      "⚠️ Fòse yon kab nan move pò ka domaje ni kab la ni aparèy la — pran yon segonn pou verifye fòm anvan ou konekte.",
+    aiExplanation:
+      "🤖 Si ou pa sèten ki kab ou bezwen pou konekte de aparèy, ou ka dekri yo bay yon AI epi mande l ki kalite kab ki bezwen.",
+    aiPrompt:
+      "Hi! I want to connect my laptop to a TV to show a presentation. What kind of cable do I need?",
+    mission:
+      "🎯 Misyon: idantifye pò USB ak pò HDMI sou yon laptop (pa w oswa yon moun ou konnen).",
+    quiz: {
+      prompt: "Ki pò ou itilize pou konekte laptop ou ak yon televizyon?",
+      options: ["USB", "HDMI", "Backspace", "Bluetooth"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! HDMI konekte ak ekran/televizyon.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak pò ki fè imaj parèt sou yon gwo ekran.",
+    },
+    recap: [
+      { emoji: "🔌", text: "USB pou kle, sourit, klavye." },
+      { emoji: "📺", text: "HDMI pou konekte ak yon ekran/televizyon." },
+      { emoji: "⚠️", text: "Pa fòse yon kab nan move pò." },
+      { emoji: "🎯", text: "Misyon: idantifye USB ak HDMI sou yon laptop." },
+    ],
+  },
+  {
+    slug: "charging-and-power-button",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🔋",
+    heroTitle: "Chaje ak Bouton Aliminyen",
+    heroLede: "Kijan pou kenbe aparèy ou an vi, san domaje batri a.",
+    goal: "🎯 Objektif: chaje aparèy ou an sekirite epi konnen wòl bouton aliminyen an.",
+    simpleExplanation:
+      "**Bouton aliminyen an** limen oswa fèmen aparèy la. Souvan, kenbe l pou de-twa segonn limen aparèy la; kenbe l pi lontan ka fòse l fèmen si li bloke. **Chaje** vle di konekte aparèy la ak yon kab pou batri a plen ankò.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop charging with its power cable connected, small charging indicator light visible, cozy home setting, warm lighting, professional product photography",
+    illustrationSrc: `${illustrationBase}/charging-and-power-button.webp`,
+    digitalWords: [
+      {
+        word: "Bouton Aliminyen",
+        definition: "Bouton ki limen oswa fèmen yon aparèy.",
+        example: "Peze bouton aliminyen an pou limen laptop la.",
+      },
+      {
+        word: "Chajè",
+        definition: "Kab ak blòk ou konekte nan priz pou chaje batri a.",
+        example: "Pote chajè ou lè ou vwayaje.",
+      },
+      {
+        word: "Batri Plen",
+        definition: "Lè batri a rive 100% chaje.",
+        example: "Tann batri a plen anvan ou dekonekte l konplètman.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si laptop ou bloke nèt e li pa reponn, kenbe bouton aliminyen an pandan 8-10 segonn pou fòse l fèmen, epi limen l ankò.",
+    mistakeWrong: "Kite batri a desann jiska 0% chak fwa anvan ou chaje l.",
+    mistakeCorrect: "Chaje aparèy la souvan, san tann li rive 0% chak fwa.",
+    mistakeWhy:
+      "⚠️ Kite batri a desann jiska 0% souvan ka fè l pèdi kapasite pi vit ak tan — pi bon pou chaje l detanzantan.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy sou kijan pou fè batri aparèy ou dire pi lontan alontèm.",
+    aiPrompt:
+      "Hi! Can you give me three simple tips to help my laptop or phone battery last longer over time?",
+    mission:
+      "🎯 Misyon: verifye pousantaj batri yon aparèy ou genyen, epi chaje l si li ba.",
+    quiz: {
+      prompt: "Kisa pou w fè si laptop ou bloke nèt e li pa reponn?",
+      options: [
+        "Jete l",
+        "Kenbe bouton aliminyen an pou fòse l fèmen",
+        "Tann yon semèn",
+        "Chaje l pi vit",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Kenbe bouton aliminyen an fòse l fèmen.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak bouton ki kontwole aliminyen an.",
+    },
+    recap: [
+      { emoji: "🔋", text: "Bouton aliminyen limen/fèmen aparèy la." },
+      { emoji: "🔌", text: "Chaje souvan, pa tann 0%." },
+      { emoji: "🆘", text: "Kenbe bouton an pou fòse fèmen si li bloke." },
+      { emoji: "🎯", text: "Misyon: verifye ak chaje batri yon aparèy." },
+    ],
+  },
+  {
+    slug: "restart-vs-shutdown",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🔄",
+    heroTitle: "Restart vs. Shutdown",
+    heroLede: "De aksyon ki sanble, men ki pa fè menm bagay la.",
+    goal: "🎯 Objektif: konnen diferans ant Restart ak Shutdown, epi ki lè pou itilize chak.",
+    simpleExplanation:
+      "**Restart** (relanse) fèmen òdinatè a epi limen l ankò otomatikman — bon lè yon bagay mache dwòl. **Shutdown** (fèmen) fèmen òdinatè a nèt, san limen l ankò — bon lè ou fini itilize l pou yon bon bout tan.",
+    illustrationPrompt:
+      "A realistic photograph of a hand reaching toward a laptop power button, soft ambient lighting, clean minimal desk, professional product photography, no readable text visible",
+    illustrationSrc: `${illustrationBase}/restart-vs-shutdown.webp`,
+    digitalWords: [
+      {
+        word: "Restart",
+        definition: "Fèmen epi limen aparèy la ankò otomatikman.",
+        example: "Fè yon Restart lè yon aplikasyon bloke.",
+      },
+      {
+        word: "Shutdown",
+        definition: "Fèmen aparèy la nèt, san limen l ankò.",
+        example: "Fè yon Shutdown lè ou fini pou jounen an.",
+      },
+      {
+        word: "Sleep",
+        definition: "Mete aparèy la an repo rapid, san fèmen l nèt.",
+        example: "Sleep bon pou yon ti poz kout.",
+      },
+    ],
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Klike sou bouton Windows (Start) nan kwen anba goch la, apre sa klike sou bouton Power (⏻), epi chwazi 'Restart' oswa 'Shut down' nan lis la.",
+        illustrationPrompt:
+          "A clean, accurate screenshot mockup of a Windows 11 Start menu power options popup showing Sleep, Shut down, and Restart as a short vertical list with icons, authentic modern Windows 11 UI design, light theme, crisp and legible interface",
+        illustrationSrc: `${illustrationBase}/restart-vs-shutdown-windows.webp`,
+      },
+      {
+        platform: "mac",
+        steps:
+          "Klike sou ikòn Apple (🍎) nan kwen anwo goch la, epi chwazi 'Restart...' oswa 'Shut Down...' nan meni ki louvri a.",
+        illustrationPrompt:
+          "A clean, accurate screenshot mockup of a macOS Apple menu dropdown open in the top-left corner. The bottom section of the menu must show exactly these three items stacked in this exact order, each on its own line: 'Sleep', then 'Restart...', then 'Shut Down...'. Do not omit Restart. Authentic macOS Sonoma menu bar styling, light theme, crisp legible menu text, translucent dropdown background",
+        illustrationSrc: `${illustrationBase}/restart-vs-shutdown-mac.webp`,
+      },
+    ],
+    realLifeExample:
+      "💡 Si yon sit entènèt oswa yon aplikasyon bloke e li pa reponn ankò, yon Restart souvan regle pwoblèm nan san ou pa bezwen fè anyen plis.",
+    mistakeWrong:
+      "Kenbe bouton aliminyen an pou fòse fèmen chak fwa ou vle fèmen aparèy la.",
+    mistakeCorrect:
+      "Itilize meni Restart/Shutdown nòmal la — rezève fòse fèmen sèlman pou lè aparèy la bloke nèt.",
+    mistakeWhy:
+      "⚠️ Fòse fèmen souvan (olye de itilize meni an) ka fè ou pèdi travay ou pa t sovgade, paske aparèy la pa gen tan fèmen tout bagay byen.",
+    aiExplanation:
+      "🤖 Si ou pa sèten si ou dwe fè yon Restart oswa yon Shutdown nan yon sitiyasyon espesifik, ou ka dekri sitiyasyon an bay yon AI epi mande konsèy.",
+    aiPrompt:
+      "Hi! My computer is acting slow and strange. Should I restart it or shut it down completely? What's the difference?",
+    mission:
+      "🎯 Misyon: fè yon Restart sou yon òdinatè (pa w oswa yon moun ou konnen), swiv etap platfòm ki matche l la.",
+    quiz: {
+      prompt: "Ki lè pi bon pou fè yon Restart olye de yon Shutdown?",
+      options: [
+        "Lè ou fini pou tout jounen an",
+        "Lè yon aplikasyon oswa sistèm nan ap mache dwòl",
+        "Lè ou vwayaje",
+        "Chak swa san rezon",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Restart bon lè yon bagay mache dwòl.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa Restart fèt pou regle.",
+    },
+    recap: [
+      { emoji: "🔄", text: "Restart = fèmen epi limen ankò otomatikman." },
+      { emoji: "⏻", text: "Shutdown = fèmen nèt." },
+      { emoji: "🖱️", text: "Itilize meni an, pa fòse fèmen chak fwa." },
+      { emoji: "🎯", text: "Misyon: fè yon Restart swiv etap platfòm ou." },
+    ],
+  },
+  {
+    slug: "external-devices",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🖨️",
+    heroTitle: "Aparèy Eksteryè, Enprimant, ak Eskanè",
+    heroLede:
+      "Zouti ou konekte ak òdinatè ou pou fè plis pase sa l fè poukont li.",
+    goal: "🎯 Objektif: konnen wòl aparèy eksteryè debaz tankou enprimant ak eskanè.",
+    simpleExplanation:
+      "Yon **aparèy eksteryè** se nenpòt zouti ou konekte ak òdinatè a ki pa fè pati l orijinèlman — kle USB, disk di eksteryè, elatriye. Yon **enprimant** transfòme yon dokiman dijital an papye. Yon **eskanè** fè kontrè a: li transfòme yon papye an fichye dijital.",
+    illustrationPrompt:
+      "A realistic photograph of a modern home printer on a desk next to a laptop, clean office setting, natural lighting, professional product photography",
+    illustrationSrc: `${illustrationBase}/external-devices.webp`,
+    digitalWords: [
+      {
+        word: "Aparèy Eksteryè",
+        definition:
+          "Yon zouti ou konekte ak òdinatè a ki pa fè pati l orijinèlman.",
+        example: "Yon kle USB se yon aparèy eksteryè.",
+      },
+      {
+        word: "Enprimant",
+        definition: "Aparèy ki transfòme yon dokiman dijital an papye.",
+        example: "Enprime dokiman an sou enprimant lan.",
+      },
+      {
+        word: "Eskanè",
+        definition: "Aparèy ki transfòme yon papye an fichye dijital.",
+        example: "Eskane katdidantite ou pou voye l pa imèl.",
+      },
+    ],
+    realLifeExample:
+      "💡 Pou voye yon kopi katdidantite ou pa imèl, ou ka eskane l ak yon eskanè (oswa aplikasyon telefòn) pou fè yon vèsyon dijital.",
+    mistakeWrong:
+      "Panse ou toujou bezwen yon eskanè apa pou eskane yon dokiman.",
+    mistakeCorrect:
+      "Konnen anpil telefòn gen aplikasyon ki eskane dokiman ak kamera a sèlman.",
+    mistakeWhy:
+      "⚠️ Aplikasyon tankou Google Drive oswa Notes ka eskane yon dokiman ak kamera telefòn ou — ou pa toujou bezwen yon machin eskanè apa.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki aplikasyon telefòn ki bon pou eskane dokiman si ou pa gen yon eskanè fizik.",
+    aiPrompt:
+      "Hi! What's a good free phone app to scan documents using just my phone's camera?",
+    mission:
+      "🎯 Misyon: si ou gen aksè a yon enprimant oswa yon eskanè (oswa yon aplikasyon telefòn), eseye enprime oswa eskane yon dokiman.",
+    quiz: {
+      prompt: "Kisa yon eskanè fè?",
+      options: [
+        "Li transfòme yon dokiman dijital an papye",
+        "Li transfòme yon papye an fichye dijital",
+        "Li chaje batri a",
+        "Li konekte ak entènèt",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Eskanè a transfòme papye an fichye dijital.",
+      wrongFeedback: "❌ Eseye ankò — panse ak direksyon: papye → dijital.",
+    },
+    recap: [
+      { emoji: "🖨️", text: "Enprimant: dijital → papye." },
+      { emoji: "📠", text: "Eskanè: papye → dijital." },
+      { emoji: "📱", text: "Telefòn ou ka eskane tou ak yon aplikasyon." },
+      { emoji: "🎯", text: "Misyon: enprime oswa eskane yon dokiman." },
+    ],
+  },
+  {
+    slug: "meet-your-computer-mission",
+    moduleTitle: "Modil 2: Fè Konesans Ak Òdinatè Ou",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Fè Konesans Ak Òdinatè Ou",
+    heroLede: "Se lè a pou konbine tout pati òdinatè ou aprann nan Modil 2.",
+    goal: "🎯 Objektif: idantifye chak pati yon vrè òdinatè ak konfyans.",
+    simpleExplanation:
+      "Ou fèk aprann: ekran, klavye, sourit/trackpad, webcam, mikwofòn, speakers, pò USB/HDMI, chajè, bouton aliminyen, Restart/Shutdown, ak aparèy eksteryè tankou enprimant. Misyon sa a mande w gade yon vrè òdinatè epi idantifye pati sa yo.",
+    illustrationPrompt:
+      "A realistic photograph of a complete modern desktop computer setup showing monitor, keyboard, mouse, and speakers all together on a clean desk, natural lighting, professional product photography, sense of completeness and confidence",
+    illustrationSrc: `${illustrationBase}/meet-your-computer-mission.webp`,
+    digitalWords: [
+      {
+        word: "Konfigirasyon",
+        definition: "Tout pati ki ansanm fòme yon aparèy konplè.",
+        example: "Konfigirasyon biwo mwen gen yon ekran, klavye, ak sourit.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou konnen non chak pati yon òdinatè, li pi fasil pou eksplike yon pwoblèm bay yon moun k ap ede w — pa telefòn oswa an pèsòn.",
+    mistakeWrong: "Panse ou dwe memorize chak detay teknik chak pyès la.",
+    mistakeCorrect:
+      "Konnen sèlman wòl debaz chak pati a ase pou itilize l ak konfyans.",
+    mistakeWhy:
+      "⚠️ Ou pa bezwen vin yon teknisyen — ou jis bezwen konnen ase pou itilize aparèy ou san pè ak pou eksplike yon pwoblèm klèman.",
+    aiExplanation:
+      "🤖 Kounye a ou ka dekri yon pwoblèm òdinatè bay yon AI ak vokabilè kòrèk — sa ap ede l bay ou yon repons pi presi.",
+    aiPrompt:
+      "Hi! I just learned the names of all the parts of a computer — monitor, keyboard, mouse, webcam, microphone, speakers, ports, and the power button. Can you quiz me on what each one does?",
+    mission:
+      "🎯 Misyon Final Modil 2: gade yon vrè òdinatè (pa w oswa yon moun ou konnen) epi idantifye omwen 6 pati diferan awotvwa oswa alekri.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 2 la?",
+      options: [
+        "Vin yon teknisyen òdinatè pwofesyonèl",
+        "Idantifye ak konprann wòl chak pati yon òdinatè",
+        "Aprann kòd pwogramasyon",
+        "Reparasyon ekran kraze",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Objektif la se idantifye ak konprann, pa vin teknisyen.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 2 la.",
+    },
+    recap: [
+      { emoji: "🖥️", text: "Ekran, klavye, sourit/trackpad." },
+      { emoji: "📷", text: "Webcam, mikwofòn, speakers." },
+      { emoji: "🔌", text: "USB, HDMI, chajè, bouton aliminyen." },
+      { emoji: "🎓", text: "Ou fini Modil 2 — Fè Konesans Ak Òdinatè Ou!" },
     ],
   },
 ];

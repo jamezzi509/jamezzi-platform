@@ -11,6 +11,28 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleOneLessons.at(-1)?.slug).toBe("first-digital-mission");
   });
 
+  it("Module 2 starts with the monitor and ends with its mission", () => {
+    const moduleTwoLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 2,
+    );
+    expect(moduleTwoLessons[0]?.slug).toBe("the-monitor");
+    expect(moduleTwoLessons.at(-1)?.slug).toBe("meet-your-computer-mission");
+  });
+
+  it("gives restart-vs-shutdown real platform-specific screenshots", () => {
+    const lesson = computerPremiumLessons.find(
+      (item) => item.slug === "restart-vs-shutdown",
+    );
+    expect(lesson?.platformExamples).toBeDefined();
+    expect(lesson?.platformExamples?.map((p) => p.platform)).toEqual([
+      "windows",
+      "mac",
+    ]);
+    for (const example of lesson?.platformExamples ?? []) {
+      expect(example.illustrationSrc).toMatch(/\.webp$/);
+    }
+  });
+
   it("exposes every lesson as available", () => {
     expect(
       computerEssentialsLessons.filter((lesson) => lesson.available),

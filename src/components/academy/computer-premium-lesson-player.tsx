@@ -284,14 +284,27 @@ export function ComputerPremiumLessonPlayer({
               {lesson.platformExamples.map((example) => (
                 <div
                   key={example.platform}
-                  className="border-border rounded-xl border bg-[#FCFCFE] px-4 py-3.5"
+                  className="border-border overflow-hidden rounded-xl border bg-[#FCFCFE]"
                 >
-                  <div className="text-indigo-dark mb-1.5 text-[14px] font-bold">
-                    {platformLabels[example.platform]}
+                  {example.illustrationSrc && (
+                    <div className="relative aspect-[16/9] w-full">
+                      <Image
+                        src={example.illustrationSrc}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 100vw, 620px"
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="px-4 py-3.5">
+                    <div className="text-indigo-dark mb-1.5 text-[14px] font-bold">
+                      {platformLabels[example.platform]}
+                    </div>
+                    <p className="text-muted text-[13.5px] leading-[1.55]">
+                      {example.steps}
+                    </p>
                   </div>
-                  <p className="text-muted text-[13.5px] leading-[1.55]">
-                    {example.steps}
-                  </p>
                 </div>
               ))}
             </div>
