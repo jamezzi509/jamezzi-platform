@@ -5569,6 +5569,417 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 8 — Ekosistèm Google!" },
     ],
   },
+  {
+    slug: "microsoft-word",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "📘",
+    heroTitle: "Microsoft Word",
+    heroLede: "Lojisyèl trete tèks ki pi itilize nan mond biznis lan.",
+    goal: "🎯 Objektif: ekri, fòmate, ak sovgade yon dokiman Word.",
+    simpleExplanation:
+      "**Microsoft Word** se lojisyèl trete tèks pi itilize nan mond travay la — dokiman ofisyèl, CV, ak lèt souvan mande fòma Word (.docx). Kontrèman ak Google Docs, li anjeneral enstale sou òdinatè a epi ou dwe klike 'Save' manyèlman.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a word processing document with a formatted title and paragraph text, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-word.webp`,
+    digitalWords: [
+      {
+        word: "Microsoft Word",
+        definition: "Lojisyèl trete tèks Microsoft pou ekri dokiman.",
+        example: "Ekri CV ou nan Word pou yon fòma pwofesyonèl.",
+      },
+      {
+        word: ".docx",
+        definition: "Ekstansyon fichye estanda pou dokiman Word.",
+        example: "Sovgade dokiman ou an '.docx' pou konpatibilite maksimòm.",
+      },
+    ],
+    realLifeExample:
+      "💡 Anpil anplwayè mande CV nan fòma Word (.docx) olye de PDF, paske li kite yo modifye l fasilman si yo bezwen ajoute nòt — konnen kilè pou itilize chak fòma enpòtan.",
+    mistakeWrong: "Ekri nan Word pandan plizyè èdtan san sovgade manyèlman.",
+    mistakeCorrect:
+      "Sovgade travay ou regilyèman (Ctrl+S / Cmd+S), oswa aktive AutoSave si ou sou OneDrive.",
+    mistakeWhy:
+      "⚠️ Kontrèman ak Google Docs, Word klasik pa sovgade otomatikman — yon black-out oswa yon aparèy ki fèmen ka fè w pèdi travay ou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou konvèti yon dokiman Word an PDF anvan ou voye l.",
+    aiPrompt:
+      "Hi! Can you explain how to save or convert a Microsoft Word document as a PDF?",
+    mission:
+      "🎯 Misyon: ekri yon ti dokiman nan Word (oswa yon aplikasyon Word gratis) epi sovgade l ak Ctrl+S.",
+    quiz: {
+      prompt: "Ki diferans genyen ant Word klasik ak Google Docs sou sovgad?",
+      options: [
+        "Pa gen okenn diferans",
+        "Word klasik pa sovgade otomatikman; Docs sovgade otomatikman",
+        "Word klasik sovgade pi vit",
+        "Docs pa janm sovgade",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Toujou sonje sovgade manyèlman nan Word klasik.",
+      wrongFeedback: "❌ Eseye ankò — panse ak abitid AutoSave.",
+    },
+    recap: [
+      { emoji: "📘", text: "Word = lojisyèl trete tèks pi popilè nan biznis." },
+      { emoji: "💾", text: "Sovgade manyèlman ak Ctrl+S/Cmd+S." },
+      { emoji: "📄", text: ".docx se fòma estanda a." },
+      { emoji: "🎯", text: "Misyon: ekri epi sovgade yon dokiman tès." },
+    ],
+  },
+  {
+    slug: "microsoft-excel",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "📗",
+    heroTitle: "Microsoft Excel",
+    heroLede: "Fèy kalkil ki pi itilize nan mond lan pou nimewo ak done.",
+    goal: "🎯 Objektif: kreye yon fèy kalkil senp ak Microsoft Excel.",
+    simpleExplanation:
+      "**Microsoft Excel** se lojisyèl fèy kalkil ki òganize enfòmasyon an ranje ak kolòn, ak kapasite pou fè kalkil konplèks otomatikman. Li se estanda mondyal pou biznis, kontablite, ak analiz done.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a spreadsheet application with rows, columns, and a colorful chart, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-excel.webp`,
+    digitalWords: [
+      {
+        word: "Microsoft Excel",
+        definition: "Lojisyèl fèy kalkil Microsoft pou nimewo ak done.",
+        example: "Kalkile bidjè mansyèl ou nan Excel.",
+      },
+      {
+        word: "Fòmil (Formula)",
+        definition: "Yon kòmand ki fè yon kalkil otomatik nan yon selil.",
+        example: "'=SUM(A1:A5)' se yon fòmil ki adisyone senk selil.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon pwopriyetè ti biznis ka itilize Excel pou swiv depans ak revni chak mwa, ak fòmil ki kalkile total la otomatikman san erè manyèl.",
+    mistakeWrong:
+      "Kalkile total yon lis long nimewo manyèlman ak yon kalkilatris apa.",
+    mistakeCorrect:
+      "Itilize yon fòmil senp tankou SUM pou Excel fè kalkil la pou ou.",
+    mistakeWhy:
+      "⚠️ Kalkil manyèl pran plis tan e li fasil pou fè erè — yon fòmil rekalkile otomatikman si done yo chanje.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w ekri yon fòmil Excel senp pou yon bezwen espesifik.",
+    aiPrompt:
+      "Hi! Can you help me write a simple Excel formula to calculate the total of a column of expenses?",
+    mission:
+      "🎯 Misyon: kreye yon fèy kalkil senp ak twa ranje nimewo epi eseye yon fòmil SUM.",
+    quiz: {
+      prompt: "Kisa yon fòmil fè nan Excel?",
+      options: [
+        "Li chanje koulè selil yo",
+        "Li fè yon kalkil otomatik",
+        "Li efase done yo",
+        "Li kreye yon nouvo dokiman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yon fòmil fè kalkil otomatikman.",
+      wrongFeedback: "❌ Eseye ankò — panse ak objektif prensipal Excel la.",
+    },
+    recap: [
+      { emoji: "📗", text: "Excel = fèy kalkil estanda pou biznis ak done." },
+      { emoji: "🧮", text: "Fòmil fè kalkil otomatik." },
+      { emoji: "🔢", text: "Rekalkile otomatikman lè done chanje." },
+      { emoji: "🎯", text: "Misyon: kreye yon fèy kalkil ak yon fòmil." },
+    ],
+  },
+  {
+    slug: "microsoft-powerpoint",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "📙",
+    heroTitle: "Microsoft PowerPoint",
+    heroLede: "Lojisyèl prezantasyon ki fè yon ide vin yon istwa vizyèl.",
+    goal: "🎯 Objektif: kreye yon prezantasyon senp ak Microsoft PowerPoint.",
+    simpleExplanation:
+      "**Microsoft PowerPoint** se lojisyèl prezantasyon ki kite w kreye diapositiv ak tèks, imaj, ak transisyon. Li se estanda pou prezantasyon biznis, konferans, ak fòmasyon nan mond travay la.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a presentation slide editor with a title slide and design layout options, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-powerpoint.webp`,
+    digitalWords: [
+      {
+        word: "Microsoft PowerPoint",
+        definition: "Lojisyèl prezantasyon Microsoft pou kreye diapositiv.",
+        example:
+          "Kreye yon prezantasyon pou yon reyinyon travay nan PowerPoint.",
+      },
+      {
+        word: "Transisyon (Transition)",
+        definition: "Efè animasyon ant de diapositiv.",
+        example: "Ajoute yon transisyon senp ant chak diapositiv.",
+      },
+    ],
+    realLifeExample:
+      "💡 Nan yon antretyen djòb oswa yon reyinyon biznis, yon prezantasyon PowerPoint klè ak byen òganize fè yon pi bon enpresyon pase eksplike tout bagay verbalman san sipò vizyèl.",
+    mistakeWrong:
+      "Ajoute twòp transisyon ak animasyon flashy ki distrè odyans lan.",
+    mistakeCorrect:
+      "Kenbe transisyon senp ak minimal — konsantre sou kontni an, pa efè yo.",
+    mistakeWhy:
+      "⚠️ Twòp animasyon distrè odyans lan de mesaj prensipal ou — senplisite pwofesyonèl toujou pi efikas.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy sou kijan pou fè yon prezantasyon PowerPoint parèt plis pwofesyonèl.",
+    aiPrompt:
+      "Hi! Can you give me tips for making a PowerPoint presentation look more professional and less cluttered?",
+    mission:
+      "🎯 Misyon: kreye yon prezantasyon PowerPoint ak twa diapositiv sou yon sijè ou chwazi.",
+    quiz: {
+      prompt: "Kisa ki fè yon prezantasyon PowerPoint pwofesyonèl?",
+      options: [
+        "Anpil animasyon flashy sou chak diapositiv",
+        "Transisyon senp ak konsantrasyon sou kontni an",
+        "Koulè difewan sou chak paj",
+        "Tèks trè piti pou kenbe plis enfòmasyon",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Senplisite pwofesyonèl toujou pi efikas.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki distrè yon odyans.",
+    },
+    recap: [
+      { emoji: "📙", text: "PowerPoint = estanda pou prezantasyon biznis." },
+      { emoji: "🎞️", text: "Transisyon senp pi pwofesyonèl pase flashy." },
+      { emoji: "🖼️", text: "Konsantre sou kontni, pa efè vizyèl." },
+      {
+        emoji: "🎯",
+        text: "Misyon: kreye yon prezantasyon ak twa diapositiv.",
+      },
+    ],
+  },
+  {
+    slug: "microsoft-outlook",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "📧",
+    heroTitle: "Microsoft Outlook",
+    heroLede: "Yon bwat imèl pwofesyonèl ki konbine mesaj ak kalandriye.",
+    goal: "🎯 Objektif: navige nan imèl ak kalandriye Outlook.",
+    simpleExplanation:
+      "**Microsoft Outlook** se yon aplikasyon imèl pwofesyonèl ki konbine bwat resepsyon ak yon kalandriye entegre, souvan itilize nan anviwònman biznis ak antrepriz. Menm prensip yo aprann pou Gmail (Modil 6) aplike la a — sèlman entèfas la diferan.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email application with an inbox list and a calendar panel side by side, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-outlook.webp`,
+    digitalWords: [
+      {
+        word: "Microsoft Outlook",
+        definition:
+          "Aplikasyon imèl pwofesyonèl Microsoft ak kalandriye entegre.",
+        example: "Anpil antrepriz itilize Outlook pou tout kominikasyon.",
+      },
+      {
+        word: "Kont Antrepriz (Work/School Account)",
+        definition: "Yon kont Outlook konpayi oswa lekòl ou bay ou.",
+        example: "Konekte ak kont antrepriz ou pou wè imèl travay ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou kòmanse yon nouvo djòb, anplwayè ou ka ba ou yon kont Outlook — menm prensip Gmail yo (compose, reply, forward) aplike, sèlman bouton yo nan yon lòt kote.",
+    mistakeWrong:
+      "Panse ou dwe re-aprann tout bagay paske Outlook 'sanble' diferan de Gmail.",
+    mistakeCorrect:
+      "Konprann prensip debaz (compose, reply, attachment) yo menm — sèlman entèfas la chanje.",
+    mistakeWhy:
+      "⚠️ Konsantre sou diferans vizyèl olye de rekonèt prensip ki menm yo ka fè yon nouvo zouti sanble pi difisil pase li reyèlman ye.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI montre w kote fonksyon Gmail ou konnen deja yo ye nan Outlook.",
+    aiPrompt:
+      "Hi! I know how to use Gmail. Can you explain where to find 'Compose', 'Reply', and 'Attach file' in Outlook?",
+    mission:
+      "🎯 Misyon: si ou gen aksè a Outlook, eksplore bwat resepsyon ak kalandriye li; sinon, konpare mantalman ak Gmail.",
+    quiz: {
+      prompt: "Kisa ki fè Outlook diferan de Gmail?",
+      options: [
+        "Prensip debaz yo konplètman diferan",
+        "Sèlman entèfas la diferan; prensip debaz yo menm",
+        "Outlook pa gen okenn kalandriye",
+        "Ou pa ka voye pyès jwenn nan Outlook",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sèlman entèfas la chanje, prensip yo rete menm.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak konpetans ou deja genyen ak Gmail.",
+    },
+    recap: [
+      {
+        emoji: "📧",
+        text: "Outlook = imèl pwofesyonèl ak kalandriye entegre.",
+      },
+      { emoji: "🏢", text: "Souvan itilize nan antrepriz ak lekòl." },
+      { emoji: "🔄", text: "Menm prensip ak Gmail, lòt entèfas." },
+      {
+        emoji: "🎯",
+        text: "Misyon: eksplore Outlook oswa konpare l ak Gmail.",
+      },
+    ],
+  },
+  {
+    slug: "microsoft-onedrive",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "☁️",
+    heroTitle: "Microsoft OneDrive",
+    heroLede: "Vèsyon Microsoft pou sovgade ak sinkwonize fichye nan cloud la.",
+    goal: "🎯 Objektif: sovgade ak jwenn fichye ak Microsoft OneDrive.",
+    simpleExplanation:
+      "**OneDrive** se sèvis cloud Microsoft, ekivalan Google Drive — li sovgade fichye ou (dokiman Word, Excel, PowerPoint) pou jwenn yo sou nenpòt aparèy. Chak kont Microsoft (Windows, Outlook) vin ak OneDrive otomatikman.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a cloud storage file browser interface with document and spreadsheet icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-onedrive.webp`,
+    digitalWords: [
+      {
+        word: "Microsoft OneDrive",
+        definition: "Sèvis cloud Microsoft pou sovgade ak sinkwonize fichye.",
+        example: "Sovgade dokiman Word ou nan OneDrive pou jwenn li toupatou.",
+      },
+      {
+        word: "Sinkwonizasyon (Sync)",
+        definition: "Fè menm vèsyon yon fichye rete ajou sou tout aparèy.",
+        example: "Modifye yon dokiman sou telefòn, li ajou sou laptòp tou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou sovgade yon dokiman Word nan OneDrive sou òdinatè travay ou, ou ka louvri menm dokiman an sou telefòn ou pandan ou nan wout, ak dènye modifikasyon yo.",
+    mistakeWrong:
+      "Sovgade dokiman Word/Excel enpòtan sèlman sou disk lokal òdinatè a.",
+    mistakeCorrect:
+      "Sovgade fichye enpòtan nan OneDrive pou backup ak aksè toupatou.",
+    mistakeWhy:
+      "⚠️ San OneDrive, si òdinatè a kraze, dokiman ki sovgade sèlman lokalman ka pèdi pou tout bon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant OneDrive ak Google Drive, si ou dwe chwazi youn.",
+    aiPrompt:
+      "Hi! What's the difference between Microsoft OneDrive and Google Drive? How do I choose which one to use?",
+    mission:
+      "🎯 Misyon: sovgade yon dokiman nan OneDrive (oswa verifye si OneDrive deja aktive sou aparèy ou).",
+    quiz: {
+      prompt: "Kisa OneDrive fè?",
+      options: [
+        "Li efase dokiman ou otomatikman",
+        "Li sovgade ak sinkwonize fichye nan cloud la",
+        "Li sèlman kreye prezantasyon",
+        "Li konekte w sou Wi-Fi",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! OneDrive sovgade ak sinkwonize fichye ou.",
+      wrongFeedback: "❌ Eseye ankò — panse ak ekivalan Google Drive la.",
+    },
+    recap: [
+      { emoji: "☁️", text: "OneDrive = ekivalan Microsoft pou Google Drive." },
+      { emoji: "🔄", text: "Sinkwonize fichye sou tout aparèy ou." },
+      { emoji: "🔗", text: "Vin ak chak kont Microsoft otomatikman." },
+      {
+        emoji: "🎯",
+        text: "Misyon: sovgade oswa verifye yon fichye nan OneDrive.",
+      },
+    ],
+  },
+  {
+    slug: "microsoft-teams",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "🎦",
+    heroTitle: "Microsoft Teams",
+    heroLede:
+      "Yon espas travay tout-an-yon pou chat, apèl videyo, ak dokiman pataje.",
+    goal: "🎯 Objektif: rejwenn yon rankont ak navige nan chat sou Microsoft Teams.",
+    simpleExplanation:
+      "**Microsoft Teams** konbine chat tèks, apèl videyo, ak pataje dokiman nan yon sèl aplikasyon, souvan itilize pou travay ak lekòl. Li fonksyone menm jan ak Google Meet pou apèl videyo, plis yon sistèm chat ki rete òganize.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a team collaboration app with a chat panel and video call thumbnails, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-teams.webp`,
+    digitalWords: [
+      {
+        word: "Microsoft Teams",
+        definition:
+          "Aplikasyon Microsoft ki konbine chat, apèl videyo, ak dokiman.",
+        example: "Rejwenn yon reyinyon travay chak semèn sou Teams.",
+      },
+      {
+        word: "Kanal (Channel)",
+        definition: "Yon espas chat òganize pa sijè oswa pwojè nan Teams.",
+        example: "Kreye yon kanal 'Pwojè Vant' pou tout diskisyon konsène l.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon ekip travay ki itilize Teams ka gen yon kanal separe pou chak pwojè, olye de tout mesaj mele nan yon sèl chat — pi fasil pou swiv konvèsasyon espesifik.",
+    mistakeWrong:
+      "Mete tout diskisyon (pwojè diferan) nan yon sèl chat jeneral san kanal.",
+    mistakeCorrect: "Òganize diskisyon nan kanal separe pa sijè oswa pwojè.",
+    mistakeWhy:
+      "⚠️ San kanal òganize, mesaj enpòtan pèdi nan mitan konvèsasyon ki pa gen rapò — sa ralanti kolaborasyon ekip la.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant Microsoft Teams ak Google Meet, si ou dwe konnen toude pou travay.",
+    aiPrompt:
+      "Hi! What's the difference between Microsoft Teams and Google Meet? Do I need to learn both for work?",
+    mission:
+      "🎯 Misyon: si ou gen aksè a Teams, rejwenn yon rankont tès; sinon, konpare mantalman ak Google Meet.",
+    quiz: {
+      prompt: "Kisa yon kanal (channel) fè nan Microsoft Teams?",
+      options: [
+        "Li efase mesaj otomatikman",
+        "Li òganize diskisyon pa sijè oswa pwojè",
+        "Li konekte w sou Wi-Fi",
+        "Li kreye yon nouvo dokiman Excel",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Kanal òganize diskisyon pa sijè.",
+      wrongFeedback: "❌ Eseye ankò — panse ak fason ekip yo rete òganize.",
+    },
+    recap: [
+      { emoji: "🎦", text: "Teams konbine chat, apèl videyo, ak dokiman." },
+      { emoji: "📢", text: "Kanal òganize diskisyon pa sijè/pwojè." },
+      { emoji: "🔄", text: "Menm objektif ak Google Meet, plis chat entegre." },
+      { emoji: "🎯", text: "Misyon: rejwenn oswa konpare Teams ak Meet." },
+    ],
+  },
+  {
+    slug: "microsoft-essentials-mission",
+    moduleTitle: "Modil 9: Debaz Microsoft",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Debaz Microsoft",
+    heroLede:
+      "Konbine tout zouti Microsoft Modil 9 pou vin konfyan nan nenpòt anviwònman travay.",
+    goal: "🎯 Objektif: jere Word, Excel, PowerPoint, ak Outlook ak konfyans.",
+    simpleExplanation:
+      "Ou fèk aprann: Word, Excel, PowerPoint, Outlook, OneDrive, ak Teams. Ansanm ak sa ou te aprann sou Google (Modil 8), ou kounye a konnen de pi gwo ekosistèm biznis nan mond lan — ou ka adapte nan nenpòt anviwònman travay.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently working on a laptop in a professional office setting, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/microsoft-essentials-mission.webp`,
+    digitalWords: [
+      {
+        word: "Debaz Microsoft",
+        definition:
+          "Konpetans debaz pou itilize zouti Microsoft nan yon anviwònman travay.",
+        example: "Debaz Microsoft ede w adapte nan prèske nenpòt biznis.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki konnen toude Google ak Microsoft ekosistèm ka kòmanse travay nan prèske nenpòt biznis san yon lòt fòmasyon teknik — anplwayè yo sipoze konpetans sa yo.",
+    mistakeWrong:
+      "Panse ou dwe metrize chak fonksyon avanse nan Word, Excel, ak PowerPoint.",
+    mistakeCorrect:
+      "Konprann konpetans debaz sa yo ase pou kòmanse ak konfyans — rès la vin natirèl ak pratik travay reyèl.",
+    mistakeWhy:
+      "⚠️ Atann pèfeksyon anvan ou aksepte yon djòb ki mande Microsoft Office anpeche w pran opòtinite ki deja nan pòte men w.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI konsèy sou kijan pou kontinye amelyore konpetans Microsoft Office ou pou yon djòb espesifik.",
+    aiPrompt:
+      "Hi! I just learned the basics of Word, Excel, PowerPoint, and Outlook. What Microsoft Office skills are most valuable for getting a job?",
+    mission:
+      "🎯 Misyon Final Modil 9: ekri yon dokiman Word, kreye yon fèy Excel senp, ak jwenn kote pou voye yon imèl nan Outlook.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 9 la?",
+      options: [
+        "Vin yon ekspè Microsoft sètifye",
+        "Jere Word, Excel, PowerPoint, ak Outlook ak konfyans",
+        "Memorize chak fòmil Excel ki egziste",
+        "Ranplase Google ekosistèm nèt",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Objektif la se jere zouti sa yo ak konfyans.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 9 la.",
+    },
+    recap: [
+      { emoji: "📘", text: "Word, Excel, PowerPoint." },
+      { emoji: "📧", text: "Outlook, OneDrive, Teams." },
+      { emoji: "💼", text: "Konpetans debaz pou nenpòt anviwònman travay." },
+      { emoji: "🎓", text: "Ou fini Modil 9 — Debaz Microsoft!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {
