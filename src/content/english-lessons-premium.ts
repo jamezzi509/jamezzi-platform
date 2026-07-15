@@ -4006,6 +4006,888 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: rakonte yon jounen nan lavi w." },
     ],
   },
+  {
+    slug: "who-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🙋",
+    heroTitle: "Who — Kesyon Sou Moun",
+    heroLede:
+      "Itilize “Who” lè ou vle konnen ki moun ki fè yon bagay, oswa ki moun yon moun ye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab poze kesyon ak “Who” pou konnen ki moun.",
+    whatYouWillLearn: "kijan pou itilize “Who” pou mande sou moun",
+    prerequisite: "Ou fin Modil 4 — Vokabilè Chak Jou",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Who” mande ki moun, pa ki bagay.",
+    understandBody:
+      "**Who is that?** **Who is your teacher?** “Who” toujou mande sou yon MOUN — pa yon objè oswa yon kote. Se premye mo pou konnen lè w ap pale de moun ou pa rekonèt.",
+    seeItInAction: [
+      { line: "Who is that?", tag: "Mande yon moun", emoji: "🙋" },
+      { line: "Who is your teacher?", tag: "Mande yon relasyon", emoji: "👨‍🏫" },
+      { line: "Who called you?", tag: "Mande yon aksyon", emoji: "📞" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “Who”.",
+    patternBuilderOptions: [
+      { chipLabel: "Person", display: "Who is that?" },
+      { chipLabel: "Relationship", display: "Who is your teacher?" },
+      { chipLabel: "Action", display: "Who called you?" },
+    ],
+    vocabulary: [
+      { word: "Who", ipa: "/huː/", kreyol: "Ki moun", example: "Who is that?" },
+      { word: "That", ipa: "/ðæt/", kreyol: "Sa a", example: "Who is that?" },
+      {
+        word: "Teacher",
+        ipa: "/ˈtiːtʃər/",
+        kreyol: "Pwofesè",
+        example: "Who is your teacher?",
+      },
+      {
+        word: "Called",
+        ipa: "/kɔːld/",
+        kreyol: "Rele (tan pase)",
+        example: "Who called you?",
+      },
+      {
+        word: "Friend",
+        ipa: "/frɛnd/",
+        kreyol: "Zanmi",
+        example: "Who is your friend?",
+      },
+    ],
+    pronunciationWord: "Who",
+    pronunciationIpa: "/huː/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** wonn bouch ou, tankou lè w ap di “ou” an Kreyòl.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize “what” pou moun — “Who” se pou moun, “what” se pou bagay.",
+    mistakeWrong: "What is that person?",
+    mistakeCorrect: "Who is that person?",
+    mistakeWhy:
+      "**Poukisa:** Yon moun se pa yon “bagay” — itilize “Who” chak fwa w ap mande sou yon moun.",
+    practice: {
+      prompt: "Chwazi kesyon ki kòrèk pou mande sou yon moun:",
+      options: [
+        "What is that?",
+        "Who is that?",
+        "Where is that?",
+        "When is that?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — moun mande ak “Who”.",
+    },
+    thinkEmoji: "🙋",
+    thinkPrompt:
+      "Ekri yon kesyon ak “Who” ou ta poze sou yon moun ou pa konnen:",
+    thinkPlaceholder: "Who is...?",
+    aiPrompt:
+      "Hi! Can you describe a mystery person and let me ask 'Who is that?' questions to find out more?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike poze kesyon ak Who.",
+    missionTask:
+      "🎯 Jodi a, poze yon kesyon ak “Who” sou yon moun ou wè oswa panse a.",
+    recap: [
+      { emoji: "🙋", text: "“Who” mande sou yon moun, pa yon bagay." },
+      { emoji: "⚠️", text: "Pa konfonn “Who” ak “What”." },
+      { emoji: "🔗", text: "Who is...? Who called...?" },
+      { emoji: "🎯", text: "Misyon: poze yon kesyon ak Who jodi a." },
+    ],
+  },
+  {
+    slug: "when-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🕐",
+    heroTitle: "When — Kesyon Sou Lè",
+    heroLede:
+      "Itilize “When” pou mande yon moman — yon lè, yon jou, oswa yon dat.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab poze kesyon ak “When” pou konnen yon moman.",
+    whatYouWillLearn: "kijan pou itilize “When” pou mande yon moman",
+    prerequisite: "Leson 1 — Who",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“When” mande yon moman — yon lè, yon jou, oswa yon dat.",
+    understandBody:
+      "**When is your birthday?** **When do you work?** “When” mande yon moman presi — pa gen bezwen di sa k ap pase, sèlman ki lè.",
+    seeItInAction: [
+      { line: "When is your birthday?", tag: "Dat", emoji: "🎂" },
+      { line: "When do you work?", tag: "Orè", emoji: "💼" },
+      { line: "When does the store open?", tag: "Lè", emoji: "🏪" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “When”.",
+    patternBuilderOptions: [
+      { chipLabel: "Birthday", display: "When is your birthday?" },
+      { chipLabel: "Work", display: "When do you work?" },
+      { chipLabel: "Store", display: "When does the store open?" },
+    ],
+    vocabulary: [
+      {
+        word: "When",
+        ipa: "/wɛn/",
+        kreyol: "Ki lè",
+        example: "When is your birthday?",
+      },
+      {
+        word: "Birthday",
+        ipa: "/ˈbɜːrθdeɪ/",
+        kreyol: "Anivèsè",
+        example: "When is your birthday?",
+      },
+      {
+        word: "Open",
+        ipa: "/ˈoʊpən/",
+        kreyol: "Louvri",
+        example: "When does the store open?",
+      },
+      {
+        word: "Close",
+        ipa: "/kloʊz/",
+        kreyol: "Fèmen",
+        example: "When does it close?",
+      },
+      {
+        word: "Later",
+        ipa: "/ˈleɪtər/",
+        kreyol: "Pita",
+        example: "See you later.",
+      },
+    ],
+    pronunciationWord: "When",
+    pronunciationIpa: "/wɛn/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “w” klè nan kòmansman, tankou “wen”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “when” (ki lè) ak “where” (ki kote) — yo sonnen yon ti kras sanble.",
+    mistakeWrong: "Where is your birthday?",
+    mistakeCorrect: "When is your birthday?",
+    mistakeWhy:
+      "**Poukisa:** Yon anivèsè se yon DAT, pa yon kote. “When” mande dat/lè, “where” mande kote.",
+    practice: {
+      prompt: "Chwazi kesyon ki kòrèk pou mande yon dat:",
+      options: [
+        "Where is your birthday?",
+        "When is your birthday?",
+        "Who is your birthday?",
+        "Why is your birthday?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — yon dat mande “When”.",
+    },
+    thinkEmoji: "🕐",
+    thinkPrompt: "Ekri yon kesyon ak “When” sou orè oswa dat yon bagay:",
+    thinkPlaceholder: "When is...? / When do you...?",
+    aiPrompt:
+      "Hi! Can you ask me when different things happen in my week, and help me answer using 'when'?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike poze kesyon ak When.",
+    missionTask:
+      "🎯 Jodi a, poze yon moun yon kesyon ak “When” sou orè oswa dat.",
+    recap: [
+      { emoji: "🕐", text: "“When” mande yon lè, jou, oswa dat." },
+      { emoji: "⚠️", text: "Pa konfonn “when” ak “where”." },
+      { emoji: "🔗", text: "When is...? When do you...?" },
+      { emoji: "🎯", text: "Misyon: poze yon kesyon ak When jodi a." },
+    ],
+  },
+  {
+    slug: "why-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🤔",
+    heroTitle: "Why — Kesyon Sou Rezon",
+    heroLede:
+      "Itilize “Why” pou mande yon rezon — repons lan souvan kòmanse ak “Because”.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab poze ak reponn kesyon ak “Why”/“Because”.",
+    whatYouWillLearn:
+      "kijan pou mande yon rezon ak “Why” epi reponn ak “Because”",
+    prerequisite: "Leson 2 — When",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Why” mande yon rezon — repons lan itilize “Because”.",
+    understandBody:
+      "**Why are you late?** — **Because there was traffic.** “Why” mande “poukisa”, epi repons lan itilize “because” pou eksplike.",
+    seeItInAction: [
+      { line: "Why are you late?", tag: "Mande rezon", emoji: "❓" },
+      {
+        line: "Because there was traffic.",
+        tag: "Reponn ak Because",
+        emoji: "🚗",
+      },
+      {
+        line: "Why do you study English?",
+        tag: "Mande motivasyon",
+        emoji: "📚",
+      },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè kesyon ak repons li.",
+    patternBuilderOptions: [
+      { chipLabel: "Late", display: "Why are you late?" },
+      { chipLabel: "Answer", display: "Because there was traffic." },
+      { chipLabel: "Study", display: "Why do you study English?" },
+    ],
+    vocabulary: [
+      {
+        word: "Why",
+        ipa: "/waɪ/",
+        kreyol: "Poukisa",
+        example: "Why are you late?",
+      },
+      {
+        word: "Because",
+        ipa: "/bɪˈkɔːz/",
+        kreyol: "Paske",
+        example: "Because there was traffic.",
+      },
+      {
+        word: "Traffic",
+        ipa: "/ˈtræfɪk/",
+        kreyol: "Anbouteyaj",
+        example: "There was traffic.",
+      },
+      {
+        word: "Reason",
+        ipa: "/ˈriːzən/",
+        kreyol: "Rezon",
+        example: "What is the reason?",
+      },
+      {
+        word: "Late",
+        ipa: "/leɪt/",
+        kreyol: "An reta",
+        example: "Why are you late?",
+      },
+    ],
+    pronunciationWord: "Because",
+    pronunciationIpa: "/bɪˈkɔːz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** aksan an sou dezyèm silab la — “bi-KUZ”.",
+    pronunciationMistake:
+      "**Erè komen:** pa reponn yon kesyon “Why” san “because” — repons lan pa konplè.",
+    mistakeWrong: "Why are you late? Traffic.",
+    mistakeCorrect: "Why are you late? Because there was traffic.",
+    mistakeWhy:
+      "**Poukisa:** “Because” prepare repons lan pou eksplike rezon an klèman — san li, repons lan sonnen twò kout.",
+    practice: {
+      prompt: "Ki mo ki kòmanse yon repons pou “Why”?",
+      options: ["When", "Because", "Who", "Where"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ki mo eksplike yon rezon?",
+    },
+    thinkEmoji: "🤔",
+    thinkPrompt: "Ekri yon kesyon “Why” epi yon repons ak “Because”:",
+    thinkPlaceholder: "Why...? Because...",
+    aiPrompt:
+      "Hi! Can you ask me why I'm learning English, and help me answer using 'because'?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike Why/Because.",
+    missionTask:
+      "🎯 Jodi a, mande yon moun “Why” yon bagay, epi koute repons ki kòmanse ak “Because”.",
+    recap: [
+      { emoji: "🤔", text: "“Why” mande yon rezon." },
+      { emoji: "🔗", text: "“Because” kòmanse repons lan." },
+      { emoji: "🚗", text: "Why are you late? Because there was traffic." },
+      { emoji: "🎯", text: "Misyon: mande “Why” yon bagay jodi a." },
+    ],
+  },
+  {
+    slug: "which-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "👉",
+    heroTitle: "Which — Chwazi Ant Opsyon",
+    heroLede:
+      "Itilize “Which” lè ou mande yon chwa ant de oswa plizyè bagay presi.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “Which” pou mande yon chwa.",
+    whatYouWillLearn: "diferans ant “What” ak “Which”",
+    prerequisite: "Leson 3 — Why",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Which” mande yon chwa ant de oswa plizyè bagay presi.",
+    understandBody:
+      "**Which color do you like?** Kontrèman ak “what” ki jeneral, “which” mande yon chwa ant opsyon presi ou konnen deja — tankou plizyè koulè devan ou.",
+    seeItInAction: [
+      { line: "Which color do you like?", tag: "Chwa", emoji: "🎨" },
+      { line: "Which one is yours?", tag: "Chwa ant plizyè", emoji: "👉" },
+      { line: "Which day works for you?", tag: "Chwa dat", emoji: "📅" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “Which”.",
+    patternBuilderOptions: [
+      { chipLabel: "Color", display: "Which color do you like?" },
+      { chipLabel: "Object", display: "Which one is yours?" },
+      { chipLabel: "Day", display: "Which day works for you?" },
+    ],
+    vocabulary: [
+      {
+        word: "Which",
+        ipa: "/wɪtʃ/",
+        kreyol: "Kilès",
+        example: "Which one is yours?",
+      },
+      {
+        word: "Color",
+        ipa: "/ˈkʌlər/",
+        kreyol: "Koulè",
+        example: "Which color do you like?",
+      },
+      {
+        word: "One",
+        ipa: "/wʌn/",
+        kreyol: "Youn",
+        example: "Which one is yours?",
+      },
+      {
+        word: "Option",
+        ipa: "/ˈɒpʃən/",
+        kreyol: "Opsyon",
+        example: "Which option is best?",
+      },
+      {
+        word: "Works",
+        ipa: "/wɜːrks/",
+        kreyol: "Mache (konvenab)",
+        example: "Which day works for you?",
+      },
+    ],
+    pronunciationWord: "Which",
+    pronunciationIpa: "/wɪtʃ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “ch” klè nan fen mo a.",
+    pronunciationMistake:
+      "**Erè komen:** pa itilize “what” lè gen yon lis presi opsyon devan w — itilize “which”.",
+    mistakeWrong: "What one is yours?",
+    mistakeCorrect: "Which one is yours?",
+    mistakeWhy:
+      "**Poukisa:** Lè gen yon lis limite bagay devan ou (de telefòn, twa koulè), “which” pi kòrèk pase “what”.",
+    practice: {
+      prompt: "Ou gen twa chemiz devan ou. Ki kesyon ki pi kòrèk?",
+      options: [
+        "What one do you want?",
+        "Which one do you want?",
+        "Who one do you want?",
+        "Where one do you want?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — ou gen yon lis limite, itilize “which”.",
+    },
+    thinkEmoji: "👉",
+    thinkPrompt: "Ekri yon kesyon “Which” ant de bagay presi:",
+    thinkPlaceholder: "Which...?",
+    aiPrompt:
+      "Hi! Can you give me two or three options for something and ask me 'which one' I prefer?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike Which.",
+    missionTask: "🎯 Jodi a, mande yon moun “Which” pou yon chwa ant de bagay.",
+    recap: [
+      { emoji: "👉", text: "“Which” mande yon chwa ant opsyon presi." },
+      { emoji: "⚠️", text: "“What” pi jeneral, “which” pi presi." },
+      { emoji: "🎨", text: "Which color? Which one? Which day?" },
+      { emoji: "🎯", text: "Misyon: mande “Which” jodi a." },
+    ],
+  },
+  {
+    slug: "whose-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "📱",
+    heroTitle: "Whose — Kesyon Sou Posesyon",
+    heroLede: "Itilize “Whose” pou mande ki moun ki posede yon bagay.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “Whose” san w pa konfonn li ak “Who's”.",
+    whatYouWillLearn: "diferans ant “Whose” (posesyon) ak “Who's” (Who is)",
+    prerequisite: "Leson 4 — Which",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Whose” mande ki moun ki posede yon bagay.",
+    understandBody:
+      "**Whose phone is this?** — **It's my phone.** “Whose” pa menm ak “Who's” (ki vle di “Who is”) — se yon konfizyon komen menm pou moun ki pale Anglè natifnatal.",
+    seeItInAction: [
+      { line: "Whose phone is this?", tag: "Posesyon", emoji: "📱" },
+      { line: "It's my phone.", tag: "Repons", emoji: "🙋" },
+      { line: "Whose idea was this?", tag: "Posesyon lide", emoji: "💡" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “Whose”.",
+    patternBuilderOptions: [
+      { chipLabel: "Phone", display: "Whose phone is this?" },
+      { chipLabel: "Answer", display: "It's my phone." },
+      { chipLabel: "Idea", display: "Whose idea was this?" },
+    ],
+    vocabulary: [
+      {
+        word: "Whose",
+        ipa: "/huːz/",
+        kreyol: "Pou ki moun",
+        example: "Whose phone is this?",
+      },
+      { word: "Mine", ipa: "/maɪn/", kreyol: "Pa mwen", example: "It's mine." },
+      {
+        word: "Yours",
+        ipa: "/jʊrz/",
+        kreyol: "Pa ou",
+        example: "Is this yours?",
+      },
+      {
+        word: "Idea",
+        ipa: "/aɪˈdiːə/",
+        kreyol: "Lide",
+        example: "Whose idea was this?",
+      },
+      {
+        word: "Belongs",
+        ipa: "/bɪˈlɔːŋz/",
+        kreyol: "Apatyen",
+        example: "This belongs to me.",
+      },
+    ],
+    pronunciationWord: "Whose",
+    pronunciationIpa: "/huːz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** “whose” ak “who's” sonnen menm jan — kontèks fè diferans lan.",
+    pronunciationMistake:
+      "**Erè komen:** pa ekri “Who's phone is this?” — “Who's” vle di “Who is”, ki pa gen sans isit la.",
+    mistakeWrong: "Who's phone is this?",
+    mistakeCorrect: "Whose phone is this?",
+    mistakeWhy:
+      "**Poukisa:** “Who's” = “Who is”. “Whose phone is this?” pa ka vle di “Who is phone is this?” — se “Whose” (posesyon) ki kòrèk.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou mande posesyon:",
+      options: [
+        "Who's book is this?",
+        "Whose book is this?",
+        "Who's is this book?",
+        "Whose's book is this?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — posesyon itilize “Whose”, pa “Who's”.",
+    },
+    thinkEmoji: "📱",
+    thinkPrompt: "Ekri yon kesyon “Whose” sou yon bagay ou wè:",
+    thinkPlaceholder: "Whose... is this?",
+    aiPrompt:
+      "Hi! Can you ask me 'whose' something belongs to, and help me answer with 'mine', 'yours', or a name?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike Whose.",
+    missionTask:
+      "🎯 Jodi a, mande “Whose” sou yon bagay ou wè, e pratike pa konfonn li ak “Who's”.",
+    recap: [
+      { emoji: "📱", text: "“Whose” mande ki moun ki posede yon bagay." },
+      { emoji: "⚠️", text: "“Whose” ≠ “Who's” (Who is)." },
+      { emoji: "🙋", text: "Repons: It's mine/yours/his/hers." },
+      { emoji: "🎯", text: "Misyon: mande “Whose” sou yon bagay." },
+    ],
+  },
+  {
+    slug: "how-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "😊",
+    heroTitle: "How — Kesyon Sou Fason",
+    heroLede: "Itilize “How” pou mande fason yon bagay fèt, oswa yon eta.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “How” pou mande fason oswa eta.",
+    whatYouWillLearn: "kijan pou itilize “How” pou mande fason ak eta",
+    prerequisite: "Leson 5 — Whose",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“How” mande fason yon bagay fèt, oswa yon eta.",
+    understandBody:
+      "**How are you?** **How do you make coffee?** “How” mande kijan yon bagay ye oswa kijan pou fè li.",
+    seeItInAction: [
+      { line: "How are you?", tag: "Eta", emoji: "😊" },
+      { line: "How do you make coffee?", tag: "Fason", emoji: "☕" },
+      { line: "How was your day?", tag: "Rezime", emoji: "📖" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “How”.",
+    patternBuilderOptions: [
+      { chipLabel: "State", display: "How are you?" },
+      { chipLabel: "Method", display: "How do you make coffee?" },
+      { chipLabel: "Recap", display: "How was your day?" },
+    ],
+    vocabulary: [
+      { word: "How", ipa: "/haʊ/", kreyol: "Kijan", example: "How are you?" },
+      {
+        word: "Coffee",
+        ipa: "/ˈkɔːfi/",
+        kreyol: "Kafe",
+        example: "How do you make coffee?",
+      },
+      {
+        word: "Day",
+        ipa: "/deɪ/",
+        kreyol: "Jounen",
+        example: "How was your day?",
+      },
+      {
+        word: "Fine",
+        ipa: "/faɪn/",
+        kreyol: "Byen",
+        example: "I'm fine, thank you.",
+      },
+      {
+        word: "Well",
+        ipa: "/wɛl/",
+        kreyol: "Byen",
+        example: "I'm doing well.",
+      },
+    ],
+    pronunciationWord: "How",
+    pronunciationIpa: "/haʊ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** son “ow” long, tankou lè w ap di “oww” si ou fè mal.",
+    pronunciationMistake:
+      "**Erè komen:** pa reponn “How are you?” ak “I am here” — “here” se yon kote, pa yon eta.",
+    mistakeWrong: "How are you? I am here.",
+    mistakeCorrect: "How are you? I am fine.",
+    mistakeWhy:
+      "**Poukisa:** “How are you?” mande yon ETA (fine, tired, happy), pa yon kote. “Where are you?” ta mande kote.",
+    practice: {
+      prompt: "Ki repons ki kòrèk pou “How are you?”",
+      options: ["I am here.", "I am fine.", "I am Monday.", "I am 5."],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “How” mande yon eta.",
+    },
+    thinkEmoji: "😊",
+    thinkPrompt: "Ekri yon kesyon “How” sou fason yon moun fè yon bagay:",
+    thinkPlaceholder: "How do you...?",
+    aiPrompt:
+      "Hi! Can you ask me how I am, and how I do something (like cook or travel to work), and help me answer?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike How.",
+    missionTask:
+      "🎯 Jodi a, mande yon moun “How are you?” epi reponn kesyon an tou ou menm.",
+    recap: [
+      { emoji: "😊", text: "“How” mande yon eta oswa yon fason." },
+      { emoji: "☕", text: "How are you? How do you...?" },
+      { emoji: "⚠️", text: "“How” ≠ “Where” — eta pa kote." },
+      { emoji: "🎯", text: "Misyon: mande “How are you?” jodi a." },
+    ],
+  },
+  {
+    slug: "how-many-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🔢",
+    heroTitle: "How Many — Konte Bagay",
+    heroLede:
+      "Itilize “How many” pou mande yon kantite ou ka konte, tankou moun oswa objè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “How many” pou konte bagay.",
+    whatYouWillLearn: "kijan pou itilize “How many” devan non ou ka konte",
+    prerequisite: "Leson 6 — How",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“How many” mande yon kantite ou ka konte.",
+    understandBody:
+      "**How many children do you have?** Itilize “how many” devan yon non ou ka konte youn pa youn (children, books, dollars).",
+    seeItInAction: [
+      {
+        line: "How many children do you have?",
+        tag: "Konte moun",
+        emoji: "👨‍👩‍👧",
+      },
+      { line: "How many books do you have?", tag: "Konte objè", emoji: "📚" },
+      { line: "How many days until the trip?", tag: "Konte tan", emoji: "📅" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “How many”.",
+    patternBuilderOptions: [
+      { chipLabel: "Children", display: "How many children do you have?" },
+      { chipLabel: "Books", display: "How many books do you have?" },
+      { chipLabel: "Days", display: "How many days until the trip?" },
+    ],
+    vocabulary: [
+      {
+        word: "How many",
+        ipa: "/haʊ ˈmɛni/",
+        kreyol: "Konbyen (konte)",
+        example: "How many children?",
+      },
+      {
+        word: "Children",
+        ipa: "/ˈtʃɪldrən/",
+        kreyol: "Timoun",
+        example: "How many children do you have?",
+      },
+      {
+        word: "Books",
+        ipa: "/bʊks/",
+        kreyol: "Liv",
+        example: "How many books?",
+      },
+      { word: "Days", ipa: "/deɪz/", kreyol: "Jou", example: "How many days?" },
+      {
+        word: "Countable",
+        ipa: "/ˈkaʊntəbəl/",
+        kreyol: "Yon bagay ou ka konte",
+        example: "Books are countable.",
+      },
+    ],
+    pronunciationWord: "Many",
+    pronunciationIpa: "/ˈmɛni/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “MEN-ee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “How many money” — “money” pa konte youn pa youn, itilize “how much”.",
+    mistakeWrong: "How many money do you have?",
+    mistakeCorrect: "How much money do you have?",
+    mistakeWhy:
+      "**Poukisa:** Ou pa ka konte lajan youn pa youn (one money, two money) — “money” pran “how much”, pa “how many”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "How many books do you have?",
+        "How much books do you have?",
+        "How many book do you have?",
+        "How books many do you have?",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “books” konte, kidonk “how many”.",
+    },
+    thinkEmoji: "🔢",
+    thinkPrompt: "Ekri yon kesyon “How many” sou yon bagay ou ka konte:",
+    thinkPlaceholder: "How many...?",
+    aiPrompt:
+      "Hi! Can you ask me 'how many' of different countable things I have (books, siblings, phones)?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike How many.",
+    missionTask:
+      "🎯 Jodi a, mande yon moun “How many” sou yon bagay ou ka konte.",
+    recap: [
+      { emoji: "🔢", text: "“How many” pou bagay ou ka konte." },
+      { emoji: "👨‍👩‍👧", text: "How many children/books/days?" },
+      { emoji: "⚠️", text: "Pa itilize l pou lajan — se “how much”." },
+      { emoji: "🎯", text: "Misyon: mande “How many” jodi a." },
+    ],
+  },
+  {
+    slug: "how-much-questions",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "💵",
+    heroTitle: "How Much — Kantite ak Pri",
+    heroLede:
+      "Itilize “How much” pou mande yon kantite ou pa ka konte youn pa youn, oswa yon pri.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “How much” pou pri ak kantite.",
+    whatYouWillLearn:
+      "diferans ant “How many” (konte) ak “How much” (pa konte/pri)",
+    prerequisite: "Leson 7 — How Many",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“How much” mande yon kantite ou pa ka konte youn pa youn, oswa yon pri.",
+    understandBody:
+      "**How much does this cost?** **How much water do you need?** Itilize “how much” pou lajan ak bagay ou pa ka konte (water, money, time).",
+    seeItInAction: [
+      { line: "How much does this cost?", tag: "Pri", emoji: "💵" },
+      {
+        line: "How much water do you need?",
+        tag: "Kantite pa konte",
+        emoji: "💧",
+      },
+      { line: "How much time do we have?", tag: "Tan", emoji: "⏰" },
+    ],
+    patternBuilderIntro:
+      "Klike sou chak sitiyasyon pou wè yon kesyon ak “How much”.",
+    patternBuilderOptions: [
+      { chipLabel: "Price", display: "How much does this cost?" },
+      { chipLabel: "Water", display: "How much water do you need?" },
+      { chipLabel: "Time", display: "How much time do we have?" },
+    ],
+    vocabulary: [
+      {
+        word: "How much",
+        ipa: "/haʊ mʌtʃ/",
+        kreyol: "Konbyen (pa konte/pri)",
+        example: "How much does it cost?",
+      },
+      {
+        word: "Cost",
+        ipa: "/kɔːst/",
+        kreyol: "Koute",
+        example: "How much does this cost?",
+      },
+      {
+        word: "Water",
+        ipa: "/ˈwɔːtər/",
+        kreyol: "Dlo",
+        example: "How much water do you need?",
+      },
+      {
+        word: "Time",
+        ipa: "/taɪm/",
+        kreyol: "Tan",
+        example: "How much time do we have?",
+      },
+      {
+        word: "Price",
+        ipa: "/praɪs/",
+        kreyol: "Pri",
+        example: "What is the price?",
+      },
+    ],
+    pronunciationWord: "Cost",
+    pronunciationIpa: "/kɔːst/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “o” ouvè, tankou “kawst”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “How many money” — se “How much money”.",
+    mistakeWrong: "How many money do you have?",
+    mistakeCorrect: "How much money do you have?",
+    mistakeWhy:
+      "**Poukisa:** “Money” pa konte youn pa youn — li toujou pran “how much”, jamè “how many”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou mande pri:",
+      options: [
+        "How many does this cost?",
+        "How much does this cost?",
+        "How many cost is this?",
+        "How much cost this?",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pri mande “how much”.",
+    },
+    thinkEmoji: "💵",
+    thinkPrompt: "Ekri yon kesyon “How much” sou pri oswa kantite:",
+    thinkPlaceholder: "How much...?",
+    aiPrompt:
+      "Hi! Can you play a shopkeeper and let me ask 'how much' different items cost?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike How much.",
+    missionTask: "🎯 Jodi a, mande “How much” sou pri yon bagay ou vle achte.",
+    recap: [
+      { emoji: "💵", text: "“How much” pou pri ak bagay pa konte." },
+      { emoji: "💧", text: "How much water/money/time?" },
+      { emoji: "⚠️", text: "“How many” konte, “how much” pa konte/pri." },
+      { emoji: "🎯", text: "Misyon: mande “How much” jodi a." },
+    ],
+  },
+  {
+    slug: "questions-mission",
+    moduleTitle: "Modil 5: Kesyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "💬",
+    heroTitle: "Mande Nenpòt Bagay",
+    heroLede:
+      "Kounye a ou gen tout mo kesyon yo — konbine yo pou aprann sou nenpòt moun oswa sitiyasyon.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab poze yon seri kesyon konplè sou yon moun.",
+    whatYouWillLearn:
+      "kijan pou konbine tout mo kesyon Modil 5 nan yon konvèsasyon",
+    prerequisite: "Leson 8 — How Much",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Yon bon konvèsasyon itilize plizyè mo kesyon ansanm.",
+    understandBody:
+      "Ou ka kòmanse ak **Who**, ale nan **Where** ak **How many**, epi fini ak **Why** oswa **How much**. **Se konsa moun aprann youn sou lòt an Anglè.**",
+    seeItInAction: [
+      {
+        line: "Who are you? What is your name?",
+        tag: "Prezantasyon",
+        emoji: "🙋",
+      },
+      {
+        line: "Where do you live? How many people are in your family?",
+        tag: "Detay",
+        emoji: "🏠",
+      },
+      {
+        line: "Why do you like it? How much does it cost?",
+        tag: "Opinyon/Pri",
+        emoji: "💭",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak mo kesyon pou revize li.",
+    patternBuilderOptions: [
+      { chipLabel: "Who", display: "Who are you?" },
+      { chipLabel: "How many", display: "How many people are in your family?" },
+      { chipLabel: "How much", display: "How much does it cost?" },
+    ],
+    vocabulary: [
+      {
+        word: "Question",
+        ipa: "/ˈkwɛstʃən/",
+        kreyol: "Kesyon",
+        example: "I have a question.",
+      },
+      {
+        word: "Answer",
+        ipa: "/ˈænsər/",
+        kreyol: "Repons",
+        example: "That's a good answer.",
+      },
+      {
+        word: "Conversation",
+        ipa: "/ˌkɒnvərˈseɪʃən/",
+        kreyol: "Konvèsasyon",
+        example: "We had a nice conversation.",
+      },
+      {
+        word: "Curious",
+        ipa: "/ˈkjʊəriəs/",
+        kreyol: "Kirye",
+        example: "I am curious about you.",
+      },
+      {
+        word: "Everything",
+        ipa: "/ˈɛvriθɪŋ/",
+        kreyol: "Tout bagay",
+        example: "Ask me everything.",
+      },
+    ],
+    pronunciationWord: "Curious",
+    pronunciationIpa: "/ˈkjʊəriəs/",
+    mouthTip: "**Ti konsèy pou bouch ou:** twa silab, “KYUR-ee-us”.",
+    pronunciationMistake:
+      "**Erè komen:** pa poze twòp kesyon youn apre lòt san koute repons lan — yon bon konvèsasyon ekoute tou.",
+    mistakeWrong: "Who? Where? When? Why? (san koute repons)",
+    mistakeCorrect: "Who are you? [koute] Where do you live? [koute]",
+    mistakeWhy:
+      "**Poukisa:** Yon konvèsasyon reyèl bezwen ekoute repons lan anvan pwochen kesyon an — pa jis anpile kesyon.",
+    practice: {
+      prompt: "Ki mo kesyon ki mande yon pri?",
+      options: ["Who", "When", "How much", "Which"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pri mande “how much”.",
+    },
+    thinkEmoji: "💬",
+    thinkPrompt: "Ekri twa kesyon diferan ou ta poze yon moun nouvo:",
+    thinkPlaceholder: "Who...? Where...? How many...?",
+    aiPrompt:
+      "Hi! Can you let me interview you using different question words — who, when, why, how many, how much — and answer naturally?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 5 ansanm.",
+    missionTask:
+      "🎯 Jodi a, poze yon moun twa kesyon diferan (ak twa mo kesyon diferan) epi koute repons yo.",
+    recap: [
+      {
+        emoji: "💬",
+        text: "Who, when, why, which, whose, how, how many, how much.",
+      },
+      { emoji: "👂", text: "Yon bon konvèsasyon koute repons yo tou." },
+      { emoji: "🎓", text: "Ou fini Modil 5 — Kesyon Yo!" },
+      { emoji: "🎯", text: "Misyon: poze twa kesyon diferan jodi a." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {

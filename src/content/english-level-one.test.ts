@@ -28,6 +28,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleFourLessons[0]?.slug).toBe("days-of-the-week");
     expect(moduleFourLessons.at(-1)?.slug).toBe("daily-life-mission");
+
+    const moduleFiveLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 5,
+    );
+    expect(moduleFiveLessons[0]?.slug).toBe("who-questions");
+    expect(moduleFiveLessons.at(-1)?.slug).toBe("questions-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {
