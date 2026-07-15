@@ -9286,6 +9286,629 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       },
     ],
   },
+  {
+    slug: "look-up-for-after",
+    moduleTitle: "Modil 11: Vèb Fraz Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🔍",
+    heroTitle: "Look Up, Look For, Look After",
+    heroLede:
+      "“Look” ka chanje sans konplètman lè w ajoute yon ti mo apre li — up, for, oswa after.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize look up, look for, ak look after kòrèkteman.",
+    whatYouWillLearn: "twa sans diferan pou “look” + yon ti mo",
+    prerequisite: "Ou fin Modil 10 — Anglè Konfizyon",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Yon vèb fraz se de mo ki kreye yon nouvo sans ansanm.",
+    understandBody:
+      "**Look up** = chèche enfòmasyon. **Look for** = chèche yon bagay ou pèdi. **Look after** = pran swen yon moun. Menm vèb “look”, twa sans totalman diferan.",
+    seeItInAction: [
+      {
+        line: "I look up the word in the dictionary.",
+        tag: "Chèche enfòmasyon",
+        emoji: "📖",
+      },
+      {
+        line: "I'm looking for my keys.",
+        tag: "Chèche yon bagay",
+        emoji: "🔑",
+      },
+      {
+        line: "She looks after her little brother.",
+        tag: "Pran swen",
+        emoji: "👶",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak vèb fraz pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Look up", display: "I look up the word." },
+      { chipLabel: "Look for", display: "I'm looking for my keys." },
+      { chipLabel: "Look after", display: "She looks after her brother." },
+    ],
+    vocabulary: [
+      {
+        word: "Look up",
+        ipa: "/lʊk ʌp/",
+        kreyol: "Chèche enfòmasyon",
+        example: "I look up the word.",
+      },
+      {
+        word: "Look for",
+        ipa: "/lʊk fɔːr/",
+        kreyol: "Chèche yon bagay",
+        example: "I'm looking for my keys.",
+      },
+      {
+        word: "Look after",
+        ipa: "/lʊk ˈæftər/",
+        kreyol: "Pran swen",
+        example: "She looks after her brother.",
+      },
+      {
+        word: "Dictionary",
+        ipa: "/ˈdɪkʃəneri/",
+        kreyol: "Diksyonè",
+        example: "I look up the word in the dictionary.",
+      },
+      {
+        word: "Keys",
+        ipa: "/kiːz/",
+        kreyol: "Kle",
+        example: "I'm looking for my keys.",
+      },
+    ],
+    pronunciationWord: "Dictionary",
+    pronunciationIpa: "/ˈdɪkʃəneri/",
+    mouthTip: "**Ti konsèy pou bouch ou:** kat silab, “DIK-shuh-nair-ee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “look for” (chèche) ak “look at” (gade) — se de bagay diferan.",
+    mistakeWrong: "I'm looking at my keys. (lè ou chèche yo)",
+    mistakeCorrect: "I'm looking for my keys.",
+    mistakeWhy:
+      "**Poukisa:** “Look at” montre ou ap gade yon bagay ou wè deja. “Look for” montre ou ap chèche yon bagay ou pa jwenn.",
+    practice: {
+      prompt: "Chwazi vèb fraz ki kòrèk pou pran swen yon timoun:",
+      options: [
+        "Look up the child.",
+        "Look for the child.",
+        "Look after the child.",
+        "Look at the child.",
+      ],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — pran swen se “look after”.",
+    },
+    thinkEmoji: "🔍",
+    thinkPrompt:
+      "Ekri twa fraz, chak youn ak look up, look for, oswa look after:",
+    thinkPlaceholder: "I look up... I'm looking for... She looks after...",
+    aiPrompt:
+      "Hi! Can you give me situations and let me choose between look up, look for, and look after?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike look up/for/after.",
+    missionTask:
+      "🎯 Jodi a, itilize youn nan twa vèb fraz sa yo (look up/for/after) nan yon fraz reyèl.",
+    recap: [
+      { emoji: "📖", text: "“Look up” chèche enfòmasyon." },
+      { emoji: "🔑", text: "“Look for” chèche yon bagay pèdi." },
+      { emoji: "👶", text: "“Look after” pran swen yon moun." },
+      { emoji: "🎯", text: "Misyon: itilize youn nan twa vèb fraz yo." },
+    ],
+  },
+  {
+    slug: "get-up-out-in",
+    moduleTitle: "Modil 11: Vèb Fraz Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "⏰",
+    heroTitle: "Get Up, Get Out, Get In",
+    heroLede: "“Get” + yon ti mo montre yon mouvman presi.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize get up, get out, ak get in kòrèkteman.",
+    whatYouWillLearn: "twa mouvman diferan ak “get” + yon ti mo",
+    prerequisite: "Leson 1 — Look Up, Look For, Look After",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Get” + yon ti mo montre yon mouvman presi.",
+    understandBody:
+      "**Get up** = leve (kite kabann). **Get out** = soti. **Get in** = antre (souvan nan yon machin). Twa mouvman diferan ak menm vèb “get”.",
+    seeItInAction: [
+      { line: "I get up at 6 every day.", tag: "Leve", emoji: "⏰" },
+      { line: "Get out of the car.", tag: "Soti", emoji: "🚗" },
+      { line: "Get in, we're leaving!", tag: "Antre", emoji: "🚪" },
+    ],
+    patternBuilderIntro: "Klike sou chak mouvman pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Get up", display: "I get up at 6." },
+      { chipLabel: "Get out", display: "Get out of the car." },
+      { chipLabel: "Get in", display: "Get in, we're leaving!" },
+    ],
+    vocabulary: [
+      {
+        word: "Get up",
+        ipa: "/gɛt ʌp/",
+        kreyol: "Leve",
+        example: "I get up at 6.",
+      },
+      {
+        word: "Get out",
+        ipa: "/gɛt aʊt/",
+        kreyol: "Soti",
+        example: "Get out of the car.",
+      },
+      {
+        word: "Get in",
+        ipa: "/gɛt ɪn/",
+        kreyol: "Antre",
+        example: "Get in, we're leaving!",
+      },
+      {
+        word: "Car",
+        ipa: "/kɑːr/",
+        kreyol: "Machin",
+        example: "Get out of the car.",
+      },
+      {
+        word: "Leaving",
+        ipa: "/ˈliːvɪŋ/",
+        kreyol: "K ap kite",
+        example: "We're leaving!",
+      },
+    ],
+    pronunciationWord: "Get up",
+    pronunciationIpa: "/gɛt ʌp/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de mo klè, “get” epi “up”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I wake up” pou “kite kabann” — “wake up” se je ou louvri, “get up” se ou kanpe.",
+    mistakeWrong: "I wake up and go to work immediately.",
+    mistakeCorrect: "I wake up, then I get up and go to work.",
+    mistakeWhy:
+      "**Poukisa:** “Wake up” se lè je ou louvri. “Get up” se lè ou kanpe soti nan kabann nan — de etap diferan, souvan youn apre lòt.",
+    practice: {
+      prompt: "Chwazi vèb fraz ki kòrèk pou lè ou ap monte nan yon machin:",
+      options: [
+        "Get up the car.",
+        "Get out the car.",
+        "Get in the car.",
+        "Get after the car.",
+      ],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — antre nan machin se “get in”.",
+    },
+    thinkEmoji: "⏰",
+    thinkPrompt: "Ekri twa fraz, chak youn ak get up, get out, oswa get in:",
+    thinkPlaceholder: "I get up... Get out... Get in...",
+    aiPrompt:
+      "Hi! Can you give me situations and let me choose between get up, get out, and get in?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike get up/out/in.",
+    missionTask: "🎯 Jodi a, di ki lè ou leve (get up) chak maten.",
+    recap: [
+      { emoji: "⏰", text: "“Get up” leve, kite kabann." },
+      { emoji: "🚗", text: "“Get out” soti, “get in” antre." },
+      { emoji: "⚠️", text: "“Wake up” ≠ “get up”." },
+      { emoji: "🎯", text: "Misyon: di ki lè ou leve chak maten." },
+    ],
+  },
+  {
+    slug: "put-on-away",
+    moduleTitle: "Modil 11: Vèb Fraz Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "👟",
+    heroTitle: "Put On, Put Away",
+    heroLede:
+      "“Put on” mete yon rad sou ou, “put away” mete yon bagay nan plas li.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize put on ak put away kòrèkteman.",
+    whatYouWillLearn:
+      "diferans ant “put on” (mete sou ou) ak “put away” (mete nan plas li)",
+    prerequisite: "Leson 2 — Get Up, Get Out, Get In",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Put on” mete yon rad sou ou, “put away” mete yon bagay nan plas li.",
+    understandBody:
+      "**I put on my shoes.** (rad sou kò w) **Put away your toys, please.** (mete yon bagay tounen nan plas li). De sans diferan pou “put” selon ti mo apre l.",
+    seeItInAction: [
+      { line: "I put on my shoes.", tag: "Mete sou ou", emoji: "👟" },
+      {
+        line: "Put away your toys, please.",
+        tag: "Mete nan plas li",
+        emoji: "🧸",
+      },
+      {
+        line: "She puts on her jacket every morning.",
+        tag: "Woutin",
+        emoji: "🧥",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak sitiyasyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Put on", display: "I put on my shoes." },
+      { chipLabel: "Put away", display: "Put away your toys." },
+      {
+        chipLabel: "Routine",
+        display: "She puts on her jacket every morning.",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Put on",
+        ipa: "/pʊt ɒn/",
+        kreyol: "Mete sou ou",
+        example: "I put on my shoes.",
+      },
+      {
+        word: "Put away",
+        ipa: "/pʊt əˈweɪ/",
+        kreyol: "Mete nan plas li",
+        example: "Put away your toys.",
+      },
+      {
+        word: "Shoes",
+        ipa: "/ʃuːz/",
+        kreyol: "Soulye",
+        example: "I put on my shoes.",
+      },
+      {
+        word: "Toys",
+        ipa: "/tɔɪz/",
+        kreyol: "Jwèt",
+        example: "Put away your toys.",
+      },
+      {
+        word: "Jacket",
+        ipa: "/ˈdʒækɪt/",
+        kreyol: "Vès",
+        example: "She puts on her jacket.",
+      },
+    ],
+    pronunciationWord: "Jacket",
+    pronunciationIpa: "/ˈdʒækɪt/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “JAK-it”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “put away my shoes” lè w ap abiye w — se “put on”.",
+    mistakeWrong: "I put away my shoes. (lè w ap mete yo nan pye w)",
+    mistakeCorrect: "I put on my shoes.",
+    mistakeWhy:
+      "**Poukisa:** “Put on” se mete yon rad SOU KÒ W. “Put away” se mete yon bagay nan plas li, tankou nan yon bwat oswa yon amwa.",
+    practice: {
+      prompt: "Ou fin jwe, kounye a ou bezwen renmè jwèt yo. Ki fraz ki kòrèk?",
+      options: [
+        "Put on your toys.",
+        "Put away your toys.",
+        "Put in your toys.",
+        "Put up your toys.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback:
+        "❌ Eseye ankò — remèt yon bagay nan plas li se “put away”.",
+    },
+    thinkEmoji: "👟",
+    thinkPrompt: "Ekri yon fraz ak “put on” epi yon lòt ak “put away”:",
+    thinkPlaceholder: "I put on... / Put away...",
+    aiPrompt:
+      "Hi! Can you give me situations and let me choose between put on and put away?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike put on/away.",
+    missionTask: "🎯 Jodi a, di yon bagay ou mete sou ou (put on) chak maten.",
+    recap: [
+      { emoji: "👟", text: "“Put on” mete yon rad sou kò w." },
+      { emoji: "🧸", text: "“Put away” mete yon bagay tounen nan plas li." },
+      { emoji: "🧥", text: "She puts on her jacket every morning." },
+      { emoji: "🎯", text: "Misyon: di sa ou mete sou ou chak maten." },
+    ],
+  },
+  {
+    slug: "come-back-go-out",
+    moduleTitle: "Modil 11: Vèb Fraz Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🌃",
+    heroTitle: "Come Back, Go Out",
+    heroLede: "“Come back” retounen, “go out” sòti.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize come back ak go out kòrèkteman.",
+    whatYouWillLearn: "diferans ant “come back” (retounen) ak “go out” (sòti)",
+    prerequisite: "Leson 3 — Put On, Put Away",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Come back” retounen vè kote ou ye, “go out” sòti kite li.",
+    understandBody:
+      "**I'll come back later.** (retounen vin isit) **We're going out tonight.** (sòti kite kay la). Menm lojik direksyon ak “come”/“go” nou wè nan Modil 6.",
+    seeItInAction: [
+      { line: "I'll come back later.", tag: "Retounen", emoji: "🔙" },
+      { line: "We're going out tonight.", tag: "Sòti", emoji: "🌃" },
+      { line: "What time will you come back?", tag: "Kesyon", emoji: "⏰" },
+    ],
+    patternBuilderIntro: "Klike sou chak direksyon pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Come back", display: "I'll come back later." },
+      { chipLabel: "Go out", display: "We're going out tonight." },
+      { chipLabel: "Question", display: "What time will you come back?" },
+    ],
+    vocabulary: [
+      {
+        word: "Come back",
+        ipa: "/kʌm bæk/",
+        kreyol: "Retounen",
+        example: "I'll come back later.",
+      },
+      {
+        word: "Go out",
+        ipa: "/goʊ aʊt/",
+        kreyol: "Sòti",
+        example: "We're going out tonight.",
+      },
+      {
+        word: "Later",
+        ipa: "/ˈleɪtər/",
+        kreyol: "Pita",
+        example: "I'll come back later.",
+      },
+      {
+        word: "Tonight",
+        ipa: "/təˈnaɪt/",
+        kreyol: "Aswè a",
+        example: "We're going out tonight.",
+      },
+      {
+        word: "Time",
+        ipa: "/taɪm/",
+        kreyol: "Lè/Tan",
+        example: "What time will you come back?",
+      },
+    ],
+    pronunciationWord: "Come back",
+    pronunciationIpa: "/kʌm bæk/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de mo klè, aksan an sou “come”.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “I'll go back” lè ou vle di ou ap retounen vè moun k ap pale a — se “come back”.",
+    mistakeWrong: "I'll go back later. (lè w ap pale ak moun ki kay la)",
+    mistakeCorrect: "I'll come back later.",
+    mistakeWhy:
+      "**Poukisa:** Menm règ ak come/go — “come back” vin vè kote moun k ap pale a ye, “go back” ta ale yon lòt kote.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou di w ap sòti kay la aswè a:",
+      options: [
+        "We're coming out tonight.",
+        "We're going out tonight.",
+        "We're coming back tonight.",
+        "We're going back tonight.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — sòti kite kay la se “go out”.",
+    },
+    thinkEmoji: "🌃",
+    thinkPrompt: "Ekri yon fraz ak “come back” epi yon lòt ak “go out”:",
+    thinkPlaceholder: "I'll come back... / We're going out...",
+    aiPrompt:
+      "Hi! Can you ask me when I'll come back and if I'm going out this week, so I can practice these phrasal verbs?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike come back/go out.",
+    missionTask:
+      "🎯 Jodi a, di ki lè ou pral retounen (come back) yon kote, oswa si ou pral sòti (go out).",
+    recap: [
+      { emoji: "🔙", text: "“Come back” retounen vè kote ou ye." },
+      { emoji: "🌃", text: "“Go out” sòti kite yon kote." },
+      { emoji: "⏰", text: "What time will you come back?" },
+      { emoji: "🎯", text: "Misyon: di ki lè ou ap retounen oswa sòti." },
+    ],
+  },
+  {
+    slug: "turn-on-off",
+    moduleTitle: "Modil 11: Vèb Fraz Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "💡",
+    heroTitle: "Turn On, Turn Off",
+    heroLede: "“Turn on” limen/ouvri, “turn off” etenn/fèmen yon aparèy.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize turn on ak turn off kòrèkteman.",
+    whatYouWillLearn: "kijan pou itilize “turn on”/“turn off” ak aparèy",
+    prerequisite: "Leson 4 — Come Back, Go Out",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Turn on” limen, “turn off” etenn yon aparèy.",
+    understandBody:
+      "**Turn on the light, please.** **Turn off the TV before you sleep.** “Turn on”/“turn off” itilize ak limyè, aparèy elektwonik, ak machin.",
+    seeItInAction: [
+      { line: "Turn on the light, please.", tag: "Limen", emoji: "💡" },
+      { line: "Turn off the TV before you sleep.", tag: "Etenn", emoji: "📺" },
+      { line: "Can you turn on the music?", tag: "Ouvri", emoji: "🎵" },
+    ],
+    patternBuilderIntro: "Klike sou chak aparèy pou wè fraz la.",
+    patternBuilderOptions: [
+      { chipLabel: "Light", display: "Turn on the light, please." },
+      { chipLabel: "TV", display: "Turn off the TV before you sleep." },
+      { chipLabel: "Music", display: "Can you turn on the music?" },
+    ],
+    vocabulary: [
+      {
+        word: "Turn on",
+        ipa: "/tɜːrn ɒn/",
+        kreyol: "Limen/Ouvri",
+        example: "Turn on the light.",
+      },
+      {
+        word: "Turn off",
+        ipa: "/tɜːrn ɒf/",
+        kreyol: "Etenn/Fèmen",
+        example: "Turn off the TV.",
+      },
+      {
+        word: "Light",
+        ipa: "/laɪt/",
+        kreyol: "Limyè",
+        example: "Turn on the light.",
+      },
+      {
+        word: "TV",
+        ipa: "/ˌtiː ˈviː/",
+        kreyol: "Televizyon",
+        example: "Turn off the TV.",
+      },
+      {
+        word: "Music",
+        ipa: "/ˈmjuːzɪk/",
+        kreyol: "Mizik",
+        example: "Can you turn on the music?",
+      },
+    ],
+    pronunciationWord: "Turn off",
+    pronunciationIpa: "/tɜːrn ɒf/",
+    mouthTip: "**Ti konsèy pou bouch ou:** “turn” gen yon son “ur” fèmen.",
+    pronunciationMistake:
+      "**Erè komen:** pa di “close the light” — an Anglè, se “turn off the light”, pa “close”.",
+    mistakeWrong: "Close the light, please.",
+    mistakeCorrect: "Turn off the light, please.",
+    mistakeWhy:
+      "**Poukisa:** An Anglè, “close” se pou pòt ak fenèt. Pou limyè ak aparèy elektwonik, itilize “turn off”/“turn on”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk pou etenn televizyon an:",
+      options: [
+        "Close the TV.",
+        "Turn off the TV.",
+        "Put away the TV.",
+        "Look after the TV.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — etenn yon aparèy se “turn off”.",
+    },
+    thinkEmoji: "💡",
+    thinkPrompt: "Ekri yon fraz ak “turn on” epi yon lòt ak “turn off”:",
+    thinkPlaceholder: "Turn on... / Turn off...",
+    aiPrompt:
+      "Hi! Can you give me situations with devices and let me practice using turn on and turn off?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike turn on/off.",
+    missionTask:
+      "🎯 Jodi a, di yon aparèy ou limen (turn on) oswa etenn (turn off) chak jou.",
+    recap: [
+      { emoji: "💡", text: "“Turn on” limen yon aparèy." },
+      { emoji: "📺", text: "“Turn off” etenn yon aparèy." },
+      { emoji: "⚠️", text: "Pa itilize “close” pou limyè ak aparèy." },
+      { emoji: "🎯", text: "Misyon: di yon aparèy ou limen oswa etenn." },
+    ],
+  },
+  {
+    slug: "phrasal-verbs-mission",
+    moduleTitle: "Modil 11: Vèb Fraz Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🧩",
+    heroTitle: "Vèb Fraz Nan Aksyon",
+    heroLede:
+      "Se lè a pou konbine plizyè vèb fraz Modil 11 pou rakonte yon istwa reyèl.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize plizyè vèb fraz nan yon sèl istwa.",
+    whatYouWillLearn: "kijan pou konbine vèb fraz Modil 11 yo nan yon istwa",
+    prerequisite: "Leson 5 — Turn On, Turn Off",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "Vèb fraz yo travay ansanm pou rakonte yon jounen konplè.",
+    understandBody:
+      "**I get up, put on my clothes, and look for my keys.** Chak vèb fraz ou aprann nan Modil 11 la ka konekte ak lòt yo pou rakonte yon istwa reyèl.",
+    seeItInAction: [
+      {
+        line: "I get up, put on my clothes, and look for my keys.",
+        tag: "Maten",
+        emoji: "🌅",
+      },
+      {
+        line: "I turn off the lights and go out.",
+        tag: "Kite kay la",
+        emoji: "🚪",
+      },
+      { line: "I come back and turn on the TV.", tag: "Aswè", emoji: "🌙" },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè fraz li.",
+    patternBuilderOptions: [
+      { chipLabel: "Morning", display: "I get up and put on my clothes." },
+      { chipLabel: "Leaving", display: "I turn off the lights and go out." },
+      { chipLabel: "Evening", display: "I come back and turn on the TV." },
+    ],
+    vocabulary: [
+      {
+        word: "Clothes",
+        ipa: "/kloʊðz/",
+        kreyol: "Rad",
+        example: "I put on my clothes.",
+      },
+      {
+        word: "Lights",
+        ipa: "/laɪts/",
+        kreyol: "Limyè",
+        example: "I turn off the lights.",
+      },
+      {
+        word: "Evening",
+        ipa: "/ˈiːvnɪŋ/",
+        kreyol: "Aswè",
+        example: "I come back in the evening.",
+      },
+      {
+        word: "Story",
+        ipa: "/ˈstɔːri/",
+        kreyol: "Istwa",
+        example: "This is my daily story.",
+      },
+      {
+        word: "Together",
+        ipa: "/təˈgɛðər/",
+        kreyol: "Ansanm",
+        example: "These verbs work together.",
+      },
+    ],
+    pronunciationWord: "Clothes",
+    pronunciationIpa: "/kloʊðz/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** yon sèl silab, “klohthz” — pa “clo-thes”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye chak vèb fraz gen de mo ki mache ansanm — pa separe yo twò lwen nan fraz la.",
+    mistakeWrong: "I turn the lights off and out go.",
+    mistakeCorrect: "I turn off the lights and go out.",
+    mistakeWhy:
+      "**Poukisa:** Gade lòd mo yo — “turn off the lights” (pa “turn the lights off and out” tou mele), epi “go out” rete ansanm.",
+    practice: {
+      prompt: "Ki vèsyon ki byen konstwi?",
+      options: [
+        "I turn the lights off and out go.",
+        "I turn off the lights and go out.",
+        "I lights turn off and go out.",
+        "Turn off I the lights and go out.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — gade lòd mo yo pre pre.",
+    },
+    thinkEmoji: "🧩",
+    thinkPrompt:
+      "Ekri yon ti istwa sou jounen ou ak omwen twa vèb fraz Modil 11:",
+    thinkPlaceholder: "I get up, ... , and ...",
+    aiPrompt:
+      "Hi! Can you listen to a short story about my day using phrasal verbs like get up, put on, look for, turn on/off, and come back/go out, and give me feedback?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 11 ansanm.",
+    missionTask:
+      "🎯 Jodi a, rakonte yon jounen ou ak omwen twa vèb fraz diferan nan Modil 11.",
+    recap: [
+      { emoji: "🧩", text: "Vèb fraz yo konekte pou rakonte yon istwa." },
+      {
+        emoji: "⚠️",
+        text: "Gade lòd mo yo — chak vèb fraz gen de mo ki mache ansanm.",
+      },
+      { emoji: "🎓", text: "Ou fini Modil 11 — Vèb Fraz Yo!" },
+      { emoji: "🎯", text: "Misyon: rakonte yon jounen ak vèb fraz." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {

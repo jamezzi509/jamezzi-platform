@@ -64,6 +64,12 @@ describe("First English curriculum", () => {
     );
     expect(moduleTenLessons[0]?.slug).toBe("apostrophe-confusion");
     expect(moduleTenLessons.at(-1)?.slug).toBe("confusing-english-mission");
+
+    const moduleElevenLessons = englishLevelOneLessons.filter(
+      (lesson) => lesson.moduleNumber === 11,
+    );
+    expect(moduleElevenLessons[0]?.slug).toBe("look-up-for-after");
+    expect(moduleElevenLessons.at(-1)?.slug).toBe("phrasal-verbs-mission");
   });
 
   it("exposes the complete Level 1 lesson set", () => {
