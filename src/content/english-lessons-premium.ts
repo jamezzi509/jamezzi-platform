@@ -14818,6 +14818,613 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 17 — Istwa an Anglè!" },
     ],
   },
+  {
+    slug: "think-picture-description",
+    moduleTitle: "Module 18: Think in English ⭐",
+    illustrationKey: "emoji",
+    heroEmoji: "🖼️",
+    heroTitle: "Describe What You See",
+    heroLede:
+      "No translation this time — just look, think, and describe in English.",
+    heroGoal:
+      "🎯 Lesson goal: by the end of this lesson, you'll describe a simple scene using only English.",
+    whatYouWillLearn: "how to describe a scene using simple English sentences",
+    prerequisite: "You finished Module 17 — English Stories",
+    difficultyLabel: "🟡 Medium",
+    readingTime: "⏱ 5 min read",
+    completionTime: "✅ ~8 min to complete",
+    understandHeading:
+      "Look at the scene. Don't translate — just say what you see.",
+    understandBody:
+      "**A woman is sitting under a tree.** **She is reading a book.** **The sun is shining.** Look, think, and describe — no translation needed.",
+    seeItInAction: [
+      { line: "A woman is sitting under a tree.", tag: "Person", emoji: "🧍‍♀️" },
+      { line: "She is reading a book.", tag: "Action", emoji: "📖" },
+      { line: "The sun is shining.", tag: "Weather", emoji: "☀️" },
+    ],
+    patternBuilderIntro: "Click each line to hear it.",
+    patternBuilderOptions: [
+      { chipLabel: "Person", display: "A woman is sitting under a tree." },
+      { chipLabel: "Action", display: "She is reading a book." },
+      { chipLabel: "Weather", display: "The sun is shining." },
+    ],
+    vocabulary: [
+      {
+        word: "Sitting",
+        ipa: "/ˈsɪtɪŋ/",
+        kreyol: "chita",
+        example: "She is sitting under a tree.",
+      },
+      {
+        word: "Reading",
+        ipa: "/ˈriːdɪŋ/",
+        kreyol: "li",
+        example: "She is reading a book.",
+      },
+      {
+        word: "Shining",
+        ipa: "/ˈʃaɪnɪŋ/",
+        kreyol: "klere",
+        example: "The sun is shining.",
+      },
+      {
+        word: "Tree",
+        ipa: "/triː/",
+        kreyol: "pyebwa",
+        example: "She is under a tree.",
+      },
+      {
+        word: "Scene",
+        ipa: "/siːn/",
+        kreyol: "sèn",
+        example: "Describe the scene.",
+      },
+    ],
+    pronunciationWord: "Shining",
+    pronunciationIpa: "/ˈʃaɪnɪŋ/",
+    mouthTip: "**Mouth tip:** two syllables, stress on the first — “SHY-ning”.",
+    pronunciationMistake:
+      "**Common mistake:** don't forget the “-ing” ending when describing something happening right now.",
+    mistakeWrong: "The sun shine.",
+    mistakeCorrect: "The sun is shining.",
+    mistakeWhy:
+      "**Why:** to describe something happening right now, use “is/am/are” + verb-ing. This is the present continuous — you'll use it every time you describe a scene.",
+    practice: {
+      prompt: "What is the woman doing in the picture?",
+      options: ["Sleeping", "Reading a book", "Cooking", "Running"],
+      correctIndex: 1,
+      correctFeedback: "✅ Yes! She is reading a book.",
+      wrongFeedback: "❌ Try again — look at the scene above.",
+    },
+    thinkEmoji: "🖼️",
+    thinkPrompt: "Describe a place you can see right now, in English:",
+    thinkPlaceholder: "I see...",
+    aiPrompt:
+      "Hi! Can you describe a simple everyday scene and ask me to guess what's happening, all in English?",
+    aiHelperCopy:
+      "Paste this into ChatGPT or Claude to practice describing scenes in English only.",
+    missionTask:
+      "🎯 Today, describe your room or your view right now using three English sentences.",
+    recap: [
+      { emoji: "👀", text: "Look, think, describe — no translation." },
+      {
+        emoji: "⏳",
+        text: "Use is/am/are + verb-ing for actions happening now.",
+      },
+      { emoji: "🌳", text: "A woman is sitting under a tree." },
+      { emoji: "🎯", text: "Mission: describe your surroundings in English." },
+    ],
+  },
+  {
+    slug: "think-daily-story",
+    moduleTitle: "Module 18: Think in English ⭐",
+    illustrationKey: "emoji",
+    heroEmoji: "🌅",
+    heroTitle: "Tell Your Day",
+    heroLede:
+      "Picture your day and tell it — start to finish, only in English.",
+    heroGoal:
+      "🎯 Lesson goal: by the end of this lesson, you'll tell the story of a normal day using only English.",
+    whatYouWillLearn:
+      "how to tell the story of a day in simple, connected English",
+    prerequisite: "Lesson 1 — Describe What You See",
+    difficultyLabel: "🟡 Medium",
+    readingTime: "⏱ 5 min read",
+    completionTime: "✅ ~8 min to complete",
+    understandHeading:
+      "Picture your morning, step by step, before you say a word.",
+    understandBody:
+      "**I wake up.** **I drink coffee.** **I go to work.** Picture each moment, then say it — one simple sentence at a time.",
+    seeItInAction: [
+      { line: "I wake up.", tag: "First", emoji: "⏰" },
+      { line: "I drink coffee.", tag: "Next", emoji: "☕" },
+      { line: "I go to work.", tag: "Then", emoji: "🚶" },
+    ],
+    patternBuilderIntro: "Click each step to hear it.",
+    patternBuilderOptions: [
+      { chipLabel: "Wake up", display: "I wake up." },
+      { chipLabel: "Coffee", display: "I drink coffee." },
+      { chipLabel: "Work", display: "I go to work." },
+    ],
+    vocabulary: [
+      {
+        word: "Wake up",
+        ipa: "/weɪk ʌp/",
+        kreyol: "leve",
+        example: "I wake up at 6.",
+      },
+      {
+        word: "Routine",
+        ipa: "/ruːˈtiːn/",
+        kreyol: "woutin",
+        example: "This is my morning routine.",
+      },
+      {
+        word: "Then",
+        ipa: "/ðɛn/",
+        kreyol: "epi",
+        example: "I drink coffee, then I go to work.",
+      },
+      {
+        word: "Step",
+        ipa: "/stɛp/",
+        kreyol: "etap",
+        example: "Picture each step.",
+      },
+      {
+        word: "Order",
+        ipa: "/ˈɔːrdər/",
+        kreyol: "lòd",
+        example: "Tell it in order.",
+      },
+    ],
+    pronunciationWord: "Routine",
+    pronunciationIpa: "/ruːˈtiːn/",
+    mouthTip:
+      "**Mouth tip:** two syllables, stress on the second — “roo-TEEN”.",
+    pronunciationMistake:
+      "**Common mistake:** keep the same tense across the whole story — don't jump between present and past.",
+    mistakeWrong: "I wake up. I drank coffee. I go to work.",
+    mistakeCorrect: "I wake up. I drink coffee. I go to work.",
+    mistakeWhy:
+      "**Why:** if you start a story in the present tense, stay there for the whole story. Mixing tenses in the middle makes the story hard to follow.",
+    practice: {
+      prompt: "What comes first in the story?",
+      options: ["I go to work.", "I wake up.", "I drink coffee.", "I sleep."],
+      correctIndex: 1,
+      correctFeedback: "✅ Yes! Waking up comes first.",
+      wrongFeedback: "❌ Try again — think about the order of the morning.",
+    },
+    thinkEmoji: "🌅",
+    thinkPrompt: "Tell your own morning routine in three English sentences:",
+    thinkPlaceholder: "I wake up. I... I...",
+    aiPrompt:
+      "Hi! Can you ask me to describe my daily routine step by step, all in English, and give me feedback?",
+    aiHelperCopy:
+      "Paste this into ChatGPT or Claude to practice telling your day in English only.",
+    missionTask:
+      "🎯 Today, tell your whole day from morning to night, in English, one step at a time.",
+    recap: [
+      { emoji: "⏰", text: "I wake up. I drink coffee. I go to work." },
+      { emoji: "🔁", text: "Keep the same tense across the story." },
+      { emoji: "🧠", text: "Picture each step before you say it." },
+      { emoji: "🎯", text: "Mission: tell your whole day in English." },
+    ],
+  },
+  {
+    slug: "think-role-play",
+    moduleTitle: "Module 18: Think in English ⭐",
+    illustrationKey: "emoji",
+    heroEmoji: "🎭",
+    heroTitle: "Role-Play: Ordering Coffee",
+    heroLede:
+      "Step into the scene — you're at the counter, and it's your turn to order.",
+    heroGoal:
+      "🎯 Lesson goal: by the end of this lesson, you'll handle a real ordering situation entirely in English.",
+    whatYouWillLearn:
+      "how to order something in English, start to finish, in real time",
+    prerequisite: "Lesson 2 — Tell Your Day",
+    difficultyLabel: "🟡 Medium",
+    readingTime: "⏱ 5 min read",
+    completionTime: "✅ ~8 min to complete",
+    understandHeading:
+      "You're at the counter. Picture it, then respond — don't translate first.",
+    understandBody:
+      "**Barista: Hi! What can I get for you?** **You: I'd like a small coffee, please.** **Barista: Anything else?** React in the moment, the way you would in real life.",
+    seeItInAction: [
+      { line: "Hi! What can I get for you?", tag: "Barista", emoji: "🧑‍🍳" },
+      { line: "I'd like a small coffee, please.", tag: "You", emoji: "🙋" },
+      { line: "Anything else?", tag: "Barista", emoji: "🧑‍🍳" },
+    ],
+    patternBuilderIntro: "Click each line to hear it.",
+    patternBuilderOptions: [
+      { chipLabel: "Greeting", display: "Hi! What can I get for you?" },
+      { chipLabel: "Order", display: "I'd like a small coffee, please." },
+      { chipLabel: "Follow-up", display: "Anything else?" },
+    ],
+    vocabulary: [
+      {
+        word: "Order",
+        ipa: "/ˈɔːrdər/",
+        kreyol: "kòmande",
+        example: "I'd like to order a coffee.",
+      },
+      {
+        word: "Small",
+        ipa: "/smɔːl/",
+        kreyol: "piti",
+        example: "A small coffee, please.",
+      },
+      {
+        word: "Size",
+        ipa: "/saɪz/",
+        kreyol: "gwosè",
+        example: "What size would you like?",
+      },
+      {
+        word: "Anything else",
+        ipa: "/ˈɛniθɪŋ ɛls/",
+        kreyol: "lòt bagay ankò",
+        example: "Anything else?",
+      },
+      {
+        word: "Counter",
+        ipa: "/ˈkaʊntər/",
+        kreyol: "kontwa",
+        example: "You're standing at the counter.",
+      },
+    ],
+    pronunciationWord: "Anything else",
+    pronunciationIpa: "/ˈɛniθɪŋ ɛls/",
+    mouthTip:
+      "**Mouth tip:** blend the two words together — “EH-nee-thing-els”.",
+    pronunciationMistake:
+      "**Common mistake:** don't drop “I'd like” for just naming the item — “Coffee.” sounds too abrupt for most counters.",
+    mistakeWrong: "Coffee.",
+    mistakeCorrect: "I'd like a small coffee, please.",
+    mistakeWhy:
+      "**Why:** “I'd like...” plus “please” is the standard polite way to order in English — a bare word can sound rude even if that's not the intention.",
+    practice: {
+      prompt: "What should you say to order a small coffee politely?",
+      options: [
+        "Coffee.",
+        "I'd like a small coffee, please.",
+        "Give coffee.",
+        "Coffee now.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Yes! That's the polite way to order.",
+      wrongFeedback: "❌ Try again — pick the polite option.",
+    },
+    thinkEmoji: "🎭",
+    thinkPrompt: "Write your own order at a coffee shop, in English:",
+    thinkPlaceholder: "I'd like...",
+    aiPrompt:
+      "Hi! Can you play a barista and let me practice ordering a coffee in English, then give me feedback?",
+    aiHelperCopy:
+      "Paste this into ChatGPT or Claude to role-play ordering in English only.",
+    missionTask:
+      "🎯 Today, say your coffee order out loud in English, as if you were really at the counter.",
+    recap: [
+      { emoji: "🧑‍🍳", text: "Hi! What can I get for you?" },
+      { emoji: "🙋", text: "I'd like a small coffee, please." },
+      { emoji: "🙏", text: '"I\'d like... please" sounds polite.' },
+      { emoji: "🎯", text: "Mission: order out loud in English." },
+    ],
+  },
+  {
+    slug: "think-reacting",
+    moduleTitle: "Module 18: Think in English ⭐",
+    illustrationKey: "emoji",
+    heroEmoji: "😲",
+    heroTitle: "React in English",
+    heroLede:
+      "Picture the news. Feel it. Then react — in English, in the moment.",
+    heroGoal:
+      "🎯 Lesson goal: by the end of this lesson, you'll react naturally to good and bad news in English.",
+    whatYouWillLearn:
+      "how to react naturally to situations, without translating first",
+    prerequisite: "Lesson 3 — Role-Play: Ordering Coffee",
+    difficultyLabel: "🟡 Medium",
+    readingTime: "⏱ 5 min read",
+    completionTime: "✅ ~8 min to complete",
+    understandHeading:
+      "Picture the situation first — the reaction should come naturally.",
+    understandBody:
+      '**Your team wins the game. → "That\'s amazing!"** **Your flight is canceled. → "Oh no, that\'s frustrating."** **Your friend passed the exam. → "Congratulations!"**',
+    seeItInAction: [
+      { line: "That's amazing!", tag: "Good news", emoji: "🎉" },
+      { line: "Oh no, that's frustrating.", tag: "Bad news", emoji: "😣" },
+      { line: "Congratulations!", tag: "Someone's success", emoji: "🎊" },
+    ],
+    patternBuilderIntro: "Click each reaction to hear it.",
+    patternBuilderOptions: [
+      { chipLabel: "Good news", display: "That's amazing!" },
+      { chipLabel: "Bad news", display: "Oh no, that's frustrating." },
+      { chipLabel: "Success", display: "Congratulations!" },
+    ],
+    vocabulary: [
+      {
+        word: "Amazing",
+        ipa: "/əˈmeɪzɪŋ/",
+        kreyol: "estraòdinè",
+        example: "That's amazing!",
+      },
+      {
+        word: "Frustrating",
+        ipa: "/frʌsˈtreɪtɪŋ/",
+        kreyol: "anmèdan",
+        example: "That's so frustrating.",
+      },
+      {
+        word: "Congratulations",
+        ipa: "/kənˌgrætʃuˈleɪʃənz/",
+        kreyol: "felisitasyon",
+        example: "Congratulations on your new job!",
+      },
+      {
+        word: "Canceled",
+        ipa: "/ˈkænsəld/",
+        kreyol: "anile",
+        example: "The flight was canceled.",
+      },
+      {
+        word: "React",
+        ipa: "/riˈækt/",
+        kreyol: "reyaji",
+        example: "How would you react?",
+      },
+    ],
+    pronunciationWord: "Congratulations",
+    pronunciationIpa: "/kənˌgrætʃuˈleɪʃənz/",
+    mouthTip:
+      "**Mouth tip:** five syllables, stress on “LEY” — “kun-grat-choo-LEY-shuhnz”.",
+    pronunciationMistake:
+      "**Common mistake:** don't answer every situation with just “good” or “bad” — match the reaction to the moment.",
+    mistakeWrong: 'Your friend passed the exam. → "Good."',
+    mistakeCorrect: 'Your friend passed the exam. → "Congratulations!"',
+    mistakeWhy:
+      "**Why:** English has a specific reaction for many situations. “Congratulations!” for someone's success sounds far more natural than a flat “Good.”",
+    practice: {
+      prompt: "Your friend just got a new job. What do you say?",
+      options: [
+        "That's frustrating.",
+        "Congratulations!",
+        "Oh no.",
+        "I'm sorry.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Yes! Congratulations fits a success.",
+      wrongFeedback: "❌ Try again — think about what kind of news this is.",
+    },
+    thinkEmoji: "😲",
+    thinkPrompt:
+      "Write your reaction to some good news you received recently, in English:",
+    thinkPlaceholder: "When I heard the news, I said...",
+    aiPrompt:
+      "Hi! Can you describe a few different situations — good and bad — and let me practice reacting naturally in English?",
+    aiHelperCopy:
+      "Paste this into ChatGPT or Claude to practice reacting in English only.",
+    missionTask:
+      "🎯 Today, react out loud to three situations in English — one good, one bad, one surprising.",
+    recap: [
+      { emoji: "🎉", text: "That's amazing! (good news)" },
+      { emoji: "😣", text: "Oh no, that's frustrating. (bad news)" },
+      { emoji: "🎊", text: "Congratulations! (someone's success)" },
+      { emoji: "🎯", text: "Mission: react to three situations in English." },
+    ],
+  },
+  {
+    slug: "think-guess-the-object",
+    moduleTitle: "Module 18: Think in English ⭐",
+    illustrationKey: "emoji",
+    heroEmoji: "🔍",
+    heroTitle: "Describe and Guess",
+    heroLede:
+      "Picture the object. Describe it without naming it — let someone guess.",
+    heroGoal:
+      "🎯 Lesson goal: by the end of this lesson, you'll describe an object in English without saying its name.",
+    whatYouWillLearn:
+      "how to describe an object using details instead of its name",
+    prerequisite: "Lesson 4 — React in English",
+    difficultyLabel: "🟡 Medium",
+    readingTime: "⏱ 5 min read",
+    completionTime: "✅ ~8 min to complete",
+    understandHeading:
+      "Picture the object closely. Describe what it looks like and what it does.",
+    understandBody:
+      "**It's small.** **It's usually in your pocket.** **You use it to call people.** Can you guess it before you see the answer? (It's a phone!)",
+    seeItInAction: [
+      { line: "It's small.", tag: "Size", emoji: "📏" },
+      { line: "It's usually in your pocket.", tag: "Location", emoji: "👖" },
+      { line: "You use it to call people.", tag: "Use", emoji: "📞" },
+    ],
+    patternBuilderIntro: "Click each clue to hear it.",
+    patternBuilderOptions: [
+      { chipLabel: "Size", display: "It's small." },
+      { chipLabel: "Location", display: "It's usually in your pocket." },
+      { chipLabel: "Use", display: "You use it to call people." },
+    ],
+    vocabulary: [
+      {
+        word: "Object",
+        ipa: "/ˈɒbdʒɪkt/",
+        kreyol: "objè",
+        example: "Describe the object.",
+      },
+      {
+        word: "Pocket",
+        ipa: "/ˈpɒkɪt/",
+        kreyol: "pòch",
+        example: "It's in your pocket.",
+      },
+      {
+        word: "Usually",
+        ipa: "/ˈjuːʒuəli/",
+        kreyol: "dabitid",
+        example: "It's usually there.",
+      },
+      {
+        word: "Guess",
+        ipa: "/gɛs/",
+        kreyol: "devine",
+        example: "Can you guess it?",
+      },
+      {
+        word: "Shape",
+        ipa: "/ʃeɪp/",
+        kreyol: "fòm",
+        example: "What shape is it?",
+      },
+    ],
+    pronunciationWord: "Usually",
+    pronunciationIpa: "/ˈjuːʒuəli/",
+    mouthTip:
+      "**Mouth tip:** three syllables when spoken naturally — “YOO-zhoo-lee”.",
+    pronunciationMistake:
+      "**Common mistake:** don't jump straight to the name — build up the clues from general (size) to specific (use) so the guess feels earned.",
+    mistakeWrong: "It's a phone. It's small.",
+    mistakeCorrect:
+      "It's small. It's usually in your pocket. You use it to call people.",
+    mistakeWhy:
+      "**Why:** a good description saves the name for last. Give general clues first, then more specific ones, so the listener gets to think it through.",
+    practice: {
+      prompt:
+        "What is being described: small, in your pocket, used to call people?",
+      options: ["Wallet", "Phone", "Key", "Watch"],
+      correctIndex: 1,
+      correctFeedback: "✅ Yes! It's a phone.",
+      wrongFeedback: "❌ Try again — think about what fits all three clues.",
+    },
+    thinkEmoji: "🔍",
+    thinkPrompt:
+      "Describe an object without naming it, for someone else to guess:",
+    thinkPlaceholder: "It's... It's usually... You use it to...",
+    aiPrompt:
+      "Hi! Can we play a guessing game where you describe an everyday object in English and I try to guess it, then I'll describe one for you?",
+    aiHelperCopy:
+      "Paste this into ChatGPT or Claude to play the describe-and-guess game in English only.",
+    missionTask:
+      "🎯 Today, describe two objects in English, without naming them, for someone to guess.",
+    recap: [
+      { emoji: "📏", text: "It's small." },
+      { emoji: "👖", text: "It's usually in your pocket." },
+      { emoji: "📞", text: "You use it to call people." },
+      {
+        emoji: "🎯",
+        text: "Mission: describe two objects for someone to guess.",
+      },
+    ],
+  },
+  {
+    slug: "think-in-english-mission",
+    moduleTitle: "Module 18: Think in English ⭐",
+    illustrationKey: "emoji",
+    heroEmoji: "🌟",
+    heroTitle: "Think in English",
+    heroLede:
+      "This is it — the final lesson. Everything from here is in English only.",
+    heroGoal:
+      "🎯 Lesson goal: by the end of this lesson, you'll combine storytelling, reacting, and role-play into one English-only scene.",
+    whatYouWillLearn:
+      "how to combine everything from Module 18 into one real scene",
+    prerequisite: "Lesson 5 — Describe and Guess",
+    difficultyLabel: "🟡 Medium",
+    readingTime: "⏱ 6 min read",
+    completionTime: "✅ ~9 min to complete",
+    understandHeading:
+      "This is the philosophy of this whole course: picture it, then say it. No translation.",
+    understandBody:
+      "**I woke up late and missed the bus.** **Oh no, that's stressful!** **Excuse me, what time is the next bus?** A story, a reaction, and a real question — all in one scene.",
+    seeItInAction: [
+      { line: "I woke up late and missed the bus.", tag: "Story", emoji: "📖" },
+      { line: "Oh no, that's stressful!", tag: "React", emoji: "😣" },
+      {
+        line: "Excuse me, what time is the next bus?",
+        tag: "Role-play",
+        emoji: "🎭",
+      },
+    ],
+    patternBuilderIntro: "Click each part to see which skill it uses.",
+    patternBuilderOptions: [
+      { chipLabel: "Story", display: "I woke up late and missed the bus." },
+      { chipLabel: "React", display: "Oh no, that's stressful!" },
+      {
+        chipLabel: "Role-play",
+        display: "Excuse me, what time is the next bus?",
+      },
+    ],
+    vocabulary: [
+      {
+        word: "Philosophy",
+        ipa: "/fɪˈlɒsəfi/",
+        kreyol: "filozofi",
+        example: "This is the philosophy of the course.",
+      },
+      {
+        word: "Situation",
+        ipa: "/ˌsɪtʃuˈeɪʃən/",
+        kreyol: "sitiyasyon",
+        example: "Picture the situation.",
+      },
+      {
+        word: "Fluent",
+        ipa: "/ˈfluːənt/",
+        kreyol: "kouran",
+        example: "You're becoming more fluent.",
+      },
+      {
+        word: "Missed",
+        ipa: "/mɪst/",
+        kreyol: "rate",
+        example: "I missed the bus.",
+      },
+      {
+        word: "Stressful",
+        ipa: "/ˈstrɛsfəl/",
+        kreyol: "estresan",
+        example: "That's stressful!",
+      },
+    ],
+    pronunciationWord: "Fluent",
+    pronunciationIpa: "/ˈfluːənt/",
+    mouthTip: "**Mouth tip:** two syllables, “FLOO-uhnt”.",
+    pronunciationMistake:
+      "**Common mistake:** don't picture a sentence in Creole first and translate it — picture the situation itself, then let the English come.",
+    mistakeWrong:
+      "Think of the sentence in Creole, then translate it word by word.",
+    mistakeCorrect:
+      "Picture the situation directly, then describe it in English.",
+    mistakeWhy:
+      "**Why:** translating word by word is slow and often wrong, because languages don't match up one-to-one. Picturing the situation and describing it directly is how fluent speakers actually think.",
+    practice: {
+      prompt: 'Which skill does "Excuse me, what time is the next bus?" use?',
+      options: ["Storytelling", "Reacting", "Role-play", "Grammar rules"],
+      correctIndex: 2,
+      correctFeedback:
+        "✅ Yes! Asking a real question in a real situation is role-play.",
+      wrongFeedback: "❌ Try again — think about what kind of English this is.",
+    },
+    thinkEmoji: "🌟",
+    thinkPrompt:
+      "Write a short scene (3 sentences) that tells a story, reacts to something, and asks a question — all in English:",
+    thinkPlaceholder: "I... Oh no, that's... Excuse me, ...",
+    aiPrompt:
+      "Hi! Can you have a short conversation with me where I tell you something that happened, react to news you give me, and ask a real question — all in English?",
+    aiHelperCopy:
+      "Paste this into ChatGPT or Claude for your final Think in English practice.",
+    missionTask:
+      "🎯 Final mission: tell a short story about your day, react to something in it, and ask a question — all in English, no translation.",
+    recap: [
+      { emoji: "🧠", text: "Picture it, then say it — no translation." },
+      { emoji: "📖", text: "Story + reaction + role-play = real English." },
+      { emoji: "🎓", text: "You finished Module 18 — Think in English!" },
+      {
+        emoji: "🏆",
+        text: "You finished the whole English for Beginners course!",
+      },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {

@@ -1025,4 +1025,47 @@ export const englishLevelOneLessons: EnglishLessonSummary[] = [
     available: true,
     moduleNumber: 17,
   },
+  {
+    slug: "think-picture-description",
+    title: "Describe What You See",
+    outcome: "Describe a simple scene in English, with no translation.",
+    available: true,
+    moduleNumber: 18,
+  },
+  {
+    slug: "think-daily-story",
+    title: "Tell Your Day",
+    outcome: "Tell the story of your day fully in English.",
+    available: true,
+    moduleNumber: 18,
+  },
+  {
+    slug: "think-role-play",
+    title: "Role-Play: Ordering Coffee",
+    outcome: "Handle a real ordering situation entirely in English.",
+    available: true,
+    moduleNumber: 18,
+  },
+  {
+    slug: "think-reacting",
+    title: "React in English",
+    outcome: "React naturally to good and bad news in English.",
+    available: true,
+    moduleNumber: 18,
+  },
+  {
+    slug: "think-guess-the-object",
+    title: "Describe and Guess",
+    outcome: "Describe an object in English without naming it.",
+    available: true,
+    moduleNumber: 18,
+  },
+  {
+    slug: "think-in-english-mission",
+    title: "Think in English",
+    outcome:
+      "Combine storytelling, role-play, and reacting into one English-only scene.",
+    available: true,
+    moduleNumber: 18,
+  },
 ];
