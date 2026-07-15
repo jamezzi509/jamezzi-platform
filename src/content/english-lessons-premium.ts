@@ -4888,6 +4888,883 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎯", text: "Misyon: poze twa kesyon diferan jodi a." },
     ],
   },
+  {
+    slug: "action-verbs-conjugation",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "➕",
+    heroTitle: "Vèb Aksyon Yo ak -s/-es",
+    heroLede:
+      "Vèb aksyon yo chanje yon ti kras selon ki moun w ap pale de li — aprann règ la anvan nou kòmanse.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap konnen ki lè pou ajoute “-s” oswa “-es” sou yon vèb aksyon.",
+    whatYouWillLearn: "règ -s/-es pou he/she/it ak vèb aksyon",
+    prerequisite: "Ou fin Modil 5 — Kesyon Yo",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "He/She/It ajoute “-s” oswa “-es” sou vèb la.",
+    understandBody:
+      "**I work. He works.** Kontrèman ak “to be”/“to have” ki chanje tout mo a, vèb aksyon yo (work, eat, go) rete menm pou I/you/we/they, men yo ajoute “-s” pou he/she/it: **works, eats, goes**.",
+    seeItInAction: [
+      { line: "I work every day.", tag: "I/you/we/they", emoji: "💬" },
+      { line: "She works every day.", tag: "He/she/it + s", emoji: "💬" },
+      { line: "He goes to school.", tag: "Go → goes", emoji: "💬" },
+    ],
+    patternBuilderIntro: "Klike sou chak pwonon pou wè fòm vèb la.",
+    patternBuilderOptions: [
+      { chipLabel: "I", display: "I work every day." },
+      { chipLabel: "She", display: "She works every day." },
+      { chipLabel: "He", display: "He goes to school." },
+    ],
+    vocabulary: [
+      {
+        word: "Work",
+        ipa: "/wɜːrk/",
+        kreyol: "Travay",
+        example: "I work every day.",
+      },
+      {
+        word: "Eat",
+        ipa: "/iːt/",
+        kreyol: "Manje",
+        example: "He eats breakfast.",
+      },
+      {
+        word: "Go",
+        ipa: "/goʊ/",
+        kreyol: "Ale",
+        example: "He goes to school.",
+      },
+      {
+        word: "Every day",
+        ipa: "/ˈɛvri deɪ/",
+        kreyol: "Chak jou",
+        example: "I work every day.",
+      },
+      {
+        word: "School",
+        ipa: "/skuːl/",
+        kreyol: "Lekòl",
+        example: "He goes to school.",
+      },
+    ],
+    pronunciationWord: "Works",
+    pronunciationIpa: "/wɜːrks/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “s” la klè nan fen mo a.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “-s” pou he/she/it — “She work” pa kòrèk.",
+    mistakeWrong: "She work every day.",
+    mistakeCorrect: "She works every day.",
+    mistakeWhy:
+      "**Poukisa:** He/She/It toujou ajoute “-s” (oswa “-es”) sou vèb aksyon nan tan prezan senp — menm règ la ap swiv nou tout Modil 6.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "He work every day.",
+        "He works every day.",
+        "He working every day.",
+        "He worked every day.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “he” bezwen “-s”.",
+    },
+    thinkEmoji: "➕",
+    thinkPrompt: "Ekri de fraz sou yon moun (he/she) ak yon vèb aksyon:",
+    thinkPlaceholder: "He/She ___s...",
+    aiPrompt:
+      "Hi! Can you give me simple action verbs and ask me to conjugate them for he/she/it by adding -s?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike règ -s/-es la.",
+    missionTask:
+      "🎯 Jodi a, di de fraz sou yon moun (he oswa she) ak yon vèb aksyon ki fini ak “-s”.",
+    recap: [
+      { emoji: "➕", text: "He/She/It ajoute “-s” sou vèb aksyon an." },
+      { emoji: "🔗", text: "I/You/We/They pa chanje vèb la." },
+      {
+        emoji: "⚠️",
+        text: "Go → goes, se pa yon eksepsyon konplè, jis yon lòt fòm “-es”.",
+      },
+      { emoji: "🎯", text: "Misyon: di de fraz ak vèb aksyon +s." },
+    ],
+  },
+  {
+    slug: "go-and-come",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🚶",
+    heroTitle: "Go ak Come",
+    heroLede:
+      "“Go” pou ale LWEN moun k ap pale, “come” pou ale VÈ moun k ap pale.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “go” ak “come” kòrèkteman.",
+    whatYouWillLearn: "diferans ant “go” (ale lwen) ak “come” (vin vè)",
+    prerequisite: "Leson 1 — Vèb Aksyon Yo ak -s/-es",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Go” ale lwen, “come” vin vè moun k ap pale.",
+    understandBody:
+      "**I go to work.** **Come here!** Itilize “go” lè direksyon an ale lwen moun k ap pale, “come” lè li ale vè moun sa a.",
+    seeItInAction: [
+      { line: "I go to work every morning.", tag: "Ale lwen", emoji: "🚶" },
+      { line: "Come here, please!", tag: "Ale vè ou", emoji: "👋" },
+      {
+        line: "She comes to my house on Sundays.",
+        tag: "Vin isit",
+        emoji: "🏠",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak direksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Go", display: "I go to work." },
+      { chipLabel: "Come", display: "Come here!" },
+      { chipLabel: "Comes", display: "She comes to my house." },
+    ],
+    vocabulary: [
+      { word: "Go", ipa: "/goʊ/", kreyol: "Ale", example: "I go to work." },
+      { word: "Come", ipa: "/kʌm/", kreyol: "Vini", example: "Come here!" },
+      {
+        word: "Work",
+        ipa: "/wɜːrk/",
+        kreyol: "Travay",
+        example: "I go to work.",
+      },
+      { word: "Here", ipa: "/hɪər/", kreyol: "Isit la", example: "Come here!" },
+      {
+        word: "Sunday",
+        ipa: "/ˈsʌndeɪ/",
+        kreyol: "Dimanch",
+        example: "She comes on Sundays.",
+      },
+    ],
+    pronunciationWord: "Come",
+    pronunciationIpa: "/kʌm/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “u” kout, tankou “kuhm”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “-s” pou “she” — “goes”, pa “go”.",
+    mistakeWrong: "She go to work.",
+    mistakeCorrect: "She goes to work.",
+    mistakeWhy:
+      "**Poukisa:** “Go” fini ak yon son vwayèl, kidonk li ajoute “-es” pou he/she/it: **goes**.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "She go to work.",
+        "She goes to work.",
+        "She going to work.",
+        "She comed to work.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “go” + “she” vin “goes”.",
+    },
+    thinkEmoji: "🚶",
+    thinkPrompt: "Ekri yon fraz ak “go” epi yon lòt ak “come”:",
+    thinkPlaceholder: "I go... / Come...",
+    aiPrompt:
+      "Hi! Can you ask me where I go every day, and invite me to come somewhere, so I can practice go and come?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike go/come.",
+    missionTask:
+      "🎯 Jodi a, itilize “go” pou di kote ou prale, epi “come” pou envite yon moun vin yon kote.",
+    recap: [
+      { emoji: "🚶", text: "“Go” ale lwen moun k ap pale." },
+      { emoji: "👋", text: "“Come” vin vè moun k ap pale." },
+      { emoji: "⚠️", text: "Go → goes pou he/she/it." },
+      { emoji: "🎯", text: "Misyon: itilize go ak come jodi a." },
+    ],
+  },
+  {
+    slug: "eat-drink-sleep",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🍳",
+    heroTitle: "Eat, Drink, ak Sleep",
+    heroLede: "Twa vèb pou bezwen debaz chak jou: manje, bwè, dòmi.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize eat, drink, ak sleep nan fraz senp.",
+    whatYouWillLearn: "vèb pou bezwen debaz chak jou",
+    prerequisite: "Leson 2 — Go ak Come",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Twa bezwen debaz, twa vèb senp.",
+    understandBody:
+      "**I eat breakfast at 7.** **He drinks coffee every morning.** **They sleep eight hours.** Twa vèb sa yo dekri bezwen ou pa ka evite chak jou.",
+    seeItInAction: [
+      { line: "I eat breakfast at 7.", tag: "Manje", emoji: "🍳" },
+      { line: "He drinks coffee every morning.", tag: "Bwè", emoji: "☕" },
+      { line: "They sleep eight hours.", tag: "Dòmi", emoji: "😴" },
+    ],
+    patternBuilderIntro: "Klike sou chak bezwen pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Eat", display: "I eat breakfast at 7." },
+      { chipLabel: "Drink", display: "He drinks coffee." },
+      { chipLabel: "Sleep", display: "They sleep eight hours." },
+    ],
+    vocabulary: [
+      {
+        word: "Eat",
+        ipa: "/iːt/",
+        kreyol: "Manje",
+        example: "I eat breakfast.",
+      },
+      {
+        word: "Drink",
+        ipa: "/drɪŋk/",
+        kreyol: "Bwè",
+        example: "He drinks coffee.",
+      },
+      {
+        word: "Sleep",
+        ipa: "/sliːp/",
+        kreyol: "Dòmi",
+        example: "They sleep eight hours.",
+      },
+      {
+        word: "Breakfast",
+        ipa: "/ˈbrɛkfəst/",
+        kreyol: "Manje maten",
+        example: "I eat breakfast at 7.",
+      },
+      {
+        word: "Hours",
+        ipa: "/ˈaʊərz/",
+        kreyol: "Èdtan",
+        example: "They sleep eight hours.",
+      },
+    ],
+    pronunciationWord: "Sleep",
+    pronunciationIpa: "/sliːp/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “ee” long, tankou “sleeep”.",
+    pronunciationMistake: "**Erè komen:** pa di “He drink” — se “He drinks”.",
+    mistakeWrong: "He drink coffee every morning.",
+    mistakeCorrect: "He drinks coffee every morning.",
+    mistakeWhy:
+      "**Poukisa:** Menm règ Modil 6 la ap swiv nou — “he” bezwen “-s” sou vèb la.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "They sleeps eight hours.",
+        "They sleep eight hours.",
+        "They sleeping eight hours.",
+        "They slept eight hours.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “they” pa pran “-s”.",
+    },
+    thinkEmoji: "🍳",
+    thinkPrompt: "Ekri twa fraz sou woutin ou ak eat/drink/sleep:",
+    thinkPlaceholder: "I eat... I drink... I sleep...",
+    aiPrompt:
+      "Hi! Can you ask me what I eat, drink, and how much I sleep, so I can practice these three verbs?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike eat/drink/sleep.",
+    missionTask:
+      "🎯 Jodi a, di twa fraz sou sa ou manje, bwè, ak konbyen ou dòmi.",
+    recap: [
+      { emoji: "🍳", text: "Eat, drink, sleep — bezwen debaz chak jou." },
+      { emoji: "⚠️", text: "He/she/it ajoute “-s”: eats, drinks, sleeps." },
+      { emoji: "☕", text: "I eat. He drinks. They sleep." },
+      { emoji: "🎯", text: "Misyon: di twa fraz sou woutin ou." },
+    ],
+  },
+  {
+    slug: "walk-and-run",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🏃",
+    heroTitle: "Walk ak Run",
+    heroLede: "De fason pou deplase sou pye — youn dousman, youn vit.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “walk” ak “run” nan fraz senp.",
+    whatYouWillLearn: "diferans ant “walk” (mache) ak “run” (kouri)",
+    prerequisite: "Leson 3 — Eat, Drink, ak Sleep",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading:
+      "“Walk” dousman, “run” vit — de fason pou deplase sou pye.",
+    understandBody:
+      "**I walk to the store.** **She runs every morning.** Tou de vèb yo dekri mouvman sou pye, men vitès la diferan.",
+    seeItInAction: [
+      { line: "I walk to the store.", tag: "Mache", emoji: "🚶" },
+      { line: "She runs every morning.", tag: "Kouri", emoji: "🏃" },
+      {
+        line: "We walk together after dinner.",
+        tag: "Mache ansanm",
+        emoji: "👫",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak vitès pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Walk", display: "I walk to the store." },
+      { chipLabel: "Run", display: "She runs every morning." },
+      { chipLabel: "Walk together", display: "We walk together after dinner." },
+    ],
+    vocabulary: [
+      {
+        word: "Walk",
+        ipa: "/wɔːk/",
+        kreyol: "Mache",
+        example: "I walk to the store.",
+      },
+      {
+        word: "Run",
+        ipa: "/rʌn/",
+        kreyol: "Kouri",
+        example: "She runs every morning.",
+      },
+      {
+        word: "Store",
+        ipa: "/stɔːr/",
+        kreyol: "Magazen",
+        example: "I walk to the store.",
+      },
+      {
+        word: "Together",
+        ipa: "/təˈgɛðər/",
+        kreyol: "Ansanm",
+        example: "We walk together.",
+      },
+      {
+        word: "Morning",
+        ipa: "/ˈmɔːrnɪŋ/",
+        kreyol: "Maten",
+        example: "She runs every morning.",
+      },
+    ],
+    pronunciationWord: "Walk",
+    pronunciationIpa: "/wɔːk/",
+    mouthTip: "**Ti konsèy pou bouch ou:** “l” la pa pwononse fò — “wawk”.",
+    pronunciationMistake: "**Erè komen:** pa di “She run” — se “She runs”.",
+    mistakeWrong: "She run every morning.",
+    mistakeCorrect: "She runs every morning.",
+    mistakeWhy:
+      "**Poukisa:** Menm règ -s/-es la — “she” bezwen “runs”, pa “run”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "She run every morning.",
+        "She runs every morning.",
+        "She running every morning.",
+        "She ran every morning.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “she” bezwen “-s”.",
+    },
+    thinkEmoji: "🏃",
+    thinkPrompt: "Ekri yon fraz ak “walk” epi yon lòt ak “run”:",
+    thinkPlaceholder: "I walk... / I run...",
+    aiPrompt:
+      "Hi! Can you ask me if I walk or run for exercise, and how often, so I can practice these verbs?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike walk/run.",
+    missionTask:
+      "🎯 Jodi a, di si ou mache oswa kouri pou fè egzèsis, ak ki fwa.",
+    recap: [
+      { emoji: "🚶", text: "“Walk” dousman, “run” vit." },
+      { emoji: "⚠️", text: "She walks. She runs. (ajoute -s)" },
+      { emoji: "🏪", text: "I walk to the store." },
+      { emoji: "🎯", text: "Misyon: di si ou mache oswa kouri." },
+    ],
+  },
+  {
+    slug: "work-and-study",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "💼",
+    heroTitle: "Work ak Study",
+    heroLede: "De vèb pou aktivite pwodiktif — travay ak aprann.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “work” ak “study” nan fraz senp.",
+    whatYouWillLearn: "vèb pou travay ak aprann, ak yon eksepsyon òtograf",
+    prerequisite: "Leson 4 — Walk ak Run",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Study” chanje “y” an “ies” pou he/she/it.",
+    understandBody:
+      "**I work in an office.** **She studies English every night.** Atansyon: vèb ki fini ak yon konsòn + “y” (tankou study) chanje “y” an “ies”: **studies**, pa “studys”.",
+    seeItInAction: [
+      { line: "I work in an office.", tag: "Travay", emoji: "💼" },
+      {
+        line: "She studies English every night.",
+        tag: "Etidye (chanjman òtograf)",
+        emoji: "📚",
+      },
+      { line: "We work hard.", tag: "Travay di", emoji: "💪" },
+    ],
+    patternBuilderIntro: "Klike sou chak aktivite pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Work", display: "I work in an office." },
+      { chipLabel: "Studies", display: "She studies English." },
+      { chipLabel: "Work hard", display: "We work hard." },
+    ],
+    vocabulary: [
+      {
+        word: "Work",
+        ipa: "/wɜːrk/",
+        kreyol: "Travay",
+        example: "I work in an office.",
+      },
+      {
+        word: "Study",
+        ipa: "/ˈstʌdi/",
+        kreyol: "Etidye",
+        example: "She studies English.",
+      },
+      {
+        word: "Office",
+        ipa: "/ˈɒfɪs/",
+        kreyol: "Biwo",
+        example: "I work in an office.",
+      },
+      {
+        word: "Hard",
+        ipa: "/hɑːrd/",
+        kreyol: "Di (avèk fòs)",
+        example: "We work hard.",
+      },
+      {
+        word: "Night",
+        ipa: "/naɪt/",
+        kreyol: "Aswè",
+        example: "She studies every night.",
+      },
+    ],
+    pronunciationWord: "Studies",
+    pronunciationIpa: "/ˈstʌdiz/",
+    mouthTip: "**Ti konsèy pou bouch ou:** de silab, “STUH-deez”.",
+    pronunciationMistake:
+      "**Erè komen:** pa ekri “studys” — se “studies”, ak “ies”.",
+    mistakeWrong: "She studys English every night.",
+    mistakeCorrect: "She studies English every night.",
+    mistakeWhy:
+      "**Poukisa:** Lè yon vèb fini ak konsòn + “y” (study), ou chanje “y” an “i” epi ajoute “es”: **studies**.",
+    practice: {
+      prompt: "Chwazi fòm ki kòrèk pou “she” + study:",
+      options: ["She studys.", "She studies.", "She studyes.", "She study."],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “y” chanje an “ies”.",
+    },
+    thinkEmoji: "💼",
+    thinkPrompt: "Ekri yon fraz ak “work” epi yon lòt ak “study”:",
+    thinkPlaceholder: "I work... / I study...",
+    aiPrompt:
+      "Hi! Can you ask me where I work and what I study, and help me use the correct verb forms?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike work/study.",
+    missionTask:
+      "🎯 Jodi a, di kote ou travay oswa sa ou etidye, ak “work”/“study”.",
+    recap: [
+      { emoji: "💼", text: "Work — travay. Study — etidye." },
+      { emoji: "⚠️", text: "Study → studies (y → ies), pa “studys”." },
+      { emoji: "📚", text: "She studies English every night." },
+      { emoji: "🎯", text: "Misyon: di kote ou travay oswa etidye." },
+    ],
+  },
+  {
+    slug: "play-watch-listen",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "⚽",
+    heroTitle: "Play, Watch, ak Listen",
+    heroLede: "Twa vèb pou tan lib — jwe, gade, koute.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize play, watch, ak listen nan fraz senp.",
+    whatYouWillLearn: "vèb pou tan lib, ak “listen to”",
+    prerequisite: "Leson 5 — Work ak Study",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Listen” toujou pran “to” anvan sa w ap koute.",
+    understandBody:
+      "**The kids play in the yard.** **We watch movies.** **I listen to music.** Remake “to” apre “listen” — sa se yon bagay pou memorize.",
+    seeItInAction: [
+      { line: "The kids play in the yard.", tag: "Jwe", emoji: "⚽" },
+      { line: "We watch movies on Fridays.", tag: "Gade", emoji: "🎬" },
+      { line: "I listen to music every day.", tag: "Koute", emoji: "🎵" },
+    ],
+    patternBuilderIntro: "Klike sou chak aktivite lib pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Play", display: "The kids play in the yard." },
+      { chipLabel: "Watch", display: "We watch movies." },
+      { chipLabel: "Listen", display: "I listen to music." },
+    ],
+    vocabulary: [
+      {
+        word: "Play",
+        ipa: "/pleɪ/",
+        kreyol: "Jwe",
+        example: "The kids play in the yard.",
+      },
+      {
+        word: "Watch",
+        ipa: "/wɒtʃ/",
+        kreyol: "Gade",
+        example: "We watch movies.",
+      },
+      {
+        word: "Listen",
+        ipa: "/ˈlɪsən/",
+        kreyol: "Koute",
+        example: "I listen to music.",
+      },
+      {
+        word: "Movie",
+        ipa: "/ˈmuːvi/",
+        kreyol: "Fim",
+        example: "We watch movies on Fridays.",
+      },
+      {
+        word: "Music",
+        ipa: "/ˈmjuːzɪk/",
+        kreyol: "Mizik",
+        example: "I listen to music.",
+      },
+    ],
+    pronunciationWord: "Listen",
+    pronunciationIpa: "/ˈlɪsən/",
+    mouthTip: "**Ti konsèy pou bouch ou:** “t” la pa pwononse — “LIS-uhn”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “to” apre “listen” — “I listen music” pa kòrèk.",
+    mistakeWrong: "I listen music every day.",
+    mistakeCorrect: "I listen to music every day.",
+    mistakeWhy:
+      "**Poukisa:** “Listen” toujou swiv ak “to” anvan sa w ap koute — “listen to music”, “listen to me”.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "I listen music.",
+        "I listen to music.",
+        "I listens music.",
+        "I listen at music.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “listen” bezwen “to”.",
+    },
+    thinkEmoji: "⚽",
+    thinkPrompt: "Ekri sou sa ou fè nan tan lib ak play/watch/listen:",
+    thinkPlaceholder: "I play... I watch... I listen to...",
+    aiPrompt:
+      "Hi! Can you ask me what I play, watch, and listen to in my free time, and help me answer correctly?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike play/watch/listen.",
+    missionTask:
+      "🎯 Jodi a, di sa ou renmen jwe, gade, oswa koute nan tan lib ou.",
+    recap: [
+      { emoji: "⚽", text: "Play, watch, listen — vèb pou tan lib." },
+      { emoji: "🎵", text: "“Listen” toujou pran “to”." },
+      { emoji: "🎬", text: "We watch movies on Fridays." },
+      { emoji: "🎯", text: "Misyon: di sa ou fè nan tan lib ou." },
+    ],
+  },
+  {
+    slug: "buy-and-sell",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🛒",
+    heroTitle: "Buy ak Sell",
+    heroLede: "De vèb opoze pou echanj — achte ak vann.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize “buy” ak “sell” nan fraz senp.",
+    whatYouWillLearn: "vèb pou achte ak vann",
+    prerequisite: "Leson 6 — Play, Watch, ak Listen",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "“Buy” ak “sell” se de aksyon opoze nan yon echanj.",
+    understandBody:
+      "**I buy vegetables at the market.** **She sells clothes online.** Yon moun achte (buy), yon lòt vann (sell) — se de bò menm echanj lan.",
+    seeItInAction: [
+      { line: "I buy vegetables at the market.", tag: "Achte", emoji: "🛒" },
+      { line: "She sells clothes online.", tag: "Vann", emoji: "👗" },
+      {
+        line: "We buy and sell things every week.",
+        tag: "Tou de",
+        emoji: "💰",
+      },
+    ],
+    patternBuilderIntro: "Klike sou chak aksyon pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Buy", display: "I buy vegetables at the market." },
+      { chipLabel: "Sell", display: "She sells clothes online." },
+      { chipLabel: "Both", display: "We buy and sell things every week." },
+    ],
+    vocabulary: [
+      {
+        word: "Buy",
+        ipa: "/baɪ/",
+        kreyol: "Achte",
+        example: "I buy vegetables.",
+      },
+      {
+        word: "Sell",
+        ipa: "/sɛl/",
+        kreyol: "Vann",
+        example: "She sells clothes.",
+      },
+      {
+        word: "Market",
+        ipa: "/ˈmɑːrkɪt/",
+        kreyol: "Mache",
+        example: "I buy vegetables at the market.",
+      },
+      {
+        word: "Online",
+        ipa: "/ˈɒnlaɪn/",
+        kreyol: "Sou entènèt",
+        example: "She sells clothes online.",
+      },
+      {
+        word: "Vegetables",
+        ipa: "/ˈvɛdʒtəbəlz/",
+        kreyol: "Legim",
+        example: "I buy vegetables.",
+      },
+    ],
+    pronunciationWord: "Buy",
+    pronunciationIpa: "/baɪ/",
+    mouthTip:
+      "**Ti konsèy pou bouch ou:** sonnen tankou “bye” lè w ap di orevwa.",
+    pronunciationMistake:
+      "**Erè komen:** pa konfonn “buy” (achte) ak “by” (pa/bò) — yo sonnen menm jan.",
+    mistakeWrong: "I by vegetables at the market.",
+    mistakeCorrect: "I buy vegetables at the market.",
+    mistakeWhy:
+      "**Poukisa:** “Buy” (achte) ak “by” (yon preposisyon) sonnen menm jan men yo ekri diferan ak sans diferan.",
+    practice: {
+      prompt: "Chwazi fraz ki kòrèk:",
+      options: [
+        "She buy clothes online.",
+        "She buys clothes online.",
+        "She selling clothes online.",
+        "She sell clothes online.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “she” bezwen “-s”.",
+    },
+    thinkEmoji: "🛒",
+    thinkPrompt: "Ekri yon fraz ak “buy” epi yon lòt ak “sell”:",
+    thinkPlaceholder: "I buy... / I sell...",
+    aiPrompt:
+      "Hi! Can you ask me what I buy at the market and if I ever sell things, so I can practice buy and sell?",
+    aiHelperCopy: "Kole sa a nan ChatGPT oswa Claude pou pratike buy/sell.",
+    missionTask: "🎯 Jodi a, di yon bagay ou achte souvan, ak “buy”.",
+    recap: [
+      { emoji: "🛒", text: "“Buy” achte, “sell” vann." },
+      { emoji: "⚠️", text: "“Buy” ≠ “by” — menm son, sans diferan." },
+      { emoji: "👗", text: "She sells clothes online." },
+      { emoji: "🎯", text: "Misyon: di yon bagay ou achte souvan." },
+    ],
+  },
+  {
+    slug: "cook-wash-clean",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🍲",
+    heroTitle: "Cook, Wash, ak Clean",
+    heroLede: "Twa vèb pou travay lakay — kwit manje, lave, netwaye.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab itilize cook, wash, ak clean nan fraz senp.",
+    whatYouWillLearn: "vèb pou travay lakay",
+    prerequisite: "Leson 7 — Buy ak Sell",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Twa vèb pou travay lakay chak jou.",
+    understandBody:
+      "**My mother cooks dinner every night.** **I wash the dishes after dinner.** **We clean the house on Saturdays.** Twa vèb sa yo fè pati travay lakay chak jou oswa chak semèn.",
+    seeItInAction: [
+      {
+        line: "My mother cooks dinner every night.",
+        tag: "Kwit manje",
+        emoji: "🍲",
+      },
+      { line: "I wash the dishes after dinner.", tag: "Lave", emoji: "🍽️" },
+      { line: "We clean the house on Saturdays.", tag: "Netwaye", emoji: "🧹" },
+    ],
+    patternBuilderIntro: "Klike sou chak travay lakay pou wè yon fraz.",
+    patternBuilderOptions: [
+      { chipLabel: "Cook", display: "My mother cooks dinner." },
+      { chipLabel: "Wash", display: "I wash the dishes." },
+      { chipLabel: "Clean", display: "We clean the house." },
+    ],
+    vocabulary: [
+      {
+        word: "Cook",
+        ipa: "/kʊk/",
+        kreyol: "Kwit manje",
+        example: "My mother cooks dinner.",
+      },
+      {
+        word: "Wash",
+        ipa: "/wɒʃ/",
+        kreyol: "Lave",
+        example: "I wash the dishes.",
+      },
+      {
+        word: "Clean",
+        ipa: "/kliːn/",
+        kreyol: "Netwaye",
+        example: "We clean the house.",
+      },
+      {
+        word: "Dishes",
+        ipa: "/ˈdɪʃɪz/",
+        kreyol: "Asyèt",
+        example: "I wash the dishes.",
+      },
+      {
+        word: "Saturday",
+        ipa: "/ˈsætərdeɪ/",
+        kreyol: "Samdi",
+        example: "We clean on Saturdays.",
+      },
+    ],
+    pronunciationWord: "Wash",
+    pronunciationIpa: "/wɒʃ/",
+    mouthTip: "**Ti konsèy pou bouch ou:** son “sh” klè nan fen mo a.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye “-es” pou “wash” lè se he/she/it — “washes”, pa “washs”.",
+    mistakeWrong: "She washs the dishes.",
+    mistakeCorrect: "She washes the dishes.",
+    mistakeWhy:
+      "**Poukisa:** Vèb ki fini ak “sh”, “ch”, “s”, oswa “x” ajoute “-es” (pa jis “-s”) pou he/she/it: **washes**.",
+    practice: {
+      prompt: "Chwazi fòm ki kòrèk pou “she” + wash:",
+      options: ["She washs.", "She washes.", "She wash.", "She washing."],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “wash” ajoute “-es”.",
+    },
+    thinkEmoji: "🍲",
+    thinkPrompt: "Ekri sou ki travay lakay ou fè, ak cook/wash/clean:",
+    thinkPlaceholder: "I cook... I wash... I clean...",
+    aiPrompt:
+      "Hi! Can you ask me who cooks, washes dishes, and cleans in my house, so I can practice these verbs?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike cook/wash/clean.",
+    missionTask:
+      "🎯 Jodi a, di ki travay lakay ou fè, ak cook, wash, oswa clean.",
+    recap: [
+      { emoji: "🍲", text: "Cook, wash, clean — travay lakay." },
+      { emoji: "⚠️", text: "Wash → washes (ajoute -es)." },
+      { emoji: "🧹", text: "We clean the house on Saturdays." },
+      { emoji: "🎯", text: "Misyon: di ki travay lakay ou fè." },
+    ],
+  },
+  {
+    slug: "action-verbs-mission",
+    moduleTitle: "Modil 6: Vèb Aksyon Yo",
+    illustrationKey: "emoji",
+    heroEmoji: "🌟",
+    heroTitle: "Yon Jounen Aksyon",
+    heroLede:
+      "Se lè a pou konbine plizyè vèb aksyon pou rakonte yon jounen aktif, soti nan maten rive nan aswè.",
+    heroGoal:
+      "🎯 Objektif leson: nan fen leson sa a, w ap kapab rakonte yon jounen ak plizyè vèb aksyon.",
+    whatYouWillLearn: "kijan pou konbine plizyè vèb aksyon nan yon istwa",
+    prerequisite: "Leson 8 — Cook, Wash, ak Clean",
+    difficultyLabel: "🟢 Fasil",
+    readingTime: "⏱ 5 min lekti",
+    completionTime: "✅ ~8 min pou konplete",
+    understandHeading: "Plizyè vèb aksyon ansanm rakonte yon jounen aktif.",
+    understandBody:
+      "**I wake up, eat breakfast, and go to work.** Konekte plizyè vèb aksyon ak “and” pou rakonte yon jounen konplè, soti nan maten rive nan aswè.",
+    seeItInAction: [
+      {
+        line: "I wake up, eat breakfast, and go to work.",
+        tag: "Maten",
+        emoji: "🌅",
+      },
+      { line: "I work, study, and eat lunch.", tag: "Jounen", emoji: "💼" },
+      { line: "I cook dinner, watch TV, and sleep.", tag: "Aswè", emoji: "🌙" },
+    ],
+    patternBuilderIntro: "Klike sou chak moman pou wè fraz aksyon li.",
+    patternBuilderOptions: [
+      { chipLabel: "Morning", display: "I wake up and go to work." },
+      { chipLabel: "Day", display: "I work and study." },
+      { chipLabel: "Night", display: "I cook and sleep." },
+    ],
+    vocabulary: [
+      {
+        word: "Active",
+        ipa: "/ˈæktɪv/",
+        kreyol: "Aktif",
+        example: "I have an active day.",
+      },
+      {
+        word: "Busy",
+        ipa: "/ˈbɪzi/",
+        kreyol: "Okipe",
+        example: "My day is busy.",
+      },
+      {
+        word: "Then",
+        ipa: "/ðɛn/",
+        kreyol: "Answit",
+        example: "I eat, then I work.",
+      },
+      {
+        word: "Finally",
+        ipa: "/ˈfaɪnəli/",
+        kreyol: "Finalman",
+        example: "Finally, I sleep.",
+      },
+      {
+        word: "Story",
+        ipa: "/ˈstɔːri/",
+        kreyol: "Istwa",
+        example: "This is my daily story.",
+      },
+    ],
+    pronunciationWord: "Finally",
+    pronunciationIpa: "/ˈfaɪnəli/",
+    mouthTip: "**Ti konsèy pou bouch ou:** twa silab, “FY-nuh-lee”.",
+    pronunciationMistake:
+      "**Erè komen:** pa bliye konjige chak vèb kòrèkteman menm lè yo tout nan menm fraz.",
+    mistakeWrong: "I wakes up, eats breakfast, and goes to work.",
+    mistakeCorrect: "I wake up, eat breakfast, and go to work.",
+    mistakeWhy:
+      "**Poukisa:** Si sijè a se “I”, okenn vèb pa dwe pran “-s” — se sèlman he/she/it ki bezwen “-s”/“-es”.",
+    practice: {
+      prompt: "Ki vèsyon ki kòrèk pou “I”?",
+      options: [
+        "I wakes up and eats.",
+        "I wake up and eat.",
+        "I waking up and eating.",
+        "I woke up and ate.",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa a kòrèk.",
+      wrongFeedback: "❌ Eseye ankò — “I” pa pran “-s”.",
+    },
+    thinkEmoji: "🌟",
+    thinkPrompt:
+      "Ekri yon ti istwa sou yon jounen aktif ou, ak omwen 4 vèb aksyon:",
+    thinkPlaceholder: "I wake up, ... , and ...",
+    aiPrompt:
+      "Hi! Can you listen to a short story about my active day using different action verbs, and give me friendly feedback on my grammar?",
+    aiHelperCopy:
+      "Kole sa a nan ChatGPT oswa Claude pou pratike tout Modil 6 ansanm.",
+    missionTask:
+      "🎯 Jodi a, rakonte yon jounen aktif ou ak omwen kat vèb aksyon diferan nan Modil 6.",
+    recap: [
+      {
+        emoji: "🌟",
+        text: "Konekte plizyè vèb aksyon ak “and” pou rakonte yon istwa.",
+      },
+      { emoji: "⚠️", text: "“I” pa janm pran “-s” sou vèb la." },
+      { emoji: "🎓", text: "Ou fini Modil 6 — Vèb Aksyon Yo!" },
+      { emoji: "🎯", text: "Misyon: rakonte yon jounen aktif ou." },
+    ],
+  },
 ];
 
 export function getEnglishPremiumLesson(slug: string) {
