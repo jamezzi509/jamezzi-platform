@@ -304,15 +304,15 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       "De 'lang' diferan pou pale ak yon òdinatè — men de yo mennen menm kote a.",
     goal: "🎯 Objektif: konnen diferans debaz ant yon òdinatè Windows ak yon Mac.",
     simpleExplanation:
-      "**Windows** ak **Mac** se de sistèm dopewasyon diferan (n ap wè kisa sa ye pi devan) ki fè yon òdinatè fonksyone. Windows fèt pa Microsoft e li itilize sou anpil mak diferan (Dell, HP, Lenovo, elatriye). Mac se sèlman sou òdinatè Apple fè. Yo gen menm bout objektif — travay, entènèt, fichye — men bouton ak meni yo pa nan menm plas.",
+      "**Windows** ak **Mac** se de sistèm operasyon diferan (n ap wè kisa sa ye pi devan) ki fè yon òdinatè fonksyone. Windows fèt pa Microsoft e li itilize sou anpil mak diferan (Dell, HP, Lenovo, elatriye). Mac se sèlman sou òdinatè Apple fè. Yo gen menm bout objektif — travay, entènèt, fichye — men bouton ak meni yo pa nan menm plas.",
     illustrationPrompt:
       "A realistic photograph showing two different laptop computers side by side on a desk, one silver and one dark colored, both closed or subtly different in design, natural office lighting, professional product photography, no text or logos visible",
     illustrationSrc: `${illustrationBase}/windows-vs-mac.webp`,
     digitalWords: [
       {
-        word: "Sistèm dopewasyon",
+        word: "Sistèm Operasyon",
         definition: "Pwogram prensipal ki kontwole tout òdinatè a.",
-        example: "Windows se yon sistèm dopewasyon.",
+        example: "Windows se yon sistèm operasyon.",
       },
       {
         word: "Mak (brand)",
@@ -369,12 +369,12 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
     digitalWords: [
       {
         word: "iOS",
-        definition: "Sistèm dopewasyon Apple pou iPhone.",
+        definition: "Sistèm operasyon Apple pou iPhone.",
         example: "iPhone mache ak iOS.",
       },
       {
         word: "Android",
-        definition: "Sistèm dopewasyon Google ki mache sou plizyè mak telefòn.",
+        definition: "Sistèm operasyon Google ki mache sou plizyè mak telefòn.",
         example: "Samsung ak Tecno itilize Android.",
       },
     ],
@@ -414,7 +414,7 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       "Youn ou ka touche, lòt la ou pa ka touche — men ou bezwen tou de yo.",
     goal: "🎯 Objektif: separe pati fizik yon òdinatè de pwogram ki fè l travay.",
     simpleExplanation:
-      "**Hardware** se tout pati FIZIK ou ka touche — ekran, klavye, sourit, batri. **Software** se pwogram yo, sa ou PA ka touche — aplikasyon, sit entènèt, sistèm dopewasyon an. Panse ak yon liv: papye a se hardware, istwa ki ekri ladan l se software.",
+      "**Hardware** se tout pati FIZIK ou ka touche — ekran, klavye, sourit, batri. **Software** se pwogram yo, sa ou PA ka touche — aplikasyon, sit entènèt, sistèm operasyon an. Panse ak yon liv: papye a se hardware, istwa ki ekri ladan l se software.",
     howItWorks: [
       "Hardware = kò a (sa ou touche)",
       "Software = lespri a (pwogram ki bay lòd)",
@@ -471,42 +471,42 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
     slug: "what-is-an-operating-system",
     moduleTitle: "Modil 1: Byenveni nan Mond Dijital la",
     heroEmoji: "⚙️",
-    heroTitle: "Kisa Yon Sistèm Dopewasyon Ye?",
+    heroTitle: "Kisa Yon Sistèm Operasyon Ye?",
     heroLede: "Se 'manadjè' envizib ki kontwole tout bagay dèyè ekran an.",
-    goal: "🎯 Objektif: konprann wòl sistèm dopewasyon an nan yon aparèy.",
+    goal: "🎯 Objektif: konprann wòl sistèm operasyon an nan yon aparèy.",
     simpleExplanation:
-      "Yon **sistèm dopewasyon** (oswa 'OS') se pwogram prensipal ki kontwole tout lòt bagay nan yon aparèy — li fè hardware ak software travay ansanm. Windows, Mac (macOS), Android, ak iOS se tout egzanp sistèm dopewasyon. San yon sistèm dopewasyon, yon òdinatè se jis yon bwat fèmen ki pa fè anyen.",
+      "Yon **sistèm operasyon** (oswa 'OS') se pwogram prensipal ki kontwole tout lòt bagay nan yon aparèy — li fè hardware ak software travay ansanm. Windows, Mac (macOS), Android, ak iOS se tout egzanp sistèm operasyon. San yon sistèm operasyon, yon òdinatè se jis yon bwat fèmen ki pa fè anyen.",
     illustrationPrompt:
       "A realistic photograph of a laptop screen glowing softly in a dim room showing an abstract colorful home screen interface, cinematic lighting, professional tech photography, no readable text or logos visible",
     illustrationSrc: `${illustrationBase}/what-is-an-operating-system.webp`,
     digitalWords: [
       {
-        word: "Sistèm Dopewasyon (OS)",
+        word: "Sistèm Operasyon (OS)",
         definition: "Pwogram debaz ki fè tout lòt bagay nan aparèy la mache.",
-        example: "Windows, macOS, Android, ak iOS se sistèm dopewasyon.",
+        example: "Windows, macOS, Android, ak iOS se sistèm operasyon.",
       },
       {
         word: "Aplikasyon",
-        definition: "Yon pwogram espesifik ki mache SOU sistèm dopewasyon an.",
+        definition: "Yon pwogram espesifik ki mache SOU sistèm operasyon an.",
         example: "WhatsApp se yon aplikasyon ki mache sou Android oswa iOS.",
       },
     ],
     realLifeExample:
-      "💡 Lè telefòn ou di 'Update disponib', se souvan sistèm dopewasyon an k ap mande yon mizajou pou l pi bon epi pi an sekirite.",
+      "💡 Lè telefòn ou di 'Update disponib', se souvan sistèm operasyon an k ap mande yon mizajou pou l pi bon epi pi an sekirite.",
     mistakeWrong:
-      "Konfonn yon aplikasyon (tankou WhatsApp) ak sistèm dopewasyon an (tankou Android).",
+      "Konfonn yon aplikasyon (tankou WhatsApp) ak sistèm operasyon an (tankou Android).",
     mistakeCorrect:
-      "Konprann sistèm dopewasyon an se 'kay' la, aplikasyon yo se 'mèb' anndan kay la.",
+      "Konprann sistèm operasyon an se 'kay' la, aplikasyon yo se 'mèb' anndan kay la.",
     mistakeWhy:
-      "⚠️ Ou ka retire yon aplikasyon san pwoblèm, men ou pa ka retire sistèm dopewasyon an san aparèy la sispann fonksyone nèt.",
+      "⚠️ Ou ka retire yon aplikasyon san pwoblèm, men ou pa ka retire sistèm operasyon an san aparèy la sispann fonksyone nèt.",
     aiExplanation:
-      "🤖 Konprann sistèm dopewasyon an ede w konprann poukisa yon mesaj erè ka mansyone 'Windows' oswa 'iOS' — se sa k ap pale, pa yon aplikasyon espesifik.",
+      "🤖 Konprann sistèm operasyon an ede w konprann poukisa yon mesaj erè ka mansyone 'Windows' oswa 'iOS' — se sa k ap pale, pa yon aplikasyon espesifik.",
     aiPrompt:
       "Hi! Can you explain what an operating system does, using a simple analogy like a house or a manager, for someone who has never thought about it before?",
     mission:
-      "🎯 Misyon: gade telefòn oswa òdinatè ou epi idantifye ki sistèm dopewasyon l ap itilize.",
+      "🎯 Misyon: gade telefòn oswa òdinatè ou epi idantifye ki sistèm operasyon l ap itilize.",
     quiz: {
-      prompt: "Ki wòl yon sistèm dopewasyon jwe?",
+      prompt: "Ki wòl yon sistèm operasyon jwe?",
       options: [
         "Li se yon sèl aplikasyon espesifik",
         "Li kontwole tout aparèy la epi fè lòt pwogram mache",
@@ -520,17 +520,17 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
     recap: [
       {
         emoji: "⚙️",
-        text: "Sistèm dopewasyon = pwogram prensipal ki kontwole aparèy la.",
+        text: "Sistèm operasyon = pwogram prensipal ki kontwole aparèy la.",
       },
       {
         emoji: "🏠",
-        text: "Sistèm dopewasyon se 'kay', aplikasyon yo se 'mèb'.",
+        text: "Sistèm operasyon se 'kay', aplikasyon yo se 'mèb'.",
       },
       {
         emoji: "🔄",
-        text: "Mizajou sistèm dopewasyon kenbe aparèy la an sekirite.",
+        text: "Mizajou sistèm operasyon kenbe aparèy la an sekirite.",
       },
-      { emoji: "🎯", text: "Misyon: idantifye sistèm dopewasyon aparèy ou." },
+      { emoji: "🎯", text: "Misyon: idantifye sistèm operasyon aparèy ou." },
     ],
   },
   {
@@ -735,7 +735,7 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       "Se lè a pou konbine tout sa ou aprann nan Modil 1 nan yon vrè egzèsis.",
     goal: "🎯 Objektif: itilize tout konsèp Modil 1 yo ansanm pou fè yon rezime pèsonèl.",
     simpleExplanation:
-      "Ou fèk aprann: sa yon òdinatè ye, diferans ant aparèy yo, hardware vs. software, sistèm dopewasyon, entènèt, ak cloud la. Misyon sa a mande w sèvi ak tout konesans sa a pou dekri PWÒP sitiyasyon dijital ou — pa jis repete definisyon yo.",
+      "Ou fèk aprann: sa yon òdinatè ye, diferans ant aparèy yo, hardware vs. software, sistèm operasyon, entènèt, ak cloud la. Misyon sa a mande w sèvi ak tout konesans sa a pou dekri PWÒP sitiyasyon dijital ou — pa jis repete definisyon yo.",
     illustrationPrompt:
       "A realistic photograph of a person confidently smiling while using a laptop at a bright desk, sense of accomplishment and confidence, warm natural lighting, professional lifestyle photography, no text or logos visible on the screen",
     illustrationSrc: `${illustrationBase}/first-digital-mission.webp`,
@@ -758,7 +758,7 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
     aiPrompt:
       "Hi! I just finished learning the basics of computers, devices, operating systems, the internet, and the cloud. Can you ask me a few simple questions to check my understanding?",
     mission:
-      "🎯 Misyon Final Modil 1: ekri (oswa di awotvwa) yon ti paragraf 4-5 fraz ki dekri: ki aparèy ou itilize, ki sistèm dopewasyon li genyen, ak si w konekte a entènèt/cloud.",
+      "🎯 Misyon Final Modil 1: ekri (oswa di awotvwa) yon ti paragraf 4-5 fraz ki dekri: ki aparèy ou itilize, ki sistèm operasyon li genyen, ak si w konekte a entènèt/cloud.",
     quiz: {
       prompt: "Ki objektif prensipal Modil 1 la?",
       options: [
