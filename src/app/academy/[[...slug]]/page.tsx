@@ -4,6 +4,10 @@ import Link from "next/link";
 import { ComingSoon } from "@/components/coming-soon";
 import { BookDetail, BookLibrary } from "@/components/academy/book-library";
 import { CourseLibrary } from "@/components/academy/course-library";
+import {
+  CoursePreviewPage,
+  hasCoursePreview,
+} from "@/components/academy/course-preview-page";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
 import { EnglishPlacementQuiz } from "@/components/academy/english-placement-quiz";
@@ -77,42 +81,39 @@ export async function generateMetadata({
 }
 
 function AcademyHub() {
+  const featuredCourses = launchingFirstCourses.map((course) => ({
+    course,
+    image: `/images/academy/courses/${course.slug}.webp`,
+  }));
   return (
     <main className="bg-paper">
-      <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24">
-        <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
-            <div className="relative z-10 py-5 lg:py-12">
-              <p className="text-eyebrow text-indigo-dark">JAMEZZI ACADEMY</p>
-              <h1 className="text-editorial-headline text-ink mt-5 max-w-3xl">
-                Practical knowledge, built to be used.
-              </h1>
-              <p className="text-intro text-muted mt-6 max-w-xl">
-                Courses, books, and live learning that turn useful ideas into
-                skills you can apply at work, in business, and in everyday life.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <CtaLink href="#courses">Explore Courses</CtaLink>
-                <CtaLink href="/academy/books" variant="secondary">
-                  Browse Books
-                </CtaLink>
-              </div>
-            </div>
-            <div className="relative min-h-[390px] overflow-hidden rounded-[28px] bg-[#ebe7ff] sm:min-h-[500px] lg:min-h-[600px]">
-              <Image
-                src="/images/academy/academy-hero.webp"
-                alt="An educator guiding adult learners through a practical lesson"
-                fill
-                priority
-                sizes="(max-width: 1023px) 100vw, 58vw"
-                className="object-cover object-center"
-              />
-              <div className="from-indigo-dark/15 absolute inset-0 bg-gradient-to-t via-transparent to-white/10" />
-              <div className="absolute bottom-5 left-5 rounded-full border border-white/70 bg-white/85 px-4 py-2 backdrop-blur-sm">
-                <p className="text-metadata text-ink">
-                  Learn · Practice · Apply
-                </p>
-              </div>
+      <section className="relative flex min-h-[640px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[670px] lg:pt-[72px]">
+        <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
+          <Image
+            src="/images/academy/academy-hero.webp"
+            alt="An educator guiding adult learners through a practical lesson"
+            fill
+            priority
+            sizes="(max-width: 1023px) 100vw, 62vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
+        <Container className="relative z-10">
+          <div className="max-w-2xl py-14">
+            <p className="text-eyebrow text-indigo-dark">JAMEZZI ACADEMY</p>
+            <h1 className="text-editorial-headline text-ink mt-5 max-w-3xl">
+              Practical knowledge, built to be used.
+            </h1>
+            <p className="text-intro text-muted mt-6 max-w-xl">
+              Courses, books, and live learning that turn useful ideas into
+              skills you can apply at work, in business, and in everyday life.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <CtaLink href="#courses">Explore Courses</CtaLink>
+              <CtaLink href="/academy/books" variant="secondary">
+                Browse Books
+              </CtaLink>
             </div>
           </div>
         </Container>
@@ -160,7 +161,7 @@ function AcademyHub() {
                 className="group"
               >
                 <div
-                  className="border-border relative w-full overflow-hidden rounded-[14px] border bg-white p-2 shadow-[0_14px_35px_rgba(29,24,46,0.08)]"
+                  className="relative w-full overflow-hidden rounded-[8px] shadow-[0_14px_35px_rgba(29,24,46,0.12)]"
                   style={{ aspectRatio: "2 / 3" }}
                 >
                   <Image
@@ -168,7 +169,7 @@ function AcademyHub() {
                     alt={`Cover of ${book.title}`}
                     fill
                     sizes="(max-width: 639px) 44vw, (max-width: 1023px) 29vw, 180px"
-                    className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     priority={index < 3}
                   />
                 </div>
@@ -191,53 +192,76 @@ function AcademyHub() {
             href="/academy/courses"
             cta="Explore All Courses"
           />
-          <div className="border-border mt-12 grid border-t md:grid-cols-3">
-            {launchingFirstCourses.map((course, index) => (
-              <Link
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {featuredCourses.map(({ course, image }, index) => (
+              <FeaturedCourseCard
                 key={course.slug}
-                href={`/academy/courses/${course.slug}`}
-                className="border-border group border-b py-8 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
-              >
-                <p className="text-metadata text-indigo-dark">
-                  {String(index + 1).padStart(2, "0")} · {course.category}
-                </p>
-                <h3 className="text-card-title text-ink group-hover:text-indigo-dark mt-5 transition-colors">
-                  {course.title}
-                </h3>
-                <p className="text-body text-muted mt-4">
-                  {course.description}
-                </p>
-                <span className="text-button text-indigo-dark mt-6 inline-flex items-center gap-2">
-                  View Course <ArrowRightIcon className="size-4" />
-                </span>
-              </Link>
+                course={course}
+                image={image}
+                wide={index === 0}
+              />
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="bg-[#eeeaff] py-20 lg:py-24">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <div>
-              <p className="text-eyebrow text-indigo-dark">EVENTS & SEMINARS</p>
-              <h2 className="text-editorial-headline text-ink mt-4 max-w-3xl">
-                Learning becomes different when we share the room.
-              </h2>
+      <section className="relative min-h-[500px] overflow-hidden bg-[#eeeaff] py-20 lg:flex lg:items-center lg:py-24">
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
+          <Image
+            src="/images/academy/academy-hero.webp"
+            alt="James leading a practical seminar"
+            fill
+            sizes="(max-width: 1023px) 100vw, 58vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#eeeaff] via-[#eeeaff]/95 to-[#eeeaff]/15 lg:via-[#eeeaff]/88" />
+        <Container className="relative z-10">
+          <div className="max-w-2xl">
+            <p className="text-eyebrow text-indigo-dark">EVENTS & SEMINARS</p>
+            <h2 className="text-editorial-headline text-ink mt-4 max-w-3xl">
+              Learning becomes different when we share the room.
+            </h2>
+            <p className="text-intro text-muted mt-6 max-w-xl">
+              James teaches occasional sessions in Haiti and accepts selected
+              speaking invitations throughout the year.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <CtaLink href="/academy/seminar-updates">
+                Get Seminar Updates
+              </CtaLink>
+              <CtaLink href="/contact" variant="secondary">
+                Invite James to Speak
+              </CtaLink>
             </div>
-            <div>
-              <p className="text-intro text-muted">
-                James teaches occasional sessions in Haiti and accepts selected
-                speaking invitations throughout the year.
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-white py-16 lg:py-20">
+        <Container>
+          <div className="border-border bg-paper grid overflow-hidden rounded-[24px] border md:grid-cols-[0.72fr_1.28fr]">
+            <div className="relative min-h-[320px]">
+              <Image
+                src="/about/james-alexandre.webp"
+                alt="James Alexandre"
+                fill
+                sizes="(max-width: 767px) 100vw, 42vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center p-8 lg:p-12">
+              <p className="text-eyebrow text-indigo-dark">LEARN FROM JAMES</p>
+              <h2 className="text-feature-headline-sm text-ink mt-4">
+                Practical. Clear. Built for real life.
+              </h2>
+              <p className="text-body text-muted mt-4 max-w-xl">
+                James Alexandre creates learning experiences that are easier to
+                understand, easier to apply, and useful beyond the lesson.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <CtaLink href="/academy/seminar-updates">
-                  Get Seminar Updates
-                </CtaLink>
-                <CtaLink href="/contact" variant="secondary">
-                  Invite James to Speak
-                </CtaLink>
-              </div>
+              <CtaLink href="/about" variant="link" className="mt-6">
+                More About James <ArrowRightIcon className="size-4" />
+              </CtaLink>
             </div>
           </div>
         </Container>
@@ -293,8 +317,58 @@ export default async function AcademyPage({
     return <EnglishCoursePage />;
   }
 
+  if (slug[0] === "courses" && slug[1] && hasCoursePreview(slug[1])) {
+    const course = courses.find((item) => item.slug === slug[1]);
+    if (course) return <CoursePreviewPage course={course} />;
+  }
+
   const title = titleFromSlug(slug[slug.length - 1]);
   return <ComingSoon section="Jamezzi Academy" title={title} />;
+}
+
+function FeaturedCourseCard({
+  course,
+  image,
+  wide = false,
+}: {
+  course: (typeof launchingFirstCourses)[number];
+  image: string;
+  wide?: boolean;
+}) {
+  return (
+    <Link
+      href={`/academy/courses/${course.slug}`}
+      className={`group border-border bg-paper overflow-hidden rounded-[22px] border ${wide ? "lg:col-span-2 lg:grid lg:grid-cols-[1.08fr_0.92fr]" : ""}`}
+    >
+      <div
+        className={`relative overflow-hidden ${wide ? "min-h-[320px] lg:min-h-[410px]" : "aspect-[16/10]"}`}
+      >
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes={
+            wide
+              ? "(max-width: 1023px) 100vw, 55vw"
+              : "(max-width: 1023px) 100vw, 50vw"
+          }
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+        />
+      </div>
+      <div className="flex flex-col justify-center p-7 lg:p-10">
+        <p className="text-metadata text-indigo-dark">
+          {course.category} {course.free ? "· Free" : ""}
+        </p>
+        <h3 className="text-feature-headline-sm text-ink mt-4">
+          {course.title}
+        </h3>
+        <p className="text-body text-muted mt-4">{course.description}</p>
+        <span className="text-button text-indigo-dark mt-7 inline-flex items-center gap-2">
+          Explore Course <ArrowRightIcon className="size-4" />
+        </span>
+      </div>
+    </Link>
+  );
 }
 
 function PathwayCard({

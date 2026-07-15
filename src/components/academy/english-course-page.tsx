@@ -6,28 +6,39 @@ import { englishLevels } from "@/content/english-course";
 export function EnglishCoursePage() {
   return (
     <main className="bg-paper">
-      <section className="bg-night text-night-text pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <Container>
-          <div className="max-w-4xl">
-            <h1 className="text-editorial-headline text-night-text max-w-4xl">
+      <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[650px] lg:pt-[72px]">
+        <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
+          <Image
+            src="/images/academy/courses/english-for-beginners.webp"
+            alt="Adult learners practicing English together"
+            fill
+            priority
+            sizes="(max-width: 1023px) 100vw, 62vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
+        <Container className="relative z-10">
+          <div className="max-w-2xl py-14">
+            <p className="text-eyebrow text-indigo-dark">
+              JAMEZZI ACADEMY · FREE COURSE
+            </p>
+            <h1 className="text-editorial-headline text-ink mt-5 max-w-4xl">
               English for Beginners
             </h1>
-            <p className="font-display text-night-text mt-5 max-w-3xl text-3xl leading-tight md:text-4xl">
+            <p className="font-display text-ink mt-5 max-w-3xl text-3xl leading-tight md:text-4xl">
               Speak, understand, and use English in real life.
             </p>
-            <p className="text-intro text-night-muted mt-7 max-w-2xl">
+            <p className="text-intro text-muted mt-7 max-w-xl">
               A practical course for true beginners. Learn in clear steps,
               practice what you hear, and build confidence. The complete course
               is free, and you do not need an account to begin.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <CtaLink
-                href="/academy/courses/english-for-beginners/level-1"
-                variant="inverse"
-              >
+              <CtaLink href="/academy/courses/english-for-beginners/level-1">
                 Start Level 1 <ArrowRightIcon className="size-4" />
               </CtaLink>
-              <CtaLink href="#course-path" variant="outline-inverse">
+              <CtaLink href="#course-path" variant="secondary">
                 See the Course Path
               </CtaLink>
             </div>
@@ -153,3 +164,4 @@ function AccessRow({
     </article>
   );
 }
+import Image from "next/image";
