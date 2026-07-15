@@ -2815,6 +2815,687 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 4 — Fichye ak Dosye!" },
     ],
   },
+  {
+    slug: "wifi-and-connecting",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "📶",
+    heroTitle: "Wi-Fi ak Konekte",
+    heroLede:
+      "Chak aparèy bezwen yon fason pou konekte ak entènèt la anvan ou ka itilize l.",
+    goal: "🎯 Objektif: konekte nenpòt aparèy sou yon rezo Wi-Fi ak konfyans.",
+    simpleExplanation:
+      "**Wi-Fi** se yon siyal san fil ki konekte aparèy ou ak entènèt la, pa mwayen yon routè ki nan kay ou (oswa yon lòt kote). Pou konekte, ou chwazi non rezo a (SSID) epi antre modpas la yon sèl fwa — aparèy la sonje l apre sa.",
+    howItWorks: [
+      "Yon routè voye siyal Wi-Fi nan kay la",
+      "Aparèy ou chèche rezo ki disponib yo",
+      "Ou chwazi rezo a epi antre modpas la yon sèl fwa",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a modern Wi-Fi router with visible signal light indicators on a shelf in a home setting, warm natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/wifi-and-connecting.webp`,
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Klike sou ikòn Wi-Fi la nan kwen anba dwat ekran an, chwazi non rezo a nan lis la, epi antre modpas la.",
+        illustrationPrompt:
+          "A realistic photograph of a Windows laptop screen showing the Wi-Fi network selection panel with a list of available networks, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+        illustrationSrc: `${illustrationBase}/wifi-and-connecting-windows.webp`,
+      },
+      {
+        platform: "mac",
+        steps:
+          "Klike sou ikòn Wi-Fi la nan bawo meni anwo ekran an, chwazi non rezo a, epi antre modpas la.",
+        illustrationPrompt:
+          "A realistic photograph of a Mac laptop screen showing the Wi-Fi network selection menu from the top menu bar with a list of available networks, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+        illustrationSrc: `${illustrationBase}/wifi-and-connecting-mac.webp`,
+      },
+      {
+        platform: "android",
+        steps:
+          "Ale nan Settings > Wi-Fi, chwazi non rezo a nan lis la, epi antre modpas la.",
+      },
+      {
+        platform: "iphone",
+        steps:
+          "Ale nan Settings > Wi-Fi, chwazi non rezo a nan lis la, epi antre modpas la.",
+      },
+    ],
+    digitalWords: [
+      {
+        word: "Wi-Fi",
+        definition: "Siyal san fil ki konekte aparèy ou ak entènèt la.",
+        example: "Konekte telefòn ou sou Wi-Fi kay la pou ekonomize done.",
+      },
+      {
+        word: "Routè (Router)",
+        definition: "Aparèy ki voye siyal Wi-Fi la nan yon espas.",
+        example: "Routè a anjeneral gen yon limyè ki klere lè li mache byen.",
+      },
+      {
+        word: "SSID",
+        definition: "Non ofisyèl yon rezo Wi-Fi, sa ou wè nan lis la.",
+        example: "SSID kay ou a ka rele tankou 'Kay_Jean_5G'.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou rive lakay yon zanmi, ou mande modpas Wi-Fi a yon sèl fwa — apre sa, chak fwa ou tounen, telefòn ou konekte otomatikman san ou pa bezwen antre l ankò.",
+    mistakeWrong:
+      "Itilize done selilè (mobile data) lakay ou lè gen Wi-Fi disponib.",
+    mistakeCorrect: "Konekte sou Wi-Fi lakay ou pou ekonomize done selilè ou.",
+    mistakeWhy:
+      "⚠️ Done selilè koute lajan e li limite — Wi-Fi jeneralman ilimite lakay ou, se poutèt sa li pi saj pou itilize l lè ou ka.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou rezoud pwoblèm lè telefòn ou pa vle konekte sou Wi-Fi la.",
+    aiPrompt:
+      "Hi! My phone won't connect to my home Wi-Fi even though I'm entering the right password. Can you suggest simple things to try?",
+    mission:
+      "🎯 Misyon: konekte aparèy ou sou yon rezo Wi-Fi (oswa verifye ou deja konekte) epi idantifye non rezo a.",
+    quiz: {
+      prompt: "Kisa yon routè fè?",
+      options: [
+        "Li chaje batri aparèy ou",
+        "Li voye siyal Wi-Fi la nan yon espas",
+        "Li efase istwa navigasyon ou",
+        "Li konprese fichye",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Routè a voye siyal Wi-Fi la.",
+      wrongFeedback: "❌ Eseye ankò — panse ak wòl routè a nan kay la.",
+    },
+    recap: [
+      { emoji: "📶", text: "Wi-Fi konekte aparèy ou ak entènèt san fil." },
+      { emoji: "📡", text: "Routè a voye siyal la." },
+      { emoji: "🔑", text: "SSID ak modpas — antre yo yon sèl fwa." },
+      { emoji: "🎯", text: "Misyon: konekte oswa verifye konesyon Wi-Fi ou." },
+    ],
+  },
+  {
+    slug: "browser-basics",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🌐",
+    heroTitle: "Debaz Navigatè a (Browser)",
+    heroLede: "Aplikasyon ki louvri tout entènèt la pou ou.",
+    goal: "🎯 Objektif: rekonèt yon navigatè epi konprann wòl li.",
+    simpleExplanation:
+      "Yon **navigatè** (browser) se aplikasyon ou itilize pou al sou entènèt la — tankou Chrome, Safari, Edge, oswa Firefox. Se pòt dantre a pou tout sit entènèt, imèl sou entènèt, ak videyo sou entènèt.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a web browser open with multiple colorful browser icons floating above it (like Chrome, Safari, Edge, Firefox style circular icons), clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/browser-basics.webp`,
+    digitalWords: [
+      {
+        word: "Navigatè (Browser)",
+        definition: "Aplikasyon ou itilize pou al sou entènèt la.",
+        example: "Chrome ak Safari se de egzanp navigatè popilè.",
+      },
+      {
+        word: "Sit Entènèt (Website)",
+        definition: "Yon paj oswa gwoup paj ou ka vizite sou entènèt.",
+        example: "Sit Google la se youn nan sit ou vizite pi souvan.",
+      },
+    ],
+    realLifeExample:
+      "💡 Chak fwa ou 'al chèche yon bagay sou Google', se navigatè a ou louvri anvan — Google se sèlman yon sit ki louvri anndan navigatè a.",
+    mistakeWrong: "Konfonn navigatè a (Chrome, Safari) ak entènèt la limenm.",
+    mistakeCorrect:
+      "Konprann navigatè a se sèlman pòt la — entènèt la se tout rezo sit yo ki dèyè l.",
+    mistakeWhy:
+      "⚠️ Konprann diferans sa a ede w konprann poukisa gen plizyè navigatè ki egziste men se menm entènèt la yo tout ka vizite.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant plizyè navigatè popilè yo (Chrome, Safari, Edge, Firefox).",
+    aiPrompt:
+      "Hi! What's the difference between Chrome, Safari, Edge, and Firefox? Should I care which one I use?",
+    mission:
+      "🎯 Misyon: louvri navigatè ki deja sou aparèy ou epi idantifye non li.",
+    quiz: {
+      prompt: "Kisa yon navigatè (browser) ye?",
+      options: [
+        "Yon kalite fichye",
+        "Aplikasyon ou itilize pou al sou entènèt la",
+        "Yon rezo Wi-Fi",
+        "Yon kalite imèl",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Navigatè a se aplikasyon pou al sou entènèt.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak aplikasyon ou louvri pou Google.",
+    },
+    recap: [
+      { emoji: "🌐", text: "Navigatè = aplikasyon pou al sou entènèt." },
+      { emoji: "🧭", text: "Chrome, Safari, Edge, Firefox se egzanp." },
+      { emoji: "🔗", text: "Navigatè a se pòt dantre pou tout sit yo." },
+      { emoji: "🎯", text: "Misyon: idantifye navigatè ou." },
+    ],
+  },
+  {
+    slug: "search-engines-and-the-address-bar",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🔎",
+    heroTitle: "Motè Rechèch ak Bawo Adrès la",
+    heroLede: "De ti bwat ki gen de wòl trè diferan, byenke yo sanble.",
+    goal: "🎯 Objektif: konprann diferans ant chèche sou Google ak tape yon adrès web.",
+    simpleExplanation:
+      "Yon **motè rechèch** tankou Google ede w jwenn sit lè ou pa konnen non egzat li. Yon **bawo adrès** (address bar) se kote ou tape non egzat yon sit (tankou 'facebook.com') pou ale la dirèkteman. Jodi a, souvan menm bawo a fè toude travay.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a browser address bar at the top with a search results page below it, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/search-engines-and-the-address-bar.webp`,
+    digitalWords: [
+      {
+        word: "Motè Rechèch (Search Engine)",
+        definition:
+          "Sèvis tankou Google ki jwenn sit entènèt pou ou selon mo ou tape.",
+        example: "Tape 'meyè restoran nan Pòtoprens' nan Google.",
+      },
+      {
+        word: "Bawo Adrès (Address Bar)",
+        definition: "Kote ou tape non egzat yon sit pou ale la dirèkteman.",
+        example:
+          "Tape 'gmail.com' nan bawo adrès la pou al dirèkteman sou Gmail.",
+      },
+      {
+        word: "URL",
+        definition: "Adrès konplè yon paj sou entènèt.",
+        example: "'https://www.google.com' se yon URL.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou konnen non egzat sit la (facebook.com), tape l dirèkteman nan bawo adrès la — pi rapid pase chèche 'Facebook' sou Google epi klike sou rezilta a.",
+    mistakeWrong:
+      "Tape non yon sit nan Google epi klike sou premye rezilta a chak fwa.",
+    mistakeCorrect:
+      "Si ou konnen adrès egzat la, tape l dirèkteman nan bawo adrès la.",
+    mistakeWhy:
+      "⚠️ Klike toujou sou premye rezilta Google a san verifye ka mennen w sou yon sit fo ki sanble ak orijinal la — sitou pou bagay tankou labank.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou rekonèt si yon rezilta rechèch se yon reklam olye de yon rezilta natirèl.",
+    aiPrompt:
+      "Hi! How can I tell the difference between an ad and a real search result on Google?",
+    mission:
+      "🎯 Misyon: tape non yon sit ou konnen dirèkteman nan bawo adrès la, san pase pa Google.",
+    quiz: {
+      prompt: "Ki diferans genyen ant motè rechèch ak bawo adrès?",
+      options: [
+        "Pa gen okenn diferans",
+        "Motè rechèch jwenn sit pou ou; bawo adrès mennen w dirèkteman si ou konnen adrès la",
+        "Bawo adrès sèlman pou imèl",
+        "Motè rechèch sèlman mache sou telefòn",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yo gen de wòl diferan.",
+      wrongFeedback:
+        "❌ Eseye ankò — repase egzanp Google vs. tape yon adrès dirèkteman.",
+    },
+    recap: [
+      { emoji: "🔎", text: "Motè rechèch jwenn sit lè ou pa konnen non li." },
+      {
+        emoji: "📫",
+        text: "Bawo adrès mennen w dirèkteman si ou konnen adrès la.",
+      },
+      { emoji: "🔗", text: "URL se adrès konplè yon paj." },
+      { emoji: "🎯", text: "Misyon: tape yon adrès dirèkteman." },
+    ],
+  },
+  {
+    slug: "tabs-and-bookmarks",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "📑",
+    heroTitle: "Tabs ak Bookmarks",
+    heroLede: "Louvri plizyè paj an menm tan epi sovgade sa ou vle jwenn ankò.",
+    goal: "🎯 Objektif: jere plizyè tabs epi sovgade paj enpòtan ak bookmarks.",
+    simpleExplanation:
+      "Yon **tab** kite w louvri plizyè paj entènèt an menm tan nan yon sèl fennèt navigatè — tankou plizyè liv louvri sou yon tab. Yon **bookmark** (oswa favorite) sovgade yon paj pou ou jwenn li ankò rapid, san chèche l ankò.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a browser with multiple open tabs at the top and a bookmarks bar below, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/tabs-and-bookmarks.webp`,
+    digitalWords: [
+      {
+        word: "Tab",
+        definition:
+          "Yon paj entènèt ki louvri apa, anndan menm fennèt navigatè a.",
+        example: "Louvri twa tabs pou konpare pri sou twa sit diferan.",
+      },
+      {
+        word: "Bookmark (Favorite)",
+        definition: "Yon paj ou sovgade pou jwenn li ankò rapid.",
+        example: "Bookmark sit labank ou pou jwenn li san chèche l chak fwa.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou ap konpare pri sou twa sit diferan, louvri twa tabs olye de ale-vini ant yon sèl tab — pi rapid pou konpare.",
+    mistakeWrong: "Fèmen navigatè a nèt epi chèche menm sit la ankò chak fwa.",
+    mistakeCorrect:
+      "Bookmark sit ou vizite souvan pou jwenn yo an yon sèl klik.",
+    mistakeWhy:
+      "⚠️ Chèche menm sit la sou Google chak fwa pèdi tan — bookmark bay yon rakousi dirèk.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou òganize bookmarks ou an gwoup (folders), menm jan ak dosye fichye.",
+    aiPrompt:
+      "Hi! Can you explain how to organize my browser bookmarks into folders, like 'Work' and 'Shopping'?",
+    mission:
+      "🎯 Misyon: louvri de tabs an menm tan epi bookmark yon sit ou vizite souvan.",
+    quiz: {
+      prompt: "Ki avantaj yon bookmark bay ou?",
+      options: [
+        "Li efase istwa navigasyon",
+        "Li jwenn yon paj ankò rapid san chèche l",
+        "Li konekte w sou Wi-Fi",
+        "Li konprese fichye",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Bookmark bay yon rakousi dirèk.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki fè yon bookmark itil.",
+    },
+    recap: [
+      { emoji: "📑", text: "Tabs kite w louvri plizyè paj an menm tan." },
+      { emoji: "⭐", text: "Bookmark sovgade yon paj pou jwenn li rapid." },
+      { emoji: "📂", text: "Ou ka òganize bookmarks an gwoup." },
+      { emoji: "🎯", text: "Misyon: louvri de tabs epi bookmark yon sit." },
+    ],
+  },
+  {
+    slug: "history-and-cache",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🕘",
+    heroTitle: "Istwa Navigasyon ak Cache",
+    heroLede:
+      "Yon lis sa ou vizite deja, ak yon mekanis ki fè sit yo chaje pi vit.",
+    goal: "🎯 Objektif: itilize istwa navigasyon epi konprann wòl cache la.",
+    simpleExplanation:
+      "**Istwa navigasyon** (history) se lis tout sit ou vizite deja — itil lè ou bliye non yon sit. **Cache** se yon ti mémwa navigatè a kenbe pou fè sit yo chaje pi vit lè ou tounen vizite yo.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a browser history list with a clock icon, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/history-and-cache.webp`,
+    digitalWords: [
+      {
+        word: "Istwa (History)",
+        definition: "Lis tout sit ou vizite deja nan navigatè a.",
+        example: "Gade istwa ou pou jwenn yon sit ou vizite semenn pase.",
+      },
+      {
+        word: "Cache",
+        definition: "Ti mémwa navigatè a kenbe pou fè sit chaje pi vit.",
+        example: "Vide cache si yon sit ap fè bagay dwòl oswa pa chaje byen.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou vizite yon atik entèsan yè men ou bliye non sit la, gade istwa navigasyon ou pou jwenn li ankò.",
+    mistakeWrong: "Panse yon sit ki pa chaje byen kraze pou tout bon.",
+    mistakeCorrect:
+      "Vide cache navigatè a anvan, sa souvan rezoud pwoblèm nan.",
+    mistakeWhy:
+      "⚠️ Cache ka vin 'vye' oswa domaje ak tan — vide l souvan rezoud pwoblèm sit ki pa chaje byen san bezwen lòt solisyon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou vide cache ak istwa nan navigatè espesifik ou (Chrome, Safari, elatriye).",
+    aiPrompt:
+      "Hi! Can you explain how to clear my browsing history and cache in Chrome or Safari?",
+    mission:
+      "🎯 Misyon: gade istwa navigasyon ou epi idantifye dènye twa sit ou vizite.",
+    quiz: {
+      prompt: "Ki wòl cache la jwe?",
+      options: [
+        "Li sovgade modpas ou",
+        "Li fè sit chaje pi vit lè ou tounen vizite yo",
+        "Li efase istwa navigasyon",
+        "Li konekte w sou Wi-Fi",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Cache fè sit chaje pi vit.",
+      wrongFeedback: "❌ Eseye ankò — panse ak vitès chajman sit yo.",
+    },
+    recap: [
+      { emoji: "🕘", text: "Istwa = lis sit ou vizite deja." },
+      { emoji: "⚡", text: "Cache fè sit chaje pi vit." },
+      { emoji: "🧹", text: "Vide cache si yon sit ap bogue." },
+      { emoji: "🎯", text: "Misyon: gade istwa navigasyon ou." },
+    ],
+  },
+  {
+    slug: "cookies-explained",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🍪",
+    heroTitle: "Cookies Eksplike",
+    heroLede: "Ti fichye ki fè sit yo sonje ou soti yon vizit rive yon lòt.",
+    goal: "🎯 Objektif: konprann sa yon cookie ye epi poukisa sit yo itilize yo.",
+    simpleExplanation:
+      "Yon **cookie** se yon ti fichye yon sit sovgade sou aparèy ou pou sonje enfòmasyon — tankou si ou konekte deja, oswa sa ou te gen nan panyen acha ou. San cookies, chak sit ta 'bliye' ou chak fwa ou rechaje paj la.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing website cookies — a laptop screen with a small cookie icon notification overlay, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/cookies-explained.webp`,
+    digitalWords: [
+      {
+        word: "Cookie",
+        definition:
+          "Ti fichye yon sit sovgade sou aparèy ou pou sonje enfòmasyon.",
+        example: "Cookie a sonje ou konekte deja sou sit la.",
+      },
+      {
+        word: "Konsantman Cookie (Cookie Consent)",
+        definition: "Mesaj ki mande pèmisyon ou anvan yon sit itilize cookies.",
+        example: "Aksepte oswa refize cookies lè ou wè popup la.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou mete yon bagay nan panyen acha sou yon sit epi ou fèmen navigatè a, cookies fè bagay la rete la lè ou tounen — san yo, panyen an ta vid chak fwa.",
+    mistakeWrong: "Aksepte tout cookies san reflechi, sou nenpòt sit.",
+    mistakeCorrect:
+      "Li mesaj cookie a epi refize cookies ki pa nesesè sou sit ou pa fè konfyans.",
+    mistakeWhy:
+      "⚠️ Kèk cookies swiv aktivite ou sou plizyè sit pou fè piblisite — pa gen danje imedya, men bon prensip se limite sa ou pataje san rezon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant cookies ki nesesè ak cookies ki swiv ou pou piblisite.",
+    aiPrompt:
+      "Hi! What's the difference between 'necessary' cookies and 'tracking' cookies when a website asks me to accept cookies?",
+    mission:
+      "🎯 Misyon: pwochen fwa ou wè yon popup cookie, li l epi chwazi konsyaman.",
+    quiz: {
+      prompt: "Kisa yon cookie fè?",
+      options: [
+        "Li efase istwa navigasyon",
+        "Li sonje enfòmasyon sou ou soti yon vizit rive yon lòt",
+        "Li konekte w sou Wi-Fi",
+        "Li konprese fichye",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Cookie sonje enfòmasyon soti yon vizit rive yon lòt.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki rive panyen acha ou.",
+    },
+    recap: [
+      { emoji: "🍪", text: "Cookie sonje enfòmasyon sou ou." },
+      { emoji: "🛒", text: "San yo, panyen acha ta vid chak fwa." },
+      { emoji: "🤔", text: "Li mesaj konsantman anvan ou aksepte." },
+      {
+        emoji: "🎯",
+        text: "Misyon: li ak chwazi konsyaman pwochen popup cookie.",
+      },
+    ],
+  },
+  {
+    slug: "incognito-mode",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🕶️",
+    heroTitle: "Incognito ak Navigasyon Prive",
+    heroLede: "Navige san navigatè a sonje kote ou te ale.",
+    goal: "🎯 Objektif: itilize navigasyon prive lè sitiyasyon an mande l.",
+    simpleExplanation:
+      "**Mòd Incognito** (oswa navigasyon prive) louvri yon fennèt espesyal ki pa sovgade istwa, cookies, oswa done fòm apre ou fèmen l. Li itil lè ou itilize yon aparèy ki pa pa ou, oswa lè ou pa vle sit sonje w.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a dark-themed private browsing window with a subtle detective hat or glasses icon indicator, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/incognito-mode.webp`,
+    digitalWords: [
+      {
+        word: "Incognito / Navigasyon Prive",
+        definition:
+          "Yon fennèt navigatè ki pa sovgade istwa oswa cookies apre ou fèmen l.",
+        example:
+          "Louvri yon fennèt incognito pou konekte sou yon kont ki pa pa ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou dwe konekte sou imèl ou sou yon òdinatè piblik (nan yon sant kominotè), itilize incognito pou navigatè a pa sonje modpas ou apre ou fin itilize l.",
+    mistakeWrong: "Panse mòd incognito fè w konplètman envizib sou entènèt la.",
+    mistakeCorrect:
+      "Konprann incognito sèlman anpeche navigatè a sovgade istwa lokal — sit ou vizite ka toujou wè aktivite ou.",
+    mistakeWhy:
+      "⚠️ Incognito pa yon zouti sekirite total — li pwoteje aparèy lokal ou (moun ki itilize l apre ou), men pa kache ou nan men entènèt sèvis yo.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki limit reyèl mòd incognito genyen, pou ou pa depann sou li twòp.",
+    aiPrompt:
+      "Hi! What does incognito/private browsing actually protect me from, and what does it NOT protect me from?",
+    mission:
+      "🎯 Misyon: louvri yon fennèt incognito sou navigatè ou epi vizite yon sit ladan l.",
+    quiz: {
+      prompt: "Kisa mòd incognito fè?",
+      options: [
+        "Li fè w envizib nèt sou entènèt",
+        "Li anpeche navigatè a sovgade istwa ak cookies lokalman",
+        "Li konprese fichye ou",
+        "Li chanje modpas ou otomatikman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li anpeche sovgad lokal.",
+      wrongFeedback: "❌ Eseye ankò — panse ak limit reyèl mòd sa a.",
+    },
+    recap: [
+      { emoji: "🕶️", text: "Incognito pa sovgade istwa/cookies lokalman." },
+      { emoji: "🖥️", text: "Itil sou aparèy pataje oswa piblik." },
+      { emoji: "⚠️", text: "Li pa fè w envizib nèt sou entènèt." },
+      { emoji: "🎯", text: "Misyon: louvri epi itilize yon fennèt incognito." },
+    ],
+  },
+  {
+    slug: "links-and-qr-codes",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🔗",
+    heroTitle: "Lyen ak Kòd QR",
+    heroLede:
+      "De fason rapid pou ale sou yon sit, ak yon prensip sekirite enpòtan.",
+    goal: "🎯 Objektif: swiv lyen ak eskane kòd QR an sekirite.",
+    simpleExplanation:
+      "Yon **lyen** (link) se tèks oswa imaj ou klike pou ale sou yon lòt paj. Yon **kòd QR** se yon ti kare ak modèl nwa-blan ou eskane ak kamera telefòn ou pou ale dirèkteman sou yon sit, san tape anyen.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone camera scanning a QR code on a printed flyer or menu, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/links-and-qr-codes.webp`,
+    digitalWords: [
+      {
+        word: "Lyen (Link)",
+        definition: "Tèks oswa imaj ou klike pou ale sou yon lòt paj entènèt.",
+        example: "Klike sou lyen ble a nan imèl la pou konfime kont ou.",
+      },
+      {
+        word: "Kòd QR (QR Code)",
+        definition: "Yon ti kare eskanab ki mennen w dirèkteman sou yon sit.",
+        example: "Eskane kòd QR nan meni restoran an pou wè pri yo.",
+      },
+    ],
+    realLifeExample:
+      "💡 Nan anpil restoran kounye a, ou eskane yon kòd QR sou tab la pou wè meni an sou telefòn ou, olye de yon meni papye.",
+    mistakeWrong:
+      "Klike sou nenpòt lyen oswa eskane nenpòt kòd QR san verifye sous li.",
+    mistakeCorrect:
+      "Verifye sous lyen an oswa kòd QR la anvan ou klike, sitou si li mande enfòmasyon pèsonèl.",
+    mistakeWhy:
+      "⚠️ Move moun ka kreye fo kòd QR oswa lyen ki mennen w sou yon sit fo ki vòlè enfòmasyon ou — sa rele fisik (phishing).",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou rekonèt yon lyen oswa kòd QR sispèk anvan ou klike sou li.",
+    aiPrompt:
+      "Hi! How can I tell if a link or QR code might be a scam before I click or scan it?",
+    mission:
+      "🎯 Misyon: eskane yon kòd QR ou fè konfyans (tankou nan yon restoran) epi obsève kote li mennen w.",
+    quiz: {
+      prompt: "Kisa ou ta dwe fè anvan ou klike sou yon lyen ou pa rekonèt?",
+      options: [
+        "Klike imedyatman",
+        "Verifye sous li anvan ou klike",
+        "Voye l bay tout kontak ou",
+        "Efase navigatè a",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Toujou verifye sous la anvan.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sekirite anvan tout bagay.",
+    },
+    recap: [
+      { emoji: "🔗", text: "Lyen mennen w sou yon lòt paj lè ou klike." },
+      { emoji: "📱", text: "Kòd QR eskanab ak kamera telefòn." },
+      { emoji: "🎣", text: "Verifye sous anvan ou klike/eskane." },
+      { emoji: "🎯", text: "Misyon: eskane yon kòd QR ou fè konfyans." },
+    ],
+  },
+  {
+    slug: "downloads-and-uploads",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "⬆️",
+    heroTitle: "Downloads ak Uploads",
+    heroLede: "De direksyon fichye yo vwayaje ant aparèy ou ak entènèt la.",
+    goal: "🎯 Objektif: telechaje ak voye fichye sou entènèt ak konfyans.",
+    simpleExplanation:
+      "**Download** (telechaje) vle di pran yon fichye sou entènèt epi mete l sou aparèy ou. **Upload** (voye) se lekontrè — pran yon fichye ki sou aparèy ou epi mete l sou entènèt (tankou voye yon foto sou Facebook).",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a download progress bar with a downward arrow icon, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/downloads-and-uploads.webp`,
+    digitalWords: [
+      {
+        word: "Download (Telechaje)",
+        definition: "Pran yon fichye sou entènèt epi mete l sou aparèy ou.",
+        example: "Download PDF fòm nan sou sit gouvènman an.",
+      },
+      {
+        word: "Upload (Voye)",
+        definition: "Pran yon fichye ki sou aparèy ou epi mete l sou entènèt.",
+        example: "Upload foto ou pran ak telefòn ou sou Facebook.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou 'download' yon aplikasyon, li vwayaje soti sou entènèt pou rive sou telefòn ou. Lè ou 'upload' yon foto sou Instagram, li vwayaje soti sou telefòn ou pou rive sou entènèt.",
+    mistakeWrong:
+      "Download fichye ki soti nan sit ou pa rekonèt oswa ki sispèk.",
+    mistakeCorrect: "Download sèlman nan sit ofisyèl oswa sous ou fè konfyans.",
+    mistakeWhy:
+      "⚠️ Download fichye soti nan yon sit sispèk ka mete yon viris oswa lojisyèl danjere sou aparèy ou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou rekonèt si yon sit download se yon sit ofisyèl anvan ou telechaje yon bagay.",
+    aiPrompt:
+      "Hi! How can I tell if a download link is from a safe, official source before I click it?",
+    mission:
+      "🎯 Misyon: download yon fichye ou konnen ki an sekirite (tankou yon PDF ofisyèl) epi jwenn li nan dosye Downloads ou.",
+    quiz: {
+      prompt: "Kisa 'upload' vle di?",
+      options: [
+        "Pran yon fichye sou entènèt pou mete l sou aparèy ou",
+        "Pran yon fichye ki sou aparèy ou pou mete l sou entènèt",
+        "Efase yon fichye",
+        "Konprese yon fichye",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Upload voye yon fichye sou entènèt.",
+      wrongFeedback: "❌ Eseye ankò — panse ak direksyon opoze download.",
+    },
+    recap: [
+      { emoji: "⬇️", text: "Download pran yon fichye sou entènèt." },
+      { emoji: "⬆️", text: "Upload voye yon fichye sou entènèt." },
+      { emoji: "🛡️", text: "Download sèlman nan sous ou fè konfyans." },
+      { emoji: "🎯", text: "Misyon: download yon fichye an sekirite." },
+    ],
+  },
+  {
+    slug: "data-usage-awareness",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "📊",
+    heroTitle: "Konsyans sou Itilizasyon Done",
+    heroLede:
+      "Wi-Fi ilimite se yon bagay, done selilè se yon lòt — konnen diferans lan ka ekonomize lajan ou.",
+    goal: "🎯 Objektif: distenge Wi-Fi ak done selilè epi kontwole itilizasyon done ou.",
+    simpleExplanation:
+      "**Wi-Fi** jeneralman ilimite lè ou peye pou li yon fwa pa mwa. **Done selilè** (cellular/mobile data) se sa telefòn ou itilize lè li pa sou Wi-Fi — souvan limite ak yon kantite mo (megabit/gigabit) ou peye pou li. Konnen ki lè w ap itilize chak grenn ede w evite depans initil.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a data usage settings panel with a simple bar chart, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/data-usage-awareness.webp`,
+    digitalWords: [
+      {
+        word: "Done Selilè (Cellular/Mobile Data)",
+        definition:
+          "Entènèt telefòn ou itilize lè li pa sou Wi-Fi, souvan limite.",
+        example: "Gade videyo long yo lè ou sou Wi-Fi, pa sou done selilè.",
+      },
+      {
+        word: "GB (Gigabit)",
+        definition: "Inite ki mezire konbyen done ou itilize oswa genyen.",
+        example: "Plan telefòn ou ka gen 5 GB done chak mwa.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou gade yon videyo long sou YouTube pandan ou sou done selilè (pa sou Wi-Fi), ou ka fini tout done mwa a nan yon sèl jou.",
+    mistakeWrong:
+      "Gade videyo long oswa telechaje gwo fichye san verifye si ou sou Wi-Fi.",
+    mistakeCorrect:
+      "Verifye si ou sou Wi-Fi anvan aktivite ki itilize anpil done (videyo, download gwo fichye).",
+    mistakeWhy:
+      "⚠️ Fini done selilè ou avan lè ka koute lajan siplemantè oswa kite w san entènèt jiskaske plan an renouvle.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou verifye konbyen done telefòn ou deja itilize mwa sa a.",
+    aiPrompt:
+      "Hi! Can you explain how to check how much cellular data I've used this month on my phone?",
+    mission:
+      "🎯 Misyon: verifye konbyen done selilè ou itilize mwa sa a nan Settings telefòn ou.",
+    quiz: {
+      prompt: "Kilè li pi saj pou gade yon videyo long?",
+      options: [
+        "Lè ou sou done selilè",
+        "Lè ou sou Wi-Fi",
+        "Pa gen okenn diferans",
+        "Sèlman lannwit",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Wi-Fi jeneralman ilimite, pi saj pou videyo long.",
+      wrongFeedback: "❌ Eseye ankò — panse ak ki rezo ki koute plis lajan.",
+    },
+    recap: [
+      { emoji: "📶", text: "Wi-Fi jeneralman ilimite." },
+      { emoji: "📱", text: "Done selilè limite e li ka koute plis." },
+      { emoji: "📊", text: "Verifye itilizasyon done ou regilyèman." },
+      { emoji: "🎯", text: "Misyon: verifye done selilè ou itilize mwa sa a." },
+    ],
+  },
+  {
+    slug: "internet-mastery-mission",
+    moduleTitle: "Modil 5: Metrize Entènèt la",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Metrize Entènèt la",
+    heroLede:
+      "Konbine tout konpetans Modil 5 pou navige sou entènèt ak konfyans total.",
+    goal: "🎯 Objektif: browse, chèche, ak itilize entènèt la an sekirite ak efikasite.",
+    simpleExplanation:
+      "Ou fèk aprann: Wi-Fi, navigatè, motè rechèch vs. bawo adrès, tabs, bookmarks, istwa, cache, cookies, incognito, lyen, kòd QR, downloads, uploads, ak konsyans done. Misyon sa a mande w konbine plizyè nan konpetans sa yo.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently browsing the internet on a laptop at a bright desk, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/internet-mastery-mission.webp`,
+    digitalWords: [
+      {
+        word: "Metriz Entènèt",
+        definition:
+          "Kapasite pou navige, chèche, ak itilize entènèt an sekirite ak efikasite.",
+        example:
+          "Metriz entènèt fè lavi dijital ou pi rapid ak pi an sekirite.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki metrize entènèt jwenn enfòmasyon pi vit, evite arnak, epi pa gaspiye done selilè san rezon.",
+    mistakeWrong:
+      "Panse ou dwe konnen tout bagay sou entènèt anvan ou kòmanse itilize l.",
+    mistakeCorrect:
+      "Konprann konpetans debaz sa yo ase pou kòmanse ak konfyans — rès la vin natirèl ak pratik.",
+    mistakeWhy:
+      "⚠️ Atann pèfeksyon anvan ou kòmanse anpeche w aprann — pi bon fason se pratike sa ou fèk aprann yo.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI konsèy sou kijan pou kontinye aprann sou entènèt an sekirite.",
+    aiPrompt:
+      "Hi! I just learned the basics of browsing the internet safely (Wi-Fi, browsers, cookies, incognito, links, downloads). What should I focus on learning next?",
+    mission:
+      "🎯 Misyon Final Modil 5: konekte sou Wi-Fi, louvri de tabs, chèche yon bagay sou Google, epi bookmark yon sit ou vle jwenn ankò.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 5 la?",
+      options: [
+        "Vin yon enjenyè rezo",
+        "Browse, chèche, ak itilize entènèt an sekirite ak efikasite",
+        "Memorize tout kòd QR ki egziste",
+        "Efase tout cookies chak jou",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Objektif la se browse, chèche, ak itilize an sekirite.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 5 la.",
+    },
+    recap: [
+      { emoji: "📶", text: "Wi-Fi, navigatè, motè rechèch vs. bawo adrès." },
+      {
+        emoji: "📑",
+        text: "Tabs, bookmarks, istwa, cache, cookies, incognito.",
+      },
+      { emoji: "🔗", text: "Lyen, kòd QR, downloads, uploads, konsyans done." },
+      { emoji: "🎓", text: "Ou fini Modil 5 — Metrize Entènèt la!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {

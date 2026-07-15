@@ -35,6 +35,14 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleFourLessons.at(-1)?.slug).toBe("files-and-folders-mission");
   });
 
+  it("Module 5 starts with wifi-and-connecting and ends with its mission", () => {
+    const moduleFiveLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 5,
+    );
+    expect(moduleFiveLessons[0]?.slug).toBe("wifi-and-connecting");
+    expect(moduleFiveLessons.at(-1)?.slug).toBe("internet-mastery-mission");
+  });
+
   it("gives screenshots-and-screen-recording steps for all four platforms", () => {
     const lesson = computerPremiumLessons.find(
       (item) => item.slug === "screenshots-and-screen-recording",
