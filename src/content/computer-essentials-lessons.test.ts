@@ -61,6 +61,14 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleSevenLessons.at(-1)?.slug).toBe("mobile-devices-mission");
   });
 
+  it("Module 8 starts with google-drive and ends with its mission", () => {
+    const moduleEightLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 8,
+    );
+    expect(moduleEightLessons[0]?.slug).toBe("google-drive");
+    expect(moduleEightLessons.at(-1)?.slug).toBe("google-ecosystem-mission");
+  });
+
   it("gives screenshots-and-screen-recording steps for all four platforms", () => {
     const lesson = computerPremiumLessons.find(
       (item) => item.slug === "screenshots-and-screen-recording",

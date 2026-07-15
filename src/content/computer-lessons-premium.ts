@@ -4929,6 +4929,646 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 7 — Aparèy Mobil!" },
     ],
   },
+  {
+    slug: "google-drive",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🗄️",
+    heroTitle: "Google Drive",
+    heroLede: "Yon disk dou gratis ki viv nan cloud la, pa sou aparèy ou.",
+    goal: "🎯 Objektif: sovgade ak pataje fichye ak Google Drive.",
+    simpleExplanation:
+      "**Google Drive** se yon sèvis cloud gratis kote ou sovgade fichye (dokiman, foto, PDF) pou jwenn yo sou nenpòt aparèy, kèlkeswa kote ou ye. Chak kont Gmail vin ak Drive otomatikman, ak espas gratis pou kòmanse.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a cloud storage file browser interface with colorful file and folder icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-drive.webp`,
+    digitalWords: [
+      {
+        word: "Google Drive",
+        definition: "Sèvis cloud gratis Google pou sovgade ak pataje fichye.",
+        example: "Sovgade CV ou nan Drive pou jwenn li sou nenpòt aparèy.",
+      },
+      {
+        word: "Pataje (Share)",
+        definition:
+          "Bay yon lòt moun aksè pou wè oswa modifye yon fichye Drive.",
+        example: "Pataje yon dokiman ak yon kolèg pou travay ansanm.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou sovgade yon dokiman nan Google Drive sou telefòn ou, ou ka louvri menm dokiman an sou òdinatè yon zanmi — li rete menm kote, sou nenpòt aparèy.",
+    mistakeWrong:
+      "Sovgade fichye enpòtan sèlman sou yon sèl aparèy, san backup.",
+    mistakeCorrect:
+      "Sovgade fichye enpòtan nan Google Drive pou jwenn yo kèlkeswa aparèy.",
+    mistakeWhy:
+      "⚠️ Si aparèy ou pèdi oswa kraze san fichye yo sou Drive, ou ka pèdi dokiman enpòtan pou tout bon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou pataje yon fichye Drive ak yon moun ki ka wè l sèlman, san modifye l.",
+    aiPrompt:
+      "Hi! Can you explain how to share a Google Drive file with someone so they can only view it, not edit it?",
+    mission:
+      "🎯 Misyon: telechaje yon fichye nan Google Drive ou (oswa kreye yon nouvo dosye ladan l).",
+    quiz: {
+      prompt: "Ki avantaj prensipal Google Drive bay ou?",
+      options: [
+        "Li efase fichye ou otomatikman",
+        "Ou jwenn fichye ou sou nenpòt aparèy, kèlkeswa kote ou ye",
+        "Li sèlman mache sou telefòn",
+        "Li konprese foto ou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Drive kite w jwenn fichye ou toupatou.",
+      wrongFeedback: "❌ Eseye ankò — panse ak avantaj cloud la.",
+    },
+    recap: [
+      { emoji: "🗄️", text: "Drive = sèvis cloud gratis pou fichye ou." },
+      { emoji: "🔗", text: "Vin ak chak kont Gmail otomatikman." },
+      { emoji: "📤", text: "Pataje fichye fasil ak lòt moun." },
+      {
+        emoji: "🎯",
+        text: "Misyon: telechaje oswa kreye yon dosye nan Drive.",
+      },
+    ],
+  },
+  {
+    slug: "google-docs",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "📄",
+    heroTitle: "Google Docs",
+    heroLede: "Yon dokiman ki sovgade tèt li chak segonn, san ou pa fè anyen.",
+    goal: "🎯 Objektif: ekri ak pataje yon dokiman ak Google Docs.",
+    simpleExplanation:
+      "**Google Docs** se yon aplikasyon pou ekri dokiman (tankou Word) ki mache dirèkteman nan navigatè a — pa gen bezwen enstale anyen. Li **sovgade otomatikman** pandan ou ap ekri, epi plizyè moun ka modifye menm dokiman an an menm tan.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a word processing document editor with a cursor and paragraph text, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-docs.webp`,
+    digitalWords: [
+      {
+        word: "Google Docs",
+        definition: "Aplikasyon gratis Google pou ekri dokiman nan navigatè a.",
+        example: "Ekri yon lèt aplikasyon djòb nan Google Docs.",
+      },
+      {
+        word: "Sovgad Otomatik (Auto-Save)",
+        definition:
+          "Fonksyon ki sovgade travay ou san ou pa bezwen klike anyen.",
+        example: "Sovgad otomatik anpeche w pèdi travay si Wi-Fi la koupe.",
+      },
+    ],
+    realLifeExample:
+      "💡 Kontrèman ak Word tradisyonèl, si telefòn ou touye oswa navigatè a fèmen pa aksidan, ou pa pèdi travay ou nan Google Docs — li te deja sovgade otomatikman.",
+    mistakeWrong:
+      "Chèche yon bouton 'Save' nan Google Docs paske ou abitye ak Word.",
+    mistakeCorrect:
+      "Konprann Google Docs sovgade otomatikman — pa gen bezwen chèche bouton Save.",
+    mistakeWhy:
+      "⚠️ Pèdi tan chèche yon bouton ki pa egziste, oswa panike lè ou pa wè l, se konfizyon komen pou moun ki fèk sòti nan Word.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou telechaje yon dokiman Google Docs an PDF oswa Word si ou bezwen l an fòma sa.",
+    aiPrompt:
+      "Hi! Can you explain how to download a Google Docs document as a PDF or Word file?",
+    mission:
+      "🎯 Misyon: kreye yon nouvo dokiman nan Google Docs epi ekri yon ti paragraf tès.",
+    quiz: {
+      prompt: "Kilè Google Docs sovgade travay ou?",
+      options: [
+        "Sèlman lè ou klike Save",
+        "Otomatikman, pandan ou ap ekri",
+        "Sèlman lè ou fèmen dokiman an",
+        "Jamè, ou dwe telechaje l chak fwa",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li sovgade otomatikman pandan ou ekri.",
+      wrongFeedback: "❌ Eseye ankò — panse ak avantaj sovgad otomatik.",
+    },
+    recap: [
+      { emoji: "📄", text: "Google Docs mache dirèkteman nan navigatè a." },
+      { emoji: "💾", text: "Sovgad otomatik pandan ou ap ekri." },
+      { emoji: "👥", text: "Plizyè moun ka modifye an menm tan." },
+      { emoji: "🎯", text: "Misyon: kreye yon nouvo dokiman tès." },
+    ],
+  },
+  {
+    slug: "google-sheets",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "📊",
+    heroTitle: "Google Sheets",
+    heroLede: "Fèy kalkil gratis pou swiv nimewo, lis, ak bidjè.",
+    goal: "🎯 Objektif: kreye yon fèy kalkil senp ak Google Sheets.",
+    simpleExplanation:
+      "**Google Sheets** se yon aplikasyon fèy kalkil (tankou Excel) ki òganize enfòmasyon an ranje ak kolòn. Li itil pou bidjè, lis envantè, oswa nenpòt bagay ki mande kalkile oswa konte.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a spreadsheet application with rows, columns, and a simple colorful bar chart, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-sheets.webp`,
+    digitalWords: [
+      {
+        word: "Google Sheets",
+        definition: "Aplikasyon gratis Google pou fèy kalkil ak tablo.",
+        example: "Swiv bidjè fanmi ou nan yon fèy Google Sheets.",
+      },
+      {
+        word: "Selil (Cell)",
+        definition:
+          "Yon ti bwat nan fèy kalkil kote ou antre yon valè oswa tèks.",
+        example: "Antre '500' nan yon selil pou reprezante yon depans.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou vann pwodwi nan yon ti biznis, itilize Google Sheets pou swiv envantè ou — konbyen ou vann, konbyen ki rete, ak konbyen lajan ou fè.",
+    mistakeWrong:
+      "Kalkile bidjè oswa lis konplèks manyèlman sou papye chak fwa.",
+    mistakeCorrect:
+      "Itilize Google Sheets pou fè kalkil otomatik ak kenbe done òganize.",
+    mistakeWhy:
+      "⚠️ Kalkil manyèl pran plis tan e li fasil pou fè erè — Sheets fè kalkil yo pou ou otomatikman.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou kreye yon fòmil senp nan Google Sheets pou adisyone yon kolòn nimewo.",
+    aiPrompt:
+      "Hi! Can you explain how to write a simple formula in Google Sheets to add up a column of numbers?",
+    mission:
+      "🎯 Misyon: kreye yon fèy kalkil senp nan Google Sheets ak twa ranje enfòmasyon.",
+    quiz: {
+      prompt: "Ki sitiyasyon Google Sheets itil pi plis?",
+      options: [
+        "Ekri yon lèt long",
+        "Swiv nimewo, lis, oswa yon bidjè",
+        "Fè yon apèl videyo",
+        "Pran yon nòt kout",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sheets fèt pou nimewo ak lis.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sitiyasyon ki mande kalkile.",
+    },
+    recap: [
+      { emoji: "📊", text: "Sheets = fèy kalkil gratis pou nimewo/lis." },
+      { emoji: "🔢", text: "Selil kenbe chak valè endividyèl." },
+      { emoji: "🧮", text: "Fè kalkil otomatik ak fòmil." },
+      { emoji: "🎯", text: "Misyon: kreye yon fèy kalkil senp." },
+    ],
+  },
+  {
+    slug: "google-slides",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🖥️",
+    heroTitle: "Google Slides",
+    heroLede:
+      "Prezantasyon pwofesyonèl ou ka bati epi montre soti nenpòt aparèy.",
+    goal: "🎯 Objektif: kreye yon prezantasyon senp ak Google Slides.",
+    simpleExplanation:
+      "**Google Slides** se yon aplikasyon prezantasyon (tankou PowerPoint) ki kite w kreye 'diapositiv' (slides) ak tèks, imaj, ak grafik. Ou ka montre l dirèkteman soti nan navigatè a, san bezwen enstale yon lojisyèl espesyal.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a presentation slide editor with a title slide and thumbnail slides on the side, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-slides.webp`,
+    digitalWords: [
+      {
+        word: "Google Slides",
+        definition: "Aplikasyon gratis Google pou kreye prezantasyon.",
+        example: "Kreye yon prezantasyon pou pitch yon ti biznis.",
+      },
+      {
+        word: "Diapositiv (Slide)",
+        definition: "Yon sèl paj nan yon prezantasyon.",
+        example: "Chak diapositiv gen yon ide oswa pwen prensipal.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou dwe prezante yon ide biznis bay yon envestisè, kreye yon prezantasyon Google Slides ke ou ka montre dirèkteman soti nan telefòn oswa laptòp ou.",
+    mistakeWrong:
+      "Mete twòp tèks sou yon sèl diapositiv, san espas pou respire.",
+    mistakeCorrect:
+      "Kenbe chak diapositiv senp ak yon sèl ide prensipal, ak plis imaj pase tèks.",
+    mistakeWhy:
+      "⚠️ Yon diapositiv ki twò chaje ak tèks fè odyans lan li olye de koute w — mwens tèks ede yo konsantre sou vwa ou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w òganize plan yon prezantasyon senp sou yon sijè espesifik.",
+    aiPrompt:
+      "Hi! Can you help me outline a simple 5-slide presentation about starting a small business?",
+    mission:
+      "🎯 Misyon: kreye yon prezantasyon Google Slides ak twa diapositiv sou yon sijè ou chwazi.",
+    quiz: {
+      prompt: "Kisa ki fè yon diapositiv efikas?",
+      options: [
+        "Anpil tèks sou chak paj",
+        "Yon sèl ide prensipal ak mwens tèks",
+        "Okenn imaj ditou",
+        "Koulè nwa sèlman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Senp ak yon sèl ide fonksyone pi byen.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ki kenbe atansyon odyans lan.",
+    },
+    recap: [
+      { emoji: "🖥️", text: "Slides = aplikasyon gratis pou prezantasyon." },
+      { emoji: "📑", text: "Chak diapositiv gen yon sèl ide prensipal." },
+      { emoji: "🎨", text: "Plis imaj, mwens tèks, pi efikas." },
+      {
+        emoji: "🎯",
+        text: "Misyon: kreye yon prezantasyon ak twa diapositiv.",
+      },
+    ],
+  },
+  {
+    slug: "google-calendar",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "📅",
+    heroTitle: "Google Calendar",
+    heroLede: "Yon ajanda dijital ki raple w sa ki gen tan pou rive.",
+    goal: "🎯 Objektif: kreye yon evènman ak resevwa yon rapèl.",
+    simpleExplanation:
+      "**Google Calendar** se yon ajanda dijital kote ou kreye evènman (rankont, randevou, anivèsè) ak yon dat ak lè. Li ka voye w yon **rapèl** anvan evènman an, sou telefòn oswa imèl, pou ou pa janm bliye.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a monthly calendar view with a few colorful event blocks, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-calendar.webp`,
+    digitalWords: [
+      {
+        word: "Evènman (Event)",
+        definition: "Yon antre nan kalandriye ou ak dat, lè, ak deskripsyon.",
+        example: "Kreye yon evènman pou randevou dòktè ou jedi pwochen.",
+      },
+      {
+        word: "Rapèl (Reminder)",
+        definition: "Yon notifikasyon ki voye ba ou anvan yon evènman rive.",
+        example: "Mete yon rapèl 1 èdtan anvan randevou a.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou toujou bliye randevou dòktè, kreye yo nan Google Calendar ak yon rapèl 1 jou anvan — telefòn ou va sonje pou ou.",
+    mistakeWrong:
+      "Kenbe tout randevou nan tèt ou san okenn kalandriye dijital.",
+    mistakeCorrect:
+      "Kreye chak evènman enpòtan nan Google Calendar ak yon rapèl.",
+    mistakeWhy:
+      "⚠️ Memwa moun fasil bliye — yon kalandriye dijital ak rapèl anpeche w rate randevou enpòtan.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou kreye yon evènman ki repete chak semèn nan Google Calendar.",
+    aiPrompt:
+      "Hi! Can you explain how to create a weekly recurring event in Google Calendar, like a class that happens every Monday?",
+    mission:
+      "🎯 Misyon: kreye yon evènman nan Google Calendar ak yon rapèl ki gen sans pou ou.",
+    quiz: {
+      prompt: "Kisa yon rapèl fè nan Google Calendar?",
+      options: [
+        "Li efase evènman an",
+        "Li voye yon notifikasyon anvan evènman an rive",
+        "Li kreye yon nouvo dokiman",
+        "Li konekte w sou Wi-Fi",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Rapèl notifye w anvan evènman an.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki anpeche w bliye.",
+    },
+    recap: [
+      { emoji: "📅", text: "Calendar = ajanda dijital pou evènman ou." },
+      { emoji: "🔔", text: "Rapèl notifye w anvan yon evènman rive." },
+      { emoji: "🔁", text: "Ou ka kreye evènman ki repete." },
+      { emoji: "🎯", text: "Misyon: kreye yon evènman ak yon rapèl." },
+    ],
+  },
+  {
+    slug: "google-maps",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🗺️",
+    heroTitle: "Google Maps",
+    heroLede: "Yon gid ki mennen w kèlkeswa kote ou vle ale.",
+    goal: "🎯 Objektif: chèche yon kote ak jwenn direksyon ak Google Maps.",
+    simpleExplanation:
+      "**Google Maps** se yon aplikasyon kat ki montre w kote ou ye, jwenn nenpòt kote ou chèche, epi bay direksyon etap pa etap pou rive la — apye, an machin, oswa an transpò piblik.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a navigation map app with a route line and location pin, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-maps.webp`,
+    digitalWords: [
+      {
+        word: "Google Maps",
+        definition: "Aplikasyon kat pou jwenn kote ak direksyon.",
+        example: "Chèche 'famasi pi pre' nan Google Maps.",
+      },
+      {
+        word: "Direksyon (Directions)",
+        definition: "Etap pa etap pou rive nan yon destinasyon.",
+        example: "Jwenn direksyon apye pou rive nan mache a.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou dwe rive yon kote pou premye fwa, tape adrès la nan Google Maps epi swiv vwa a ki gide w etap pa etap, menm jan ak yon moun ki nan machin nan avè w.",
+    mistakeWrong:
+      "Eseye jwenn yon kote nouvo san itilize okenn kat, sèlman souvni.",
+    mistakeCorrect:
+      "Itilize Google Maps pou jwenn direksyon egzat epi evite pèdi tan.",
+    mistakeWhy:
+      "⚠️ Depann sèlman sou souvni pou yon kote nouvo ka fè w pèdi tan ak fristre — Maps bay direksyon egzat an tan reyèl.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou telechaje yon zòn nan Google Maps pou itilize l san entènèt.",
+    aiPrompt:
+      "Hi! Can you explain how to download an area of Google Maps so I can use it without an internet connection?",
+    mission:
+      "🎯 Misyon: chèche yon kote nan Google Maps epi jwenn direksyon pou rive la.",
+    quiz: {
+      prompt: "Kisa Google Maps ede w fè?",
+      options: [
+        "Ekri dokiman",
+        "Jwenn kote ak direksyon pou rive la",
+        "Voye imèl",
+        "Kreye prezantasyon",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Maps jwenn kote ak bay direksyon.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak objektif prensipal aplikasyon an.",
+    },
+    recap: [
+      { emoji: "🗺️", text: "Maps montre kote ou ye epi jwenn lòt kote." },
+      { emoji: "🧭", text: "Direksyon etap pa etap pou rive la." },
+      { emoji: "📴", text: "Ou ka telechaje zòn pou itilize san entènèt." },
+      { emoji: "🎯", text: "Misyon: jwenn direksyon pou yon kote." },
+    ],
+  },
+  {
+    slug: "google-photos",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🌄",
+    heroTitle: "Google Photos",
+    heroLede:
+      "Yon kopi sekirite tout foto ou, ki backup otomatikman san ou pa fè anyen.",
+    goal: "🎯 Objektif: aktive backup otomatik ak chèche nan Google Photos.",
+    simpleExplanation:
+      "**Google Photos** se sèvis Google ki backup foto ak videyo telefòn ou otomatikman nan cloud la, epi kite w chèche yo pa mo (tankou 'lanmè' oswa 'chen') san bezwen òganize manyèlman. Diferan de Galri telefòn ou (ki lokal), Photos rete an sekirite menm si telefòn lan pèdi.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a photo backup app with a grid of thumbnail photos and a cloud sync icon, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-photos.webp`,
+    digitalWords: [
+      {
+        word: "Google Photos",
+        definition:
+          "Sèvis Google ki backup foto/videyo otomatikman nan cloud la.",
+        example: "Aktive Google Photos pou pa janm pèdi yon souvni.",
+      },
+      {
+        word: "Rechèch pa Mo (Smart Search)",
+        definition: "Fonksyon ki jwenn foto lè ou tape yon mo, san tag manyèl.",
+        example: "Tape 'plaj' pou jwenn tout foto ou pran sou plaj.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou chèche yon foto chen ou te pran ane pase, tape 'chen' nan rechèch Google Photos — li jwenn li san ou pa janm bezwen mete yon tag manyèlman.",
+    mistakeWrong: "Panse Galri telefòn ou ak Google Photos se menm bagay la.",
+    mistakeCorrect:
+      "Konprann Galri se lokal (sou telefòn); Google Photos se yon backup separe nan cloud la.",
+    mistakeWhy:
+      "⚠️ Si ou konte sèlman sou Galri lokal la san Google Photos aktive, ou ka pèdi tout foto ou si telefòn lan pèdi oswa kraze.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou verifye si Google Photos backup aktive sou telefòn ou.",
+    aiPrompt:
+      "Hi! Can you explain how to check if Google Photos backup is turned on for my phone?",
+    mission:
+      "🎯 Misyon: verifye si Google Photos backup aktive sou telefòn ou epi eseye yon rechèch pa mo.",
+    quiz: {
+      prompt: "Ki diferans genyen ant Galri telefòn ak Google Photos?",
+      options: [
+        "Pa gen okenn diferans",
+        "Galri se lokal sou telefòn; Google Photos se backup nan cloud la",
+        "Google Photos sèlman pou videyo",
+        "Galri pi an sekirite pase Google Photos",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Google Photos bay yon dezyèm sekirite nan cloud la.",
+      wrongFeedback: "❌ Eseye ankò — panse ak kote chak grenn kenbe done a.",
+    },
+    recap: [
+      { emoji: "🌄", text: "Photos backup foto/videyo otomatikman." },
+      { emoji: "🔍", text: "Rechèch pa mo, san tag manyèl." },
+      { emoji: "☁️", text: "Separe de Galri lokal — kopi nan cloud la." },
+      { emoji: "🎯", text: "Misyon: verifye backup epi eseye yon rechèch." },
+    ],
+  },
+  {
+    slug: "google-translate",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🌍",
+    heroTitle: "Google Translate",
+    heroLede: "Yon pon ant lang ki fèmen distans lan an segonn.",
+    goal: "🎯 Objektif: tradwi tèks ak vwa ant lang ak Google Translate.",
+    simpleExplanation:
+      "**Google Translate** tradwi tèks, vwa, oswa menm foto (tèks sou yon pano) ant plizyè lang an segonn. Li itil pou konprann yon dokiman nan yon lòt lang, oswa kominike ak yon moun ki pa pale menm lang ak ou.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a translation app with two language selectors and a translated text box, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-translate.webp`,
+    digitalWords: [
+      {
+        word: "Google Translate",
+        definition: "Aplikasyon ki tradwi tèks, vwa, ak imaj ant lang.",
+        example: "Tradwi yon fòm angle an kreyòl ak Google Translate.",
+      },
+      {
+        word: "Tradiksyon pa Kamera (Camera Translation)",
+        definition:
+          "Fonksyon ki tradwi tèks sou yon foto oswa pano an tan reyèl.",
+        example: "Pwente kamera ou sou yon meni angle pou wè l an kreyòl.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou resevwa yon dokiman ofisyèl an angle ou pa konprann byen, itilize kamera Google Translate pou wè yon tradiksyon an tan reyèl san tape anyen.",
+    mistakeWrong:
+      "Depann 100% sou tradiksyon machin pou dokiman legal enpòtan.",
+    mistakeCorrect:
+      "Itilize Google Translate pou konprann jeneral la, men verifye ak yon moun pou dokiman ofisyèl enpòtan.",
+    mistakeWhy:
+      "⚠️ Tradiksyon machin pa toujou pafè, sitou pou detay legal oswa medikal enpòtan — toujou verifye avèk yon moun lè anjeu a gwo.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI eksplike diferans ant yon tradiksyon rapid ak yon tradiksyon pwofesyonèl sètifye.",
+    aiPrompt:
+      "Hi! What's the difference between using Google Translate for a quick translation versus getting a certified professional translation for official documents?",
+    mission:
+      "🎯 Misyon: tradwi yon fraz ant kreyòl ak angle ak Google Translate.",
+    quiz: {
+      prompt: "Kilè ou ta dwe verifye tradiksyon Google Translate ak yon moun?",
+      options: [
+        "Jamè, li toujou pafè",
+        "Pou dokiman legal oswa medikal enpòtan",
+        "Sèlman pou mesaj kout ak zanmi",
+        "Pa gen bezwen verifye anyen",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Verifye pou dokiman enpòtan.",
+      wrongFeedback: "❌ Eseye ankò — panse ak anjeu tradiksyon ki mal.",
+    },
+    recap: [
+      { emoji: "🌍", text: "Translate tradwi tèks, vwa, ak imaj." },
+      { emoji: "📷", text: "Tradiksyon pa kamera an tan reyèl." },
+      { emoji: "⚠️", text: "Verifye ak yon moun pou dokiman enpòtan." },
+      { emoji: "🎯", text: "Misyon: tradwi yon fraz ant kreyòl ak angle." },
+    ],
+  },
+  {
+    slug: "google-meet",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🎥",
+    heroTitle: "Google Meet",
+    heroLede:
+      "Yon salon rankont vityèl pou wè ak tande moun kèlkeswa distans lan.",
+    goal: "🎯 Objektif: rejwenn ak kreye yon apèl videyo ak Google Meet.",
+    simpleExplanation:
+      "**Google Meet** se yon aplikasyon apèl videyo ki kite plizyè moun rankontre vityèlman. Ou rejwenn yon rankont lè ou klike yon lyen, san bezwen kreye yon kont espesyal si moun nan envite ou.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a video call interface with multiple participant video tiles, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-meet.webp`,
+    digitalWords: [
+      {
+        word: "Google Meet",
+        definition: "Aplikasyon gratis Google pou apèl videyo.",
+        example: "Rejwenn yon rankont travay pa Google Meet.",
+      },
+      {
+        word: "Lyen Rankont (Meeting Link)",
+        definition: "Yon lyen espesyal ou klike pou antre nan yon apèl videyo.",
+        example: "Klike lyen rankont lan nan imèl ou resevwa pou antre.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si fanmi ou lòtbò lanmè envite w nan yon rankont Google Meet, ou sèlman bezwen klike lyen an nan imèl la — pa gen bezwen kreye okenn kont espesyal.",
+    mistakeWrong:
+      "Klike sou yon lyen rankont ki soti nan yon sous ou pa rekonèt.",
+    mistakeCorrect:
+      "Verifye moun ki voye lyen an anvan ou klike, menm jan ak nenpòt lyen ou resevwa.",
+    mistakeWhy:
+      "⚠️ Move moun ka kreye fo lyen rankont ki mennen w sou yon sit fisik — verifye sous la toujou pwoteje w.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou aktive kamera ak mikwofòn ou nan Google Meet anvan yon apèl.",
+    aiPrompt:
+      "Hi! Can you explain how to turn on my camera and microphone in Google Meet before joining a call?",
+    mission:
+      "🎯 Misyon: teste kamera ak mikwofòn ou nan Google Meet anvan pwochen apèl ou.",
+    quiz: {
+      prompt: "Kisa ou bezwen pou rejwenn yon rankont Google Meet?",
+      options: [
+        "Toujou yon kont Gmail",
+        "Sèlman klike lyen rankont lan yo voye ba ou",
+        "Yon abonman peye",
+        "Enstale yon lojisyèl espesyal",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Klike lyen an ase pou antre.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak fasilite pou rejwenn yon rankont.",
+    },
+    recap: [
+      { emoji: "🎥", text: "Meet = aplikasyon gratis pou apèl videyo." },
+      { emoji: "🔗", text: "Klike yon lyen rankont pou antre." },
+      { emoji: "🔎", text: "Verifye sous lyen an anvan ou klike." },
+      { emoji: "🎯", text: "Misyon: teste kamera ak mikwofòn ou." },
+    ],
+  },
+  {
+    slug: "google-keep",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "📝",
+    heroTitle: "Google Keep",
+    heroLede: "Yon ti kaye dijital pou nòt rapid ou pa vle bliye.",
+    goal: "🎯 Objektif: kreye ak jwenn yon nòt ak Google Keep.",
+    simpleExplanation:
+      "**Google Keep** se yon aplikasyon nòt senp pou ekri ti lis ak ide rapid — tankou yon lis makèt, yon ide sibit, oswa yon nimewo enpòtan. Kontrèman ak Docs, li fèt pou vitès, pa dokiman long.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a note-taking app with colorful sticky-note style cards, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-keep.webp`,
+    digitalWords: [
+      {
+        word: "Google Keep",
+        definition: "Aplikasyon gratis Google pou nòt rapid ak lis.",
+        example: "Ekri lis makèt ou nan Google Keep anvan ou soti.",
+      },
+      {
+        word: "Lis Kontwòl (Checklist)",
+        definition: "Yon kalite nòt kote ou ka koche chak eleman fin fèt.",
+        example: "Kreye yon lis kontwòl pou tach ou dwe fè jodi a.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou toujou bliye sa ou dwe achte nan mache, kreye yon lis kontwòl nan Google Keep sou telefòn ou — koche chak bagay pandan ou achte yo.",
+    mistakeWrong:
+      "Itilize Google Docs pou ti nòt rapid tankou yon lis makèt kout.",
+    mistakeCorrect:
+      "Itilize Google Keep pou nòt rapid; kite Docs pou dokiman pi long.",
+    mistakeWhy:
+      "⚠️ Docs pi lou ak pi long pou louvri pou yon ti nòt rapid — Keep fèt egzakteman pou vitès sa a.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou mete yon rapèl sou yon nòt Google Keep pou li notifye w a yon lè presi.",
+    aiPrompt:
+      "Hi! Can you explain how to add a time-based reminder to a Google Keep note?",
+    mission:
+      "🎯 Misyon: kreye yon lis kontwòl (checklist) nan Google Keep ak twa eleman.",
+    quiz: {
+      prompt: "Poukisa Google Keep pi bon pase Docs pou yon ti nòt rapid?",
+      options: [
+        "Li pi long pou louvri",
+        "Li fèt pou vitès ak senplisite",
+        "Li mande yon abonman peye",
+        "Li sèlman mache sou òdinatè",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Keep fèt pou vitès, pa dokiman long.",
+      wrongFeedback: "❌ Eseye ankò — panse ak diferans ant Keep ak Docs.",
+    },
+    recap: [
+      { emoji: "📝", text: "Keep = ti kaye dijital pou nòt rapid." },
+      { emoji: "✅", text: "Lis kontwòl kite w koche eleman fin fèt." },
+      { emoji: "⏰", text: "Ou ka mete rapèl sou yon nòt." },
+      { emoji: "🎯", text: "Misyon: kreye yon lis kontwòl ak twa eleman." },
+    ],
+  },
+  {
+    slug: "google-ecosystem-mission",
+    moduleTitle: "Modil 8: Ekosistèm Google",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Ekosistèm Google",
+    heroLede: "Konbine tout zouti Google Modil 8 pou vin pi efikas chak jou.",
+    goal: "🎯 Objektif: itilize Gmail, Drive, Docs, ak rès zouti Google chak jou.",
+    simpleExplanation:
+      "Ou fèk aprann: Drive, Docs, Sheets, Slides, Calendar, Maps, Photos, Translate, Meet, ak Keep. Ansanm ak Gmail (Modil 6), ou kounye a konnen tout zouti debaz nan ekosistèm Google la. Misyon sa a mande w konbine plizyè nan konpetans sa yo.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently working on a laptop with multiple browser tabs open, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/google-ecosystem-mission.webp`,
+    digitalWords: [
+      {
+        word: "Ekosistèm Google",
+        definition:
+          "Tout zouti gratis Google konekte ansanm anba yon sèl kont.",
+        example: "Yon sèl kont Gmail bay aksè a tout ekosistèm Google la.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki metrize ekosistèm Google la ka jere imèl, dokiman, orè, ak foto tout nan yon sèl kont, san peye anyen ak san enstale okenn lojisyèl.",
+    mistakeWrong:
+      "Panse ou dwe konnen tout fonksyon avanse nan chak zouti Google.",
+    mistakeCorrect:
+      "Konprann konpetans debaz sa yo ase pou kòmanse ak konfyans — rès la vin natirèl ak pratik.",
+    mistakeWhy:
+      "⚠️ Atann pèfeksyon anvan ou eksplore zouti sa yo anpeche w pwofite fonksyon itil ki deja gratis pou ou.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI konsèy sou kijan pou konekte plizyè zouti Google ansanm pou plis efikasite.",
+    aiPrompt:
+      "Hi! I just learned the basics of Google Drive, Docs, Sheets, Calendar, and Photos. What should I focus on learning next to use them together more efficiently?",
+    mission:
+      "🎯 Misyon Final Modil 8: kreye yon dokiman nan Docs, sovgade l nan Drive, epi mete yon evènman nan Calendar pou revize l.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 8 la?",
+      options: [
+        "Vin yon enjenyè Google",
+        "Itilize Gmail, Drive, Docs, ak rès zouti Google chak jou",
+        "Memorize tout zouti Google ki egziste",
+        "Peye pou tout zouti Google yo",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Objektif la se itilize zouti sa yo chak jou.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 8 la.",
+    },
+    recap: [
+      { emoji: "🗄️", text: "Drive, Docs, Sheets, Slides." },
+      { emoji: "📅", text: "Calendar, Maps, Photos." },
+      { emoji: "🌍", text: "Translate, Meet, Keep." },
+      { emoji: "🎓", text: "Ou fini Modil 8 — Ekosistèm Google!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {
