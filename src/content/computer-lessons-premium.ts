@@ -3496,6 +3496,658 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 5 — Metrize Entènèt la!" },
     ],
   },
+  {
+    slug: "what-is-email",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "📧",
+    heroTitle: "Kisa Imèl Ye?",
+    heroLede: "Yon lèt dijital ki rive an segonn, kèlkeswa distans la.",
+    goal: "🎯 Objektif: konprann kisa yon imèl ye ak poukisa ou bezwen youn.",
+    simpleExplanation:
+      "Yon **imèl** se yon mesaj dijital ou voye ak resevwa sou entènèt, tankou yon lèt men ki rive imedyatman. Ou bezwen yon adrès imèl pou kreye kont sou prèske tout sit (Facebook, WhatsApp Business, sit gouvènman, djòb) — se yon idantite dijital debaz.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email inbox interface with an envelope icon, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/what-is-email.webp`,
+    digitalWords: [
+      {
+        word: "Imèl (Email)",
+        definition: "Yon mesaj dijital ou voye ak resevwa sou entènèt.",
+        example: "Voye yon imèl bay yon anplwayè pou aplike pou yon djòb.",
+      },
+      {
+        word: "Adrès Imèl (Email Address)",
+        definition: "Idantite dijital ou itilize pou voye/resevwa imèl.",
+        example: "'jan.pyè@gmail.com' se yon egzanp adrès imèl.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou aplike pou yon djòb sou entènèt, prèske tout tan yo mande yon adrès imèl pou yo voye w repons — san imèl, ou pa ka aplike.",
+    mistakeWrong: "Panse ou ka viv san yon adrès imèl nan mond dijital jodi a.",
+    mistakeCorrect:
+      "Konprann yon adrès imèl se yon zouti debaz, tankou yon nimewo telefòn, pou anpil sèvis.",
+    mistakeWhy:
+      "⚠️ San yon adrès imèl, ou pa ka kreye anpil kont enpòtan (labank, djòb, gouvènman), sa limite anpil sa ou ka fè sou entènèt.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki diferans genyen ant yon imèl ak yon mesaj tèks oswa yon mesaj WhatsApp.",
+    aiPrompt:
+      "Hi! What's the difference between email and a text message or WhatsApp message? When should I use each one?",
+    mission:
+      "🎯 Misyon: reflechi sou de sitiyasyon nan lavi ou kote ou ta bezwen yon adrès imèl.",
+    quiz: {
+      prompt: "Poukisa ou bezwen yon adrès imèl jodi a?",
+      options: [
+        "Sèlman pou voye foto",
+        "Pou kreye kont sou anpil sèvis ak aplike pou djòb",
+        "Sèlman pou jwe jwèt",
+        "Li pa nesesè ditou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Imèl se yon idantite dijital debaz.",
+      wrongFeedback: "❌ Eseye ankò — panse ak kont ou dwe kreye sou entènèt.",
+    },
+    recap: [
+      { emoji: "📧", text: "Imèl = mesaj dijital ki rive imedyatman." },
+      { emoji: "🪪", text: "Adrès imèl se yon idantite dijital debaz." },
+      { emoji: "💼", text: "Nesesè pou djòb, kont, ak sèvis gouvènman." },
+      { emoji: "🎯", text: "Misyon: idantifye sitiyasyon ou bezwen imèl." },
+    ],
+  },
+  {
+    slug: "creating-a-gmail-account",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "✉️",
+    heroTitle: "Kreye Yon Kont Gmail",
+    heroLede: "Yon adrès imèl gratis ki pran sèlman kèk minit pou kreye.",
+    goal: "🎯 Objektif: kreye pwòp kont Gmail ou, etap pa etap.",
+    simpleExplanation:
+      "**Gmail** se sèvis imèl gratis Google la — youn nan pi popilè nan mond lan. Pou kreye yon kont, ou bezwen chwazi yon non itilizatè (ki vin premye pati adrès ou), yon modpas fò, epi konfime enfòmasyon debaz tankou dat nesans ou.",
+    howItWorks: [
+      "Ale sou gmail.com epi klike 'Kreye kont'",
+      "Chwazi non ak non fanmi ou, epi yon non itilizatè disponib",
+      "Kreye yon modpas fò epi konfime enfòmasyon debaz yo",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a simple account creation form with name and password fields, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/creating-a-gmail-account.webp`,
+    digitalWords: [
+      {
+        word: "Non Itilizatè (Username)",
+        definition: "Premye pati yon adrès imèl, anvan '@gmail.com'.",
+        example: "'jan.pyè' se non itilizatè nan 'jan.pyè@gmail.com'.",
+      },
+      {
+        word: "Modpas Fò (Strong Password)",
+        definition:
+          "Yon modpas ki gen lèt, chif, ak senbòl pou pi an sekirite.",
+        example: "'Solèy2024!' pi fò pase '123456'.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou kreye kont Gmail ou, chwazi yon non itilizatè ki gen sans (non ou), pou moun rekonèt ki moun ki voye lè yo wè adrès la.",
+    mistakeWrong: "Itilize yon modpas fasil tankou '123456' oswa non ou.",
+    mistakeCorrect: "Kreye yon modpas fò ak yon melanj lèt, chif, ak senbòl.",
+    mistakeWhy:
+      "⚠️ Yon modpas fasil ka devine fasilman pa move moun, sa mete tout enfòmasyon nan kont ou an danje.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy pou kreye yon modpas fò ke ou ka sonje pi fasil.",
+    aiPrompt:
+      "Hi! Can you give me tips for creating a strong password that I can also remember easily?",
+    mission:
+      "🎯 Misyon: si ou pa gen yon kont Gmail, kreye youn kounye a (oswa verifye enfòmasyon kont ou deja genyen an ajou).",
+    quiz: {
+      prompt: "Kisa ki fè yon modpas fò?",
+      options: [
+        "Sèlman chif",
+        "Non ou ekri alanvè",
+        "Yon melanj lèt, chif, ak senbòl",
+        "Menm modpas ak lòt kont ou yo",
+      ],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Yon melanj fè yon modpas pi fò.",
+      wrongFeedback: "❌ Eseye ankò — panse ak varyete karaktè yo.",
+    },
+    recap: [
+      { emoji: "✉️", text: "Gmail se sèvis imèl gratis Google la." },
+      { emoji: "🪪", text: "Chwazi yon non itilizatè ki gen sans." },
+      { emoji: "🔒", text: "Kreye yon modpas fò, pa fasil." },
+      { emoji: "🎯", text: "Misyon: kreye oswa verifye kont Gmail ou." },
+    ],
+  },
+  {
+    slug: "inbox-and-composing",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "📥",
+    heroTitle: "Bwat Resepsyon ak Ekri Imèl",
+    heroLede: "Kote tout imèl ou rive, ak kijan pou ekri premye a pa ou.",
+    goal: "🎯 Objektif: li imèl nan bwat resepsyon epi ekri yon nouvo imèl.",
+    simpleExplanation:
+      "**Bwat resepsyon** (inbox) se kote tout imèl moun voye ba ou rive. Pou ekri yon nouvo imèl, klike 'Compose' (Ekri), antre adrès moun k ap resevwa a, yon sijè kout, epi mesaj ou.",
+    howItWorks: [
+      "Klike 'Compose' pou louvri yon nouvo imèl",
+      "Antre adrès moun k ap resevwa a nan 'To'",
+      "Ekri yon sijè kout epi mesaj ou, apre klike 'Send'",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email compose window with To, Subject, and message body fields, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/inbox-and-composing.webp`,
+    digitalWords: [
+      {
+        word: "Bwat Resepsyon (Inbox)",
+        definition: "Kote tout imèl moun voye ba ou rive.",
+        example: "Verifye bwat resepsyon ou chak jou pou nouvo mesaj.",
+      },
+      {
+        word: "Compose (Ekri)",
+        definition: "Bouton ou klike pou kòmanse ekri yon nouvo imèl.",
+        example: "Klike 'Compose' pou voye yon imèl bay yon zanmi.",
+      },
+      {
+        word: "Sijè (Subject)",
+        definition: "Ti fraz kout ki rezime sa imèl la konsène.",
+        example: "'Rankont demen a 2è' se yon bon sijè kout.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou ekri yon imèl san sijè, moun k ap resevwa l ka pa konprann poukisa li rive oswa li ka ale nan spam — toujou mete yon sijè kout ak klè.",
+    mistakeWrong: "Voye yon imèl san sijè, oswa ak yon sijè ki pa fè sans.",
+    mistakeCorrect: "Toujou ekri yon sijè kout ak klè ki rezime mesaj la.",
+    mistakeWhy:
+      "⚠️ Yon sijè klè ede moun k ap resevwa l konprann enpòtans mesaj la san yo pa bezwen louvri l imedyatman.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w ekri yon sijè kout ak klè pou yon imèl espesifik ou vle voye.",
+    aiPrompt:
+      "Hi! Can you help me write a short, clear subject line for an email asking about a job opportunity?",
+    mission:
+      "🎯 Misyon: ekri epi voye yon premye imèl tès (bay tèt ou, oswa bay yon zanmi) ak yon sijè klè.",
+    quiz: {
+      prompt: "Kisa ou dwe toujou mete nan yon imèl?",
+      options: [
+        "Yon sijè kout ak klè",
+        "Yon foto sèlman",
+        "Non moun k ap resevwa a alanvè",
+        "Pa gen anyen espesyal",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Yon sijè klè fè imèl la pi efikas.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ki ede moun konprann imèl la.",
+    },
+    recap: [
+      { emoji: "📥", text: "Bwat resepsyon kenbe tout imèl ou resevwa." },
+      { emoji: "✏️", text: "Compose kòmanse yon nouvo imèl." },
+      { emoji: "📝", text: "Toujou mete yon sijè kout ak klè." },
+      { emoji: "🎯", text: "Misyon: voye yon premye imèl tès." },
+    ],
+  },
+  {
+    slug: "reply-reply-all-forward",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "↩️",
+    heroTitle: "Reply, Reply All, ak Forward",
+    heroLede:
+      "Twa fason diferan pou reponn oswa pataje yon imèl — chwazi bon jan an konte.",
+    goal: "🎯 Objektif: itilize Reply, Reply All, ak Forward nan bon sitiyasyon.",
+    simpleExplanation:
+      "**Reply** voye repons ou sèlman bay moun ki voye imèl la. **Reply All** voye l bay tout moun ki te resevwa imèl orijinal la. **Forward** pataje yon imèl ou resevwa ak yon lòt moun ki pa t nan lis orijinal la.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email with reply, reply-all, and forward icon buttons visible, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/reply-reply-all-forward.webp`,
+    digitalWords: [
+      {
+        word: "Reply",
+        definition: "Voye yon repons sèlman bay moun ki voye imèl orijinal la.",
+        example: "Reply bay bòs ou pou konfime ou resevwa mesaj la.",
+      },
+      {
+        word: "Reply All",
+        definition: "Voye repons bay tout moun ki te nan imèl orijinal la.",
+        example: "Reply All lè tout ekip la bezwen wè repons ou.",
+      },
+      {
+        word: "Forward",
+        definition: "Pataje yon imèl ou resevwa ak yon nouvo moun.",
+        example: "Forward imèl envitasyon an bay yon zanmi ki enterese.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si yon gwoup travay 5 moun ap diskite yon pwojè pa imèl, itilize Reply All pou tout moun rete ajou — men si se yon repons pèsonèl pou yon sèl moun, itilize sèlman Reply.",
+    mistakeWrong:
+      "Itilize Reply All lè repons ou konsène sèlman moun ki voye imèl la.",
+    mistakeCorrect:
+      "Reflechi byen anvan Reply All — mande tèt ou si tout moun bezwen wè repons ou.",
+    mistakeWhy:
+      "⚠️ Reply All san rezon ka voye enfòmasyon pèsonèl oswa mesaj initil bay moun ki pa konsène, sa ka jennen oswa anbarase.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w deside si yon sitiyasyon espesifik mande Reply, Reply All, oswa Forward.",
+    aiPrompt:
+      "Hi! I got an email sent to me and 4 coworkers about a meeting time change. Should I use Reply or Reply All to confirm I got it?",
+    mission:
+      "🎯 Misyon: pratike Reply sou yon imèl tès, epi eksplike ki lè ou ta itilize Forward olye de sa.",
+    quiz: {
+      prompt: "Kilè ou ta dwe itilize Reply All?",
+      options: [
+        "Chak fwa, san eksepsyon",
+        "Lè repons ou konsène tout moun ki nan lis orijinal la",
+        "Sèlman pou imèl spam",
+        "Janm, li toujou danjere",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Reply All sèlman lè tout moun konsène.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa k ap resevwa mesaj la.",
+    },
+    recap: [
+      { emoji: "↩️", text: "Reply voye repons bay yon sèl moun." },
+      { emoji: "👥", text: "Reply All voye bay tout moun nan lis la." },
+      { emoji: "➡️", text: "Forward pataje ak yon nouvo moun." },
+      { emoji: "🎯", text: "Misyon: pratike Reply sou yon imèl tès." },
+    ],
+  },
+  {
+    slug: "email-attachments",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "📎",
+    heroTitle: "Pyès Jwenn (Attachments)",
+    heroLede: "Voye ak resevwa fichye dirèkteman anndan yon imèl.",
+    goal: "🎯 Objektif: voye ak telechaje pyès jwenn (attachments) san pwoblèm.",
+    simpleExplanation:
+      "Yon **pyès jwenn** (attachment) se yon fichye (foto, PDF, dokiman) ou tache anndan yon imèl pou voye l ansanm ak mesaj la. Ikòn nan sanble ak yon trombòn (📎), epi ou klike sou li pou ajoute yon fichye anvan ou voye.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email compose window with a paperclip attachment icon and a file being attached, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/email-attachments.webp`,
+    digitalWords: [
+      {
+        word: "Pyès Jwenn (Attachment)",
+        definition:
+          "Yon fichye tache anndan yon imèl pou voye ansanm ak mesaj la.",
+        example: "Tache CV ou kòm pyès jwenn nan imèl aplikasyon djòb la.",
+      },
+      {
+        word: "Trombòn (Paperclip Icon)",
+        definition: "Ikòn ou klike pou ajoute yon pyès jwenn nan yon imèl.",
+        example: "Klike trombòn nan pou chwazi PDF ou vle voye.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou aplike pou yon djòb pa imèl, ou tache CV ou (an PDF) kòm pyès jwenn, olye de kopye tout tèks la anndan kò imèl la.",
+    mistakeWrong:
+      "Eseye voye yon fichye trè gwo (tankou yon videyo long) kòm pyès jwenn.",
+    mistakeCorrect:
+      "Pou gwo fichye, itilize yon lyen cloud (tankou Google Drive) olye de tache l dirèkteman.",
+    mistakeWhy:
+      "⚠️ Anpil sèvis imèl limite gwosè pyès jwenn (souvan 25 MB) — eseye voye yon fichye pi gwo ka fè imèl la echwe.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou voye yon gwo fichye pa imèl si li twò gwo pou tache dirèkteman.",
+    aiPrompt:
+      "Hi! I need to send a large video file that's too big to attach directly to an email. What's a good way to share it?",
+    mission:
+      "🎯 Misyon: tache yon fichye (tankou yon foto) nan yon imèl tès epi voye l.",
+    quiz: {
+      prompt: "Kisa yon pyès jwenn (attachment) ye?",
+      options: [
+        "Yon sijè imèl",
+        "Yon fichye tache anndan yon imèl",
+        "Yon adrès imèl",
+        "Yon dosye spam",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Pyès jwenn se yon fichye tache.",
+      wrongFeedback: "❌ Eseye ankò — panse ak ikòn trombòn nan.",
+    },
+    recap: [
+      { emoji: "📎", text: "Pyès jwenn = fichye tache nan yon imèl." },
+      { emoji: "📋", text: "Klike trombòn nan pou ajoute youn." },
+      {
+        emoji: "☁️",
+        text: "Gwo fichye: itilize yon lyen cloud olye de tache.",
+      },
+      { emoji: "🎯", text: "Misyon: tache epi voye yon fichye." },
+    ],
+  },
+  {
+    slug: "folders-and-labels",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "🏷️",
+    heroTitle: "Dosye ak Etikèt (Labels)",
+    heroLede: "Kenbe yon bwat resepsyon okipe òganize san pèdi anyen.",
+    goal: "🎯 Objektif: òganize imèl ou ak dosye ak etikèt.",
+    simpleExplanation:
+      "**Dosye** (folders) ranje imèl yo apa nan kategori diferan. Nan Gmail, konsèp la rele **etikèt** (labels) — yon imèl ka gen plizyè etikèt an menm tan, kontrèman ak yon dosye tradisyonèl kote yon fichye sèlman nan yon sèl kote.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email sidebar with colorful folder and label icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/folders-and-labels.webp`,
+    digitalWords: [
+      {
+        word: "Dosye Imèl (Email Folder)",
+        definition: "Yon kategori ou kreye pou ranje imèl yo apa.",
+        example: "Kreye yon dosye 'Djòb' pou tout imèl konsènan travay.",
+      },
+      {
+        word: "Etikèt (Label)",
+        definition:
+          "Yon tag Gmail itilize ki ka mete sou plizyè imèl an menm tan.",
+        example: "Mete etikèt 'Enpòtan' sou plizyè imèl diferan.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou gen 500 imèl nan bwat resepsyon ou, kreye dosye tankou 'Djòb', 'Fanmi', ak 'Resi' pou jwenn sa ou bezwen pi vit san fè defile san fen.",
+    mistakeWrong:
+      "Kite tout imèl (pèsonèl, travay, resi) mele nan menm bwat resepsyon an.",
+    mistakeCorrect: "Kreye dosye/etikèt pou gwoupe imèl ki sanble ansanm.",
+    mistakeWhy:
+      "⚠️ Yon bwat resepsyon san òganizasyon fè imèl enpòtan pèdi nan mitan mesaj initil — dosye/etikèt rezoud sa.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki dosye/etikèt debaz yo ta rekòmande pou yon moun ki fèk kòmanse itilize imèl.",
+    aiPrompt:
+      "Hi! Can you suggest 4-5 basic email folders or labels a beginner should set up to stay organized?",
+    mission:
+      "🎯 Misyon: kreye yon dosye oswa etikèt nan kont imèl ou epi deplase yon imèl ladan l.",
+    quiz: {
+      prompt:
+        "Ki diferans genyen ant yon dosye tradisyonèl ak yon etikèt Gmail?",
+      options: [
+        "Pa gen okenn diferans",
+        "Yon etikèt ka mete sou plizyè imèl an menm tan; dosye tradisyonèl non",
+        "Etikèt sèlman pou spam",
+        "Dosye pi rapid pase etikèt",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Etikèt Gmail pi fleksib pase dosye tradisyonèl.",
+      wrongFeedback: "❌ Eseye ankò — panse ak fleksibilite etikèt Gmail yo.",
+    },
+    recap: [
+      { emoji: "🏷️", text: "Dosye/etikèt òganize imèl ou an kategori." },
+      { emoji: "🔀", text: "Yon etikèt Gmail ka sou plizyè imèl an menm tan." },
+      { emoji: "📥", text: "Bon òganizasyon evite pèdi imèl enpòtan." },
+      { emoji: "🎯", text: "Misyon: kreye yon dosye/etikèt epi itilize l." },
+    ],
+  },
+  {
+    slug: "spam-and-trash",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "🚫",
+    heroTitle: "Spam ak Poubèl (Trash)",
+    heroLede: "De dosye ki kenbe sa ou pa vle wè, men pou rezon diferan.",
+    goal: "🎯 Objektif: konprann diferans ant Spam ak Trash epi jere yo.",
+    simpleExplanation:
+      "**Spam** se dosye kote imèl endezirab (piblisite san rezon, potansyèl arnak) ale otomatikman. **Trash** (poubèl) se kote imèl ou efase manyèlman ale — tou de gen yon peryòd anvan yo disparèt nèt (souvan 30 jou).",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email sidebar with spam and trash folder icons highlighted, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/spam-and-trash.webp`,
+    digitalWords: [
+      {
+        word: "Spam",
+        definition: "Dosye kote imèl endezirab oswa sispèk ale otomatikman.",
+        example: "Verifye dosye Spam ou detanzantan pou imèl ki pèdi.",
+      },
+      {
+        word: "Trash (Poubèl)",
+        definition: "Kote imèl ou efase manyèlman ale anvan yo disparèt nèt.",
+        example: "Jwenn yon imèl efase pa erè nan Trash.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou tap tann yon imèl enpòtan (tankou yon konfimasyon) men li pa parèt nan bwat resepsyon an, verifye dosye Spam — li ka rive la pa erè.",
+    mistakeWrong:
+      "Panse tout bagay ki nan Spam se toujou danjere, oswa jamè verifye l.",
+    mistakeCorrect:
+      "Verifye Spam detanzantan — pafwa yon imèl lejitim rive la pa erè.",
+    mistakeWhy:
+      "⚠️ Sistèm filtraj spam pa toujou pafè — yon imèl enpòtan (tankou yon repons djòb) ka fini nan Spam pa erè.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou make yon imèl kòm 'pa spam' si li rive nan move dosye a pa erè.",
+    aiPrompt:
+      "Hi! An important email landed in my Spam folder by mistake. How do I mark it as 'not spam' so future emails from that sender go to my inbox?",
+    mission:
+      "🎯 Misyon: verifye dosye Spam ak Trash ou kounye a pou wè sa ki ladan yo.",
+    quiz: {
+      prompt: "Ki diferans genyen ant Spam ak Trash?",
+      options: [
+        "Pa gen okenn diferans",
+        "Spam se imèl endezirab otomatik; Trash se imèl ou efase manyèlman",
+        "Trash sèlman pou foto",
+        "Spam disparèt imedyatman, Trash pa janm disparèt",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Spam otomatik, Trash se aksyon manyèl ou.",
+      wrongFeedback: "❌ Eseye ankò — panse ak kijan chak dosye ranpli.",
+    },
+    recap: [
+      { emoji: "🚫", text: "Spam = imèl endezirab otomatik." },
+      { emoji: "🗑️", text: "Trash = imèl ou efase manyèlman." },
+      { emoji: "🔎", text: "Verifye Spam detanzantan pou imèl ki pèdi." },
+      { emoji: "🎯", text: "Misyon: verifye Spam ak Trash ou." },
+    ],
+  },
+  {
+    slug: "searching-your-email",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "🔍",
+    heroTitle: "Chèche Nan Imèl Ou",
+    heroLede: "Jwenn yon imèl ki gen ane depi ou resevwa l, an segonn.",
+    goal: "🎯 Objektif: itilize rechèch pou jwenn nenpòt imèl vit.",
+    simpleExplanation:
+      "Menm jan ak fichye sou òdinatè, kont imèl ou gen yon bawo rechèch pwisan. Tape non moun nan, yon mo nan sijè a, oswa menm mo ki nan kò mesaj la pou jwenn imèl la — menm si li gen ane depi ou resevwa l.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an email search bar with results appearing below it, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/searching-your-email.webp`,
+    digitalWords: [
+      {
+        word: "Rechèch Imèl (Email Search)",
+        definition:
+          "Zouti pou jwenn yon imèl espesifik pa non, sijè, oswa mo kle.",
+        example: "Tape 'resi' nan rechèch la pou jwenn tout imèl ki gen resi.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou bezwen jwenn yon konfimasyon rezèvasyon ou resevwa 6 mwa pase, tape non konpayi a nan rechèch la olye de defile san fen nan bwat resepsyon an.",
+    mistakeWrong:
+      "Defile manyèlman nan dè santèn imèl pou chèche youn espesifik.",
+    mistakeCorrect:
+      "Itilize bawo rechèch la premye bagay, anvan ou defile manyèlman.",
+    mistakeWhy:
+      "⚠️ Rechèch la fèt egzakteman pou sitiyasyon sa a — li jwenn imèl la an segonn, kèlkeswa depi konbyen tan li rive.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou fè yon rechèch avanse (tankou sèlman imèl ki gen pyès jwenn, oswa ki soti nan yon moun espesifik).",
+    aiPrompt:
+      "Hi! Can you explain how to search my email for messages that have attachments, or messages from a specific sender only?",
+    mission:
+      "🎯 Misyon: itilize rechèch la pou jwenn yon imèl espesifik nan kont ou.",
+    quiz: {
+      prompt: "Ki avantaj rechèch nan imèl bay ou?",
+      options: [
+        "Li efase spam otomatikman",
+        "Li jwenn yon imèl an segonn, kèlkeswa depi kilè li rive",
+        "Li kreye nouvo dosye",
+        "Li konprese pyès jwenn",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Rechèch jwenn imèl rapid, menm ansyen.",
+      wrongFeedback: "❌ Eseye ankò — panse ak vitès pou jwenn yon vye imèl.",
+    },
+    recap: [
+      { emoji: "🔍", text: "Rechèch jwenn imèl an segonn." },
+      { emoji: "🔑", text: "Tape non, sijè, oswa mo kle." },
+      { emoji: "⏳", text: "Mache menm pou imèl ki gen ane." },
+      { emoji: "🎯", text: "Misyon: chèche yon imèl espesifik." },
+    ],
+  },
+  {
+    slug: "writing-professional-emails",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "💼",
+    heroTitle: "Ekri Imèl Pwofesyonèl",
+    heroLede:
+      "Fason ou ekri yon imèl ka louvri (oswa fèmen) yon pòt opòtinite.",
+    goal: "🎯 Objektif: ekri yon imèl pwofesyonèl ki klè ak respektye.",
+    simpleExplanation:
+      "Yon **imèl pwofesyonèl** gen yon salitasyon klè (Bonjou/Bonswa Mesye/Madam), yon mesaj kout ak dirèk, ak yon fòmil politès nan fen (Mèsi, Byen kòdyalman). Evite abrevyasyon kazyèl ou itilize nan tèks ak zanmi.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a well-formatted professional email with clear paragraph structure, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/writing-professional-emails.webp`,
+    digitalWords: [
+      {
+        word: "Salitasyon (Greeting)",
+        definition: "Fraz ou kòmanse yon imèl avè l, tankou 'Bonjou Madam'.",
+        example: "'Bonjou Mesye Jozèf,' se yon bon salitasyon pwofesyonèl.",
+      },
+      {
+        word: "Fòmil Politès (Closing)",
+        definition: "Fraz ou fini yon imèl avè l anvan siyati ou.",
+        example: "'Mèsi davans pou atansyon w' se yon bon fòmil politès.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon imèl aplikasyon djòb ki kòmanse 'Bonjou' epi fini ak 'Mèsi davans' kreye yon pi bon premye enpresyon pase yon imèl ki kòmanse san salitasyon.",
+    mistakeWrong:
+      "Ekri yon imèl pwofesyonèl menm jan ou ekri yon mesaj tèks ak zanmi.",
+    mistakeCorrect:
+      "Itilize yon salitasyon klè, mesaj kout ak respektye, ak yon fòmil politès.",
+    mistakeWhy:
+      "⚠️ Yon imèl ki twò kazyèl pou yon sitiyasyon pwofesyonèl ka fè lekti a pran ou pa serye, sa ka koute w yon opòtinite.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w tounen yon mesaj kazyèl an yon imèl pwofesyonèl klè.",
+    aiPrompt:
+      "Hi! Can you help me turn this casual message into a professional email: 'hey i want the job we talked about, let me know'?",
+    mission:
+      "🎯 Misyon: ekri yon imèl pwofesyonèl kout (egzanp: mande enfòmasyon sou yon djòb).",
+    quiz: {
+      prompt: "Kisa yon imèl pwofesyonèl dwe genyen?",
+      options: [
+        "Abrevyasyon kazyèl tankou nan tèks ak zanmi",
+        "Yon salitasyon klè ak yon fòmil politès nan fen",
+        "Pa gen sijè ditou",
+        "Emoji sèlman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Salitasyon ak fòmil politès enpòtan.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki fè yon imèl parèt serye.",
+    },
+    recap: [
+      { emoji: "💼", text: "Imèl pwofesyonèl klè ak respektye." },
+      { emoji: "👋", text: "Kòmanse ak yon salitasyon klè." },
+      { emoji: "🙏", text: "Fini ak yon fòmil politès." },
+      { emoji: "🎯", text: "Misyon: ekri yon imèl pwofesyonèl kout." },
+    ],
+  },
+  {
+    slug: "recognizing-email-scams",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "🎣",
+    heroTitle: "Rekonèt Arnak Pa Imèl",
+    heroLede: "Konnen siyal danje yo pwoteje w kont pèt lajan ak enfòmasyon.",
+    goal: "🎯 Objektif: rekonèt yon imèl arnak (fisik) anvan li fè w dega.",
+    simpleExplanation:
+      "**Fisik pa imèl** (email phishing) se lè move moun voye yon imèl ki sanble ofisyèl (labank, Facebook, gouvènman) pou vòlè modpas oswa enfòmasyon ou. Siyal danje: presyon iminan ('aji kounye a!'), fòt ekri, ak lyen ki mennen sou sit etranj.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing email scam awareness — a laptop screen with a subtle warning triangle icon overlaying an email interface, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/recognizing-email-scams.webp`,
+    digitalWords: [
+      {
+        word: "Fisik (Phishing)",
+        definition:
+          "Yon fo imèl ki sanble ofisyèl, fèt pou vòlè enfòmasyon ou.",
+        example:
+          "Yon imèl ki di 'kont ou blocked, klike isit la' souvan fisik.",
+      },
+      {
+        word: "Ekspeditè (Sender)",
+        definition: "Adrès imèl reyèl moun ki voye mesaj la.",
+        example:
+          "Verifye ekspeditè a — li ka pa egzakteman 'support@labank.com'.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou resevwa yon imèl ki di 'kont labank ou ap fèmen, klike isit la kounye a', pa klike — ale dirèkteman sou sit ofisyèl labank la nan yon nouvo tab pou verifye.",
+    mistakeWrong:
+      "Klike sou lyen nan yon imèl ki kreye panik san verifye ekspeditè a.",
+    mistakeCorrect:
+      "Verifye adrès ekspeditè a byen, epi ale dirèkteman sou sit ofisyèl la nan yon nouvo tab olye de klike lyen an.",
+    mistakeWhy:
+      "⚠️ Move moun konte sou panik ou pou fè w aji vit san reflechi — pran yon segonn pou verifye toujou pwoteje w.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI verifye si yon imèl espesifik ou resevwa gen siyal ki montre li ka yon arnak.",
+    aiPrompt:
+      "Hi! I got an email saying my bank account will be closed unless I click a link immediately. What are the warning signs I should look for to check if this is a scam?",
+    mission:
+      "🎯 Misyon: gade nan Spam ou epi idantifye youn oswa de siyal danje nan yon imèl sispèk.",
+    quiz: {
+      prompt: "Ki youn nan siyal prensipal yon imèl fisik (phishing)?",
+      options: [
+        "Yon sijè klè",
+        "Presyon iminan pou ou aji kounye a",
+        "Yon fòmil politès byen ekri",
+        "Yon pyès jwenn PDF",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Presyon iminan se yon gwo siyal danje.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak taktik move moun itilize pou fè w pè.",
+    },
+    recap: [
+      { emoji: "🎣", text: "Fisik = fo imèl ki vòlè enfòmasyon ou." },
+      { emoji: "⏰", text: "Mefye w de presyon iminan." },
+      { emoji: "🔎", text: "Verifye ekspeditè a anvan ou klike." },
+      {
+        emoji: "🎯",
+        text: "Misyon: idantifye siyal danje nan yon imèl sispèk.",
+      },
+    ],
+  },
+  {
+    slug: "email-mastery-mission",
+    moduleTitle: "Modil 6: Metrize Imèl",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Metrize Imèl",
+    heroLede:
+      "Konbine tout konpetans Modil 6 pou itilize imèl tankou yon pwofesyonèl.",
+    goal: "🎯 Objektif: kreye ak itilize imèl tankou yon pwofesyonèl konfyan.",
+    simpleExplanation:
+      "Ou fèk aprann: kisa imèl ye, kreye yon kont Gmail, bwat resepsyon ak compose, reply/reply all/forward, pyès jwenn, dosye/etikèt, spam/trash, rechèch, imèl pwofesyonèl, ak rekonèt arnak. Misyon sa a mande w konbine plizyè nan konpetans sa yo.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently checking email on a laptop at a bright desk, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/email-mastery-mission.webp`,
+    digitalWords: [
+      {
+        word: "Metriz Imèl",
+        definition:
+          "Kapasite pou kreye, jere, ak itilize imèl tankou yon pwofesyonèl.",
+        example: "Metriz imèl ede w nan djòb, biznis, ak lavi chak jou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki metrize imèl reponn djòb ak pwofesyonalis, jwenn imèl vit, epi evite arnak ki ta ka koute yo lajan oswa enfòmasyon pèsonèl.",
+    mistakeWrong:
+      "Panse imèl se yon zouti ki demode ki pa vo tan aprann li byen.",
+    mistakeCorrect:
+      "Konprann imèl rete zouti debaz pou djòb, biznis, ak kont ofisyèl — vo tan mètrize l.",
+    mistakeWhy:
+      "⚠️ Menm ak WhatsApp ak rezo sosyal, imèl rete estanda pou kominikasyon pwofesyonèl ak ofisyèl.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI konsèy sou kijan pou kontinye amelyore konpetans imèl ou.",
+    aiPrompt:
+      "Hi! I just learned the basics of using email (Gmail, replying, attachments, professional writing, spotting scams). What should I focus on learning next?",
+    mission:
+      "🎯 Misyon Final Modil 6: voye yon imèl pwofesyonèl konplè (salitasyon, mesaj, fòmil politès) ak yon pyès jwenn.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 6 la?",
+      options: [
+        "Vin yon enjenyè lojisyèl imèl",
+        "Kreye ak itilize imèl tankou yon pwofesyonèl konfyan",
+        "Memorize tout adrès imèl ki egziste",
+        "Efase tout imèl chak jou",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Objektif la se itilize imèl tankou yon pwofesyonèl.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 6 la.",
+    },
+    recap: [
+      { emoji: "📧", text: "Kisa imèl ye ak kreye yon kont Gmail." },
+      { emoji: "↩️", text: "Reply, Reply All, Forward, pyès jwenn." },
+      { emoji: "🏷️", text: "Dosye/etikèt, spam/trash, rechèch." },
+      { emoji: "🎓", text: "Ou fini Modil 6 — Metrize Imèl!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {
