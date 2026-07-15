@@ -2219,6 +2219,602 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 3 — Itilize Òdinatè Ou!" },
     ],
   },
+  {
+    slug: "what-is-a-file-and-folder",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "📄",
+    heroTitle: "Kisa Yon Fichye ak Yon Dosye Ye?",
+    heroLede: "De bagay debaz ki fè posib tout sa ou sovgade sou yon òdinatè.",
+    goal: "🎯 Objektif: konprann diferans ant yon fichye ak yon dosye.",
+    simpleExplanation:
+      "Yon **fichye** se yon sèl bagay ou sovgade — yon foto, yon dokiman, yon chante. Yon **dosye** se yon 'bwat' vityèl ki kenbe plizyè fichye ansanm pou yo rete òganize. Panse ak yon achiv fizik: chak papye se yon fichye, chak katab se yon dosye.",
+    howItWorks: [
+      "Yon fichye se yon sèl bagay (yon foto, yon dokiman)",
+      "Yon dosye kenbe plizyè fichye ansanm",
+      "Ou ka mete dosye anndan lòt dosye pou plis òganizasyon",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a simple folder icon opened to reveal several file icons inside, clean modern interface, natural lighting, professional tech photography, no readable text needed",
+    illustrationSrc: `${illustrationBase}/what-is-a-file-and-folder.webp`,
+    digitalWords: [
+      {
+        word: "Fichye (File)",
+        definition:
+          "Yon sèl bagay ou sovgade — yon dokiman, foto, oswa chante.",
+        example: "Foto sa a se yon fichye.",
+      },
+      {
+        word: "Dosye (Folder)",
+        definition: "Yon 'bwat' vityèl ki kenbe plizyè fichye ansanm.",
+        example: "Mete tout foto vakans ou nan yon sèl dosye.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou gen 50 foto sou telefòn ou san okenn dosye, yo tout mele ansanm. Si ou mete yo nan dosye tankou 'Vakans 2024' ak 'Fanmi', ou jwenn yo pi vit.",
+    mistakeWrong: "Sovgade tout fichye ou yo nan menm plas san okenn dosye.",
+    mistakeCorrect: "Kreye dosye pou gwoupe fichye ki sanble ansanm.",
+    mistakeWhy:
+      "⚠️ San dosye, jwenn yon fichye espesifik pami dè santèn lòt yo tankou chèche yon zegwi nan yon pil pay.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy sou ki dosye ou ta dwe kreye pou òganize lavi dijital ou.",
+    aiPrompt:
+      "Hi! Can you suggest 5-6 basic folders a beginner should create to organize their files (photos, documents, etc.)?",
+    mission:
+      "🎯 Misyon: kreye yon nouvo dosye sou aparèy ou epi ba li yon non ki fè sans.",
+    quiz: {
+      prompt: "Kisa yon dosye ye?",
+      options: [
+        "Yon sèl foto oswa dokiman",
+        "Yon 'bwat' vityèl ki kenbe plizyè fichye",
+        "Yon kalite aplikasyon",
+        "Yon pò sou òdinatè a",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yon dosye kenbe plizyè fichye ansanm.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak yon katab ki kenbe plizyè papye.",
+    },
+    recap: [
+      { emoji: "📄", text: "Fichye = yon sèl bagay ou sovgade." },
+      { emoji: "📁", text: "Dosye = 'bwat' ki kenbe plizyè fichye." },
+      { emoji: "🗂️", text: "Dosye ede w jwenn fichye pi vit." },
+      { emoji: "🎯", text: "Misyon: kreye yon nouvo dosye." },
+    ],
+  },
+  {
+    slug: "standard-folders",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "🗂️",
+    heroTitle: "Dosye Estanda Yo",
+    heroLede: "Chak aparèy deja gen yon sistèm dosye tou fèt pou ou.",
+    goal: "🎯 Objektif: konnen ki kalite fichye chak dosye estanda kenbe.",
+    simpleExplanation:
+      "Chak òdinatè gen kèk dosye ki deja la depi kòmansman: **Desktop**, **Downloads** (fichye telechaje), **Documents** (dokiman), **Pictures** (foto), **Videos** (videyo), ak **Music** (mizik). Sovgade chak fichye nan bon dosye a fè yo pi fasil pou jwenn.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a file browser sidebar with folder icons for Desktop, Downloads, Documents, Pictures, Videos, and Music, clean modern interface, natural lighting, professional tech photography, no readable text needed",
+    illustrationSrc: `${illustrationBase}/standard-folders.webp`,
+    digitalWords: [
+      {
+        word: "Downloads",
+        definition: "Dosye kote tout fichye ou telechaje sou entènèt rive.",
+        example: "Chèche PDF ou fèk telechaje nan dosye Downloads.",
+      },
+      {
+        word: "Documents",
+        definition: "Dosye pou dokiman tankou lèt, fòm, ak rapò.",
+        example: "Sovgade CV ou nan dosye Documents.",
+      },
+      {
+        word: "Pictures",
+        definition: "Dosye pou foto ak imaj.",
+        example: "Tout foto telefòn ou sovgade rive nan Pictures.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou telechaje yon PDF sou entènèt, li ale otomatikman nan dosye Downloads — ou pa bezwen chèche l nan tout lòt dosye.",
+    mistakeWrong:
+      "Mete tout kalite fichye (foto, dokiman, videyo) nan menm dosye a.",
+    mistakeCorrect:
+      "Itilize dosye estanda a: foto nan Pictures, dokiman nan Documents, elatriye.",
+    mistakeWhy:
+      "⚠️ Lè fichye yo nan bon dosye, aplikasyon (tankou yon app foto) jwenn yo otomatikman san ou pa bezwen chèche manyèlman.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou deplase tout fichye ki nan Downloads pou al nan bon dosye yo (Pictures, Documents, elatriye).",
+    aiPrompt:
+      "Hi! My Downloads folder is a mess with photos, PDFs, and documents all mixed together. Can you explain how to sort them into the right folders?",
+    mission:
+      "🎯 Misyon: louvri dosye Downloads ou epi idantifye ki kalite fichye ki ladan l.",
+    quiz: {
+      prompt: "Ki dosye kote fichye telechaje sou entènèt rive otomatikman?",
+      options: ["Documents", "Pictures", "Downloads", "Desktop"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! Downloads se dosye pou fichye telechaje.",
+      wrongFeedback: "❌ Eseye ankò — panse ak non dosye a.",
+    },
+    recap: [
+      { emoji: "⬇️", text: "Downloads = fichye telechaje." },
+      { emoji: "📃", text: "Documents = dokiman ak rapò." },
+      { emoji: "🖼️", text: "Pictures = foto ak imaj." },
+      { emoji: "🎯", text: "Misyon: gade sa ki nan dosye Downloads ou." },
+    ],
+  },
+  {
+    slug: "file-extensions",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "🏷️",
+    heroTitle: "Ekstansyon Fichye",
+    heroLede:
+      "Twa-kat lèt apre yon pwen ki di w egzakteman ki kalite fichye ou genyen.",
+    goal: "🎯 Objektif: rekonèt ekstansyon fichye ki pi komen yo.",
+    simpleExplanation:
+      "Yon **ekstansyon fichye** se lèt yo apre pwen an nan non yon fichye (egzanp: 'rapò.pdf'). Li di w ki kalite fichye li ye, e ki aplikasyon pou louvri l. Egzanp: .jpg (foto), .pdf (dokiman), .mp3 (mizik), .mp4 (videyo).",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a file list with different colored file type icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/file-extensions.webp`,
+    digitalWords: [
+      {
+        word: "Ekstansyon (Extension)",
+        definition:
+          "Lèt apre pwen nan non yon fichye ki montre ki kalite li ye.",
+        example: "'.pdf' nan 'rapò.pdf' se ekstansyon an.",
+      },
+      {
+        word: ".jpg / .png",
+        definition: "Ekstansyon pou fichye foto ak imaj.",
+        example: "Yon foto telefòn souvan gen ekstansyon .jpg.",
+      },
+      {
+        word: ".mp3 / .mp4",
+        definition: "Ekstansyon pou fichye mizik (.mp3) ak videyo (.mp4).",
+        example: "Chante ou telechaje a se yon fichye .mp3.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si yon moun voye w yon fichye '.docx' ou pa ka louvri, se paske ou bezwen yon aplikasyon tankou Word ki fèt pou li ekstansyon sa a.",
+    mistakeWrong:
+      "Chanje ekstansyon yon fichye (egzanp .jpg an .pdf) pou eseye 'konvèti' l.",
+    mistakeCorrect:
+      "Itilize yon aplikasyon oswa sit ki fèt egzakteman pou konvèti kalite fichye.",
+    mistakeWhy:
+      "⚠️ Chanje sèlman lèt yo apre pwen an pa chanje kontni fichye a — li ka kraze fichye a nèt olye de konvèti l.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kisa yon ekstansyon espesifik ou pa rekonèt vle di, oswa ki aplikasyon pou louvri l.",
+    aiPrompt:
+      "Hi! I have a file ending in '.pptx' and I don't know what it is or what app to use to open it. Can you explain?",
+    mission:
+      "🎯 Misyon: gade twa fichye sou aparèy ou epi idantifye ekstansyon chak youn.",
+    quiz: {
+      prompt: "Ki ekstansyon yo itilize pou fichye videyo?",
+      options: [".jpg", ".pdf", ".mp4", ".zip"],
+      correctIndex: 2,
+      correctFeedback: "✅ Wi! .mp4 se pou videyo.",
+      wrongFeedback: "❌ Eseye ankò — panse ak ekstansyon pou videyo.",
+    },
+    recap: [
+      { emoji: "🏷️", text: "Ekstansyon montre ki kalite fichye ou genyen." },
+      { emoji: "🖼️", text: ".jpg/.png = foto." },
+      { emoji: "🎵", text: ".mp3 = mizik, .mp4 = videyo." },
+      { emoji: "🎯", text: "Misyon: idantifye ekstansyon twa fichye." },
+    ],
+  },
+  {
+    slug: "working-with-pdf",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "📕",
+    heroTitle: "Travay Ak Fichye PDF",
+    heroLede: "Fòma dokiman ki pi popilè pou fòm, kontra, ak dokiman ofisyèl.",
+    goal: "🎯 Objektif: louvri, li, ak konprann fichye PDF ak konfyans.",
+    simpleExplanation:
+      "Yon **PDF** se yon kalite dokiman ki parèt menm jan sou nenpòt aparèy — li pa chanje fòm menm si moun ki louvri l gen yon lòt aparèy pase w. Se poutèt sa biznis, gouvènman, ak lekòl itilize PDF pou fòm ak dokiman ofisyèl.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen displaying a document reading application with a document icon, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/working-with-pdf.webp`,
+    digitalWords: [
+      {
+        word: "PDF",
+        definition: "Yon fòma dokiman ki rete menm jan sou nenpòt aparèy.",
+        example: "Fòm gouvènman an souvan yon fichye PDF.",
+      },
+      {
+        word: "Siyen (Sign)",
+        definition: "Ajoute yon siyati dijital sou yon dokiman PDF.",
+        example: "Siyen kontra a dirèkteman sou telefòn ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè ou aplike pou yon djòb, souvan yo mande w voye CV ou an PDF — sa asire moun k ap resevwa l wè l egzakteman jan ou fè l, san fòma a chanje.",
+    mistakeWrong: "Voye yon dokiman enpòtan an fòma Word (.docx) san panse.",
+    mistakeCorrect:
+      "Konvèti dokiman an PDF anvan ou voye l pou moun k ap resevwa l wè menm bagay ak ou.",
+    mistakeWhy:
+      "⚠️ Yon dokiman Word ka parèt diferan sou lòt òdinatè (fòn tèks chanje, mizanpaj deplase) — PDF rezoud pwoblèm sa a.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou konvèti yon dokiman Word an PDF, oswa kijan pou siyen yon PDF san enprime l.",
+    aiPrompt:
+      "Hi! Can you explain how to convert a Word document into a PDF, and how to sign a PDF without printing it?",
+    mission:
+      "🎯 Misyon: louvri yon fichye PDF sou aparèy ou (oswa telechaje youn) epi navige nan de paj li.",
+    quiz: {
+      prompt: "Poukisa moun itilize PDF pou dokiman ofisyèl?",
+      options: [
+        "Paske li pi piti toujou",
+        "Paske li rete menm jan sou nenpòt aparèy",
+        "Paske li pa ka enprime",
+        "Paske li pi rapid pou ekri",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! PDF rete menm jan sou nenpòt aparèy.",
+      wrongFeedback: "❌ Eseye ankò — panse ak avantaj prensipal PDF la.",
+    },
+    recap: [
+      { emoji: "📕", text: "PDF rete menm jan sou nenpòt aparèy." },
+      { emoji: "📝", text: "Souvan itilize pou fòm ak kontra." },
+      { emoji: "✍️", text: "Ou ka siyen yon PDF dijitalman." },
+      { emoji: "🎯", text: "Misyon: louvri epi navige nan yon PDF." },
+    ],
+  },
+  {
+    slug: "rename-copy-move-delete",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "✂️",
+    heroTitle: "Rename, Copy, Move, Delete",
+    heroLede: "Kat aksyon ki jere prèske tout sa ou fè ak fichye ou yo.",
+    goal: "🎯 Objektif: chanje non, kopye, deplase, ak efase yon fichye ak konfyans.",
+    simpleExplanation:
+      "**Rename** chanje non yon fichye. **Copy** fè yon dupliya kite orijinal la rete. **Move** deplase fichye a yon lòt dosye san kite yon dupliya. **Delete** efase l (li ale nan Recycle Bin/Trash, pa disparèt nèt imedyatman).",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a file being right-clicked with a context menu visible, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/rename-copy-move-delete.webp`,
+    digitalWords: [
+      {
+        word: "Rename",
+        definition: "Chanje non yon fichye san chanje kontni li.",
+        example: "Rename fichye a pou 'Rapò Final.pdf'.",
+      },
+      {
+        word: "Move",
+        definition: "Deplase yon fichye nan yon lòt dosye, san kite dupliya.",
+        example: "Move foto a soti nan Downloads pou al nan Pictures.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou telechaje yon fichye ki rele 'document1.pdf', rename li pou yon non ki fè sans (egzanp 'Kontra Kay.pdf') pou ou jwenn li pi vit pita.",
+    mistakeWrong:
+      "Konfonn Copy (fè yon dupliya) ak Move (deplase san dupliya).",
+    mistakeCorrect:
+      "Itilize Copy lè ou vle gade orijinal la, Move lè ou vle sèlman chanje kote l ye.",
+    mistakeWhy:
+      "⚠️ Si ou vle Move men ou fè Copy pa erè, ou fini ak de kopi menm fichye a ki pran plas san rezon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI diferans egzat ant Copy ak Move si ou toujou konfonn yo.",
+    aiPrompt:
+      "Hi! I always confuse 'Copy' and 'Move' when working with files. Can you explain the difference with a simple example?",
+    mission:
+      "🎯 Misyon: rename yon fichye sou aparèy ou pou ba li yon non ki fè sans.",
+    quiz: {
+      prompt: "Ki aksyon fè yon dupliya fichye a, kite orijinal la rete?",
+      options: ["Rename", "Copy", "Move", "Delete"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Copy fè yon dupliya.",
+      wrongFeedback: "❌ Eseye ankò — panse ak aksyon ki 'kopye' a.",
+    },
+    recap: [
+      { emoji: "✏️", text: "Rename chanje non an." },
+      { emoji: "📋", text: "Copy fè yon dupliya." },
+      { emoji: "➡️", text: "Move deplase san dupliya." },
+      { emoji: "🎯", text: "Misyon: rename yon fichye." },
+    ],
+  },
+  {
+    slug: "recycle-bin-and-restore",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "🗑️",
+    heroTitle: "Recycle Bin, Trash, ak Restore",
+    heroLede: "Efase yon fichye pa toujou pèdi l nèt.",
+    goal: "🎯 Objektif: efase fichye an sekirite epi konnen kijan pou restore yo.",
+    simpleExplanation:
+      "Lè ou efase yon fichye, li pa disparèt imedyatman — li ale nan yon dosye espesyal ki rele **Recycle Bin** (Windows) oswa **Trash** (Mac). Ou ka **restore** (remèt) li si ou fè yon erè, jiskaske ou vide dosye sa a nèt.",
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Fichye efase yo ale nan 'Recycle Bin' la (ikòn poubèl sou desktop la). Louvri l, right-click sou fichye a, epi chwazi 'Restore' pou remèt li kote l te ye.",
+      },
+      {
+        platform: "mac",
+        steps:
+          "Fichye efase yo ale nan 'Trash' la (nan dock la). Louvri l, right-click sou fichye a, epi chwazi 'Put Back' pou remèt li kote l te ye.",
+      },
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a trash bin icon in a file browser sidebar, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/recycle-bin-and-restore.webp`,
+    digitalWords: [
+      {
+        word: "Recycle Bin / Trash",
+        definition:
+          "Dosye espesyal kote fichye efase yo ale anvan yo disparèt nèt.",
+        example: "Chèche fichye ou efase pa aksidan nan Recycle Bin.",
+      },
+      {
+        word: "Restore",
+        definition:
+          "Remèt yon fichye kote l te ye anvan, soti nan Recycle Bin/Trash.",
+        example: "Restore fichye a si ou efase l pa erè.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou efase yon foto enpòtan pa aksidan, pa panike — louvri Recycle Bin (oswa Trash) epi restore l, tank ou pa vide l nèt.",
+    mistakeWrong: "Panse yon fichye disparèt nèt kou ou peze Delete.",
+    mistakeCorrect:
+      "Konnen fichye a rete nan Recycle Bin/Trash jiskaske ou vide l nèt.",
+    mistakeWhy:
+      "⚠️ Pè twòp pou efase yon fichye ka fè w kite dè santèn fichye initil sou aparèy ou — Recycle Bin/Trash bay yon dezyèm chans si ou fè yon erè.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou vide Recycle Bin/Trash konplètman pou libere plas sou aparèy ou.",
+    aiPrompt:
+      "Hi! Can you explain how to permanently empty the Recycle Bin (Windows) or Trash (Mac) to free up storage space?",
+    mission:
+      "🎯 Misyon: louvri Recycle Bin/Trash ou epi gade sa ki ladan l kounye a.",
+    quiz: {
+      prompt: "Kisa ki rive yon fichye lè ou 'efase' li?",
+      options: [
+        "Li disparèt nèt imedyatman",
+        "Li ale nan Recycle Bin/Trash anvan li disparèt nèt",
+        "Li vin yon PDF",
+        "Li kopye otomatikman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li ale nan Recycle Bin/Trash dabò.",
+      wrongFeedback: "❌ Eseye ankò — panse ak dezyèm chans ou genyen.",
+    },
+    recap: [
+      { emoji: "🗑️", text: "Fichye efase ale nan Recycle Bin/Trash dabò." },
+      { emoji: "↩️", text: "Restore remèt yon fichye kote l te ye." },
+      { emoji: "🧹", text: "Vide dosye a pou efase pou tout bon." },
+      { emoji: "🎯", text: "Misyon: gade sa ki nan Recycle Bin/Trash ou." },
+    ],
+  },
+  {
+    slug: "searching-for-files",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "🔍",
+    heroTitle: "Chèche Fichye",
+    heroLede:
+      "Pa gen bezwen navige nan dè santèn dosye pou jwenn yon sèl fichye.",
+    goal: "🎯 Objektif: itilize zouti rechèch pou jwenn yon fichye vit pa non li.",
+    simpleExplanation:
+      "Chak platfòm gen yon zouti rechèch pwisan ki jwenn yon fichye pa non li, menm si ou pa sonje ki dosye li ye. Tape sèlman yon pati nan non an epi rezilta yo parèt imedyatman.",
+    platformExamples: [
+      {
+        platform: "windows",
+        steps:
+          "Klike sou ikòn rechèch la nan taskbar la (oswa peze tous Windows), epi tape non fichye a (oswa yon pati nan li).",
+      },
+      {
+        platform: "mac",
+        steps:
+          "Peze Cmd + Espas pou louvri Spotlight, epi tape non fichye a. Rezilta yo parèt imedyatman.",
+      },
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a search bar with results appearing below it, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/searching-for-files.webp`,
+    digitalWords: [
+      {
+        word: "Spotlight",
+        definition: "Zouti rechèch rapid sou Mac, ou louvri ak Cmd+Espas.",
+        example: "Itilize Spotlight pou jwenn yon aplikasyon oswa fichye vit.",
+      },
+      {
+        word: "Rechèch (Search)",
+        definition: "Tape yon mo pou jwenn fichye ki matche l.",
+        example: "Tape 'rapò' nan rechèch la pou jwenn tout fichye ak mo sa a.",
+      },
+    ],
+    realLifeExample:
+      "💡 Olye de navige nan 10 dosye pou jwenn yon fichye ou telechaje 3 mwa pase, tape yon pati nan non li nan rechèch la epi jwenn li an 2 segonn.",
+    mistakeWrong:
+      "Navige manyèlman nan chak dosye pou chèche yon fichye espesifik.",
+    mistakeCorrect:
+      "Itilize zouti rechèch la premye bagay, anvan ou navige manyèlman.",
+    mistakeWhy:
+      "⚠️ Rechèch la fèt egzakteman pou sitiyasyon sa a — li pi rapid anpil pase chèche manyèlman nan chak dosye.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy avanse pou rechèch — egzanp, kijan pou chèche sèlman fichye PDF, oswa fichye ki modifye dènyèman.",
+    aiPrompt:
+      "Hi! Can you explain how to search for only PDF files, or only files modified recently, using the search tool on my computer?",
+    mission:
+      "🎯 Misyon: itilize rechèch la pou jwenn yon fichye espesifik sou aparèy ou.",
+    quiz: {
+      prompt: "Ki rakousi louvri Spotlight sou Mac?",
+      options: ["Ctrl+F", "Cmd+Espas", "Alt+Tab", "Windows+E"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Cmd+Espas louvri Spotlight.",
+      wrongFeedback: "❌ Eseye ankò — panse ak konbinezon Mac la.",
+    },
+    recap: [
+      {
+        emoji: "🔍",
+        text: "Rechèch jwenn fichye pi vit pase navige manyèlman.",
+      },
+      { emoji: "🍎", text: "Mac: Cmd+Espas louvri Spotlight." },
+      { emoji: "🪟", text: "Windows: klike ikòn rechèch nan taskbar la." },
+      { emoji: "🎯", text: "Misyon: chèche yon fichye espesifik." },
+    ],
+  },
+  {
+    slug: "zip-and-compression",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "🗜️",
+    heroTitle: "ZIP ak Konpresyon",
+    heroLede:
+      "Mete plizyè fichye ansanm nan yon sèl pake ki pi piti epi pi fasil pou voye.",
+    goal: "🎯 Objektif: konprann sa yon fichye ZIP ye ak poukisa moun itilize l.",
+    simpleExplanation:
+      "**Konpresyon** vle di redwi gwosè yon fichye (oswa plizyè fichye) san pèdi enfòmasyon. Yon **fichye ZIP** se yon 'pake' ki gen plizyè fichye ladan l, konprese ansanm — pi fasil pou voye pa imèl pase voye chak fichye separeman.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a zip archive icon with multiple document icons flowing into it, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/zip-and-compression.webp`,
+    digitalWords: [
+      {
+        word: "ZIP",
+        definition: "Yon 'pake' ki gen plizyè fichye konprese ansanm.",
+        example:
+          "Konprese 20 foto nan yon sèl fichye ZIP pou voye yo pi fasil.",
+      },
+      {
+        word: "Konpresyon (Compression)",
+        definition: "Redwi gwosè yon fichye san pèdi enfòmasyon.",
+        example: "Konpresyon fè fichye a pran mwens plas.",
+      },
+      {
+        word: "Dekonprese (Extract/Unzip)",
+        definition: "Retire fichye yo soti nan yon pake ZIP.",
+        example: "Dekonprese fichye ZIP la pou wè tout foto ladan l.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou bezwen voye 30 foto bay yon moun pa imèl, konprese yo tout nan yon sèl fichye ZIP olye de voye yo youn pa youn — pi rapid ak pi òganize.",
+    mistakeWrong: "Eseye voye 30 fichye separe pa imèl youn apre lòt.",
+    mistakeCorrect: "Konprese tout fichye yo nan yon sèl ZIP anvan ou voye yo.",
+    mistakeWhy:
+      "⚠️ Voye anpil fichye separe ka fè imèl la twò gwo oswa dezòganize — yon sèl fichye ZIP pi pwòp ak pi fasil pou moun k ap resevwa l jere.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou kreye yon fichye ZIP oswa dekonprese youn si ou pa sèten kijan pou fè l.",
+    aiPrompt:
+      "Hi! Can you explain how to create a ZIP file from multiple files, and how to extract (unzip) one I received?",
+    mission:
+      "🎯 Misyon: chwazi de-twa fichye epi eseye konprese yo nan yon fichye ZIP.",
+    quiz: {
+      prompt: "Poukisa moun konprese fichye nan yon ZIP?",
+      options: [
+        "Pou efase yo pi vit",
+        "Pou mete plizyè fichye nan yon sèl pake ki pi fasil pou voye",
+        "Pou konvèti yo an PDF",
+        "Pou yo pa ka efase ankò",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! ZIP mete plizyè fichye nan yon sèl pake.",
+      wrongFeedback: "❌ Eseye ankò — panse ak avantaj yon sèl pake.",
+    },
+    recap: [
+      { emoji: "🗜️", text: "ZIP mete plizyè fichye nan yon sèl pake." },
+      { emoji: "📉", text: "Konpresyon redwi gwosè san pèdi enfòmasyon." },
+      { emoji: "📂", text: "Dekonprese pou wè fichye ki anndan l." },
+      { emoji: "🎯", text: "Misyon: konprese kèk fichye nan yon ZIP." },
+    ],
+  },
+  {
+    slug: "cloud-backup",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "☁️",
+    heroTitle: "Backup nan Cloud la",
+    heroLede: "Pwoteje travay ou pou yon aparèy pèdi pa janm vin yon dezas.",
+    goal: "🎯 Objektif: konprann poukisa backup enpòtan epi kijan pou aktive l.",
+    simpleExplanation:
+      "Yon **backup** se yon dezyèm kopi fichye ou yo, sovgade yon lòt kote (nan cloud la, tankou Google Drive oswa iCloud). Si aparèy ou pèdi, vòle, oswa kraze, ou pa pèdi tout travay ou — ou ka jwenn li ankò de yon lòt aparèy.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing automatic file backup — a laptop with a subtle upward arrow light effect suggesting files syncing to the cloud, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/cloud-backup.webp`,
+    digitalWords: [
+      {
+        word: "Backup",
+        definition: "Yon dezyèm kopi fichye ou yo, sovgade yon lòt kote.",
+        example: "Fè yon backup foto ou chak semèn pou pwoteje yo.",
+      },
+      {
+        word: "Sinkwonize (Sync)",
+        definition: "Kenbe menm vèsyon yon fichye ajou sou plizyè aparèy.",
+        example: "Fichye ou sinkwonize ant telefòn ou ak òdinatè ou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si telefòn ou tonbe nan dlo epi li kraze, men foto w yo te backup nan Google Photos, ou pa pèdi anyen — ou jwenn yo tout sou yon nouvo telefòn.",
+    mistakeWrong:
+      "Konte sou yon sèl kopi yon fichye enpòtan, sou yon sèl aparèy.",
+    mistakeCorrect: "Aktive backup otomatik pou dokiman ak foto enpòtan yo.",
+    mistakeWhy:
+      "⚠️ Yon sèl kopi vle di si aparèy la pèdi, vòle, oswa kraze, ou pèdi tout bagay pou tout bon — backup bay yon dezyèm sekirite.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou aktive backup otomatik pou foto ak dokiman sou aparèy espesifik ou.",
+    aiPrompt:
+      "Hi! Can you explain how to turn on automatic backup for my photos and important documents on my phone or computer?",
+    mission:
+      "🎯 Misyon: verifye si backup otomatik aktive sou aparèy ou, epi limen l si li pa aktive.",
+    quiz: {
+      prompt: "Ki avantaj prensipal yon backup bay ou?",
+      options: [
+        "Li fè aparèy ou mache pi vit",
+        "Li pwoteje fichye ou si aparèy la pèdi oswa kraze",
+        "Li efase fichye ou pa bezwen",
+        "Li chanje ekstansyon fichye yo",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Backup pwoteje fichye ou.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ki rive si ou pèdi aparèy la.",
+    },
+    recap: [
+      { emoji: "☁️", text: "Backup = dezyèm kopi fichye ou, yon lòt kote." },
+      { emoji: "🔄", text: "Sync kenbe fichye ajou sou plizyè aparèy." },
+      { emoji: "🛡️", text: "Backup pwoteje w si aparèy la pèdi/kraze." },
+      { emoji: "🎯", text: "Misyon: verifye backup otomatik ou." },
+    ],
+  },
+  {
+    slug: "files-and-folders-mission",
+    moduleTitle: "Modil 4: Fichye ak Dosye",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Fichye ak Dosye",
+    heroLede:
+      "Se lè a pou konbine tout konpetans Modil 4 pou òganize lavi dijital ou.",
+    goal: "🎯 Objektif: òganize, jwenn, ak pwoteje fichye ou ak konfyans.",
+    simpleExplanation:
+      "Ou fèk aprann: fichye vs. dosye, dosye estanda yo, ekstansyon fichye, PDF, rename/copy/move/delete, Recycle Bin/Trash, rechèch, ZIP, ak backup. Misyon sa a mande w konbine plizyè nan konpetans sa yo.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently organizing files on a laptop, neat and organized desk, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/files-and-folders-mission.webp`,
+    digitalWords: [
+      {
+        word: "Òganizasyon Dijital",
+        definition:
+          "Sistèm ou itilize pou kenbe fichye ou yo klè ak fasil jwenn.",
+        example: "Bon òganizasyon dijital fè lavi pi fasil chak jou.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki òganize fichye yo byen (bon dosye, bon non, backup aktive) pase mwens tan chèche epi gen mwens estrès si yon bagay rive ak aparèy yo.",
+    mistakeWrong: "Panse òganizasyon fichye se yon travay ki fèt yon sèl fwa.",
+    mistakeCorrect:
+      "Konprann òganizasyon se yon abitid — kontinye mete chak nouvo fichye nan bon plas.",
+    mistakeWhy:
+      "⚠️ Menm yon bon sistèm dosye ka vin dezòd si ou pa kontinye swiv li chak fwa ou ajoute yon nouvo fichye.",
+    aiExplanation:
+      "🤖 Kounye a ou ka dekri sistèm fichye ou bay yon AI epi mande konsèy sou kijan pou amelyore l.",
+    aiPrompt:
+      "Hi! I just learned about files, folders, extensions, ZIP files, and cloud backup. Can you give me a simple checklist to keep my files organized going forward?",
+    mission:
+      "🎯 Misyon Final Modil 4: kreye yon dosye, mete yon fichye ladan l, rename li, epi verifye backup otomatik ou aktive.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 4 la?",
+      options: [
+        "Memorize tout ekstansyon fichye ki egziste",
+        "Òganize, jwenn, ak pwoteje fichye ak konfyans",
+        "Vin yon enjenyè lojisyèl",
+        "Efase tout fichye initil yo",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Objektif la se òganize, jwenn, ak pwoteje.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 4 la.",
+    },
+    recap: [
+      { emoji: "📁", text: "Fichye vs. dosye, dosye estanda yo." },
+      { emoji: "✂️", text: "Rename, copy, move, delete, restore." },
+      { emoji: "🗜️", text: "ZIP, rechèch, ak backup nan cloud la." },
+      { emoji: "🎓", text: "Ou fini Modil 4 — Fichye ak Dosye!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {
