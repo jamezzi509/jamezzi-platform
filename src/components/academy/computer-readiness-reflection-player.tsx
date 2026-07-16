@@ -251,11 +251,17 @@ export function ComputerReadinessReflectionPlayer({
 
             {saved && (
               <div className="bg-indigo-light mt-8 rounded-[18px] px-5.5 py-6 text-center">
-                <p className="text-ink text-[14.5px] leading-[1.6]">
-                  Mèsi pou pran tan reflechi sou kwasans ou! Egzamen Final kou a
-                  ap vini pita — pou kounye a, ou ka retounen gade repons ou yo
-                  nenpòt lè.
+                <p className="text-ink mb-4 text-[14.5px] leading-[1.6]">
+                  Mèsi pou pran tan reflechi sou kwasans ou! Ou ka retounen gade
+                  oswa chanje repons ou yo nenpòt lè.
                 </p>
+                <Link
+                  href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
+                  className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+                >
+                  Ale nan Egzamen Final la
+                  <ArrowRightIcon className="size-4" />
+                </Link>
               </div>
             )}
           </div>

@@ -220,6 +220,35 @@ export interface ReadinessReflection {
   openQuestions: ReflectionQuestion[];
 }
 
+/**
+ * One question in the final exam's question bank — Section 8.5. Tagged with
+ * the module it covers (for even bank coverage and, on a miss, a targeted
+ * lesson to review) rather than a narrow skillTag like checkpoint questions,
+ * since the exam samples broadly rather than testing one scenario.
+ */
+export interface ExamQuestion {
+  id: string;
+  moduleId: string;
+  recommendedLessonSlug: string;
+  question: KnowledgeCheckQuestion;
+}
+
+/**
+ * The final exam — Section 8.5: 50 scenario-heavy questions covering every
+ * module, randomly drawn from a larger bank each attempt, 80% required,
+ * unlimited retries. bank.length is intentionally larger than
+ * questionsPerAttempt so a retry draws a genuinely different set.
+ */
+export interface FinalExam {
+  id: string;
+  titleHt: string;
+  titleEn: string;
+  intro: string;
+  questionsPerAttempt: number;
+  passingPercent: number;
+  bank: ExamQuestion[];
+}
+
 export function getPlatformStepsFor(
   steps: PlatformSteps,
   platform: Exclude<Platform, "universal">,

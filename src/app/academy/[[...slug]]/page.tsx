@@ -9,10 +9,12 @@ import {
   hasCoursePreview,
 } from "@/components/academy/course-preview-page";
 import { ComputerBlockLessonPlayer } from "@/components/academy/computer-block-lesson-player";
+import { ComputerCertificatePlayer } from "@/components/academy/computer-certificate-player";
 import { ComputerCheckpointPlayer } from "@/components/academy/computer-checkpoint-player";
 import { ComputerCoursePage } from "@/components/academy/computer-course-page";
 import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
 import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
+import { ComputerFinalExamPlayer } from "@/components/academy/computer-final-exam-player";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
@@ -31,6 +33,7 @@ import {
 import { academyBooks } from "@/content/books";
 import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
 import { getComputerRebuildCheckpoint } from "@/content/computer-rebuild/checkpoints";
+import { computerRebuildFinalExam } from "@/content/computer-rebuild/final-exam";
 import {
   computerRebuildLessons,
   getComputerRebuildLesson,
@@ -421,6 +424,17 @@ export default async function AcademyPage({
           allLessons={computerRebuildLessons}
         />
       );
+    }
+    if (slug[3] === "final-exam") {
+      return (
+        <ComputerFinalExamPlayer
+          exam={computerRebuildFinalExam}
+          allLessons={computerRebuildLessons}
+        />
+      );
+    }
+    if (slug[3] === "certificate") {
+      return <ComputerCertificatePlayer allLessons={computerRebuildLessons} />;
     }
     const lesson = getComputerRebuildLesson(slug[3]);
     if (lesson) {
