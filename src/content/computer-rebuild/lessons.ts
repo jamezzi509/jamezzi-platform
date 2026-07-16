@@ -3395,10 +3395,237 @@ export const computerRebuildLessons: CourseLesson[] = [
     ],
   },
   {
+    id: "m6-l0a",
+    slug: "kisa-ki-se-entenet-la",
+    moduleId: "m6",
+    order: 1,
+    titleHt: "Ki Sa Ki Se Entènèt La?",
+    titleEn: "What Is the Internet?",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Esplike entènèt la kòm yon rezo rezo, pa yon sèl konpayi",
+      "Rekonèt egzanp sèvis ki mache sou entènèt la",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike ki sa entènèt la ye — yon rezo rezo, pa yon sèl konpayi oswa aplikasyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Entènèt la** se yon **rezo rezo** — anpil milyon òdinatè ak aparèy nan tout mond lan ki konekte ansanm epi ki ka pataje enfòmasyon. Li pa yon sèl konpayi, ni yon sèl aplikasyon: Google, Facebook, ak WhatsApp se **sèvis** ki mache SOU entènèt la, men yo pa entènèt la limenm. Menm si tout sit ak aplikasyon sa yo ta disparèt, entènèt la (rezo a) ta toujou egziste — se sa moun konstwi sou li ki chanje.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Entènèt (Internet)",
+            definition: "Yon gwo rezo rezo òdinatè ki konekte nan tout mond lan.",
+            example: "Entènèt la kite òdinatè ou pale ak yon òdinatè lòt bò lemond.",
+          },
+          {
+            term: "Sèvis Sou Entènèt (Online Service)",
+            definition: "Yon sit oswa aplikasyon ki mache SOU entènèt la, men ki pa entènèt la limenm.",
+            example: "Google se yon sèvis sou entènèt — li itilize entènèt la, li pa ranplase l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a twa sèvis ou itilize sou entènèt chak jou (imèl, rezo sosyal, videyo). Pou chak youn, raple tèt ou se yon sèvis KI MACHE sou entènèt la, pa entènèt la limenm.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse Facebook oswa Google 'se' entènèt la.",
+          right: "Konprann Facebook ak Google se sèvis ki mache sou entènèt la — entènèt la se rezo a anba yo.",
+          why: "Konprann diferans lan ede w wè poukisa yon sèvis ka gen pwoblèm pandan entènèt la limenm ap mache byen.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain in simple terms what the internet actually is, as opposed to apps like Google or Facebook that run on it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle ka eksplike bay yon lòt moun diferans ant entènèt la ak yon sèvis tankou Google.",
+          objective: "Site twa sèvis ou itilize sou entènèt epi eksplike poukisa yo pa 'se' entènèt la.",
+          requiredSteps: [
+            "Site twa sèvis ou itilize sou entènèt",
+            "Eksplike ak pwòp mo pa w poukisa yo diferan de entènèt la limenm",
+          ],
+          successCriteria: ["Ou bay eksplikasyon an san konfizyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon zanmi di 'Facebook ap boge, sa vle di entènèt la pa mache.' Ki sa ki pi kòrèk?",
+            options: [
+              "Se vre, si Facebook pa mache, entènèt la pa mache",
+              "Facebook se yon sèvis sou entènèt la — li ka gen pwoblèm pandan entènèt la limenm mache byen",
+              "Entènèt la ak Facebook se menm bagay",
+              "Facebook se yon konpayi ki posede tout entènèt la",
+            ],
+            correctIndex: 1,
+            explanation: "Yon sèvis endividyèl ka gen pwoblèm san sa vle di rezo entènèt la limenm ki gen pwoblèm.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l0b",
+    slug: "founise-entenet-modem-route-ak-wifi",
+    moduleId: "m6",
+    order: 2,
+    titleHt: "Founisè Entènèt, Modèm, Routè, ak Wi-Fi",
+    titleEn: "Internet Provider, Modem, Router, and Wi-Fi",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Konprann chèn koneksyon senp la: founisè, modèm, routè, aparèy",
+      "Rekonèt Wi-Fi se yon SÈL fason pou konekte, pa entènèt la limenm",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike chèn koneksyon senp ant founisè entènèt, modèm, routè, ak aparèy ou, epi konprann Wi-Fi se yon sèl fason pou konekte.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **founisè entènèt (ISP)** se konpayi ki pote koneksyon entènèt la lakay ou. Koneksyon an antre nan yon **modèm**, ki tradwi siyal founisè a an yon fòm òdinatè ou ka itilize. Yon **routè** pran sa epi **pataje l** ak plizyè aparèy nan menm kay la — pafwa pa fil (Ethernet), pafwa san fil (**Wi-Fi**). Sou anpil kay, modèm ak routè a se **yon sèl aparèy konbine**. Enpòtan: **Wi-Fi se sèlman YON fason pou konekte sou entènèt la** — ou ka konekte tou ak yon kab Ethernet, oswa ak done selilè sou telefòn.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "isp-modem-router-device-chain",
+          caption: "Founisè Entènèt → Modèm → Routè → Wi-Fi → Aparèy Ou",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Founisè Entènèt (ISP)",
+            definition: "Konpayi ki pote koneksyon entènèt la lakay ou.",
+            example: "Ou peye yon abònman chak mwa bay founisè entènèt ou a.",
+          },
+          {
+            term: "Modèm",
+            definition: "Aparèy ki tradwi siyal founisè a an yon fòm òdinatè ou ka itilize.",
+            example: "Limyè sou modèm nan montre si koneksyon founisè a ap mache.",
+          },
+          {
+            term: "Routè (Router)",
+            definition: "Aparèy ki pataje koneksyon entènèt la ak plizyè aparèy, pa fil oswa san fil.",
+            example: "Routè a se sa ki kreye rezo Wi-Fi ou konekte telefòn ak òdinatè ou sou li.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon modèm/routè lakay ou, gade l epi idantifye si se de aparèy apa oswa yon sèl aparèy konbine.",
+      },
+      {
+        id: "b6",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse Wi-Fi 'se' entènèt la, epi si Wi-Fi la off, panse pa gen okenn lòt fason pou konekte.",
+          right: "Konprann Wi-Fi se yon sèl fason pou konekte — kab Ethernet ak done selilè se lòt fason.",
+          why: "Konprann sa ede w rezoud pwoblèm pi vit, paske ou konnen ki lòt opsyon ou genyen.",
+        },
+      },
+      {
+        id: "b7",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between my internet provider, my modem, and my router in simple terms?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann chèn koneksyon lakay ou.",
+          objective: "Idantifye chak pati nan chèn lan lakay ou (oswa yon kay ou konnen) epi eksplike wòl chak youn.",
+          requiredSteps: [
+            "Idantifye ki konpayi ki bay entènèt la",
+            "Idantifye modèm ak/oswa routè a",
+            "Eksplike diferans ant Wi-Fi ak entènèt la ak pwòp mo pa w",
+          ],
+          successCriteria: ["Ou eksplike chèn lan san konfizyon"],
+        },
+      },
+      {
+        id: "b9",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete pati chèn koneksyon an nan lòd kòrèk, soti nan founisè a rive nan aparèy ou.",
+            steps: ["Founisè Entènèt (ISP)", "Modèm", "Routè", "Aparèy ou (Wi-Fi)"],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Koneksyon an vwayaje nan lòd sa a: founisè, modèm, routè, epi aparèy ou pa Wi-Fi oswa fil.",
+          },
+        ],
+      },
+      {
+        id: "b10",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
     id: "m6-l1",
     slug: "konekte-sou-wifi-san-danje",
     moduleId: "m6",
-    order: 1,
+    order: 3,
     titleHt: "Konekte sou Wi-Fi San Danje",
     titleEn: "Connect to Wi-Fi Safely",
     estimatedMinutes: 10,
@@ -3531,6 +3758,632 @@ export const computerRebuildLessons: CourseLesson[] = [
           { statement: "Mwen ka fè sa poukont mwen." },
           { statement: "Mwen ka fè l si yon moun raple m." },
           { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l4",
+    slug: "wifi-done-selile-ak-hotspot",
+    moduleId: "m6",
+    order: 4,
+    titleHt: "Wi-Fi, Done Selilè, ak Hotspot",
+    titleEn: "Wi-Fi, Mobile Data, and Hotspots",
+    estimatedMinutes: 9,
+    mode: "cross_device",
+    objectives: [
+      "Konprann kilè pou itilize done selilè oswa hotspot yon telefòn",
+      "Konekte yon òdinatè sou hotspot yon telefòn san danje",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike diferans ant Wi-Fi ak done selilè, epi konekte òdinatè ou sou hotspot yon telefòn lè sa nesesè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Wi-Fi** anjeneral pa koute anyen anplis lè ou deja konekte lakay ou oswa yon kote ki bay li gratis. **Done selilè (mobile data)** se entènèt telefòn ou jwenn nan konpayi telefòn ou an, ki gen limit ak yon kou. Yon **hotspot** kite telefòn ou **pataje** done selilè li ak lòt aparèy tankou yon òdinatè — itil lè pa gen Wi-Fi disponib. Fè atansyon: itilize hotspot konsome bakri telefòn ou vit, epi li ka konsome anpil done selilè si ou fè bagay tankou gade videyo.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Done Selilè (Mobile Data)",
+            definition: "Entènèt ou jwenn nan konpayi telefòn ou an, ki gen limit ak yon kou.",
+            example: "Si Wi-Fi pa disponib, telefòn ou ka itilize done selilè pou konekte sou entènèt.",
+          },
+          {
+            term: "Hotspot",
+            definition: "Fonksyon ki kite telefòn ou pataje done selilè li ak lòt aparèy.",
+            example: "Ou ka aktive hotspot telefòn ou pou konekte laptop ou lè pa gen Wi-Fi.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          android: [
+            "Ale nan Settings > Network & Internet > Hotspot & Tethering",
+            "Aktive 'Wi-Fi Hotspot' epi note non ak modpas rezo a",
+          ],
+          iphone: [
+            "Ale nan Settings > Personal Hotspot",
+            "Aktive l epi note modpas la ki parèt anba a",
+          ],
+          recoveryNote:
+            "Si lòt aparèy la pa jwenn hotspot la, verifye done selilè telefòn ou aktive ak li gen siyal.",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Etenn hotspot la lè ou fini pou ekonomize bakri ak done selilè",
+          "Itilize yon modpas fò pou hotspot ou pou pèsòn pa konekte san ou pa konnen",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I need to connect my laptop to the internet using my phone's hotspot. What should I know about data use and battery before I do that?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pa gen aksè a Wi-Fi men ou bezwen konekte òdinatè ou sou entènèt.",
+          objective: "Aktive hotspot telefòn ou epi konekte yon lòt aparèy sou li.",
+          requiredSteps: [
+            "Aktive hotspot sou telefòn ou",
+            "Konekte yon lòt aparèy sou hotspot la",
+            "Etenn hotspot la lè ou fini",
+          ],
+          successCriteria: ["Lòt aparèy la konekte sou entènèt atravè hotspot la", "Hotspot la etenn apre"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou nan yon kote ki pa gen Wi-Fi epi ou bezwen konekte laptop ou pou 10 minit. Ki sa ki pi bon opsyon?",
+            options: [
+              "Aktive hotspot telefòn ou pou 10 minit yo, epi etenn li apre",
+              "Kite hotspot la aktive tout jounen an",
+              "Ale kay yon vwazen san mande pèmisyon pou itilize Wi-Fi yo",
+              "Tann jiskaske ou jwenn Wi-Fi gratis",
+            ],
+            correctIndex: 0,
+            explanation: "Aktive hotspot la sèlman pou tan ou bezwen l epi etenn li apre ekonomize bakri ak done.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l5",
+    slug: "vites-konesyon-siyal-ak-itilizasyon-done",
+    moduleId: "m6",
+    order: 5,
+    titleHt: "Vitès Koneksyon, Siyal, ak Itilizasyon Done",
+    titleEn: "Connection Speed, Signal, and Data Use",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Distenge vitès koneksyon de fòs siyal",
+      "Fè chwa entelijan pou ekonomize done sou koneksyon limite",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge vitès koneksyon de fòs siyal, epi fè chwa entelijan pou ekonomize done sou yon koneksyon limite.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Fòs siyal** montre ki jan koneksyon Wi-Fi ou solid (baton sou telefòn/òdinatè ou). **Vitès koneksyon** se ki jan enfòmasyon vwayaje vit — ou ka gen bon siyal men vitès lan lan si anpil moun ap itilize menm rezo a. **Telechajman (download)** konsome done — plis fichye a gwo, plis li konsome. **Videyo konsome PLIS done** pase tèks oswa foto senp. Sou yon koneksyon limite (tankou done selilè), chwazi kalite videyo pi ba, evite telechajman gwo lè ou pa oblije, epi bay priyorite a bagay ki pi enpòtan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fòs Siyal (Signal Strength)",
+            definition: "Ki jan koneksyon Wi-Fi ou solid, souvan montre ak baton.",
+            example: "Si ou gen sèlman yon baton siyal, konesyon an ka lan oswa entèwonp.",
+          },
+          {
+            term: "Itilizasyon Done (Data Use)",
+            definition: "Kantite enfòmasyon ou telechaje oswa voye sou entènèt.",
+            example: "Gade yon videyo itilize plis done pase li yon atik tèks.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade endikatè siyal Wi-Fi ou (baton yo). Deplase w nan yon lòt pyès epi wè si siyal la chanje.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse bon siyal vle di vitès rapid otomatikman.",
+          right: "Konprann ou ka gen bon siyal men vitès lan si anpil moun ap pataje menm rezo a.",
+          why: "Konprann diferans lan ede w konnen si pwoblèm nan se siyal, oswa se rezo a ki chaje.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My phone shows full Wi-Fi signal bars but everything still loads slowly. What's the difference between signal and speed?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou sou yon koneksyon limite epi ou bezwen ekonomize done.",
+          objective: "Idantifye twa aksyon ou ta ka pran pou ekonomize done sou yon koneksyon limite.",
+          requiredSteps: [
+            "Idantifye ki aktivite konsome plis done (videyo, telechajman gwo)",
+            "Site twa chwa ou ta fè pou ekonomize done",
+          ],
+          successCriteria: ["Ou eksplike rezònman w pou chak chwa"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki aktivite sa yo konsome PLIS done sou entènèt? (Chwazi tout ki aplike.)",
+            options: [
+              "Gade yon videyo an HD",
+              "Li yon atik tèks",
+              "Telechaje yon gwo fichye",
+              "Voye yon mesaj tèks kout",
+            ],
+            correctIndexes: [0, 2],
+            explanation: "Videyo an HD ak telechajman gwo fichye konsome anpil plis done pase tèks senp.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l6",
+    slug: "le-wifi-di-konekte-men-entenet-pa-mache",
+    moduleId: "m6",
+    order: 6,
+    titleHt: "Lè Wi-Fi Di Konekte Men Entènèt Pa Mache",
+    titleEn: "When Wi-Fi Says Connected but the Internet Does Not Work",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Swiv yon sekans kalm pou rezoud pwoblèm koneksyon",
+      "Konnen kilè pou kontakte founisè entènèt la",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka swiv yon sekans kalm pou rezoud pwoblèm lè Wi-Fi di konekte men entènèt la pa mache.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè aparèy ou montre 'konekte' sou Wi-Fi men okenn sit pa louvri, swiv yon sekans kalm: 1) **Eseye yon lòt sit** — si youn sèl pa mache, se sit la, pa koneksyon an. 2) **Eseye yon lòt aparèy** sou menm rezo a — si li menm pa mache, pwoblèm nan pi laj. 3) **Rekonekte** — dekonekte epi rekonekte sou Wi-Fi la. 4) **Rekòmanse routè a SÈLMAN si se pa w li ye oswa ou gen pèmisyon** — mande dabò si se yon lòt moun ki responsab li. 5) Konsidere si gen yon **pàn sèvis (outage)** lakay founisè a. 6) Konsidere si se yon **portal kaptif (captive portal)** — yon paj konesyon ki mande w konekte anvan entènèt la mache (souvan nan otèl oswa kafe). Si anyen pa mache, **kontakte founisè entènèt la**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pàn Sèvis (Outage)",
+            definition: "Yon moman kote founisè entènèt la limenm gen yon pwoblèm ki afekte anpil moun.",
+            example: "Si vwazen ou yo tou pa gen entènèt, sa ka yon pàn sèvis.",
+          },
+          {
+            term: "Portal Kaptif (Captive Portal)",
+            definition: "Yon paj ki parèt pou mande w konekte oswa aksepte kondisyon anvan entènèt la mache.",
+            example: "Wi-Fi otèl souvan mande w louvri yon portal kaptif anvan ou ka navige lib.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon fwa Wi-Fi ou te 'konekte' men entènèt la pa t mache. Ki nan etap sekans lan ta ka rezoud pwoblèm nan?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Rekòmanse (restart) routè a san mande pèmisyon lè se pa pwòp aparèy ou li ye.",
+          right: "Mande moun ki responsab routè a anvan ou rekòmanse l, sof si se pwòp aparèy ou.",
+          why: "Rekòmanse yon routè ki pa pou ou ka deranje lòt moun ki konekte sou menm rezo a.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My Wi-Fi says connected but no websites load. What's a calm, step-by-step way to figure out what's wrong?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou senmile yon sitiyasyon kote Wi-Fi di konekte men entènèt la pa mache.",
+          objective: "Site sekans etap ou ta swiv pou idantifye ak rezoud pwoblèm nan.",
+          requiredSteps: [
+            "Site premye etap ou ta fè (eseye yon lòt sit)",
+            "Site dezyèm etap ou ta fè si sa pa mache",
+            "Eksplike kilè li ta apwopriye pou kontakte founisè a",
+          ],
+          successCriteria: ["Sekans lan swiv yon lòd lojik ak kalm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kalm pou rezoud yon pwoblèm koneksyon.",
+            steps: [
+              "Eseye yon lòt sit entènèt",
+              "Eseye yon lòt aparèy sou menm rezo a",
+              "Dekonekte epi rekonekte sou Wi-Fi la",
+              "Kontakte founisè entènèt la si anyen pa mache",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Yon sekans kalm ak lojik chèche kòz la anvan li rive nan kontakte founisè a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l7",
+    slug: "telechaje-ak-voye",
+    moduleId: "m6",
+    order: 7,
+    titleHt: "Telechaje ak Voye (Download ak Upload)",
+    titleEn: "Download and Upload",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Distenge telechajman (download) de voye (upload)",
+      "Fè atansyon a sa ou voye sou entènèt",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge telechajman de voye, jwenn kote fichye telechaje ateri, epi fè atansyon a enfòmasyon prive ou voye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Telechaje (download)** vle di pran yon fichye SOTI sou entènèt la POU MET li sou aparèy ou. **Voye (upload)** se lòt sans lan — ou pran yon fichye SOU aparèy ou POU voye l SOU entènèt la (tankou lè ou voye yon foto nan yon mesaj). Pandan tou de aksyon yo, souvan yon **endikatè pwogrè** montre konbyen ki fin fèt. Enpòtan: fè atansyon a **sa ou voye** — yon fwa yon foto oswa dokiman voye sou entènèt, li ka difisil pou retire l nèt.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Telechaje (Download)",
+            definition: "Pran yon fichye soti sou entènèt pou mete l sou aparèy ou.",
+            example: "Telechaje yon PDF soti sou yon sit pou li l pita san entènèt.",
+          },
+          {
+            term: "Voye (Upload)",
+            definition: "Voye yon fichye soti sou aparèy ou pou mete l sou entènèt.",
+            example: "Voye yon foto nan yon mesaj se yon egzanp upload.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon fwa ou te telechaje yon fichye ak yon fwa ou te voye yon fichye (tankou yon foto). Idantifye ki aksyon se download, ki aksyon se upload.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Reflechi de fwa anvan ou voye yon foto oswa dokiman ki gen enfòmasyon prive",
+          "Yon fwa yon bagay voye sou entènèt, li ka difisil pou retire l nèt",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the actual difference between downloading and uploading a file, in simple terms?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen pratike de aksyon debaz sou entènèt.",
+          objective: "Telechaje yon fichye soti sou entènèt, epi idantifye kote li ateri.",
+          requiredSteps: [
+            "Telechaje yon fichye soti sou yon sit",
+            "Jwenn fichye a nan dosye Downloads ou",
+          ],
+          successCriteria: ["Fichye a telechaje avèk siksè", "Ou jwenn li san konfizyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak aksyon ak direksyon li mache.",
+            pairs: [
+              { term: "Download", meaning: "Soti sou entènèt, antre sou aparèy ou" },
+              { term: "Upload", meaning: "Soti sou aparèy ou, antre sou entènèt" },
+            ],
+            explanation: "Download antre sou aparèy ou; upload soti sou aparèy ou pou ale sou entènèt.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l8",
+    slug: "kod-qr-lyen-ak-adres-web",
+    moduleId: "m6",
+    order: 8,
+    titleHt: "Kòd QR, Lyen, ak Adrès Wèb",
+    titleEn: "QR Codes, Links, and Web Addresses",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rekonèt yon kòd QR pa otomatikman san danje",
+      "Verifye destinasyon yon lyen anvan ou klike",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka evalye yon kòd QR ak yon lyen anvan ou fè konfyans nan yo, epi rekonèt baz yon domèn.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **kòd QR** se yon ti kare ki gen yon lyen kache ladan l — kamera telefòn ou ka li l. **Kòd QR PA otomatikman san danje**: li ka mennen w nan yon sit danjere menm jan ak yon move lyen. Anvan ou klike yon lyen, gade **destinasyon** an (kote li mennen w) — pifò navigatè montre l anba ekran an lè ou pase sourit sou li. Yon **domèn** se non prensipal yon sit web (tankou 'google.com'). Fè atansyon ak **lyen kout (shortened links)** oswa ki sanble bizarre — yo kache vrè destinasyon an.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Kòd QR",
+            definition: "Yon ti kare ki kenbe yon lyen kache, kamera telefòn ka li.",
+            example: "Yon meni restoran ka gen yon kòd QR ki mennen w sou vèsyon dijital li.",
+          },
+          {
+            term: "Domèn (Domain)",
+            definition: "Non prensipal yon sit web, tankou 'google.com'.",
+            example: "Verifye domèn nan byen anvan ou antre enfòmasyon sansib sou yon sit.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou wè yon lyen nan yon mesaj oswa imèl, gade adrès la byen (san klike) — idantifye domèn nan anvan ou deside si ou fè l konfyans.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa eskane yon kòd QR ou pa fè konfyans, sitou nan yon kote piblik san sipèvizyon",
+          "Verifye domèn nan yon lyen anvan ou antre modpas oswa enfòmasyon sansib",
+          "Fè atansyon ak lyen kout ki kache vrè destinasyon yo",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I scanned a QR code and it's about to open a link. What should I check before I trust it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon lyen nan yon mesaj epi ou vle verifye l anvan ou klike.",
+          objective: "Idantifye domèn yon lyen san klike sou li, epi deside si ou ta fè l konfyans.",
+          requiredSteps: [
+            "Jwenn yon lyen (nan yon mesaj oswa imèl)",
+            "Idantifye domèn nan san klike",
+            "Deside si domèn nan sanble fyab",
+          ],
+          successCriteria: ["Ou idantifye domèn nan kòrèkteman", "Ou eksplike rezònman deside w la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou wè yon kòd QR nan yon afich piblik san non biznis sou li, ki pwomèt yon kado gratis. Ki sa ou dwe fè?",
+            options: [
+              "Eskane l imedyatman pou pa rate kado a",
+              "Sispèk li epi evite eskane l san plis kontèks",
+              "Pataje kòd la ak zanmi ou pou yo eskane l pou ou",
+              "Antre enfòmasyon labank ou pou resevwa kado a",
+            ],
+            correctIndex: 1,
+            explanation: "Yon kòd QR san kontèks klè ki pwomèt yon kado se yon siy avètisman kominman itilize nan eskrokri.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m6-l9",
+    slug: "misyon-konekte-epi-eksplike",
+    moduleId: "m6",
+    order: 9,
+    titleHt: "Misyon: Konekte epi Eksplike",
+    titleEn: "Module Mission: Connect and Explain",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 6 nan yon egzèsis koneksyon reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka konekte sou yon rezo ou fè konfyans, idantifye si se Wi-Fi oswa hotspot, telechaje yon fichye, jwenn li, epi eksplike diferans ant Wi-Fi ak entènèt.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 6 la. Ou pral konbine tout sa ou aprann sou entènèt, Wi-Fi, hotspot, ak koneksyon — nan yon sèl sesyon reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen demontre konfyans total ou sou koneksyon entènèt.",
+          objective:
+            "Konekte aparèy ou sou yon rezo ou fè konfyans, idantifye si se Wi-Fi oswa hotspot telefòn, telechaje yon fichye pratik, jwenn li, epi eksplike diferans ant Wi-Fi ak entènèt.",
+          requiredSteps: [
+            "Konekte aparèy ou sou yon rezo ou fè konfyans",
+            "Idantifye si koneksyon an se Wi-Fi oswa hotspot",
+            "Telechaje yon fichye pratik",
+            "Jwenn fichye a nan dosye Downloads ou",
+            "Eksplike ak pwòp mo pa w diferans ant Wi-Fi ak entènèt",
+          ],
+          successCriteria: [
+            "Ou konplete tout senk aksyon yo san bezwen èd pou pi fò nan yo",
+            "Eksplikasyon w lan klè epi kòrèk",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak definisyon kòrèk li.",
+            pairs: [
+              { term: "Entènèt", meaning: "Gwo rezo rezo òdinatè nan tout mond lan" },
+              { term: "Wi-Fi", meaning: "Yon fason san fil pou konekte sou entènèt" },
+              { term: "Hotspot", meaning: "Fonksyon ki pataje done selilè yon telefòn" },
+            ],
+            explanation: "Entènèt la se rezo a; Wi-Fi ak hotspot se de fason diferan pou konekte sou li.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou koneksyon entènèt mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 7." },
         ],
       },
     ],
