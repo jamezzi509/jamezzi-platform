@@ -2,9 +2,8 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { computerModules } from "@/content/computer-course";
-import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
-import { cn } from "@/lib/cn";
+import { computerRebuildLessons } from "@/content/computer-rebuild/lessons";
+import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 
 export function ComputerCoursePage() {
   return (
@@ -60,44 +59,39 @@ export function ComputerCoursePage() {
               You&rsquo;re not behind. Start where you are.
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
-              17 modules, built one at a time. Modules with lessons ready are
-              open now — the rest are coming soon.
+              14 modules, from your first day with a computer to full digital
+              independence — plus four confidence checkpoints, a final exam,
+              and a certificate.
             </p>
           </div>
 
           <div className="border-border mt-12 grid border-t lg:grid-cols-2">
-            {computerModules.map((module) => {
-              const firstLesson = computerEssentialsLessons.find(
-                (lesson) => lesson.moduleNumber === module.number,
-              );
-              const available = Boolean(firstLesson);
+            {computerRebuildModules.map((module) => {
+              const firstLesson = computerRebuildLessons
+                .filter((lesson) => lesson.moduleId === module.id)
+                .sort((a, b) => a.order - b.order)[0];
 
               return (
                 <article
-                  key={module.number}
-                  className={cn(
-                    "border-border scroll-mt-28 border-b py-9 lg:px-8 lg:odd:border-r lg:odd:pl-0 lg:even:pr-0",
-                    !available && "opacity-60",
-                  )}
+                  key={module.id}
+                  className="border-border scroll-mt-28 border-b py-9 lg:px-8 lg:odd:border-r lg:odd:pl-0 lg:even:pr-0"
                 >
                   <p className="text-eyebrow text-indigo-dark">
-                    MODULE {module.number}
+                    MODULE {module.order}
                   </p>
                   <h3 className="text-feature-headline-sm text-ink mt-4">
-                    {module.title}
+                    {module.titleEn}
                   </h3>
-                  <p className="text-body text-muted mt-3">{module.promise}</p>
-                  {available && firstLesson ? (
+                  <p className="text-body text-muted mt-3">{module.purpose}</p>
+                  {firstLesson && (
                     <CtaLink
-                      href={`/academy/courses/computer-internet-essentials/lessons/${firstLesson.slug}`}
+                      href={`/academy/courses/computer-internet-essentials/rebuild/${firstLesson.slug}`}
                       variant="link"
                       className="mt-7"
                     >
-                      Open Module {module.number}{" "}
+                      Open Module {module.order}{" "}
                       <ArrowRightIcon className="size-4" />
                     </CtaLink>
-                  ) : (
-                    <p className="text-metadata text-muted mt-7">Coming soon</p>
                   )}
                 </article>
               );
