@@ -14821,6 +14821,887 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m14-l1",
+    slug: "bati-yon-sistem-oganizasyon-dijital-senp",
+    moduleId: "m14",
+    order: 1,
+    titleHt: "Bati Yon Sistèm Òganizasyon Dijital Senp",
+    titleEn: "Build a Simple Digital Organization System",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Kreye yon sistèm dosye dirab pou tout kategori lavi dijital ou",
+      "Etabli yon woutin senp pou Bwat Resevwa ak Downloads",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka kreye yon sistèm dosye dirab ki kouvri tout kategori lavi dijital ou, ak yon woutin senp pou kenbe Bwat Resevwa ak Downloads pwòp.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon sistèm dijital dirab separe lavi ou an kategori klè: **pèsonèl**, **travay/lekòl**, **finans**, **dokiman**, ak **foto**. Chak kategori merite yon dosye prensipal apa, ak sou-dosye si sa nesesè. Itilize **non fichye ki gen sans** (ou aprann sa nan Modil 4) pou chak dosye. Etabli yon **woutin Bwat Resevwa ak Downloads**: pa kite yo vin depo pèmanan — deplase fichye enpòtan yo nan bon dosye regilyèman. Sa a se yon konbinezon tout sa ou aprann nan Modil 4 (fichye/dosye), Modil 8 (imèl), ak Modil 9 (cloud/backup) nan yon sèl sistèm ou ka kenbe alontèm.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Sistèm Dijital Dirab (Durable Digital System)",
+            definition: "Yon fason òganize fichye/imèl ou ki fasil pou kenbe alontèm, pa sèlman pou yon jou.",
+            example: "Yon sistèm dirab gen dosye klè pou pèsonèl, travay, finans, dokiman, ak foto.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade sistèm dosye aktyèl ou. Idantifye si ou gen dosye klè pou chak kategori: pèsonèl, travay/lekòl, finans, dokiman, foto.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite tout fichye mele nan Downloads oswa Desktop, san yon sistèm klè.",
+          right: "Etabli dosye prensipal klè pou chak kategori, epi deplase fichye Downloads regilyèman.",
+          why: "San yon sistèm klè, ou pèdi tan chèche fichye epi ou pi vilnerab pou pèdi enfòmasyon enpòtan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I want to set up a simple, durable folder system for my personal files, work/school, finances, documents, and photos. Can you help me think through a structure?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle bati yon sistèm dijital ou ka kenbe alontèm, pa sèlman pou yon jou.",
+          objective: "Kreye dosye prensipal pou chak senk kategori yo, epi netwaye Downloads ou.",
+          requiredSteps: [
+            "Kreye dosye prensipal pou pèsonèl, travay/lekòl, finans, dokiman, ak foto",
+            "Deplase fichye enpòtan ki nan Downloads nan bon dosye yo",
+          ],
+          successCriteria: ["Tout senk kategori gen yon dosye klè", "Downloads pa gen fichye enpòtan ki rete san klase"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki kategori sa yo yon sistèm dijital dirab ta dwe kouvri? (Chwazi tout ki aplike.)",
+            options: ["Pèsonèl", "Travay/Lekòl", "Finans", "Koulè fon ekran ou"],
+            correctIndexes: [0, 1, 2],
+            explanation: "Pèsonèl, travay/lekòl, ak finans se twa kategori debaz — koulè fon ekran pa gen rapò ak òganizasyon fichye.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l2",
+    slug: "kreye-woutin-dijital-semenn-ak-chak-mwa-ou",
+    moduleId: "m14",
+    order: 2,
+    titleHt: "Kreye Woutin Dijital Semenn ak Chak Mwa Ou",
+    titleEn: "Create Your Weekly and Monthly Digital Routine",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Etabli yon woutin dijital chak semèn",
+      "Etabli yon woutin dijital chak mwa",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka etabli yon woutin dijital chak semèn ak chak mwa ki kenbe sistèm ou an sante san bezwen efò dramatik.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Woutin chak semèn**: òganize Downloads, revize mesaj enpòtan, sovgade travay aktyèl ou. **Woutin chak mwa**: mizajou sistèm/aplikasyon, verifye estokaj, revize sekirite kont (modpas, 2FA), ak konfime backup ou toujou mache (teste restore). Yon woutin ki senp ak REGULYE toujou pi efikas pase yon gwo netwayaj yon sèl fwa pa ane.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Woutin Regilye (Regular Routine)",
+            definition: "Yon seri aksyon senp ou repete chak semèn/mwa, pito pase yon gwo efò yon sèl fwa.",
+            example: "Yon woutin chak semèn 10 minit pi efikas pase yon netwayaj 3 èdtan chak sis mwa.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Ekri yon woutin chak semèn (twa aksyon) ak yon woutin chak mwa (kat aksyon) ou ka reyèlman swiv.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite tout antretyen pou 'yon jou' ki pa janm rive, jiskaske gen yon gwo pwoblèm.",
+          right: "Etabli yon woutin senp ak regilye ki mande sèlman kèk minit chak fwa.",
+          why: "Yon woutin regilye evite pwoblèm gwo (estokaj plen, kont vilnerab, backup ki pa mache) anvan yo rive grav.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you help me design a realistic weekly and monthly digital maintenance routine that I'll actually stick to?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle kenbe sistèm dijital ou an sante san yon gwo efò dramatik.",
+          objective: "Etabli epi ekri yon woutin chak semèn ak yon woutin chak mwa.",
+          requiredSteps: [
+            "Ekri twa aksyon pou woutin chak semèn ou",
+            "Ekri kat aksyon pou woutin chak mwa ou",
+          ],
+          successCriteria: ["Woutin yo reyalis epi ou ka swiv yo alontèm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak aksyon ak lè li ta dwe fèt.",
+            pairs: [
+              { term: "Òganize Downloads", meaning: "Chak semèn" },
+              { term: "Verifye estokaj ak sekirite kont", meaning: "Chak mwa" },
+              { term: "Sovgade travay aktyèl", meaning: "Chak semèn" },
+            ],
+            explanation: "Aksyon rapid yo fèt chak semèn; verifikasyon pi konplè yo fèt chak mwa.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l3",
+    slug: "itilize-ai-kom-yon-tite-odinate",
+    moduleId: "m14",
+    order: 3,
+    titleHt: "Itilize AI Kòm Yon Titè Òdinatè",
+    titleEn: "Use AI as a Computer Tutor",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Rekonèt bon itilizasyon AI kòm zouti aprantisaj",
+      "Konprann limit klè pou itilizasyon AI an sekirite",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka itilize yon AI kòm yon titè òdinatè pou bon rezon, epi rekonèt limit klè ki kenbe itilizasyon an san danje.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Bon itilizasyon AI** pandan tout kou sa a: eksplike yon tèm ou pa konprann, retape yon mesaj erè nan yon langaj pi senp, kreye yon lis verifikasyon rezoud-pwoblèm, konpare de espesifikasyon òdinatè, oswa pratike fason ou ekri yon imèl. **Limit ki PA JANM chanje**: **pa pataje modpas, kòd verifikasyon, oswa enfòmasyon sansib** ak yon AI, **toujou verifye enstriksyon** yon AI ba ou anvan ou aplike yo (sitou pou paramèt sistèm), **pa egzekite kòmand ou pa konprann**, ak **pa kite AI ranplase yon vrè backup oswa yon dyagnostik pwofesyonèl** pou pwoblèm grav. Sa a se menm règ ou wè nan chak 'AI ak Misyon' nan kou sa a — kounye a ou konprann POUKISA règ sa a la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Titè AI (AI Tutor)",
+            definition: "Itilize yon AI pou eksplike, klarifye, oswa pratike — pa pou pran desizyon final oswa manyen enfòmasyon sansib.",
+            example: "Mande yon AI eksplike yon tèm teknik nan mo pi senp, olye w rete konfonn.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon fwa ou te itilize (oswa ta itilize) yon AI pandan kou sa a. Èske itilizasyon an te swiv tout limit yo?",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI",
+          "Toujou verifye enstriksyon yon AI ba ou anvan ou chanje yon paramèt enpòtan",
+          "Pa kite yon AI ranplase yon vrè backup oswa yon dyagnostik pwofesyonèl",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What are some good, safe ways I can keep using AI to help me learn about computers after this course ends?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle etabli bon abitid pou itilize AI kòm yon zouti aprantisaj alontèm.",
+          objective: "Site twa bon itilizasyon AI ak twa limit ou pap janm depase.",
+          requiredSteps: [
+            "Site twa bon itilizasyon AI kòm titè",
+            "Site twa limit ki pa janm chanje",
+          ],
+          successCriteria: ["Ou eksplike rezon dèyè chak limit, pa jis repete yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki itilizasyon sa yo se bon fason pou itilize AI kòm titè òdinatè? (Chwazi tout ki aplike.)",
+            options: [
+              "Mande l eksplike yon tèm teknik nan mo pi senp",
+              "Pataje modpas kont ou pou l ede w pi vit",
+              "Konpare de espesifikasyon òdinatè",
+              "Kreye yon lis verifikasyon rezoud-pwoblèm",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Eksplikasyon, konparezon, ak lis verifikasyon se bon itilizasyon — pataje modpas pa janm apwopriye, menm ak yon AI.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l4",
+    slug: "aprann-nan-paj-ed-ak-tutoryel",
+    moduleId: "m14",
+    order: 4,
+    titleHt: "Aprann nan Paj Èd ak Tutoryèl",
+    titleEn: "Learn From Help Pages and Tutorials",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Priyorize sipò ofisyèl anvan lòt sous",
+      "Evalye si yon tutoryèl matche aparèy ak sitiyasyon ou",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka jwenn ak evalye paj èd ak tutoryèl ki matche aparèy ak sitiyasyon ou, san swiv enstriksyon ki pa apwopriye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou chèche èd pou yon pwoblèm òdinatè, priyorize **sipò ofisyèl** (sit fabrikan an) anvan lòt sous. Verifye **vèsyon sistèm opere** ou matche sa tutoryèl la dekri. Gade **dat piblikasyon** — yon tutoryèl trè ansyen ka pa aplike ankò. Verifye tutoryèl la matche **egzakteman aparèy** ou (modèl, mak). Evite **kontni espons ki twonpe** ki gen konsèy move oswa ki mennen w achte yon bagay ou pa bezwen. **Poze apre CHAK aksyon** pou konfime li fè sa ou espere anvan ou kontinye a pwochen etap la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Sipò Ofisyèl (Official Support)",
+            definition: "Paj èd ki soti dirèkteman nan konpayi ki fè aparèy/lojisyèl la.",
+            example: "Chèche sipò ofisyèl Microsoft oswa Apple anvan ou fè konfyans a yon blog enkoni.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Chwazi yon pwoblèm ipotetik. Chèche epi idantifye si premye rezilta a se sipò ofisyèl la oswa yon lòt sous.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Swiv yon tutoryèl ansyen oswa yon lòt sistèm opere san verifye si li matche sitiyasyon ou.",
+          right: "Verifye vèsyon, dat, ak aparèy egzat anvan ou swiv nenpòt tutoryèl.",
+          why: "Yon tutoryèl ki pa matche ka fè w chanje bon paramèt, oswa fè yon aksyon ki pa nesesè oswa danjere.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I found a tutorial online for a problem I'm having, but I'm not sure if it matches my exact device and OS version. How do I check before following it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen jwenn èd pou yon pwoblèm òdinatè ipotetik.",
+          objective: "Chèche epi evalye si sous ou jwenn se sipò ofisyèl, epi si li matche aparèy/sitiyasyon ou.",
+          requiredSteps: [
+            "Chèche sipò ofisyèl dabò",
+            "Verifye dat ak vèsyon sistèm opere ki dekri",
+            "Konfime li matche aparèy egzat ou",
+          ],
+          successCriteria: ["Ou priyorize sipò ofisyèl anvan lòt sous"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki premye sous ou ta dwe chèche pou èd sou yon pwoblèm òdinatè?",
+            options: [
+              "Premye videyo ki parèt san verifye sous li",
+              "Sipò ofisyèl fabrikan aparèy/lojisyèl la",
+              "Yon blog san dat piblikasyon",
+              "Yon kòmantè aza sou rezo sosyal",
+            ],
+            correctIndex: 1,
+            explanation: "Sipò ofisyèl la se sous ki pi fyab paske li soti dirèkteman nan konpayi ki fè aparèy/lojisyèl la.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l5",
+    slug: "byennet-dijital-ak-atansyon",
+    moduleId: "m14",
+    order: 5,
+    titleHt: "Byennèt Dijital ak Atansyon",
+    titleEn: "Digital Wellbeing and Attention",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rekonèt fason teknoloji ka afekte atansyon ak byennèt",
+      "Aplike zouti teknoloji kòm sèvitè, pa mèt",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt fason teknoloji afekte atansyon ak byennèt ou, epi itilize l kòm yon zouti, pa kite l kontwole w.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Teknoloji dwe rete yon **zouti**, pa yon mèt. Panse a: **notifikasyon** ki entèwonp souvan — jere ki aplikasyon ka voye yo. Pran **poz** regilyèman lwen ekran an. Panse a **pòstir** ou lè ou itilize yon òdinatè pandan lontan. Fè konsyans **tan ekran** ou. Kenbe **konsantrasyon** lè posib olye jonglaj ant plizyè bagay. Rekonèt **eskrokri ak ijans emosyonèl** — anpil eskrokri jwe sou emosyon fò (laperèz, ijans, eksitasyon) pou fè w aji san reflechi, egzakteman jan ou aprann nan Modil 11. **Teknoloji se yon zouti pou ede lavi ou — pa yon bagay ki ta dwe kontwole lavi ou.**",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Tan Ekran (Screen Time)",
+            definition: "Kantite tan ou pase ap gade yon ekran, ki itil pou konnen ak jere.",
+            example: "Verifye tan ekran ou chak semèn pou wè si li reflete sa ou vle vrèman.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a notifikasyon ou resevwa chak jou. Ki nan yo ki vrèman itil, ak ki nan yo ou ta ka dezaktive?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite tout notifikasyon aktive san panse, epi santi w oblije reponn imedyatman a chak alèt.",
+          right: "Chwazi ak entansyon ki notifikasyon vrèman itil, epi dezaktive rès yo.",
+          why: "Twòp notifikasyon fè w pèdi konsantrasyon epi ogmante estrès san bezwen.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I feel like notifications and screen time are taking over my focus. Can you help me think through some practical, realistic changes?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle asire teknoloji rete yon zouti ki sèvi lavi ou, pa yon bagay ki kontwole l.",
+          objective: "Revize notifikasyon ou epi dezaktive omwen twa ou pa vrèman bezwen.",
+          requiredSteps: [
+            "Gade lis notifikasyon aktive ou",
+            "Dezaktive omwen twa notifikasyon ou pa vrèman bezwen",
+          ],
+          successCriteria: ["Ou fè yon chwa entansyonèl, pa jis kite tout bagay jan yo te ye"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou resevwa yon mesaj ki kreye yon santiman ijans fò ak laperèz, ki mande w aji san reflechi. Sa ta dwe fè w panse a...",
+            options: [
+              "Rien, sa se jis yon mesaj nòmal",
+              "Yon posib siy eskrokri — ijans emosyonèl se yon tektik komen",
+              "Ou dwe toujou aji vit lè ou santi ijans",
+              "Sa vle di mesaj la vrèman ijan",
+            ],
+            correctIndex: 1,
+            explanation: "Ijans emosyonèl fò se yon tektik eskrokri komen — sa ta dwe fè w sispèk epi verifye, pa aji san reflechi.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l6",
+    slug: "prepare-pou-kapston-nan",
+    moduleId: "m14",
+    order: 6,
+    titleHt: "Prepare Pou Kapstòn Nan",
+    titleEn: "Prepare for the Capstone",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Revize sa Kapstòn nan mande anvan ou kòmanse",
+      "Konprann kritè evalyasyon (rubrik) an davans, san sipriz",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konnen egzakteman sa Kapstòn nan mande, ki jan li evalye, epi ou pare san okenn sipriz.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kapstòn nan rele **'Defi Endepandans Dijital Ou'** — yon senaryo kote yon **gwoup kominotè fiktif** ap prepare yon ti evènman, epi ou dwe òganize enfòmasyon epi voye yon pakèt dijital konplè. Anvan ou kòmanse: **revize platfòm** ou (Windows oswa Mac — tou de rive nan menm rezilta a), **telechaje fichye Kapstòn yo**, **li rubrik siksè a davans** (pa gen sipriz), ak **backup dosye travay ou** anvan ou kòmanse. **Rubrik evalyasyon an**: Òganizasyon ak non fichye (20%), Jesyon dokiman ak PDF (20%), Klète imèl ak bon fichye tache (20%), Sekirite ak rekonesans eskrokri (15%), Backup ak pwoteksyon done (10%), Rezònman rezoud-pwoblèm (10%), Konplete ak pwofesyonalis (5%). **Rekòmandasyon pou pase**: 80%.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Rubrik (Rubric)",
+            definition: "Yon tablo kritè evalyasyon ki montre davans ki jan yon travay pral jije.",
+            example: "Li rubrik Kapstòn nan anvan ou kòmanse pou konnen egzakteman sa yo ap evalye.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Li rubrik la (nan eksplikasyon anwo a) yon dezyèm fwa. Ki kategori ou santi w pi solid, ak ki youn ou ta renmen revize anvan ou kòmanse?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kòmanse Kapstòn nan san li rubrik la, epi dekouvri apre sa yo t ap evalye yon bagay ou pa t prepare.",
+          right: "Li rubrik la konplètman anvan ou kòmanse — pa gen okenn kritè kache.",
+          why: "Konnen kritè yo davans kite w konsantre efò ou sou sa ki vrèman konte, san estrès sipriz.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm about to start a final capstone project for a computer skills course. Can you help me review the rubric categories so I understand what will be evaluated?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral kòmanse Kapstòn final la epi ou vle rive prepare san sipriz.",
+          objective: "Revize rubrik la konplètman, epi konfime ou pare pou kòmanse.",
+          requiredSteps: [
+            "Li tout sèt kategori rubrik la",
+            "Idantifye ki kategori ou santi w mwens solid",
+            "Konfime backup dosye travay aktyèl ou fèt anvan ou kòmanse",
+          ],
+          successCriteria: ["Ou ka site tout sèt kategori rubrik la san gade ankò"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki kategori sa yo fè pati rubrik evalyasyon Kapstòn nan? (Chwazi tout ki aplike.)",
+            options: [
+              "Òganizasyon ak non fichye",
+              "Klète imèl ak bon fichye tache",
+              "Koulè tèm ekran ou chwazi",
+              "Sekirite ak rekonesans eskrokri",
+            ],
+            correctIndexes: [0, 1, 3],
+            explanation: "Òganizasyon, klète imèl, ak sekirite fè pati rubrik la — koulè tèm ekran pa gen rapò ak evalyasyon an.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l7",
+    slug: "kapston-yon-travay-dijital-konple-nan-lavi-reyel",
+    moduleId: "m14",
+    order: 7,
+    titleHt: "Kapstòn: Yon Travay Dijital Konplè Nan Lavi Reyèl",
+    titleEn: "Capstone: A Complete Real-Life Digital Task",
+    estimatedMinutes: 30,
+    mode: "universal",
+    objectives: [
+      "Konplete Defi Endepandans Dijital Ou a — Kapstòn final kou a",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre Kapstòn sa a, ou pral demontre — nan yon sèl travay konplè — tout konpetans dijital ou aprann pandan kou a: òganizasyon fichye, dokiman/PDF, imèl klè, rekonesans eskrokri, backup, ak rezoud-pwoblèm.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Defi Endepandans Dijital Ou** se Kapstòn final kou sa a. Senaryo a: yon **gwoup kominotè fiktif ap prepare yon ti evènman**, epi ou dwe òganize enfòmasyon yo epi voye yon pakèt dijital konplè. Ou ka fè travay sa a swa sou Windows oswa Mac — **rezilta a menm jan an, pa gen okenn aplikasyon espesifik obligatwa** (Microsoft Word, Pages, Google Docs, ak LibreOffice tout aksepte, depi yo ka sovgade/ekspòte PDF). **Rezilta atandi**: yon dosye pwojè byen òganize, yon dokiman modifye ki ekspòte an PDF, yon imèl klè ak bon fichye tache, yon backup fichye enpòtan yo, ak rekonesans yon mesaj sispèk nan senaryo a. **Enpòtan sou vi prive**: Kapstòn sa a PA janm mande ou montre imèl pèsonèl ou, fichye prive, kontni Desktop ou, kontak ou, oswa enfòmasyon kont ou — tout travay la fèt ak fichye PRATIK yo ba ou pou egzèsis la.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Yon gwoup kominotè fiktif ap prepare yon ti evènman, epi yo bezwen ou pou òganize enfòmasyon yo epi voye yon pakèt dijital konplè.",
+          objective:
+            "Konplete tout uit-fwa-de (16) travay obligatwa Kapstòn nan, itilize aplikasyon ou pito (Word, Pages, Google Docs, oswa LibreOffice), san ou pa janm ekspoze enfòmasyon pèsonèl ou.",
+          requiredSteps: [
+            "Telechaje fichye ZIP Kapstòn nan",
+            "Ekstrè fichye yo",
+            "Kreye yon dosye pwojè ak yon non itil",
+            "Kreye sou-dosye pou Dokiman, Foto, ak Final",
+            "Chanje non omwen twa fichye klèman",
+            "Louvri enstriksyon evènman an",
+            "Fè yon ti modifikasyon nan dokiman yo ba ou a",
+            "Sovgade yon nouvo kopi",
+            "Ekspòte oswa enprime dokiman final la kòm PDF",
+            "Chwazi bon imaj evènman an",
+            "Kreye yon kopi backup dosye Final la oswa fichye enpòtan yo",
+            "Ekri yon imèl klè ak sijè itil, salitasyon, ti eksplikasyon, fichye tache, ak klotiraj",
+            "Tache bon PDF la",
+            "Idantifye yon mesaj sispèk nan senaryo a epi eksplike poukisa li sispèk",
+            "Reponn yon senaryo rezoud-pwoblèm ki gen rapò ak Wi-Fi, son, enprime, oswa estokaj",
+            "Soumèt yon lis verifikasyon konplete oswa prèv sipòte pa platfòm nan",
+          ],
+          successCriteria: [
+            "Tout 16 travay yo konplete",
+            "Pa gen okenn enfòmasyon pèsonèl (imèl reyèl, fichye prive, kontak) ki ekspoze pandan egzèsis la",
+            "Dosye pwojè a byen òganize ak non fichye ki gen sans",
+          ],
+          hint: "Revize rubrik la (nan leson 'Prepare Pou Kapstòn Nan') si ou pa sèten sou yon kategori.",
+          stretchChallenge: "Apre ou fini, revize pwòp travay ou kont rubrik la epi idantifye kategori ou pi fyè de li.",
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kapstòn nan mande ou eksplike yon aplikasyon espesifik pou modifye dokiman an?",
+            options: [
+              "Wi, sèlman Microsoft Word aksepte",
+              "Non, nenpòt aplikasyon ki ka sovgade/ekspòte PDF aksepte (Word, Pages, Google Docs, LibreOffice)",
+              "Wi, sèlman aplikasyon Windows aksepte",
+              "Non, Kapstòn nan pa mande okenn dokiman ditou",
+            ],
+            correctIndex: 1,
+            explanation: "Kapstòn nan fèt pou aksepte nenpòt platfòm/aplikasyon ki bay menm rezilta a — pa gen okenn mak obligatwa.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen fini Kapstòn nan ak konfyans total." },
+          { statement: "Mwen fini l, men mwen ta renmen plis pratik nan kèk kategori." },
+          { statement: "Mwen bezwen revize kèk leson anvan mwen konsidere Kapstòn nan fini." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l8",
+    slug: "revize-kwasans-ou",
+    moduleId: "m14",
+    order: 8,
+    titleHt: "Revize Kwasans Ou",
+    titleEn: "Review Your Growth",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Konpare konfyans ou kounye a ak konfyans ou nan kòmansman kou a",
+      "Idantifye konpetans ki pi solid ak yon plan pratik",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konpare konfyans ou kounye a ak sa ou te genyen nan kòmansman kou a, epi kreye yon plan pratik pou kontinye grandi.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Repase premye 'chèk konfyans' ou te fè nan Modil 1 — kijan ou te santi w lè sa a konpare ak kounye a? Idantifye **konpetans ki pi solid** ou yo (dosye, sekirite, imèl, rezoud-pwoblèm, elatriye) ak sa ou ta renmen **pratike plis**. Kreye yon **plan pratik senp** — pa yon lis long, men kèk aksyon konkrè pou kontinye ranfòse konpetans ou. Grandi se yon pwosesis kontinyèl, pa yon **destinasyon final**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Plan Pratik (Practice Plan)",
+            definition: "Yon lis kout aksyon konkrè pou kontinye ranfòse konpetans apre yon kou fini.",
+            example: "Yon plan pratik ka senp tankou 'pratike screenshot chak semèn pandan yon mwa'.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Ekri twa konpetans ou santi w PI solid apre kou sa a, ak de konpetans ou ta renmen pratike plis.",
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I just finished a computer skills course. Can you help me think through a simple practice plan for the areas where I still feel less confident?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou fin konplete prèske tout kou a epi ou vle rekonèt kwasans ou.",
+          objective: "Konpare konfyans ou kounye a ak kòmansman kou a, epi kreye yon plan pratik senp.",
+          requiredSteps: [
+            "Site twa konpetans ou santi w pi solid",
+            "Site de konpetans ou ta renmen pratike plis",
+            "Ekri yon plan pratik kout ak aksyon konkrè",
+          ],
+          successCriteria: ["Plan an gen aksyon konkrè, pa jis santiman jeneral"],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou fin fè Kapstòn nan men ou toujou santi w pa two solid nan yon sèl kategori (tankou backup). Ki sa ki pi bon apwòch?",
+            options: [
+              "Panse kou a echwe paske ou pa pafè nan tout bagay",
+              "Idantifye sa kòm yon zòn pratik nan plan pratik ou, epi kontinye grandi",
+              "Bliye kategori sa a nèt",
+              "Rekòmanse tout kou a soti nan kòmansman",
+            ],
+            correctIndex: 1,
+            explanation: "Idantifye yon zòn pratik se yon pati nòmal grandi — sa pa vle di kou a echwe.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen fyè de kwasans mwen pandan kou sa a." },
+          { statement: "Mwen gen yon plan pratik klè pou kontinye grandi." },
+          { statement: "Mwen pare pou dènye leson kou a." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m14-l9",
+    slug: "chwazi-pwochen-chemen-ou",
+    moduleId: "m14",
+    order: 9,
+    titleHt: "Chwazi Pwochen Chemen Ou",
+    titleEn: "Choose Your Next Path",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Konnen opsyon aprantisaj ki disponib apre kou sa a",
+      "Chwazi yon pwochen etap ki fè sans pou objektif pèsonèl ou",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konnen opsyon aprantisaj ki disponib apre kou sa a, epi chwazi yon pwochen etap ki fè sans pou objektif pèsonèl ou — san presyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kongratilasyon pou fini Computer & Internet Essentials! Kèk chemen posib pou kontinye, selon objektif ou: **Microsoft Office pou Travay** (si ou bezwen konpetans biwo pi apwofondi), **Teknisyen ak Reparasyon Òdinatè** (si reparasyon materyèl enterese w), **Prepare CV ak Travay** (si ou vle aplike konpetans sa yo nan chèche travay), oswa **lòt chemen aprantisaj alavni**. **Pa gen okenn presyon pou kontinye imedyatman** — ou ka pran tan pou pratike sa ou aprann la anvan ou kòmanse yon lòt kou. Chwazi sa ki fè sans pou OU, nan pwòp rit ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pwochen Chemen (Next Path)",
+            definition: "Yon kou oswa domèn aprantisaj ou ta ka eksplore apre sa a, chwazi selon objektif pèsonèl ou.",
+            example: "Si ou vle plis konpetans biwo, Microsoft Office pou Travay ka bon pwochen chemen an.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a objektif pèsonèl ou (travay, biznis, lekòl). Ki nan opsyon yo (si genyen) ki fè plis sans pou ou kounye a, oswa èske ou pito pran yon poz pou pratike?",
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I just finished a computer basics course. Based on my goals (describe them), what kind of next learning path might make sense for me?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou fin konplete tout Modil 14 epi ou panse a sa ki vin apre.",
+          objective: "Reflechi sou objektif pèsonèl ou epi idantifye si ou vle kontinye aprann kounye a oswa pran yon poz.",
+          requiredSteps: [
+            "Site objektif pèsonèl ou (travay, biznis, lekòl, oswa lòt)",
+            "Deside si ou vle kontinye aprann imedyatman oswa pran tan pou pratike",
+          ],
+          successCriteria: ["Desizyon w lan reflete objektif pèsonèl ou, san presyon"],
+        },
+      },
+      {
+        id: "b7",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m dijitalman endepandan kounye a." },
+          { statement: "Mwen konnen ki pwochen etap ki fè sans pou mwen." },
+          { statement: "Mwen fyè de tout chemen mwen fè nan kou sa a." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
