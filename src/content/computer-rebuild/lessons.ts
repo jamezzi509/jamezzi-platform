@@ -11991,6 +11991,1595 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m12-l1",
+    slug: "anvan-ou-achte-kominse-ak-travay-la",
+    moduleId: "m12",
+    order: 1,
+    titleHt: "Anvan Ou Achte Nenpòt Òdinatè: Kòmanse Ak Travay La",
+    titleEn: "Before You Buy Any Computer: Start With the Work",
+    estimatedMinutes: 12,
+    mode: "universal",
+    objectives: [
+      "Defini travay reyèl yon òdinatè dwe fè anvan ou gade mak oswa pwosesè",
+      "Kreye yon Pwofil Bezwen Òdinatè pèsonèl",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka defini travay reyèl yon òdinatè dwe fè pou ou, epi kreye yon Pwofil Bezwen Òdinatè anvan ou gade okenn rekòmandasyon mak oswa pwosesè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anvan ou menm panse a yon mak oswa yon pwosesè, defini **travay la**: ki jan ou pral itilize òdinatè a — lekòl, biwo, navige, apèl videyo, biznis, pwogramasyon, konsepsyon, montaj videyo, oswa jwèt? Ki **aplikasyon espesifik** ki DWE mache, epi èske yo mande Windows oswa macOS? Panse tou a: **pòtabilite** (èske ou deplase souvan?), **atant batri**, **prefrans gwosè ekran**, **konfò klavye**, **sipò reparasyon ak pyès lokal**, ak **limit entènèt** kote ou ye a. **Bijè total** la dwe konte PLIS pase pri machin nan sèlman: chajè, sak, souri, estokaj ekstèn, lojisyèl, livrezon, taks, ak posib reparasyon. Panse tou konbyen tan ou espere kenbe machin nan. **Règ ki pa negosyab**: 'Pi bon òdinatè a' se PA machin ki pi chè a — se machin ki fè travay reyèl ou an fyab, nan limit BIJE TOTAL ou a.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pwofil Bezwen Òdinatè (Computer Needs Profile)",
+            definition: "Yon dokiman pèsonèl ki defini travay, bijè, ak preferans ou anvan ou gade machin espesifik.",
+            example: "Ekri Pwofil Bezwen Òdinatè ou anvan ou vizite yon magazen oswa gade anons.",
+          },
+          {
+            term: "Bijè Total (Total Budget)",
+            definition: "Pri machin nan plis TOUT lòt depans: chajè, sak, akseswa, lojisyèl, livrezon, taks, ak reparasyon posib.",
+            example: "Yon machin $400 ak $150 akseswa/frè anplis gen yon bijè total $550, pa $400.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Reponn kesyon sa yo pou tèt ou: ki travay prensipal ou bezwen fè, ki aplikasyon ki dwe mache, ak konbyen tan ou espere kenbe machin nan?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kòmanse chèche yon òdinatè ak yon mak oswa yon pwosesè espesifik nan tèt ou anvan ou konnen travay ou.",
+          right: "Defini travay ou dwe fè, ak bijè total ou, anvan ou gade okenn machin espesifik.",
+          why: "San yon Pwofil Bezwen klè, li fasil pou peye plis pou fonksyon ou pa bezwen, oswa achte yon machin ki pa fè travay ou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I want to define what I actually need in a computer before looking at brands or prices. Can you help me think through the right questions to ask myself?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou konsidere achte yon òdinatè (pou tèt ou, oswa yon egzanp ipotetik) epi ou vle kòmanse byen.",
+          objective: "Kreye yon Pwofil Bezwen Òdinatè konplè anvan ou gade okenn rekòmandasyon.",
+          requiredSteps: [
+            "Site travay prensipal ak aplikasyon ki dwe mache",
+            "Site prefrans pòtabilite, ekran, ak klavye",
+            "Kalkile yon bijè total ki gen ladan akseswa ak posib reparasyon",
+            "Site konbyen tan ou espere kenbe machin nan",
+          ],
+          successCriteria: ["Pwofil la konplè ak espesifik, pa jeneral"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon zanmi di 'achte machin ki pi chè a, se toujou pi bon an'. Ki repons ki pi kòrèk?",
+            options: [
+              "Vre, pi chè toujou pi bon",
+              "Pa nesesèman — pi bon an se machin ki fè travay reyèl ou an fyab, nan limit bijè total ou",
+              "Pi bon an se toujou machin ki gen non mak ki pi popilè a",
+              "Pri pa gen okenn enpòtans",
+            ],
+            correctIndex: 1,
+            explanation: "Règ ki pa negosyab: 'pi bon' vle di li fè travay ou, pa ke li se machin ki pi chè a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l2",
+    slug: "laptop-desktop-all-in-one-chromebook-oswa-mac",
+    moduleId: "m12",
+    order: 2,
+    titleHt: "Laptop, Desktop, All-in-One, Chromebook, oswa Mac?",
+    titleEn: "Laptop, Desktop, All-in-One, Chromebook, or Mac?",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Konpare fòs ak limit chak kategori òdinatè",
+      "Evite konklizyon jeneral 'Mac pi bon' oswa 'Windows pi bon'",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konpare fòs ak limit yon laptop, desktop, all-in-one, Chromebook, ak Mac, pou chwazi kategori ki fè travay ou san konklizyon jeneral.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Laptop** bay pòtabilite men souvan koute plis pou menm pèfòmans pase yon desktop. **Desktop** bay pi bon valè ak plis posibilite mizajou, men li mande yon plas fiks ak ekran apa. **All-in-one** konbine ekran ak òdinatè nan yon sèl machin — pratik men limite pou reparasyon. **Chromebook** gen fòs pou navige ak travay senp, souvan bon mache, men li **depann anpil de entènèt**, gen **estokaj limite**, ak **kompatibilite lojisyèl limite** (pa tout aplikasyon Windows/Mac mache sou li). **Mac** se yon **fanmi òdinatè**, pa yon kategori apa de laptop/desktop — MacBook Air ak MacBook Pro se de laptop Mac diferan (Pro a pi pwisan, pi lou, pi chè), pandan Mac mini ak iMac se desktop Mac. Pou Windows, ou ka chwazi ant yon laptop oswa yon desktop tou. Panse tou a **repare** — kèk mak ak modèl pi fasil pou jwenn pyès lokalman pase lòt. **Pa gen okenn konklizyon jeneral 'Mac pi bon' oswa 'Windows pi bon'** — chak chwa depann de Pwofil Bezwen ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "All-In-One",
+            definition: "Yon òdinatè ki konbine ekran ak machin lan nan yon sèl objè, pratik men limite pou reparasyon.",
+            example: "Yon all-in-one ka bon pou yon biwo fiks, men li pa pòtab tankou yon laptop.",
+          },
+          {
+            term: "Chromebook",
+            definition: "Yon laptop bon mache ki depann anpil de entènèt, ak estokaj ak konpatibilite lojisyèl limite.",
+            example: "Yon Chromebook ka bon pou navige ak lekòl senp, men pa pou lojisyèl espesyalize.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a Pwofil Bezwen ou (oswa yon egzanp). Ki kategori (laptop, desktop, all-in-one, Chromebook, oswa Mac) ki fè plis sans, epi poukisa?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Deside 'Mac toujou pi bon' oswa 'Windows toujou pi bon' san gade Pwofil Bezwen ou.",
+          right: "Deside daprè travay ou, bijè ou, ak lojisyèl ki dwe mache — pa yon prefrans mak jeneral.",
+          why: "Chak sistèm gen fòs ak limit — bon chwa a depann de bezwen espesifik ou, pa de yon opinyon jeneral.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Based on my needs (describe them), should I be looking at a laptop, desktop, all-in-one, Chromebook, or Mac? Help me think through the tradeoffs, not just pick one for me.",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Twa moun fiktif gen bezwen diferan: yon elèv ki fè lekòl an liy sèlman, yon moun biznis ki vwayaje souvan, ak yon moun ki fè konsepsyon grafik lakay li.",
+          objective: "Chwazi yon kategori òdinatè apwopriye pou chak twa moun yo epi eksplike chwa a.",
+          requiredSteps: [
+            "Chwazi yon kategori pou elèv la epi eksplike poukisa",
+            "Chwazi yon kategori pou moun biznis ki vwayaje a epi eksplike poukisa",
+            "Chwazi yon kategori pou moun konsepsyon grafik la epi eksplike poukisa",
+          ],
+          successCriteria: ["Chak chwa gen yon rezònman ki gen rapò ak bezwen espesifik moun nan", "Pa gen konklizyon jeneral 'Mac/Windows pi bon'"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki afimasyon sa a ki pi kòrèk sou Mac?",
+            options: [
+              "Mac se yon kategori apa de laptop ak desktop",
+              "Mac se yon fanmi òdinatè — genyen ni laptop (MacBook) ni desktop (Mac mini, iMac)",
+              "Tout Mac se laptop",
+              "Mac pa ka fè travay biwo",
+            ],
+            correctIndex: 1,
+            explanation: "Mac se yon FANMI machin — MacBook Air/Pro se laptop, Mac mini/iMac se desktop.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l3",
+    slug: "intel-kont-amd-sou-odinate-windows",
+    moduleId: "m12",
+    order: 3,
+    titleHt: "Intel kont AMD sou Òdinatè Windows",
+    titleEn: "Intel vs. AMD on Windows Computers",
+    estimatedMinutes: 12,
+    mode: "universal",
+    objectives: [
+      "Konprann mak pwosesè a sèl pa detèmine kalite yon òdinatè",
+      "Rekonèt yon anons sispèk ki manke jenerasyon/modèl egzat",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konprann poukisa mak pwosesè a (Intel oswa AMD) sèl pa detèmine kalite yon òdinatè, epi rekonèt yon anons ki manke enfòmasyon esansyèl.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Intel** ak **AMD** se de konpayi ki fè pwosesè — mak pwosesè a sèl **PA detèmine kalite** yon òdinatè. Sa ki afekte pèfòmans reyèl la: **fanmi modèl**, **jenerasyon**, **tou (tier)**, refwadisman, limit pouvwa, kantite RAM, kalite SSD, ak konsepsyon jeneral laptop la. Intel gen fanmi 'Core' ak AMD gen fanmi 'Ryzen' — chak gen non ki mande yon **jenerasyon/modèl egzat** pou gen sans. Se poutèt sa **'Core i7' oswa 'Ryzen 7' san yon nimewo jenerasyon/modèl se yon enfòmasyon ENKOMPLE** — yon 'Core i7' ansyen ka pi LAN pase yon 'Core i5' PLIS RESAN. Fè atansyon tou a diferans ant pwosesè **pouvwa ba (U/low-power)** ak **pèfòmans (H/HS/HX)** — sa afekte batri ak chalè. **Pa deklare yon mak inivèsèlman siperyè** — konpare modèl egzat, pa non mak la sèlman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Jenerasyon Pwosesè (Processor Generation)",
+            definition: "Ane/vèsyon yon pwosesè te fèt — yon nimewo esansyèl pou konprann pèfòmans reyèl li.",
+            example: "Yon 'Core i5' resan ka pi rapid pase yon 'Core i7' ki gen plizyè jenerasyon pi ansyen.",
+          },
+          {
+            term: "Anons Enkomple (Incomplete Listing)",
+            definition: "Yon anons ki bay sèlman 'Intel' oswa 'Core i7' san jenerasyon oswa modèl egzat.",
+            example: "Yon anons ki di sèlman 'Laptop ak Core i7' se yon siy avètisman — mande jenerasyon egzat la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Konpare de senaryo ipotetik: yon laptop ak yon 'Core i7' ansyen (plizyè jenerasyon anvan) kont yon laptop ak yon 'Core i5' plis resan. Ki youn ki gen chans pi rapid, e poukisa sa depann de plis pase non an?",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Konsidere yon anons sispèk si li montre sèlman 'Intel' oswa 'Core i7' san jenerasyon/modèl egzat",
+          "Mande vandè a jenerasyon/modèl egzat pwosesè a anvan ou konsidere yon acha",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! A listing just says 'Intel Core i7' with no generation number. Why does that matter, and what should I ask the seller?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou wè de anons: youn di 'Ryzen 7 (ansyen jenerasyon)', lòt la di 'Ryzen 5 (jenerasyon resan)'.",
+          objective: "Eksplike ki kesyon ou ta poze anvan ou deside ant de anons sa yo, san sipoze 'Ryzen 7' otomatikman pi bon.",
+          requiredSteps: [
+            "Site kesyon ou ta poze pou chak anons (jenerasyon, tou, refwadisman)",
+            "Eksplike poukisa non 'Ryzen 7' sèl pa ase pou deside",
+          ],
+          successCriteria: ["Ou pa sipoze youn otomatikman pi bon san plis enfòmasyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon anons di sèlman 'Laptop ak pwosesè AMD, bon eta'. Ki sa ki manke pou fè yon bon desizyon?",
+            options: [
+              "Anyen — AMD sèl bay ase enfòmasyon",
+              "Fanmi ak jenerasyon/modèl egzat pwosesè a (tankou 'Ryzen 5 5500U')",
+              "Koulè laptop la",
+              "Non vandè a sèlman",
+            ],
+            correctIndex: 1,
+            explanation: "San fanmi ak jenerasyon/modèl egzat, ou pa ka evalye pèfòmans reyèl pwosesè a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l4",
+    slug: "konprann-non-pwosese-ak-jenerasyon",
+    moduleId: "m12",
+    order: 4,
+    titleHt: "Konprann Non Pwosesè ak Jenerasyon",
+    titleEn: "Understanding Processor Names and Generations",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Kolekte ak entèprete non konplè yon pwosesè nan yon nivo pratik",
+      "Itilize yon fèy travay pou evalye si yon pwosesè apwopriye",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka kolekte enfòmasyon debaz sou yon pwosesè (non konplè, laj, tou, konpatibilite) san ou pa bezwen memorize chak sistèm non pa kè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Ou pa bezwen dekode chak sistèm non pwosesè pa kè — ou bezwen konnen ki **enfòmasyon pou kolekte**: **non konplè** egzat pwosesè a, **manifakti** (Intel/AMD), **fanmi pwodwi**, **tou (tier)**, endikatè **jenerasyon/achitekti**, **sifiks** (lèt apre nimewo yo), kantite **kè (cores)** kòm SÈLMAN yon faktè pami plizyè, konpòtman **refwadisman/pouvwa** aparèy la, **sistèm opere sipòte**, **laj sòti**, ak **konvenans pou travay reyèl** ou. Sa yo se enfòmasyon pou KOLEKTE, pa pou memorize chak vèsyon.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Sifiks (Suffix)",
+            definition: "Lèt apre nimewo modèl yon pwosesè (tankou U, H, HX) ki bay endikasyon sou pouvwa/refwadisman.",
+            example: "Yon sifiks 'U' souvan endike yon pwosesè pouvwa ba, bon pou batri long.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon anons òdinatè, eseye jwenn non KONPLÈ pwosesè a (pa sèlman 'Core i5' oswa 'Ryzen 5' — chèche nimewo modèl konplè a si posib).",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Sipoze kantite 'kè (cores)' sèl detèmine si yon pwosesè bon.",
+          right: "Konsidere kè kòm SÈLMAN yon faktè pami plizyè — jenerasyon, tou, ak konsepsyon jeneral konte tou.",
+          why: "Yon pwosesè ak plis kè men ansyen ka toujou pi lan pase yon pwosesè ak mwens kè men plis resan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I found the full processor name in a listing: [paste it]. Can you help me understand what it tells me about age, tier, and suitability for basic school/office use, without me buying anything yet?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou jwenn non konplè yon pwosesè nan yon anons epi ou vle evalye si li apwopriye.",
+          objective: "Itilize fèy travay senk kesyon an pou evalye yon non pwosesè (reyèl oswa ipotetik).",
+          requiredSteps: [
+            "Kisa ki non konplè a?",
+            "Apeprè ki laj li genyen?",
+            "Èske li fèt pou pouvwa ba, itilizasyon jeneral, oswa pèfòmans wo?",
+            "Èske li satisfè bezwen aplikasyon ou?",
+            "Èske rès òdinatè a balanse (RAM, estokaj) ak pwosesè a?",
+          ],
+          successCriteria: ["Ou reponn tout senk kesyon fèy travay la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki enfòmasyon sa yo ou ta dwe kolekte sou yon pwosesè anvan ou achte? (Chwazi tout ki aplike.)",
+            options: [
+              "Non konplè ak jenerasyon/modèl egzat",
+              "Koulè òdinatè a",
+              "Konbyen kè li genyen (kòm yon sèl faktè)",
+              "Si li apwopriye pou travay reyèl ou",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Non konplè, kè (kòm yon faktè), ak konvenans pou travay ou konte — koulè a pa gen rapò ak pèfòmans.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l5",
+    slug: "mac-intel-kont-mac-apple-silicon",
+    moduleId: "m12",
+    order: 5,
+    titleHt: "Mac Intel kont Mac Apple Silicon",
+    titleEn: "Intel Mac vs. Apple Silicon Mac",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Distenge yon Mac Intel de yon Mac Apple Silicon nan 'About This Mac'",
+      "Evite chwazi yon Mac itilize sèlman paske li gen logo Apple",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge yon Mac Intel de yon Mac Apple Silicon, epi konprann poukisa ou pa dwe chwazi yon Mac itilize sèlman paske li gen logo Apple sou li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Ansyen Mac itilize **pwosesè Intel**; Mac pi resan itilize **Apple Silicon** (pwòp pwosesè Apple fè). Nan **'About This Mac'**, si ou wè mo **'Chip'** swiv pa yon non seri M (tankou M1, M2), Mac la se Apple Silicon. Si ou wè mo **'Processor'** swiv pa Intel, se yon Mac Intel. Yo ka diferan nan **pèfòmans, dire batri, chalè, konpatibilite lojisyèl, konpòtman demaraj/rekiperasyon, opsyon vityalizasyon Windows, ak dire sipò sistèm opere alavni**. Kèk aplikasyon Intel ansyen ka mache sou Apple Silicon atravè yon teknoloji tradiksyon, men **konpatibilite dwe verifye**, pa sipoze. Yon Mac Intel bon mache **PA otomatikman** yon bon valè — ou dwe evalye sipò lojisyèl, eta batri, laj, kou reparasyon, ak mizajou k ap rete. **Pa janm rekòmande yon Mac itilize sèlman paske li gen logo Apple sou li** — evalye machin nan menm jan ak nenpòt lòt òdinatè.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Apple Silicon",
+            definition: "Pwosesè Apple fè li menm (fanmi M) pou Mac, olye Intel.",
+            example: "About This Mac montre 'Chip: Apple M2' sou yon Mac Apple Silicon.",
+          },
+          {
+            term: "About This Mac",
+            definition: "Zouti sou yon Mac ki montre chip/pwosesè, memwa, ak estokaj machin nan.",
+            example: "Klike meni Apple a epi chwazi 'About This Mac' pou wè chip la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon Mac, gade 'About This Mac' pou wè si li montre 'Chip' (Apple Silicon) oswa 'Processor' (Intel).",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Achte yon Mac itilize sèlman paske li gen logo Apple sou li, san verifye chip, batri, oswa sipò lojisyèl.",
+          right: "Evalye yon Mac itilize menm jan ak nenpòt lòt òdinatè — chip, sistèm opere sipòte, eta batri, ak konpatibilite aplikasyon.",
+          why: "Yon logo pa di anyen sou eta reyèl oswa konvenans yon machin espesifik pou bezwen ou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm looking at a used Mac. How do I check if it has an Intel processor or Apple Silicon, and why does that distinction matter?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gade yon Mac itilize epi ou vle idantifye si li Intel oswa Apple Silicon, san sipoze anyen sou logo a.",
+          objective: "Site etap pou verifye chip Mac la, epi lis kesyon anplis ou ta poze anvan ou konsidere achte l.",
+          requiredSteps: [
+            "Eksplike kòman ou ta verifye 'About This Mac'",
+            "Site omwen twa lòt bagay ou ta verifye (sipò macOS, batri, konpatibilite lojisyèl)",
+          ],
+          successCriteria: ["Ou pa sipoze machin nan bon sèlman paske li se yon Mac"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Nan 'About This Mac', ki mo endike Mac la itilize Apple Silicon (pa Intel)?",
+            options: ["'Processor' swiv pa Intel", "'Chip' swiv pa yon non seri M", "'Storage' sèlman", "'Serial Number' sèlman"],
+            correctIndex: 1,
+            explanation: "'Chip' swiv pa yon non seri M (tankou M1, M2) endike Apple Silicon; 'Processor' ak Intel endike yon Mac Intel.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l6",
+    slug: "apple-m1-m2-m3-m4-m5-ak-chip-mseries-fiti",
+    moduleId: "m12",
+    order: 6,
+    titleHt: "Apple M1, M2, M3, M4, M5 ak Chip M-Series Fiti",
+    titleEn: "Apple M1, M2, M3, M4, M5 and Future M-Series Chips",
+    estimatedMinutes: 12,
+    mode: "universal",
+    objectives: [
+      "Konprann sistèm jenerasyon chip Apple Silicon, pa yon lis acha fiks",
+      "Konpare kondisyon machin konplè, pa sèlman nimewo M la",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konprann sistèm jenerasyon chip Apple Silicon (M1 pou monte) ak nivo pèfòmans yo (baz, Pro, Max, Ultra), san bezwen yon lis acha ki fiks pou tout tan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "M1, M2, M3, M4, M5, ak non ki vin apre yo reprezante **jenerasyon Apple Silicon** — chak nouvo jenerasyon pa **otomatikman** pi bon chwa a nan tout pri. **Baz, Pro, Max, ak Ultra** endike diferan **nivo pèfòmans**, pa yon senp klasman kalite — yon chip **baz PLIS RESAN** ka pi bon pou yon itilizatè òdinè pase yon machin Pro/Max ANSYEN ak move batri, estokaj ensifizan, domaj, oswa pri twò wo. **Memwa ak estokaj jeneralman PA ka mizajou** apre acha sou Mac Apple Silicon. **Memwa inifye (unified memory)** pa maketing/evalye egzakteman menm jan ak yon modil RAM Windows tradisyonèl, men ou toujou bezwen ASE memwa pou travay ou. Verifye **sipò ekran ekstèn, pò, sipò aplikasyon, ak akseswa** pou modèl EGZAK la. Distenge **jenerasyon chip** de **modèl machin ak ane sòti**. Konpare **kondisyon konplè machin nan ak konfigirasyon**, pa sèlman nimewo 'M' la. **Règ tan-sansib**: yon dosye SEPARE ak yon dat 'dènye verifye' kenbe rekòmandasyon modèl aktyèl yo — leson sa a rete evergreen epi pa mande chanje chak fwa Apple lanse yon nouvo chip.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Memwa Inifye (Unified Memory)",
+            definition: "Sistèm memwa Apple Silicon itilize, diferan de yon modil RAM tradisyonèl Windows.",
+            example: "Yon Mac Apple Silicon ka bay 8 GB memwa inifye — verifye ase pou travay ou.",
+          },
+          {
+            term: "Baz/Pro/Max/Ultra",
+            definition: "Nivo pèfòmans diferan pou chip Apple Silicon — pa yon senp klasman 'pi bon'.",
+            example: "Yon chip 'baz' resan ka konvenab pou itilizasyon jeneral, pandan 'Max' fèt pou travay pi lou.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Konpare de senaryo ipotetik: yon Mac ak chip 'baz' RESAN ak batri/estokaj bon, kont yon Mac Pro-tier ANSYEN ak batri fèb ak estokaj piti. Ki youn ki gen chans fè travay ordinè pi byen?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Achte yon Mac 'Activation Locked' bon mache paske li gen yon chip resan, san verifye si li itilizab ditou.",
+          right: "Rejte nenpòt Mac ak Activation Lock aktive — machin nan ka pa itilizab menm si chip la bon.",
+          why: "Activation Lock ka anpeche w konfigire epi itilize machin nan menm si tout lòt spesifikasyon yo bon.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm trying to understand Apple's M-series chip naming (M1 through M5 and beyond) at a general level, not looking for specific current prices. Can you explain the base/Pro/Max/Ultra system?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gade de anons Mac ipotetik: youn ak yon chip 'baz' resan, 16GB memwa, batri bon; lòt la ak yon chip 'Pro' ansyen, batri fèb, pri wo.",
+          objective: "Konpare de machin yo daprè kondisyon konplè, pa sèlman nimewo chip la, epi eksplike chwa a.",
+          requiredSteps: [
+            "Konpare memwa, estokaj, ak eta batri chak machin",
+            "Eksplike poukisa nimewo chip la sèl pa ase pou deside",
+          ],
+          successCriteria: ["Chwa a baze sou kondisyon konplè, pa sèlman nimewo 'M' la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou wè yon Mac ki gen chip 'M4 baz' men batri fèb ak pri wo, kont yon Mac 'M2 baz' ak batri bon ak pri rezonab. Ki sa ki pi enpòtan pase sèlman nimewo chip la?",
+            options: [
+              "Nimewo chip la sèl — M4 toujou genyen",
+              "Kondisyon konplè machin nan (batri, estokaj, pri, eta jeneral)",
+              "Koulè machin nan",
+              "Konbyen tan li nan magazen an",
+            ],
+            correctIndex: 1,
+            explanation: "Yon chip plis resan pa konpanse pou move batri oswa pri egzajere — evalye machin nan konplètman.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l7",
+    slug: "ram-memwa-estokaj-ak-kapasite-mizajou-anvan-acha",
+    moduleId: "m12",
+    order: 7,
+    titleHt: "RAM, Memwa, Estokaj, ak Kapasite Mizajou Anvan Acha",
+    titleEn: "RAM, Memory, Storage, and Upgradeability Before Purchase",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Evalye konbyen memwa ak estokaj diferan travay reyèlman mande",
+      "Konprann diferans ant memwa/estokaj ki soude ak sa ki ranplasab",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka evalye konbyen memwa ak estokaj yon travay debaz mande reyèlman, epi konprann diferans ant konpozan ki soude ak sa ki ranplasab.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kantite memwa yon òdinatè bezwen depann de travay la: navige ak plizyè **onglè louvri** ansanm konsome plis memwa pase yon sèl aplikasyon. Windows itilize tèm **'RAM'**, pandan Apple Silicon itilize **'memwa inifye'** — de tèminoloji diferan pou konsèp ki sanble. **SSD** pi rapid pase yon **HDD** tradisyonèl. **Estokaj itilizab TOUJOU pi piti pase kapasite anonse a** — sistèm opere ak aplikasyon konsome yon pòsyon. Kèk machin gen **memwa/estokaj soude (soldered)** ki PA ka mizajou apre acha; lòt gen **modil ranplasab** ak **slot disponib**. Panse a **kou mizajou** si li posib. Estokaj **ekstèn PA yon ranplasman konplè** pou estokaj entèn ase, ak **estokaj cloud toujou mande entènèt** ak pafwa yon abònman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "SSD vs. HDD",
+            definition: "SSD (estokaj eta solid) pi rapid pase HDD (disk dur tradisyonèl) pou pifò itilizasyon.",
+            example: "Yon òdinatè ak SSD limen ak louvri aplikasyon pi vit pase youn ak HDD sèlman.",
+          },
+          {
+            term: "Soude (Soldered)",
+            definition: "Memwa oswa estokaj ki fikse pèmanan sou kat la, ki PA ka mizajou apre acha.",
+            example: "Anpil laptop mens ak Mac Apple Silicon gen memwa soude — verifye sa anvan ou achte.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a fason ou itilize (oswa ta itilize) yon òdinatè. Estime konbyen onglè navigatè ou ta gen louvri anmenm tan, ak si sa mande plis memwa.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse ou ka toujou 'mizajou pita' san verifye si memwa/estokaj machin nan soude oswa ranplasab.",
+          right: "Verifye si memwa/estokaj ka mizajou anvan ou achte, si sa enpòtan pou plan alavni ou.",
+          why: "Anpil laptop modèn (ak tout Mac Apple Silicon) gen memwa soude — ou pa ka mizajou apre acha ditou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! How much RAM/memory and storage would a typical student who does schoolwork, browsing, and video calls actually need?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou dwe chwazi yon konfigirasyon memwa/estokaj apwopriye pou diferan kalite travay.",
+          objective: "Chwazi yon konfigirasyon memwa/estokaj apwopriye pou lekòl/navige debaz, biwo/biznis, pwogramasyon, ak travay kreyatif lejè.",
+          requiredSteps: [
+            "Chwazi yon konfigirasyon pou lekòl/navige debaz",
+            "Chwazi yon konfigirasyon pou biwo/biznis",
+            "Chwazi yon konfigirasyon pou pwogramasyon ak travay kreyatif lejè",
+          ],
+          successCriteria: ["Chak chwa gen yon rezònman ki gen rapò ak kalite travay la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Poukisa estokaj itilizab yon òdinatè toujou pi piti pase kapasite anonse a (tankou '256 GB')?",
+            options: [
+              "Se yon erè nan fabrikasyon toujou",
+              "Sistèm opere ak aplikasyon deja enstale konsome yon pòsyon estokaj la",
+              "Estokaj anonse a se yon manti total",
+              "Sa rive sèlman sou Mac",
+            ],
+            correctIndex: 1,
+            explanation: "Sistèm opere ak aplikasyon konsome yon pòsyon nan estokaj total la, kite mwens espas itilizab pase kapasite anonse a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l8",
+    slug: "ekran-batri-klavye-po-chaje-kamera-ak-kalite-konstriksyon",
+    moduleId: "m12",
+    order: 8,
+    titleHt: "Ekran, Batri, Klavye, Pò, Chajè, Kamera, ak Kalite Konstriksyon",
+    titleEn: "Screen, Battery, Keyboard, Ports, Charger, Camera, and Build Quality",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Enspekte yon òdinatè pi lwen pase sèlman pwosesè/RAM/estokaj",
+      "Rekonèt siy pwoblèm sou ekran, batri, ak klavye",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka enspekte yon òdinatè pi lwen pase pwosesè/RAM/estokaj — ekran, batri, klavye, pò, chajè, kamera, ak kalite konstriksyon jeneral.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Espesifikasyon yo pa sèlman pwosesè, RAM, ak estokaj. Enspekte: **ekran** (gwosè, rezolisyon, klète, piksèl mouri, liy, dekolorasyon, jwenti/hinges), **klavye** (aranjman ak eta touch), **trackpad/souri**, **kamera ak mikwofòn**, **opalè ak koneksyon kaskèt**, **pò** (USB-A, USB-C, HDMI, kat SD, Ethernet), **pò chajè ak bon chajè** ki matche l, **sante batri** (dire, avètisman anfle, kou ranplasman), **bri vantilatè, chalè, domaj fizik, viss ki manke, ak endikatè likid** (SÈLMAN sa ki vizib san demonte machin nan), **pwa/pòtabilite**, ak **disponiblite lokal** chajè ak pyès ranplasman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Sante Batri (Battery Health)",
+            definition: "Kondisyon reyèl batri a — dire, kapasite ki rete, ak si li anfle (siy danje).",
+            example: "Yon batri ki anfle se yon siy danje — pa itilize machin nan jiskaske yon pwofesyonèl gade l.",
+          },
+          {
+            term: "Endikatè Likid (Liquid Indicator)",
+            definition: "Yon ti mak ki chanje koulè si dlo antre nan machin nan — verifye sèlman sa ki vizib san demonte.",
+            example: "Gade endikatè likid la si li vizib, san ou pa eseye demonte machin nan pou wè l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Pa itilize yon òdinatè ak yon batri ki anfle — chèche èd pwofesyonèl",
+          "Verifye sèlman sa ki vizib san demonte machin nan — pa fè reparasyon oswa travay elektrik ou menm",
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon òdinatè (pa w oswa yon egzanp), fè yon enspeksyon rapid: gade ekran an pou dekolorasyon, teste chak touch klavye, ak verifye tout pò yo mache.",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What are the key physical things I should check on a used laptop besides the processor and RAM — like screen, battery, and keyboard condition?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral enspekte yon òdinatè (reyèl oswa senmile) pi lwen pase espesifikasyon debaz yo.",
+          objective: "Fè yon enspeksyon konplè ekran, batri, klavye, pò, ak chajè.",
+          requiredSteps: [
+            "Enspekte ekran an pou pwoblèm vizyèl",
+            "Verifye eta batri ak si li anfle",
+            "Teste klavye ak tout pò yo",
+          ],
+          successCriteria: ["Ou konplete yon enspeksyon konplè san demonte machin nan"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou remake batri yon laptop itilize sanble anfle (li leve ti kras anba klavye a). Ki sa ou dwe fè?",
+            options: [
+              "Kontinye itilize l, se nòmal",
+              "Sispann itilize l epi chèche èd pwofesyonèl — sa se yon siy danje",
+              "Peze sou li pou fè l plat",
+              "Ranje l ou menm ak yon zouti",
+            ],
+            correctIndex: 1,
+            explanation: "Yon batri anfle se yon siy danje reyèl — sispann itilizasyon epi chèche èd pwofesyonèl imedyatman.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l9",
+    slug: "nef-itilize-bwat-ouve-refet-ak-renouvle",
+    moduleId: "m12",
+    order: 9,
+    titleHt: "Nèf, Itilize, Bwat Ouvè, Refèt, ak 'Renouvle'",
+    titleEn: "New, Used, Open-Box, Refurbished, and \"Renewed\"",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Konprann etikèt vant yo pa garanti menm bagay la de chak vandè",
+      "Evalye yon acha itilize/refèt san sipoze li otomatikman bon oswa move",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konprann etikèt tankou 'itilize', 'refèt', ak 'renouvle' pa garanti menm bagay la de chak vandè, epi evalye yo san prejije.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Etikèt tankou **'nèf', 'itilize', 'bwat ouvè (open-box)', 'refèt (refurbished)', ak 'renouvle (renewed)'** PA garanti menm bagay la de chak vandè — chak vandè ka gen yon estanda diferan. Enpòtan pou verifye: **repitasyon vandè a**, **ki moun ki fè refèt la** (fabrikan ofisyèl oswa yon twazyèm pati?), **ki sa ki te teste**, **dire ak kote garanti a valab**, **règleman retou**, **klas kosmetik**, si **batri/pyès te ranplase**, **chajè orijinal kont chajè twazyèm pati**, **kou livrezon ak dwàn**, **kou reparasyon kache**, **prèv pwopriyete**, ak **resi ak dosye seri/modèl**. **Pa trete 'refèt' kòm otomatikman san danje, ni 'itilize' kòm otomatikman move**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Refèt (Refurbished)",
+            definition: "Yon machin itilize ki te teste ak repare — kalite depann de KI MOUN ki fè travay la.",
+            example: "Yon Mac 'refèt' pa fabrikan ofisyèl la diferan anpil de yon 'refèt' pa yon revandè enkoni.",
+          },
+          {
+            term: "Klas Kosmetik (Cosmetic Grade)",
+            definition: "Deskripsyon eta fizik ekstèn machin nan (rif, mak, elatriye), separe de eta fonksyonèl li.",
+            example: "Yon machin 'klas kosmetik B' ka gen ti rif men fonksyone pafètman.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a diferans ant yon machin 'refèt' pa fabrikan ofisyèl la ak yon machin ki senpleman make 'itilize, bon eta' pa yon vandè endividyèl. Ki plis kesyon ou ta poze pou chak?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Sipoze 'refèt' toujou vle di san danje, oswa 'itilize' toujou vle di move kalite.",
+          right: "Poze kesyon espesifik sou ki moun ki fè travay la, sa ki te teste, ak règleman garanti/retou pou chak acha.",
+          why: "Etikèt sa yo pa gen definisyon inivèsèl — kalite reyèl depann de vandè espesifik la, pa mo a sèl.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What questions should I ask a seller before trusting a 'refurbished' laptop listing?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gade yon anons ki make 'renouvle' epi ou vle evalye l san prejije.",
+          objective: "Lis kesyon ou ta poze vandè a anvan ou fè konfyans a etikèt 'renouvle' la.",
+          requiredSteps: [
+            "Mande ki moun ki fè renouvèlman an",
+            "Mande sa ki te teste ak dire garanti a",
+            "Mande règleman retou ak si chajè a orijinal",
+          ],
+          successCriteria: ["Ou pa aksepte etikèt la san verifikasyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Èske etikèt 'refèt (refurbished)' garanti menm kalite a pou chak vandè?",
+            options: [
+              "Wi, 'refèt' toujou vle di menm bagay la",
+              "Non — kalite depann de ki moun ki fè travay la ak ki sa ki te teste",
+              "'Refèt' toujou pi move pase 'itilize'",
+              "'Refèt' se yon lòt mo pou 'nèf'",
+            ],
+            correctIndex: 1,
+            explanation: "'Refèt' pa yon estanda inivèsèl — verifye ki moun ki fè travay la ak sa ki te teste pou chak vandè.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l10",
+    slug: "enspeksyon-konple-yon-odinate-windows-itilize",
+    moduleId: "m12",
+    order: 10,
+    titleHt: "Enspeksyon Konplè Yon Òdinatè Windows Itilize",
+    titleEn: "Complete Used Windows Computer Inspection",
+    estimatedMinutes: 12,
+    mode: "universal",
+    objectives: [
+      "Swiv yon lis verifikasyon konplè pou yon òdinatè Windows itilize",
+      "Rekonèt siy yon machin bloke pa lekòl/konpayi oswa BIOS",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka swiv yon lis verifikasyon konplè pou yon òdinatè Windows itilize, san bezwen demonte machin nan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lis verifikasyon konplè pou yon òdinatè Windows itilize: **modèl egzat**, **pwosesè egzat**, **vèsyon ak aktivasyon Windows**, **sipò/konpatibilite Windows** (èske li ka mete ajou?), **RAM ak estokaj**, konsyans **sante SSD**, **kondisyon batri**, **wattaj ak konektè chajè a**, avètisman **modpas BIOS/firmware**, siy **jesyon lekòl/konpayi oswa restriksyon kont**, **ekran**, **klavye**, **trackpad**, **Wi-Fi**, **Bluetooth**, **kamera**, **mikwofòn**, **opalè**, **pò**, tès **USB**, tès **HDMI/ekran ekstèn** si posib, **dòmi, rekòmanse, ak etenn**, **chalè oswa bri vantilatè** etranj, **kondisyon fizik**, **nimewo seri ak pwopriyete**, ak **retou/garanti**. **Pa gen demontaj nesesè** nan kou sa a.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Modpas BIOS/Firmware",
+            definition: "Yon modpas nivo materyèl ki ka bloke yon machin, separe de modpas Windows nòmal la.",
+            example: "Yon machin ak modpas BIOS ke ansyen pwopriyetè a pa retire ka pa itilizab ditou.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon òdinatè Windows, teste Wi-Fi, kamera, ak omwen de pò diferan pou konfime yo tout mache.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Rejte yon machin ak modpas BIOS/firmware ki poko retire pa ansyen pwopriyetè a",
+          "Verifye pa gen jesyon lekòl/konpayi ki ka bloke òdinatè a apre acha",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm about to inspect a used Windows laptop before buying. Can you walk me through a complete checklist, item by item?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral enspekte yon òdinatè Windows itilize (reyèl oswa senmile) anvan yon acha.",
+          objective: "Swiv lis verifikasyon konplè a: modèl/pwosesè, sistèm, materyèl, ak pwopriyete.",
+          requiredSteps: [
+            "Verifye modèl, pwosesè, ak vèsyon Windows",
+            "Teste materyèl (ekran, klavye, pò, Wi-Fi, kamera)",
+            "Verifye pa gen modpas BIOS oswa jesyon lekòl/konpayi ki bloke l",
+          ],
+          successCriteria: ["Ou konplete yon enspeksyon konplè san demonte machin nan"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki bagay sa yo fè pati yon enspeksyon konplè òdinatè Windows itilize? (Chwazi tout ki aplike.)",
+            options: [
+              "Modèl ak pwosesè egzat",
+              "Si machin nan gen modpas BIOS ki poko retire",
+              "Koulè machin nan sèlman",
+              "Eta batri ak wattaj chajè a",
+            ],
+            correctIndexes: [0, 1, 3],
+            explanation: "Modèl/pwosesè, modpas BIOS, ak eta batri/chajè yo enpòtan — koulè a pa fè pati yon enspeksyon fonksyonèl.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l11",
+    slug: "enspeksyon-konple-yon-mac-itilize",
+    moduleId: "m12",
+    order: 11,
+    titleHt: "Enspeksyon Konplè Yon Mac Itilize",
+    titleEn: "Complete Used Mac Inspection",
+    estimatedMinutes: 12,
+    mode: "universal",
+    objectives: [
+      "Swiv yon lis verifikasyon konplè pou yon Mac itilize",
+      "Rekonèt Activation Lock ak lòt blokaj ki fè yon Mac pa itilizab",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka swiv yon lis verifikasyon konplè pou yon Mac itilize, epi rekonèt blokaj (tankou Activation Lock) ki ka fè machin nan pa itilizab.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lis verifikasyon konplè pou yon Mac itilize: **modèl ak ane egzat**, **Intel oswa Apple Silicon**, **chip egzat**, **memwa ak estokaj**, **vèsyon macOS sipòte**, **Activation Lock retire**, **Find My retire pa vandè a**, **pa gen Apple Account enkoni ki rete konekte**, **pa gen blokaj Remote Management/MDM**, konsyans **kou/kondisyon batri**, **chajè kòrèk**, **ekran ak jwenti**, **klavye ak trackpad**, **kamera, mikwofòn, opalè**, **Wi-Fi ak Bluetooth**, **pò**, **rekòmanse ak etenn**, **verifikasyon nimewo seri/modèl**, **istorik reparasyon ak domaj likid**, **retou/garanti**, ak **konpatibilite aplikasyon** ki obligatwa pou ou. **Activation Lock ki pa retire fè yon Mac pa itilizab** — sa se yon rezon pou rejte acha a, kèlkeswa pri a.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Activation Lock",
+            definition: "Yon blokaj sekirite Apple ki fè yon Mac pa itilizab si li poko retire pa ansyen pwopriyetè a.",
+            example: "Yon Mac bon mache ak Activation Lock aktive se yon machin ou dwe rejte, pa yon bon zafè.",
+          },
+          {
+            term: "MDM (Device Management)",
+            definition: "Yon sistèm jesyon (souvan pa yon lekòl/konpayi) ki ka limite oswa bloke yon machin.",
+            example: "Verifye yon Mac itilize pa gen MDM aktive ki ta ka limite itilizasyon w apre acha.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Rejte nenpòt Mac ak Activation Lock ki poko retire, kèlkeswa pri a",
+          "Verifye pa gen MDM oswa Apple Account enkoni ki rete konekte sou machin nan",
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon Mac, gade nan Paramèt Sistèm pou verifye pa gen Apple Account enkoni ki rete konekte.",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What does 'Activation Lock' mean on a used Mac, and why is it such a serious dealbreaker if it's still enabled?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral enspekte yon Mac itilize (reyèl oswa senmile) anvan yon acha.",
+          objective: "Swiv lis verifikasyon konplè a: chip/modèl, blokaj sekirite, ak materyèl.",
+          requiredSteps: [
+            "Verifye modèl, ane, ak chip (Intel oswa Apple Silicon)",
+            "Verifye Activation Lock retire ak pa gen MDM",
+            "Teste materyèl (ekran, klavye, Wi-Fi, kamera)",
+          ],
+          successCriteria: ["Ou konplete yon enspeksyon konplè san demonte machin nan"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon Mac itilize gen yon pri trè ba men vandè a admèt Activation Lock la 'poko retire'. Ki sa ou dwe fè?",
+            options: [
+              "Achte l kanmenm paske pri a bon",
+              "Rejte acha a — Activation Lock ki pa retire fè machin nan pa itilizab",
+              "Peye epi mande vandè a retire l apre",
+              "Achte l epi eseye 'debloke' l ou menm",
+            ],
+            correctIndex: 1,
+            explanation: "Yon Activation Lock ki pa retire se yon rezon pou rejte acha a — machin nan pa itilizab jiskaske l retire.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l12",
+    slug: "siy-danje-ak-eskrokri-acha-komen",
+    moduleId: "m12",
+    order: 12,
+    titleHt: "Siy Danje ak Eskrokri Acha Komen",
+    titleEn: "Red Flags and Common Buying Scams",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Rekonèt siy danje komen nan yon acha òdinatè itilize",
+      "Refize yon acha lè gen twòp siy avètisman",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt siy danje komen nan yon acha òdinatè itilize, epi refize yon acha lè gen twòp siy avètisman.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Siy danje komen nan yon acha òdinatè: **presyon pou peye imedyatman**, **pri ki twò ba** pase valè mache reyèl, **foto estòk olye vrè aparèy la**, **vandè ki refize videyo oswa tès an pèsòn**, **pa gen modèl/pwosesè egzat**, **'Core i7' san jenerasyon**, **estokaj fo oswa enfòmasyon sistèm modifye**, **chajè ki manke oswa ki pa kòrèk**, **jwenti fann oswa batri anfle**, **BIOS, Apple Account, Activation Lock, MDM, oswa blokaj lekòl/konpayi**, **aparèy rapòte pèdi oswa vòlè**, **peman anvan enspeksyon nan yon metòd san pwoteksyon**, **sistèm opere ki pa sipòte**, **lojisyèl pirate** ofri kòm 'valè anplis', **afimasyon fo 'tou nèf'**, **enfòmasyon seri ki pa matche**, **pa gen kondisyon retou**, ak yon '**ti pwoblèm**' vandè a minimize ki ka mande yon reparasyon chè. **Plis siy danje ki prezan, plis rezon pou w refize acha a.**",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Presyon Ijan (Urgency Pressure)",
+            definition: "Yon vandè ki fòse w peye imedyatman san tan pou reflechi oswa enspekte.",
+            example: "Yon vandè ki di 'ou dwe peye kounye a oswa yon lòt moun ap pran l' se yon siy danje.",
+          },
+          {
+            term: "Enfòmasyon Sistèm Modifye (Modified System Info)",
+            definition: "Lè yon vandè chanje enfòmasyon lojisyèl pou fè machin nan sanble pi bon pase li ye.",
+            example: "Verifye estokaj ak espesifikasyon dirèkteman sou machin nan, pa fè konfyans a sèlman sa vandè a di.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Refize peman anvan enspeksyon nan yon metòd san pwoteksyon",
+          "Sispèk fò lè yon vandè refize videyo oswa tès an pèsòn",
+          "Plis siy danje ki prezan, plis rezon pou w chèche yon lòt machin",
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Fè yon lis mantal siy danje ou ta chèche nan yon anons — konbyen nan lis la ou ka site san gade tèks eksplikasyon an ankò?",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm looking at a used laptop listing that seems too good to be true. What are the classic red flags I should check for before contacting the seller?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gade yon anons ki gen plizyè siy danje: pri twò ba, foto estòk, ak vandè ki refize videyo.",
+          objective: "Idantifye tout siy danje nan senaryo a epi eksplike ki desizyon ou ta pran.",
+          requiredSteps: [
+            "Idantifye chak siy danje nan senaryo a",
+            "Eksplike desizyon final ou (achte oswa refize) ak rezònman",
+          ],
+          successCriteria: ["Ou idantifye omwen twa siy danje", "Desizyon w lan pwoteje enterè ou"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki sa sa yo se siy danje nan yon anons òdinatè itilize? (Chwazi tout ki aplike.)",
+            options: [
+              "Vandè a ensiste pou peman imedya anvan enspeksyon",
+              "Anons lan gen modèl ak jenerasyon pwosesè egzat",
+              "Pri a trè ba anpil pase valè mache",
+              "Vandè a refize fè yon apèl videyo pou montre machin nan",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Presyon peman, pri twò ba, ak refi videyo se twa siy danje klasik — enfòmasyon egzat se yon BON siy, pa yon danje.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l13",
+    slug: "swen-netwayaj-chale-batri-kouran-ak-kou-posesyon-ayisyen",
+    moduleId: "m12",
+    order: 13,
+    titleHt: "Swen, Netwayaj, Chalè, Batri, Kouran, ak Kou Posesyon Ayisyen",
+    titleEn: "Care, Cleaning, Heat, Battery, Power, and Haiti-Aware Ownership Cost",
+    estimatedMinutes: 11,
+    mode: "universal",
+    objectives: [
+      "Aplike bon pratik swen debaz pou pwolonje lavi yon òdinatè",
+      "Konprann konsyans kouran ak kou posesyon nan kontèks Ayiti",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka aplike bon pratik swen debaz pou pwolonje lavi òdinatè ou, epi konprann konsyans kouran ak kou posesyon total nan kontèks Ayiti.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Swen debaz: **netwayaj ekstèn san danje** (twal sèch/limaj, pa likid dirèk sou aparèy la), bon **vantilasyon** (pa bloke twou lè yo), evite **chalè kabann/dra** (pa itilize laptop sou kabann/dra pandan lontan — sa bloke vantilasyon), konsyans **aje batri**, itilize **chajè kòrèk**, ak yon **pwotektè sirvòltaj (surge protector)**. Nan kontèks **Ayiti**, konsyans **envèsè, jeneratè, ak fliktyasyon kouran** enpòtan anpil — **sovgade travay ou souvan** anvan yon koupi kouran, gen yon **woutin backup**, ak konsidere **disponiblite pyès ranplasman** lokalman. Panse tou a **kou done ak lojisyèl**, **kou transpò/livrezon pou sèvis reparasyon**, ak **pa fè reparasyon entèn oswa travay elektrik ou menm** — sa mande yon pwofesyonèl.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pwotektè Sirvòltaj (Surge Protector)",
+            definition: "Yon aparèy ki pwoteje òdinatè ou kont pik elektrik ki ka domaje machin nan.",
+            example: "Konekte òdinatè ou nan yon pwotektè sirvòltaj, sitou nan zòn ak fliktyasyon kouran.",
+          },
+          {
+            term: "Fliktyasyon Kouran (Power Fluctuation)",
+            definition: "Chanjman souvan nan vòltaj elektrik ki ka domaje aparèy elektwonik san pwoteksyon.",
+            example: "Yon envèsè oswa yon pwotektè sirvòltaj ede pwoteje kont fliktyasyon kouran.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a woutin kouran/elektrisite kote ou ye a. Ki mezi pwoteksyon (envèsè, jeneratè, pwotektè sirvòltaj) ou deja itilize, oswa ou ta ka ajoute?",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa fè reparasyon entèn oswa travay elektrik sou òdinatè ou menm — chèche yon pwofesyonèl",
+          "Sovgade travay ou souvan, sitou nan zòn ak fliktyasyon kouran fè",
+          "Pa itilize laptop la sou yon kabann/dra pandan lontan — sa bloke vantilasyon epi ka lakòz twòp chalè",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Power in my area isn't always stable. What are simple, practical things I can do to protect my computer from power fluctuations?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle etabli bon abitid swen pou pwolonje lavi òdinatè ou nan kontèks kote kouran pa toujou estab.",
+          objective: "Etabli yon woutin swen ki gen ladan netwayaj, vantilasyon, ak pwoteksyon kont fliktyasyon kouran.",
+          requiredSteps: [
+            "Site fason ou netwaye ekstèn òdinatè ou san danje",
+            "Site yon mezi pwoteksyon kont fliktyasyon kouran (pwotektè sirvòltaj, envèsè)",
+            "Etabli yon woutin backup ki gen rapò ak koupi kouran posib",
+          ],
+          successCriteria: ["Woutin an pratik epi apwopriye pou kontèks lokal ou"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Kouran an konn koupe san avètisman kote ou ye a. Ki sa ki pi bon abitid?",
+            options: [
+              "Pa enkyete w — sa pa gen rapò ak òdinatè a",
+              "Sovgade travay ou souvan ak konsidere yon pwotektè sirvòltaj/envèsè",
+              "Kite òdinatè a limen tout tan pou evite pwoblèm",
+              "Efase tout fichye ou pou pwoteje yo",
+            ],
+            correctIndex: 1,
+            explanation: "Sovgade souvan ak pwoteksyon kont fliktyasyon kouran ede evite pèt travay ak domaj materyèl.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l14",
+    slug: "fe-yon-desizyon-acha-pesonel",
+    moduleId: "m12",
+    order: 14,
+    titleHt: "Fè Yon Desizyon Acha Pèsonèl",
+    titleEn: "Build a Personal Buying Decision",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout kritè yo nan yon sèl Fèy Desizyon Acha Òdinatè",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konbine tout kritè yo (bezwen, pwosesè, memwa, kondisyon, garanti, kou total) nan yon sèl Fèy Desizyon Acha Òdinatè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kounye a ou pral konbine TOUT sa ou aprann: Pwofil Bezwen Òdinatè, lojisyèl obligatwa, prefrans Windows/Mac, konparezon pwosesè, memwa, estokaj, ekran/pò, batri, kapasite mizajou, laj ak sipò sistèm opere, repare/pyès disponib, kondisyon, garanti/retou, kou posesyon total, konfyans vandè, ak rezilta enspeksyon. Kreye yon **Fèy Desizyon Acha Òdinatè** yon paj ak: **Sa ki obligatwa (Must Have)**, **Sa ki ta bon (Nice to Have)**, **Sa ki elimine yon chwa (Deal Breakers)**, **Konfigirasyon minimòm akseptab**, **Kesyon pou vandè a**, **Lis verifikasyon enspeksyon**, **Bijè total maksimòm**, ak **Chwa final ak eksplikasyon**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fèy Desizyon Acha (Buying Decision Sheet)",
+            definition: "Yon dokiman yon paj ki konbine tout kritè acha ou yo anvan ou fè yon chwa final.",
+            example: "Ranpli Fèy Desizyon Acha ou anvan ou kontakte okenn vandè, pou rete objektif.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Revize Pwofil Bezwen Òdinatè ou soti nan premye leson Modil 12 la — li toujou reflete bezwen ou byen?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kontakte yon vandè oswa vizite yon magazen san yon Fèy Desizyon Acha klè an men.",
+          right: "Konplete Fèy Desizyon Acha a konplètman AVAN ou pale ak okenn vandè.",
+          why: "San yon fèy klè, prensyon vandè oswa anvi moman an ka fè w achte yon bagay ki pa fè travay ou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you help me organize everything I've learned about buying a computer into a one-page decision sheet, based on my own needs (I'll describe them)?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pare pou konbine tout sa ou aprann nan Modil 12 nan yon sèl dokiman aksyon.",
+          objective: "Kreye yon Fèy Desizyon Acha Òdinatè konplè ak tout uit seksyon yo.",
+          requiredSteps: [
+            "Ekri 'Sa ki obligatwa' ak 'Sa ki ta bon'",
+            "Ekri 'Sa ki elimine yon chwa' ak konfigirasyon minimòm akseptab",
+            "Ekri kesyon pou vandè a ak lis verifikasyon enspeksyon",
+            "Ekri bijè total maksimòm ak yon chwa final ak eksplikasyon",
+          ],
+          successCriteria: ["Fèy la gen tout uit seksyon yo", "Chwa final la gen yon eksplikasyon klè ki gen rapò ak Pwofil Bezwen ou"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou fè yon desizyon acha òdinatè byen panse.",
+            steps: [
+              "Defini Pwofil Bezwen Òdinatè ou",
+              "Konpare kategori ak pwosesè apwopriye",
+              "Enspekte machin espesifik yo (siy danje, kondisyon)",
+              "Konplete Fèy Desizyon Acha ak chwa final",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Kòmanse ak bezwen, konpare opsyon, enspekte machin espesifik, epi fini ak yon desizyon dokimante.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m12-l15",
+    slug: "misyon-evalye-yon-anons-odinate",
+    moduleId: "m12",
+    order: 15,
+    titleHt: "Misyon: Evalye Yon Anons Òdinatè",
+    titleEn: "Module Mission: Evaluate a Computer Listing",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 12 nan yon egzèsis evalyasyon anons reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka konpare de anons òdinatè fiktif, idantifye enfòmasyon ki manke ak siy danje, chwazi pi bon opsyon an pou yon bezwen espesifik, epi eksplike desizyon w lan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 12 la. Ou pral konpare de anons fiktif: **Anons A** — 'Laptop Windows, Core i7, bon eta, $250, peman kach sèlman, foto estòk, vandè pa reponn kesyon sou jenerasyon pwosesè a.' **Anons B** — 'Laptop Windows, Core i5-1235U (12yèm jenerasyon), 8GB RAM, 256GB SSD, batri 85% sante, chajè orijinal enkli, $320, vandè aksepte apèl videyo ak enspeksyon anvan peman, garanti 30 jou.' Ou pral idantifye siy danje nan Anons A, konpare li ak enfòmasyon konplè Anons B, epi chwazi pi bon opsyon an pou yon elèv ki bezwen yon laptop fyab pou lekòl an liy.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou konpare Anons A (pri ba, enfòmasyon manke, siy danje) ak Anons B (enfòmasyon konplè, pi wo pri, pwosesis achte san danje) pou yon elèv ki bezwen yon laptop fyab pou lekòl an liy.",
+          objective:
+            "Idantifye enfòmasyon ki manke ak siy danje nan chak anons, chwazi pi bon opsyon an pou bezwen elèv la, epi eksplike desizyon w lan ak rezònman klè.",
+          requiredSteps: [
+            "Lis enfòmasyon ki manke nan Anons A",
+            "Lis siy danje nan Anons A",
+            "Konpare Anons A ak Anons B pou bezwen elèv la (lekòl an liy, fyab)",
+            "Chwazi youn nan de anons yo epi eksplike poukisa",
+          ],
+          successCriteria: [
+            "Ou idantifye omwen twa siy danje nan Anons A",
+            "Chwa final ou gen yon rezònman ki gen rapò ak bezwen elèv la, pa sèlman pri a",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Nan Anons A ('Core i7, bon eta, $250, peman kach sèlman, foto estòk, vandè pa reponn sou jenerasyon'), ki siy danje ou idantifye? (Chwazi tout ki aplike.)",
+            options: [
+              "Pa gen jenerasyon pwosesè egzat",
+              "Foto estòk olye vrè aparèy la",
+              "Pri a bay yon garanti 30 jou",
+              "Peman kach sèlman san opsyon enspeksyon klè",
+            ],
+            correctIndexes: [0, 1, 3],
+            explanation: "Manke jenerasyon, foto estòk, ak peman san enspeksyon klè se twa siy danje reyèl — Anons A pa mansyone garanti ditou.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen konfyans pou evalye yon acha òdinatè kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 13." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
