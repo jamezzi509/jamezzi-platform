@@ -3535,6 +3535,1581 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m4-l1",
+    slug: "kisa-yon-fichye-ye",
+    moduleId: "m4",
+    order: 1,
+    titleHt: "Ki Sa Yon Fichye Ye?",
+    titleEn: "What Is a File?",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Defini yon fichye ak enfòmasyon li kenbe",
+      "Rekonèt tip fichye ak ki aplikasyon ki louvri l",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike ki sa yon fichye ye epi rekonèt ki aplikasyon ki louvri yon tip fichye espesifik.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **fichye (file)** se enfòmasyon ki sovgade sou òdinatè a anba yon non — yon foto, yon dokiman, yon chanson, yon videyo. Chak fichye gen yon **non** ak souvan yon **ekstansyon** (twa oswa kat lèt apre yon pwen, tankou .jpg oswa .docx) ki di òdinatè a ki tip fichye li ye. Ekstansyon an tou di òdinatè a ki **aplikasyon** pou l itilize pou louvri fichye a — yon .jpg louvri nan yon aplikasyon foto, yon .docx louvri nan yon aplikasyon tèks.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fichye (File)",
+            definition: "Enfòmasyon ki sovgade sou òdinatè a anba yon non.",
+            example: "Yon foto ou pran ak kamera a vin yon fichye tankou 'vakans-2026.jpg'.",
+          },
+          {
+            term: "Ekstansyon (Extension)",
+            definition: "Lèt apre yon pwen nan non fichye a ki di ki tip fichye li ye.",
+            example: "Nan 'rapò.pdf', '.pdf' se ekstansyon an — li di se yon dokiman PDF.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade nan Documents oswa Downloads ou pou jwenn twa fichye diferan. Pou chak yonn, di ki tip li ye (foto, dokiman, videyo) daprè ekstansyon an oswa ikòn nan.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse yon ikòn ki sanble ak yon aplikasyon se menm bagay ak yon fichye.",
+          right: "Rekonèt yon aplikasyon (tankou Word) se zouti ki louvri fichye, pandan fichye a se dokiman ou kreye a.",
+          why: "Fè konfizyon ant de a fè moun panse yo 'pèdi' travay yo lè an reyalite se jis fichye a ki nan yon lòt kote.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I found a file with the extension .xlsx on my computer. What kind of file is that and what application usually opens it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle kòmanse rekonèt fichye ou gen sou òdinatè ou.",
+          objective: "Jwenn twa fichye diferan epi idantifye tip chak yonn.",
+          requiredSteps: [
+            "Louvri Documents oswa Downloads",
+            "Idantifye ekstansyon twa fichye diferan",
+            "Di ki aplikasyon ki ta ka louvri chak fichye",
+          ],
+          successCriteria: ["Ou ka idantifye tip twa fichye san èd"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki sa ekstansyon yon fichye di òdinatè a?",
+            options: [
+              "Non moun ki kreye fichye a",
+              "Ki tip fichye li ye ak ki aplikasyon pou louvri l",
+              "Dat fichye a te kreye",
+              "Gwosè fichye a sèlman",
+            ],
+            correctIndex: 1,
+            explanation: "Ekstansyon an (tankou .pdf oswa .jpg) di òdinatè a ki tip fichye li ye ak ki aplikasyon pou itilize.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l2",
+    slug: "kisa-yon-dosye-ye",
+    moduleId: "m4",
+    order: 2,
+    titleHt: "Ki Sa Yon Dosye Ye?",
+    titleEn: "What Is a Folder?",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Defini yon dosye ak wòl li nan òganizasyon",
+      "Konprann yerachi dosye (dosye anndan dosye)",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike diferans ant yon dosye ak yon fichye, epi konprann kijan dosye ka anndan lòt dosye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **dosye (folder)** pa yon fichye — se yon **kontenè** ki ede w òganize fichye yo ansanm. Panse a yon **klasè dijital**: menm jan ou ta mete dokiman papye nan yon klasè fizik pou ou pa mele yo, yon dosye kenbe fichye ki gen rapò ansanm. Ou ka mete dosye **anndan** lòt dosye — sa rele yon **yerachi**. Pa egzanp, ou ka gen yon dosye 'Travay' ki gen anndan l yon dosye 'Rapò 2026'.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "folder-hierarchy-example",
+          caption: "Travay → Rapò 2026 → rapò-janvye.docx, rapò-fevriye.docx",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Dosye (Folder)",
+            definition: "Kontenè ki ede w gwoupe fichye ki gen rapò ansanm — li pa yon fichye limenm.",
+            example: "Kreye yon dosye 'Foto Fanmi' pou mete tout foto fanmi ou yo ansanm.",
+          },
+          {
+            term: "Yerachi (Hierarchy)",
+            definition: "Fason dosye anndan lòt dosye ye, tankou branch yon pyebwa.",
+            example: "Dosye 'Rapò 2026' ka anndan dosye 'Travay', ki anndan 'Documents'.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Louvri Documents ou epi gade si gen dosye deja la. Louvri youn nan yo pou wè si gen lòt dosye anndan l.",
+      },
+      {
+        id: "b6",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse lè ou efase yon dosye, se sèlman dosye a menm ki disparèt.",
+          right: "Konprann lè ou efase yon dosye, TOUT fichye ki anndan l efase tou.",
+          why: "Yon dosye se yon kontenè — efase kontenè a efase tou sa ki anndan l.",
+        },
+      },
+      {
+        id: "b7",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between a file and a folder in simple terms, with an everyday example?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou gen 15 foto vakans sou òdinatè ou, mele ak lòt fichye. Ki sa ki pi bon pou òganize yo?",
+            options: [
+              "Kite yo tout mele ansanm nan Downloads",
+              "Kreye yon dosye 'Foto Vakans' epi deplase tout foto yo ladan",
+              "Chanje non chak foto youn pa youn san mete yo nan yon dosye",
+              "Efase yo epi pran yo ankò pita",
+            ],
+            correctIndex: 1,
+            explanation: "Yon dosye dedye ('Foto Vakans') gwoupe fichye ki gen rapò ansanm, sa fè yo pi fasil pou jwenn.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l3",
+    slug: "file-explorer-sou-windows",
+    moduleId: "m4",
+    order: 3,
+    titleHt: "File Explorer sou Windows",
+    titleEn: "File Explorer on Windows",
+    estimatedMinutes: 9,
+    mode: "platform_variant",
+    objectives: [
+      "Navige nan File Explorer sou Windows",
+      "Itilize navigation pane, chemen adrès, ak rechèch",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka louvri File Explorer sou Windows epi navige ant dosye yo ak navigation pane a, chemen adrès la, ak rechèch la.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**File Explorer** se aplikasyon ki montre w tout fichye ak dosye ki sou òdinatè Windows ou. Sou kote goch la, **navigation pane** a montre yon lis rakousi (Desktop, Documents, Downloads, elatriye) ou ka klike pou ale dirèkteman. Anwo fennèt la, **chemen adrès (address bar)** la montre egzakteman kote ou ye kounye a — tankou 'This PC > Documents > Travay'. Ou ka klike sou nenpòt pati nan chemen an pou retounen la. Gen tou yon bwat **rechèch** nan kwen anwo dwat pou jwenn yon fichye rapid.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "File Explorer",
+            definition: "Aplikasyon Windows ki montre tout fichye ak dosye sou òdinatè a.",
+            example: "Klike ikòn dosye jòn nan taskbar la pou louvri File Explorer.",
+          },
+          {
+            term: "Navigation Pane",
+            definition: "Lis rakousi sou kote goch File Explorer pou ale dirèkteman nan yon kote komen.",
+            example: "Klike 'Downloads' nan navigation pane a pou wè fichye ou fèk telechaje.",
+          },
+          {
+            term: "Chemen Adrès (Address Bar)",
+            definition: "Ba anwo fennèt la ki montre kote ou ye nan yerachi dosye a.",
+            example: "Klike sou 'Documents' nan chemen adrès la pou retounen nan dosye sa a.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Louvri File Explorer (ikòn dosye jòn nan taskbar la). Klike 'Documents' nan navigation pane a, epi gade chemen adrès la anwo pou wè kote ou ye.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Fèmen File Explorer epi rouvri l chak fwa ou vle jwenn yon dosye diferan.",
+          right: "Itilize navigation pane a oswa chemen adrès la pou deplase san fèmen fennèt la.",
+          why: "Navigation pane a ak chemen adrès la fèt pou fè w deplase rapid san bezwen fèmen ak rouvri.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm using File Explorer on Windows and I want to see my files as large icons instead of a list. How do I change the view?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen jwenn yon fichye byen vit sou òdinatè Windows ou.",
+          objective: "Navige nan File Explorer pou rive nan Documents, epi itilize rechèch pou jwenn yon fichye.",
+          requiredSteps: [
+            "Louvri File Explorer",
+            "Klike 'Documents' nan navigation pane a",
+            "Tape yon mo nan bwat rechèch la pou jwenn yon fichye",
+          ],
+          successCriteria: ["Ou rive nan Documents san konfizyon", "Rechèch la montre rezilta ki gen rapò"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa chemen adrès la montre nan File Explorer?",
+            options: [
+              "Non moun ki posede òdinatè a",
+              "Kote ou ye kounye a nan yerachi dosye yo",
+              "Gwosè disk dur la",
+              "Lis aplikasyon ki enstale",
+            ],
+            correctIndex: 1,
+            explanation: "Chemen adrès la (tankou 'This PC > Documents > Travay') montre egzakteman kote ou ye.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l4",
+    slug: "finder-sou-mac",
+    moduleId: "m4",
+    order: 4,
+    titleHt: "Finder sou Mac",
+    titleEn: "Finder on Mac",
+    estimatedMinutes: 9,
+    mode: "platform_variant",
+    objectives: [
+      "Navige nan Finder sou Mac",
+      "Itilize sidebar, chemen, view options, ak tag",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka louvri Finder sou Mac epi navige ant dosye yo ak sidebar la, chanje jan fichye yo parèt, epi rekonèt tag koulè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Finder** se aplikasyon ki montre w tout fichye ak dosye sou Mac ou — li louvri otomatikman souvan, oswa ou ka klike ikòn li nan Dock la. Sou kote goch la, **sidebar** la montre rakousi tankou Desktop, Documents, ak Downloads. Ou ka chanje jan fichye yo parèt (lis, ikòn, kolòn) nan **view options** yo, anwo fennèt la. Mac gen tou yon sistèm **tag koulè** ou ka mete sou fichye pou make yo (tankou 'Ijan' an wouj), epi yon bwat **rechèch** nan kwen anwo dwat la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Finder",
+            definition: "Aplikasyon Mac ki montre tout fichye ak dosye sou òdinatè a.",
+            example: "Klike ikòn figi ble a nan Dock la pou louvri Finder.",
+          },
+          {
+            term: "Sidebar",
+            definition: "Lis rakousi sou kote goch Finder pou ale dirèkteman nan yon kote komen.",
+            example: "Klike 'Downloads' nan sidebar la pou wè fichye ou fèk telechaje.",
+          },
+          {
+            term: "Tag",
+            definition: "Etikèt koulè ou ka mete sou yon fichye pou make l san chanje non li.",
+            example: "Mete tag wouj sou yon dosye pou raple w li ijan.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Louvri Finder (ikòn figi ble a nan Dock la). Klike 'Documents' nan sidebar la, epi eseye chanje view a soti nan lis pou ale nan ikòn (anwo fennèt la).",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse ou dwe sèvi ak Spotlight sèlman pou jwenn nenpòt fichye.",
+          right: "Itilize sidebar Finder a pou navige dirèkteman nan yon kote ou konnen deja.",
+          why: "Sidebar la pi rapid lè ou konnen ki dosye w ap chèche a — rechèch se pou lè ou pa sèten kote fichye a ye.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm using Finder on a Mac and I want to add a color tag to a file to mark it as important. How do I do that?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen jwenn yon fichye byen vit sou Mac ou.",
+          objective: "Navige nan Finder pou rive nan Documents, epi itilize rechèch pou jwenn yon fichye.",
+          requiredSteps: [
+            "Louvri Finder",
+            "Klike 'Documents' nan sidebar la",
+            "Tape yon mo nan bwat rechèch la pou jwenn yon fichye",
+          ],
+          successCriteria: ["Ou rive nan Documents san konfizyon", "Rechèch la montre rezilta ki gen rapò"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa yon tag koulè fè pou yon fichye nan Finder?",
+            options: [
+              "Li chanje non fichye a otomatikman",
+              "Li make fichye a san chanje non li, pou ede w rekonèt li",
+              "Li efase fichye a",
+              "Li konprese fichye a",
+            ],
+            correctIndex: 1,
+            explanation: "Yon tag koulè se yon etikèt vizyèl — li ede w rekonèt fichye a san chanje non li.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l5",
+    slug: "kote-komen-tankou-desktop-documents-ak-downloads",
+    moduleId: "m4",
+    order: 5,
+    titleHt: "Desktop, Documents, Downloads, ak Lòt Kote Komen",
+    titleEn: "Desktop, Documents, Downloads, Pictures, and Other Common Locations",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Konprann pou ki sa chak dosye komen sèvi",
+      "Evite kite tout fichye sou Desktop la oswa nan Downloads",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike pou ki sa chak dosye komen (Desktop, Documents, Downloads, Pictures) sèvi, epi konprann poukisa Downloads pa yon kote pou estoke fichye pou tout tan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Chak òdinatè gen kèk dosye ki deja kreye pou ou: **Desktop** (kote fichye parèt sou premye ekran an), **Documents** (pou dokiman travay), **Downloads** (kote tout bagay ou telechaje soti sou entènèt ateri otomatikman), ak **Pictures** (pou foto). **Downloads pa yon kote pou òganize pou tout tan** — se yon kote tanporè. Si ou kite tout bagay ladan, li vin plen ak fichye mele ki soti nan diferan sit. Menm jan an, mete twòp fichye dirèkteman sou Desktop la fè l vin dezòdone e pi difisil pou jwenn sa ou bezwen.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Downloads",
+            definition: "Dosye kote fichye ou telechaje soti sou entènèt ateri otomatikman.",
+            example: "Apre ou telechaje yon PDF, l ateri nan Downloads jiskaske ou deplase l.",
+          },
+          {
+            term: "Documents",
+            definition: "Dosye ki fèt pou kenbe dokiman travay ou (rapò, lèt, fèy kalkil).",
+            example: "Sovgade rapò ou nan Documents olye de Desktop la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Nan File Explorer, klike Documents, Downloads, oswa Pictures nan navigation pane a",
+          ],
+          mac: [
+            "Nan Finder, klike Documents, Downloads, oswa Pictures nan sidebar la",
+          ],
+          recoveryNote:
+            "Si ou pa wè youn nan dosye sa yo nan lis la, chèche l nan 'This PC' (Windows) oswa 'Go > Home' (Mac).",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite santèn fichye antasse nan Downloads paske 'li deja la'.",
+          right: "Deplase fichye enpòtan soti Downloads pou ale nan Documents oswa Pictures apre ou fin itilize yo.",
+          why: "Downloads ki plen fè li difisil pou jwenn yon fichye resan, epi li ka ranpli espas estokaj san ou pa remake.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My Downloads folder has hundreds of files in it and I can't find anything. What's a simple way to start organizing it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konnen ki kote fichye ou yo rele lakay yo.",
+          objective: "Louvri chak dosye komen (Desktop, Documents, Downloads, Pictures) epi konte konbyen fichye gen ladan chak.",
+          requiredSteps: [
+            "Louvri Documents epi gade konbyen fichye ladan",
+            "Louvri Downloads epi gade konbyen fichye ladan",
+            "Idantifye si Downloads bezwen netwaye",
+          ],
+          successCriteria: ["Ou ka di ki dosye ki gen plis fichye", "Ou idantifye si Downloads twò plen"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Poukisa Downloads pa yon bon kote pou estoke fichye pou tout tan?",
+            options: [
+              "Li otomatikman efase fichye apre yon semèn",
+              "Se yon kote tanporè ki ka vin mele ak fichye ki soti nan diferan sit",
+              "Li pa gen ase espas",
+              "Se sèlman pou foto",
+            ],
+            correctIndex: 1,
+            explanation: "Downloads se yon kote tanporè kote tout bagay ateri san klasman — li bezwen netwaye regilyèman.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l6",
+    slug: "non-fichye-ki-ede-ou-pita",
+    moduleId: "m4",
+    order: 6,
+    titleHt: "Non Fichye Ki Ede Ou Pita",
+    titleEn: "File Names That Help You Later",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Chwazi non fichye ki gen sans ak dat",
+      "Evite pwoblèm 'final-final-2' la",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka bay fichye ou non ki gen sans, ki gen dat lè sa nesesè, epi evite karaktè ki ka kreye pwoblèm.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon bon non fichye ede ou (ak lòt moun) konprann sa ki nan fichye a san ou pa bezwen louvri l. Olye de 'Document1.docx', ekri 'Rapò-Vant-Janvye-2026.docx'. Lè ou gen plizyè vèsyon menm dokiman an, ajoute yon dat oswa yon nimewo vèsyon (v1, v2) olye de kontinye ajoute mo 'final' — sa a rele **pwoblèm 'final-final-2'**: 'rapò-final.docx', 'rapò-final-2.docx', 'rapò-final-VRÈ.docx' — pèsòn pa konnen ki youn ki bon an. Evite karaktè espesyal tankou / \\ : * ? \" < > | nan non fichye, paske sa ka kreye erè sou kèk sistèm.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Vèsyon (Version)",
+            definition: "Yon kopi espesifik yon dokiman nan yon moman patikilye.",
+            example: "'rapò-v2.docx' se dezyèm vèsyon rapò a, apre premye chanjman yo.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Chwazi twa fichye ou genyen ki gen non tankou 'IMG_2847.jpg' oswa 'Document1.docx'. Panse a ki non ki ta pi klè pou chak, ki gen sans ak dat si nesesè.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kontinye kreye 'rapò-final-2.docx', 'rapò-final-3.docx' san janm efase ansyen vèsyon yo.",
+          right: "Itilize dat oswa nimewo vèsyon klè ('rapò-2026-01-15.docx') epi efase oswa achive ansyen vèsyon ki pa itil ankò.",
+          why: "San yon sistèm klè, pèsòn pa ka di ki vèsyon ki bon an — sa ka lakòz moun voye oswa itilize move vèsyon an.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I have several versions of the same document saved with names like 'final' and 'final-2'. What's a better way to name and organize them?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gen fichye ak non ki pa klè, tankou 'IMG_2847.jpg' oswa 'Document1.docx'.",
+          objective: "Chanje non twa fichye pou ba yo non ki gen sans ak dat si nesesè.",
+          requiredSteps: [
+            "Chwazi twa fichye ak non ki pa klè",
+            "Chanje non yo pou dekri kontni yo",
+            "Ajoute dat kote sa itil",
+          ],
+          successCriteria: ["Non nouvo yo dekri kontni fichye a klèman", "Pa gen karaktè espesyal ki ka kreye pwoblèm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou fin modifye yon rapò pou twazyèm fwa. Ki non ki pi bon?",
+            options: [
+              "rapò-final-final-VRE.docx",
+              "rapò-vant-2026-01-15.docx",
+              "Document1.docx",
+              "rapò!!!.docx",
+            ],
+            correctIndex: 1,
+            explanation: "Yon non ak sijè ak dat klè ('rapò-vant-2026-01-15.docx') pi fasil pou konprann pase mo tankou 'final' repete.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l7",
+    slug: "save-save-as-ak-export",
+    moduleId: "m4",
+    order: 7,
+    titleHt: "Save, Save As, ak Export",
+    titleEn: "Save, Save As, and Export",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Konprann diferans ant Save ak Save As",
+      "Ekspòte yon dokiman an PDF",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike diferans ant Save ak Save As, epi ekspòte yon dokiman an fòma PDF.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Save** (Ctrl+S sou Windows, Cmd+S sou Mac) anrejistre chanjman yo **sou menm fichye a** — li ranplase vèsyon ki te la anvan an. **Save As** kreye yon **nouvo kopi** ak yon non diferan (oswa nan yon kote diferan), pandan orijinal la rete jan l te ye a. Sa itil lè ou vle kenbe orijinal la san chanjman, epi kreye yon nouvo vèsyon apa. **Export** kreye yon kopi nan yon **lòt fòma fichye** — pa egzanp, ekspòte yon dokiman Word an **PDF** pou pataje l ak yon fòma ki pa chanje sou lòt aparèy.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Save As",
+            definition: "Kreye yon nouvo kopi fichye a ak yon non oswa kote diferan, san afekte orijinal la.",
+            example: "Itilize Save As pou kenbe vèsyon orijinal yon kontra san chanjman.",
+          },
+          {
+            term: "Export",
+            definition: "Kreye yon kopi fichye a nan yon lòt fòma, tankou PDF.",
+            example: "Ekspòte yon rapò Word an PDF anvan ou voye l bay yon anplwayè.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Peze Ctrl+S pou Save, oswa Ctrl+Shift+S pou Save As nan pifò aplikasyon",
+            "Pou ekspòte an PDF, chèche 'File > Export' oswa 'File > Print > Save as PDF'",
+          ],
+          mac: [
+            "Peze Cmd+S pou Save, oswa Cmd+Shift+S pou Save As nan pifò aplikasyon",
+            "Pou ekspòte an PDF, chèche 'File > Export as PDF' oswa 'File > Print > Save as PDF'",
+          ],
+          recoveryNote:
+            "Si ou pa wè opsyon 'Export', chèche nan meni 'File' la — souvan li rele 'Save As' epi ou chwazi PDF kòm fòma.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Itilize Save lè ou vle kenbe orijinal la — sa ranplase l pou tout tan.",
+          right: "Itilize Save As anvan ou fè gwo chanjman si ou vle kenbe yon kopi orijinal la.",
+          why: "Save ranplase fichye a definitivman — pa gen fason pou retounen nan vèsyon anvan an apre.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the difference between Save and Save As, and when should I use Export to PDF instead?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gen yon dokiman ou vle modifye san pèdi orijinal la, epi pataje yon kopi PDF.",
+          objective: "Itilize Save As pou kreye yon nouvo kopi, epi ekspòte yon vèsyon an PDF.",
+          requiredSteps: [
+            "Louvri yon dokiman",
+            "Itilize Save As pou kreye yon kopi ak yon nouvo non",
+            "Ekspòte yon vèsyon an PDF",
+          ],
+          successCriteria: ["De fichye egziste: orijinal la ak nouvo kopi a", "Yon fichye PDF kreye"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki sa Save As fè ke Save pa fè?",
+            options: [
+              "Li efase fichye orijinal la",
+              "Li kreye yon nouvo kopi san afekte orijinal la",
+              "Li konprese fichye a",
+              "Li voye fichye a pa imèl otomatikman",
+            ],
+            correctIndex: 1,
+            explanation: "Save As kreye yon nouvo fichye apa, pandan Save ranplase fichye ki egziste deja a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l8",
+    slug: "kreye-chanje-non-kopye-ak-deplase",
+    moduleId: "m4",
+    order: 8,
+    titleHt: "Kreye, Chanje Non, Kopye, ak Deplase",
+    titleEn: "Create, Rename, Copy, and Move",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Kreye yon nouvo dosye",
+      "Chanje non, kopye, ak deplase fichye ak konfyans",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka kreye yon nouvo dosye, chanje non yon fichye, kopye l, epi deplase l san ou pa pè fè erè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Kreye** yon dosye ba ou yon kote pou òganize. **Chanje non (rename)** yon fichye chanje sèlman etikèt li, pa kontni li. **Kopye** kreye yon **doub** fichye a nan yon lòt kote — orijinal la rete kote l te ye. **Deplase** wete fichye a nan yon kote pou mete l nan yon lòt — pa gen doub, se menm fichye a ki chanje adrès. Sekans san danje a: **kreye dosye a dabò, epi chwazi fichye a, epi konfime kote ou vle voye l anvan ou lage l**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Kopye (Copy)",
+            definition: "Kreye yon doub fichye a nan yon lòt kote — orijinal la rete.",
+            example: "Kopye yon foto nan dosye 'Foto Vakans' san efase l nan kote orijinal la.",
+          },
+          {
+            term: "Deplase (Move)",
+            definition: "Wete fichye a nan yon kote pou mete l nan yon lòt — pa gen doub.",
+            example: "Deplase yon rapò ki soti Downloads pou ale nan Documents.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Right-click nan yon espas vid epi chwazi 'New > Folder' pou kreye yon dosye",
+            "Right-click sou yon fichye epi chwazi 'Rename', 'Copy', oswa 'Cut' (pou deplase, kole apre ak Ctrl+V)",
+            "Rakousi: F2 pou rename, Ctrl+C pou kopye, Ctrl+X pou koupe, Ctrl+V pou kole",
+          ],
+          mac: [
+            "Right-click nan yon espas vid epi chwazi 'New Folder' pou kreye yon dosye",
+            "Klike yon fichye epi peze Return pou rename, oswa Cmd+C pou kopye, epi Cmd+V pou kole",
+            "Pou deplase, itilize Cmd+C pou kopye epi Cmd+Option+V pou 'Move Item Here'",
+          ],
+          recoveryNote:
+            "Si ou pa sèten si ou kopye oswa deplase yon fichye, verifye si li toujou nan kote orijinal la — si li la toujou, se yon kopi.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Rale-lage yon fichye san verifye kote ou lage l — li ka ateri nan move dosye.",
+          right: "Toujou verifye non dosye destinasyon an anvan ou lage yon fichye, oswa itilize kopye/kole pou plis kontwòl.",
+          why: "Yon fichye ki lage nan move dosye ka difisil pou jwenn ankò, sitou si ou pa remake kote l ale.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the safest way to move a file into a different folder without accidentally losing track of it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle kreye yon sistèm dosye pou òganize fichye ou yo.",
+          objective: "Kreye yon nouvo dosye, chanje non yon fichye, epi deplase l nan nouvo dosye a.",
+          requiredSteps: [
+            "Kreye yon nouvo dosye ak yon non klè",
+            "Chanje non yon fichye ki egziste deja",
+            "Deplase fichye a nan nouvo dosye a",
+          ],
+          successCriteria: ["Nouvo dosye a egziste ak bon non", "Fichye a nan nouvo dosye a, pa nan kote orijinal la ankò"],
+          hint: "Si ou pa sèten Copy oswa Move, sonje: Move wete fichye a nan ansyen kote a.",
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou deplase yon fichye san danje nan yon nouvo dosye.",
+            steps: [
+              "Kreye nouvo dosye a dabò",
+              "Chwazi fichye ou vle deplase a",
+              "Konfime kote ou vle voye l",
+              "Deplase fichye a nan nouvo dosye a",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Kreye dosye a anvan, chwazi fichye a, konfime destinasyon an, epi deplase — sa evite erè.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l9",
+    slug: "efase-ak-restore",
+    moduleId: "m4",
+    order: 9,
+    titleHt: "Efase ak Restore",
+    titleEn: "Delete and Restore",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Efase yon fichye san danje",
+      "Restore yon fichye ou efase pa aksidan",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka efase yon fichye san danje epi restore l si ou fè erè, epi konprann lè yon fichye disparèt pou tout tan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou efase yon fichye sou òdinatè a, li pa disparèt imedyatman — li ale nan **Recycle Bin** (Windows) oswa **Trash** (Mac), yon kote tanporè. Ou ka **restore** (retounen) fichye a soti la si ou fè erè. Men si ou **vide** Recycle Bin/Trash la, fichye a disparèt **pou tout tan** epi pa gen fason fasil pou jwenn li ankò. Enpòtan tou: fichye ki sou yon **kle USB oswa disk ekstèn** pafwa pa gen Recycle Bin/Trash — yo ka efase dirèkteman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Recycle Bin / Trash",
+            definition: "Kote tanporè fichye ale lè ou efase yo, anvan yo disparèt pou tout tan.",
+            example: "Ouvri Recycle Bin la pou jwenn yon fichye ou efase pa aksidan.",
+          },
+          {
+            term: "Restore",
+            definition: "Retounen yon fichye soti nan Recycle Bin/Trash nan kote li te ye a.",
+            example: "Right-click sou fichye a nan Recycle Bin epi chwazi 'Restore'.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Louvri Recycle Bin la (ikòn sou Desktop la)",
+            "Right-click sou fichye a epi chwazi 'Restore' pou retounen l kote l te ye",
+          ],
+          mac: [
+            "Louvri Trash la (ikòn nan Dock la)",
+            "Right-click sou fichye a epi chwazi 'Put Back' pou retounen l kote l te ye",
+          ],
+          recoveryNote:
+            "Si ou vide Recycle Bin/Trash la deja, fichye a pa disponib fasil ankò — evite vide l san verifye li.",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Verifye Recycle Bin/Trash anvan ou vide l pou tout tan",
+          "Fichye sou kle USB pa toujou gen yon Recycle Bin/Trash — yo ka efase dirèkteman",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I accidentally deleted a file. How do I check if it's still recoverable from the Recycle Bin or Trash?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou efase yon fichye pa aksidan epi ou bezwen l ankò.",
+          objective: "Efase yon fichye tès, epi restore l soti nan Recycle Bin/Trash.",
+          requiredSteps: [
+            "Efase yon fichye tès",
+            "Louvri Recycle Bin/Trash la",
+            "Restore fichye a",
+          ],
+          successCriteria: ["Fichye a retounen kote l te ye a", "Ou konprann kilè fichye a disparèt pou tout tan"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa ki rive lè ou vide Recycle Bin/Trash apre ou efase yon fichye?",
+            options: [
+              "Fichye a retounen otomatikman apre yon semèn",
+              "Fichye a disparèt pou tout tan, difisil pou jwenn ankò",
+              "Fichye a voye bay yon lòt aparèy",
+              "Anyen pa chanje",
+            ],
+            correctIndex: 1,
+            explanation: "Vide Recycle Bin/Trash la efase fichye a pou tout tan — se poutèt sa ou dwe verifye anvan.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l10",
+    slug: "cheche-yon-fichye-ou-pedi",
+    moduleId: "m4",
+    order: 10,
+    titleHt: "Chèche Yon Fichye Ou Pèdi",
+    titleEn: "Search for a Lost File",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Chèche yon fichye pa non, tip, dat, oswa kote",
+      "Swiv yon sekans rechèch kalm san panike",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chèche yon fichye ou pèdi lè ou itilize non, tip, dat, oswa fichye resan, san panike.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou pa jwenn yon fichye, gen yon sekans kalm pou swiv olye ou panike: 1) **Chèche pa non** — tape yon mo ou sonje nan bwat rechèch la. 2) **Chèche pa tip** — si ou sonje se te yon foto oswa yon PDF. 3) **Chèche pa dat** — kèk sistèm kite w filtre pa 'jodi a' oswa 'semèn sa a'. 4) **Gade fichye resan** — File Explorer ak Finder gen souvan yon lis 'Recent' ki montre dènye fichye ou te louvri. Sonje: yon fichye ki 'pèdi' souvan senpleman nan yon dosye ou pa panse a — li ra pou l disparèt nèt.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Rechèch (Search)",
+            definition: "Zouti ki jwenn fichye lè ou tape yon mo ki gen rapò ak non oswa kontni li.",
+            example: "Tape 'rapò' nan bwat rechèch la pou jwenn tout fichye ak mo sa a nan non yo.",
+          },
+          {
+            term: "Fichye Resan (Recent Files)",
+            definition: "Lis fichye ou te louvri dènyèman, souvan aksesib rapid.",
+            example: "Gade lis 'Recent' la si ou sonje ou te travay sou fichye a jodi a.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Klike bwat rechèch la nan taskbar la, oswa nan File Explorer, epi tape non fichye a",
+            "Pou wè fichye resan, gade 'Quick Access' nan File Explorer",
+          ],
+          mac: [
+            "Peze Cmd+Espas pou louvri Spotlight, epi tape non fichye a",
+            "Pou wè fichye resan, gade 'Recents' nan sidebar Finder a",
+          ],
+          recoveryNote:
+            "Si rechèch la pa jwenn anyen, verifye òtograf mo a, epi eseye yon mo pi jeneral (tankou 'rapò' olye 'rapò-final-vant').",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panike epi kòmanse klike toupatou lè ou pa jwenn yon fichye.",
+          right: "Swiv sekans lan: chèche pa non, epi pa tip, epi gade fichye resan anvan ou sipoze fichye a disparèt.",
+          why: "Yon apwòch kalm ak sistematik jwenn fichye 'pèdi' yo pi souvan pase panik — yo ra pou vrèman disparèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I can't find a file I saved yesterday. What's a calm, step-by-step way to search for it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pa sonje egzakteman kote ou te sovgade yon fichye.",
+          objective: "Itilize rechèch pou jwenn yon fichye espesifik san panike.",
+          requiredSteps: [
+            "Louvri bwat rechèch la (Windows) oswa Spotlight (Mac)",
+            "Tape yon mo ki gen rapò ak fichye a",
+            "Konfime fichye a nan rezilta yo",
+          ],
+          successCriteria: ["Ou jwenn fichye a atravè rechèch", "Ou swiv sekans lan san panike"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou chèche yon fichye pèdi san panike.",
+            steps: [
+              "Chèche pa non fichye a",
+              "Si sa pa mache, chèche pa tip fichye",
+              "Gade lis fichye resan",
+              "Si toujou pa jwenn, chèche nan dosye ki gen plis sans",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Yon sekans kalm ak sistematik ogmante chans ou jwenn fichye a san estrès.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l11",
+    slug: "ekstansyon-fichye-ak-foma-komen",
+    moduleId: "m4",
+    order: 11,
+    titleHt: "Ekstansyon Fichye ak Fòma Komen",
+    titleEn: "File Extensions and Common Formats",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rekonèt fòma fichye komen yo",
+      "Rekonèt fòma ki ka danjere (EXE, DMG)",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt fòma fichye komen yo (PDF, DOCX, JPG, MP3, MP4, ZIP) epi rekonèt ki fòma bezwen plis atansyon (EXE, DMG).",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Chak tip fichye gen yon fòma diferan ki di ou ki kalite kontni li genyen. **PDF** se dokiman ki gade menm jan sou tout aparèy. **DOCX** se dokiman Word. **XLSX** se yon fèy kalkil (Excel). **JPG/PNG** se foto. **MP3** se son. **MP4** se videyo. **TXT** se tèks senp san mizanpaj. **ZIP** se yon gwoup fichye konprese ansanm. **EXE** (Windows) ak **DMG** (Mac) enstale pwogram — se fòma sa yo ki bezwen **plis atansyon**, paske yo ka enstale lojisyèl danjere si yo pa soti nan yon sous ou fè konfyans.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: ".PDF",
+            definition: "Fòma dokiman ki gade menm jan sou tout aparèy ak sistèm.",
+            example: "Ekspòte yon rapò an .pdf anvan ou pataje l ak yon anplwayè.",
+          },
+          {
+            term: ".EXE / .DMG",
+            definition: "Fòma ki enstale pwogram sou Windows (.exe) oswa Mac (.dmg) — mande atansyon sou sous la.",
+            example: "Pa louvri yon fichye .exe ou resevwa nan yon imèl san ou pa konnen egzakteman ki moun ki voye l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade nan Documents oswa Downloads ou epi jwenn omwen kat fichye ak ekstansyon diferan. Idantifye ki kalite kontni chak youn genyen.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm louvri yon fichye .exe oswa .dmg ki soti nan yon sous ou pa fè konfyans",
+          "Verifye moun ki voye anvan ou louvri yon fichye ki mande pou enstale yon bagay",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I received a file with the extension .exe in an email I wasn't expecting. Is it safe to open?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle ka rekonèt fòma fichye rapid pou konnen kijan pou trete yo.",
+          objective: "Idantifye tip kat fichye diferan daprè ekstansyon yo, epi di si youn nan yo bezwen plis atansyon.",
+          requiredSteps: [
+            "Jwenn kat fichye ak ekstansyon diferan",
+            "Idantifye kalite chak fichye",
+            "Idantifye si youn se .exe oswa .dmg",
+          ],
+          successCriteria: ["Ou rekonèt kòrèkteman kat fòma", "Ou eksplike poukisa .exe/.dmg mande plis atansyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak ekstansyon ak kalite fichye li ye.",
+            pairs: [
+              { term: ".pdf", meaning: "Dokiman ki gade menm jan sou tout aparèy" },
+              { term: ".jpg", meaning: "Foto" },
+              { term: ".mp3", meaning: "Son" },
+              { term: ".zip", meaning: "Gwoup fichye konprese" },
+            ],
+            explanation: "Chak ekstansyon di ou egzakteman ki tip kontni fichye a genyen.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l12",
+    slug: "fichye-zip-ak-konpresyon",
+    moduleId: "m4",
+    order: 12,
+    titleHt: "Fichye ZIP ak Konpresyon",
+    titleEn: "ZIP Files and Compression",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Konprann poukisa konpresyon egziste",
+      "Konprese ak ekstrè fichye ZIP",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konprese plizyè fichye nan yon dosye ZIP, epi ekstrè kontni yon fichye ZIP ou resevwa.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Konpresyon** diminye gwosè yon fichye oswa yon gwoup fichye, sa fè yo pi fasil pou voye pa imèl oswa telechaje pi vit. Yon **fichye ZIP** se yon 'sak' ki kenbe plizyè fichye ansanm nan yon fòma pi piti. Pou **konprese**, ou chwazi fichye yo epi mande òdinatè a kreye yon ZIP. Pou **ekstrè** (dekonprese), ou double-klike sou ZIP la epi chwazi kote pou mete kontni li. **Pa janm ekstrè yon ZIP ou resevwa nan yon sous ou pa fè konfyans** — li ka kenbe lojisyèl danjere.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Konprese (Compress)",
+            definition: "Diminye gwosè yon fichye oswa gwoupe plizyè fichye nan yon sèl fichye ZIP.",
+            example: "Konprese 20 foto nan yon sèl fichye ZIP anvan ou voye yo pa imèl.",
+          },
+          {
+            term: "Ekstrè (Extract)",
+            definition: "Dekonprese yon fichye ZIP pou jwenn fichye orijinal yo ladan.",
+            example: "Ekstrè fichye ZIP la pou jwenn tout foto ki te konprese ladan.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Chwazi fichye yo, right-click, epi chwazi 'Send to > Compressed (zipped) folder' pou konprese",
+            "Double-klike yon fichye ZIP epi chwazi 'Extract All' pou ekstrè",
+          ],
+          mac: [
+            "Chwazi fichye yo, right-click, epi chwazi 'Compress Items' pou konprese",
+            "Double-klike yon fichye ZIP pou l ekstrè otomatikman nan menm dosye a",
+          ],
+          recoveryNote:
+            "Si ekstraksyon an echwe, verifye fichye ZIP la pa domaje — eseye telechaje l ankò si li soti sou entènèt.",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa ekstrè yon fichye ZIP ki soti nan yon imèl oswa sit ou pa fè konfyans",
+          "Verifye moun ki voye anvan ou ekstrè yon ZIP enkonni",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I need to send 15 photos to someone by email but they're too large individually. How can compressing them into a ZIP file help?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen voye plizyè fichye ansanm san yo pran twòp espas.",
+          objective: "Konprese plizyè fichye nan yon ZIP, epi ekstrè yon lòt fichye ZIP pou konfime li mache.",
+          requiredSteps: [
+            "Chwazi plizyè fichye epi konprese yo nan yon ZIP",
+            "Verifye fichye ZIP la kreye",
+            "Ekstrè yon fichye ZIP tès pou konfime kontni li aksesib",
+          ],
+          successCriteria: ["Yon fichye ZIP kreye avèk siksè", "Ekstraksyon montre fichye orijinal yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki sa ki pi bon pratik anvan ou ekstrè yon fichye ZIP?",
+            options: [
+              "Ekstrè l imedyatman san gade",
+              "Verifye moun ki voye l ou fè konfyans",
+              "Chanje ekstansyon an anvan",
+              "Voye l bay yon zanmi anvan ou ekstrè l",
+            ],
+            correctIndex: 1,
+            explanation: "Yon fichye ZIP ki soti nan yon sous ou pa fè konfyans ka kenbe lojisyèl danjere.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l13",
+    slug: "kle-usb-ak-estokaj-eksten",
+    moduleId: "m4",
+    order: 13,
+    titleHt: "Kle USB ak Estokaj Ekstèn",
+    titleEn: "USB Drives and External Storage",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Konekte, itilize, ak ejekte yon kle USB san danje",
+      "Konprann diferans ant yon kopi ak yon backup",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka konekte yon kle USB, kopye fichye sou li, ejekte l san danje, epi konprann poukisa yon sèl kopi pa yon backup reyèl.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **kle USB** oswa yon **disk dur ekstèn** se yon ti aparèy ou ka konekte nan òdinatè a pou estoke fichye anplis, oswa pou pote yo ale yon lòt kote. Ou konekte l nan yon **pò USB**, epi li parèt tankou yon nouvo dosye/disk nan File Explorer oswa Finder. **Enpòtan anpil**: anvan ou wete kle a fizikman, ou dwe **ejekte l san danje** — sinon ou ka domaje fichye ki t ap kopye a, oswa menm domaje kle a limenm. Kle USB yo ka pote **malveyan (malware)** tou, sitou si yo te konekte nan lòt òdinatè piblik. Sonje: yon sèl kopi sou yon kle USB **pa yon backup reyèl** — si kle a pèdi oswa domaje, fichye a disparèt tou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Ejekte San Danje (Eject Safely)",
+            definition: "Di òdinatè a fini ak yon aparèy ekstèn anvan ou wete l fizikman.",
+            example: "Klike ikòn 'Eject' anvan ou rale kle USB la soti nan pò a.",
+          },
+          {
+            term: "Backup",
+            definition: "Plizyè kopi yon fichye nan diferan kote, pou li pa pèdi si yon sèl kote domaje.",
+            example: "Gen yon kopi sou kle USB AK yon kopi nan cloud — se sa ki fè yon vrè backup.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Konekte kle a nan yon pò USB epi tann li parèt nan File Explorer",
+            "Kopye fichye ale/soti nan kle a menm jan ak nenpòt lòt dosye",
+            "Anvan ou wete l, klike ikòn 'Safely Remove Hardware' nan system tray a",
+          ],
+          mac: [
+            "Konekte kle a nan yon pò USB epi tann li parèt sou Desktop oswa nan Finder",
+            "Kopye fichye ale/soti nan kle a menm jan ak nenpòt lòt dosye",
+            "Anvan ou wete l, rale ikòn kle a nan Trash (li vin tounen yon ikòn 'Eject'), oswa klike bouton eject akote non li nan Finder",
+          ],
+          recoveryNote:
+            "Si ou wete kle a san ejekte l epi yon fichye sanble domaje, eseye rekonekte l ankò — pafwa fichye a toujou la men li pa parèt imedyatman.",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Toujou ejekte yon kle USB san danje anvan ou wete l fizikman",
+          "Fè eskanè yon kle USB ou pa konnen anvan ou louvri fichye ladan, sitou si l te konekte nan yon aparèy piblik",
+          "Yon sèl kopi sou yon kle USB pa yon backup — kenbe omwen de kopi nan de kote diferan",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What does it mean to 'safely eject' a USB drive, and why does it matter if I just unplug it directly?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen kopye fichye enpòtan sou yon kle USB pou pote yo ale yon lòt kote.",
+          objective: "Konekte yon kle USB, kopye fichye sou li, epi ejekte l san danje.",
+          requiredSteps: [
+            "Konekte kle USB la",
+            "Kopye omwen yon fichye sou li",
+            "Ejekte kle a san danje anvan ou wete l",
+          ],
+          successCriteria: ["Fichye a kopye avèk siksè sou kle a", "Kle a ejekte san danje anvan li wete"],
+          hint: "Si kle a pa parèt, eseye yon lòt pò USB oswa verifye kle a byen enkli.",
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Poukisa yon sèl kopi sou yon kle USB pa yon backup reyèl?",
+            options: [
+              "Paske kle USB pa ka kenbe anpil fichye",
+              "Paske si kle a pèdi oswa domaje, fichye a disparèt nèt",
+              "Paske kle USB pa mache sou Mac",
+              "Paske kle USB toujou pi lan pase disk dur la",
+            ],
+            correctIndex: 1,
+            explanation: "Yon vrè backup mande plizyè kopi nan plizyè kote — yon sèl kle USB se yon sèl pwen echèk.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m4-l14",
+    slug: "misyon-oganize-yon-vre-dosye",
+    moduleId: "m4",
+    order: 14,
+    titleHt: "Misyon: Òganize Yon Vrè Dosye",
+    titleEn: "Module Mission: Organize a Real Folder",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 4 nan yon egzèsis òganizasyon reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka ekstrè yon ZIP, kreye yon sistèm dosye, chanje non fichye, deplase yo nan bon kote, restore yon fichye efase, epi jwenn yon lòt atravè rechèch — tout nan yon sèl sesyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 4 la. Ou pral konbine tout sa ou aprann sou fichye ak dosye — kreye, chanje non, kopye, deplase, efase, restore, ak chèche — nan yon sèl egzèsis reyèl ak yon dosye pratik (practice pack).",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon dosye pratik (ZIP) ki gen fichye mele, san bon òganizasyon.",
+          objective:
+            "Ekstrè ZIP la, kreye yon sistèm dosye lojik, chanje non fichye pou yo gen sans, deplase yo nan bon kote, restore yon fichye ou efase pa aksidan, epi jwenn yon lòt fichye atravè rechèch.",
+          requiredSteps: [
+            "Ekstrè fichye ZIP practice pack la",
+            "Kreye omwen de nouvo dosye pou òganize kontni li",
+            "Chanje non omwen twa fichye pou yo gen sans klè",
+            "Deplase fichye yo nan dosye ki apwopriye",
+            "Efase yon fichye epi restore l soti nan Recycle Bin/Trash",
+            "Itilize rechèch pou jwenn yon lòt fichye espesifik",
+          ],
+          successCriteria: [
+            "Sistèm dosye a klè ak lojik",
+            "Non fichye yo fè sans san ou pa bezwen louvri yo pou konprann kontni",
+            "Ou konplete tout sis etap yo san bezwen èd pou pi fò nan yo",
+          ],
+          stretchChallenge: "Konprese nouvo sistèm dosye ou fèk òganize a nan yon fichye ZIP pou pratike konpresyon ankò.",
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak aksyon ak sa li fè ak yon fichye.",
+            pairs: [
+              { term: "Kopye", meaning: "Kreye yon doub — orijinal la rete" },
+              { term: "Deplase", meaning: "Chanje kote fichye a — pa gen doub" },
+              { term: "Restore", meaning: "Retounen yon fichye soti nan Recycle Bin/Trash" },
+            ],
+            explanation: "Konprann diferans ant kopye, deplase, ak restore evite pèt fichye pa aksidan.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou fichye ak dosye mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 5." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
