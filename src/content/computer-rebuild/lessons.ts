@@ -832,6 +832,988 @@ export const computerRebuildLessons: CourseLesson[] = [
     ],
   },
   {
+    id: "m2-l1",
+    slug: "sa-ki-rive-le-ou-peze-bouton-pouvwa-a",
+    moduleId: "m2",
+    order: 1,
+    titleHt: "Sa Ki Rive Lè Ou Peze Bouton Pouvwa a?",
+    titleEn: "What Happens When You Press the Power Button?",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Dekri etap debaz ant limen aparèy la ak wè yon ekran koneksyon",
+      "Konprann poukisa limen yon aparèy pran kèk segonn",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka eksplike an gwo liy sa ki rive ant ou peze bouton pouvwa a ak ou wè ekran an pare pou itilize.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou peze bouton pouvwa a, aparèy la fè yon seri verifikasyon rapid pou asire tout pati fizik yo (klavye, ekran, elatriye) mache byen. Apre sa, li chaje **sistèm operasyon** an (Windows, macOS, elatriye) — sa ki pran pifò tan an. Finalman, ou wè yon ekran koneksyon kote ou antre modpas ou pou rive nan Desktop la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Chaje (Boot/Startup)",
+            definition: "Pwosesis limen ak prepare òdinatè a pou itilize.",
+            example: "Chaje a ka pran 10-30 segonn selon aparèy la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Peze bouton pouvwa a plizyè fwa paske aparèy la sanble pa reponn pandan chaje a.",
+          right: "Tann kèk segonn — chaje a nòmalman pran tan, se pa yon siy pwoblèm.",
+          why: "Peze bouton pouvwa a plizyè fwa pandan chaje a ka enterompi pwosesis la epi kreye yon pwoblèm reyèl.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My computer takes a long time to start up after I press the power button. Is that normal, and when should I be concerned?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle obsève pwosesis chaje a yon fwa san estrès.",
+          objective: "Limen aparèy ou epi kwonometre (apeprè) konbyen tan li pran pou rive nan ekran koneksyon an.",
+          requiredSteps: [
+            "Etenn epi limen aparèy ou (si posib) oswa sonje dènye fwa ou fè l",
+            "Obsève chak etap: verifikasyon, chajman, ekran koneksyon",
+          ],
+          successCriteria: [
+            "Ou ka dekri de nan twa etap yo (verifikasyon, chajman sistèm operasyon, ekran koneksyon)",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk apati ou peze bouton pouvwa a.",
+            steps: [
+              "Aparèy la fè verifikasyon rapid",
+              "Sistèm operasyon an chaje",
+              "Ekran koneksyon parèt",
+            ],
+            correctOrder: [0, 1, 2],
+            explanation:
+              "Verifikasyon dabò, apre sa sistèm operasyon an chaje, epi finalman ekran koneksyon an parèt.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l2",
+    slug: "motherboard-kote-pati-yo-konekte",
+    moduleId: "m2",
+    order: 2,
+    titleHt: "Motherboard: Kote Pati Yo Konekte",
+    titleEn: "The Motherboard: Where Parts Connect",
+    estimatedMinutes: 7,
+    mode: "universal",
+    objectives: [
+      "Konprann wòl motherboard la san bezwen louvri òdinatè a",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka eksplike wòl motherboard la nan yon fraz senp, san bezwen janm louvri yon òdinatè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Motherboard** la se gwo plak elektwonik anndan òdinatè a kote tout lòt pati yo (CPU, RAM, estokaj) konekte epi kominike youn ak lòt. Panse a li tankou sistèm nève santral kò a — ou pa bezwen wè l pou konprann li fè posib pou tout pati yo travay ansanm. Ou pa janm bezwen louvri òdinatè a pou konprann sa.",
+      },
+      {
+        id: "b3",
+        type: "mistake",
+        mistake: {
+          wrong: "Louvri òdinatè a pou eseye 'wè' oswa 'ranje' motherboard la san konesans teknik.",
+          right: "Konprann motherboard la se yon konsèp pou konprann, pa yon bagay pou ou manipile.",
+          why: "Louvri yon òdinatè san konesans ka domaje l oswa anile garanti a — sa se travay pou yon teknisyen fòme.",
+        },
+      },
+      {
+        id: "b4",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain what a motherboard does using a simple analogy, without any technical engineering detail?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konsolide konprann konsèp motherboard la san manipile okenn pyès.",
+          objective: "Eksplike ak pwòp mo ou wòl motherboard la bay yon lòt moun.",
+          requiredSteps: [
+            "Panse a yon analoji pèsonèl (tankou yon sant telefòn ki konekte apèl, oswa yon gid trafik)",
+            "Ekri oswa di analoji sa a apiye sou sa ou aprann",
+          ],
+          successCriteria: [
+            "Ou ka eksplike motherboard la san mo teknik konplike",
+          ],
+        },
+      },
+      {
+        id: "b6",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki aksyon ou pa ta dwe fè si ou vle konprann motherboard la?",
+            options: [
+              "Li sou entènèt sou li",
+              "Louvri òdinatè a pou manipile l san konesans teknik",
+              "Mande yon AI eksplike l",
+              "Panse a yon analoji senp",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Louvri yon òdinatè san konesans teknik ka domaje l — sa se travay pou yon teknisyen fòme.",
+          },
+        ],
+      },
+      {
+        id: "b7",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l3",
+    slug: "cpu-travaye-odinate-a",
+    moduleId: "m2",
+    order: 3,
+    titleHt: "CPU: Travayè Òdinatè a",
+    titleEn: "CPU: The Computer's Worker",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Eksplike wòl CPU a nan trete enstriksyon",
+      "Konprann vitès pa detèmine sèlman pa non CPU a",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka eksplike wòl CPU a san panse yon non CPU sèl detèmine vitès òdinatè a.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**CPU** a (processè santral la) trete enstriksyon — li se pati ki fè 'travay panse' a nan òdinatè a. Moun rele l 'sèvo' òdinatè a pafwa, men se yon senplifikasyon: yon CPU pa 'panse' tankou yon moun, li sèlman egzekite enstriksyon trè rapid. Vitès reyèl yon òdinatè pa depann sèlman de non CPU a — RAM, estokaj, ak konsepsyon jeneral aparèy la konte tou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "CPU (Processè)",
+            definition: "Pati ki trete tout enstriksyon nan yon òdinatè.",
+            example: "Chak fwa ou klike sou yon bagay, CPU a trete kòmand lan.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse yon CPU ak yon non enprsyonan (tankou 'i7') otomatikman siyifi yon òdinatè rapid.",
+          right: "Konprann non CPU a sèlman se yon pati nan istwa a — jenerasyon, ak rès aparèy la konte tou.",
+          why: "Nou pral wè sa an detay nan Modil 12 lè n ap pale de achte yon òdinatè — pou kounye a, sonje se pa non sèl ki konte.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain what a CPU does using an everyday analogy, and clarify that it doesn't 'think' the way a human brain does?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann pwòp CPU aparèy ou apeprè.",
+          objective: "Chèche non CPU aparèy ou (si posib) san bezwen konprann tout detay li.",
+          requiredSteps: [
+            "Chèche 'About This Mac' (Mac) oswa 'System Information' (Windows) nan paramèt aparèy ou",
+            "Idantifye non CPU a, san w pa bezwen konprann tout detay li kounye a",
+          ],
+          successCriteria: [
+            "Ou jwenn non CPU a (oswa konprann kote pou chèche l pita)",
+          ],
+          hint: "Pa gen presyon pou konprann non an kounye a — Modil 12 ap eksplike sa pi devan.",
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt:
+              "Yon vandè di w 'CPU sa a gen non i7, li dwe pi rapid pase tout lòt yo.' Ki repons ki pi kòrèk?",
+            options: [
+              "Vre, non an sèl garanti vitès",
+              "Pa nesesèman — jenerasyon ak rès aparèy la konte tou",
+              "Non an pa gen okenn enpòtans ditou",
+              "Sèlman pri a konte",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Yon non CPU sèl pa garanti vitès — jenerasyon, konfigirasyon, ak rès aparèy la enpòtan tou.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l4",
+    slug: "ram-espas-travay-tanpore-a",
+    moduleId: "m2",
+    order: 4,
+    titleHt: "RAM: Espas Travay Tanporè a",
+    titleEn: "RAM: The Working Space",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Eksplike RAM kòm memwa travay tanporè",
+      "Distenge RAM de estokaj pèmanan",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka eksplike diferans ant RAM (espas travay tanporè) ak estokaj (kote fichye rete pou tout tan).",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**RAM** se yon espas travay tanporè — panse a yon tab travay kote ou mete dokiman ou ap itilize kounye a. Lè ou gen twòp aplikasyon louvri an menm tan, tab la vin twò chaje epi òdinatè a vin dousman. Kontrèman ak estokaj (SSD), tout sa ki nan RAM la disparèt lè ou etenn aparèy la — se poutèt sa ou dwe **sovgade** travay ou nan estokaj anvan ou fèmen yon aplikasyon.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "RAM",
+            definition: "Memwa travay tanporè yon òdinatè itilize pandan li ap fonksyone.",
+            example: "Plis RAM ou genyen, plis aplikasyon ou ka kenbe louvri san pwoblèm.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse fèmen yon aplikasyon san sovgade pa gen okenn konsekans paske 'li nan òdinatè a'.",
+          right: "Konprann travay ki pa sovgade nan yon fichye ka pèdi si RAM la efase l (fèmen aplikasyon, koupi kouran, elatriye).",
+          why: "Sa se youn nan konfizyon debaz ki fè moun pèdi travay enpòtan pa aksidan.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between RAM and storage using a desk-and-filing-cabinet analogy?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou remake òdinatè ou vin dousman lè ou gen anpil bagay louvri.",
+          objective: "Konte konbyen aplikasyon/tab ou gen louvri kounye a epi fèmen sa ou pa itilize.",
+          requiredSteps: [
+            "Gade tout aplikasyon ak tab navigatè ou gen louvri",
+            "Fèmen sa ou pa itilize aktivman",
+          ],
+          successCriteria: [
+            "Ou remake si aparèy la reponn pi vit apre ou fèmen sa ou pa bezwen",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa ki rive done ki nan RAM lè ou etenn aparèy la?",
+            options: [
+              "Yo rete la pou tout tan",
+              "Yo disparèt",
+              "Yo tounen an foto",
+              "Yo voye sou entènèt",
+            ],
+            correctIndex: 1,
+            explanation:
+              "RAM se memwa tanporè — tout sa ki ladan disparèt lè aparèy la etenn.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l5",
+    slug: "estokaj-kote-fichye-rete",
+    moduleId: "m2",
+    order: 5,
+    titleHt: "Estokaj: Kote Fichye Rete",
+    titleEn: "Storage: Where Files Stay",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Distenge SSD ak HDD",
+      "Konprann inite kapasite estokaj",
+      "Eksplike poukisa estokaj plen kreye pwoblèm",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka eksplike kisa estokaj ye, kisa inite kapasite yo vle di, ak poukisa estokaj plen kreye pwoblèm.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Estokaj lokal** se kote fichye ou rete pou tout tan sou aparèy la menm — **SSD** (rapid, modèn) ak **HDD** (pi ansyen, pi lan) se de kalite. Kapasite mezire an **GB** (gigabit) oswa **TB** (terabit — 1000 GB). Lè estokaj la prèske plen, aparèy la ka vin dousman, echwe pou mizajou, oswa refize sovgade nouvo fichye.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "SSD",
+            definition: "Kalite estokaj modèn ki rapid, san pati k ap deplase.",
+            example: "Pifò laptop modèn itilize SSD kounye a.",
+          },
+          {
+            term: "HDD",
+            definition: "Kalite estokaj pi ansyen, pi lan, ak pati k ap deplase anndan l.",
+            example: "Kèk desktop ansyen toujou itilize HDD.",
+          },
+          {
+            term: "GB / TB",
+            definition: "Inite ki mezire kapasite estokaj — 1 TB egal 1000 GB.",
+            example: "Yon telefòn ka gen 128 GB estokaj.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite estokaj la ranpli nèt san janm verifye konbyen plas ki rete.",
+          right: "Verifye espas estokaj ou regilyèman epi netwaye fichye ou pa bezwen ankò.",
+          why: "Yon aparèy ki plen nèt ka vin dousman, echwe fè mizajou, oswa refize pran nouvo foto enpòtan.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain how to check how much storage space I have left on my phone or computer?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konnen konbyen espas ki rete sou aparèy ou.",
+          objective: "Jwenn konbyen espas estokaj total ak konbyen ki toujou disponib sou aparèy ou.",
+          requiredSteps: [
+            "Ale nan paramèt aparèy ou epi chèche seksyon 'Storage' oswa 'Estokaj'",
+            "Note total la ak sa ki rete disponib",
+          ],
+          successCriteria: [
+            "Ou ka di apeprè konbyen GB/TB ou genyen ak konbyen ki rete",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki pwoblèm ki ka rive lè estokaj yon aparèy prèske plen?",
+            options: [
+              "Aparèy la vin dousman",
+              "Mizajou ka echwe",
+              "Aparèy la vin pi rapid",
+              "Ou ka pa ka sovgade nouvo foto",
+            ],
+            correctIndexes: [0, 1, 3],
+            explanation:
+              "Estokaj plen ka fè aparèy la dousman, fè mizajou echwe, epi anpeche nouvo fichye sovgade — li pa fè aparèy la pi rapid.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l6",
+    slug: "grafik-ekran-son-kamera-ak-mikwofon",
+    moduleId: "m2",
+    order: 6,
+    titleHt: "Grafik, Ekran, Son, Kamera, ak Mikwofòn",
+    titleEn: "Graphics, Screen, Sound, Camera, and Microphone",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Rekonèt pati sòti ak kominikasyon yon òdinatè",
+      "Konnen endikatè privasi kamera/mikwofòn",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt pati ki fè òdinatè a 'montre' ak 'tande/pale' ak ou, epi konnen kijan pou verifye privasi kamera ou.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Kat grafik** la (entegre oswa separe) kontwole sa ki parèt sou ekran an. **Ekran an**, **opalè yo**, **kamera a**, ak **mikwofòn nan** se tout pati sòti ak kominikasyon — yo fè posib pou ou wè, tande, ak pataje imaj/vwa ou. Pifò aparèy modèn gen yon **limyè endikatè** ki limen lè kamera a ap itilize — bon abitid se verifye limyè sa a pou konnen si kamera ou aktive san ou pa konnen.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Grafik Entegre vs. Separe",
+            definition: "Grafik entegre pataje resous ak CPU a; grafik separe gen pwòp memwa li pou travay grafik lou.",
+            example: "Jwèt konplèks souvan bezwen grafik separe.",
+          },
+          {
+            term: "Endikatè Privasi (Privacy Indicator)",
+            definition: "Yon limyè oswa senbòl ki montre lè kamera/mikwofòn ap itilize.",
+            example: "Verifye limyè kamera a limen sèlman lè ou vle itilize l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Pa janm verifye endikatè privasi kamera/mikwofòn ou.",
+          right: "Verifye endikatè a detanzantan, sitou apre ou enstale yon nouvo aplikasyon.",
+          why: "Sa ede w remake si yon aplikasyon ap itilize kamera/mikwofòn ou san ou pa konnen.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain how to check which apps have permission to use my camera and microphone on my computer or phone?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konfime kamera ak mikwofòn ou an sekirite.",
+          objective: "Jwenn lis aplikasyon ki gen pèmisyon pou kamera ak mikwofòn ou.",
+          requiredSteps: [
+            "Ale nan paramèt privasi aparèy ou",
+            "Gade lis aplikasyon ki gen aksè a kamera ak mikwofòn",
+          ],
+          successCriteria: [
+            "Ou idantifye si gen yon aplikasyon ki gen aksè ou pa rekonèt oswa pa itilize ankò",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa yon endikatè privasi kamera montre w?",
+            options: [
+              "Batri ou ba",
+              "Kamera a ap itilize kounye a",
+              "Wi-Fi ou dekonekte",
+              "Estokaj ou plen",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Yon endikatè privasi limen lè kamera (oswa mikwofòn) ap itilize aktivman.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l7",
+    slug: "batri-chaje-ak-kouran",
+    moduleId: "m2",
+    order: 7,
+    titleHt: "Batri, Chajè, ak Kouran",
+    titleEn: "Battery, Charger, and Power",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Chaje aparèy la ak bon chajè a san danje",
+      "Konprann vyeyisman batri ak koupi kouran",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chaje aparèy ou an sekirite epi pwoteje batri li pi lontan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Toujou itilize **chajè kòrèk** aparèy la (oswa youn ki gen menm spesifikasyon) — yon chajè ki pa kòrèk ka domaje batri a. Batri yo **vyeyi** avèk tan — yo kenbe mwens chaj apre plizyè ane itilizasyon, sa se nòmal. Kote **kouran enstab** oswa **koupi kouran** rive souvan, yon **pwotektè sirtansyon** (surge protector) ede pwoteje aparèy ou, epi sonje **sovgade travay ou souvan** an ka gen yon koupi sibitman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pwotektè Sirtansyon (Surge Protector)",
+            definition: "Yon aparèy ki pwoteje elektwonik ou kont chanjman sibit nan kouran an.",
+            example: "Konekte chajè ou nan yon pwotektè sirtansyon si kouran an enstab.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Itilize yon chajè ki pa kòrèk pou aparèy la paske 'li antre nan pò a'.",
+          right: "Verifye spesifikasyon chajè a matche ak sa aparèy la mande anvan ou itilize l.",
+          why: "Yon chajè ki pa kòrèk ka chaje twò lant, twò cho, oswa domaje batri a avèk tan.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! How do I know if a charger is the correct one for my laptop or phone, and what happens if I use the wrong one?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "safety",
+        reminders: [
+          "Sonje sovgade travay ou souvan si kouran an ka koupi sibitman",
+          "Pa itilize yon chajè ki domaje oswa ki gen fil ekspoze",
+        ],
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle asire w aparèy ou chaje an sekirite.",
+          objective: "Verifye chajè ou se bon youn pou aparèy ou epi tcheke si batri li ap kenbe chaj byen.",
+          requiredSteps: [
+            "Gade chajè ou epi konfime li se orijinal la oswa youn ki gen menm spesifikasyon",
+            "Verifye nivo batri ou nan paramèt aparèy la",
+          ],
+          successCriteria: [
+            "Ou konfime chajè ou apwopriye pou aparèy ou",
+          ],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Poukisa itilize yon pwotektè sirtansyon itil kote kouran an enstab?",
+            options: [
+              "Li fè aparèy la chaje pi vit",
+              "Li pwoteje aparèy ou kont chanjman sibit nan kouran an",
+              "Li ogmante estokaj aparèy la",
+              "Li pa gen okenn efè",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Yon pwotektè sirtansyon pwoteje elektwonik ou kont domaj cho chanjman sibit nan kouran an ka koze.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l8",
+    slug: "sistem-operasyon-aplikasyon-navigate-sit-ak-fichye",
+    moduleId: "m2",
+    order: 8,
+    titleHt: "Sistèm Operasyon, Aplikasyon, Navigatè, Sit, ak Fichye",
+    titleEn: "Operating System, Application, Browser, Website, and File",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Distenge sistèm operasyon de aplikasyon",
+      "Distenge navigatè de sit entènèt",
+      "Konprann yon sit pa yon aplikasyon enstale",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge sistèm operasyon, aplikasyon, navigatè, sit entènèt, ak fichye san konfizyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se modèl mantal konplè a. **Sistèm operasyon** an (Windows/macOS) se pa Microsoft Office — Office se yon aplikasyon ki mache SOU sistèm operasyon an. **Chrome/Safari** se yon navigatè, li pa Google oswa entènèt la limenm — navigatè a se pòt dantre a. Yon **sit entènèt** pa yon aplikasyon enstale — ou vizite l atravè navigatè a, ou pa telechaje l tankou yon aplikasyon.",
+      },
+      {
+        id: "b3",
+        type: "mistake",
+        mistake: {
+          wrong: "Konfonn 'Windows' oswa 'Mac' ak 'Microsoft Office' oswa 'Chrome' ak 'Google/entènèt la'.",
+          right: "Konprann sistèm operasyon an se fondasyon; aplikasyon (Office), navigatè (Chrome), ak sit (Google.com) se twa bagay diferan ki mache sou fondasyon sa a.",
+          why: "Konfizyon sa a se youn nan pi gwo sous konfizyon debaz — konprann li klèman fè tout rès kou a pi fasil.",
+        },
+      },
+      {
+        id: "b4",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between an operating system, an app, a browser, and a website with one simple example for each?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle teste konprann modèl mantal la sou pwòp aparèy ou.",
+          objective:
+            "Idantifye yon egzanp pou chak nan senk konsèp yo sou aparèy ou (sistèm operasyon, aplikasyon, navigatè, sit, fichye).",
+          requiredSteps: [
+            "Nonmen sistèm operasyon aparèy ou",
+            "Nonmen yon aplikasyon ou itilize souvan",
+            "Nonmen navigatè ou itilize ak yon sit ou vizite souvan",
+          ],
+          successCriteria: [
+            "Ou ka separe kòrèkteman chak egzanp nan bon kategori li",
+          ],
+        },
+      },
+      {
+        id: "b6",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak kategori kòrèk li.",
+            pairs: [
+              { term: "Windows", meaning: "Sistèm Operasyon" },
+              { term: "Microsoft Word", meaning: "Aplikasyon" },
+              { term: "Chrome", meaning: "Navigatè" },
+              { term: "Google.com", meaning: "Sit Entènèt" },
+            ],
+            explanation:
+              "Chak nivo bati sou lòt la: sistèm operasyon fè fondasyon, aplikasyon mache sou li, navigatè se yon aplikasyon espesyal, epi sit yo viv anndan navigatè a.",
+          },
+        ],
+      },
+      {
+        id: "b7",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-l9",
+    slug: "li-espesifikasyon-debaz-yon-odinate",
+    moduleId: "m2",
+    order: 9,
+    titleHt: "Li Espesifikasyon Debaz Yon Òdinatè",
+    titleEn: "Reading Basic Computer Specifications",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Idantifye pwosesè, RAM, estokaj, ak sistèm operasyon nan yon lis espesifikasyon",
+      "Li espesifikasyon debaz san bezwen fè analiz konplèks",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka li yon lis espesifikasyon debaz òdinatè epi konprann sa chak liy vle di.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou gade yon lis espesifikasyon (spec sheet), chèche: **fanmi pwosesè** a (Intel/AMD/Apple), **RAM** (an GB), **kalite ak kapasite estokaj** (SSD, GB/TB), **gwosè ekran**, **sistèm operasyon**, **pò** (USB, HDMI), ak **kondisyon batri** si se yon aparèy itilize. Ou pa bezwen fè yon analiz konplèks kounye a — objektif la se rekonèt kategori yo, pa jije yo an detay (n ap fè sa nan Modil 12).",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Espesifikasyon (Specs)",
+            definition: "Lis detay teknik yon aparèy — pwosesè, RAM, estokaj, elatriye.",
+            example: "Verifye espesifikasyon anvan ou achte yon aparèy.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Eseye konprann tout detay teknik yon lis espesifikasyon konplèks imedyatman.",
+          right: "Konsantre sou rekonèt sèt kategori debaz yo dabò — detay yo vin pita.",
+          why: "Eseye konprann tout bagay yon sèl kou ka fè w santi w dekouraje san rezon.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Here are the specs for a laptop I'm looking at: [paste specs]. Can you explain each line in simple terms?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle pratike li espesifikasyon pwòp aparèy ou.",
+          objective: "Jwenn ak nonmen sèt kategori espesifikasyon debaz aparèy ou.",
+          requiredSteps: [
+            "Ale nan 'About This Mac' oswa 'System Information' (Windows) sou aparèy ou",
+            "Nonmen pwosesè, RAM, ak estokaj aparèy ou",
+          ],
+          successCriteria: [
+            "Ou jwenn ak nonmen omwen twa nan sèt kategori yo sou pwòp aparèy ou",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki nan sa yo ki fè pati yon lis espesifikasyon debaz?",
+            options: ["RAM", "Fanmi pwosesè a", "Koulè ki pi popilè", "Kapasite estokaj"],
+            correctIndexes: [0, 1, 3],
+            explanation:
+              "RAM, fanmi pwosesè a, ak kapasite estokaj se tout kategori espesifikasyon debaz — koulè popilè pa gen rapò ak espesifikasyon teknik.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m2-mission",
+    slug: "misyon-eksplike-odinate-ou",
+    moduleId: "m2",
+    order: 10,
+    titleHt: "Misyon: Eksplike Òdinatè Ou",
+    titleEn: "Module Mission: Explain Your Computer",
+    estimatedMinutes: 12,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 2 pou eksplike pwòp òdinatè ou an detay",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka jwenn enfòmasyon debaz aparèy ou epi eksplike, ak mo senp, sistèm operasyon, RAM, estokaj, ak itilizasyon prensipal li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 2 la. Ou pral konbine tout sa ou aprann — sa ki rive lè ou limen aparèy la, motherboard, CPU, RAM, estokaj, grafik/ekran/son, batri, modèl mantal OS/aplikasyon/navigatè/sit/fichye, ak li espesifikasyon — pou eksplike pwòp aparèy ou konplètman pou premye fwa.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario:
+            "Yon zanmi ki pral achte yon òdinatè mande w eksplike pwòp aparèy ou ba yo kòm egzanp.",
+          objective:
+            "Jwenn enfòmasyon debaz aparèy ou epi eksplike sistèm operasyon, RAM, estokaj, ak itilizasyon prensipal li.",
+          requiredSteps: [
+            "Jwenn sistèm operasyon, RAM, ak kapasite estokaj aparèy ou",
+            "Ekri oswa di yon fraz kout ki eksplike chak nan twa bagay sa yo",
+            "Ekri yon fraz sou ki jan ou itilize aparèy ou pi souvan",
+          ],
+          successCriteria: [
+            "Ou ka nonmen sistèm operasyon, RAM, ak estokaj aparèy ou san gade nòt",
+            "Ou ka eksplike itilizasyon prensipal aparèy ou nan yon fraz",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak pati ak wòl li nan òdinatè a.",
+            pairs: [
+              { term: "RAM", meaning: "Espas travay tanporè" },
+              { term: "SSD", meaning: "Estokaj pèmanan" },
+              { term: "CPU", meaning: "Trete enstriksyon" },
+              { term: "Motherboard", meaning: "Konekte tout pati yo ansanm" },
+            ],
+            explanation:
+              "Chak pati gen yon wòl espesifik: RAM travay tanporè, SSD estokaj pèmanan, CPU trete, motherboard konekte tout bagay.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen fin konprann kijan pwòp òdinatè mwen mache pi byen kounye a." },
+          { statement: "Mwen ta renmen plis egzanp anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 3." },
+        ],
+      },
+    ],
+  },
+  {
     id: "m3-l-windows",
     slug: "biwo-windows-la",
     moduleId: "m3",
