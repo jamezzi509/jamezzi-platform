@@ -6945,6 +6945,1053 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m7-l1",
+    slug: "navigate-mote-rechech-sit-web-ak-paj-web",
+    moduleId: "m7",
+    order: 1,
+    titleHt: "Navigatè, Motè Rechèch, Sit Web, ak Paj Web",
+    titleEn: "Browser, Search Engine, Website, and Web Page",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Distenge navigatè, motè rechèch, sit web, ak paj web",
+      "Rekonèt egzanp popilè chak youn",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge yon navigatè, yon motè rechèch, yon sit web, ak yon paj web san konfizyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **navigatè (browser)** se aplikasyon ou itilize pou vizite entènèt la — Chrome, Edge, Safari, ak Firefox se kat egzanp popilè. Yon **motè rechèch (search engine)**, tankou Google oswa Bing, se yon sit espesyal ki ede w JWENN lòt sit — li mache DEDANN navigatè a, li pa navigatè a limenm. Yon **sit web (website)** se yon koleksyon paj ki gen menm **domèn** (tankou 'wikipedia.org'). Yon **paj web (web page)** se YON sèl paj espesifik nan yon sit — yon sit ka gen anpil paj.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "browser-search-engine-website-page-map",
+          caption: "Navigatè (Chrome) → Motè Rechèch (Google) → Sit Web (wikipedia.org) → Paj Web espesifik",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Navigatè (Browser)",
+            definition: "Aplikasyon ou itilize pou vizite sit entènèt.",
+            example: "Chrome, Edge, Safari, ak Firefox se kat navigatè popilè.",
+          },
+          {
+            term: "Motè Rechèch (Search Engine)",
+            definition: "Yon sit espesyal ki ede w jwenn lòt sit, tankou Google oswa Bing.",
+            example: "Tape yon kesyon nan Google pou jwenn sit ki gen repons lan.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Louvri navigatè ou a. Idantifye si sa ou wè kounye a se yon motè rechèch, yon sit web espesifik, oswa yon sèl paj.",
+      },
+      {
+        id: "b6",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse Google (motè rechèch) ak Chrome (navigatè) se menm bagay.",
+          right: "Konprann Chrome se aplikasyon ou louvri; Google se yon sit ou vizite ladan l pou chèche.",
+          why: "Konfizyon sa a fè moun pèdi tan lè yo eseye rezoud yon pwoblèm san yo pa konnen ki pati ki gen pwoblèm.",
+        },
+      },
+      {
+        id: "b7",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between a browser, a search engine, a website, and a web page with simple examples?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle ka non chak pati lè ou navige sou entènèt.",
+          objective: "Louvri navigatè ou, ale sou yon motè rechèch, epi vizite yon sit web ak plizyè paj.",
+          requiredSteps: [
+            "Louvri navigatè ou a",
+            "Ale sou yon motè rechèch (Google oswa Bing)",
+            "Vizite yon sit web epi ale sou omwen de paj diferan ladan l",
+          ],
+          successCriteria: ["Ou idantifye kòrèkteman chak pati (navigatè, motè rechèch, sit, paj)"],
+        },
+      },
+      {
+        id: "b9",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak sa li ye.",
+            pairs: [
+              { term: "Chrome", meaning: "Yon navigatè" },
+              { term: "Google", meaning: "Yon motè rechèch" },
+              { term: "wikipedia.org", meaning: "Yon sit web" },
+            ],
+            explanation: "Chrome se navigatè a, Google se motè rechèch la, wikipedia.org se yon sit web.",
+          },
+        ],
+      },
+      {
+        id: "b10",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l2",
+    slug: "ba-adres-lyen-tounen-avanse-rafrechi-ak-akey",
+    moduleId: "m7",
+    order: 2,
+    titleHt: "Ba Adrès, Lyen, Tounen, Avanse, Rafrechi, ak Akèy",
+    titleEn: "Address Bar, Links, Back, Forward, Refresh, and Home",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Itilize kontwòl navigasyon debaz nan yon navigatè",
+      "Rekonèt yon fo bwat rechèch",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka itilize ba adrès la, bouton Tounen/Avanse/Rafrechi, ak rekonèt yon fo bwat rechèch.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Ba adrès (address bar)** la, anwo navigatè a, montre adrès paj kote ou ye a — ou ka tape yon adrès dirèkteman ladan l, oswa yon rechèch. Bouton **Tounen (Back)** ak **Avanse (Forward)** deplase w nan paj ou te deja vizite. **Rafrechi (Refresh)** rechaje paj la si li pa fin chaje byen. Bouton **Akèy (Home)** mennen w tounen nan paj prensipal ou chwazi a. **Fè atansyon**: kèk sit gen yon 'fo bwat rechèch' ki sanble ak bwat rechèch reyèl la men ki mennen w sou piblisite oswa move sit.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Ba Adrès (Address Bar)",
+            definition: "Espas anwo navigatè a kote ou tape yon adrès oswa yon rechèch.",
+            example: "Tape 'wikipedia.org' nan ba adrès la pou ale dirèkteman sou sit la.",
+          },
+          {
+            term: "Fo Bwat Rechèch (Fake Search Box)",
+            definition: "Yon bwat sou yon sit ki sanble ak yon rechèch men ki mennen sou piblisite.",
+            example: "Fè atansyon a gwo bouton 'Search' klere ki pa nan vrè zòn rechèch sit la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Nan navigatè ou, vizite de sit diferan, epi itilize bouton Tounen pou retounen nan premye a san tape adrès la ankò.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Klike premye bwat 'Search' klere ou wè sou yon sit, san verifye si se vrè rechèch la.",
+          right: "Verifye ke bwat rechèch la se pati OFISYÈL sit la anvan ou tape ladan l.",
+          why: "Fo bwat rechèch yo souvan mennen sou piblisite oswa sit danjere olye rezilta reyèl yo.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! A website I visited has a big flashy 'Search' box that doesn't look like the site's real search bar. How can I tell if it's fake?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle pratike navige ant plizyè paj ak kontwòl debaz yo.",
+          objective: "Vizite twa paj diferan, itilize Tounen pou retounen, epi rafrechi yon paj.",
+          requiredSteps: [
+            "Vizite twa paj diferan youn apre lòt",
+            "Itilize bouton Tounen pou retounen de fwa",
+            "Rafrechi paj ou ye a kounye a",
+          ],
+          successCriteria: ["Ou navige san konfizyon ant paj yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki bouton ou itilize pou retounen nan paj ou te vizite anvan an?",
+            options: ["Rafrechi (Refresh)", "Tounen (Back)", "Akèy (Home)", "Avanse (Forward)"],
+            correctIndex: 1,
+            explanation: "Bouton Tounen (Back) mennen w nan dènye paj ou te vizite a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l3",
+    slug: "ongle-ak-fennet",
+    moduleId: "m7",
+    order: 3,
+    titleHt: "Onglè ak Fennèt",
+    titleEn: "Tabs and Windows",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Louvri, chanje, ak fèmen onglè nan yon navigatè",
+      "Rouvri yon onglè ou fèmen pa aksidan",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka jere plizyè onglè nan navigatè ou — louvri, chanje, fèmen, ak rouvri yon onglè ou fèmen pa aksidan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **onglè (tab)** kite w gen plizyè paj web louvri anndan yon SÈL fennèt navigatè, epi chanje ant yo rapid. Yon **fennèt (window)** se tout aplikasyon navigatè a limenm — ou ka gen plizyè fennèt, chak youn ak plizyè onglè ladan l. Twòp onglè louvri anmenm tan ka fè navigatè a lan epi difisil pou jwenn sa ou bezwen. Si ou fèmen yon onglè pa aksidan, gen souvan yon fason pou **rouvri dènye onglè fèmen an**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Onglè (Tab)",
+            definition: "Yon paj web louvri anndan yon fennèt navigatè, akote lòt onglè.",
+            example: "Louvri de onglè pou konpare de sit sou pri yon menm pwodwi.",
+          },
+          {
+            term: "Fennèt (Window)",
+            definition: "Yon fenèt aplikasyon navigatè a, ki ka gen plizyè onglè ladan l.",
+            example: "Ou ka gen de fennèt navigatè louvri anmenm tan, chak youn ak plizyè onglè.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Louvri twa onglè nan navigatè ou ak twa sit diferan. Chanje ant yo, epi fèmen youn — eseye rouvri l ankò.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite trant onglè louvri anmenm tan epi bliye kisa ki nan chak youn.",
+          right: "Fèmen onglè ou fin itilize, epi itilize favori pou sovgade paj ou vle retounen sou yo pita.",
+          why: "Twòp onglè fè navigatè a konsome plis memwa epi vin lan, epi fè li difisil pou jwenn onglè ou bezwen.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I accidentally closed a browser tab I needed. Is there a way to reopen it without retyping the address?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konpare enfòmasyon sou de sit diferan anmenm tan.",
+          objective: "Louvri de onglè ak de sit diferan, chanje ant yo, epi fèmen youn epi rouvri l.",
+          requiredSteps: [
+            "Louvri de onglè ak de sit diferan",
+            "Chanje ant de onglè yo",
+            "Fèmen yon onglè epi rouvri l ankò",
+          ],
+          successCriteria: ["Ou chanje ant onglè yo san konfizyon", "Onglè fèmen an rouvri avèk siksè"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou fèmen yon onglè enpòtan pa aksidan. Ki sa ou dwe fè?",
+            options: [
+              "Chèche fason pou rouvri dènye onglè fèmen an",
+              "Fèmen tout navigatè a epi rekòmanse chèche a",
+              "Panse enfòmasyon an pèdi pou tout tan",
+              "Rekòmanse (restart) òdinatè a",
+            ],
+            correctIndex: 0,
+            explanation: "Pifò navigatè gen yon fason rapid pou rouvri dènye onglè ou fèmen pa aksidan.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l4",
+    slug: "cheche-pi-byen",
+    moduleId: "m7",
+    order: 4,
+    titleHt: "Chèche Pi Byen",
+    titleEn: "Search Better",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Itilize mo espesifik pou jwenn rezilta pi kòrèk",
+      "Evite tape enfòmasyon prive nan yon rechèch",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka fè rechèch ki bay rezilta pi kòrèk, epi evite tape enfòmasyon prive nan yon rechèch.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon bon rechèch itilize **mo espesifik** olye de fraz vag — 'orè otobis Pòtoprens Kap Ayisyen' bay pi bon rezilta pase 'otobis'. Mete yon fraz ant **gilmè (\"...\")** fè motè rechèch la jwenn EGZAKTEMAN fraz sa a. Ajoute yon **kote oswa dat** ka afine rezilta yo. Konpare **plizyè sous** anvan ou fè konfyans a yon repons. Enpòtan anpil: **pa janm tape yon kesyon konplè ki gen enfòmasyon sansib** (tankou nimewo kont bankè ou) nan yon bwat rechèch.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fraz Egzat (Exact Phrase)",
+            definition: "Mete yon fraz ant gilmè pou jwenn rezilta ki gen menm mo yo nan menm lòd.",
+            example: "'orè liv otobis' ant gilmè jwenn paj ki gen egzakteman fraz sa a.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Chèche yon bagay pratik ou vle konnen (tankou yon orè oswa yon adrès biznis). Eseye premye ak mo vag, epi ankò ak mo espesifik — konpare rezilta yo.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa tape nimewo kont bankè, modpas, oswa kòd verifikasyon nan yon bwat rechèch",
+          "Konpare omwen de sous anvan ou fè konfyans a yon repons enpòtan",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I searched for something but the results weren't helpful. How can I write a better, more specific search?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen jwenn yon enfòmasyon pratik rapid.",
+          objective: "Fè yon rechèch ak mo espesifik, epi konpare rezilta ak yon dezyèm rechèch pi vag.",
+          requiredSteps: [
+            "Fè yon rechèch ak mo vag",
+            "Fè menm rechèch la ak mo pi espesifik",
+            "Konpare kalite rezilta yo",
+          ],
+          successCriteria: ["Ou eksplike diferans lan ant de rechèch yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou ap chèche enfòmasyon sou kont labank ou epi ou panse pou tape nimewo kont ou nan Google pou jwenn repons rapid. Ki sa ou dwe fè?",
+            options: [
+              "Tape nimewo kont ou pou jwenn repons pi vit",
+              "Pa janm tape enfòmasyon sansib tankou sa nan yon bwat rechèch",
+              "Tape l men efase l apre",
+              "Mande yon zanmi tape l pou ou",
+            ],
+            correctIndex: 1,
+            explanation: "Enfòmasyon sansib pa dwe janm tape nan yon bwat rechèch — sa ka rete nan istorik oswa sèvè yo.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l5",
+    slug: "eske-enfomasyon-sa-a-fyab",
+    moduleId: "m7",
+    order: 5,
+    titleHt: "Èske Enfòmasyon Sa a Fyab?",
+    titleEn: "Is This Information Trustworthy?",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Evalye fyabilite yon sous enfòmasyon",
+      "Rekonèt rezilta peye ak kontni ki ka fèt ak AI",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka evalye si yon paj web fyab lè ou gade otè, sous, dat, prèv, ak objektif li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anvan ou fè konfyans a yon enfòmasyon sou entènèt, poze tèt ou sis kesyon: Ki **otè** (moun oswa òganizasyon) ki ekri l? Ki **sous** li ye — yon sit ofisyèl, yon blog pèsonèl? Ki **dat** li pibliye — li ka demode. Ki **prèv** li bay pou sipòte sa l di a? Ki **objektif** li — enfòme, vann, oswa konvenk? Èske lòt sous **konfime** menm enfòmasyon an (**korobore**)? Fè atansyon tou ak **rezilta peye (sponsored)** ki parèt anlè yo, ak **kontni ki ka fèt ak AI** ki ka gen erè san moun pa remake.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Korobore (Corroborate)",
+            definition: "Konfime yon enfòmasyon lè plizyè sous diferan di menm bagay la.",
+            example: "Si twa sit diferan bay menm dat pou yon evènman, sa korobore enfòmasyon an.",
+          },
+          {
+            term: "Rezilta Peye (Sponsored Result)",
+            definition: "Yon rezilta rechèch yon konpayi peye pou parèt anlè, souvan make 'Ad' oswa 'Sponsored'.",
+            example: "Verifye si yon rezilta make 'Sponsored' anvan ou fè l menm konfyans ak yon rezilta òdinè.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Chwazi yon paj web ou vizite souvan. Poze tèt ou sis kesyon fyabilite yo: otè, sous, dat, prèv, objektif, ak korobore.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Fè konfyans a premye rezilta rechèch la san verifye ki moun ki ekri l oswa kilè.",
+          right: "Verifye otè a, dat la, ak konpare ak omwen yon lòt sous anvan ou fè konfyans total.",
+          why: "Premye rezilta a pa toujou pi kòrèk la — pafwa se sèlman pi popilè oswa pi byen anrejistre pou motè rechèch la.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I found information online that seems important but I'm not sure if it's trustworthy. What should I check?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou jwenn yon enfòmasyon enpòtan sou entènèt epi ou vle verifye si li fyab.",
+          objective: "Evalye yon paj web lè ou aplike sis kesyon fyabilite yo, epi konpare ak yon dezyèm sous.",
+          requiredSteps: [
+            "Chwazi yon paj web ak yon enfòmasyon espesifik",
+            "Aplike kesyon fyabilite yo (otè, dat, prèv, objektif)",
+            "Konpare ak yon dezyèm sous",
+          ],
+          successCriteria: ["Ou eksplike poukisa sous la fyab oswa pa fyab"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki bagay sa yo ou dwe verifye pou jije si yon sous enfòmasyon fyab? (Chwazi tout ki aplike.)",
+            options: [
+              "Ki moun oswa òganizasyon ki ekri l",
+              "Koulè background sit la",
+              "Dat piblikasyon an",
+              "Si lòt sous konfime menm enfòmasyon an",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Otè, dat, ak korobore ak lòt sous se twa faktè kle — koulè sit la pa gen rapò ak fyabilite.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l6",
+    slug: "favori-istorik-ak-li-pita",
+    moduleId: "m7",
+    order: 6,
+    titleHt: "Favori, Istorik, ak Li Pita",
+    titleEn: "Bookmarks, History, and Reading Later",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Sovgade yon paj kòm favori",
+      "Itilize istorik pou jwenn yon paj ou te vizite",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka sovgade yon paj itil kòm favori, epi itilize istorik pou jwenn yon paj ou te vizite anvan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **favori (bookmark)** kenbe yon lyen dirèk a yon paj ou vle jwenn fasil ankò, san bezwen chèche l chak fwa. Ou ka **òganize** favori yo lejèman nan dosye si ou gen anpil. **Istorik (history)** la se yon lis otomatik tout paj ou te vizite — li itil pou **rekipere** yon paj ou bliye bookmark men ou sonje ou te vizite l. Fè atansyon a **vi prive istorik la**: nenpòt moun ki itilize menm òdinatè a ka wè istorik ou si ou pa efase l oswa itilize navigasyon prive.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Favori (Bookmark)",
+            definition: "Yon lyen sovgade pou jwenn yon paj rapid san chèche l ankò.",
+            example: "Mete yon sit ou konsilte chak semèn nan favori ou.",
+          },
+          {
+            term: "Istorik (History)",
+            definition: "Lis otomatik tout paj ou te vizite nan navigatè a.",
+            example: "Gade istorik ou pou jwenn yon paj ou te vizite jodi a men ou pa bookmark.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Vizite yon sit ou konsilte souvan epi mete l nan favori ou. Apre, gade istorik ou pou jwenn yon paj ou te vizite pi bonè jodi a.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Sispann eseye jwenn yon paj lè ou pa bookmark li epi ou bliye adrès la.",
+          right: "Gade istorik navigatè a — li anjeneral kenbe paj ou vizite pandan plizyè jou oswa semèn.",
+          why: "Anpil moun bliye istorik la ka jwenn yon paj yo panse yo 'pèdi' pou tout tan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I visited a useful page yesterday but forgot to bookmark it and can't remember the address. How can I find it again?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle sistematize fason ou sovgade ak jwenn paj itil.",
+          objective: "Bookmark yon paj itil, epi itilize istorik pou jwenn yon lòt paj ou te vizite pi bonè.",
+          requiredSteps: [
+            "Bookmark yon paj ou konsidere itil",
+            "Louvri istorik navigatè a",
+            "Jwenn yon paj ou te vizite pi bonè nan istorik la",
+          ],
+          successCriteria: ["Favori a sovgade avèk siksè", "Ou jwenn paj la nan istorik san konfizyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ou vizite yon paj itil jodi a men ou pa bookmark li, epi ou bliye adrès la. Kote ou ta chèche l dabò?",
+            options: ["Nan favori ou", "Nan istorik navigatè a", "Nan Recycle Bin/Trash", "Nan Paramèt"],
+            correctIndex: 1,
+            explanation: "Istorik la kenbe yon lis otomatik tout paj ou vizite, menm si ou pa bookmark yo.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l7",
+    slug: "telechajman-nan-navigate-a",
+    moduleId: "m7",
+    order: 7,
+    titleHt: "Telechajman nan Navigatè a",
+    titleEn: "Downloads in the Browser",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Itilize jerans telechajman navigatè a",
+      "Rekonèt fo bouton telechajman",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka telechaje yon fichye san danje soti nan navigatè a, epi rekonèt fo bouton telechajman.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Chak navigatè gen yon **jerans telechajman (download manager)** ki montre tout fichye ou telechaje ak pwogrè yo. Fè atansyon a **tip fichye** ou telechaje — evite fichye .exe/.dmg soti nan sit ou pa fè konfyans. Anpil sit gen **fo bouton telechajman** — plizyè bouton 'Download' klere ki se piblisite, pandan vrè lyen an pi piti oswa pi ba. Anvan ou louvri yon fichye ou telechaje, panse a si ou dwe **verifye** l anvan ou louvri l.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Jerans Telechajman (Download Manager)",
+            definition: "Zouti nan navigatè a ki montre tout fichye ou telechaje ak pwogrè yo.",
+            example: "Louvri jerans telechajman an pou jwenn yon fichye ou fèk telechaje.",
+          },
+          {
+            term: "Fo Bouton Telechajman (Fake Download Button)",
+            definition: "Yon bouton 'Download' ki se piblisite, ki pa vrè lyen telechajman an.",
+            example: "Sou kèk sit, gen plizyè gwo bouton 'Download' — sèlman youn se vrè a.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Chwazi ak atansyon lè gen plizyè bouton 'Download' sou yon sit",
+          "Pa louvri fichye .exe oswa .dmg soti nan yon sous ou pa fè konfyans",
+          "Verifye ki fichye ou telechaje anvan ou louvri l",
+        ],
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! A website has three different 'Download' buttons and I'm not sure which one is real. How can I tell?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen telechaje yon fichye san danje soti nan navigatè a.",
+          objective: "Telechaje yon fichye soti sou yon sit ou fè konfyans, epi jwenn li nan jerans telechajman an.",
+          requiredSteps: [
+            "Telechaje yon fichye soti sou yon sit ou fè konfyans",
+            "Louvri jerans telechajman navigatè a",
+            "Jwenn fichye a nan dosye Downloads ou",
+          ],
+          successCriteria: ["Fichye a telechaje avèk siksè", "Ou jwenn li nan jerans telechajman an"],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon sit montre twa gwo bouton 'Download' klere kolore diferan. Ki sa ou dwe fè?",
+            options: [
+              "Klike premye a rapid",
+              "Gade byen pou jwenn vrè lyen telechajman an, souvan pi piti oswa mwens klere",
+              "Klike tout twa youn apre lòt",
+              "Fèmen navigatè a san telechaje anyen",
+            ],
+            correctIndex: 1,
+            explanation: "Fo bouton telechajman souvan pi gwo ak pi klere pase vrè lyen an — verifye byen anvan ou klike.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l8",
+    slug: "cookies-cache-ak-navigasyon-prive",
+    moduleId: "m7",
+    order: 8,
+    titleHt: "Cookies, Cache, ak Navigasyon Prive",
+    titleEn: "Cookies, Cache, and Private Browsing",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Konprann ki sa cookies ak cache ye ak yon fason senp",
+      "Konprann sa navigasyon prive FÈ ak sa li PA fè",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike ki sa cookies ak cache ye ak yon fason senp, epi konprann limit reyèl navigasyon prive.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Cookies** se ti moso enfòmasyon yon sit sovgade sou navigatè ou pou l sonje w (tankou rete konekte, oswa sonje panyen acha ou). **Cache** se kopi tanporè imaj ak paj sit yo sovgade pou fè sit yo louvri pi vit pwochen fwa. **Navigasyon prive (private browsing)** anpeche navigatè a sonje istorik ak cookies APRE ou fèmen fennèt la — MEN li **PA** kache aktivite w bay founisè entènèt ou, patwon ou (sou yon rezo travay), oswa sit ou vizite yo. Efase cache ka ede si yon sit chaje mal, men **pa efase cookies san rezon** — sa ka dekonekte w nan sit ou konekte souvan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Cookies",
+            definition: "Ti moso enfòmasyon yon sit sovgade pou sonje w, tankou rete konekte.",
+            example: "Cookies fè yon sit sonje panyen acha ou apre ou fèmen l epi retounen.",
+          },
+          {
+            term: "Navigasyon Prive (Private Browsing)",
+            definition: "Yon mòd ki pa sonje istorik/cookies apre ou fèmen fennèt la, men ki pa kache aktivite w bay founisè entènèt oswa sit yo.",
+            example: "Itilize navigasyon prive sou yon òdinatè pataje pou pa kite istorik ou.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Louvri yon fennèt navigasyon prive nan navigatè ou. Vizite yon sit, epi fèmen fennèt la — remake li pa parèt nan istorik regilye a.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse navigasyon prive fè w 'envizib' konplètman sou entènèt.",
+          right: "Konprann navigasyon prive sèlman anpeche NAVIGATÈ A sonje istorik lokal — founisè entènèt ak sit yo ka toujou wè aktivite w.",
+          why: "Panse ou envizib ka mennen w pran move desizyon sou sa ou fè an lign, sitou sou yon rezo travay oswa lekòl.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Does private/incognito browsing actually hide what I do online from my internet provider or workplace?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann limit reyèl navigasyon prive ak wòl cookies/cache.",
+          objective: "Louvri yon fennèt navigasyon prive, vizite yon sit, epi eksplike sa mòd sa a fè ak sa li pa fè.",
+          requiredSteps: [
+            "Louvri yon fennèt navigasyon prive",
+            "Vizite yon sit epi fèmen fennèt la",
+            "Eksplike sa navigasyon prive FÈ ak sa li PA fè",
+          ],
+          successCriteria: ["Eksplikasyon w lan klè ak kòrèk"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ki afimasyon sa a ki KÒREK sou navigasyon prive?",
+            options: [
+              "Li kache tout aktivite w bay founisè entènèt ou konplètman",
+              "Li sèlman anpeche navigatè a sonje istorik/cookies apre ou fèmen l",
+              "Li pwoteje w kont tout kalite malveyan",
+              "Li fè entènèt ou pi rapid",
+            ],
+            correctIndex: 1,
+            explanation: "Navigasyon prive jis anpeche navigatè a sonje istorik lokal — li pa kache aktivite bay founisè oswa sit yo.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l9",
+    slug: "kont-konekte-dekonekte-ak-pwofil",
+    moduleId: "m7",
+    order: 9,
+    titleHt: "Kont, Konekte, Dekonekte, ak Pwofil",
+    titleEn: "Accounts, Sign-In, Sign-Out, and Profiles",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Distenge yon kont sit web de yon pwofil navigatè",
+      "Dekonekte san danje sou yon òdinatè pataje",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge yon kont sit web de yon pwofil navigatè, epi dekonekte san danje sou yon òdinatè pataje.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **kont sit web (website account)** se idantite w SOU yon sit espesifik (tankou yon kont imèl). Yon **pwofil navigatè (browser profile)** se yon espas apa NAN navigatè a limenm ki kenbe favori, istorik, ak modpas sovgade w — itil si plizyè moun pataje menm òdinatè a, chak moun ka gen pwòp pwofil yo. Sou yon **òdinatè pataje**, TOUJOU **dekonekte (sign out)** kont ou lè ou fini, sitou sit sansib tankou imèl oswa labank. Fè atansyon ak **modpas sovgade** nan navigatè a sou yon òdinatè ki pa pou ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pwofil Navigatè (Browser Profile)",
+            definition: "Espas apa nan navigatè a ki kenbe favori, istorik, ak modpas pou yon moun espesifik.",
+            example: "Kreye yon pwofil apa pou chak moun ki itilize menm òdinatè a lakay ou.",
+          },
+          {
+            term: "Dekonekte (Sign Out)",
+            definition: "Fèmen sesyon kont ou sou yon sit, pou lòt moun pa ka aksede l.",
+            example: "Dekonekte kont imèl ou anvan ou kite yon òdinatè pataje.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou konekte sou yon sit kounye a, gade kote ou ta jwenn opsyon 'Sign Out' oswa 'Log Out' — souvan nan yon meni ki gen non oswa foto pwofil ou.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Toujou dekonekte kont sansib sou yon òdinatè ki pa pou ou",
+          "Pa sove modpas nan navigatè a sou yon òdinatè pataje",
+          "Verifye ki pwofil navigatè ou ye anvan ou antre enfòmasyon sansib",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I used a shared computer to check my email. What should I do before I leave to make sure my account stays secure?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou itilize yon òdinatè pataje epi ou bezwen konekte ak dekonekte san danje.",
+          objective: "Konekte sou yon kont, itilize l, epi dekonekte kòrèkteman anvan ou fini.",
+          requiredSteps: [
+            "Konekte sou yon kont sit web",
+            "Jwenn opsyon 'Sign Out' nan meni pwofil la",
+            "Dekonekte kòrèkteman",
+          ],
+          successCriteria: ["Kont la dekonekte avèk siksè", "Ou verifye pa gen modpas sove san rezon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ou fin itilize kont imèl ou sou yon òdinatè lekòl (pataje ak lòt moun). Ki sa ou dwe fè anvan ou kite l?",
+            options: [
+              "Kite l konekte pou pwochen fwa vin pi rapid",
+              "Dekonekte (sign out) kont ou",
+              "Chanje modpas ou epi kite l konekte",
+              "Fèmen navigatè a san dekonekte",
+            ],
+            correctIndex: 1,
+            explanation: "Sou yon òdinatè pataje, toujou dekonekte kont ou pou lòt moun pa ka aksede l.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m7-l10",
+    slug: "misyon-cheche-verifye-ak-sovgade-enfomasyon",
+    moduleId: "m7",
+    order: 10,
+    titleHt: "Misyon: Chèche, Verifye, ak Sovgade Enfòmasyon",
+    titleEn: "Module Mission: Find, Verify, and Save Information",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 7 nan yon egzèsis rechèch reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka chèche yon enfòmasyon pratik, konpare de sous, sovgade paj ki pi fyab la kòm favori, telechaje yon fichye san danje, epi jwenn li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 7 la. Ou pral konbine tout sa ou aprann — chèche pi byen, evalye fyabilite, favori, ak telechajman — nan yon sèl egzèsis rechèch reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen jwenn epi verifye yon enfòmasyon pratik pou lavi chak jou ou.",
+          objective:
+            "Chèche yon enfòmasyon pratik ou bezwen, konpare de sous diferan, ekri poukisa youn pi fyab pase lòt la, mete paj ki pi fyab la nan favori ou, telechaje yon fichye san danje, epi jwenn li.",
+          requiredSteps: [
+            "Chèche yon enfòmasyon pratik (tankou yon orè, yon adrès, oswa yon pri)",
+            "Konpare de sous diferan sou menm sijè a",
+            "Ekri poukisa youn nan sous yo pi fyab pase lòt la",
+            "Mete paj ki pi fyab la nan favori ou",
+            "Telechaje yon fichye san danje epi jwenn li",
+          ],
+          successCriteria: [
+            "Ou konplete tout senk aksyon yo san bezwen èd pou pi fò nan yo",
+            "Rezònman fyabilite w lan klè ak byen panse",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak definisyon kòrèk li.",
+            pairs: [
+              { term: "Favori", meaning: "Lyen sovgade pou jwenn yon paj rapid" },
+              { term: "Istorik", meaning: "Lis otomatik paj ou vizite" },
+              { term: "Korobore", meaning: "Konfime yon enfòmasyon ak plizyè sous" },
+            ],
+            explanation: "Favori, istorik, ak korobore se twa zouti debaz pou fè rechèch san danje.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou fason mwen fè rechèch sou entènèt kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 8." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
