@@ -85,6 +85,14 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleTenLessons.at(-1)?.slug).toBe("internet-safety-mission");
   });
 
+  it("Module 11 starts with what-is-ai and ends with its mission", () => {
+    const moduleElevenLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 11,
+    );
+    expect(moduleElevenLessons[0]?.slug).toBe("what-is-ai");
+    expect(moduleElevenLessons.at(-1)?.slug).toBe("ai-for-everyone-mission");
+  });
+
   it("gives screenshots-and-screen-recording steps for all four platforms", () => {
     const lesson = computerPremiumLessons.find(
       (item) => item.slug === "screenshots-and-screen-recording",

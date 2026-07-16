@@ -6567,6 +6567,596 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 10 — Sekirite sou Entènèt!" },
     ],
   },
+  {
+    slug: "what-is-ai",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "🤖",
+    heroTitle: "Kisa AI Ye?",
+    heroLede:
+      "Yon zouti ki reponn kesyon, ekri, ak ede w — pa yon robo tankou nan fim.",
+    goal: "🎯 Objektif: konprann kisa Entelijans Atifisyèl (AI) ye reyèlman.",
+    simpleExplanation:
+      "**AI** (Entelijans Atifisyèl) se yon pwogram ki aprann de gwo kantite tèks ak done pou reponn kesyon, ekri tèks, oswa kreye imaj — tankou pale ak yon asistan ki li anpil liv. Li pa 'panse' tankou yon moun; li rekonèt patwon epi jenere repons ki fè sans selon sa li aprann.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a clean AI chat interface with a conversation bubble, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/what-is-ai.webp`,
+    digitalWords: [
+      {
+        word: "AI (Entelijans Atifisyèl)",
+        definition:
+          "Yon pwogram ki aprann patwon nan done pou reponn/kreye kontni.",
+        example: "ChatGPT ak Claude se de egzanp zouti AI.",
+      },
+      {
+        word: "Chatbot",
+        definition: "Yon AI ou pale avè l tankou nan yon konvèsasyon tèks.",
+        example: "Tape yon kesyon nan chatbot la epi resevwa yon repons.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou mande AI a 'ban m yon lèt pou mande yon ogmantasyon salè', li ekri yon egzanp otomatikman selon milyon lèt li 'aprann' nan tèks li antrene sou li — men se ou menm ki dwe verifye ak ajiste l pou sitiyasyon ou.",
+    mistakeWrong:
+      "Panse AI 'konnen' tout bagay ki vre, tankou yon ekspè enfayib.",
+    mistakeCorrect:
+      "Konprann AI ka fè erè — toujou verifye enfòmasyon enpòtan.",
+    mistakeWhy:
+      "⚠️ AI ka jenere repons ki sanble konfyan men ki fo (yo rele sa 'inogenasyon') — verifikasyon rete responsablite ou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI eksplike tèt li — kijan li fonksyone nan mo senp.",
+    aiPrompt:
+      "Hi! Can you explain in simple terms how you (an AI) actually work, without technical jargon?",
+    mission:
+      "🎯 Misyon: si ou pa janm eseye yon AI anvan, ale sou youn (ChatGPT, Claude, oswa Gemini) epi poze yon premye kesyon senp.",
+    quiz: {
+      prompt: "Kisa ki dekri pi byen kijan AI reponn kesyon?",
+      options: [
+        "Li 'panse' tankou yon moun",
+        "Li rekonèt patwon nan done pou jenere repons",
+        "Li chèche sou entènèt chak fwa",
+        "Li toujou 100% egzat",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! AI rekonèt patwon pou jenere repons.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa AI aprann de gwo kantite tèks.",
+    },
+    recap: [
+      { emoji: "🤖", text: "AI aprann patwon nan done pou reponn/kreye." },
+      { emoji: "💬", text: "Chatbot se yon AI ou pale avè l an tèks." },
+      {
+        emoji: "⚠️",
+        text: "AI ka fè erè — toujou verifye enfòmasyon enpòtan.",
+      },
+      { emoji: "🎯", text: "Misyon: poze yon premye kesyon bay yon AI." },
+    ],
+  },
+  {
+    slug: "chatgpt-basics",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "💬",
+    heroTitle: "Debaz ChatGPT",
+    heroLede: "AI ki te fè tout mond lan pale de entelijans atifisyèl.",
+    goal: "🎯 Objektif: itilize ChatGPT pou poze kesyon ak jwenn èd.",
+    simpleExplanation:
+      "**ChatGPT** se AI OpenAI a kreye, e li se youn nan premye ak pi popilè zouti AI konvèsasyon nan mond lan. Ou tape yon kesyon oswa demand, epi li reponn nan yon konvèsasyon, menm jan ak yon mesaj tèks.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a chat conversation interface with message bubbles, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/chatgpt-basics.webp`,
+    digitalWords: [
+      {
+        word: "ChatGPT",
+        definition:
+          "AI konvèsasyon OpenAI ki reponn kesyon ak ede ak tach ekriti.",
+        example: "Mande ChatGPT ede w ekri yon imèl pwofesyonèl.",
+      },
+      {
+        word: "Konvèsasyon (Conversation)",
+        definition: "Yon seri echanj tèks ant ou ak AI a ki sonje kontèks la.",
+        example: "Ou ka poze yon dezyèm kesyon ki baze sou premye repons lan.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou pa konnen kijan pou ekri yon lèt demisyon, mande ChatGPT 'ekri yon lèt demisyon pwofesyonèl pou mwen' epi ajiste l selon sitiyasyon ou.",
+    mistakeWrong: "Kopye-kole premye repons ChatGPT bay san li l ni ajiste l.",
+    mistakeCorrect:
+      "Li repons lan byen epi ajiste l pou sitiyasyon espesifik ou.",
+    mistakeWhy:
+      "⚠️ ChatGPT pa konnen tout detay sitiyasyon pèsonèl ou — repons lan se yon bon pwen depa, pa yon repons final.",
+    aiExplanation:
+      "🤖 Ou ka mande ChatGPT tèt li konsèy sou kijan pou poze yon kesyon ki bay yon pi bon repons.",
+    aiPrompt:
+      "Hi! What are some tips for asking you questions in a way that gets me better, more useful answers?",
+    mission:
+      "🎯 Misyon: mande ChatGPT ede w ak yon tach reyèl (ekri yon mesaj, eksplike yon sijè, elatriye).",
+    quiz: {
+      prompt: "Kisa ki fè ChatGPT itil pou yon tach tankou ekri yon lèt?",
+      options: [
+        "Li ekri l pafètman san ou pa bezwen li l",
+        "Li bay yon bon pwen depa ou ka ajiste",
+        "Li sèlman mache pou kesyon matematik",
+        "Li mande yon abonman peye toujou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Se yon bon pwen depa ou ajiste.",
+      wrongFeedback: "❌ Eseye ankò — panse ak wòl verifikasyon ou.",
+    },
+    recap: [
+      { emoji: "💬", text: "ChatGPT se AI konvèsasyon OpenAI a." },
+      { emoji: "✍️", text: "Itil pou ekri, eksplike, ak jwenn èd." },
+      { emoji: "✅", text: "Toujou li ak ajiste repons li bay ou." },
+      { emoji: "🎯", text: "Misyon: mande ChatGPT ede w ak yon tach reyèl." },
+    ],
+  },
+  {
+    slug: "claude-basics",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "📝",
+    heroTitle: "Debaz Claude",
+    heroLede: "AI Anthropic a, konnen pou repons ki reflechi ak byen ekri.",
+    goal: "🎯 Objektif: itilize Claude pou ekriti ak rezònman detaye.",
+    simpleExplanation:
+      "**Claude** se AI konpayi Anthropic kreye, souvan chwazi pou tach ki mande ekriti swaye, rezònman detaye, oswa analiz long dokiman. Li fonksyone menm jan ak ChatGPT — yon konvèsasyon tèks — men li konnen pou ton li ki reflechi.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a clean writing-focused AI assistant interface with a document panel, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/claude-basics.webp`,
+    digitalWords: [
+      {
+        word: "Claude",
+        definition:
+          "AI konvèsasyon Anthropic kreye, konnen pou ekriti ak rezònman.",
+        example: "Itilize Claude pou revize yon dokiman long.",
+      },
+      {
+        word: "Anthropic",
+        definition: "Konpayi ki kreye Claude, fokis sou sekirite AI.",
+        example: "Anthropic bati Claude ak yon fokis sou fyab ak sekirite.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou gen yon dokiman long (kontra, rapò) ou vle konprann rapid, kole l nan Claude epi mande yon rezime — li fèt pou trete tèks long ak swen.",
+    mistakeWrong: "Panse tout AI konvèsasyon yo idantik san okenn diferans.",
+    mistakeCorrect:
+      "Rekonèt chak AI gen fòs diferan — eseye plizyè pou wè kilès ki koresponn ak bezwen ou.",
+    mistakeWhy:
+      "⚠️ Yon zouti ka pi bon pase yon lòt pou yon tach espesifik — eseye plizyè ede w jwenn sa ki mache pi byen pou ou.",
+    aiExplanation:
+      "🤖 Ou ka mande Claude tèt li ki kalite tach li fè byen an patikilye.",
+    aiPrompt:
+      "Hi Claude! What kinds of tasks are you especially good at compared to other AI assistants?",
+    mission:
+      "🎯 Misyon: mande Claude revize oswa rezime yon dokiman long (yon imèl, yon atik) ou genyen.",
+    quiz: {
+      prompt: "Pou ki kalite tach Claude souvan chwazi?",
+      options: [
+        "Sèlman kreye imaj",
+        "Ekriti swaye ak rezònman detaye",
+        "Sèlman jwe jwèt",
+        "Sèlman kalkil matematik",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Claude konnen pou ekriti ak rezònman.",
+      wrongFeedback: "❌ Eseye ankò — panse ak fòs prensipal Claude.",
+    },
+    recap: [
+      { emoji: "📝", text: "Claude = AI Anthropic, fò nan ekriti/rezònman." },
+      { emoji: "📄", text: "Bon pou rezime dokiman long." },
+      { emoji: "🔍", text: "Chak AI gen fòs diferan — eseye plizyè." },
+      { emoji: "🎯", text: "Misyon: fè Claude rezime yon dokiman." },
+    ],
+  },
+  {
+    slug: "gemini-basics",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "✨",
+    heroTitle: "Debaz Gemini",
+    heroLede: "AI Google a, entegre dirèkteman nan zouti ou deja itilize.",
+    goal: "🎯 Objektif: itilize Gemini nan kontèks zouti Google ou deja konnen.",
+    simpleExplanation:
+      "**Gemini** se AI Google a, entegre dirèkteman nan Gmail, Docs, ak Rechèch Google — pa bezwen yon nouvo aplikasyon apa. Si ou deja itilize Gmail oswa Docs (Modil 8), ou ka deja wè sijesyon Gemini san ou pa remake.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a document editor with an AI assistant panel integrated on the side, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/gemini-basics.webp`,
+    digitalWords: [
+      {
+        word: "Gemini",
+        definition:
+          "AI Google a, entegre nan Gmail, Docs, ak lòt zouti Google.",
+        example: "Gemini ka ede w ekri yon dokiman dirèkteman nan Google Docs.",
+      },
+      {
+        word: "Entegrasyon (Integration)",
+        definition:
+          "Lè yon AI travay dirèkteman anndan yon aplikasyon ou deja itilize.",
+        example: "Entegrasyon Gemini nan Gmail kite w jenere repons imèl vit.",
+      },
+    ],
+    realLifeExample:
+      "💡 Nan Google Docs, ou ka mande Gemini 'ekri yon premye vèsyon' yon dokiman dirèkteman anndan aplikasyon an, san ou pa bezwen chanje tab oswa kopye-kole.",
+    mistakeWrong: "Panse ou dwe kite Gmail/Docs pou itilize yon AI apa.",
+    mistakeCorrect:
+      "Chèche opsyon Gemini dirèkteman anndan zouti Google ou deja itilize.",
+    mistakeWhy:
+      "⚠️ Gemini deja entegre nan anpil zouti Google — chanje aplikasyon pou menm rezilta pèdi tan san rezon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI montre w ki kote pou jwenn Gemini nan Gmail oswa Google Docs.",
+    aiPrompt:
+      "Hi! Can you explain where to find Gemini's AI features inside Gmail or Google Docs?",
+    mission:
+      "🎯 Misyon: si ou gen aksè, chèche opsyon Gemini nan yon aplikasyon Google ou deja itilize.",
+    quiz: {
+      prompt: "Kisa ki fè Gemini diferan de kèk lòt AI?",
+      options: [
+        "Li sèlman mache sou telefòn",
+        "Li entegre dirèkteman nan zouti Google ou deja itilize",
+        "Li pa gratis ditou",
+        "Li sèlman pou kreye imaj",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Gemini entegre nan zouti Google ou deja itilize.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak konpetans ou deja genyen sou Google.",
+    },
+    recap: [
+      { emoji: "✨", text: "Gemini = AI Google, entegre nan zouti Google." },
+      { emoji: "📝", text: "Disponib nan Gmail, Docs, ak lòt kote." },
+      { emoji: "🔗", text: "Pa bezwen chanje aplikasyon pou itilize l." },
+      {
+        emoji: "🎯",
+        text: "Misyon: chèche opsyon Gemini nan yon zouti Google.",
+      },
+    ],
+  },
+  {
+    slug: "copilot-basics",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "🧭",
+    heroTitle: "Debaz Copilot",
+    heroLede: "AI Microsoft a, entegre nan Windows ak Office.",
+    goal: "🎯 Objektif: itilize Copilot nan kontèks zouti Microsoft ou deja konnen.",
+    simpleExplanation:
+      "**Copilot** se AI Microsoft a, entegre nan Windows, Word, Excel, ak Outlook — menm konsèp ak Gemini, men pou ekosistèm Microsoft (Modil 9) olye de Google. Li ka ede w ekri nan Word, kreye fòmil nan Excel, oswa rezime imèl nan Outlook.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a word processing document with an AI assistant sidebar panel, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/copilot-basics.webp`,
+    digitalWords: [
+      {
+        word: "Copilot",
+        definition:
+          "AI Microsoft a, entegre nan Windows, Word, Excel, ak Outlook.",
+        example: "Mande Copilot ede w kreye yon fòmil Excel konplèks.",
+      },
+      {
+        word: "Ekosistèm Microsoft",
+        definition:
+          "Tout zouti Microsoft konekte ansanm (Word, Excel, Outlook, elatriye).",
+        example: "Copilot travay atravè tout ekosistèm Microsoft la.",
+      },
+    ],
+    realLifeExample:
+      "💡 Nan Excel, si ou pa konnen ki fòmil pou itilize, mande Copilot 'kreye yon fòmil ki kalkile total la' dirèkteman anndan Excel, san ou pa bezwen chèche sou entènèt.",
+    mistakeWrong:
+      "Panse Copilot ak Gemini se menm bagay la, sèlman non diferan.",
+    mistakeCorrect:
+      "Konnen Copilot fèt pou ekosistèm Microsoft, Gemini pou ekosistèm Google — chwazi selon zouti ou itilize.",
+    mistakeWhy:
+      "⚠️ Yo gen menm konsèp men diferan ekosistèm — chwazi youn ki mache ak zouti (Google vs Microsoft) ou deja itilize.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w konprann ki lè pou itilize Copilot olye de Gemini oswa ChatGPT.",
+    aiPrompt:
+      "Hi! When would it make more sense to use Microsoft Copilot instead of ChatGPT or Gemini?",
+    mission:
+      "🎯 Misyon: si ou gen aksè, chèche opsyon Copilot nan yon aplikasyon Microsoft ou deja itilize.",
+    quiz: {
+      prompt: "Nan ki ekosistèm Copilot entegre?",
+      options: ["Google", "Microsoft", "Apple", "Amazon"],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Copilot fèt pou ekosistèm Microsoft.",
+      wrongFeedback: "❌ Eseye ankò — panse ak Word, Excel, ak Outlook.",
+    },
+    recap: [
+      { emoji: "🧭", text: "Copilot = AI Microsoft, entegre nan Office." },
+      { emoji: "📊", text: "Ede w ak Word, Excel, ak Outlook." },
+      { emoji: "🔀", text: "Ekivalan Gemini men pou ekosistèm Microsoft." },
+      {
+        emoji: "🎯",
+        text: "Misyon: chèche opsyon Copilot nan yon zouti Microsoft.",
+      },
+    ],
+  },
+  {
+    slug: "perplexity-basics",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "🔎",
+    heroTitle: "Debaz Perplexity",
+    heroLede:
+      "Yon AI ki chèche sou entènèt epi montre w kote enfòmasyon an soti.",
+    goal: "🎯 Objektif: itilize Perplexity pou chèche enfòmasyon aktyèl ak sous.",
+    simpleExplanation:
+      "**Perplexity** se yon AI ki konbine yon chatbot ak yon motè rechèch — li chèche sou entènèt an tan reyèl epi bay repons ak lyen sous ou ka verifye. Kontrèman ak kèk AI ki reponn sèlman selon sa yo 'aprann' deja, Perplexity chèche enfòmasyon aktyèl.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a search-style AI interface with answer text and small source citation links, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/perplexity-basics.webp`,
+    digitalWords: [
+      {
+        word: "Perplexity",
+        definition:
+          "AI ki chèche sou entènèt an tan reyèl epi bay sous verifyab.",
+        example: "Itilize Perplexity pou jwenn dènye nouvèl sou yon sijè.",
+      },
+      {
+        word: "Sitasyon (Citation)",
+        definition: "Yon lyen ki montre ki kote yon enfòmasyon soti.",
+        example: "Klike sitasyon an pou li atik orijinal la.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou vle konnen dènye pri yon pwodwi oswa yon nouvèl aktyèl, Perplexity pi itil pase yon AI ki pa chèche sou entènèt — li montre w sous ou ka verifye tou.",
+    mistakeWrong: "Fè konfyans yon repons AI san janm gade sous li site yo.",
+    mistakeCorrect:
+      "Klike sou sitasyon yo pou verifye enfòmasyon nan sous orijinal la.",
+    mistakeWhy:
+      "⚠️ Menm ak sitasyon, se ou menm ki responsab verifye enfòmasyon an — sitasyon fè verifikasyon pi fasil, pa otomatik.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI eksplike diferans ant yon AI ki chèche sou entènèt ak youn ki pa fè sa.",
+    aiPrompt:
+      "Hi! What's the difference between an AI that searches the internet for current information and one that only knows what it learned during training?",
+    mission:
+      "🎯 Misyon: itilize Perplexity (oswa yon lòt AI ki chèche sou entènèt) pou jwenn yon enfòmasyon aktyèl epi verifye yon sitasyon.",
+    quiz: {
+      prompt: "Kisa ki fè Perplexity diferan de anpil lòt AI konvèsasyon?",
+      options: [
+        "Li pa ka reponn kesyon",
+        "Li chèche sou entènèt epi bay sous verifyab",
+        "Li sèlman kreye imaj",
+        "Li mande peman pou chak kesyon",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li chèche sou entènèt epi bay sous.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak sa ki fè l tankou yon motè rechèch.",
+    },
+    recap: [
+      { emoji: "🔎", text: "Perplexity chèche sou entènèt an tan reyèl." },
+      { emoji: "🔗", text: "Bay sitasyon ou ka verifye." },
+      { emoji: "✅", text: "Toujou verifye sous menm ak sitasyon." },
+      {
+        emoji: "🎯",
+        text: "Misyon: jwenn yon enfòmasyon aktyèl ak Perplexity.",
+      },
+    ],
+  },
+  {
+    slug: "ai-image-generation",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "🎨",
+    heroTitle: "Kreyasyon Imaj pa AI",
+    heroLede: "Dekri yon imaj an mo, epi wè l parèt an kèk segonn.",
+    goal: "🎯 Objektif: kreye yon imaj orijinal ak yon deskripsyon tèks.",
+    simpleExplanation:
+      "**AI imaj** (image AI) kreye yon imaj konplètman nouvo selon yon deskripsyon tèks ou bay li — pa gen okenn foto orijinal, se AI a ki 'envante' l selon patwon li aprann. Plis deskripsyon w detaye ak klè, plis rezilta a chanse pou sanble ak sa ou vle.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing an AI image generation interface with a text prompt box and a generated artwork thumbnail, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/ai-image-generation.webp`,
+    digitalWords: [
+      {
+        word: "AI Imaj (Image AI)",
+        definition: "Zouti ki kreye yon imaj nouvo selon yon deskripsyon tèks.",
+        example: "Tape 'yon plaj nan solèy kouche' pou jenere yon imaj.",
+      },
+      {
+        word: "Prompt (Deskripsyon)",
+        definition: "Tèks ou ekri ki dekri imaj ou vle AI a kreye.",
+        example: "Yon prompt detaye bay yon rezilta pi presi.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou bezwen yon imaj pou dekore yon envitasyon fèt san peye yon atis, tape 'yon gato anivèsè kolore ak balon' nan yon zouti AI imaj epi jwenn yon imaj orijinal an kèk segonn.",
+    mistakeWrong:
+      "Itilize yon imaj AI kreye kòm si li te yon foto reyèl san mansyone sa.",
+    mistakeCorrect:
+      "Idantifye kilè yon imaj kreye pa AI, sitou nan kontèks pwofesyonèl oswa jounalistik.",
+    mistakeWhy:
+      "⚠️ Prezante yon imaj AI kòm yon foto reyèl ka twompe moun — transparans sou orijin kontni AI enpòtan.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI konsèy sou kijan pou ekri yon prompt ki bay yon meyè rezilta imaj.",
+    aiPrompt:
+      "Hi! Can you give me tips for writing a detailed image prompt that will generate better AI-created images?",
+    mission:
+      "🎯 Misyon: itilize yon zouti AI imaj pou kreye yon imaj ak yon deskripsyon detaye.",
+    quiz: {
+      prompt: "Kisa ki bay yon meyè rezilta lè ou kreye yon imaj ak AI?",
+      options: [
+        "Yon deskripsyon kout ak vag",
+        "Yon deskripsyon detaye ak klè",
+        "Pa gen okenn deskripsyon ditou",
+        "Yon foto egzistan deja",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Deskripsyon detaye bay pi bon rezilta.",
+      wrongFeedback: "❌ Eseye ankò — panse ak enfòmasyon AI a bezwen.",
+    },
+    recap: [
+      { emoji: "🎨", text: "AI imaj kreye yon imaj nouvo selon tèks ou bay." },
+      { emoji: "📝", text: "Yon prompt detaye bay pi bon rezilta." },
+      { emoji: "🔍", text: "Idantifye lè yon imaj se kreyasyon AI." },
+      {
+        emoji: "🎯",
+        text: "Misyon: kreye yon imaj ak yon deskripsyon detaye.",
+      },
+    ],
+  },
+  {
+    slug: "voice-ai-assistants",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "🎙️",
+    heroTitle: "Asistan Vokal AI",
+    heroLede: "Pale ak aparèy ou epi resevwa yon repons vokal.",
+    goal: "🎯 Objektif: itilize yon asistan vokal pou tach debaz.",
+    simpleExplanation:
+      "**Asistan vokal** tankou Siri (iPhone) ak Google Assistant (Android) kite w pale dirèkteman ak aparèy ou epi resevwa yon repons vokal oswa yon aksyon (tankou limen alarme, oswa chèche yon bagay). Yo itilize menm teknoloji AI konvèsasyon, men pa vwa olye de tèks.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone showing a voice assistant listening animation with a sound wave visual, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/voice-ai-assistants.webp`,
+    digitalWords: [
+      {
+        word: "Asistan Vokal (Voice Assistant)",
+        definition:
+          "Yon AI ou pale avè l pou fè yon aksyon oswa jwenn yon repons.",
+        example: "Mande Siri 'mete yon alarme pou 6è demen maten'.",
+      },
+      {
+        word: "Rekonesans Vwa (Voice Recognition)",
+        definition: "Teknoloji ki konvèti pawòl ou an tèks pou AI a konprann.",
+        example: "Rekonesans vwa fè posib pou ou pale olye de tape.",
+      },
+    ],
+    realLifeExample:
+      "💡 Lè men ou okipe (ap kondi, ap kwit manje), mande asistan vokal la 'mete yon minitri pou 10 minit' olye de manyèlman tape sou telefòn ou.",
+    mistakeWrong: "Panse asistan vokal la konprann tout aksan ak dyalèk parèy.",
+    mistakeCorrect:
+      "Pale klè epi eseye rifòmile si asistan an pa konprann premye fwa a.",
+    mistakeWhy:
+      "⚠️ Asistan vokal yo pa toujou pafè ak tout aksan — pasyans ak rifòmilasyon souvan sifi pou fè yo konprann.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ba ou lis kòmand debaz ou ka itilize ak asistan vokal telefòn ou.",
+    aiPrompt:
+      "Hi! Can you give me a list of basic useful commands I can try with my phone's voice assistant (like Siri or Google Assistant)?",
+    mission:
+      "🎯 Misyon: itilize asistan vokal telefòn ou pou fè yon aksyon senp (mete yon rapèl, chèche yon bagay).",
+    quiz: {
+      prompt: "Ki avantaj yon asistan vokal bay ou?",
+      options: [
+        "Ou dwe toujou tape sou ekran an",
+        "Ou ka fè aksyon lè men ou okipe",
+        "Li sèlman mache sou òdinatè",
+        "Li mande yon abonman peye",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Itil lè men ou okipe.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sitiyasyon kote ou pa ka tape.",
+    },
+    recap: [
+      { emoji: "🎙️", text: "Asistan vokal reponn ak vwa olye de tèks." },
+      { emoji: "📱", text: "Siri (iPhone) ak Google Assistant (Android)." },
+      { emoji: "🗣️", text: "Pale klè, rifòmile si li pa konprann." },
+      { emoji: "🎯", text: "Misyon: itilize asistan vokal pou yon tach senp." },
+    ],
+  },
+  {
+    slug: "basic-prompting",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "✏️",
+    heroTitle: "Debaz Prompting",
+    heroLede: "Fason ou poze yon kesyon detèmine kalite repons ou jwenn.",
+    goal: "🎯 Objektif: ekri yon prompt klè ki bay yon pi bon repons.",
+    simpleExplanation:
+      "Yon **prompt** se demand oswa kesyon ou bay yon AI. Yon bon prompt bay **kontèks** (ki sitiyasyon), **objektif** (kisa ou vle), ak **fòma** (kijan ou vle repons lan, tankou 'an 3 pwen'). Plis detay klè ou bay, plis repons lan fè sans pou ou.",
+    howItWorks: [
+      "Bay kontèks: ki sitiyasyon oswa ki moun ou ye",
+      "Bay objektif klè: kisa egzakteman ou vle",
+      "Presize fòma si ou vle: kout, long, lis, elatriye",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a well-structured text prompt being typed into an AI chat box, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/basic-prompting.webp`,
+    digitalWords: [
+      {
+        word: "Prompt",
+        definition: "Demand oswa kesyon ou bay yon AI pou jwenn yon repons.",
+        example: "'Ekri yon imèl kout pou anile yon randevou' se yon prompt.",
+      },
+      {
+        word: "Kontèks (Context)",
+        definition: "Enfòmasyon background ki ede AI a konprann sitiyasyon an.",
+        example: "'Mwen se yon ti biznis' bay AI a kontèks itil.",
+      },
+    ],
+    realLifeExample:
+      "💡 'Ekri yon imèl' bay yon repons vag. 'Ekri yon imèl kout ak pwofesyonèl pou anile yon randevou dòktè demen, mande yon nouvo dat' bay yon repons pi presi ak itil.",
+    mistakeWrong: "Poze yon kesyon vag epi fristre lè repons lan pa itil.",
+    mistakeCorrect:
+      "Ajoute kontèks ak detay chak fwa repons lan pa fè sans, olye de bay legen.",
+    mistakeWhy:
+      "⚠️ AI a pa ka devine sa ou pa di l — plis detay ou bay, plis chans repons lan itil imedyatman.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w rekri yon prompt vag pou fè l pi klè ak pi efikas.",
+    aiPrompt:
+      "Hi! Can you help me rewrite this vague request into a clearer, more effective prompt: 'help me with my resume'?",
+    mission:
+      "🎯 Misyon: chwazi yon tach epi ekri yon prompt detaye (kontèks + objektif + fòma) pou yon AI.",
+    quiz: {
+      prompt: "Ki twa eleman yon bon prompt ta dwe genyen?",
+      options: [
+        "Kout, vag, ak rapid",
+        "Kontèks, objektif klè, ak fòma si nesesè",
+        "Sèlman yon sèl mo",
+        "Emoji sèlman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Kontèks, objektif, ak fòma bay pi bon repons.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki fè yon demand klè.",
+    },
+    recap: [
+      { emoji: "✏️", text: "Prompt = demand ou bay yon AI." },
+      { emoji: "🎯", text: "Bay kontèks ak objektif klè." },
+      { emoji: "📋", text: "Presize fòma si ou vle yon rezilta espesifik." },
+      { emoji: "🎓", text: "Misyon: ekri yon prompt detaye pou yon tach." },
+    ],
+  },
+  {
+    slug: "ai-for-everyone-mission",
+    moduleTitle: "Modil 11: AI Pou Tout Moun",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: AI Pou Tout Moun",
+    heroLede:
+      "Konbine tout konpetans Modil 11 pou itilize AI ak konfyans chak jou.",
+    goal: "🎯 Objektif: itilize ChatGPT, Claude, Gemini, ak lòt zouti AI nan lavi chak jou.",
+    simpleExplanation:
+      "Ou fèk aprann: kisa AI ye, ChatGPT, Claude, Gemini, Copilot, Perplexity, AI imaj, asistan vokal, ak debaz prompting. Misyon sa a mande w konbine plizyè nan konpetans sa yo pou itilize AI ak konfyans total nan lavi chak jou ou.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently using a laptop with an AI chat interface visible, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/ai-for-everyone-mission.webp`,
+    digitalWords: [
+      {
+        word: "Konfyans nan AI (AI Confidence)",
+        definition: "Kapasite pou itilize zouti AI ak jijman kritik, san pè.",
+        example: "Konfyans nan AI ede w travay pi vit san depann avèg sou li.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki konfòtab ak AI ka ekri imèl pi vit, jwenn enfòmasyon aktyèl ak sous, epi kreye kontni vizyèl — tout pandan yo toujou verifye ak jije rezilta yo.",
+    mistakeWrong: "Depann 100% sou AI san janm verifye oswa reflechi tèt ou.",
+    mistakeCorrect:
+      "Itilize AI kòm yon zouti ki ede w travay pi vit, pandan ou kenbe jijman kritik ou.",
+    mistakeWhy:
+      "⚠️ AI se yon asistan pwisan, pa yon ranplasman pou jijman ak responsablite pèsonèl ou.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI konsèy sou kijan pou kontinye entegre zouti AI nan travay ou chak jou.",
+    aiPrompt:
+      "Hi! I just learned the basics of ChatGPT, Claude, Gemini, image AI, and prompting. What should I focus on next to use AI tools more effectively in my daily life?",
+    mission:
+      "🎯 Misyon Final Modil 11: itilize yon AI konvèsasyon pou yon tach reyèl, epi kreye yon imaj ak yon prompt detaye.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 11 la?",
+      options: [
+        "Vin yon enjenyè AI",
+        "Itilize AI nan lavi chak jou ak konfyans ak jijman kritik",
+        "Memorize chak zouti AI ki egziste",
+        "Ranplase tout aksyon moun ak AI",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "✅ Wi! Objektif la se itilize AI ak konfyans ak jijman.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 11 la.",
+    },
+    recap: [
+      { emoji: "🤖", text: "Kisa AI ye, ChatGPT, Claude, Gemini." },
+      { emoji: "🧭", text: "Copilot, Perplexity, AI imaj, asistan vokal." },
+      { emoji: "✏️", text: "Debaz prompting: kontèks, objektif, fòma." },
+      { emoji: "🎓", text: "Ou fini Modil 11 — AI Pou Tout Moun!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {

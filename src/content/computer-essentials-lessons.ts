@@ -753,4 +753,77 @@ export const computerEssentialsLessons: ComputerLessonSummary[] = [
     available: true,
     moduleNumber: 10,
   },
+  {
+    slug: "what-is-ai",
+    title: "What Is AI?",
+    outcome:
+      "Understand what artificial intelligence actually is, in plain terms.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "chatgpt-basics",
+    title: "ChatGPT Basics",
+    outcome:
+      "Have your first real conversation with the AI everyone talks about.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "claude-basics",
+    title: "Claude Basics",
+    outcome: "Use the AI known for careful writing and reasoning.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "gemini-basics",
+    title: "Gemini Basics",
+    outcome: "Use Google's AI built right into the tools you already know.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "copilot-basics",
+    title: "Copilot Basics",
+    outcome: "Use Microsoft's AI built into Windows and Office.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "perplexity-basics",
+    title: "Perplexity Basics",
+    outcome: "Search the web with an AI that shows its sources.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "ai-image-generation",
+    title: "AI Image Generation",
+    outcome: "Create an original image just by describing it in words.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "voice-ai-assistants",
+    title: "Voice AI Assistants",
+    outcome: "Talk to your devices and get real help back.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "basic-prompting",
+    title: "Basic Prompting",
+    outcome: "Ask AI for what you actually want, and get better answers.",
+    available: true,
+    moduleNumber: 11,
+  },
+  {
+    slug: "ai-for-everyone-mission",
+    title: "AI for Everyone, Mission",
+    outcome:
+      "Use ChatGPT, Claude, Gemini, and other AI tools in everyday life.",
+    available: true,
+    moduleNumber: 11,
+  },
 ];
