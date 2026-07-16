@@ -253,6 +253,128 @@ export const computerRebuildCheckpoints: Checkpoint[] = [
       },
     ],
   },
+  {
+    id: "checkpoint-3",
+    order: 3,
+    afterModuleId: "m11",
+    titleHt: "Confidence Checkpoint 3",
+    titleEn: "Confidence Checkpoint 3",
+    scenario:
+      "Ou fin konplete Modil 11 sou sekirite ak vi prive. Checkpoint sa a konbine rekonèt yon imèl sispèk, jere fichye tache danjere, verifye yon sit web, itilize 2FA, fè yon peman san danje, ak pwoteje vi prive w sou yon òdinatè pataje. Sa a se yon rekòmandasyon, pa yon egzamen ki bloke ou — ou ka eseye ankò otan fwa ou vle.",
+    skillsCombined: [
+      "Imèl Sispèk",
+      "Fichye Tache",
+      "Verifye Sit Web",
+      "2FA",
+      "Sekirite Peman",
+      "Vi Prive Òdinatè Pataje",
+    ],
+    passingPercent: 80,
+    questions: [
+      {
+        skillTag: "suspicious_email",
+        skillLabel: "Imèl Sispèk",
+        recommendedLessonSlug: "phishing-fo-sipo-ak-ijans",
+        question: {
+          kind: "scenario_decision",
+          prompt:
+            "Ou resevwa yon imèl ki di 'AJI KOUNYE A OSWA KONT OU AP FÈMEN' epi ki mande w klike yon lyen pou 'konfime' enfòmasyon ou. Ki sa ou dwe fè?",
+          options: [
+            "Klike lyen an vit anvan kont lan fèmen",
+            "Sispèk li — ijans fòse se yon siy klasik eskrokri, verifye atravè yon lòt kanal",
+            "Reponn imèl la mande plis enfòmasyon",
+            "Transfere l bay tout kontak ou pou avèti yo",
+          ],
+          correctIndex: 1,
+          explanation: "Ijans fòse se yon siy klasik phishing — verifye toujou atravè yon kanal endepandan.",
+        },
+      },
+      {
+        skillTag: "attachment",
+        skillLabel: "Fichye Tache",
+        recommendedLessonSlug: "eskrokri-imel-ak-fichye-tache-danjere",
+        question: {
+          kind: "multiple_choice",
+          prompt:
+            "Ou resevwa yon imèl ak yon fichye tache ki soti nan yon ekspeditè ou pa rekonèt ditou. Ki sa ou dwe fè?",
+          options: [
+            "Telechaje l pou wè sa li ye",
+            "Pa telechaje l — se yon gwo risk sekirite",
+            "Transfere l bay yon zanmi pou yo tcheke l",
+            "Reponn mande plis detay sou fichye a",
+          ],
+          correctIndex: 1,
+          explanation: "Yon fichye tache ki soti nan yon ekspeditè enkoni se yon gwo risk — pa telechaje l.",
+        },
+      },
+      {
+        skillTag: "website_verification",
+        skillLabel: "Verifye Sit Web",
+        recommendedLessonSlug: "fo-sit-web-lyen-ak-telechajman",
+        question: {
+          kind: "order_steps",
+          prompt: "Mete etap yo nan lòd kòrèk pou verifye yon sit anvan ou antre enfòmasyon sansib.",
+          steps: [
+            "Gade domèn nan pou fòt ortograf sispèk",
+            "Verifye si sit la se sous ofisyèl la",
+            "Chèche kadna HTTPS la, san sipoze li sifi pou li sèl",
+            "Antre enfòmasyon sansib sèlman si tout verifikasyon yo pase",
+          ],
+          correctOrder: [0, 1, 2, 3],
+          explanation: "Verifye domèn nan, sous ofisyèl la, ak HTTPS anvan ou fè konfyans total ak yon sit.",
+        },
+      },
+      {
+        skillTag: "2fa",
+        skillLabel: "2FA",
+        recommendedLessonSlug: "2fa-ak-kod-verifikasyon",
+        question: {
+          kind: "match_term",
+          prompt: "Matche chak tèm ak definisyon kòrèk li.",
+          pairs: [
+            { term: "Modpas", meaning: "Premye faktè otantifikasyon" },
+            { term: "Kòd Verifikasyon (2FA)", meaning: "Dezyèm faktè — pa janm pataje l ak pèsòn" },
+            { term: "Kòd Rekiperasyon", meaning: "Backup si ou pèdi aksè a metòd 2FA nòmal ou" },
+          ],
+          explanation: "Modpas, kòd verifikasyon, ak kòd rekiperasyon se twa pati diferan nan yon sistèm otantifikasyon solid.",
+        },
+      },
+      {
+        skillTag: "payment_safety",
+        skillLabel: "Sekirite Peman",
+        recommendedLessonSlug: "sekirite-acha-ak-peman-dijital",
+        question: {
+          kind: "scenario_decision",
+          prompt: "Ou fèk fè yon peman lajan mobil epi li parèt 'anatant' depi 10 minit. Ki sa ki pi bon aksyon?",
+          options: [
+            "Eseye voye menm peman an ankò imedyatman",
+            "Tann yon ti tan epi kontakte sèvis la ofisyèlman si sa kontinye",
+            "Pataje kòd PIN ou ak yon 'ajan' ki ofri ede w vit",
+            "Efase aplikasyon an epi telechaje l ankò",
+          ],
+          correctIndex: 1,
+          explanation: "Yon estati 'anatant' pa vle di echèk — verifye ofisyèlman anvan ou eseye ankò, pou pa peye de fwa.",
+        },
+      },
+      {
+        skillTag: "shared_computer_privacy",
+        skillLabel: "Vi Prive Òdinatè Pataje",
+        recommendedLessonSlug: "vi-prive-sou-odinate-pataje-ak-piblik",
+        question: {
+          kind: "select_all",
+          prompt: "Ki aksyon sa yo ou dwe fè lè ou itilize yon òdinatè pataje oswa piblik? (Chwazi tout ki aplike.)",
+          options: [
+            "Dekonekte kont ou yo apre",
+            "Sove modpas ou nan navigatè a pou pwochen fwa",
+            "Verifye pa gen enfòmasyon sansib ki rete vizib",
+            "Evite aktivite sansib san koneksyon chifre",
+          ],
+          correctIndexes: [0, 2, 3],
+          explanation: "Dekonekte, verifye, ak evite aktivite sansib san chifreman se bon pratik — sove modpas se yon risk.",
+        },
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildCheckpoint(id: string) {
