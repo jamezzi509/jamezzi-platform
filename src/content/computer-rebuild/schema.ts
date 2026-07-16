@@ -160,6 +160,32 @@ export interface CourseModule {
   learningOutcomes: string[];
 }
 
+/**
+ * One question inside a confidence checkpoint — Section 8.4. Tags the skill
+ * it tests and the lesson to recommend if the learner misses it, so a failed
+ * attempt produces a targeted review path rather than a bare score.
+ */
+export interface CheckpointQuestion {
+  skillTag: string;
+  skillLabel: string;
+  recommendedLessonSlug: string;
+  question: KnowledgeCheckQuestion;
+}
+
+/** A larger, multi-skill scenario assessment placed after a group of modules — Section 8.4. */
+export interface Checkpoint {
+  id: string;
+  order: number;
+  /** The module this checkpoint follows — used to lock it until prerequisites are complete. */
+  afterModuleId: string;
+  titleHt: string;
+  titleEn: string;
+  scenario: string;
+  skillsCombined: string[];
+  passingPercent: number;
+  questions: CheckpointQuestion[];
+}
+
 export function getPlatformStepsFor(
   steps: PlatformSteps,
   platform: Exclude<Platform, "universal">,

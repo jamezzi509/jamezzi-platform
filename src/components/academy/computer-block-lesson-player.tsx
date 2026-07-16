@@ -11,8 +11,10 @@ import {
   SparklesIcon,
   StampIcon,
 } from "@/components/ui/icons";
+import { computerRebuildCheckpoints } from "@/content/computer-rebuild/checkpoints";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 import type {
+  Checkpoint,
   CourseLesson,
   KnowledgeCheckQuestion,
   LessonBlock,
@@ -142,6 +144,12 @@ export function ComputerBlockLessonPlayer({
     lessonIndex >= 0 && lessonIndex < sortedLessons.length - 1
       ? sortedLessons[lessonIndex + 1]
       : null;
+
+  const nextCheckpoint = lesson.requiredMission
+    ? computerRebuildCheckpoints.find(
+        (checkpoint) => checkpoint.afterModuleId === lesson.moduleId,
+      )
+    : undefined;
 
   const missionBlock = lesson.blocks.find((b) => b.type === "mission");
   const checkBlock = lesson.blocks.find((b) => b.type === "knowledge_check");
@@ -295,6 +303,7 @@ export function ComputerBlockLessonPlayer({
             blocks={currentPhase.blocks}
             unlocked={unlocked}
             nextLesson={nextLesson}
+            nextCheckpoint={nextCheckpoint}
           />
         )}
 
@@ -629,7 +638,7 @@ function MissionPhase({
   );
 }
 
-interface CheckAnswer {
+export interface CheckAnswer {
   checked: boolean;
   correct: boolean;
   selectedIndex?: number;
@@ -637,7 +646,7 @@ interface CheckAnswer {
   order?: number[];
 }
 
-function isAnswerCorrect(
+export function isAnswerCorrect(
   question: KnowledgeCheckQuestion,
   answer: CheckAnswer,
 ): boolean {
@@ -713,7 +722,7 @@ function CheckPhase({
   );
 }
 
-function QuestionCard({
+export function QuestionCard({
   question,
   answer,
   onAnswerChange,
@@ -953,10 +962,12 @@ function ReflectPhase({
   blocks,
   unlocked,
   nextLesson,
+  nextCheckpoint,
 }: {
   blocks: LessonBlock[];
   unlocked: boolean;
   nextLesson: CourseLesson | null;
+  nextCheckpoint?: Checkpoint;
 }) {
   const reflection = blocks.find((b) => b.type === "reflection");
   const [chosen, setChosen] = useState<number | null>(null);
@@ -1025,18 +1036,35 @@ function ReflectPhase({
               : "Fini quiz la ak misyon an pou dekloke stanp lan"}
           </h3>
           {unlocked && (
-            <Link
-              href={
-                nextLesson
-                  ? `/academy/courses/computer-internet-essentials/rebuild/${nextLesson.slug}`
-                  : "/academy/courses/computer-internet-essentials/rebuild"
-              }
-              className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
-            >
-              <GraduationCapIcon className="size-4" />
-              {nextLesson ? `Kontinye ak ${nextLesson.titleHt}` : "Tounen nan Tout Leson"}
-              <ArrowRightIcon className="size-4" />
-            </Link>
+            <div className="mt-5 flex flex-col items-center gap-3">
+              {nextCheckpoint && (
+                <Link
+                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextCheckpoint.id}`}
+                  className="text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                >
+                  <StampIcon className="size-4" />
+                  Pran {nextCheckpoint.titleHt}
+                  <ArrowRightIcon className="size-4" />
+                </Link>
+              )}
+              <Link
+                href={
+                  nextLesson
+                    ? `/academy/courses/computer-internet-essentials/rebuild/${nextLesson.slug}`
+                    : "/academy/courses/computer-internet-essentials/rebuild"
+                }
+                className={cn(
+                  "inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold",
+                  nextCheckpoint
+                    ? "text-white/85"
+                    : "text-indigo-dark bg-white",
+                )}
+              >
+                <GraduationCapIcon className="size-4" />
+                {nextLesson ? `Kontinye ak ${nextLesson.titleHt}` : "Tounen nan Tout Leson"}
+                <ArrowRightIcon className="size-4" />
+              </Link>
+            </div>
           )}
         </div>
       </div>

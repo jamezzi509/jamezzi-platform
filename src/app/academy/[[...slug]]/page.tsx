@@ -9,6 +9,7 @@ import {
   hasCoursePreview,
 } from "@/components/academy/course-preview-page";
 import { ComputerBlockLessonPlayer } from "@/components/academy/computer-block-lesson-player";
+import { ComputerCheckpointPlayer } from "@/components/academy/computer-checkpoint-player";
 import { ComputerCoursePage } from "@/components/academy/computer-course-page";
 import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
 import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
@@ -28,6 +29,7 @@ import {
 } from "@/components/ui/icons";
 import { academyBooks } from "@/content/books";
 import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
+import { getComputerRebuildCheckpoint } from "@/content/computer-rebuild/checkpoints";
 import {
   computerRebuildLessons,
   getComputerRebuildLesson,
@@ -400,6 +402,15 @@ export default async function AcademyPage({
     slug[2] === "rebuild" &&
     slug[3]
   ) {
+    const checkpoint = getComputerRebuildCheckpoint(slug[3]);
+    if (checkpoint) {
+      return (
+        <ComputerCheckpointPlayer
+          checkpoint={checkpoint}
+          allLessons={computerRebuildLessons}
+        />
+      );
+    }
     const lesson = getComputerRebuildLesson(slug[3]);
     if (lesson) {
       return (
