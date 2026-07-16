@@ -44,6 +44,11 @@ export function ComputerPlatformOnboarding({
   function saveIntakeIfRated() {
     if (ratings.every((r) => r === null)) return;
     try {
+      // Never overwrite an existing intake: it's a one-time "day one"
+      // baseline, and a later revisit to onboarding (e.g. to switch
+      // Windows/Mac preference mid-course) must not clobber it with
+      // today's more-experienced ratings.
+      if (window.localStorage.getItem(computerSkillsIntakeStorageKey)) return;
       window.localStorage.setItem(
         computerSkillsIntakeStorageKey,
         JSON.stringify({ ratings, savedAt: new Date().toISOString() }),

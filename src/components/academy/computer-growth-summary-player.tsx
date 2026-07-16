@@ -21,6 +21,11 @@ interface ReadinessRecord {
 
 const levelLabelsHt = ["Pa ka fè l toujou", "Ka fè l ak èd", "Ka fè l poukont li"];
 
+function levelLabel(level: number | null): string {
+  if (level === null || !levelLabelsHt[level]) return "Pa evalye";
+  return levelLabelsHt[level];
+}
+
 function readJson<T>(key: string, fallback: T): T {
   try {
     return JSON.parse(window.localStorage.getItem(key) ?? "") as T;
@@ -132,14 +137,13 @@ export function ComputerGrowthSummaryPlayer() {
                 {beforeLevel !== null && (
                   <>
                     <span className="text-muted">
-                      Anvan: {levelLabelsHt[beforeLevel]}
+                      Anvan: {levelLabel(beforeLevel)}
                     </span>
                     <ArrowRightIcon className="text-muted size-3.5" />
                   </>
                 )}
                 <span className="text-ink font-semibold">
-                  Kounye a:{" "}
-                  {afterLevel !== null ? levelLabelsHt[afterLevel] : "Pa evalye"}
+                  Kounye a: {levelLabel(afterLevel)}
                 </span>
                 {delta !== null && delta > 0 && (
                   <span className="text-success bg-success/10 rounded-full px-2 py-0.5 text-[11px] font-semibold">
