@@ -9998,6 +9998,960 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m10-l1",
+    slug: "po-ak-konekte",
+    moduleId: "m10",
+    order: 1,
+    titleHt: "Pò ak Konektè",
+    titleEn: "Ports and Connectors",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rekonèt pò komen (USB-A, USB-C, HDMI, odyo, kouran)",
+      "Konprann fòm konektè a pa tout espesifikasyon an",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt pò komen sou yon òdinatè epi konprann fòm yon konektè pa di tout sa ou bezwen konnen sou li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**USB-A** se pò rektangilè klasik la — ou dwe mete l nan bon sans. **USB-C** se pò ovalè pi nouvo a — ou ka mete l nan de sans, epi li ka fè plizyè travay (done, kouran, videyo) selon aparèy la. **HDMI** konekte òdinatè a ak yon ekran oswa televizyon pou videyo/son. Pò **odyo** (yon ti twou wonn) konekte kaskèt oswa opalè. Pò **kouran** chaje batri a. Kèk òdinatè gen yon **fant SD kat** pou kat memwa kamera. **Enpòtan**: menm fòm konektè a (tankou USB-C) pa vle di menm **vitès** oswa menm **kapasite** — de kab USB-C ka gade menm jan men fè bagay diferan.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "computer-ports-usb-hdmi-audio-power",
+          caption: "USB-A (rektangilè) · USB-C (ovalè, de sans) · HDMI (videyo) · Odyo · Kouran",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "USB-C",
+            definition: "Yon pò ovalè modèn ou ka mete nan de sans, ki ka fè plizyè travay selon aparèy la.",
+            example: "Anpil laptop ak telefòn resan itilize USB-C pou chaje ak transfè done.",
+          },
+          {
+            term: "HDMI",
+            definition: "Pò ki konekte òdinatè a ak yon ekran oswa televizyon pou videyo ak son.",
+            example: "Konekte laptop ou nan yon televizyon ak yon kab HDMI pou montre yon prezantasyon.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Gade kote sou òdinatè ou epi idantifye chak pò ou wè — USB-A, USB-C, HDMI, odyo, kouran, oswa fant SD kat.",
+      },
+      {
+        id: "b6",
+        type: "mistake",
+        mistake: {
+          wrong: "Sipoze de kab USB-C fè EGZAKteman menm bagay paske yo gen menm fòm.",
+          right: "Konprann fòm konektè a se sèlman yon pati — vitès ak kapasite ka diferan menm ak menm fòm nan.",
+          why: "Sa evite frustrasyon lè yon kab 'ki sanble bon' pa fè travay la (tankou chaje rapid oswa transfè videyo).",
+        },
+      },
+      {
+        id: "b7",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My laptop has an oval-shaped port and a rectangular one. What are the differences between USB-A and USB-C?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle ka rekonèt chak pò sou òdinatè ou.",
+          objective: "Idantifye tout pò ou wè sou òdinatè ou epi non yo kòrèkteman.",
+          requiredSteps: [
+            "Gade tout kote sou òdinatè ou",
+            "Idantifye ak non chak pò ou wè",
+          ],
+          successCriteria: ["Ou idantifye omwen twa pò diferan kòrèkteman"],
+        },
+      },
+      {
+        id: "b9",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak pò ak sa li sèvi pou li.",
+            pairs: [
+              { term: "USB-C", meaning: "Pò ovalè de sans pou done/kouran/videyo" },
+              { term: "HDMI", meaning: "Konekte ak yon ekran oswa televizyon" },
+              { term: "Odyo", meaning: "Konekte kaskèt oswa opalè" },
+            ],
+            explanation: "Chak pò gen yon rezon prensipal, menm si kèk ka fè plizyè travay.",
+          },
+        ],
+      },
+      {
+        id: "b10",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l2",
+    slug: "kle-usb-ak-disk-eksten-revizyon",
+    moduleId: "m10",
+    order: 2,
+    titleHt: "Kle USB ak Disk Ekstèn — Revizyon",
+    titleEn: "USB Drives and External Drives Revisited",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Revize wòl kle USB ak disk ekstèn pou estokaj ak transfè",
+      "Aplike sekans ejekte san danje ak sekirite aparèy enkoni",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka itilize yon kle USB oswa disk ekstèn pou estokaj, backup, ak transfè, epi ejekte l san danje.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Ou deja aprann sou kle USB nan Modil 4 — leson sa a revize wòl yo nan kontèks **aparèy fizik**. Yon kle USB oswa yon **disk ekstèn** ka sèvi pou **estokaj** anplis, pou yon **backup** fizik ki pa depann de entènèt, oswa pou **transfere** fichye ant òdinatè. Toujou **ejekte san danje** anvan ou wete l fizikman. Fè atansyon ak yon kle USB **enkoni** ou jwenn — pa konekte l san verifye sitiyasyon an, paske li ka pote malveyan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Disk Ekstèn (External Drive)",
+            definition: "Yon aparèy estokaj pi gwo pase yon kle USB, souvan itilize pou backup.",
+            example: "Yon disk ekstèn ka kenbe yon backup konplè tout foto ou yo.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon kle USB oswa disk ekstèn, konekte l, kopye yon fichye sou li, epi ejekte l san danje.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa konekte yon kle USB enkoni ou jwenn san verifye sitiyasyon an",
+          "Toujou ejekte san danje anvan ou wete yon aparèy USB fizikman",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I found a USB drive that isn't mine. Is it safe to plug it into my computer to see what's on it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle itilize yon aparèy estokaj fizik pou backup oswa transfè.",
+          objective: "Konekte yon kle USB oswa disk ekstèn, kopye yon fichye, epi ejekte l san danje.",
+          requiredSteps: [
+            "Konekte yon kle USB oswa disk ekstèn",
+            "Kopye yon fichye sou li",
+            "Ejekte l san danje",
+          ],
+          successCriteria: ["Fichye a kopye avèk siksè", "Aparèy la ejekte san danje"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou jwenn yon kle USB atè nan yon espas piblik, san ou pa konnen ki moun li ye. Ki sa ou dwe fè?",
+            options: [
+              "Konekte l nan òdinatè ou pou wè sa ki ladan l",
+              "Pa konekte l — li ka pote malveyan",
+              "Konekte l epi eskane l apre",
+              "Voye l bay yon zanmi pou yo tcheke l",
+            ],
+            correctIndex: 1,
+            explanation: "Yon kle USB enkoni ou jwenn ka yon zouti eskrokri komen — pi bon pratik se pa konekte l ditou.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l3",
+    slug: "bluetooth",
+    moduleId: "m10",
+    order: 3,
+    titleHt: "Bluetooth",
+    titleEn: "Bluetooth",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Pè (pair) yon aparèy Bluetooth ak òdinatè ou",
+      "Dekonekte ak retire yon aparèy Bluetooth",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka pè yon aparèy Bluetooth (tankou yon kaskèt oswa souri) ak òdinatè ou, epi dekonekte oswa retire l lè sa nesesè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Bluetooth** se yon teknoloji san fil pou konekte aparèy ki toupre (kaskèt, souri, klavye) san kab. **Pè (pairing)** se premye etap la — ou mete aparèy la nan mòd **dekouvèt (discovery)**, epi chwazi l nan lis Bluetooth òdinatè a. Yon fwa pè, aparèy la ka **dekonekte** (tanporèman) epi **rekonekte** otomatikman pita, oswa ou ka **retire l (remove)** nèt si ou pa bezwen l ankò. Sou sekirite: pa aksepte yon demann pè Bluetooth ou pa rekonèt.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pè (Pairing)",
+            definition: "Premye koneksyon ant de aparèy Bluetooth, ki fèt yon sèl fwa.",
+            example: "Pè yon kaskèt Bluetooth nouvo ak òdinatè ou anvan premye itilizasyon.",
+          },
+          {
+            term: "Dekouvèt (Discovery)",
+            definition: "Mòd yon aparèy Bluetooth antre ladan pou lòt aparèy ka jwenn li.",
+            example: "Mete kaskèt ou nan mòd dekouvèt (souvan kenbe yon bouton) pou òdinatè a ka jwenn li.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Ale nan Settings > Bluetooth & devices",
+            "Aktive Bluetooth epi klike 'Add device'",
+            "Chwazi aparèy la nan lis la lè li parèt",
+          ],
+          mac: [
+            "Ale nan System Settings > Bluetooth",
+            "Aktive Bluetooth si li pa deja aktive",
+            "Chwazi aparèy la nan lis la lè li parèt epi klike 'Connect'",
+          ],
+          recoveryNote:
+            "Si aparèy la pa parèt nan lis la, verifye li nan mòd dekouvèt (souvan kenbe yon bouton pandan plizyè segond).",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa aksepte yon demann pè Bluetooth ou pa rekonèt",
+          "Retire aparèy Bluetooth ou pa itilize ankò nan lis pè ou",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm trying to pair my Bluetooth headphones with my computer but they're not showing up in the list. What should I check?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gen yon aparèy Bluetooth (kaskèt, souri, elatriye) ou vle konekte ak òdinatè ou.",
+          objective: "Pè aparèy la ak òdinatè ou, epi konfime li konekte kòrèkteman.",
+          requiredSteps: [
+            "Mete aparèy la nan mòd dekouvèt",
+            "Chwazi l nan lis Bluetooth òdinatè a",
+            "Konfime li konekte",
+          ],
+          successCriteria: ["Aparèy la parèt kòm 'konekte' nan paramèt Bluetooth"],
+          hint: "Si ou pa gen yon aparèy Bluetooth disponib, eksplike etap yo ak pwòp mo pa w.",
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou pè yon nouvo aparèy Bluetooth.",
+            steps: [
+              "Mete aparèy la nan mòd dekouvèt",
+              "Aktive Bluetooth sou òdinatè a",
+              "Chwazi aparèy la nan lis la",
+              "Konfime koneksyon an reyisi",
+            ],
+            correctOrder: [1, 0, 2, 3],
+            explanation: "Aktive Bluetooth òdinatè a, mete aparèy la an dekouvèt, chwazi l, epi konfime.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l4",
+    slug: "kamera-web-mikwofon-ak-opale",
+    moduleId: "m10",
+    order: 4,
+    titleHt: "Kamera Wèb, Mikwofòn, ak Opalè",
+    titleEn: "Webcam, Microphone, and Speakers",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Chwazi bon aparèy kamera/mikwofòn/opalè nan paramèt",
+      "Teste chak aparèy anvan yon apèl enpòtan",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chwazi bon aparèy kamera, mikwofòn, ak opalè nan paramèt ou, epi teste yo anvan ou bezwen yo.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Si ou gen plizyè aparèy konekte (tankou yon kaskèt Bluetooth AK opalè entegre), òdinatè a ka **chwazi move a pa default**. Verifye nan paramèt son/videyo pou **chwazi bon aparèy la**. **Mit (mute)** koupe mikwofòn ou san koupe videyo. Panse a **vi prive** kamera a — kèk òdinatè gen yon limyè ki montre lè kamera a aktif. **Teste** kamera ak mikwofòn nan paramèt anvan yon apèl enpòtan, pa pandan l. **Pèmisyon** aplikasyon yo bezwen pou aksede kamera/mikwofòn ka mande konfimasyon ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Aparèy Pa Default (Default Device)",
+            definition: "Kamera, mikwofòn, oswa opalè ki chwazi otomatikman lè plizyè disponib.",
+            example: "Chanje aparèy pa default si yon apèl itilize opalè òdinatè a olye kaskèt ou.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Louvri paramèt son/videyo òdinatè ou. Idantifye ki kamera, mikwofòn, ak opalè ki chwazi kounye a.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Antre yon apèl enpòtan san teste kamera/mikwofòn alavans, epi dekouvri yo pa mache pandan l ap kòmanse.",
+          right: "Teste kamera ak mikwofòn nan paramèt kèk minit anvan yon apèl enpòtan.",
+          why: "Teste alavan evite yon kòmansman jennan pandan yon reyinyon oswa apèl enpòtan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I have Bluetooth headphones connected but my video call keeps using my computer's built-in speakers instead. How do I fix that?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle prepare kamera, mikwofòn, ak opalè ou anvan yon apèl enpòtan.",
+          objective: "Verifye ak teste chak aparèy nan paramèt anvan yon apèl.",
+          requiredSteps: [
+            "Louvri paramèt son/videyo",
+            "Verifye bon aparèy chwazi pou kamera, mikwofòn, ak opalè",
+            "Teste chak youn",
+          ],
+          successCriteria: ["Tout twa aparèy yo teste ak konfime yo mache"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Pandan yon apèl videyo, lòt moun tande yon eko oswa son etranj. Ki sa ki gen chans se pwoblèm nan?",
+            options: [
+              "Move mikwofòn oswa opalè chwazi nan paramèt",
+              "Entènèt ou pa mache ditou",
+              "Kamera a pa aktive",
+              "Modpas ou pa fò ase",
+            ],
+            correctIndex: 0,
+            explanation: "Yon move aparèy son chwazi (oswa de aparèy son aktif anmenm tan) souvan lakòz eko.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l5",
+    slug: "enprimant-sa-ki-rive-le-ou-enprime",
+    moduleId: "m10",
+    order: 5,
+    titleHt: "Enprimant: Sa Ki Rive Lè Ou Enprime",
+    titleEn: "Printers: What Happens When You Print",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Esplike chèn debaz ant òdinatè ak enprimant",
+      "Konprann wòl driver, papye, lank/toner, ak liy datant",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike chèn debaz ki fèt lè ou voye yon dokiman pou enprime, ak wòl chak pati.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou klike 'Print', **òdinatè a** voye dokiman an atravè yon **driver** (lojisyèl ki 'tradwi' pou enprimant lan konprann) bay **enprimant lan**. Enprimant lan bezwen **papye** ak **lank oswa toner** pou fè travay la. Si plizyè moun voye enprime anmenm tan, dokiman yo antre nan yon **liy datant (queue)** — premye rive, premye sèvi. Si enprimant lan pa reponn, souvan pwoblèm nan se yonn nan sa yo: pa gen papye, pa gen lank/toner, oswa driver a bezwen mizajou.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "print-chain-computer-driver-printer-paper",
+          caption: "Òdinatè → Driver → Liy Datant → Enprimant (Papye + Lank/Toner) → Dokiman Enprime",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Driver",
+            definition: "Lojisyèl ki tradwi enfòmasyon soti nan òdinatè a pou enprimant lan konprann.",
+            example: "Enstale driver ofisyèl enprimant lan pou l fonksyone kòrèkteman.",
+          },
+          {
+            term: "Liy Datant (Queue)",
+            definition: "Lis dokiman k ap tann pou enprime, nan lòd yo te voye yo.",
+            example: "Si enprimant lan lan, gade liy datant lan pou wè konbyen dokiman ki devan ou.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon enprimant, gade nan paramèt òdinatè a pou jwenn liy datant enprimant lan (print queue).",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I clicked print but nothing came out and the printer seems stuck. What's a calm way to figure out what's wrong?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann chèn debaz enprimant lan anvan ou eseye enprime pou premye fwa.",
+          objective: "Eksplike chèn lan (òdinatè, driver, liy datant, enprimant, papye, lank/toner) ak pwòp mo pa w.",
+          requiredSteps: [
+            "Site chak pati nan chèn lan nan lòd",
+            "Eksplike wòl chak pati",
+          ],
+          successCriteria: ["Eksplikasyon w lan klè ak konplè"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa yon 'driver' fè nan chèn enprime a?",
+            options: [
+              "Li tradwi enfòmasyon soti nan òdinatè a pou enprimant lan konprann",
+              "Li se papye enprimant lan itilize",
+              "Li se dosye kote dokiman enprime yo sovgade",
+              "Li se yon tip lank espesyal",
+            ],
+            correctIndex: 0,
+            explanation: "Driver a se lojisyèl ki fè òdinatè a ak enprimant lan ka 'pale' menm lang.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l6",
+    slug: "enprime-yon-dokiman",
+    moduleId: "m10",
+    order: 6,
+    titleHt: "Enprime Yon Dokiman",
+    titleEn: "Print a Document",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Enprime yon dokiman ak bon paramèt (paj, kopi, koulè, oryantasyon)",
+      "Sovgade yon dokiman kòm PDF olye enprime l fizikman",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka enprime yon dokiman ak bon paramèt, oswa sovgade l kòm PDF olye enprime l sou papye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anvan ou enprime, yon **aperçu (preview)** montre kòman dokiman an ap parèt sou papye. Chwazi bon **enprimant** si ou gen plizyè. Chwazi ki **paj** ou vle enprime (tout, oswa yon ranj espesifik), konbyen **kopi**, si se an **koulè** oswa nwa-e-blan, ak **oryantasyon** (dwat oswa kouche). Si ou pa vrèman bezwen yon kopi papye, ou ka chwazi 'Save as PDF' olye — sa evite gaspiye papye ak lank.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Aperçu (Preview)",
+            definition: "Yon vèsyon vizyèl ki montre kòman dokiman an ap parèt anvan ou enprime l.",
+            example: "Gade aperçu a pou konfime paj yo byen aliyen anvan ou gaspiye papye.",
+          },
+          {
+            term: "Oryantasyon (Orientation)",
+            definition: "Si paj la enprime dwat (portrait) oswa kouche (landscape).",
+            example: "Chwazi oryantasyon kouche pou yon tablo ki laj.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Peze Ctrl+P pou louvri bwat enprime a",
+            "Chwazi enprimant, paj, kopi, koulè, ak oryantasyon",
+            "Klike 'Print', oswa chwazi 'Save as PDF' kòm 'enprimant' pou kreye yon PDF olye",
+          ],
+          mac: [
+            "Peze Cmd+P pou louvri bwat enprime a",
+            "Chwazi enprimant, paj, kopi, koulè, ak oryantasyon",
+            "Klike 'Print', oswa klike bouton 'PDF' nan kwen anba agoch pou 'Save as PDF' olye",
+          ],
+          recoveryNote:
+            "Si enprimant ou pa parèt nan lis la, verifye li limen ak konekte (Wi-Fi oswa kab) sou menm rezo ak òdinatè a.",
+        },
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Louvri bwat enprime a (Ctrl+P/Cmd+P) pou yon dokiman. San enprime vrèman, eksplore opsyon paj, kopi, ak oryantasyon.",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I only need a digital copy of this document, not a paper one. How do I save it as a PDF instead of printing it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen enprime yon dokiman ak bon paramèt, oswa sovgade l kòm PDF.",
+          objective: "Louvri bwat enprime a, chwazi bon paramèt, epi sovgade dokiman an kòm PDF.",
+          requiredSteps: [
+            "Louvri bwat enprime a (Ctrl+P/Cmd+P)",
+            "Chwazi paj, kopi, ak oryantasyon apwopriye",
+            "Sovgade kòm PDF olye enprime fizikman",
+          ],
+          successCriteria: ["Yon fichye PDF kreye ak bon kontni"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ou pa bezwen yon kopi papye, sèlman yon vèsyon dijital pou voye pa imèl. Ki sa ou dwe fè nan bwat enprime a?",
+            options: [
+              "Enprime l sou papye epi eskane l apre",
+              "Chwazi 'Save as PDF' olye enprime fizikman",
+              "Anile tout pwosesis la",
+              "Chanje oryantasyon an sèlman",
+            ],
+            correctIndex: 1,
+            explanation: "'Save as PDF' kreye yon vèsyon dijital dirèkteman, san bezwen papye.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l7",
+    slug: "eskane-yon-dokiman",
+    moduleId: "m10",
+    order: 7,
+    titleHt: "Eskane Yon Dokiman",
+    titleEn: "Scan a Document",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Eskane yon dokiman ak yon eskanè oswa telefòn",
+      "Chwazi ant fòma PDF ak foto selon bezwen an",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka eskane yon dokiman papye ak yon eskanè oswa telefòn, epi chwazi ant fòma PDF ak foto selon bezwen an.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **eskanè** (souvan konbine ak enprimant lan kòm yon **aparèy miltifonksyon**) tounen yon dokiman papye an yon fichye dijital. Si ou pa gen yon eskanè, ou ka **eskane ak telefòn ou** — anpil aplikasyon eskanè telefòn kreye yon PDF pwòp ki koupe fon an otomatikman. Chwazi **PDF** pou dokiman ofisyèl (li pwofesyonèl ak fasil pou li), oswa yon **foto** senp lè se sèlman yon souvni rapid. Asire **kalite li kapab** — limyè klè, san lonbraj, tèks li kapab. Fè atansyon a **vi prive** dokiman sansib ou eskane.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Aparèy Miltifonksyon (Multifunction Printer)",
+            definition: "Yon aparèy ki konbine enprimant ak eskanè (pafwa fax tou) nan yon sèl machin.",
+            example: "Anpil biwo gen yon aparèy miltifonksyon pou enprime AK eskane.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon telefòn ak yon aplikasyon eskanè, eskane yon dokiman papye pratik epi verifye kalite l li kapab.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Fè atansyon a dokiman sansib (kat idantite, kontra) ou eskane — kote ou sovgade yo enpòtan",
+          "Verifye kalite eskanè a li kapab anvan ou konsidere travay la fini",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I don't have a scanner but I need to send a scanned copy of a document. Can I use my phone instead?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen tounen yon dokiman papye an yon fichye dijital klè.",
+          objective: "Eskane yon dokiman pratik (ak eskanè oswa telefòn), chwazi bon fòma, epi verifye kalite li.",
+          requiredSteps: [
+            "Eskane yon dokiman papye pratik",
+            "Chwazi fòma apwopriye (PDF pou dokiman ofisyèl)",
+            "Verifye kalite eskanè a li kapab",
+          ],
+          successCriteria: ["Fichye eskane a klè ak li kapab", "Fòma a apwopriye pou itilizasyon an"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou bezwen voye yon kopi dijital yon kontra ofisyèl pou siyati. Ki fòma ki pi apwopriye?",
+            options: [
+              "Yon foto pran nan yon limyè fèb",
+              "Yon PDF klè ak byen limen",
+              "Yon videyo dokiman an",
+              "Yon odyo ki dekri kontra a",
+            ],
+            correctIndex: 1,
+            explanation: "Yon PDF klè se fòma ki pi pwofesyonèl ak fasil pou li pou yon dokiman ofisyèl.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l8",
+    slug: "le-yon-apare-konekte-pa-mache",
+    moduleId: "m10",
+    order: 8,
+    titleHt: "Lè Yon Aparèy Konekte Pa Mache",
+    titleEn: "When a Connected Device Does Not Work",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Swiv yon sekans kalm pou rezoud pwoblèm yon aparèy konekte",
+      "Konnen kilè pou sispann anvan yon entèvansyon danjere",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka swiv yon sekans kalm pou rezoud pwoblèm yon aparèy konekte (souri, kaskèt, enprimant) ki pa mache.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè yon aparèy konekte pa mache, swiv yon sekans kalm: 1) Verifye **kouran** — aparèy la limen/chaje? 2) Verifye **kab** la byen enkli nan de bout yo. 3) Verifye ou nan bon **pò**. 4) Verifye se **bon aparèy** ki chwazi nan paramèt (pa yon lòt). 5) **Dekonekte epi rekonekte** aparèy la. 6) **Rekòmanse (restart)** òdinatè a si sa nesesè. 7) Verifye si aparèy la bezwen yon **mizajou**. 8) **Teste sou yon lòt aparèy** si posib, pou wè si pwoblèm nan aparèy la limenm oswa òdinatè a. **Sispann** anvan yon entèvansyon ou pa sèten — pa demonte oswa fòse anyen ki ka domaje aparèy la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Teste Sou Yon Lòt Aparèy",
+            definition: "Konekte yon akseswa ki pa mache sou yon lòt òdinatè pou izole si pwoblèm nan se akseswa a oswa òdinatè a.",
+            example: "Si yon souri pa mache, teste l sou yon lòt òdinatè pou wè si se souri a ki gen pwoblèm.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon fwa yon aparèy konekte (souri, kaskèt, enprimant) pa t mache pou ou. Ki nan etap sekans lan ta ka rezoud pwoblèm nan?",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa demonte oswa fòse yon aparèy ou pa sèten sou li",
+          "Sispann epi mande èd si yon sekans debaz pa rezoud pwoblèm nan",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My USB mouse suddenly stopped working. What's a calm, step-by-step way to figure out what's wrong?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou senmile yon sitiyasyon kote yon aparèy konekte pa mache.",
+          objective: "Site sekans etap ou ta swiv pou idantifye ak rezoud pwoblèm nan, jiskaske ou konnen kilè pou sispann.",
+          requiredSteps: [
+            "Site premye twa etap ou ta verifye (kouran, kab, pò)",
+            "Site yon etap ki ta izole si se aparèy la oswa òdinatè a",
+            "Eksplike kilè li ta apwopriye pou sispann ak mande èd",
+          ],
+          successCriteria: ["Sekans lan swiv yon lòd lojik ak kalm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kalm pou rezoud yon aparèy konekte ki pa mache.",
+            steps: [
+              "Verifye kouran ak kab la byen enkli",
+              "Verifye se bon aparèy ki chwazi nan paramèt",
+              "Dekonekte epi rekonekte aparèy la",
+              "Teste aparèy la sou yon lòt òdinatè si posib",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Yon sekans kalm ak sistematik izole pwoblèm nan anvan li rive nan teste sou yon lòt aparèy.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m10-l9",
+    slug: "misyon-konplete-yon-travay-papye-a-dijital",
+    moduleId: "m10",
+    order: 9,
+    titleHt: "Misyon: Konplete Yon Travay Papye-a-Dijital",
+    titleEn: "Module Mission: Complete a Paper-to-Digital Task",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 10 nan yon egzèsis papye-a-dijital reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka sovgade oswa enprime yon dokiman kòm PDF, eskane oswa fotografye yon dokiman papye pratik klèman, bay li yon non ki gen sans, epi mete l nan bon dosye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 10 la. Ou pral konbine tout sa ou aprann — enprime/sovgade PDF, eskane, ak òganize fichye — nan yon sèl egzèsis papye-a-dijital reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen konvèti yon dokiman ant fòma papye ak dijital.",
+          objective:
+            "Sovgade oswa enprime yon dokiman ki ba w kòm PDF, eskane oswa fotografye yon dokiman papye pratik klèman, bay rezilta a yon non ki gen sans, epi mete l nan bon dosye.",
+          requiredSteps: [
+            "Sovgade oswa enprime yon dokiman ki ba w kòm PDF",
+            "Eskane oswa fotografye yon dokiman papye pratik klèman",
+            "Bay rezilta a yon non ki gen sans",
+            "Mete l nan bon dosye",
+          ],
+          successCriteria: [
+            "Fichye PDF la kreye kòrèkteman",
+            "Eskanè/foto a klè ak li kapab",
+            "Fichye a byen non ak byen klase",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak definisyon kòrèk li.",
+            pairs: [
+              { term: "Driver", meaning: "Lojisyèl ki tradwi pou enprimant lan konprann" },
+              { term: "Liy Datant", meaning: "Lis dokiman k ap tann enprime" },
+              { term: "Pè (Pairing)", meaning: "Premye koneksyon ant de aparèy Bluetooth" },
+            ],
+            explanation: "Driver, liy datant, ak pè se twa konsèp debaz pou konekte ak itilize aparèy.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou aparèy ak koneksyon mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 11." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
