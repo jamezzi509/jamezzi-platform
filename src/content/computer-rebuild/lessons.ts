@@ -10952,6 +10952,1045 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m11-l1",
+    slug: "kisa-ki-bezwen-pwoteje",
+    moduleId: "m11",
+    order: 1,
+    titleHt: "Ki Sa Ki Bezwen Pwoteje?",
+    titleEn: "What Needs Protection?",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Idantifye tout kalite bagay dijital ou bezwen pwoteje",
+      "Konprann poukisa chak kategori merite atansyon",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka site tout kategori bagay dijital ou bezwen pwoteje, epi konprann poukisa chak youn enpòtan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sekirite dijital pa sèlman 'modpas' — li gen ladan l plizyè kategori: **idantite** ou (enfòmasyon ki pwouve ki moun ou ye), **kont** ou yo (imèl, rezo sosyal, labank), **fichye** ak **foto** pèsonèl, **kontak** ou yo (ki ka afekte lòt moun si yo pirate), **lajan** ou, ak **repitasyon** ou (sa moun wè piblikman sou ou). Chak kategori bezwen yon kalite pwoteksyon apwopriye — se pou sa modil sa a pral kouvri plizyè zouti ak abitid diferan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Idantite Dijital (Digital Identity)",
+            definition: "Enfòmasyon ak kont ki reprezante ki moun ou ye sou entènèt.",
+            example: "Adrès imèl ou ak kont rezo sosyal ou fè pati idantite dijital ou.",
+          },
+          {
+            term: "Repitasyon (Reputation)",
+            definition: "Fason lòt moun wè ou piblikman, ki ka afekte pa sa ou poste oswa pataje.",
+            example: "Yon foto oswa mesaj ou poste ka afekte repitasyon ou pandan lontan.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Fè yon lis kout: pou chak kategori (idantite, kont, fichye, kontak, lajan, repitasyon), site yon egzanp konkrè nan lavi w.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse sekirite dijital se sèlman 'gen yon bon modpas'.",
+          right: "Konprann sekirite dijital kouvri plizyè kategori — modpas se sèlman youn nan plizyè zouti.",
+          why: "Yon apròch ki twò etwat kite lòt kategori (tankou vi prive foto oswa lajan) san pwoteksyon.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! When people talk about 'digital security,' what are all the different things that actually need protecting?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle gen yon vi ansanm klè de sa ou bezwen pwoteje nan lavi dijital ou.",
+          objective: "Site yon egzanp pèsonèl pou chak sis kategori pwoteksyon yo.",
+          requiredSteps: [
+            "Site yon egzanp pou idantite, kont, ak fichye/foto",
+            "Site yon egzanp pou kontak, lajan, ak repitasyon",
+          ],
+          successCriteria: ["Ou bay egzanp konkrè pou tout sis kategori yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki bagay sa yo fè pati sa ou bezwen pwoteje nan lavi dijital ou? (Chwazi tout ki aplike.)",
+            options: [
+              "Kont imèl ak rezo sosyal ou",
+              "Koulè fon ekran (wallpaper) ou",
+              "Enfòmasyon labank ou",
+              "Foto ak kontak pèsonèl ou",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Kont, enfòmasyon labank, ak foto/kontak se tout bagay ki merite pwoteksyon — koulè fon ekran pa gen enpòtans sekirite.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l2",
+    slug: "modpas-fo-ak-jerans-modpas",
+    moduleId: "m11",
+    order: 2,
+    titleHt: "Modpas Fò ak Jerans Modpas",
+    titleEn: "Strong Passwords and Password Managers",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Kreye yon modpas fò ak konsèp fraz-modpas",
+      "Konprann konsèp yon jerans modpas",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike sa ki fè yon modpas fò, epi konprann kòman yon jerans modpas ka ede w san w pa bezwen sonje chak modpas pa kè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **modpas fò** se **inik** (diferan pou chak kont enpòtan) epi **long**. Yon fason fasil pou kreye youn se yon **fraz-modpas (passphrase)** — plizyè mo san rapò mete ansanm (tankou 'zetwal-kabrit-32-lapli'), ki pi fasil pou sonje pase karaktè aza epi ki toujou solid. Yon **jerans modpas (password manager)** se yon zouti ki kenbe tout modpas ou an sekirite epi ranpli yo otomatikman, pou ou pa bezwen sonje yo tout pa kè — ou sonje SÈLMAN yon sèl modpas prensipal. **Pa janm reyitilize menm modpas la** pou kont enpòtan (imèl, labank). Leson sa a pa mande ou antre yon vrè modpas okenn kote — se sèlman konsèp yo.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fraz-Modpas (Passphrase)",
+            definition: "Yon modpas fèt ak plizyè mo san rapò, pi fasil pou sonje men toujou solid.",
+            example: "'flanm-tòti-19-mango' se yon egzanp fraz-modpas — pa itilize egzanp sa a vrèman.",
+          },
+          {
+            term: "Jerans Modpas (Password Manager)",
+            definition: "Yon zouti ki kenbe tout modpas ou an sekirite epi ranpli yo otomatikman.",
+            example: "Yon jerans modpas ede w itilize yon modpas diferan pou chak kont san bezwen sonje yo tout.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "San antre okenn vrè modpas, panse a yon fraz-modpas ou ta ka itilize (plizyè mo san rapò ak yon nimewo). Pa ekri l okenn kote pèmanan.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Itilize menm modpas la (oswa yon vèsyon ki chanje yon ti kras) pou tout kont ou, ki gen ladan imèl ak labank.",
+          right: "Itilize yon modpas inik pou chak kont enpòtan, oswa yon jerans modpas pou jere yo.",
+          why: "Si yon sèl kont pirate epi ou reyitilize modpas la, TOUT lòt kont ou an danje tou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain what a passphrase is and why it might be easier to remember than a random password, without me sharing any real password with you?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann si modpas ou yo solid san ou pa antre yo okenn kote.",
+          objective: "Evalye (san tape yo) si kont enpòtan ou yo itilize modpas inik, epi eksplike konsèp yon jerans modpas.",
+          requiredSteps: [
+            "Panse a konbyen kont ou reyitilize menm modpas la",
+            "Eksplike ak pwòp mo pa w ki jan yon jerans modpas ta ka ede",
+          ],
+          successCriteria: ["Ou eksplike rezònman w san bezwen antre okenn vrè modpas"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou itilize menm modpas la pou kont imèl ou AK kont yon jwèt telefòn ou pa itilize souvan. Ki risk sa a genyen?",
+            options: [
+              "Pa gen okenn risk, se de kont diferan",
+              "Si jwèt la pirate, moun nan ka eseye menm modpas la sou imèl ou",
+              "Sa fè modpas ou pi fò",
+              "Sa akselere koneksyon ou",
+            ],
+            correctIndex: 1,
+            explanation: "Reyitilize modpas fè si YON kont pirate, TOUT lòt kont ak menm modpas la an danje.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l3",
+    slug: "2fa-ak-kod-verifikasyon",
+    moduleId: "m11",
+    order: 3,
+    titleHt: "2FA ak Kòd Verifikasyon",
+    titleEn: "Two-Factor Authentication and Verification Codes",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Konprann sa 2FA fè ak kalite metòd li itilize",
+      "Konnen règ absoli: pa janm pataje yon kòd verifikasyon",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike sa 2FA fè, rekonèt diferan metòd li itilize, epi konprann règ absoli a: pa janm pataje yon kòd verifikasyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**2FA (otantifikasyon de faktè)** ajoute yon **dezyèm etap** verifikasyon anplis modpas la — menm si yon moun jwenn modpas ou, yo pa ka antre san dezyèm etap sa a. Metòd komen: yon **aplikasyon otantifikatè** ki jenere kòd ki chanje chak kèk segond, oswa yon **kòd pa SMS**. Kenbe yon **metòd backup** (tankou kòd rekiperasyon ekri yon kote an sekirite) pou ka pa 'bloke deyò' kont ou si ou pèdi telefòn ou. **Règ ki PA JANM chanje**: **pa janm pataje yon kòd verifikasyon** ak PÈSÒN, menm si yo pretann yo se yon zanmi, yon manm fanmi, oswa yon anplwaye sipò — okenn sèvis lejitim pa janm mande w kòd sa a.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "2FA (Otantifikasyon De Faktè)",
+            definition: "Yon dezyèm etap verifikasyon anplis modpas — protèj menm si modpas la pirate.",
+            example: "Aktive 2FA sou kont imèl ou pou yon kouch pwoteksyon anplis.",
+          },
+          {
+            term: "Kòd Rekiperasyon (Recovery Code)",
+            definition: "Yon kòd backup ekri davans pou antre nan kont ou si ou pèdi aksè a metòd 2FA nòmal ou.",
+            example: "Ekri kòd rekiperasyon ou yo sou papye epi kenbe yo an sekirite, pa sou telefòn ou sèlman.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si youn nan kont ou yo ofri 2FA, verifye si li deja aktive. Si li aktive, konfime ou konnen kote kòd rekiperasyon ou yo ye.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm pataje yon kòd verifikasyon ak okenn moun, menm si yo di yo se sipò oswa yon zanmi",
+          "Kenbe kòd rekiperasyon ou yo an sekirite, apa de telefòn ou sèlman",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Someone called claiming to be from my bank and asked me to read them the verification code I just received. Is that normal?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konfime kont enpòtan ou yo pwoteje ak 2FA.",
+          objective: "Verifye si 2FA disponib ak aktive sou yon kont enpòtan ou genyen, epi lokalize kòd rekiperasyon ou yo.",
+          requiredSteps: [
+            "Verifye si 2FA disponib sou yon kont enpòtan",
+            "Konfime kote kòd rekiperasyon yo ta ye si ou aktive l",
+          ],
+          successCriteria: ["Ou konnen estati 2FA sou omwen yon kont enpòtan"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon moun rele w epi di yo se sipò teknik konpayi telefòn ou an, epi yo mande w li yo kòd verifikasyon ou fèk resevwa pa SMS. Ki sa ou dwe fè?",
+            options: [
+              "Li yo kòd la paske yo di yo se sipò teknik",
+              "Refize — okenn sèvis lejitim pa mande yon kòd verifikasyon konsa",
+              "Li yo mwatye kòd la sèlman",
+              "Mande yo rele tounen pita pou bay li lè sa a",
+            ],
+            correctIndex: 1,
+            explanation: "Yon kòd verifikasyon se pou OU sèlman — okenn sèvis lejitim pa janm mande l pa telefòn.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l4",
+    slug: "phishing-fo-sipo-ak-ijans",
+    moduleId: "m11",
+    order: 4,
+    titleHt: "Phishing, Fo Sipò, ak Ijans",
+    titleEn: "Phishing, Fake Support, and Urgency",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Rekonèt phishing atravè plizyè kanal (imèl, tèks, WhatsApp, apèl, pop-up)",
+      "Rekonèt eskrokri 'aksè adistans (remote access)'",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt tantativ phishing kèlkeswa kanal la (imèl, tèks, WhatsApp, apèl, pop-up), epi verifye endepandamman anvan ou aji.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Phishing** se lè yon moun eseye twonpe w pou ba yo enfòmasyon sansib oswa aksè, souvan an pretandan yo se yon òganizasyon ou fè konfyans. Sa ka rive pa **imèl**, **tèks (SMS)**, **WhatsApp**, yon **apèl telefòn**, oswa yon **pop-up** sou ekran ou. Yon fòm patikilyèman danjere se **eskrokri aksè adistans (remote access)** — yon moun konvenk ou enstale yon lojisyèl ki ba YO kontwòl òdinatè ou adistans, souvan an pretandan yo ap 'ranje' yon pwoblèm ou pa t vrèman genyen. **Prensip kle a rete menm nan tout kanal yo**: **verifye endepandamman** — kontakte òganizasyon an dirèkteman ak yon nimewo/adrès OU konnen, pa sa yo ba ou nan mesaj la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Phishing",
+            definition: "Tantativ pou twonpe w pou ba yo enfòmasyon sansib, an pretandan yo se yon sous ou fè konfyans.",
+            example: "Yon imèl ki pretann soti nan labank ou ki mande modpas ou se yon egzanp phishing.",
+          },
+          {
+            term: "Eskrokri Aksè Adistans (Remote Access Scam)",
+            definition: "Yon eskrokri kote yo konvenk ou enstale lojisyèl ki ba yo kontwòl òdinatè ou adistans.",
+            example: "Pa janm enstale yon lojisyèl kontwòl adistans paske yon moun ki rele w di ou gen yon 'viris'.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon mesaj sispèk ou te resevwa deja (imèl, tèks, oswa WhatsApp). Idantifye siy phishing ki te ladan l.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm enstale yon lojisyèl kontwòl adistans paske yon moun rele w san w pa t kontakte yo anvan",
+          "Verifye nenpòt demann ijan atravè yon kanal endepandan, pa repons dirèk nan mesaj sispèk la",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I got a phone call saying there's a virus on my computer and they need remote access to fix it. I didn't contact them first. Is this a scam?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon mesaj sispèk sou youn nan kanal yo (imèl, tèks, WhatsApp, oswa apèl).",
+          objective: "Idantifye siy phishing nan mesaj la, epi eksplike ki jan ou ta verifye endepandamman.",
+          requiredSteps: [
+            "Idantifye kanal la ak siy phishing yo",
+            "Eksplike kòman ou ta verifye san itilize enfòmasyon nan mesaj sispèk la",
+          ],
+          successCriteria: ["Ou idantifye siy yo kòrèkteman", "Plan verifikasyon w lan endepandan de mesaj la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki kanal sa yo phishing ka rive ladan? (Chwazi tout ki aplike.)",
+            options: ["Imèl", "Tèks (SMS)", "WhatsApp", "Yon apèl telefòn"],
+            correctIndexes: [0, 1, 2, 3],
+            explanation: "Phishing ka rive nan nenpòt kanal kominikasyon — pa sèlman imèl.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l5",
+    slug: "fo-sit-web-lyen-ak-telechajman",
+    moduleId: "m11",
+    order: 5,
+    titleHt: "Fo Sit Web, Lyen, ak Telechajman",
+    titleEn: "Fake Websites, Links, and Downloads",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Enspekte yon domèn pou detekte yon fo sit web",
+      "Rekonèt limit HTTPS ak fo mizajou/antivirus",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka enspekte yon domèn pou detekte yon fo sit web, epi rekonèt fo mizajou ak fo antivirus.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anvan ou fè konfyans a yon sit, gade **domèn** an byen — fo sit yo souvan itilize yon **ortograf** ki sanble ak yon vrè non (tankou 'goggle.com' olye 'google.com'). **HTTPS** (kadna a nan ba adrès la) montre koneksyon an chifre, men li **PA garanti sit la lejitim** — yon sit eskrokri ka gen HTTPS tou. Fè atansyon ak **piblisite (ads)** ki sanble ak rezilta rechèch, yon **fo mesaj mizajou** ('Ou bezwen mete Flash Player ajou KOUNYE A'), oswa yon **fo antivirus** ki di ou gen '47 viris' epi mande w peye pou 'netwaye' yo. Toujou vizite sit ofisyèl yo **dirèkteman** (tape adrès la ou menm) olye klike yon lyen sispèk.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "HTTPS",
+            definition: "Yon siy koneksyon chifre (kadna nan ba adrès la) — li pa garanti sit la lejitim.",
+            example: "Yon sit eskrokri ka gen HTTPS tou — verifye domèn nan anplis.",
+          },
+          {
+            term: "Fo Antivirus (Fake Antivirus)",
+            definition: "Yon mesaj ki fo pretann òdinatè ou enfekte, pou fè w peye oswa telechaje malveyan.",
+            example: "Fèmen navigatè a si yon mesaj di ou gen '47 viris' epi mande peman imedya.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade ba adrès navigatè ou a kounye a. Idantifye domèn nan epi verifye li ekri kòrèkteman (san fòt ortograf sispèk).",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa fè konfyans a yon sit sèlman paske li gen HTTPS — verifye domèn nan tou",
+          "Fèmen navigatè a si yon mesaj 'antivirus' oswa 'mizajou' ki parèt sanble twò ijan oswa alarman",
+          "Tape adrès sit ofisyèl yo dirèkteman olye klike lyen sispèk",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! A pop-up appeared saying my computer has viruses and I need to click to clean it now. Is this legitimate?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou wè yon lyen sispèk oswa yon pop-up ki pretann gen yon pwoblèm ijan.",
+          objective: "Enspekte domèn yon sit sispèk san klike sou li, epi eksplike ki siy ki fè l sispèk.",
+          requiredSteps: [
+            "Jwenn yon egzanp domèn (nan yon lyen oswa mesaj) san klike sou li",
+            "Idantifye siy ki fè l sispèk oswa fyab",
+          ],
+          successCriteria: ["Ou eksplike rezònman w klèman"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Èske yon sit ki gen HTTPS (kadna a) toujou garanti li lejitim ak san danje?",
+            options: [
+              "Wi, HTTPS garanti sit la 100% san danje",
+              "Non, HTTPS montre koneksyon chifre men pa garanti sit la lejitim",
+              "HTTPS sèlman itil pou sit gouvènman",
+              "HTTPS ranplase bezwen verifye domèn nan",
+            ],
+            correctIndex: 1,
+            explanation: "HTTPS chifre koneksyon an, men yon sit eskrokri ka gen HTTPS tou — verifye domèn nan anplis.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l6",
+    slug: "viris-malveyan-ak-mizajou",
+    moduleId: "m11",
+    order: 6,
+    titleHt: "Viris, Malveyan, ak Mizajou",
+    titleEn: "Viruses, Malware, and Updates",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Konprann definisyon debaz viris ak malveyan",
+      "Konprann wòl mizajou ak risk lojisyèl pirate",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike ak yon fason senp sa yon viris/malveyan ye, epi konprann wòl mizajou ak risk lojisyèl pirate oswa kle USB enkoni.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Malveyan (malware)** se yon tèm jeneral pou lojisyèl ki fèt pou fè domaj — yon **viris** se yon kalite malveyan ki gaye tèt li. Pifò òdinatè gen **sekirite entegre (built-in security)** deja ki bay yon nivo baz pwoteksyon. **Mizajou** enpòtan paske yo souvan fèmen **twou sekirite** eskrokri yo ka itilize. **Lojisyèl pirate (pirated software)** — vèsyon ilegal aplikasyon peye — se yon gwo sous risk, paske yo souvan gen malveyan kache ladan yo. Yon **kle USB enkoni** ou jwenn ka pote malveyan tou. Leson sa a bay konsèp debaz — se pa yon fòmasyon pou retire malveyan avanse; si ou sispèk yon enfeksyon serye, chèche èd pwofesyonèl.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Malveyan (Malware)",
+            definition: "Tèm jeneral pou lojisyèl fèt pou fè domaj sou yon aparèy.",
+            example: "Yon viris se yon kalite malveyan ki gaye tèt li ant fichye ak aparèy.",
+          },
+          {
+            term: "Sekirite Entegre (Built-In Security)",
+            definition: "Pwoteksyon debaz ki deja enkli nan pifò sistèm opere modèn.",
+            example: "Kenbe sekirite entegre ou aktive epi mizajou pou pi bon pwoteksyon.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Verifye si sistèm opere òdinatè ou gen mizajou ki tann enstalasyon. Si genyen, planifye lè ou pral fè yo.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Evite lojisyèl pirate — yo souvan gen malveyan kache ladan yo",
+          "Pa konekte yon kle USB enkoni san verifye sitiyasyon an",
+          "Kenbe sistèm opere ak aplikasyon ou yo ajou",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Why do software updates matter for security, and what's the real risk of using pirated/cracked software?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle asire òdinatè ou pwoteje ak baz konsèp sekirite yo.",
+          objective: "Verifye estati mizajou sistèm ou, epi eksplike poukisa lojisyèl pirate se yon risk.",
+          requiredSteps: [
+            "Verifye si gen mizajou ki tann",
+            "Eksplike ak pwòp mo pa w poukisa lojisyèl pirate riske",
+          ],
+          successCriteria: ["Ou konnen estati mizajou ou", "Eksplikasyon w lan klè"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon zanmi ofri ba ou yon vèsyon 'gratis' yon aplikasyon ki nòmalman koute lajan, ki soti nan yon sit pa ofisyèl. Ki risk prensipal la?",
+            options: [
+              "Pa gen okenn risk si li mache",
+              "Lojisyèl pirate souvan gen malveyan kache ladan l",
+              "Li ka mache pi vit pase vèsyon ofisyèl la",
+              "Li otomatikman legal si zanmi ou ba ou l",
+            ],
+            correctIndex: 1,
+            explanation: "Lojisyèl pirate se yon sous komen malveyan — vèsyon 'gratis' aplikasyon peye yo souvan modifye ak kòd danjere.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l7",
+    slug: "vi-prive-sou-odinate-pataje-ak-piblik",
+    moduleId: "m11",
+    order: 7,
+    titleHt: "Vi Prive sou Òdinatè Pataje ak Piblik",
+    titleEn: "Privacy on Shared and Public Computers",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Pwoteje enfòmasyon pèsonèl sou yon òdinatè pataje oswa piblik",
+      "Konprann risk Wi-Fi piblik ak vi prive ekran",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka pwoteje enfòmasyon pèsonèl ou lè ou itilize yon òdinatè pataje oswa piblik, epi konprann risk Wi-Fi piblik.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sou yon òdinatè **pataje** oswa **piblik** (bibliyotèk, sant kominotè, kafe entènèt), toujou: **dekonekte (sign out)** chak kont apre ou fini, verifye ou nan bon **pwofil navigatè** si genyen, pa **sove modpas** nan navigatè a, epi efase **telechajman** ou fè yo si yo pa nesesè pou lòt moun. Pa gade **fichye prive** sansib sou yon aparèy piblik si posib. Sou **Wi-Fi piblik**, evite fè aktivite sansib (labank, achte) san yon koneksyon chifre. Fè atansyon ak **vi prive ekran** — moun dèyè w ka wè sa ki sou ekran ou nan yon espas piblik.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Vi Prive Ekran (Screen Privacy)",
+            definition: "Atansyon a ki moun ki ka wè sa ki sou ekran ou nan yon espas piblik.",
+            example: "Chwazi yon plas kote pèsonn pa ka gade sou zepòl ou lè ou tape enfòmasyon sansib.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a dènye fwa ou te itilize yon òdinatè pataje oswa piblik. Idantifye si ou te dekonekte kont ou yo byen anvan ou kite l.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Toujou dekonekte kont ou yo sou yon òdinatè pataje oswa piblik anvan ou kite l",
+          "Pa sove modpas nan navigatè a sou yon aparèy ki pa pou ou",
+          "Evite aktivite sansib (labank) sou Wi-Fi piblik san koneksyon chifre",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I need to check my email at a library computer. What should I do before and after to keep my account safe?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou senmile itilize yon òdinatè piblik pou konsilte kont ou.",
+          objective: "Konekte, itilize kont ou, epi dekonekte kòrèkteman san kite trase.",
+          requiredSteps: [
+            "Konekte sou yon kont",
+            "Itilize l pou yon ti tan",
+            "Dekonekte epi verifye pa gen modpas sove",
+          ],
+          successCriteria: ["Kont la dekonekte kòrèkteman", "Pa gen enfòmasyon sansib ki rete vizib"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki aksyon sa yo ou dwe fè lè ou itilize yon òdinatè pataje oswa piblik? (Chwazi tout ki aplike.)",
+            options: [
+              "Dekonekte kont ou yo apre",
+              "Sove modpas ou nan navigatè a pou pwochen fwa",
+              "Verifye pa gen enfòmasyon sansib ki rete vizib",
+              "Evite aktivite sansib san koneksyon chifre",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Dekonekte, verifye, ak evite aktivite sansib san chifreman se bon pratik — sove modpas se yon risk.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l8",
+    slug: "sekirite-acha-ak-peman-dijital",
+    moduleId: "m11",
+    order: 8,
+    titleHt: "Sekirite Acha ak Peman Dijital",
+    titleEn: "Online Shopping and Digital Payment Safety",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Verifye yon machann ak detay yon tranzaksyon anvan ou peye",
+      "Konnen règ absoli sou PIN ak OTP, ak sa pou fè ak yon tranzaksyon anatant",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka verifye yon machann ak detay yon tranzaksyon anvan ou peye, epi konnen sa pou fè lè yon tranzaksyon parèt 'anatant' oswa gen yon pwoblèm.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anvan ou konfime yon acha oswa yon peman an liy, toujou: 1) Konfime se bon **machann (merchant)** lan. 2) Verifye **montan total** ak **mone** (goud, dola, elatriye) kòrèk. 3) Gade si gen **frè** anplis (livrezon, sèvis). 4) Kenbe yon **resi** oswa **ID tranzaksyon** apre chak peman — sa itil anpil si gen yon pwoblèm pita. **Règ ki PA JANM chanje**: **pa janm pataje kòd PIN ou oswa kòd OTP (One-Time Password)** ak PÈSÒN, menm si yo pretann yo se sipò kliyan. Ann Ayiti, moun itilize sèvis lajan mobil tankou **MonCash ak NatCash** pou anpil tranzaksyon — leson sa a bay prensip jeneral sekirite yo, PA etap detaye pou yon aplikasyon espesifik, paske entèfas aplikasyon yo chanje regilyèman. **Enpòtan anpil**: si yon tranzaksyon parèt **'anatant' (pending)**, PA sipoze li echwe — kontakte sèvis la ofisyèlman pou konfime anvan ou eseye ankò, paske eseye yon dezyèm fwa yon peman ki 'anatant' ka lakòz ou peye DE FWA pou menm bagay la. Si gen yon **litij (dispute)**, kontakte sèvis peman an atravè kanal ofisyèl yo, ak resi/ID tranzaksyon ou an.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "ID Tranzaksyon (Transaction ID)",
+            definition: "Yon nimewo inik ki idantifye yon peman espesifik — itil pou rezoud pwoblèm pita.",
+            example: "Kenbe ID tranzaksyon an nan yon kote sekirize apre chak peman enpòtan.",
+          },
+          {
+            term: "Anatant (Pending)",
+            definition: "Yon estati tranzaksyon ki poko fini — PA sipoze sa vle di li echwe.",
+            example: "Si yon tranzaksyon anatant, tann oswa kontakte sèvis la ofisyèlman, pa eseye ankò imedyatman.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Pa janm pataje kòd PIN ou oswa yon kòd OTP ak okenn moun, menm sipò kliyan pretandi",
+          "Yon tranzaksyon 'anatant' PA vle di li echwe — verifye ofisyèlman anvan ou eseye ankò",
+          "Kenbe resi ak ID tranzaksyon pou chak peman enpòtan",
+        ],
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Wè yon tranzaksyon 'anatant' epi imedyatman eseye peye ankò, panse premye a echwe.",
+          right: "Tann oswa kontakte sèvis peman an ofisyèlman pou konfime estati anvan ou eseye ankò.",
+          why: "Si premye tranzaksyon an te reyisi men jis anatant, yon dezyèm tantativ ka fè ou peye de fwa pou menm bagay la.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I made a mobile money payment and it's showing as 'pending' for a while. Should I try sending it again just in case?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral fè yon acha pratik an liy epi ou vle asire w ou fè l san danje.",
+          objective: "Verifye machann, montan/mone, ak frè anvan yon acha pratik, epi eksplike sa pou fè si yon tranzaksyon rete anatant.",
+          requiredSteps: [
+            "Verifye idantite machann lan nan yon senaryo acha pratik",
+            "Verifye montan total, mone, ak frè anvan konfime",
+            "Eksplike sa ou ta fè si tranzaksyon an rete anatant",
+          ],
+          successCriteria: ["Ou aplike tout etap verifikasyon yo", "Ou eksplike règ 'pa eseye ankò imedyatman' kòrèkteman"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou fèk fè yon peman lajan mobil epi li parèt 'anatant' depi 10 minit. Ki sa ki pi bon aksyon?",
+            options: [
+              "Eseye voye menm peman an ankò imedyatman",
+              "Tann yon ti tan epi kontakte sèvis la ofisyèlman si sa kontinye, pa eseye ankò san verifye",
+              "Pataje kòd PIN ou ak yon 'ajan' ki ofri ede w vit",
+              "Efase aplikasyon an epi telechaje l ankò",
+            ],
+            correctIndex: 1,
+            explanation: "Yon estati 'anatant' pa vle di echèk — verifye ofisyèlman anvan ou eseye ankò, pou pa peye de fwa.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l9",
+    slug: "sa-pou-fe-si-yon-bagay-mal-rive",
+    moduleId: "m11",
+    order: 9,
+    titleHt: "Sa Pou Fè Si Yon Bagay Mal Rive",
+    titleEn: "What to Do If Something Goes Wrong",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Swiv yon sekans kalm apre yon konpwomi sispèk",
+      "Konnen kilè pou chèche èd pwofesyonèl",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka swiv yon sekans kalm si ou sispèk yon kont oswa aparèy konpwomèt, jiskaske ou konnen kilè pou chèche èd pwofesyonèl.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Si ou sispèk yon bagay mal rive (yon kont pirate, yon eskrokri ou tonbe ladan), swiv yon sekans kalm: 1) **Sispann** — pa panike, pa kontinye aksyon ki te lakòz pwoblèm nan. 2) **Dekonekte sèlman si sa apwopriye** (pa egzanp, si yon lojisyèl kontwòl adistans aktive). 3) **Chanje modpas** soti nan yon **aparèy ou fè konfyans** (pa aparèy ki ka konpwomèt la). 4) **Kontakte founisè** sèvis la (imèl, rezo sosyal, elatriye) atravè kanal ofisyèl yo. 5) **Anrejistre prèv** (kaptire ekran mesaj sispèk yo, dat, ak lè). 6) Si gen yon zafè lajan, **enfòme labank/sèvis peman an** imedyatman. 7) **Eskane/mete ajou** òdinatè ou si sa apwopriye. 8) **Chèche èd pwofesyonèl** si sitiyasyon an depase sa ou konfòtab jere poukont ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Anrejistre Prèv (Record Evidence)",
+            definition: "Kaptire ekran oswa nòt sou yon mesaj sispèk, ak dat/lè, anvan ou efase l.",
+            example: "Pran yon screenshot yon imèl eskrokri anvan ou efase l oswa siyale l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon sitiyasyon ipotetik kote yon kont ou ta ka konpwomèt. Repase mantalman sekans etap yo, youn apre lòt.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Chanje modpas soti nan yon aparèy ou fè konfyans, pa aparèy ki ka konpwomèt la",
+          "Enfòme labank/sèvis peman an imedyatman si gen yon zafè lajan ki enplike",
+          "Pa gen wont chèche èd pwofesyonèl si sitiyasyon an depase konpetans ou",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I think I might have accidentally given my password to a fake website. What should I do right now, step by step?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou senmile yon sitiyasyon kote ou sispèk yon kont ou konpwomèt.",
+          objective: "Site sekans etap ou ta swiv, nan lòd, si ou sispèk yon konpwomi.",
+          requiredSteps: [
+            "Site twa premye etap ou ta fè (sispann, dekonekte si apwopriye, chanje modpas)",
+            "Eksplike kilè li ta apwopriye pou chèche èd pwofesyonèl",
+          ],
+          successCriteria: ["Sekans lan swiv yon lòd lojik ak kalm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk si ou sispèk yon kont konpwomèt.",
+            steps: [
+              "Sispann epi rete kalm",
+              "Chanje modpas soti nan yon aparèy ou fè konfyans",
+              "Kontakte founisè sèvis la atravè kanal ofisyèl",
+              "Chèche èd pwofesyonèl si sitiyasyon an depase w",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Yon sekans kalm ak lojik kòmanse ak sispann, epi ale nan chanje modpas, kontakte founisè, epi chèche èd si sa nesesè.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m11-l10",
+    slug: "misyon-rete-eskrokri-a",
+    moduleId: "m11",
+    order: 10,
+    titleHt: "Misyon: Rete Eskrokri a",
+    titleEn: "Module Mission: Stop the Scam",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 11 nan yon egzèsis rekonesans eskrokri reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka egzamine mesaj ak paj web fiktiv, idantifye siy avètisman yo, chwazi yon repons san danje, epi eksplike ki enfòmasyon ki PA JANM dwe pataje.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 11 la. Ou pral konbine tout sa ou aprann — phishing, fo sit, malveyan, vi prive, ak sekirite peman — nan yon sèl egzèsis rekonesans eskrokri reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral egzamine plizyè mesaj ak paj web fiktiv pou pratike rekonèt eskrokri.",
+          objective:
+            "Revize omwen twa mesaj/senaryo fiktif, idantifye siy avètisman nan chak youn, chwazi yon repons san danje pou chak, epi ekri yon lis kout enfòmasyon ki PA JANM dwe pataje (modpas, kòd verifikasyon, PIN/OTP).",
+          requiredSteps: [
+            "Egzamine omwen twa senaryo mesaj/sit fiktif",
+            "Idantifye siy avètisman nan chak senaryo",
+            "Chwazi yon repons san danje pou chak (pa egzanp: pa klike, verifye endepandamman)",
+            "Ekri yon lis kout enfòmasyon ki PA JANM dwe pataje",
+          ],
+          successCriteria: [
+            "Ou idantifye siy avètisman kòrèkteman nan tout senaryo yo",
+            "Repons ou yo pa mete ou nan risk",
+            "Lis ou a gen omwen modpas, kòd verifikasyon, ak PIN/OTP",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki enfòmasyon sa yo ou PA JANM dwe pataje ak okenn moun, menm si yo pretann yo se sipò lejitim? (Chwazi tout ki aplike.)",
+            options: ["Modpas ou", "Kòd verifikasyon (2FA/OTP)", "Non premye lekòl ou ale", "Kòd PIN peman ou"],
+            correctIndexes: [0, 1, 3],
+            explanation: "Modpas, kòd verifikasyon, ak PIN se twa bagay ou PA JANM dwe pataje — okenn sèvis lejitim pa mande yo.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou sekirite dijital mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 12." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
