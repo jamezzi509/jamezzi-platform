@@ -37,7 +37,7 @@ export const courses: CourseSummary[] = [
     category: "technology",
     availability: "launching-first",
     description:
-      "Learn the essential Windows, Mac, file, browser, email, and internet skills needed for modern work.",
+      "A judgment-free, Haitian Creole course covering computers, the internet, files, safety and scams, buying and troubleshooting devices, and building lasting digital habits — with checkpoints, a final exam, and a free certificate.",
   },
   {
     slug: "ai-for-work-business",

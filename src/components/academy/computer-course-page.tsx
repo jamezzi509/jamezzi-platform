@@ -116,13 +116,13 @@ export function ComputerCoursePage() {
             />
             <ApproachRow
               number="02"
-              title="Real screenshots and illustrations"
-              copy="Windows, Mac, Android, and iPhone examples — only where the how genuinely differs."
+              title="Windows and Mac, side by side"
+              copy="Steps split by platform only where they genuinely differ, with phone-specific notes for Android and iPhone tasks."
             />
             <ApproachRow
               number="03"
               title="A capstone, exam, and free certificate"
-              copy="Finish with a real-world mission per lesson, a comprehensive final exam, and the shared Pasaport Aprantisaj Jamezzi certificate."
+              copy="Finish with a real-world mission in almost every lesson, a comprehensive final exam, and a free Computer & Internet Essentials certificate the moment you pass."
             />
           </div>
         </Container>
