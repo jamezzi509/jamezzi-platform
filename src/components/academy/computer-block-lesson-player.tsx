@@ -161,17 +161,30 @@ export function ComputerBlockLessonPlayer({
 
   const missionBlock = lesson.blocks.find((b) => b.type === "mission");
   const checkBlock = lesson.blocks.find((b) => b.type === "knowledge_check");
-  const [missionDone, setMissionDone] = useState(false);
+  const [stepsDone, setStepsDone] = useState<boolean[]>(() =>
+    missionBlock?.type === "mission"
+      ? missionBlock.mission.requiredSteps.map(() => false)
+      : [],
+  );
   const [checkState, setCheckState] = useState<CheckAnswer[]>(() =>
     checkBlock?.type === "knowledge_check"
       ? checkBlock.questions.map(() => ({ checked: false, correct: false }))
       : [],
   );
 
+  function toggleStep(index: number) {
+    setStepsDone((prev) => {
+      const next = [...prev];
+      next[index] = !next[index];
+      return next;
+    });
+  }
+
   const requiresMission = Boolean(missionBlock) && lesson.requiredMission !== false;
   const requiresCheck = Boolean(checkBlock);
   const checkPassed =
     !requiresCheck || checkState.every((q) => q.checked && q.correct);
+  const missionDone = stepsDone.length > 0 && stepsDone.every(Boolean);
   const missionPassed = !requiresMission || missionDone;
   const unlocked = checkPassed && missionPassed;
 
@@ -295,8 +308,8 @@ export function ComputerBlockLessonPlayer({
         {currentPhase.phase === "mission" && (
           <MissionPhase
             blocks={currentPhase.blocks}
-            missionDone={missionDone}
-            onMissionDone={setMissionDone}
+            stepsDone={stepsDone}
+            onToggleStep={toggleStep}
           />
         )}
         {currentPhase.phase === "check" && checkBlock?.type === "knowledge_check" && (
@@ -553,12 +566,12 @@ function PracticePhase({ blocks }: { blocks: LessonBlock[] }) {
 
 function MissionPhase({
   blocks,
-  missionDone,
-  onMissionDone,
+  stepsDone,
+  onToggleStep,
 }: {
   blocks: LessonBlock[];
-  missionDone: boolean;
-  onMissionDone: (done: boolean) => void;
+  stepsDone: boolean[];
+  onToggleStep: (index: number) => void;
 }) {
   const aiHelp = blocks.find((b) => b.type === "ai_help");
   const mission = blocks.find((b) => b.type === "mission");
@@ -605,11 +618,43 @@ function MissionPhase({
             <p className="text-ink mb-3 text-[13.5px]">
               {mission.mission.objective}
             </p>
-            <ul className="text-ink mb-3 list-inside list-disc text-[13.5px] leading-[1.6]">
-              {mission.mission.requiredSteps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ul>
+            <div className="mb-3">
+              <div className="mb-2 flex items-center justify-between">
+                <p className="text-indigo-dark text-[11.5px] font-bold tracking-wide uppercase">
+                  Travay Pou Fè
+                </p>
+                <p className="text-muted text-[11.5px] font-semibold">
+                  {stepsDone.filter(Boolean).length} sou {mission.mission.requiredSteps.length}{" "}
+                  konplete
+                </p>
+              </div>
+              <div className="grid gap-1.5">
+                {mission.mission.requiredSteps.map((step, index) => {
+                  const done = stepsDone[index] ?? false;
+                  return (
+                    <label
+                      key={step}
+                      className="flex min-h-9 cursor-pointer items-start gap-2.5 rounded-lg bg-white/60 px-3 py-2"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={done}
+                        onChange={() => onToggleStep(index)}
+                        className="accent-indigo mt-0.5 size-4.5 shrink-0"
+                      />
+                      <span
+                        className={cn(
+                          "text-ink text-[13.5px] leading-[1.5]",
+                          done && "text-muted line-through",
+                        )}
+                      >
+                        {step}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
             <div className="border-border/60 mb-3 rounded-lg border bg-white/60 px-3.5 py-3">
               <p className="text-indigo-dark mb-1.5 text-[11.5px] font-bold tracking-wide uppercase">
                 Ou fini lè
@@ -631,15 +676,12 @@ function MissionPhase({
                 {mission.mission.stretchChallenge}
               </p>
             )}
-            <label className="flex min-h-6 cursor-pointer items-center gap-2 text-sm font-semibold">
-              <input
-                type="checkbox"
-                checked={missionDone}
-                onChange={(event) => onMissionDone(event.target.checked)}
-                className="accent-indigo size-4.5"
-              />
-              Mwen fè misyon an
-            </label>
+            {stepsDone.length > 0 && stepsDone.every(Boolean) && (
+              <p className="text-success flex items-center gap-1.5 text-[13px] font-semibold">
+                <CheckIcon className="size-4" />
+                Tout travay yo konplete!
+              </p>
+            )}
           </div>
         </div>
       )}
