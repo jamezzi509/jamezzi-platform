@@ -38,7 +38,7 @@ export function ComputerCoursePage() {
               showing you where to click.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <CtaLink href="/academy/courses/computer-internet-essentials/lessons">
+              <CtaLink href="/academy/courses/computer-internet-essentials/rebuild/start">
                 Start Learning <ArrowRightIcon className="size-4" />
               </CtaLink>
               <CtaLink href="#course-path" variant="secondary">
@@ -143,7 +143,7 @@ export function ComputerCoursePage() {
             </h2>
           </div>
           <CtaLink
-            href="/academy/courses/computer-internet-essentials/lessons"
+            href="/academy/courses/computer-internet-essentials/rebuild/start"
             variant="inverse"
           >
             Start Learning <ArrowRightIcon className="size-4" />
