@@ -1814,16 +1814,457 @@ export const computerRebuildLessons: CourseLesson[] = [
     ],
   },
   {
+    id: "m3-l1",
+    slug: "konfyans-souri-ak-trackpad",
+    moduleId: "m3",
+    order: 1,
+    titleHt: "Konfyans ak Souri ak Trackpad",
+    titleEn: "Mouse and Trackpad Confidence",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Itilize klik senp, doub klik, ak right-click ak konfyans",
+      "Fè scroll ak drag-and-drop",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka itilize souri oswa trackpad pou klike, doub klike, right-click, scroll, ak rale (drag) ak konfyans.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Klik senp** (single-click) chwazi yon bagay. **Doub klik** (double-click, de fwa rapid) louvri yon fichye oswa aplikasyon. **Right-click** (klike ak bouton dwat la, oswa de dwèt sou trackpad la) louvri yon meni ak plis opsyon. **Scroll** deplase paj la anwo/anba. **Rale** (click-and-drag) kenbe bouton an anfonse pandan ou deplase souri a pou deplase yon bagay.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Kursè (Pointer)",
+            definition: "Ti flèch ki montre kote souri/trackpad ou ye sou ekran an.",
+            example: "Deplase kursè a sou yon bouton anvan ou klike.",
+          },
+          {
+            term: "Right-Click",
+            definition: "Klike ak bouton dwat souri a (oswa de dwèt sou trackpad) pou wè plis opsyon.",
+            example: "Right-click sou yon fichye pou wè opsyon 'Rename' ak 'Delete'.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Eseye chak jès sou Desktop ou: yon klik senp sou yon espas vid, yon doub klik sou yon ikòn, epi yon right-click pou wè meni an parèt.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Klike plizyè fwa rapid lè yon sèl klik ta sifi, panse sa ap fè aksyon an mache pi vit.",
+          right: "Yon sèl klik pou chwazi, doub klik sèlman pou louvri — plis klik pa fè anyen mache pi vit.",
+          why: "Klike twòp fwa ka louvri menm aplikasyon an plizyè fwa oswa deplase seleksyon ou pa aksidan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between a single-click, double-click, and right-click, and when to use each one?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle santi w konfòtab ak chak jès souri/trackpad debaz.",
+          objective: "Pratike kat jès (klik, doub klik, right-click, scroll) sou pwòp aparèy ou.",
+          requiredSteps: [
+            "Klik senp sou yon ikòn pou chwazi l",
+            "Doub klik sou yon ikòn pou louvri l",
+            "Right-click sou yon espas vid pou wè meni an",
+            "Fè scroll sou yon paj oswa dosye ki gen anpil kontni",
+          ],
+          successCriteria: [
+            "Ou konplete kat jès yo san konfizyon",
+          ],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak jès ak sa li fè.",
+            pairs: [
+              { term: "Klik senp", meaning: "Chwazi yon bagay" },
+              { term: "Doub klik", meaning: "Louvri yon fichye/aplikasyon" },
+              { term: "Right-click", meaning: "Louvri yon meni ak plis opsyon" },
+            ],
+            explanation:
+              "Klik senp chwazi, doub klik louvri, right-click bay plis opsyon.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l2",
+    slug: "kat-klavye-a",
+    moduleId: "m3",
+    order: 2,
+    titleHt: "Kat Klavye a",
+    titleEn: "Keyboard Map",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rekonèt zòn prensipal klavye a: lèt, chif, Espas, Enter",
+      "Rekonèt Shift, Caps Lock, Tab, flèch, ak tous modifikatè",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt tous prensipal klavye a epi eksplike wòl chak grenn.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Klavye a gen plizyè zòn: **lèt ak chif** pou tape, **Espas** pou separe mo, **Enter/Return** pou konfime oswa kòmanse yon nouvo liy, **Backspace/Delete** pou efase, **Shift** pou lèt majiskil oswa senbòl, **Caps Lock** pou kenbe tout lèt majiskil, **Tab** pou deplase ant chan (fields), **flèch** yo pou deplase kursè a, ak **tous modifikatè** (Ctrl/Cmd, Alt/Option) ki travay ansanm ak lòt tous pou rakousi.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Tous Modifikatè (Modifier Key)",
+            definition: "Yon tous (Ctrl, Cmd, Alt, Shift) ki chanje sa yon lòt tous fè lè ou peze yo ansanm.",
+            example: "Ctrl+C (oswa Cmd+C) se yon rakousi ki itilize yon tous modifikatè.",
+          },
+          {
+            term: "Tab",
+            definition: "Tous ki deplase kursè a bay pwochen chan nan yon fòm.",
+            example: "Peze Tab pou deplase soti nan chan 'Non' pou al nan chan 'Adrès'.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Kite Caps Lock aktive pa aksidan epi tape tout mesaj an majiskil.",
+          right: "Verifye limyè Caps Lock la (oswa senbòl ki parèt sou ekran) anvan ou tape yon mesaj enpòtan.",
+          why: "Ekri tout an majiskil ka sanble ou ap rele nan kominikasyon dijital.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain what modifier keys (Ctrl, Cmd, Alt, Shift) are used for on a keyboard?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konnen klavye ou pi byen anvan ou kòmanse tape long tèks.",
+          objective: "Idantifye Shift, Caps Lock, Tab, ak tous modifikatè yo sou pwòp klavye ou.",
+          requiredSteps: [
+            "Gade klavye ou epi lokalize Shift, Caps Lock, ak Tab",
+            "Lokalize tous Ctrl/Cmd ak Alt/Option",
+          ],
+          successCriteria: [
+            "Ou ka montre chak tous san chèche twò lontan",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki tous ou peze pou deplase ant chan nan yon fòm?",
+            options: ["Shift", "Tab", "Caps Lock", "Espas"],
+            correctIndex: 1,
+            explanation: "Tab deplase kursè a bay pwochen chan nan yon fòm.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l3",
+    slug: "chwazi-ak-modifye-teks",
+    moduleId: "m3",
+    order: 3,
+    titleHt: "Chwazi ak Modifye Teks",
+    titleEn: "Selecting and Editing Text",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Chwazi yon pòsyon tèks",
+      "Distenge Backspace de Delete",
+      "Itilize Undo pou anile yon erè",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chwazi tèks, modifye l, epi anile yon erè ak konfyans.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Kursè** a se ti liy ki klipe (blinking) ki montre kote pwochen lèt ap parèt. Pou **chwazi** tèks, klike epi rale sou tèks la, oswa doub klike sou yon sèl mo. **Backspace** efase karaktè agoch kursè a; **Delete** efase karaktè adwat li. Ou ka **ranplase** tèks chwazi a lè ou tape nouvo tèks dirèkteman sou li. **Undo** (Ctrl+Z oswa Cmd+Z) anile dènye aksyon ou fè — youn nan zouti ki pi itil pou konfyans.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Kursè Tèks (Text Cursor)",
+            definition: "Ti liy klipe ki montre kote pwochen karaktè ap parèt.",
+            example: "Klike nan mitan yon fraz pou deplase kursè a la.",
+          },
+          {
+            term: "Undo",
+            definition: "Kòmand ki anile dènye aksyon ou fè.",
+            example: "Peze Ctrl+Z (oswa Cmd+Z) si ou efase yon bagay pa erè.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Konfonn Backspace ak Delete epi efase mo ki nan move direksyon.",
+          right: "Sonje: Backspace efase agoch kursè a, Delete efase adwat li.",
+          why: "Konfonn yo ka fè w efase pati tèks ou pa t vle efase.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain the difference between Backspace and Delete, and give me a simple way to remember which is which?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle pratike modifye tèks san pè fè erè.",
+          objective: "Tape yon fraz, chwazi yon mo, ranplase l, epi itilize Undo pou tounen dèyè.",
+          requiredSteps: [
+            "Tape yon fraz kout nan nenpòt aplikasyon tèks",
+            "Chwazi yon mo epi ranplase l ak yon lòt",
+            "Peze Ctrl+Z (oswa Cmd+Z) pou anile chanjman an",
+          ],
+          successCriteria: [
+            "Fraz la retounen nan orijinal li apre Undo",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou efase yon paragraf antye pa aksidan. Ki premye aksyon ou ta dwe fè?",
+            options: [
+              "Tape paragraf la ankò de memwa",
+              "Peze Ctrl+Z (oswa Cmd+Z) imedyatman",
+              "Fèmen dokiman an san sovgade",
+              "Rele yon teknisyen",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Undo (Ctrl+Z/Cmd+Z) souvan ka restore travay ou pèdi pa aksidan imedyatman.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l4",
+    slug: "tape-aksan-kreyol-ak-franse",
+    moduleId: "m3",
+    order: 4,
+    titleHt: "Tape Aksan Kreyòl ak Franse",
+    titleEn: "Typing Haitian Creole and French Accents",
+    estimatedMinutes: 10,
+    mode: "shared_steps",
+    objectives: [
+      "Aktive yon klavye ki gen aksan (Kreyòl/Franse)",
+      "Tape é, è, à, ò, ù, ak ç",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka aktive yon klavye ki gen aksan epi tape é, è, à, ò, ù, ak ç san frustrasyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anpil klavye Ozetazini pa gen tous dirèk pou aksan Kreyòl/Franse yo. Ou dwe **ajoute yon klavye** (tankou 'French' oswa 'Haitian Creole' si li disponib) nan paramèt lang aparèy ou, epi **chanje ant klavye yo** lè ou bezwen. Yon fwa ou fè sa, konbinezon tous espesyal fè posib pou ou tape é, è, à, ò, ù, ak ç.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Klavye Lang (Keyboard Layout)",
+            definition: "Yon konfigirasyon klavye ki fè posib pou tape karaktè espesyal yon lang.",
+            example: "Ajoute klavye 'French' pou jwenn aksè fasil a aksan yo.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Ale nan Settings > Time & Language > Language & Region",
+            "Ajoute 'French' (oswa lang ki gen aksan ou bezwen)",
+            "Klike ikòn lang nan taskbar la pou chanje ant klavye yo",
+          ],
+          mac: [
+            "Ale nan System Settings > Keyboard > Input Sources",
+            "Klike '+' epi ajoute 'French'",
+            "Klike ikòn drapo/lang nan menu bar a pou chanje ant klavye yo",
+          ],
+          recoveryNote:
+            "Si aksan yo pa parèt kòrèkteman apre ou chanje klavye a, verifye ou chwazi bon klavye a nan meni chanjman rapid la.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kopye-kole aksan yo soti nan yon lòt sit chak fwa ou bezwen yo.",
+          right: "Konfigire yon klavye ki gen aksan yon sèl fwa pou tape yo dirèkteman.",
+          why: "Kopye-kole chak fwa pèdi anpil tan konpare ak konfigire klavye a yon sèl fwa.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you walk me through adding a French keyboard so I can type accented characters like é, è, and ò?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle ekri yon mesaj an Kreyòl ak aksan kòrèk.",
+          objective: "Aktive yon klavye ki gen aksan epi tape yon ti fraz Kreyòl ak omwen de aksan.",
+          requiredSteps: [
+            "Ajoute yon klavye ki gen aksan nan paramèt aparèy ou",
+            "Tape yon fraz tankou 'Mwen renmen aprann bagay nouvo' ak aksan kòrèk",
+          ],
+          successCriteria: [
+            "Fraz ou tape a gen omwen de aksan kòrèk (é, è, oswa ò)",
+          ],
+          hint: "Sou telefòn, kenbe tous la anfonse pou wè opsyon aksan yo parèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa ou dwe fè anvan ou ka tape aksan Kreyòl/Franse fasil?",
+            options: [
+              "Achte yon nouvo klavye fizik",
+              "Ajoute yon klavye lang nan paramèt aparèy ou",
+              "Chanje sistèm operasyon an nèt",
+              "Pa gen anyen pou fè",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Ajoute yon klavye lang (tankou French) nan paramèt aparèy ou bay aksè a aksan yo san bezwen nouvo materyèl.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
     id: "m3-l-windows",
     slug: "biwo-windows-la",
     moduleId: "m3",
-    order: 1,
+    order: 5,
     titleHt: "Biwo Windows la",
     titleEn: "The Windows Desktop",
-    estimatedMinutes: 9,
+    estimatedMinutes: 10,
     mode: "platform_variant",
     objectives: [
       "Rekonèt Desktop, taskbar, ak Start menu sou Windows",
+      "Rekonèt system tray a ak notifikasyon yo",
       "Louvri yon aplikasyon soti nan Start menu a",
     ],
     reviewStatus: "approved",
@@ -1832,12 +2273,12 @@ export const computerRebuildLessons: CourseLesson[] = [
         id: "b1",
         type: "goal",
         outcome:
-          "Apre leson sa a, ou ka jwenn Desktop, taskbar, ak Start menu sou yon òdinatè Windows, epi louvri yon aplikasyon.",
+          "Apre leson sa a, ou ka jwenn Desktop, taskbar, Start menu, ak system tray sou yon òdinatè Windows, epi louvri yon aplikasyon.",
       },
       {
         id: "b2",
         type: "explanation",
-        text: "**Desktop** la se premye ekran ou wè lè òdinatè a fin limen — tankou tab travay ou. **Taskbar** la se ba ki rete toujou nan pati anba ekran an, ak **Start menu** a (bouton Windows nan kwen agoch anba a) se kote ou jwenn tout pwogram ou enstale sou òdinatè a.",
+        text: "**Desktop** la se premye ekran ou wè lè òdinatè a fin limen — tankou tab travay ou. **Taskbar** la se ba ki rete toujou nan pati anba ekran an, ak **Start menu** a (bouton Windows nan kwen agoch anba a) se kote ou jwenn tout pwogram ou enstale sou òdinatè a. Nan kwen anba dwat taskbar la, **system tray** a montre ti ikòn pou Wi-Fi, volim, ak lè — se la **notifikasyon** yo parèt tou. Ou ka **pinen** (pin) yon aplikasyon nan taskbar la pou jwenn li pi vit pwochen fwa.",
       },
       {
         id: "b3",
@@ -1852,6 +2293,16 @@ export const computerRebuildLessons: CourseLesson[] = [
             term: "Start Menu",
             definition: "Meni ou louvri pou jwenn tout pwogram ki enstale sou òdinatè a.",
             example: "Klike bouton Windows nan kwen agoch anba a pou louvri Start menu.",
+          },
+          {
+            term: "System Tray",
+            definition: "Ti zòn nan kwen anba dwat taskbar la ak ikòn Wi-Fi, volim, ak lè.",
+            example: "Klike ikòn Wi-Fi la nan system tray a pou wè rezo ki disponib.",
+          },
+          {
+            term: "Pinen (Pin)",
+            definition: "Kenbe yon aplikasyon vizib nan taskbar la pou jwenn li pi vit.",
+            example: "Pinen aplikasyon ou itilize chak jou pou pa bezwen chèche l chak fwa.",
           },
         ],
       },
@@ -1925,13 +2376,13 @@ export const computerRebuildLessons: CourseLesson[] = [
     id: "m3-l-mac",
     slug: "biwo-mac-la",
     moduleId: "m3",
-    order: 2,
+    order: 6,
     titleHt: "Biwo Mac la",
     titleEn: "The Mac Desktop",
-    estimatedMinutes: 9,
+    estimatedMinutes: 10,
     mode: "platform_variant",
     objectives: [
-      "Rekonèt Desktop, menu bar, ak Dock sou Mac",
+      "Rekonèt Desktop, menu bar, Apple menu, Dock, ak Control Center sou Mac",
       "Louvri yon aplikasyon soti nan Dock la",
     ],
     reviewStatus: "approved",
@@ -1940,12 +2391,12 @@ export const computerRebuildLessons: CourseLesson[] = [
         id: "b1",
         type: "goal",
         outcome:
-          "Apre leson sa a, ou ka jwenn Desktop, menu bar, ak Dock sou yon òdinatè Mac, epi louvri yon aplikasyon.",
+          "Apre leson sa a, ou ka jwenn Desktop, menu bar, Apple menu, Dock, ak Control Center sou yon òdinatè Mac, epi louvri yon aplikasyon.",
       },
       {
         id: "b2",
         type: "explanation",
-        text: "**Desktop** la se premye ekran ou wè lè òdinatè a fin limen. **Menu bar** a se ti ba fen ki rete toujou nan tèt ekran an, kèlkeswa sa ki louvri. **Dock** la se ranje ikòn ki rete anba (oswa sou kote) ekran an, kote ou jwenn aplikasyon ou itilize souvan.",
+        text: "**Desktop** la se premye ekran ou wè lè òdinatè a fin limen. **Menu bar** a se ti ba fen ki rete toujou nan tèt ekran an, kèlkeswa sa ki louvri — nan kwen agoch li, **Apple menu** a (ti ikòn pòm nan) bay aksè a paramèt sistèm ak opsyon etenn/rebooté. **Dock** la se ranje ikòn ki rete anba (oswa sou kote) ekran an, kote ou jwenn aplikasyon ou itilize souvan. Nan kwen anwo dwat, **Control Center** a bay aksè rapid a Wi-Fi, volim, ak notifikasyon.",
       },
       {
         id: "b3",
@@ -1957,9 +2408,19 @@ export const computerRebuildLessons: CourseLesson[] = [
             example: "Menu bar a toujou montre 'File, Edit, View' pou aplikasyon ki aktif la.",
           },
           {
+            term: "Apple Menu",
+            definition: "Ti ikòn pòm nan kwen agoch anwo ki bay aksè a paramèt sistèm ak opsyon etenn.",
+            example: "Klike Apple menu a pou jwenn 'Restart' oswa 'Shut Down'.",
+          },
+          {
             term: "Dock",
             definition: "Ranje ikòn ki rete anba ekran an pou louvri aplikasyon rapid.",
             example: "Klike yon fwa sou ikòn nan Dock la pou louvri aplikasyon an.",
+          },
+          {
+            term: "Control Center",
+            definition: "Meni rapid nan kwen anwo dwat pou Wi-Fi, volim, ak notifikasyon.",
+            example: "Klike Control Center a pou ajiste volim san louvri Settings.",
           },
         ],
       },
@@ -2031,6 +2492,904 @@ export const computerRebuildLessons: CourseLesson[] = [
           { statement: "Mwen ka fè sa poukont mwen." },
           { statement: "Mwen ka fè l si yon moun raple m." },
           { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l7",
+    slug: "louvri-chanje-feme-fennet",
+    moduleId: "m3",
+    order: 7,
+    titleHt: "Louvri, Chanje, Minimize, Maximize, ak Fèmen",
+    titleEn: "Open, Switch, Minimize, Maximize, and Close",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Minimize, maximize, ak fèmen yon fennèt",
+      "Distenge fèmen yon fennèt de kite yon aplikasyon",
+      "Chanje ant aplikasyon ak Alt+Tab (Windows) oswa Cmd+Tab (Mac)",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka jere fennèt (minimize, maximize, fèmen) epi chanje ant aplikasyon rapid.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Minimize** kache fennèt la san fèmen l (li rete louvri, ou ka retounen nan li). **Maximize** fè fennèt la ranpli tout ekran an. **Fèmen** yon fennèt pa toujou vle di **kite** (quit) yon aplikasyon — sitou sou Mac, aplikasyon an ka rete aktif menm apre fennèt li fèmen. Ou ka **chanje** rapid ant aplikasyon ki louvri ak yon rakousi klavye.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Minimize",
+            definition: "Kache yon fennèt san fèmen aplikasyon an — li rete aktif.",
+            example: "Minimize fennèt la pou wè Desktop la san fèmen aplikasyon an.",
+          },
+          {
+            term: "Kite (Quit)",
+            definition: "Fèmen yon aplikasyon konplètman, pa sèlman fennèt li.",
+            example: "Kite yon aplikasyon lib memwa RAM pou lòt travay.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Peze Alt+Tab pou chanje ant aplikasyon ki louvri",
+            "Klike bouton '_' pou minimize, bouton kare pou maximize, X pou fèmen",
+          ],
+          mac: [
+            "Peze Cmd+Tab pou chanje ant aplikasyon ki louvri",
+            "Klike bouton jòn pou minimize, vèt pou maximize, wouj pou fèmen fennèt (aplikasyon ka rete aktif)",
+          ],
+          recoveryNote:
+            "Si ou pa ka jwenn yon aplikasyon ou panse ou fèmen, li ka toujou aktif — chèche l nan taskbar/Dock la.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse fèmen fennèt yon aplikasyon toujou vle di li kite nèt.",
+          right: "Sonje sou Mac sitou, fèmen fennèt la pa toujou kite aplikasyon an — verifye Dock la.",
+          why: "Sa ka fè w panse yon aplikasyon fèmen alòske li toujou ap itilize RAM an background.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the difference between closing a window and quitting an application, and how do I fully quit an app?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou ap travay ak de aplikasyon an menm tan epi bezwen chanje ant yo.",
+          objective: "Louvri de aplikasyon, chanje ant yo ak rakousi klavye, epi minimize youn.",
+          requiredSteps: [
+            "Louvri de aplikasyon diferan",
+            "Itilize Alt+Tab (oswa Cmd+Tab) pou chanje ant yo",
+            "Minimize youn nan yo",
+          ],
+          successCriteria: [
+            "Ou chanje ant de aplikasyon san itilize souri a",
+          ],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Sou Mac, kisa ki ka rive apre ou fèmen fennèt yon aplikasyon ak bouton wouj la?",
+            options: [
+              "Aplikasyon an kite nèt otomatikman",
+              "Aplikasyon an ka rete aktif an background",
+              "Òdinatè a etenn",
+              "Tout lòt aplikasyon fèmen tou",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Sou Mac, bouton wouj la fèmen fennèt la sèlman — aplikasyon an ka rete aktif jiskaske ou kite l konplètman.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l8",
+    slug: "meni-bouton-ak-bwat-dyalog",
+    moduleId: "m3",
+    order: 8,
+    titleHt: "Meni, Bouton, Checkbox, Lis, ak Bwat Dyalòg",
+    titleEn: "Menus, Buttons, Checkboxes, Lists, and Dialogs",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Rekonèt kontwòl entèfas komen: bouton, checkbox, dropdown, dyalòg",
+      "Konprann yon kontwòl grize (disabled)",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt kontwòl entèfas komen yo epi konprann kisa yo fè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Prèske tout aplikasyon itilize menm kontwòl debaz yo: **bouton** ou klike pou fè yon aksyon, **checkbox** ou koche oswa dekoche, **lis dewoulan** (dropdown) ou klike pou wè plizyè chwa, ak **bwat dyalòg** (dialog) ki parèt pou konfime yon aksyon oswa mande enfòmasyon. Yon kontwòl **grize** (disabled, koulè pal) vle di ou pa ka klike sou li kounye a — souvan paske yon lòt bagay dwe fèt anvan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Bwat Dyalòg (Dialog)",
+            definition: "Yon ti fennèt ki parèt pou konfime yon aksyon oswa mande enfòmasyon.",
+            example: "Yon bwat dyalòg parèt lè ou eseye efase yon fichye, pou konfime ou vle fè sa.",
+          },
+          {
+            term: "Grize (Disabled)",
+            definition: "Yon kontwòl ki pal ak ou pa ka klike sou li kounye a.",
+            example: "Yon bouton 'Voye' ka grize jiskaske ou ranpli tout chan obligatwa yo.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Klike repete sou yon bouton grize panse sa ap fè l travay.",
+          right: "Gade sa ki mank (yon chan vid, yon checkbox ou pa koche) anvan ou eseye ankò.",
+          why: "Yon kontwòl grize la eksprè — li atann yon kondisyon ranpli anvan li aktive.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I see a grayed-out button in an app and I don't understand why I can't click it. What are common reasons a button might be disabled?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle rekonèt kontwòl entèfas yo nan yon aplikasyon ou deja genyen.",
+          objective: "Jwenn yon egzanp bouton, checkbox, ak lis dewoulan nan yon aplikasyon ou itilize.",
+          requiredSteps: [
+            "Louvri yon aplikasyon oswa paramèt aparèy ou",
+            "Idantifye yon bouton, yon checkbox, ak yon lis dewoulan",
+          ],
+          successCriteria: [
+            "Ou ka montre egzanp chak nan twa kontwòl yo",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa yon bouton grize (disabled) vle di?",
+            options: [
+              "Li kraze pou tout tan",
+              "Ou pa ka klike sou li kounye a, souvan paske yon kondisyon poko ranpli",
+              "Li se yon erè nan aplikasyon an",
+              "Li mande yon mizajou",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Yon bouton grize atann yon kondisyon (tankou yon chan ranpli) anvan li vin aktive.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l9",
+    slug: "kopye-koupe-kole-anile-refe",
+    moduleId: "m3",
+    order: 9,
+    titleHt: "Kopye, Koupe, Kole, Anile, ak Refè",
+    titleEn: "Copy, Cut, Paste, Undo, and Redo",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Kopye ak kole tèks oswa fichye",
+      "Konprann poukisa Koupe pi riske pase Kopye pou yon debitan",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka kopye, koupe, kole, anile, ak refè ak konfyans, ak klavye oswa meni.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Clipboard** la se yon 'panyen' tanporè ki kenbe dènye bagay ou kopye oswa koupe. **Kopye** kenbe orijinal la, ajoute yon dupliya nan clipboard. **Koupe** retire bagay la kite kite li nan orijinal la, kenbe l nan clipboard sèlman. **Kole** mete sa ki nan clipboard la kote kursè ou ye. **Anile** (Undo) tounen dèyè yon aksyon; **Refè** (Redo) fè l ankò si ou anile pa erè.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Clipboard",
+            definition: "Panyen tanporè ki kenbe dènye bagay ou kopye oswa koupe.",
+            example: "Sa ki nan clipboard la disparèt lè ou kopye yon lòt bagay.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: ["Ctrl+C pou kopye", "Ctrl+X pou koupe", "Ctrl+V pou kole", "Ctrl+Z pou anile, Ctrl+Y pou refè"],
+          mac: ["Cmd+C pou kopye", "Cmd+X pou koupe", "Cmd+V pou kole", "Cmd+Z pou anile, Cmd+Shift+Z pou refè"],
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Itilize Koupe (Cut) lè ou pa sèten kote ou pral kole, pandan ou toujou nan aprann.",
+          right: "Itilize Kopye pito lè ou pa sèten — orijinal la rete si yon bagay mal pase.",
+          why: "Si ou koupe epi ou pa reyisi kole, ou ka pèdi bagay la nèt pou tanporè — kopye pi an sekirite pou yon debitan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Why is 'Cut' considered riskier than 'Copy' for beginners? Can you explain with an example?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle deplase yon moso tèks soti nan yon kote pou al nan yon lòt.",
+          objective: "Kopye yon fraz epi kole l yon lòt kote, apre sa eseye Koupe ak Kole yon lòt fraz.",
+          requiredSteps: [
+            "Chwazi yon fraz, kopye l (Ctrl+C/Cmd+C), epi kole l yon lòt kote",
+            "Chwazi yon lòt fraz, koupe l (Ctrl+X/Cmd+X), epi kole l",
+          ],
+          successCriteria: [
+            "Toude operasyon reyisi san ou pa pèdi tèks",
+          ],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt:
+              "Ou pa sèten ki kote ou pral kole yon moso tèks enpòtan. Ki chwa ki pi an sekirite?",
+            options: ["Koupe l imedyatman", "Kopye l pito", "Efase l epi tape l ankò", "Pa gen diferans"],
+            correctIndex: 1,
+            explanation:
+              "Kopye kenbe orijinal la an sekirite — si kole a echwe, ou pa pèdi anyen.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l10",
+    slug: "rale-lage-san-pedi-anyen",
+    moduleId: "m3",
+    order: 10,
+    titleHt: "Rale ak Lage San Pèdi Anyen",
+    titleEn: "Drag and Drop Without Losing Things",
+    estimatedMinutes: 7,
+    mode: "universal",
+    objectives: [
+      "Deplase yon fichye ak rale-lage",
+      "Distenge deplase de kopye pandan yon rale-lage",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rale-lage yon fichye an sekirite san w pa pèdi kote li te ye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Rale-lage** (drag and drop) se kenbe klik la anfonse sou yon bagay epi deplase souri a pou pote l yon lòt kote anvan ou lage klik la. Pa default, sa **deplase** fichye a — men sou kèk sistèm, kenbe yon tous modifikatè pandan ou rale ka **kopye** l pito. Toujou gade **destinasyon vizyèl la** (dosye a klere) anvan ou lage, epi sonje ou ka toujou anile ak Ctrl+Z/Cmd+Z si ou fè yon erè.",
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Rale yon fichye san gade kote li ap ateri, kite l tonbe nan move dosye.",
+          right: "Gade destinasyon vizyèl la klere anvan ou lage klik la.",
+          why: "Yon fichye ki tonbe nan move dosye ka difisil pou jwenn ankò si ou pa sonje kote ou te rale l.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! When I drag and drop a file, how can I tell if it will be moved or copied? Is there a way to control this?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle deplase yon fichye tès nan yon lòt dosye san estrès.",
+          objective: "Rale yon fichye soti nan yon dosye pou al nan yon lòt.",
+          requiredSteps: [
+            "Chwazi yon fichye tès ou ka deplase san danje",
+            "Rale l sou yon dosye destinasyon epi lage l",
+          ],
+          successCriteria: [
+            "Fichye a rive nan bon dosye a",
+          ],
+          hint: "Si ou fè yon erè, Ctrl+Z (oswa Cmd+Z) souvan ka anile deplasman an.",
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa ki pi bon abitid anvan ou lage yon fichye pandan yon rale-lage?",
+            options: [
+              "Lage l kèlkeswa kote souri a ye",
+              "Gade destinasyon vizyèl la klere anvan ou lage",
+              "Fèmen je ou",
+              "Rale l pi vit posib",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Verifye destinasyon an klere anvan ou lage evite pèdi fichye nan move dosye.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l11",
+    slug: "cheche-aplikasyon-ak-paramet",
+    moduleId: "m3",
+    order: 11,
+    titleHt: "Chèche Aplikasyon ak Paramèt",
+    titleEn: "Search for Applications and Settings",
+    estimatedMinutes: 7,
+    mode: "shared_steps",
+    objectives: [
+      "Itilize rechèch pou jwenn yon aplikasyon oswa yon paramèt",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka itilize rechèch pou jwenn yon aplikasyon oswa yon paramèt san bezwen navige manyèlman.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Olye de eseye sonje EGZAKTEMAN kote yon bouton ye sou ekran an, **chèche pa objektif** — tape sa ou vle fè (tankou 'volim' oswa 'Wi-Fi') epi kite rechèch la jwenn li pou ou. Sa pi rapid e pi fyab pase eseye sonje pozisyon egzat yon bagay.",
+      },
+      {
+        id: "b3",
+        type: "platform_steps",
+        steps: {
+          windows: ["Klike ikòn rechèch la nan taskbar la (oswa peze tous Windows)", "Tape sa ou chèche"],
+          mac: ["Peze Cmd+Espas pou louvri Spotlight", "Tape sa ou chèche"],
+        },
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Navige manyèlman nan plizyè meni paramèt pou chèche yon bagay espesifik.",
+          right: "Tape sa ou chèche nan rechèch la premye bagay.",
+          why: "Rechèch la fèt egzakteman pou sitiyasyon sa a — li pi rapid pase navige manyèlman.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain how to use search to quickly find a setting or app instead of navigating through menus?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle chanje volim ou san chèche manyèlman nan meni yo.",
+          objective: "Itilize rechèch pou jwenn paramèt volim (oswa yon lòt paramèt) rapid.",
+          requiredSteps: [
+            "Louvri rechèch la (Windows Search oswa Spotlight)",
+            "Tape 'volim' oswa 'sound'",
+          ],
+          successCriteria: [
+            "Rezilta rechèch la mennen w dirèkteman nan paramèt la",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki rakousi louvri Spotlight sou Mac?",
+            options: ["Ctrl+F", "Cmd+Espas", "Alt+Tab", "Cmd+Z"],
+            correctIndex: 1,
+            explanation: "Cmd+Espas louvri Spotlight sou Mac.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l12",
+    slug: "paramet-ou-dwe-konnen",
+    moduleId: "m3",
+    order: 12,
+    titleHt: "Paramèt Ou Dwe Konnen",
+    titleEn: "Settings You Should Know",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rekonèt paramèt debaz: brightness, volim, Wi-Fi, Bluetooth, lang, gwosè tèks",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka jwenn ak ajiste paramèt debaz ki pi itil chak jou yo.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kèk paramèt ou pral bezwen souvan: **brightness** (klète ekran), **volim**, **Wi-Fi**, **Bluetooth**, **lang**, **gwosè tèks**, **fon ekran** (wallpaper), **tan avan vewouye** (lock timeout), ak **dat/lè**. Tout sa yo jwenn nan aplikasyon Settings/System Preferences aparèy ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Lock Timeout",
+            definition: "Konbyen tan aparèy la tann anvan li vewouye tèt li otomatikman.",
+            example: "Mete lock timeout kout pou plis sekirite sou yon aparèy pataje.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Chanje yon paramèt san sonje valè orijinal li, nan ka ou vle tounen dèyè.",
+          right: "Sonje (oswa note) valè orijinal la anvan ou fè gwo chanjman.",
+          why: "Sa fè w ka toujou tounen nan orijinal la si nouvo paramèt la pa fè w kontan.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you give me a list of the most useful settings a beginner should know how to find on their computer?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle santi w konfòtab navige nan Settings san pè.",
+          objective: "Chanje yon paramèt san danje (tankou wallpaper) epi tounen l nan orijinal li si ou vle.",
+          requiredSteps: [
+            "Louvri Settings/System Preferences",
+            "Chanje yon paramèt san danje (wallpaper, gwosè tèks, elatriye)",
+            "Si ou vle, tounen l nan orijinal li",
+          ],
+          successCriteria: [
+            "Ou fè chanjman an san estrès",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki nan sa yo ki se paramèt debaz ou ta jwenn nan Settings?",
+            options: ["Brightness", "Volim", "Non fichye yon dokiman espesifik", "Wi-Fi"],
+            correctIndexes: [0, 1, 3],
+            explanation:
+              "Brightness, volim, ak Wi-Fi se paramèt aparèy debaz — non yon fichye espesifik pa yon paramèt sistèm.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l13",
+    slug: "screenshot-ak-anrejistreman-ekran",
+    moduleId: "m3",
+    order: 13,
+    titleHt: "Screenshot ak Anrejistreman Ekran",
+    titleEn: "Screenshots and Basic Screen Recording",
+    estimatedMinutes: 8,
+    mode: "shared_steps",
+    objectives: [
+      "Pran yon screenshot sou Windows ak Mac",
+      "Konnen kote screenshot yo sovgade",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka pran yon screenshot, jwenn kote li sovgade, epi konnen sa pou verifye anvan ou pataje l.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **screenshot** kaptire tou sa ki sou ekran ou nan yon moman presi, tankou yon foto. Se itil pou montre yon moun yon pwoblèm oswa sovgade enfòmasyon. **Anvan ou pataje** yon screenshot, toujou verifye li pa montre enfòmasyon pèsonèl (modpas, nimewo kont, elatriye) san w pa fè espre.",
+      },
+      {
+        id: "b3",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Peze Windows+Shift+S pou chwazi yon zòn epi kaptire l",
+            "Screenshot la kopye nan clipboard — kole l (Ctrl+V) nan yon dokiman si ou vle sovgade l",
+          ],
+          mac: [
+            "Peze Cmd+Shift+4 pou chwazi yon zòn epi kaptire l",
+            "Screenshot la sovgade otomatikman sou Desktop la",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Verifye screenshot la pa montre modpas, kòd verifikasyon, oswa enfòmasyon labank anvan ou pataje l",
+        ],
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain how to take a screenshot on Windows or Mac, and where the file gets saved?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen montre yon moun sa ki sou ekran ou.",
+          objective: "Pran yon screenshot, jwenn kote li sovgade, epi verifye li anvan ou pataje l.",
+          requiredSteps: [
+            "Pran yon screenshot ak rakousi platfòm ou",
+            "Jwenn fichye a (Desktop pou Mac, clipboard/Screenshots pou Windows)",
+            "Verifye li pa montre enfòmasyon sansib",
+          ],
+          successCriteria: [
+            "Ou jwenn screenshot la epi konfime li san enfòmasyon sansib",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Kisa ou dwe toujou fè anvan ou pataje yon screenshot?",
+            options: [
+              "Anyen, pataje l imedyatman",
+              "Verifye li pa montre enfòmasyon sansib",
+              "Efase l",
+              "Chanje koulè li",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Verifye enfòmasyon sansib anvan pataje evite ekspoze modpas oswa done pèsonèl pa aksidan.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-l14",
+    slug: "aksesibilite-ak-konfo",
+    moduleId: "m3",
+    order: 14,
+    titleHt: "Aksesibilite ak Konfò",
+    titleEn: "Accessibility and Comfort",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Rekonèt fonksyon aksesibilite debaz: gwosè tèks, zoom, magnifier, kontras",
+      "Konnen abitid ergonomik debaz",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka jwenn fonksyon aksesibilite ki ka fè aparèy ou pi konfòtab pou itilize.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anpil aparèy gen fonksyon aksesibilite ki itil pou nenpòt moun, pa sèlman moun ki gen bezwen espesifik: **gwosè tèks** pi gwo, **zoom** pou agrandi kontni, **magnifier** (loup) pou agrandi zòn espesifik, **kontras** pi wo pou li pi fasil, ak **soutit** (captions) pou videyo. Genyen tou **lekti ekran** (screen reader) pou moun ki gen difikilte wè. Pou konfò, sonje pran **poz regilyèman** epi ajiste pozisyon ekran ou pou evite doulè nan kou/do.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Magnifier (Loup)",
+            definition: "Zouti ki agrandi yon zòn espesifik ekran an.",
+            example: "Itilize magnifier pou li yon ti tèks pi fasil.",
+          },
+          {
+            term: "Lekti Ekran (Screen Reader)",
+            definition: "Zouti ki li kontni ekran an awotvwa pou moun ki gen difikilte wè.",
+            example: "Screen reader ede yon moun navige san bezwen wè ekran an dirèkteman.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse fonksyon aksesibilite yo se sèlman pou moun ki gen andikap.",
+          right: "Konprann tout moun ka benefisye de yo — tèks pi gwo, plis kontras, elatriye.",
+          why: "Anpil moun (sitou granmoun) jwenn aparèy pi konfòtab lè yo ajiste sa yo, menm san yo pa gen okenn andikap.",
+        },
+      },
+      {
+        id: "b5",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain what accessibility features are available on Windows or Mac that could help make my screen easier to read?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle jwenn si gen yon fonksyon aksesibilite ki ta fè aparèy ou pi konfòtab pou ou.",
+          objective: "Eksplore paramèt Aksesibilite aparèy ou epi eseye yon fonksyon (tankou gwosè tèks).",
+          requiredSteps: [
+            "Ale nan Settings > Accessibility (oswa Ease of Access sou Windows)",
+            "Eseye yon fonksyon tankou gwosè tèks oswa kontras",
+          ],
+          successCriteria: [
+            "Ou jwenn omwen twa fonksyon aksesibilite diferan ki disponib",
+          ],
+        },
+      },
+      {
+        id: "b7",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt:
+              "Yon granmoun di w tèks sou telefòn li twò piti pou li. Ki solisyon ki pi bon?",
+            options: [
+              "Di yo achte yon nouvo telefòn",
+              "Montre yo kijan pou ogmante gwosè tèks nan Accessibility",
+              "Di yo pa gen solisyon",
+              "Chanje sistèm operasyon an",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Ogmante gwosè tèks nan paramèt Aksesibilite se yon solisyon rapid ak gratis.",
+          },
+        ],
+      },
+      {
+        id: "b8",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m3-mission",
+    slug: "misyon-fe-odinate-a-pou-ou",
+    moduleId: "m3",
+    order: 15,
+    titleHt: "Misyon: Fè Òdinatè a Pou Ou",
+    titleEn: "Module Mission: Make the Computer Yours",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 3 nan yon sesyon konfyan sou pwòp aparèy ou",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka chanje yon paramèt, tape ak aksan, kopye-kole, pran yon screenshot, ak chanje ant aplikasyon — tout nan yon sèl sesyon konfyan.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 3 la. Ou pral konbine tout sa ou aprann — souri/trackpad, klavye, tèks, aksan, Desktop, fennèt, meni, kopye-kole, rale-lage, rechèch, paramèt, screenshot, ak aksesibilite — nan yon sèl sesyon reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral demontre konfyans total ou sou pwòp òdinatè ou nan yon sèl sesyon.",
+          objective:
+            "Chanje yon paramèt afichaj san danje, tape yon paragraf kout an Kreyòl ak aksan, kopye-kole tèks, pran yon screenshot, chanje ant de aplikasyon, epi restore paramèt orijinal la si ou vle.",
+          requiredSteps: [
+            "Chanje yon paramèt afichaj san danje (tankou wallpaper oswa gwosè tèks)",
+            "Tape yon ti paragraf an Kreyòl ak omwen de aksan",
+            "Kopye yon fraz epi kole l yon lòt kote",
+            "Pran yon screenshot",
+            "Chanje ant de aplikasyon ak Alt+Tab/Cmd+Tab",
+            "Si ou vle, restore paramèt orijinal ou te chanje a",
+          ],
+          successCriteria: [
+            "Ou konplete tout sis aksyon yo san bezwen èd pou pi fò nan yo",
+            "Ou santi w plis alèz ak Desktop ou pase lè ou te kòmanse Modil 3",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak rakousi klavye ak aksyon li fè.",
+            pairs: [
+              { term: "Ctrl+C / Cmd+C", meaning: "Kopye" },
+              { term: "Ctrl+V / Cmd+V", meaning: "Kole" },
+              { term: "Ctrl+Z / Cmd+Z", meaning: "Anile" },
+            ],
+            explanation:
+              "Sa yo se twa rakousi klavye ki pi itil ou pral itilize chak jou.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou òdinatè mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 4." },
         ],
       },
     ],
