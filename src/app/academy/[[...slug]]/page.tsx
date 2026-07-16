@@ -14,6 +14,7 @@ import { ComputerCoursePage } from "@/components/academy/computer-course-page";
 import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
 import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
+import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishFinalExam } from "@/components/academy/english-final-exam";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
@@ -34,6 +35,7 @@ import {
   computerRebuildLessons,
   getComputerRebuildLesson,
 } from "@/content/computer-rebuild/lessons";
+import { getComputerRebuildReadinessReflection } from "@/content/computer-rebuild/readiness-reflection";
 import { courses, launchingFirstCourses } from "@/content/courses";
 import { titleFromSlug } from "@/lib/format";
 
@@ -407,6 +409,15 @@ export default async function AcademyPage({
       return (
         <ComputerCheckpointPlayer
           checkpoint={checkpoint}
+          allLessons={computerRebuildLessons}
+        />
+      );
+    }
+    const readinessReflection = getComputerRebuildReadinessReflection(slug[3]);
+    if (readinessReflection) {
+      return (
+        <ComputerReadinessReflectionPlayer
+          reflection={readinessReflection}
           allLessons={computerRebuildLessons}
         />
       );

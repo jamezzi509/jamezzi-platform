@@ -13,11 +13,13 @@ import {
 } from "@/components/ui/icons";
 import { computerRebuildCheckpoints } from "@/content/computer-rebuild/checkpoints";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
+import { computerRebuildReadinessReflections } from "@/content/computer-rebuild/readiness-reflection";
 import type {
   Checkpoint,
   CourseLesson,
   KnowledgeCheckQuestion,
   LessonBlock,
+  ReadinessReflection,
 } from "@/content/computer-rebuild/schema";
 import {
   useComputerPlatform,
@@ -148,6 +150,12 @@ export function ComputerBlockLessonPlayer({
   const nextCheckpoint = lesson.requiredMission
     ? computerRebuildCheckpoints.find(
         (checkpoint) => checkpoint.afterModuleId === lesson.moduleId,
+      )
+    : undefined;
+
+  const nextReadinessReflection = lesson.requiredMission
+    ? computerRebuildReadinessReflections.find(
+        (reflection) => reflection.afterModuleId === lesson.moduleId,
       )
     : undefined;
 
@@ -304,6 +312,7 @@ export function ComputerBlockLessonPlayer({
             unlocked={unlocked}
             nextLesson={nextLesson}
             nextCheckpoint={nextCheckpoint}
+            nextReadinessReflection={nextReadinessReflection}
           />
         )}
 
@@ -963,11 +972,13 @@ function ReflectPhase({
   unlocked,
   nextLesson,
   nextCheckpoint,
+  nextReadinessReflection,
 }: {
   blocks: LessonBlock[];
   unlocked: boolean;
   nextLesson: CourseLesson | null;
   nextCheckpoint?: Checkpoint;
+  nextReadinessReflection?: ReadinessReflection;
 }) {
   const reflection = blocks.find((b) => b.type === "reflection");
   const [chosen, setChosen] = useState<number | null>(null);
@@ -1047,6 +1058,16 @@ function ReflectPhase({
                   <ArrowRightIcon className="size-4" />
                 </Link>
               )}
+              {nextReadinessReflection && (
+                <Link
+                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextReadinessReflection.id}`}
+                  className="text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                >
+                  <SparklesIcon className="size-4" />
+                  Fè {nextReadinessReflection.titleHt}
+                  <ArrowRightIcon className="size-4" />
+                </Link>
+              )}
               <Link
                 href={
                   nextLesson
@@ -1055,7 +1076,7 @@ function ReflectPhase({
                 }
                 className={cn(
                   "inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold",
-                  nextCheckpoint
+                  nextCheckpoint || nextReadinessReflection
                     ? "text-white/85"
                     : "text-indigo-dark bg-white",
                 )}

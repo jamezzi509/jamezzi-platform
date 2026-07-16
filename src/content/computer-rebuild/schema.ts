@@ -186,6 +186,40 @@ export interface Checkpoint {
   questions: CheckpointQuestion[];
 }
 
+/** One self-rated skill row inside a readiness reflection. */
+export interface CompetencyRating {
+  skillHt: string;
+  skillEn: string;
+}
+
+/** One open-ended prompt inside a readiness reflection, answered in free text. */
+export interface ReflectionQuestion {
+  id: string;
+  promptHt: string;
+}
+
+/**
+ * Confidence Checkpoint 4 — Section 8.4 describes this one as "the capstone
+ * rubric plus final readiness reflection," structurally unlike Checkpoints
+ * 1-3: there is nothing to quiz (no submitted capstone artifact exists to
+ * grade), so this is a self-assessment with no pass/fail, not a scored quiz.
+ * Kept as its own type rather than forced into the Checkpoint shape, which
+ * would otherwise carry a meaningless passingPercent.
+ */
+export interface ReadinessReflection {
+  id: string;
+  order: number;
+  /** The module this reflection follows — used to lock it until prerequisites are complete. */
+  afterModuleId: string;
+  titleHt: string;
+  titleEn: string;
+  intro: string;
+  /** The three-point scale every competency row is rated against, low to high. */
+  scaleLabelsHt: [string, string, string];
+  competencies: CompetencyRating[];
+  openQuestions: ReflectionQuestion[];
+}
+
 export function getPlatformStepsFor(
   steps: PlatformSteps,
   platform: Exclude<Platform, "universal">,
