@@ -77,6 +77,14 @@ describe("Computer & Internet Essentials curriculum", () => {
     expect(moduleNineLessons.at(-1)?.slug).toBe("microsoft-essentials-mission");
   });
 
+  it("Module 10 starts with creating-strong-passwords and ends with its mission", () => {
+    const moduleTenLessons = computerEssentialsLessons.filter(
+      (lesson) => lesson.moduleNumber === 10,
+    );
+    expect(moduleTenLessons[0]?.slug).toBe("creating-strong-passwords");
+    expect(moduleTenLessons.at(-1)?.slug).toBe("internet-safety-mission");
+  });
+
   it("gives screenshots-and-screen-recording steps for all four platforms", () => {
     const lesson = computerPremiumLessons.find(
       (item) => item.slug === "screenshots-and-screen-recording",

@@ -5980,6 +5980,593 @@ export const computerPremiumLessons: ComputerPremiumLesson[] = [
       { emoji: "🎓", text: "Ou fini Modil 9 — Debaz Microsoft!" },
     ],
   },
+  {
+    slug: "creating-strong-passwords",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🔐",
+    heroTitle: "Kreye Modpas Fò",
+    heroLede: "Premye liy defans ou kont move moun sou entènèt.",
+    goal: "🎯 Objektif: kreye modpas ki fò men fasil pou ou sonje.",
+    simpleExplanation:
+      "Yon **modpas fò** melanje lèt majiskil, miniskil, chif, ak senbòl, epi li long (12+ karaktè). Yon bon teknik se konbine 3-4 mo ki pa gen rapò ansanm (tankou 'Zetwal-Kafe-42-Rivyè') — pi long, pi fò, e pi fasil pou sonje pase yon mo konplike ou pa ka retni.",
+    howItWorks: [
+      "Konbine 3-4 mo ki pa gen rapò ansanm pou fè yon fraz long",
+      "Ajoute chif ak senbòl pou fè l pi fò",
+      "Itilize yon modpas diferan pou chak kont enpòtan",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a password strength meter interface with a lock icon, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/creating-strong-passwords.webp`,
+    digitalWords: [
+      {
+        word: "Modpas Fò (Strong Password)",
+        definition: "Yon modpas long ki melanje lèt, chif, ak senbòl.",
+        example: "'Zetwal-Kafe-42-Rivyè' se yon egzanp modpas fò.",
+      },
+      {
+        word: "Fraz Modpas (Passphrase)",
+        definition: "Yon modpas ki fèt ak plizyè mo konbine ansanm.",
+        example: "Yon fraz modpas pi fasil pou sonje pase karaktè o aza.",
+      },
+    ],
+    realLifeExample:
+      "💡 'Ch1en-Bl3-Manje-9h' pi fò e pi fasil pou sonje pase 'X7#kL9$mQ2' — konbinezon mo ki fè sans pou ou bat konplike o aza.",
+    mistakeWrong:
+      "Itilize menm modpas senp la (tankou '123456' oswa non ou) sou tout kont.",
+    mistakeCorrect:
+      "Kreye yon modpas fò diferan pou chak kont enpòtan (imèl, labank, rezo sosyal).",
+    mistakeWhy:
+      "⚠️ Si yon sèl kont ak modpas fèb pirate, e ou itilize menm modpas la toupatou, tout lòt kont ou an danje tou.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w envante yon fraz modpas fò ki gen sans pou ou pèsonèlman.",
+    aiPrompt:
+      "Hi! Can you help me create a strong but memorable passphrase using words that are meaningful to me, without using any real personal information?",
+    mission:
+      "🎯 Misyon: kreye yon nouvo modpas fò pou youn nan kont ou yo, ki diferan de tout lòt modpas ou genyen.",
+    quiz: {
+      prompt: "Kisa ki fè yon modpas fò?",
+      options: [
+        "Non ou ekri alanvè",
+        "Yon fraz long ki melanje mo, chif, ak senbòl",
+        "'123456'",
+        "Menm modpas ak tout lòt kont ou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yon fraz long ak varyete se pi fò.",
+      wrongFeedback: "❌ Eseye ankò — panse ak longè ak varyete karaktè yo.",
+    },
+    recap: [
+      { emoji: "🔐", text: "Modpas fò = long, ak varyete karaktè." },
+      { emoji: "🧩", text: "Konbine plizyè mo pou fè yon fraz modpas." },
+      { emoji: "🔄", text: "Yon modpas diferan pou chak kont enpòtan." },
+      { emoji: "🎯", text: "Misyon: kreye yon nouvo modpas fò." },
+    ],
+  },
+  {
+    slug: "password-managers",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🗝️",
+    heroTitle: "Jesyonè Modpas",
+    heroLede: "Yon kòfrefò dijital ki sonje tout modpas ou pou ou.",
+    goal: "🎯 Objektif: konprann kijan yon jesyonè modpas pwoteje w.",
+    simpleExplanation:
+      "Yon **jesyonè modpas** (password manager) sonje ak ranpli modpas fò diferan pou chak kont ou otomatikman — ou sèlman bezwen sonje YON sèl modpas prensipal pou louvri jesyonè a. Sa kite w itilize modpas trè fò ak diferan sou chak sit, san estrès pou sonje yo tout.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a password manager app with a list of saved account entries behind lock icons, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/password-managers.webp`,
+    digitalWords: [
+      {
+        word: "Jesyonè Modpas (Password Manager)",
+        definition: "Yon zouti ki sonje ak ranpli modpas ou otomatikman.",
+        example: "Aktive jesyonè modpas navigatè ou pou sonje modpas yo.",
+      },
+      {
+        word: "Modpas Prensipal (Master Password)",
+        definition: "Sèl modpas ou dwe sonje pou louvri jesyonè modpas ou.",
+        example:
+          "Chwazi yon modpas prensipal trè fò, paske li pwoteje tout rès yo.",
+      },
+    ],
+    realLifeExample:
+      "💡 Olye de sonje 20 modpas diferan (oswa itilize menm youn toupatou), yon jesyonè modpas kreye yon modpas trè fò diferan pou chak sit, epi ranpli l otomatikman lè ou konekte.",
+    mistakeWrong:
+      "Ekri tout modpas ou sou yon papye oswa nan yon nòt telefòn san pwoteksyon.",
+    mistakeCorrect:
+      "Itilize yon jesyonè modpas ki chifre (encrypt) enfòmasyon ou an sekirite.",
+    mistakeWhy:
+      "⚠️ Yon papye oswa yon nòt san pwoteksyon ka pèdi oswa yon moun ka wè l — yon jesyonè modpas chifre enfòmasyon an pou pèsonn pa ka li l san modpas prensipal la.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki jesyonè modpas gratis ki bon pou yon moun ki fèk kòmanse.",
+    aiPrompt:
+      "Hi! Can you explain what a password manager is and suggest a few beginner-friendly free options?",
+    mission:
+      "🎯 Misyon: eksplore paramèt jesyonè modpas navigatè ou (souvan deja enkli gratis) epi gade konbyen modpas li deja sonje.",
+    quiz: {
+      prompt: "Ki avantaj yon jesyonè modpas bay ou?",
+      options: [
+        "Li efase tout modpas ou",
+        "Li sonje ak ranpli modpas fò diferan otomatikman",
+        "Li konekte w sou Wi-Fi",
+        "Li konprese fichye ou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Li sonje modpas fò pou ou.",
+      wrongFeedback: "❌ Eseye ankò — panse ak estrès sonje 20 modpas diferan.",
+    },
+    recap: [
+      { emoji: "🗝️", text: "Jesyonè modpas sonje modpas fò pou ou." },
+      { emoji: "🔑", text: "Yon sèl modpas prensipal pou louvri tout." },
+      { emoji: "🔒", text: "Enfòmasyon chifre, pa tankou yon papye." },
+      { emoji: "🎯", text: "Misyon: eksplore jesyonè modpas navigatè ou." },
+    ],
+  },
+  {
+    slug: "two-factor-authentication",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🔢",
+    heroTitle: "Otantifikasyon Double-Faktè (2FA)",
+    heroLede:
+      "Yon dezyèm sekirite ki bloke move moun menm si yo gen modpas ou.",
+    goal: "🎯 Objektif: aktive 2FA sou yon kont enpòtan.",
+    simpleExplanation:
+      "**Otantifikasyon double-faktè** (2FA) mande yon dezyèm prèv idantite anplis modpas la — souvan yon kòd ki voye sou telefòn ou. Menm si yon move moun jwenn modpas ou, yo pa ka antre nan kont ou san dezyèm kòd sa a, ki sou telefòn ou sèlman.",
+    howItWorks: [
+      "Ou antre modpas ou tankou nòmal",
+      "Sit la mande yon dezyèm kòd (SMS, aplikasyon, oswa imèl)",
+      "Ou antre kòd la epi ou antre nan kont ou",
+    ],
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a six-digit verification code notification next to a laptop login screen, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/two-factor-authentication.webp`,
+    digitalWords: [
+      {
+        word: "2FA (Two-Factor Authentication)",
+        definition: "Yon dezyèm etap sekirite anplis modpas pou konekte.",
+        example: "Aktive 2FA sou kont Gmail ou pou plis sekirite.",
+      },
+      {
+        word: "Kòd Verifikasyon (Verification Code)",
+        definition: "Yon kòd tanporè ki voye sou telefòn ou pou konfime se ou.",
+        example: "Antre kòd 6-chif la ki voye pa SMS pou fini konekte.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si yon move moun devine modpas Gmail ou, li pa ka antre nan kont ou san kòd 2FA a — kòd sa a sèlman parèt sou telefòn ou, pa nan men l.",
+    mistakeWrong: "Kite kont enpòtan (imèl, labank) san 2FA aktive.",
+    mistakeCorrect:
+      "Aktive 2FA sou tout kont ki gen enfòmasyon sansib oswa lajan.",
+    mistakeWhy:
+      "⚠️ San 2FA, yon sèl modpas ki vòlè bay move moun aksè total a kont ou — 2FA bloke sa menm si modpas la konpwomèt.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI kijan pou aktive 2FA sou kont Gmail oswa Facebook ou.",
+    aiPrompt:
+      "Hi! Can you walk me through the steps to turn on two-factor authentication on my Gmail or Facebook account?",
+    mission:
+      "🎯 Misyon: aktive 2FA sou youn nan kont ki pi enpòtan ou yo (imèl, rezo sosyal, oswa labank).",
+    quiz: {
+      prompt: "Kisa 2FA bloke menm si yon move moun gen modpas ou?",
+      options: [
+        "Li bloke Wi-Fi ou",
+        "Li bloke aksè kont san dezyèm kòd verifikasyon an",
+        "Li efase tout done ou",
+        "Li konprese fichye ou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! 2FA mande yon dezyèm prèv idantite.",
+      wrongFeedback: "❌ Eseye ankò — panse ak wòl dezyèm kòd la.",
+    },
+    recap: [
+      { emoji: "🔢", text: "2FA = dezyèm etap sekirite apre modpas." },
+      { emoji: "📲", text: "Kòd verifikasyon rive sou telefòn ou sèlman." },
+      { emoji: "🛡️", text: "Bloke move moun menm si yo gen modpas ou." },
+      { emoji: "🎯", text: "Misyon: aktive 2FA sou yon kont enpòtan." },
+    ],
+  },
+  {
+    slug: "what-is-a-virus",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🦠",
+    heroTitle: "Kisa Yon Viris Ye?",
+    heroLede: "Lojisyèl danjere ki antre nan aparèy ou san pèmisyon ou.",
+    goal: "🎯 Objektif: konprann kijan viris antre nan aparèy epi kijan pou evite yo.",
+    simpleExplanation:
+      "Yon **viris** (oswa malware, yon tèm pi laj) se lojisyèl danjere ki antre nan aparèy ou san ou pa konnen, souvan pa yon lyen, yon telechajman, oswa yon pyès jwenn ou pa fè konfyans. Yon fwa li antre, li ka vòlè enfòmasyon, kraze fichye, oswa espyone aktivite ou.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing computer virus protection — a laptop screen with a subtle shield icon overlay, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/what-is-a-virus.webp`,
+    digitalWords: [
+      {
+        word: "Viris / Malware",
+        definition: "Lojisyèl danjere ki antre nan aparèy ou san pèmisyon.",
+        example: "Yon fichye telechaje nan yon sit sispèk ka gen yon viris.",
+      },
+      {
+        word: "Antivirus",
+        definition: "Lojisyèl ki detekte ak retire viris sou aparèy ou.",
+        example: "Kenbe antivirus ou ajou pou pi bon pwoteksyon.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou telechaje yon 'aplikasyon gratis' soti nan yon sit ki pa ofisyèl, li ka vin ak yon viris ki vòlè modpas ou san ou pa janm remake anyen etranj.",
+    mistakeWrong:
+      "Klike sou pyès jwenn oswa lyen ki soti nan yon sous ou pa rekonèt.",
+    mistakeCorrect:
+      "Verifye sous nenpòt fichye oswa lyen anvan ou klike, epi kenbe antivirus ou ajou.",
+    mistakeWhy:
+      "⚠️ Pifò viris antre pa yon aksyon moun fè san reflechi — verifye sous la premye anpeche pifò enfeksyon.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki siy ki montre yon aparèy ka gen yon viris (mache dousman, popup san rezon, elatriye).",
+    aiPrompt:
+      "Hi! What are some warning signs that my computer or phone might have a virus or malware on it?",
+    mission:
+      "🎯 Misyon: verifye si ou gen yon antivirus aktive sou òdinatè ou, epi enstale youn si ou pa genyen.",
+    quiz: {
+      prompt: "Kijan yon viris souvan antre nan aparèy yon moun?",
+      options: [
+        "Li parèt tou sèl san okenn aksyon",
+        "Pa yon lyen oswa telechajman ki soti nan yon sous ou pa fè konfyans",
+        "Sèlman lè batri a ba",
+        "Sèlman lè ou fèmen aparèy la",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Souvan pa yon lyen oswa telechajman sispèk.",
+      wrongFeedback: "❌ Eseye ankò — panse ak aksyon ki mennen a enfeksyon.",
+    },
+    recap: [
+      { emoji: "🦠", text: "Viris/malware = lojisyèl danjere san pèmisyon." },
+      { emoji: "🔗", text: "Souvan antre pa lyen/telechajman sispèk." },
+      { emoji: "🛡️", text: "Antivirus detekte ak retire yo." },
+      { emoji: "🎯", text: "Misyon: verifye/enstale antivirus ou." },
+    ],
+  },
+  {
+    slug: "recognizing-fake-websites",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🕸️",
+    heroTitle: "Rekonèt Fo Sit Entènèt",
+    heroLede: "Yon sit ki sanble ofisyèl ka toujou yon pyèj byen kache.",
+    goal: "🎯 Objektif: idantifye yon fo sit anvan ou antre enfòmasyon sansib.",
+    simpleExplanation:
+      "Yon **fo sit** kopye aparans yon sit ofisyèl (labank, Facebook) pou fè w antre modpas oswa enfòmasyon kat ou. Siyal danje: URL ki pa egzat (yon lèt chanje oswa ajoute), absans yon ti kadna (🔒) bò kote adrès la, ak fòt ekri.",
+    illustrationPrompt:
+      "A realistic photograph of a laptop screen showing a browser address bar with a security padlock icon highlighted, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/recognizing-fake-websites.webp`,
+    digitalWords: [
+      {
+        word: "Fo Sit (Fake Website)",
+        definition:
+          "Yon sit ki kopye aparans yon sit ofisyèl pou vòlè enfòmasyon.",
+        example: "Yon fo sit labank ka sanble 99% menm ak orijinal la.",
+      },
+      {
+        word: "Kadna Sekirite (Security Padlock)",
+        definition:
+          "Ti senbòl kadna bò kote URL ki montre koneksyon an chifre.",
+        example: "Verifye kadna a anvan ou antre modpas sou yon sit.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon fo sit ka gen adrès 'g00gle.com' (ak zewo olye de lèt O) — sanble menm nan yon gade rapid, men se yon pyèj konplè.",
+    mistakeWrong:
+      "Antre modpas oswa enfòmasyon kat san verifye URL la byen anvan.",
+    mistakeCorrect:
+      "Verifye URL la byen (lèt pa lèt) ak prezans kadna sekirite a anvan ou antre okenn enfòmasyon sansib.",
+    mistakeWhy:
+      "⚠️ Yon sèl lèt chanje nan yon URL ka mennen w sou yon sit fo ki idantik vizyèlman ak orijinal la.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ede w verifye si yon URL espesifik sanble lejitim oswa sispèk.",
+    aiPrompt:
+      "Hi! Can you explain what specific things I should check in a website's URL to make sure it's the real site and not a fake copy?",
+    mission:
+      "🎯 Misyon: pwochen fwa ou vizite yon sit sansib (labank, imèl), pran yon segonn pou verifye URL ak kadna a byen.",
+    quiz: {
+      prompt: "Ki youn nan siyal ki montre yon sit ka fo?",
+      options: [
+        "URL ki gen yon lèt chanje oswa ajoute",
+        "Yon paj ki chaje vit",
+        "Yon logo koulè",
+        "Yon meni klè",
+      ],
+      correctIndex: 0,
+      correctFeedback: "✅ Wi! Verifye URL la lèt pa lèt.",
+      wrongFeedback: "❌ Eseye ankò — panse ak siyal ki nan adrès la menm.",
+    },
+    recap: [
+      { emoji: "🕸️", text: "Fo sit kopye aparans yon sit ofisyèl." },
+      { emoji: "🔍", text: "Verifye URL lèt pa lèt." },
+      { emoji: "🔒", text: "Chèche kadna sekirite bò kote adrès la." },
+      { emoji: "🎯", text: "Misyon: verifye URL sou yon sit sansib." },
+    ],
+  },
+  {
+    slug: "identity-theft-protection",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🪪",
+    heroTitle: "Pwoteksyon Kont Vòl Idantite",
+    heroLede: "Enfòmasyon pèsonèl ou vo lajan pou move moun.",
+    goal: "🎯 Objektif: pwoteje enfòmasyon pèsonèl ou kont vòl idantite.",
+    simpleExplanation:
+      "**Vòl idantite** rive lè yon move moun jwenn ase enfòmasyon pèsonèl ou (nimewo ID, dat nesans, adrès) pou fè bagay nan non ou — tankou louvri yon kont labank oswa fè yon prè. Pataje mwens enfòmasyon pèsonèl piblikman, epi verifye souvan kont ou pou aktivite ou pa rekonèt.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing personal data protection — a laptop and ID card with a subtle shield icon overlay, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/identity-theft-protection.webp`,
+    digitalWords: [
+      {
+        word: "Vòl Idantite (Identity Theft)",
+        definition:
+          "Lè yon move moun itilize enfòmasyon pèsonèl ou san pèmisyon.",
+        example: "Vòl idantite ka mennen a dèt oswa kont fo nan non ou.",
+      },
+      {
+        word: "Enfòmasyon Sansib (Sensitive Information)",
+        definition: "Detay pèsonèl tankou nimewo ID, dat nesans, ak adrès kay.",
+        example: "Pa pataje enfòmasyon sansib piblikman sou rezo sosyal.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si ou pataje foto ID ou piblikman sou rezo sosyal, yon move moun ka itilize enfòmasyon sa a pou eseye louvri kont nan non ou — toujou mefye w de sa ou pataje piblikman.",
+    mistakeWrong:
+      "Pataje foto dokiman ofisyèl (ID, paspò) piblikman oswa ak moun ou pa konnen.",
+    mistakeCorrect:
+      "Pataje dokiman sansib sèlman ak moun/sèvis ou fè konfyans, pa janm piblikman.",
+    mistakeWhy:
+      "⚠️ Yon fwa yon dokiman ID an sikilasyon sou entènèt, ou pa ka kontwole ki moun ki wè l oswa itilize l.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI ki siy ki montre idantite ou ka vòlè, ak sa pou fè si sa rive.",
+    aiPrompt:
+      "Hi! What are the warning signs that my identity might have been stolen, and what should I do first if it happens?",
+    mission:
+      "🎯 Misyon: revize paramèt privasi rezo sosyal ou pou verifye ki enfòmasyon pèsonèl ki piblik.",
+    quiz: {
+      prompt: "Kisa vòl idantite mande yon move moun genyen?",
+      options: [
+        "Sèlman non ou",
+        "Ase enfòmasyon pèsonèl pou fè bagay nan non ou",
+        "Yon kont Gmail",
+        "Yon nimewo telefòn sèlman",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Yo bezwen ase detay pou aji nan non ou.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki fè vòl idantite posib.",
+    },
+    recap: [
+      { emoji: "🪪", text: "Vòl idantite itilize enfòmasyon ou san pèmisyon." },
+      { emoji: "🙊", text: "Pa pataje ID/dokiman sansib piblikman." },
+      { emoji: "👀", text: "Verifye kont ou souvan pou aktivite etranj." },
+      { emoji: "🎯", text: "Misyon: revize paramèt privasi rezo sosyal ou." },
+    ],
+  },
+  {
+    slug: "public-wifi-safety",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "☕",
+    heroTitle: "Sekirite sou Wi-Fi Piblik",
+    heroLede: "Yon rezo gratis nan yon kafe ka gen je k ap gade.",
+    goal: "🎯 Objektif: itilize Wi-Fi piblik san mete enfòmasyon ou an danje.",
+    simpleExplanation:
+      "**Wi-Fi piblik** (nan yon kafe, ayewopò) pa toujou an sekirite — lòt moun sou menm rezo a ka pafwa wè aktivite ou. Evite antre modpas oswa fè tranzaksyon labank sou Wi-Fi piblik; si ou dwe, itilize done selilè ou olye, oswa yon VPN.",
+    illustrationPrompt:
+      "A realistic photograph of a person using a laptop in a coffee shop with a subtle Wi-Fi signal icon visible on screen, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/public-wifi-safety.webp`,
+    digitalWords: [
+      {
+        word: "Wi-Fi Piblik (Public Wi-Fi)",
+        definition:
+          "Yon rezo Wi-Fi gratis ki disponib pou tout moun nan yon espas piblik.",
+        example: "Wi-Fi yon kafe se yon egzanp Wi-Fi piblik.",
+      },
+      {
+        word: "VPN",
+        definition:
+          "Zouti ki chifre koneksyon ou pou plis sekirite sou Wi-Fi piblik.",
+        example: "Aktive yon VPN anvan ou fè bagay sansib sou Wi-Fi piblik.",
+      },
+    ],
+    realLifeExample:
+      "💡 Verifye imèl ou sou Wi-Fi yon kafe se jeneralman san danje, men antre enfòmasyon kat kredi ou pou yon acha ta pi saj fè sou done selilè ou olye.",
+    mistakeWrong:
+      "Fè tranzaksyon labank oswa antre modpas enpòtan sou Wi-Fi piblik san pwoteksyon.",
+    mistakeCorrect:
+      "Rezève aktivite sansib (labank, modpas enpòtan) pou Wi-Fi ou fè konfyans oswa done selilè.",
+    mistakeWhy:
+      "⚠️ Sou yon rezo piblik san pwoteksyon, lòt moun konekte sou menm rezo a ka pafwa entèsepte enfòmasyon ou voye.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI eksplike ki kalite aktivite ki an sekirite sou Wi-Fi piblik ak ki kalite ki pa ta dwe fèt la.",
+    aiPrompt:
+      "Hi! What kinds of activities are generally safe to do on public Wi-Fi, and what should I avoid doing until I'm on a trusted network?",
+    mission:
+      "🎯 Misyon: pwochen fwa ou konekte sou Wi-Fi piblik, evite antre okenn modpas labank oswa enfòmasyon kat.",
+    quiz: {
+      prompt: "Ki aktivite ou ta dwe evite fè sou Wi-Fi piblik?",
+      options: [
+        "Li nouvèl",
+        "Fè tranzaksyon labank oswa antre enfòmasyon kat",
+        "Gade yon foto",
+        "Chèche yon kote sou Maps",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Evite aktivite finansye sou Wi-Fi piblik.",
+      wrongFeedback: "❌ Eseye ankò — panse ak enfòmasyon ki pi sansib yo.",
+    },
+    recap: [
+      { emoji: "☕", text: "Wi-Fi piblik pa toujou an sekirite." },
+      { emoji: "🏦", text: "Evite tranzaksyon labank sou li." },
+      { emoji: "🔐", text: "VPN chifre koneksyon ou pou plis sekirite." },
+      { emoji: "🎯", text: "Misyon: evite modpas sansib sou Wi-Fi piblik." },
+    ],
+  },
+  {
+    slug: "privacy-settings-basics",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🙈",
+    heroTitle: "Debaz Paramèt Privasi",
+    heroLede: "Chwazi ki moun ki ka wè sa ou pataje sou entènèt.",
+    goal: "🎯 Objektif: revize ak ajiste paramèt privasi sou kont ou yo.",
+    simpleExplanation:
+      "**Paramèt privasi** kontwole ki moun ki ka wè enfòmasyon ou pataje — piblik (tout moun), zanmi sèlman, oswa prive. Pifò aplikasyon (Facebook, Instagram) mete paramèt default yo pi ouvè pase sa ou ta vle — verifye ak ajiste yo pèsonèlman.",
+    illustrationPrompt:
+      "A realistic photograph of a smartphone screen showing a privacy settings panel with toggle switches, clean modern interface, natural lighting, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/privacy-settings-basics.webp`,
+    digitalWords: [
+      {
+        word: "Paramèt Privasi (Privacy Settings)",
+        definition: "Kontwòl ki deside ki moun ki ka wè enfòmasyon ou pataje.",
+        example: "Ajiste paramèt privasi pou 'zanmi sèlman' sou Facebook.",
+      },
+      {
+        word: "Pwofil Piblik (Public Profile)",
+        definition: "Yon kont kote tout moun (menm etranje) ka wè kontni ou.",
+        example:
+          "Yon pwofil piblik ekspoze plis enfòmasyon pase yon pwofil prive.",
+      },
+    ],
+    realLifeExample:
+      "💡 Si paramèt Facebook ou 'Piblik' default, nenpòt moun (menm moun ou pa konnen) ka wè foto fanmi ou ak kote ou ye — chanje l pou 'zanmi sèlman' bay plis kontwòl.",
+    mistakeWrong: "Kite paramèt privasi default san janm verifye yo.",
+    mistakeCorrect:
+      "Pran 10 minit pou revize ak ajiste paramèt privasi sou chak kont enpòtan ou.",
+    mistakeWhy:
+      "⚠️ Paramèt default souvan pi ouvè pase sa yon moun ta vle — plis moun ka wè enfòmasyon ou pase sa ou ta espere.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI gide w etap pa etap pou revize paramèt privasi Facebook oswa Instagram ou.",
+    aiPrompt:
+      "Hi! Can you walk me through how to check and adjust my privacy settings on Facebook so only friends can see my posts?",
+    mission:
+      "🎯 Misyon: revize paramèt privasi sou yon rezo sosyal ou itilize epi ajiste yo si nesesè.",
+    quiz: {
+      prompt: "Poukisa ou ta dwe verifye paramèt privasi default yo?",
+      options: [
+        "Yo toujou pafè kòm sa ye a",
+        "Yo souvan pi ouvè pase sa ou ta vle",
+        "Yo pa gen okenn enpòtans",
+        "Yo sèlman afekte foto ou",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Default yo souvan pi ouvè pase sa ou vle.",
+      wrongFeedback:
+        "❌ Eseye ankò — panse ak fason konpayi yo mete default yo.",
+    },
+    recap: [
+      {
+        emoji: "🙈",
+        text: "Paramèt privasi kontwole ki moun ki wè sa ou pataje.",
+      },
+      { emoji: "⚠️", text: "Default yo souvan pi ouvè pase ou ta vle." },
+      { emoji: "🔧", text: "Pran tan pou revize ak ajiste yo." },
+      { emoji: "🎯", text: "Misyon: revize paramèt privasi yon rezo sosyal." },
+    ],
+  },
+  {
+    slug: "spotting-online-scams",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🎭",
+    heroTitle: "Rekonèt Arnak sou Entènèt",
+    heroLede: "Menm kèk patwon repete nan prèske tout kalite arnak.",
+    goal: "🎯 Objektif: rekonèt patwon komen dèyè pifò arnak sou entènèt.",
+    simpleExplanation:
+      "Pifò arnak sou entènèt (fo sipò teknik, gwo pri ou 'genyen', lanmou fo) swiv menm patwon: yo kreye **presyon iminan**, yo mande **enfòmasyon oswa lajan rapid**, epi yo **twò bèl pou vre**. Rekonèt patwon sa a pi itil pase memorize chak kalite arnak endividyèl.",
+    illustrationPrompt:
+      "A realistic photograph symbolizing online scam awareness — a laptop screen with a subtle warning triangle icon, professional tech photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/spotting-online-scams.webp`,
+    digitalWords: [
+      {
+        word: "Arnak (Scam)",
+        definition: "Yon eskwokri fèt pou vòlè lajan oswa enfòmasyon ou.",
+        example: "Yon mesaj ki di 'ou genyen $1000' souvan yon arnak.",
+      },
+      {
+        word: "Twò Bèl Pou Vre (Too Good to Be True)",
+        definition: "Yon òf ki sanble twò avantaje pou li lejitim.",
+        example: "'Genyen yon iPhone gratis kounye a' se twò bèl pou vre.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon 'sipò teknik' ki rele w san ou pa mande l, di gen yon viris sou òdinatè ou, epi mande aksè a distans imedyatman — se yon arnak klasik ki itilize presyon iminan.",
+    mistakeWrong:
+      "Aji imedyatman sou yon mesaj ki kreye panik oswa eksitasyon san verifye.",
+    mistakeCorrect:
+      "Pran yon poz, verifye sous la, epi mande konsèy yon moun ou fè konfyans si ou pa sèten.",
+    mistakeWhy:
+      "⚠️ Move moun konte sou reyaksyon rapid san reflechi — yon senp poz souvan sifi pou remake siyal arnak la.",
+    aiExplanation:
+      "🤖 Ou ka mande yon AI verifye si yon mesaj espesifik ou resevwa gen siyal klasik yon arnak.",
+    aiPrompt:
+      "Hi! I received a message saying I won a prize and need to pay a small fee to claim it. Does this sound like a scam, and what should I look for?",
+    mission:
+      "🎯 Misyon: idantifye twa patwon komen (presyon, demann rapid, twò bèl pou vre) nan yon mesaj sispèk ou resevwa oswa ou sonje.",
+    quiz: {
+      prompt: "Ki twa patwon komen ki parèt nan pifò arnak sou entènèt?",
+      options: [
+        "Kalm, lan, ak rezonab",
+        "Presyon iminan, demann rapid, twò bèl pou vre",
+        "Long, detaye, ak ofisyèl",
+        "San okenn demann",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Sa yo se twa siyal danje klasik.",
+      wrongFeedback: "❌ Eseye ankò — panse ak sa ki fè w santi presyon.",
+    },
+    recap: [
+      { emoji: "🎭", text: "Pifò arnak swiv menm patwon repete." },
+      { emoji: "⏰", text: "Presyon iminan se yon gwo siyal danje." },
+      { emoji: "🎁", text: "Twò bèl pou vre = souvan yon arnak." },
+      { emoji: "🎯", text: "Misyon: idantifye patwon nan yon mesaj sispèk." },
+    ],
+  },
+  {
+    slug: "internet-safety-mission",
+    moduleTitle: "Modil 10: Sekirite sou Entènèt",
+    heroEmoji: "🏆",
+    heroTitle: "Misyon: Sekirite sou Entènèt",
+    heroLede:
+      "Konbine tout konpetans Modil 10 pou pwoteje kont ou, lajan ou, ak idantite ou.",
+    goal: "🎯 Objektif: pwoteje kont ou, lajan ou, ak idantite ou sou entènèt.",
+    simpleExplanation:
+      "Ou fèk aprann: modpas fò, jesyonè modpas, 2FA, viris, fo sit, vòl idantite, Wi-Fi piblik, privasi, ak rekonèt arnak. Ansanm ak mizajou (Modil 7) ak backup (Modil 4/7) ou te deja aprann, ou kounye a gen tout zouti pou rete an sekirite sou entènèt.",
+    illustrationPrompt:
+      "A realistic photograph of a person confidently using a laptop with a subtle shield icon suggesting digital security, warm natural lighting, professional lifestyle photography, no readable text needed to be accurate",
+    illustrationSrc: `${illustrationBase}/internet-safety-mission.webp`,
+    digitalWords: [
+      {
+        word: "Sekirite sou Entènèt (Internet Safety)",
+        definition:
+          "Konpetans pou pwoteje kont, lajan, ak idantite ou sou entènèt.",
+        example: "Bon sekirite sou entènèt redui risk vòl ak arnak anpil.",
+      },
+    ],
+    realLifeExample:
+      "💡 Yon moun ki aplike konpetans Modil 10 la — modpas fò, 2FA, ak konsyans arnak — redui risk yo pèdi lajan oswa done pèsonèl anpil pase yon moun ki pa konnen siyal danje yo.",
+    mistakeWrong:
+      "Panse arnak/vòl idantite sèlman rive 'lòt moun', pa ou menm.",
+    mistakeCorrect:
+      "Aplike bon pratik sekirite sa yo tout tan, kòm si ou ta ka sib nenpòt lè.",
+    mistakeWhy:
+      "⚠️ Move moun sib tout moun san diskriminasyon — pesòn pa 'twò okipe' oswa 'twò entèlijan' pou vin yon sib.",
+    aiExplanation:
+      "🤖 Kounye a ou ka mande yon AI fè yon ti verifikasyon sekirite jeneral sou kont ou yo.",
+    aiPrompt:
+      "Hi! I just learned the basics of internet safety (passwords, 2FA, scams, privacy). Can you give me a quick checklist to secure my most important accounts?",
+    mission:
+      "🎯 Misyon Final Modil 10: aktive 2FA sou yon kont, kreye yon modpas fò pou yon lòt, epi revize paramèt privasi yon rezo sosyal.",
+    quiz: {
+      prompt: "Ki objektif prensipal Modil 10 la?",
+      options: [
+        "Vin yon ekspè sekirite sètifye",
+        "Pwoteje kont ou, lajan ou, ak idantite ou sou entènèt",
+        "Memorize chak kalite viris ki egziste",
+        "Evite entènèt nèt pou rete an sekirite",
+      ],
+      correctIndex: 1,
+      correctFeedback: "✅ Wi! Objektif la se pwoteje tèt ou pratikman.",
+      wrongFeedback: "❌ Eseye ankò — repase objektif Modil 10 la.",
+    },
+    recap: [
+      { emoji: "🔐", text: "Modpas fò, jesyonè modpas, 2FA." },
+      { emoji: "🦠", text: "Viris, fo sit, vòl idantite." },
+      { emoji: "☕", text: "Wi-Fi piblik, privasi, rekonèt arnak." },
+      { emoji: "🎓", text: "Ou fini Modil 10 — Sekirite sou Entènèt!" },
+    ],
+  },
 ];
 
 export function getComputerPremiumLesson(slug: string) {
