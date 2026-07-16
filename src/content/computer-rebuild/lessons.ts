@@ -9052,6 +9052,952 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m9-l1",
+    slug: "estokaj-lokal-ak-estokaj-cloud",
+    moduleId: "m9",
+    order: 1,
+    titleHt: "Estokaj Lokal ak Estokaj Cloud",
+    titleEn: "Local Storage and Cloud Storage",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Distenge estokaj lokal de estokaj cloud",
+      "Konprann estokaj cloud depann de entènèt ak yon kont",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge yon fichye ki sou aparèy ou (lokal) de yon fichye ki sou yon sèvis cloud, epi konprann sa chak mande.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Estokaj lokal (local storage)** se fichye ki sou aparèy fizik ou — disk dur òdinatè a oswa memwa telefòn ou. Ou ka aksede yo san entènèt. **Estokaj cloud (cloud storage)** se fichye ki sovgade sou **sèvè lwen**, aksesib atravè entènèt ak yon **kont**. Estokaj cloud mande **entènèt** pou aksede l (sof si li senkronize yon kopi lokal), epi li depann de yon **kont** ou konekte pou wè fichye yo. Gen plizyè sèvis cloud diferan — leson sa a pa rekòmande yon sèl, paske chak moun ka gen yon prefrans oswa yon sèvis deja bay pa travay/lekòl yo.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "local-vs-cloud-storage-comparison",
+          caption: "Estokaj Lokal (disk dur ou, san entènèt) vs. Estokaj Cloud (sèvè lwen, mande entènèt + kont)",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Estokaj Lokal (Local Storage)",
+            definition: "Fichye ki sou aparèy fizik ou, aksesib san entènèt.",
+            example: "Yon foto sovgade dirèkteman sou disk dur òdinatè ou se estokaj lokal.",
+          },
+          {
+            term: "Estokaj Cloud (Cloud Storage)",
+            definition: "Fichye sovgade sou yon sèvè lwen, aksesib atravè entènèt ak yon kont.",
+            example: "Yon dokiman ou wè sou plizyè aparèy san kopye l manyèlman se souvan sou cloud.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Panse a twa fichye ou itilize souvan. Idantifye si chak youn sou aparèy ou sèlman (lokal), oswa aksesib atravè yon kont sou entènèt (cloud).",
+      },
+      {
+        id: "b6",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse yon fichye ki 'sou cloud' disponib menm si ou pa gen entènèt AK ou pa konekte sou kont ou.",
+          right: "Konprann fichye cloud mande ni entènèt ni yon kont konekte pou aksesib, sof si yo gen yon kopi lokal senkronize.",
+          why: "Sa evite konfizyon lè yon fichye 'pa parèt' — souvan se yon pwoblèm koneksyon oswa kont, pa fichye a ki pèdi.",
+        },
+      },
+      {
+        id: "b7",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the actual difference between saving a file on my computer versus saving it 'in the cloud'?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann kote fichye ou yo rele lakay yo.",
+          objective: "Idantifye twa fichye ou itilize epi klase yo kòm lokal oswa cloud.",
+          requiredSteps: [
+            "Chwazi twa fichye ou itilize souvan",
+            "Idantifye si chak youn lokal oswa cloud",
+          ],
+          successCriteria: ["Ou eksplike rezònman w pou chak klasman"],
+        },
+      },
+      {
+        id: "b9",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki de bagay yon fichye cloud mande pou li aksesib (san yon kopi lokal senkronize)?",
+            options: [
+              "Yon kle USB ak yon modpas",
+              "Entènèt ak yon kont konekte",
+              "Yon enprimant ak papye",
+              "Yon disk dur ekstèn ak yon kab",
+            ],
+            correctIndex: 1,
+            explanation: "Fichye cloud mande entènèt AK yon kont konekte pou aksesib.",
+          },
+        ],
+      },
+      {
+        id: "b10",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l2",
+    slug: "sync-pa-toujou-yon-backup",
+    moduleId: "m9",
+    order: 2,
+    titleHt: "Sync Pa Toujou Yon Backup",
+    titleEn: "Sync Is Not Always Backup",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Konprann diferans ant sync ak backup",
+      "Rekonèt risk lè yon fichye efase pwopaje pa sync",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike poukisa sync pa toujou yon backup reyèl, epi konprann règ plizyè kopi a.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Sync (senkronizasyon)** fè chanjman ou fè yon kote **pwopaje otomatikman** sou tout lòt aparèy konekte yo. Sa itil, men gen yon **risk**: si ou EFASE yon fichye sou yon aparèy, sync ka efase l sou TOUT lòt aparèy tou — se poutèt sa sync PA menm bagay ak yon backup. Kèk sèvis gen **istorik vèsyon (version history)** ki ka ede rekipere yon ansyen vèsyon, men se pa tout sèvis ki genyen l. **Règ plizyè kopi a**: yon vrè backup mande OMWEN de kopi nan de KOTE apa — pa sèlman yon sèl kopi ki sync ant plizyè aparèy.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Sync (Senkronizasyon)",
+            definition: "Fè chanjman pwopaje otomatikman ant plizyè aparèy konekte.",
+            example: "Si ou chanje yon dokiman sou telefòn ou, sync fè menm chanjman an parèt sou òdinatè ou tou.",
+          },
+          {
+            term: "Istorik Vèsyon (Version History)",
+            definition: "Yon lis ansyen vèsyon yon fichye ou ka retounen jwenn, si sèvis la ofri l.",
+            example: "Itilize istorik vèsyon pou retounen nan yon vèsyon dokiman anvan yon chanjman ou regrèt.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou itilize yon sèvis ki sync fichye, chèche si li gen yon opsyon 'istorik vèsyon' oswa 'ansyen vèsyon' nan paramèt li.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse fichye ou yo 'an sekirite' paske yo sync ant plizyè aparèy.",
+          right: "Konprann yon vrè backup mande plizyè kopi nan plizyè kote apa, pa sèlman sync.",
+          why: "Si yon sèl kopi efase oswa domaje (oswa chifre pa yon viris), sync ka pwopaje pwoblèm nan sou TOUT kopi yo.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I thought my files were safe because they sync across my devices. Can you explain why that's not the same as a backup?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle evalye si fichye enpòtan ou yo vrèman pwoteje.",
+          objective: "Idantifye si yon fichye enpòtan ou genyen sèlman sync, oswa si li gen yon vrè dezyèm kopi apa.",
+          requiredSteps: [
+            "Chwazi yon fichye enpòtan ou genyen",
+            "Idantifye si li sync sèlman oswa si li gen yon dezyèm kopi vrè",
+          ],
+          successCriteria: ["Ou eksplike diferans lan ak pwòp mo pa w"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou efase yon fichye pa aksidan sou telefòn ou, epi telefòn nan sync ak òdinatè ou. Ki sa ki gen chans rive?",
+            options: [
+              "Fichye a rete an sekirite sou òdinatè a",
+              "Fichye a ka efase sou òdinatè a tou, paske sync pwopaje chanjman yo",
+              "Fichye a otomatikman backup pou tout tan",
+              "Sync anpeche fichye efase sou tout aparèy",
+            ],
+            correctIndex: 1,
+            explanation: "Sync pwopaje chanjman (ki gen ladan efasman) sou tout aparèy konekte — se pou sa li pa yon backup.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l3",
+    slug: "telechaje-voye-ak-sync",
+    moduleId: "m9",
+    order: 3,
+    titleHt: "Telechaje, Voye, ak Sync",
+    titleEn: "Upload, Download, and Sync",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Revize telechaje ak voye nan kontèks cloud",
+      "Konprann konsyans done ak aksè san entènèt",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka voye ak telechaje fichye ak yon sèvis cloud, epi konprann konsyans done ak limit aksè san entènèt.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Menm jan ak nan navigatè a, **voye (upload)** mete yon fichye SOTI sou aparèy ou POU ale sou cloud, ak **telechaje (download)** pran yon fichye SOTI sou cloud POU antre sou aparèy ou. Yon **ba pwogrè** montre konbyen ki fin fèt. San entènèt, ou ka **pèdi aksè** a fichye cloud ki pa gen yon kopi lokal sovgade — sa rele **konsyans san entènèt (offline awareness)**. Voye ak telechaje gwo fichye konsome anpil **done**, sitou sou done selilè.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Konsyans San Entènèt (Offline Awareness)",
+            definition: "Konprann ke fichye cloud san kopi lokal pa aksesib san entènèt.",
+            example: "Telechaje dokiman enpòtan alavans si ou konnen ou pral san entènèt.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou itilize yon sèvis cloud, voye yon fichye pratik epi tann ba pwogrè a fini. Apre, telechaje l ankò pou konfime li mache.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Konte sou aksè a yon fichye cloud enpòtan san verifye ou gen entènèt anvan yon vwayaj oswa yon randevou.",
+          right: "Telechaje yon kopi lokal fichye enpòtan yo si ou konnen ou pral san entènèt.",
+          why: "Yon fichye cloud san kopi lokal pa aksesib ditou san koneksyon entènèt.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I need to access an important document tomorrow but I might not have internet access. What should I do to make sure I can open it?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen mete yon fichye sou cloud epi asire w ou ka jwenn li san entènèt pita.",
+          objective: "Voye yon fichye sou yon sèvis cloud, epi telechaje yon kopi lokal pou aksè san entènèt.",
+          requiredSteps: [
+            "Voye yon fichye sou yon sèvis cloud",
+            "Telechaje yon kopi lokal sou aparèy ou",
+          ],
+          successCriteria: ["Fichye a disponib sou cloud AK an lokal"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ou pral yon kote san entènèt demen epi ou bezwen yon dokiman ki sou cloud. Ki sa ou dwe fè jodi a?",
+            options: [
+              "Anyen — cloud toujou disponib",
+              "Telechaje yon kopi lokal dokiman an jodi a",
+              "Efase dokiman an sou cloud",
+              "Chanje modpas kont cloud ou",
+            ],
+            correctIndex: 1,
+            explanation: "Telechaje yon kopi lokal alavan asire w ou ka aksede dokiman an menm san entènèt.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l4",
+    slug: "pataje-yon-fichye-oswa-dosye-san-danje",
+    moduleId: "m9",
+    order: 4,
+    titleHt: "Pataje Yon Fichye oswa Dosye San Danje",
+    titleEn: "Share a File or Folder Safely",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Distenge pèmisyon 'gade' de pèmisyon 'modifye'",
+      "Retire aksè yon moun lè sa nesesè",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka pataje yon fichye oswa dosye ak bon nivo pèmisyon, epi retire aksè yon moun lè sa nesesè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou pataje yon fichye sou cloud, ou souvan chwazi ant **gade sèlman (viewer)** — moun nan ka LI men pa chanje anyen — ak **modifye (editor)** — moun nan ka CHANJE kontni an. Fè atansyon a **lyen piblik (public link)**: nenpòt moun ki gen lyen an ka aksede fichye a, menm san ou pa konnen ki moun egzakteman. Ou ka toujou **retire aksè (remove access)** yon moun pita si ou chanje lide. Anvan ou pataje, **konfime se bon fichye a** ou pataje — pa yon lòt fichye pa erè.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Gade Sèlman (Viewer)",
+            definition: "Yon nivo pèmisyon ki kite moun nan LI yon fichye san chanje l.",
+            example: "Bay yon kolèg aksè 'gade sèlman' pou yo revize yon dokiman san modifye l.",
+          },
+          {
+            term: "Lyen Piblik (Public Link)",
+            definition: "Yon lyen ki bay aksè a nenpòt moun ki genyen l, menm san yo pa nan lis kontak ou.",
+            example: "Evite kreye yon lyen piblik pou dokiman ki gen enfòmasyon sansib.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou itilize yon sèvis cloud, gade opsyon pataje yon fichye — idantifye kote ou chwazi ant 'gade sèlman' ak 'modifye'.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Evite kreye lyen piblik pou fichye ki gen enfòmasyon sansib",
+          "Konfime se bon fichye a anvan ou pataje l",
+          "Retire aksè yon moun ki pa bezwen l ankò",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the difference between giving someone 'viewer' access versus 'editor' access to a shared file?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen pataje yon dokiman ak yon lòt moun san danje.",
+          objective: "Pataje yon fichye pratik ak nivo pèmisyon apwopriye, epi retire aksè apre.",
+          requiredSteps: [
+            "Konfime se bon fichye a ou vle pataje",
+            "Pataje l ak nivo pèmisyon apwopriye (gade sèlman oswa modifye)",
+            "Retire aksè a apre ou fin pratike",
+          ],
+          successCriteria: ["Pèmisyon an apwopriye pou sitiyasyon an", "Aksè a retire avèk siksè apre"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou vle yon kolèg revize yon rapò san chanje kontni li. Ki nivo pèmisyon ou dwe bay?",
+            options: ["Gade sèlman (viewer)", "Modifye (editor)", "Lyen piblik san restriksyon", "Pèmisyon total sou tout dosye ou"],
+            correctIndex: 0,
+            explanation: "'Gade sèlman' kite moun nan li san risk yo modifye kontni orijinal la pa aksidan.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l5",
+    slug: "yon-plan-backup-senp",
+    moduleId: "m9",
+    order: 5,
+    titleHt: "Yon Plan Backup Senp",
+    titleEn: "A Simple Backup Plan",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Kreye yon plan backup senp pou fichye enpòtan",
+      "Teste yon backup pou konfime li mache",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka kreye yon plan backup senp pou fichye enpòtan ou yo, ak yon orè, epi teste ke backup la vrèman mache.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon plan backup senp gen sis pati: 1) Idantifye **fichye enpòtan** yo (foto fanmi, dokiman ofisyèl, elatriye). 2) Kenbe yo nan **de kote** apa (tankou cloud AK yon disk ekstèn). 3) Etabli yon **orè** (tankou chak mwa). 4) Konsidere yon **disk ekstèn** pou yon kopi ki pa depann de entènèt. 5) Konsidere **cloud** pou yon kopi ki pa depann de yon sèl aparèy fizik. 6) **Teste restore** — louvri kopi backup la detanzantan pou konfime li mache toujou, pa sipoze l mache san verifye. Panse tou a **kouran ak done** — yon backup ki mande elektrisite oswa done pou fèt regilyèman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Teste Restore (Test Restore)",
+            definition: "Louvri yon kopi backup pou konfime li mache toujou, pa sipoze l fonksyone.",
+            example: "Chak twa mwa, louvri yon fichye nan backup ou pou konfime li poko domaje.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Fè yon lis kout twa fichye ou konsidere pi enpòtan (foto, dokiman ofisyèl, elatriye). Panse a kote ou ta mete yon dezyèm kopi chak youn.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kreye yon backup yon sèl fwa epi pa janm verifye l ankò pandan ane.",
+          right: "Teste backup ou detanzantan lè ou louvri yon fichye ladan l pou konfime li toujou mache.",
+          why: "Yon backup ki domaje san ou pa remake se menm jan ak pa gen backup ditou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I have some really important files (family photos, official documents). Can you help me think through a simple backup plan?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle pwoteje fichye enpòtan ou kont pèt.",
+          objective: "Idantifye twa fichye enpòtan, kreye yon dezyèm kopi nan yon lòt kote, epi teste li louvri.",
+          requiredSteps: [
+            "Idantifye twa fichye ou konsidere enpòtan",
+            "Kreye yon dezyèm kopi nan yon kote apa (cloud oswa disk ekstèn)",
+            "Louvri kopi a pou konfime li mache",
+          ],
+          successCriteria: ["De kopi egziste nan de kote apa", "Kopi backup la louvri san pwoblèm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou kreye yon plan backup senp.",
+            steps: [
+              "Idantifye fichye enpòtan yo",
+              "Kreye yon dezyèm kopi nan yon lòt kote",
+              "Etabli yon orè regilye",
+              "Teste ke kopi a louvri toujou",
+            ],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Idantifye, kopye nan yon lòt kote, planifye yon orè, epi toujou teste — sa a se yon plan backup solid.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l6",
+    slug: "deplase-fichye-ant-telefon-ak-odinate",
+    moduleId: "m9",
+    order: 6,
+    titleHt: "Deplase Fichye Ant Telefòn ak Òdinatè",
+    titleEn: "Transfer Files Between Phone and Computer",
+    estimatedMinutes: 10,
+    mode: "cross_device",
+    objectives: [
+      "Konnen plizyè fason pou deplase fichye ant telefòn ak òdinatè",
+      "Chwazi bon metòd selon gwosè ak sansiblite fichye a",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chwazi ak itilize yon bon metòd pou deplase fichye ant telefòn ou ak òdinatè ou.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Gen plizyè fason pou deplase fichye ant telefòn ak òdinatè: **kab USB** (konekte telefòn dirèkteman nan òdinatè a), **teknoloji transfè san fil** (tankou AirDrop pou aparèy Apple, oswa Quick Share/Nearby pou kèk aparèy Android — disponiblite depann de MODÈL ou genyen), **cloud** (voye sou yon sèvis cloud epi telechaje sou lòt aparèy la), ak **imèl/WhatsApp** — sa a sèlman pou **ti fichye ki pa sansib**, pa dokiman gwo oswa prive. Chwazi metòd la selon **gwosè** fichye a ak **si li sansib** oswa non.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Kab USB",
+            definition: "Yon kòd fizik ki konekte telefòn dirèkteman ak òdinatè pou transfè fichye.",
+            example: "Konekte telefòn ou ak yon kab USB pou transfere anpil foto vit san entènèt.",
+          },
+          {
+            term: "Transfè San Fil (Wireless Transfer)",
+            definition: "Teknoloji ki deplase fichye san kab, disponiblite depann de modèl aparèy ou.",
+            example: "Verifye si aparèy ou sipòte yon teknoloji transfè san fil anvan ou konte sou li.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          android: [
+            "Konekte telefòn ak yon kab USB nan òdinatè a pou transfè dirèk",
+            "Verifye si aparèy ou ak lòt aparèy la sipòte yon teknoloji transfè san fil (tankou Quick Share) pou fichye pi piti",
+          ],
+          iphone: [
+            "Konekte iPhone ak yon kab pou transfè dirèk nan Photos/Finder",
+            "Si lòt aparèy la se yon Mac, verifye si AirDrop disponib pou transfè san fil",
+          ],
+          recoveryNote:
+            "Si transfè san fil pa mache, kab USB toujou yon fason fyab ki mache kèlkeswa modèl ou genyen.",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa voye dokiman sansib (kat idantite, enfòmasyon labank) atravè imèl oswa WhatsApp san chifreman",
+          "Verifye disponiblite yon teknoloji transfè san fil pou modèl SPESIFIK ou anvan ou konte sou li",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I need to move about 200 photos from my phone to my computer. What's the most reliable way to do that?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen deplase kèk fichye ant telefòn ou ak òdinatè ou.",
+          objective: "Chwazi yon metòd apwopriye epi deplase omwen yon fichye ant de aparèy yo.",
+          requiredSteps: [
+            "Chwazi yon metòd (kab USB, transfè san fil, oswa cloud) selon fichye a",
+            "Deplase fichye a ant telefòn ak òdinatè",
+            "Konfime fichye a rive kòrèkteman",
+          ],
+          successCriteria: ["Fichye a rive san domaj sou lòt aparèy la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou bezwen transfere yon dokiman ki gen kopi kat idantite ou soti nan telefòn ou pou ale nan òdinatè ou. Ki metòd ki pi apwopriye?",
+            options: [
+              "Voye l pa imèl bay tèt ou san atansyon",
+              "Itilize yon kab USB oswa yon sèvis cloud ki chifre",
+              "Pataje l sou yon rezo sosyal",
+              "Voye l nan yon gwoup WhatsApp",
+            ],
+            correctIndex: 1,
+            explanation: "Yon dokiman sansib tankou yon kat idantite merite yon metòd pi sekirize pase imèl/WhatsApp senp.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l7",
+    slug: "oganizasyon-ak-backup-foto",
+    moduleId: "m9",
+    order: 7,
+    titleHt: "Òganizasyon ak Backup Foto",
+    titleEn: "Photo Organization and Backup",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Enpòte ak òganize foto nan dosye/albòm",
+      "Konprann diferans ant dosye ak albòm, epi konsève orijinal yo",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka enpòte ak òganize foto ou yo, distenge dosye de albòm, epi konsève foto orijinal yo pandan ou backup yo.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Enpòte (import)** foto vle di kopye yo soti nan kamera/telefòn pou antre nan yon aplikasyon oswa dosye estokaj. Ou ka **chwazi** ki foto ou vle enpòte olye tout yo. Yon **albòm** gwoupe foto ki gen rapò SAN deplase orijinal fichye a (yon foto ka nan plizyè albòm), pandan yon **dosye** deplase fichye a nan yon SÈL kote. Fè atansyon ak **doub (duplicates)** — anpil aplikasyon kreye plizyè kopi menm foto a san w pa remake. Toujou **konsève orijinal yo** — pa efase orijinal apre ou fè yon modifikasyon, gade **vi prive** foto sansib yo tou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Albòm (Album)",
+            definition: "Gwoup foto ki gen rapò, san deplase fichye orijinal yo — yon foto ka nan plizyè albòm.",
+            example: "Kreye yon albòm 'Vakans 2026' san retire foto yo nan dosye orijinal yo.",
+          },
+          {
+            term: "Doub (Duplicate)",
+            definition: "Plizyè kopi menm foto a, souvan kreye san w pa remake pandan enpòtasyon.",
+            example: "Verifye pa gen doub apre ou enpòte foto soti nan de aparèy diferan.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen foto sou telefòn ou, gade si ou ka kreye yon albòm san deplase foto yo — remake diferans lan ak yon dosye.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Efase foto orijinal apre ou fè yon modifikasyon (tankou rekaste), panse ou pa bezwen l ankò.",
+          right: "Konsève foto orijinal la apa, epi sovgade vèsyon modifye a kòm yon nouvo fichye.",
+          why: "Si ou pa renmen modifikasyon an pita, ou pèdi foto orijinal la nèt si ou pa t konsève l.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the difference between putting my photos in a folder versus an album, and why does it matter?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle òganize foto ou yo epi asire yo backup san danje.",
+          objective: "Enpòte foto, kreye yon albòm tematik, epi verifye pa gen doub.",
+          requiredSteps: [
+            "Enpòte omwen kèk foto nan yon dosye/aplikasyon",
+            "Kreye yon albòm tematik san deplase orijinal yo",
+            "Verifye pa gen doub evidan",
+          ],
+          successCriteria: ["Albòm nan kreye san domaje fichye orijinal yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki diferans prensipal ant yon dosye ak yon albòm foto?",
+            options: [
+              "Yo se menm bagay egzakteman",
+              "Yon albòm gwoupe foto san deplase orijinal yo; yon dosye deplase fichye a nan yon sèl kote",
+              "Yon dosye pi rapid pase yon albòm",
+              "Albòm sèlman disponib sou telefòn, pa sou òdinatè",
+            ],
+            correctIndex: 1,
+            explanation: "Yon albòm se yon gwoupman ki pa deplase fichye a — yon foto ka nan plizyè albòm anmenm tan.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l8",
+    slug: "estokaj-plen-sa-sa-vle-di",
+    moduleId: "m9",
+    order: 8,
+    titleHt: "Estokaj Plen: Sa Sa Vle Di",
+    titleEn: "Storage Full: What It Means",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Idantifye ki kategori fichye konsome plis espas",
+      "Netwaye espas san danje san efase fichye sistèm enkoni",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka idantifye kategori ki konsome plis espas estokaj, epi netwaye espas san danje san efase fichye sistèm enkoni.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè yon mesaj di **estokaj plen**, kèk kategori souvan responsab: dosye **Downloads** ki plen fichye ou pa bezwen ankò, **doub** fichye, **ansyen enstalatè (installers)** ou pa itilize ankò, ak **plasholder cloud** (fichye ki 'la' men ki oblije telechaje anvan ou ka louvri yo, konte kòm espas pafwa). Règ enpòtan: **pa janm efase fichye sistèm ou pa rekonèt** — yo souvan nesesè pou òdinatè a fonksyone, menm si non yo pa fè sans pou ou.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Ansyen Enstalatè (Old Installer)",
+            definition: "Yon fichye ki te sèvi pou enstale yon aplikasyon, souvan pa bezwen ankò apre enstalasyon an fini.",
+            example: "Efase ansyen enstalatè yo nan Downloads apre aplikasyon an fin enstale.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade dosye Downloads ou — idantifye si gen ansyen enstalatè, doub fichye, oswa lòt bagay ou pa bezwen ankò.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm efase yon fichye ou pa rekonèt ki sanble fè pati sistèm nan",
+          "Verifye ou pa bezwen yon fichye ankò anvan ou efase l pou tout tan",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My computer says storage is full. What's a safe way to figure out what's taking up space without deleting something important?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon mesaj ki di estokaj ou prèske plen.",
+          objective: "Idantifye ak netwaye omwen yon kategori fichye ou pa bezwen ankò, san touche fichye sistèm.",
+          requiredSteps: [
+            "Gade dosye Downloads pou fichye ou pa bezwen ankò",
+            "Idantifye ansyen enstalatè oswa doub fichye",
+            "Efase sèlman sa ou sèten ou pa bezwen ankò",
+          ],
+          successCriteria: ["Espas lib ogmante san ou pa touche fichye sistèm enkoni"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou wè yon fichye ak yon non teknik ou pa rekonèt ditou nan yon dosye sistèm pandan ou ap chèche libere espas. Ki sa ou dwe fè?",
+            options: [
+              "Efase l imedyatman paske li pran espas",
+              "Kite l — pa efase fichye sistèm ou pa rekonèt",
+              "Deplase l nan Downloads",
+              "Chanje non li",
+            ],
+            correctIndex: 1,
+            explanation: "Fichye sistèm ou pa rekonèt yo souvan nesesè pou òdinatè a fonksyone — pa efase yo.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m9-l9",
+    slug: "misyon-pwoteje-fichye-enpotan-yo",
+    moduleId: "m9",
+    order: 9,
+    titleHt: "Misyon: Pwoteje Fichye Enpòtan Yo",
+    titleEn: "Module Mission: Protect Important Files",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 9 nan yon egzèsis pwoteksyon fichye reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka chwazi fichye enpòtan, kreye yon dosye klè, fè yon dezyèm kopi nan yon kote apwouve, epi konfime kopi a louvri.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 9 la. Ou pral konbine tout sa ou aprann — lokal vs. cloud, sync vs. backup, pataj san danje, ak plan backup — nan yon sèl egzèsis reyèl pou pwoteje fichye enpòtan.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle asire fichye ki pi enpòtan pou ou yo pwoteje kont pèt.",
+          objective:
+            "Chwazi twa fichye pratik enpòtan, kreye yon dosye klè pou yo, fè yon dezyèm kopi nan yon kote apwouve (cloud oswa disk ekstèn), epi verifye kopi a louvri kòrèkteman.",
+          requiredSteps: [
+            "Chwazi twa fichye pratik ou konsidere enpòtan",
+            "Kreye yon dosye klè pou kenbe yo ansanm",
+            "Fè yon dezyèm kopi nan yon kote apa (cloud oswa disk ekstèn)",
+            "Louvri kopi a pou konfime li mache",
+          ],
+          successCriteria: [
+            "Twa fichye yo byen òganize nan yon dosye klè",
+            "Dezyèm kopi a egziste nan yon kote apa epi li louvri san pwoblèm",
+          ],
+          stretchChallenge: "Etabli yon dat regilye (tankou premye jou chak mwa) pou repete backup sa a.",
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak definisyon kòrèk li.",
+            pairs: [
+              { term: "Sync", meaning: "Pwopaje chanjman ant aparèy — pa yon backup" },
+              { term: "Backup", meaning: "Yon dezyèm kopi nan yon kote apa" },
+              { term: "Teste Restore", meaning: "Konfime yon kopi backup toujou louvri" },
+            ],
+            explanation: "Sync ak backup se de bagay diferan — yon vrè backup mande plizyè kopi ki teste regilyèman.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou fason mwen pwoteje fichye enpòtan mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 10." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
