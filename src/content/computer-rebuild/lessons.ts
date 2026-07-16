@@ -7992,6 +7992,1066 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m8-l1",
+    slug: "kijan-imel-mache",
+    moduleId: "m8",
+    order: 1,
+    titleHt: "Kijan Imèl Mache",
+    titleEn: "How Email Works",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Esplike pati debaz yon imèl (adrès, ekspeditè, destinatè, sijè, kò)",
+      "Konprann kijan yon imèl vwayaje jiskaske li rive nan bwat resevwa a",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka idantifye tout pati debaz yon imèl epi eksplike kijan li vwayaje soti nan ekspeditè a rive nan destinatè a.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **adrès imèl** se idantite dijital ou pou voye ak resevwa mesaj (tankou 'non@sèvis.com'). Chak imèl gen yon **ekspeditè (sender)** — moun ki voye l — ak yon **destinatè (recipient)** — moun ki resevwa l. Yon imèl gen yon **sijè (subject)** kout ki rezime l, ak yon **kò (body)** ki se mesaj konplè a. Lè ou voye yon imèl, li pran yon ti moman pou **livre (deliver)**, epi li ateri nan **bwat resevwa (inbox)** destinatè a.",
+      },
+      {
+        id: "b3",
+        type: "diagram",
+        diagram: {
+          diagramId: "email-sender-recipient-delivery-chain",
+          caption: "Ekspeditè → Sijè + Kò → Livrezon → Bwat Resevwa Destinatè a",
+        },
+      },
+      {
+        id: "b4",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Adrès Imèl (Email Address)",
+            definition: "Idantite dijital ou pou voye ak resevwa mesaj, tankou 'non@sèvis.com'.",
+            example: "Bay moun ki bezwen kontakte w adrès imèl ou, pa modpas ou.",
+          },
+          {
+            term: "Sijè (Subject)",
+            definition: "Yon rezime kout ki di sou ki sa imèl la ye anvan ou li kò a.",
+            example: "Yon bon sijè tankou 'Rankont Vandredi — Konfimasyon' ede destinatè a konprann rapid.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Louvri kont imèl ou (oswa panse a dènye imèl ou resevwa). Idantifye ekspeditè, sijè, ak kò mesaj la.",
+      },
+      {
+        id: "b6",
+        type: "mistake",
+        mistake: {
+          wrong: "Konfonn adrès imèl ak modpas, oswa panse yon moun bezwen modpas ou pou voye w yon imèl.",
+          right: "Konprann sèl bagay yon moun bezwen pou voye w yon imèl se ADRÈS imèl ou — jamè modpas.",
+          why: "Yon moun ki mande modpas ou 'pou voye yon imèl' se toujou yon siy eskrokri.",
+        },
+      },
+      {
+        id: "b7",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you explain in simple terms what happens between the moment I click 'Send' on an email and when it arrives in someone's inbox?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b8",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann pati debaz yon imèl anvan ou kòmanse voye yo.",
+          objective: "Idantifye ekspeditè, destinatè, sijè, ak kò nan yon imèl ou resevwa deja.",
+          requiredSteps: [
+            "Louvri yon imèl ou resevwa deja",
+            "Idantifye ekspeditè ak destinatè",
+            "Idantifye sijè ak kò mesaj la",
+          ],
+          successCriteria: ["Ou idantifye kòrèkteman tout kat pati yo san èd"],
+        },
+      },
+      {
+        id: "b9",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak tèm ak definisyon kòrèk li.",
+            pairs: [
+              { term: "Ekspeditè (Sender)", meaning: "Moun ki voye imèl la" },
+              { term: "Destinatè (Recipient)", meaning: "Moun ki resevwa imèl la" },
+              { term: "Sijè (Subject)", meaning: "Rezime kout ki di sou ki sa imèl la ye" },
+            ],
+            explanation: "Ekspeditè voye, destinatè resevwa, ak sijè a rezime kontni imèl la.",
+          },
+        ],
+      },
+      {
+        id: "b10",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l2",
+    slug: "kreye-oswa-sekirize-yon-kont-imel",
+    moduleId: "m8",
+    order: 2,
+    titleHt: "Kreye oswa Sekirize Yon Kont Imèl",
+    titleEn: "Create or Secure an Email Account",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Konprann eleman yon kont imèl solid (modpas, enfòmasyon rekiperasyon)",
+      "Konprann préparasyon 2FA ak enpòtans pa pataje enfòmasyon idantifikasyon",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike eleman yon kont imèl solid — non itilizatè, modpas fò, enfòmasyon rekiperasyon, ak 2FA — san ou pa bezwen kreye yon nouvo kont si ou deja gen yon kont solid.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Si ou deja gen yon kont imèl ki solid, ou PA bezwen kreye yon nouvo — leson sa a se pou fè kont ou pi solid. Yon kont solid gen: yon **modpas fò** (long, ak melanj lèt/nimewo/senbòl, pa itilize pou lòt kont), **enfòmasyon rekiperasyon** (yon lòt imèl oswa nimewo telefòn pou rekipere kont ou si ou bliye modpas), ak **2FA (otantifikasyon de faktè)** — yon dezyèm etap verifikasyon (tankou yon kòd sou telefòn) anplis modpas la. **Pa janm pataje idantifyan (credentials) ou** — non itilizatè AK modpas — ak nenpòt moun, menm si yo di yo se sipò teknik.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Enfòmasyon Rekiperasyon (Recovery Information)",
+            definition: "Yon lòt imèl oswa nimewo telefòn ki ka ede w rekipere kont ou si ou bliye modpas.",
+            example: "Ajoute yon nimewo telefòn kòm enfòmasyon rekiperasyon pou kont imèl ou.",
+          },
+          {
+            term: "2FA (Otantifikasyon De Faktè)",
+            definition: "Yon dezyèm etap verifikasyon anplis modpas, tankou yon kòd voye sou telefòn ou.",
+            example: "Aktive 2FA sou kont imèl ou pou pwoteje l menm si yon moun jwenn modpas ou.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Verifye si kont imèl ou deja gen enfòmasyon rekiperasyon ajoute. Si ou pa sèten, chèche nan paramèt sekirite kont la.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm bay non itilizatè AK modpas ou bay yon moun, menm si yo pretann yo se sipò teknik",
+          "Itilize yon modpas diferan pou chak kont enpòtan",
+          "Aktive 2FA lè sa disponib pou pwoteksyon anplis",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What makes an email password 'strong', and why is two-factor authentication worth setting up?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle asire kont imèl ou solid san danje.",
+          objective: "Verifye ke kont imèl ou gen enfòmasyon rekiperasyon ak yon modpas fò.",
+          requiredSteps: [
+            "Verifye enfòmasyon rekiperasyon kont ou",
+            "Evalye si modpas ou fò (long, melanje, inik)",
+          ],
+          successCriteria: ["Ou konnen si kont ou gen sa li bezwen pou l solid"],
+          hint: "Si kont ou deja solid, pa gen okenn rezon pou chanje anyen — sa a se yon verifikasyon, pa yon obligasyon.",
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon moun rele w epi di yo se 'sipò teknik' epi yo bezwen modpas kont imèl ou pou 'ranje yon pwoblèm'. Ki sa ou dwe fè?",
+            options: [
+              "Bay modpas la paske yo di yo se sipò teknik",
+              "Refize bay modpas la — okenn vrè sipò teknik pa bezwen l",
+              "Bay yon vèsyon modpas la ki chanje yon ti kras",
+              "Mande yo rele ou tounen pita epi bay li lè sa a",
+            ],
+            correctIndex: 1,
+            explanation: "Okenn sèvis lejitim pa janm mande modpas ou dirèkteman — se toujou yon siy eskrokri.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l3",
+    slug: "bwat-resevwa-voye-bouyon-spam-ak-poubel",
+    moduleId: "m8",
+    order: 3,
+    titleHt: "Bwat Resevwa, Voye, Bouyon, Spam, ak Poubèl",
+    titleEn: "Inbox, Sent, Drafts, Spam, and Trash",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Konprann rezon dosye debaz yon bwat imèl",
+      "Chèche yon imèl espesifik",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka navige ant dosye debaz bwat imèl ou (Bwat Resevwa, Voye, Bouyon, Spam, Poubèl) epi chèche yon imèl espesifik.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Bwat Resevwa (Inbox)** kenbe imèl ou resevwa. **Voye (Sent)** kenbe kopi tout imèl OU te voye. **Bouyon (Drafts)** kenbe imèl ou kòmanse ekri men ou poko voye. **Spam** (oswa Junk) filtre otomatikman imèl ki sanble ensiyifyan oswa danjere — verifye l detanzantan paske pafwa yon bon imèl ateri la pa erè. **Poubèl (Trash)** kenbe imèl ou efase pou yon ti tan anvan yo disparèt pou tout tan. Yon imèl **san li** (unread) souvan parèt an gra (bold) nan lis la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Bouyon (Draft)",
+            definition: "Yon imèl ou kòmanse ekri men ou poko voye — li rete sovgade otomatikman.",
+            example: "Si ou fèmen navigatè a pandan ou ap ekri, imèl la souvan rete nan Bouyon.",
+          },
+          {
+            term: "Spam / Junk",
+            definition: "Dosye kote imèl ki sanble ensiyifyan oswa danjere ateri otomatikman.",
+            example: "Verifye dosye Spam detanzantan pou asire yon bon imèl pa t ateri la pa erè.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Nan kont imèl ou, gade chak dosye (Bwat Resevwa, Voye, Bouyon, Spam, Poubèl) youn apre lòt. Idantifye konbyen mesaj gen nan chak.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Pa janm gade dosye Spam la, pandan yon imèl enpòtan ka ateri la pa erè.",
+          right: "Verifye dosye Spam detanzantan, sitou si ou tann yon imèl enpòtan ou pa jwenn nan Bwat Resevwa a.",
+          why: "Filtè spam yo pa toujou pafè — yo pafwa mete bon imèl nan move dosye a.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I'm expecting an important email but it's not in my inbox. Where else should I check?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen ka navige nan tout dosye kont imèl ou ak konfyans.",
+          objective: "Vizite chak dosye debaz yo epi chèche yon imèl espesifik ak bwat rechèch la.",
+          requiredSteps: [
+            "Vizite Bwat Resevwa, Voye, Bouyon, Spam, ak Poubèl",
+            "Itilize bwat rechèch la pou jwenn yon imèl espesifik",
+          ],
+          successCriteria: ["Ou navige ant tout dosye yo san konfizyon", "Rechèch la jwenn imèl ou chèche a"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak dosye ak sa li kenbe.",
+            pairs: [
+              { term: "Bwat Resevwa", meaning: "Imèl ou resevwa" },
+              { term: "Voye", meaning: "Kopi imèl ou te voye" },
+              { term: "Bouyon", meaning: "Imèl ou kòmanse men poko voye" },
+            ],
+            explanation: "Chak dosye gen yon wòl espesifik nan òganize imèl ou.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l4",
+    slug: "ekri-ak-voye-yon-imel-kle",
+    moduleId: "m8",
+    order: 4,
+    titleHt: "Ekri ak Voye Yon Imèl Klè",
+    titleEn: "Compose and Send a Clear Email",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Ekri yon imèl ki gen sijè, salitasyon, objektif, detay, ak klotiraj klè",
+      "Korije yon imèl anvan ou voye l",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka ekri yon imèl klè ak pwofesyonèl ki gen tout pati enpòtan yo, epi korije l anvan ou voye l.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon imèl klè gen sis pati: 1) yon **sijè** espesifik (pa 'Bonjou' oswa vid). 2) yon **salitasyon** kout ('Bonjou Mesye Pierre,'). 3) **objektif** la klè nan premye fraz la — poukisa ou ekri. 4) **detay nesesè** yo, pa plis. 5) yon **klotiraj** kout ('Mèsi, [Non ou]'). 6) **korije** l anvan ou voye — li l yon fwa pou verifye fot ak klète. Yon bon imèl fasil pou lòt moun li vit epi konprann sa ou bezwen.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Objektif (Purpose)",
+            definition: "Rezon prensipal ki fè ou ekri imèl la — dwe klè nan premye fraz la.",
+            example: "'Mwen ekri pou konfime randevou Vandredi a' se yon objektif klè nan premye fraz.",
+          },
+          {
+            term: "Klotiraj (Closing)",
+            definition: "Fraz kout ki fini imèl la anvan siyati ou.",
+            example: "'Mèsi davans' oswa 'Byen kòdyalman' se de egzanp klotiraj kout.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Ekri yon imèl pratik kout (pa voye l ankò) ki gen sijè, salitasyon, objektif klè, detay nesesè, ak klotiraj. Li l ankò pou korije fot.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Ekri yon imèl ak yon sijè vag tankou 'Kesyon' oswa kite sijè a vid.",
+          right: "Ekri yon sijè espesifik ki di egzakteman sou ki sa imèl la ye, tankou 'Kesyon sou orè reyinyon Jedi a'.",
+          why: "Yon sijè vag fè destinatè a pa konnen si imèl la ijan, epi fè l pi difisil pou jwenn pita.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you help me check if this email sounds clear and professional? [paste your draft]",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen ekri yon imèl pwofesyonèl pratik.",
+          objective: "Ekri yon imèl konplè ak sijè, salitasyon, objektif, detay, ak klotiraj.",
+          requiredSteps: [
+            "Ekri yon sijè espesifik",
+            "Ekri yon salitasyon ak yon objektif klè nan premye fraz la",
+            "Ajoute detay nesesè yo epi yon klotiraj",
+            "Li ankò epi korije fot anvan ou konsidere l fini",
+          ],
+          successCriteria: ["Imèl la gen tout sis pati yo", "Yon lòt moun ta konprann objektif la nan premye fraz la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete pati yon imèl klè nan lòd kòrèk.",
+            steps: ["Sijè espesifik", "Salitasyon", "Objektif ak detay", "Klotiraj"],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Sijè a parèt anvan menm ou louvri imèl la; kò a swiv ak salitasyon, objektif/detay, epi klotiraj.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l5",
+    slug: "reponn-reponn-tout-moun-ak-transfere",
+    moduleId: "m8",
+    order: 5,
+    titleHt: "Reponn, Reponn Tout Moun, ak Transfere",
+    titleEn: "Reply, Reply All, and Forward",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Distenge Reply, Reply All, ak Forward",
+      "Evite erè komen 'Reply All'",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chwazi kòrèkteman ant Reply, Reply All, ak Forward, epi ajoute kontèks lè ou transfere yon imèl.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Reply (Reponn)** voye repons ou SÈLMAN bay moun ki te voye imèl la. **Reply All (Reponn Tout Moun)** voye repons ou bay TOUT moun ki te sou imèl orijinal la — itilize l sèlman lè tout moun sa yo bezwen wè repons ou. **Forward (Transfere)** voye imèl orijinal la bay yon NOUVO moun — ajoute yon ti mo pou eksplike POUKISA ou transfere l, pou moun nan konprann kontèks la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Reply All (Reponn Tout Moun)",
+            definition: "Voye repons bay tout moun ki te resevwa imèl orijinal la, pa sèlman ekspeditè a.",
+            example: "Itilize Reply All sèlman lè tout gwoup la vrèman bezwen wè repons ou.",
+          },
+          {
+            term: "Forward (Transfere)",
+            definition: "Voye yon imèl ou resevwa bay yon lòt moun.",
+            example: "Transfere imèl la bay kòlèg ou ak yon ti mo ki eksplike poukisa.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade yon imèl gwoup ou resevwa deja. Panse a: si ou reponn, èske ou ta itilize Reply oswa Reply All, epi poukisa?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Klike Reply All san reflechi, epi voye yon mesaj pèsonèl bay yon gwo gwoup san rezon.",
+          right: "Mande tèt ou si TOUT moun sou lis la bezwen wè repons ou anvan ou klike Reply All.",
+          why: "Yon 'erè Reply All' se yon erè komen ki ka mete moun nan sitiyasyon jennan nan travay.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I received a group email and I'm not sure if I should Reply or Reply All. How do I decide?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon imèl ak plizyè moun ladan l, epi yon lòt imèl ou vle transfere bay yon zanmi.",
+          objective: "Deside kòrèkteman ant Reply ak Reply All pou premye imèl la, epi transfere dezyèm nan ak yon ti kontèks.",
+          requiredSteps: [
+            "Deside si yon repons dwe Reply oswa Reply All",
+            "Transfere yon imèl bay yon lòt moun ak yon ti mo kontèks",
+          ],
+          successCriteria: ["Ou eksplike rezònman deside w la", "Imèl transfere a gen yon ti kontèks ajoute"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou resevwa yon imèl gwoup travay ak 20 moun ladan l. Ou vle mande yon kesyon PÈSONÈL sèlman bay moun ki voye a. Ki sa ou dwe fè?",
+            options: [
+              "Klike Reply All",
+              "Klike Reply (sèlman)",
+              "Transfere l bay tout moun ankò",
+              "Voye yon nouvo imèl separe bay tout 20 moun yo",
+            ],
+            correctIndex: 1,
+            explanation: "Reply voye repons ou sèlman bay ekspeditè a — bon chwa pou yon kesyon pèsonèl.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l6",
+    slug: "fichye-tache",
+    moduleId: "m8",
+    order: 6,
+    titleHt: "Fichye Tache (Attachments)",
+    titleEn: "Attachments",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Tache yon fichye kòrèk sou yon imèl",
+      "Telechaje yon fichye tache san danje",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka tache bon fichye a sou yon imèl, tann li telechaje anvan ou voye, epi telechaje yon fichye tache san danje.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **fichye tache (attachment)** se yon dokiman, foto, oswa lòt fichye ou jwenn ansanm ak yon imèl. Anvan ou voye, **konfime se bon fichye a** ou tache — anpil moun voye move fichye pa erè. Tann fichye a fin **telechaje (upload)** nan imèl la anvan ou voye — yon ba pwogrè montre sa. Fè atansyon a **gwosè fichye** a — kèk fichye twò gwo pou voye dirèkteman, epi kèk sèvis voye yon **lyen cloud** olye de fichye a limenm nan ka sa a. Lè ou resevwa yon fichye tache, telechaje l **sèlman si ou fè ekspeditè a konfyans**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fichye Tache (Attachment)",
+            definition: "Yon dokiman oswa lòt fichye ou jwenn ansanm ak yon imèl.",
+            example: "Verifye ou tache bon fichye a anvan ou klike 'Send'.",
+          },
+          {
+            term: "Lyen Cloud (Cloud Link)",
+            definition: "Yon lyen ki mennen w telechaje yon fichye twò gwo pou tache dirèkteman.",
+            example: "Si yon fichye twò gwo, kèk sèvis imèl voye yon lyen cloud olye de fichye a limenm.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Kòmanse yon imèl pratik (pa voye l) epi tache yon fichye. Verifye non fichye a byen anvan ou imajine voye l.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa telechaje yon fichye tache ki soti nan yon moun ou pa rekonèt",
+          "Verifye ekstansyon fichye a (.pdf, .jpg) fè sans anvan ou louvri l",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I want to attach a large video file to an email but it seems too big. What are my options?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen voye yon imèl ak yon fichye tache, epi telechaje yon fichye ou resevwa.",
+          objective: "Tache yon fichye sou yon imèl pratik, epi telechaje yon fichye tache soti nan yon imèl ou fè konfyans.",
+          requiredSteps: [
+            "Tache yon fichye sou yon imèl pratik",
+            "Konfime se bon fichye a anvan ou 'voye' l",
+            "Telechaje yon fichye tache ou resevwa soti nan yon sous ou fè konfyans",
+          ],
+          successCriteria: ["Fichye a tache kòrèkteman", "Fichye telechaje a nan dosye Downloads ou"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ou resevwa yon imèl ak yon fichye tache ki soti nan yon moun ou pa rekonèt ditou. Ki sa ou dwe fè?",
+            options: [
+              "Telechaje l imedyatman pou wè sa li ye",
+              "Pa telechaje l — sispèk imèl ki soti nan moun ou pa rekonèt",
+              "Transfere l bay tout kontak ou yo",
+              "Reponn epi mande plis detay sou fichye a",
+            ],
+            correctIndex: 1,
+            explanation: "Fichye tache ki soti nan yon ekspeditè enkoni se yon gwo risk sekirite — pa telechaje l.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l7",
+    slug: "oganize-ak-jwenn-imel",
+    moduleId: "m8",
+    order: 7,
+    titleHt: "Òganize ak Jwenn Imèl",
+    titleEn: "Organize and Find Email",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Chèche, achive, ak make imèl enpòtan",
+      "Dezabòne nan maketing lejitim",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka chèche yon imèl espesifik, achive oswa make imèl enpòtan, epi dezabòne nan maketing ou pa vle ankò.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Pou jwenn yon imèl rapid, itilize **rechèch** la (tape non ekspeditè a oswa yon mo nan sijè a). **Etikèt/dosye (labels/folders)** ede w gwoupe imèl ki gen rapò. **Achive (archive)** wete yon imèl nan Bwat Resevwa a san efase l — li rete disponib pa rechèch. Yon **zetwal/drapo (star/flag)** make yon imèl enpòtan pou jwenn li fasil pita. Pou maketing **lejitim** (yon biznis ou konnen ki voye twòp imèl), **dezabòne (unsubscribe)** olye de make l Spam — gen souvan yon lyen anba imèl la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Achive (Archive)",
+            definition: "Wete yon imèl nan Bwat Resevwa a san efase l — li rete jwenn pa rechèch.",
+            example: "Achive imèl ou fin trete pou kenbe Bwat Resevwa a pwòp.",
+          },
+          {
+            term: "Dezabòne (Unsubscribe)",
+            definition: "Sispann resevwa imèl maketing lejitim atravè yon lyen nan imèl la.",
+            example: "Klike lyen 'Unsubscribe' anba yon imèl maketing ou pa vle resevwa ankò.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Nan kont imèl ou, chèche yon imèl espesifik ak bwat rechèch la. Si ou jwenn yon imèl maketing ou pa vle ankò, chèche lyen 'Unsubscribe' anba l.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Make imèl maketing lejitim kòm Spam olye dezabòne.",
+          right: "Dezabòne nan maketing lejitim atravè lyen ofisyèl la, epi kenbe 'Spam' pou vrè eskrokri sèlman.",
+          why: "Make yon biznis lejitim kòm Spam pa toujou sispann imèl yo, epi sa ka afekte filtè spam ou pou lòt imèl.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My inbox has hundreds of marketing emails I don't want anymore. What's the safest way to stop receiving them?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle netwaye ak òganize bwat imèl ou.",
+          objective: "Chèche yon imèl espesifik, achive oswa make yon lòt kòm enpòtan, epi dezabòne nan yon maketing lejitim si ou jwenn youn.",
+          requiredSteps: [
+            "Chèche yon imèl espesifik ak bwat rechèch la",
+            "Achive oswa make yon imèl kòm enpòtan",
+            "Dezabòne nan yon maketing lejitim si ou jwenn youn",
+          ],
+          successCriteria: ["Bwat imèl ou pi òganize apre egzèsis la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou resevwa twòp imèl maketing chak semèn soti nan yon magazen lejitim ou konn achte. Ki sa ki pi bon aksyon?",
+            options: [
+              "Make l kòm Spam",
+              "Klike lyen 'Unsubscribe' anba imèl la",
+              "Efase kont imèl ou epi kreye yon lòt",
+              "Reponn imèl la mande yo sispann",
+            ],
+            correctIndex: 1,
+            explanation: "Dezabòne se fason kòrèk pou sispann maketing lejitim — sa respekte prefrans ou san afekte filtè spam ou.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l8",
+    slug: "eskrokri-imel-ak-fichye-tache-danjere",
+    moduleId: "m8",
+    order: 8,
+    titleHt: "Eskrokri Imèl ak Fichye Tache Danjere",
+    titleEn: "Email Scams and Dangerous Attachments",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Rekonèt siy komen yon imèl eskrokri",
+      "Verifye yon mesaj sispèk atravè yon lòt kanal anvan ou aji",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt siy komen yon imèl eskrokri epi verifye yon mesaj sispèk atravè yon lòt kanal anvan ou aji sou li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Siy komen yon imèl eskrokri: **ijans fòse** ('aji KOUNYE A oswa kont ou fèmen'); **adrès ekspeditè ki pa matche** non moun/konpayi a di yo ye a; yon **fakti ou pa t tann**; yon mesaj ki mande **reset modpas** ou pa t mande; yon mesaj ki mande **kòd verifikasyon** ou; ak **fichye tache danjere** (.exe, .zip enkoni). **Règ kle a**: si yon imèl mande ijans oswa enfòmasyon sansib, **verifye atravè yon LÒT kanal** — rele biznis la dirèkteman ak yon nimewo ou konnen (pa nimewo ki nan imèl la), oswa vizite sit ofisyèl la dirèkteman san klike lyen nan imèl la.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Ijans Fòse (Forced Urgency)",
+            definition: "Yon tektik eskrokri ki mande aksyon imedyat pou pa kite ou reflechi.",
+            example: "'Kont ou pral fèmen nan 1 èdtan si ou pa aji kounye a' se yon siy klasik ijans fòse.",
+          },
+          {
+            term: "Verifye Atravè Yon Lòt Kanal",
+            definition: "Konfime yon mesaj sispèk lè ou kontakte moun/biznis la yon lòt fason, pa repons dirèk.",
+            example: "Si yon 'labank' voye w yon imèl sispèk, rele labank la ak nimewo ki sou kat ou, pa nimewo nan imèl la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade dosye Spam ou (san klike anyen ladan l). Idantifye si gen siy komen eskrokri: ijans, adrès ki pa matche, oswa demann enfòmasyon sansib.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm klike yon lyen nan yon imèl ki mande modpas oswa kòd verifikasyon",
+          "Verifye adrès ekspeditè a byen — li ka sanble ak yon non ou konnen men gen yon ti diferans",
+          "Rele oswa vizite sit ofisyèl la dirèkteman pou verifye, pa itilize enfòmasyon kontak ki nan imèl sispèk la",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I got an email saying my account will be closed unless I click a link and enter my password right away. Is this likely a scam?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon imèl sispèk ki mande ijans ak enfòmasyon sansib.",
+          objective: "Idantifye siy eskrokri nan yon imèl egzanp, epi eksplike ki jan ou ta verifye l atravè yon lòt kanal.",
+          requiredSteps: [
+            "Idantifye omwen twa siy eskrokri nan yon imèl sispèk",
+            "Eksplike kòman ou ta verifye mesaj la atravè yon lòt kanal",
+          ],
+          successCriteria: ["Ou idantifye siy yo kòrèkteman", "Plan verifikasyon w lan pa depann sèlman de imèl la"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki siy sa yo se avètisman komen yon imèl eskrokri? (Chwazi tout ki aplike.)",
+            options: [
+              "Mesaj la mande ou aji 'kounye a' oswa kont ou ap fèmen",
+              "Sijè a ekri klèman epi kout",
+              "Mesaj la mande kòd verifikasyon ou",
+              "Adrès ekspeditè a pa matche non konpayi a di yo ye a",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Ijans fòse, demann kòd verifikasyon, ak adrès ki pa matche se twa siy klasik eskrokri.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l9",
+    slug: "prepare-pou-yon-apel-videyo",
+    moduleId: "m8",
+    order: 9,
+    titleHt: "Prepare Pou Yon Apèl Videyo",
+    titleEn: "Basic Video-Call Readiness",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Prepare pou yon apèl videyo (kamera, mikwofòn, kaskèt)",
+      "Konprann fonksyon mit ak konsyans fon/vi prive",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka prepare epi antre nan yon apèl videyo ak konfyans — verifye kamera, mikwofòn, mit, ak vi prive fon an.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Anvan yon apèl videyo, klike **lyen envitasyon** an pou antre nan reyinyon an. Verifye **kamera** ak **mikwofòn** ou mache — souvan gen yon aperçu anvan ou antre. Yon **kaskèt (headphones)** ka ede evite eko. Bouton **mit (mute)** koupe son ou san koupe videyo a — itil lè ou pa pale. Panse a sa ki dèyè w — **fon (background)** — anvan ou antre, pou vi prive. Leson sa a se prensip jeneral yo, pa yon fòmasyon apwofondi sou yon sèvis espesifik tankou Zoom, Meet, oswa Teams — prensip yo menm jan sou tout sèvis.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Mit (Mute)",
+            definition: "Bouton ki koupe son mikwofòn ou san koupe videyo a.",
+            example: "Mit ou lè ou pa pale pou evite bri fon deranje lòt moun.",
+          },
+          {
+            term: "Fon (Background)",
+            definition: "Sa ki vizib dèyè w nan kamera a pandan yon apèl videyo.",
+            example: "Verifye fon ou anvan ou antre nan yon apèl pwofesyonèl pou vi prive.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon aplikasyon apèl videyo, teste kamera ak mikwofòn ou nan paramèt li anvan yon vrè apèl.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Antre yon apèl videyo san verifye kamera/mikwofòn oswa san reflechi sou fon an.",
+          right: "Teste kamera ak mikwofòn nan aperçu a, epi verifye fon an anvan ou antre nan apèl la.",
+          why: "Verifye alavans evite pwoblèm teknik oswa jennman pandan yon apèl enpòtan.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I have a video call coming up and I want to make sure I'm ready. What should I check beforehand?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gen yon apèl videyo ki pral kòmanse byento.",
+          objective: "Klike yon lyen envitasyon, verifye kamera ak mikwofòn, epi pratike mit/demit.",
+          requiredSteps: [
+            "Klike lyen envitasyon an (oswa senmile sa)",
+            "Verifye kamera ak mikwofòn nan aperçu a",
+            "Pratike mit epi demit",
+          ],
+          successCriteria: ["Ou antre nan apèl la san pwoblèm teknik", "Ou konprann kòman mit mache"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ki sa bouton 'Mute' fè pandan yon apèl videyo?",
+            options: [
+              "Li koupe videyo a sèlman",
+              "Li koupe son mikwofòn ou san koupe videyo a",
+              "Li fèmen apèl la nèt",
+              "Li chanje fon dèyè w",
+            ],
+            correctIndex: 1,
+            explanation: "Mute koupe sèlman son mikwofòn ou — lòt moun toujou wè videyo ou.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m8-l10",
+    slug: "misyon-voye-yon-mesaj-konple",
+    moduleId: "m8",
+    order: 10,
+    titleHt: "Misyon: Voye Yon Mesaj Konplè",
+    titleEn: "Module Mission: Send a Complete Message",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 8 nan yon egzèsis imèl reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka ekri yon imèl pwofesyonèl konplè, tache bon fichye a, verifye destinatè ak sijè, voye l, epi jwenn li nan dosye Voye a.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 8 la. Ou pral konbine tout sa ou aprann — ekri klè, tache fichye, verifye anvan voye, ak jwenn imèl ou voye a — nan yon sèl egzèsis reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen voye yon imèl pwofesyonèl konplè ak yon fichye tache.",
+          objective:
+            "Ekri yon imèl pratik pwofesyonèl, tache bon fichye PDF la, verifye destinatè ak sijè, voye l bay yon adrès pratik san danje oswa bay tèt ou, epi jwenn mesaj la nan dosye Voye a.",
+          requiredSteps: [
+            "Ekri yon imèl pratik ak sijè, salitasyon, objektif, detay, ak klotiraj",
+            "Tache bon fichye PDF la",
+            "Verifye destinatè ak sijè yo kòrèk anvan ou voye",
+            "Voye imèl la bay yon adrès pratik san danje oswa bay tèt ou",
+            "Jwenn mesaj la nan dosye Voye a",
+          ],
+          successCriteria: [
+            "Imèl la voye avèk siksè ak bon fichye tache",
+            "Ou jwenn mesaj la nan dosye Voye a san konfizyon",
+          ],
+          stretchChallenge: "Reponn tèt ou (oswa senmile yon repons) pou pratike Reply.",
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak aksyon ak sa li fè.",
+            pairs: [
+              { term: "Reply", meaning: "Voye repons sèlman bay ekspeditè a" },
+              { term: "Reply All", meaning: "Voye repons bay tout moun sou lis la" },
+              { term: "Forward", meaning: "Voye yon imèl bay yon nouvo moun" },
+            ],
+            explanation: "Reply, Reply All, ak Forward gen chak yon rezon diferan pou itilize yo.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou fason mwen kominike pa imèl kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 9." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
