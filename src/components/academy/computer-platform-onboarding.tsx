@@ -1,0 +1,204 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { ArrowRightIcon, LaptopIcon } from "@/components/ui/icons";
+import {
+  useComputerPlatform,
+  type PreferredPlatform,
+} from "@/lib/use-computer-platform";
+import { cn } from "@/lib/cn";
+
+type Step = "welcome" | "choose" | "unsure" | "confirm";
+
+export function ComputerPlatformOnboarding({
+  firstLessonSlug,
+}: {
+  firstLessonSlug: string;
+}) {
+  const { platform, setPlatform } = useComputerPlatform();
+  const [step, setStep] = useState<Step>("welcome");
+  const [chosen, setChosen] = useState<PreferredPlatform | null>(platform);
+
+  function choose(next: PreferredPlatform) {
+    setChosen(next);
+    setPlatform(next);
+    setStep("confirm");
+  }
+
+  return (
+    <main className="bg-white pt-[72px]">
+      <div className="mx-auto max-w-[620px] px-5 py-16">
+        {step === "welcome" && (
+          <div>
+            <div className="bg-indigo-light text-indigo-dark mb-6 inline-flex size-14 items-center justify-center rounded-full">
+              <LaptopIcon className="size-6" />
+            </div>
+            <h1 className="font-fraunces text-ink mb-3 text-[30px] leading-[1.15] font-semibold italic">
+              Ou pa pral kraze anyen.
+            </h1>
+            <p className="text-muted mb-3 text-[15.5px] leading-[1.6]">
+              Kou sa a pral ede w konprann kijan òdinatè ak entènèt la
+              reyèlman fonksyone, itilize pwòp òdinatè ou ak konfyans, pwoteje
+              tèt ou sou entènèt, òganize fichye ou, kominike klèman, epi
+              rezoud pwoblèm ki rive nan wout la.
+            </p>
+            <p className="text-muted mb-8 text-[15.5px] leading-[1.6]">
+              Ou pa pral aprann tout bagay sou òdinatè. Ou pral aprann sa ou
+              bezwen pou ou sispann santi w pèdi, yon ti aksyon nan yon fwa.
+              Yon ekran ou pa rekonèt se pa yon òdinatè domaje — erè isit se
+              yon pati nan aprantisaj la, se pa yon bagay pou ou pè.
+            </p>
+            <button
+              type="button"
+              onClick={() => setStep("choose")}
+              className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+            >
+              Kontinye <ArrowRightIcon className="size-4" />
+            </button>
+          </div>
+        )}
+
+        {step === "choose" && (
+          <div>
+            <p className="text-eyebrow text-indigo-dark mb-3">
+              CHWAZI CHEMEN APRANTISAJ OU
+            </p>
+            <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+              Ki òdinatè ou pral itilize pi plis?
+            </h1>
+            <p className="text-muted mb-7 text-[15px] leading-[1.6]">
+              Pifò leson mache menm jan toupatou. Lè etap yo reyèlman diferan,
+              n ap montre w vèsyon pou òdinatè pa ou. Ou ka chanje sa nenpòt
+              lè nan meni kou a.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <PlatformCard
+                label="Windows"
+                description="Start menu, taskbar, File Explorer"
+                onClick={() => choose("windows")}
+              />
+              <PlatformCard
+                label="Mac"
+                description="Menu bar, Dock, Finder"
+                onClick={() => choose("mac")}
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => setStep("unsure")}
+              className="text-indigo-dark mt-5 min-h-11 text-sm font-semibold"
+            >
+              Mwen pa sèten kilès mwen genyen →
+            </button>
+          </div>
+        )}
+
+        {step === "unsure" && (
+          <div>
+            <p className="text-eyebrow text-indigo-dark mb-3">
+              ANNOU FIGIRE SA A
+            </p>
+            <h1 className="font-fraunces text-ink mb-5 text-[26px] leading-[1.2] font-semibold italic">
+              Gade pwòp ekran ou pou yon moman.
+            </h1>
+            <div className="mb-4 grid gap-2.5">
+              <div className="border-border rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+                <p className="text-ink mb-1 text-[14.5px] font-bold">
+                  Yon ba rete nan pati anba ekran an, epi nan kwen anba
+                  agoch la gen yon bouton ou ka klike pou louvri yon meni
+                  pwogram.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => choose("windows")}
+                  className="text-indigo-dark mt-1.5 text-[13.5px] font-semibold"
+                >
+                  Sa sanble ak òdinatè mwen → Windows
+                </button>
+              </div>
+              <div className="border-border rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+                <p className="text-ink mb-1 text-[14.5px] font-bold">
+                  Yon ti ba fen ak mo tankou &ldquo;File, Edit, View&rdquo;
+                  rete toupatou nan tèt ekran an, kèlkeswa sa ki louvri, epi
+                  yon ranje ikòn pwogram rete anba oswa sou kote ekran an.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => choose("mac")}
+                  className="text-indigo-dark mt-1.5 text-[13.5px] font-semibold"
+                >
+                  Sa sanble ak òdinatè mwen → Mac
+                </button>
+              </div>
+            </div>
+            <p className="text-muted text-[13px]">
+              Ou toujou pa sèten? Chwazi youn kanmenm — ou ka chanje nenpòt lè
+              nan meni kou a, epi anyen ou fin fè pa pèdi.
+            </p>
+            <button
+              type="button"
+              onClick={() => setStep("choose")}
+              className="text-indigo-dark mt-4 min-h-11 text-sm font-semibold"
+            >
+              ← Tounen
+            </button>
+          </div>
+        )}
+
+        {step === "confirm" && chosen && (
+          <div>
+            <p className="text-eyebrow text-indigo-dark mb-3">TOUT BAGAY PARE</p>
+            <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+              Ou nan chemen {chosen === "windows" ? "Windows" : "Mac"} la.
+            </h1>
+            <p className="text-muted mb-8 text-[15px] leading-[1.6]">
+              Chak leson pral montre w etap {chosen === "windows" ? "Windows" : "Mac"} pa
+              default. Si yon leson mache menm jan sou tou de òdinatè yo, nou
+              p ap fè w chwazi san rezon. Ou ka chanje chemen nenpòt lè —
+              anyen ou fin fè p ap pèdi.
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href={`/academy/courses/computer-internet-essentials/lessons/${firstLessonSlug}`}
+                className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+              >
+                Kòmanse Modil 1 <ArrowRightIcon className="size-4" />
+              </Link>
+              <button
+                type="button"
+                onClick={() => setStep("choose")}
+                className="text-indigo-dark min-h-11 text-sm font-semibold"
+              >
+                Chanje chwa mwen an
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+function PlatformCard({
+  label,
+  description,
+  onClick,
+}: {
+  label: string;
+  description: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "border-border hover:border-indigo min-h-[92px] rounded-xl border bg-[#FCFCFE] px-4.5 py-4 text-left transition",
+      )}
+    >
+      <div className="text-ink mb-1 text-[16px] font-bold">{label}</div>
+      <div className="text-muted text-[13px]">{description}</div>
+    </button>
+  );
+}

@@ -8,9 +8,11 @@ import {
   CoursePreviewPage,
   hasCoursePreview,
 } from "@/components/academy/course-preview-page";
+import { ComputerBlockLessonPlayer } from "@/components/academy/computer-block-lesson-player";
 import { ComputerCoursePage } from "@/components/academy/computer-course-page";
 import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
 import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
+import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishFinalExam } from "@/components/academy/english-final-exam";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
@@ -26,6 +28,10 @@ import {
 } from "@/components/ui/icons";
 import { academyBooks } from "@/content/books";
 import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
+import {
+  computerRebuildLessons,
+  getComputerRebuildLesson,
+} from "@/content/computer-rebuild/lessons";
 import { courses, launchingFirstCourses } from "@/content/courses";
 import { titleFromSlug } from "@/lib/format";
 
@@ -373,6 +379,36 @@ export default async function AcademyPage({
     slug[2] === "level-1"
   ) {
     return <EnglishLevelOnePage />;
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "computer-internet-essentials" &&
+    slug[2] === "rebuild" &&
+    slug[3] === "start"
+  ) {
+    return (
+      <ComputerPlatformOnboarding
+        firstLessonSlug={computerRebuildLessons[0].slug}
+      />
+    );
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "computer-internet-essentials" &&
+    slug[2] === "rebuild" &&
+    slug[3]
+  ) {
+    const lesson = getComputerRebuildLesson(slug[3]);
+    if (lesson) {
+      return (
+        <ComputerBlockLessonPlayer
+          lesson={lesson}
+          allLessons={computerRebuildLessons}
+        />
+      );
+    }
   }
 
   if (
