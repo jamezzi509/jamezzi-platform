@@ -255,13 +255,21 @@ export function ComputerReadinessReflectionPlayer({
                   Mèsi pou pran tan reflechi sou kwasans ou! Ou ka retounen gade
                   oswa chanje repons ou yo nenpòt lè.
                 </p>
-                <Link
-                  href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
-                  className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
-                >
-                  Ale nan Egzamen Final la
-                  <ArrowRightIcon className="size-4" />
-                </Link>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <Link
+                    href="/academy/courses/computer-internet-essentials/rebuild/growth-summary"
+                    className="border-indigo text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full border-2 bg-white px-6 py-2.5 text-sm font-semibold"
+                  >
+                    Wè Rezime Kwasans Ou
+                  </Link>
+                  <Link
+                    href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
+                    className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+                  >
+                    Ale nan Egzamen Final la
+                    <ArrowRightIcon className="size-4" />
+                  </Link>
+                </div>
               </div>
             )}
           </div>

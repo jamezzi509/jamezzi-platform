@@ -221,6 +221,23 @@ export interface ReadinessReflection {
 }
 
 /**
+ * A short "how do you feel right now" self-rating shown once, before Module
+ * 1 — the "before" half of the growth-summary comparison against Checkpoint
+ * 4's readiness reflection. Uses the same competency list and scale as that
+ * reflection (see competencies.ts) so the two records compare directly.
+ * Unlike ReadinessReflection, it is never locked and has no open questions —
+ * it is a single, skippable, one-time snapshot.
+ */
+export interface SkillsIntake {
+  id: string;
+  titleHt: string;
+  titleEn: string;
+  intro: string;
+  scaleLabelsHt: [string, string, string];
+  competencies: CompetencyRating[];
+}
+
+/**
  * One question in the final exam's question bank — Section 8.5. Tagged with
  * the module it covers (for even bank coverage and, on a miss, a targeted
  * lesson to review) rather than a narrow skillTag like checkpoint questions,

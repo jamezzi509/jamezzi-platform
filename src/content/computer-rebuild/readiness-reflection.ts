@@ -1,3 +1,7 @@
+import {
+  computerRebuildConfidenceScaleHt,
+  computerRebuildCoreCompetencies,
+} from "@/content/computer-rebuild/competencies";
 import type { ReadinessReflection } from "@/content/computer-rebuild/schema";
 
 /**
@@ -18,35 +22,8 @@ export const computerRebuildReadinessReflections: ReadinessReflection[] = [
     titleEn: "Confidence Checkpoint 4 — Digital Readiness Check",
     intro:
       "Ou fin konplete Kapstòn nan ak tout 14 modil kou a. Sa a se PA yon egzamen — pa gen okenn nòt. Se yon moman pou ou fè yon pòz epi reflechi onètman sou kijan ou santi w kounye a, konpare ak lè ou te kòmanse. Repons ou yo rete antre ou, epi ou ka retounen chanje yo nenpòt lè.",
-    scaleLabelsHt: [
-      "Mwen pa ka fè sa toujou",
-      "Mwen ta ka fè l ak èd",
-      "Mwen ka fè l poukont mwen",
-    ],
-    competencies: [
-      { skillHt: "Mwen ka òganize fichye mwen yo.", skillEn: "I can organize my files." },
-      { skillHt: "Mwen ka enstale lojisyèl san danje.", skillEn: "I can install software safely." },
-      {
-        skillHt: "Mwen konnen diferans ant Wi-Fi ak entènèt.",
-        skillEn: "I know the difference between Wi-Fi and the internet.",
-      },
-      {
-        skillHt: "Mwen konnen kijan pou evite eskrokri komen yo.",
-        skillEn: "I know how to avoid common scams.",
-      },
-      {
-        skillHt: "Mwen ka rezoud pwoblèm òdinatè senp.",
-        skillEn: "I can solve simple computer problems.",
-      },
-      {
-        skillHt: "Mwen ka chwazi bon òdinatè pou bezwen mwen.",
-        skillEn: "I can choose the right computer for my needs.",
-      },
-      {
-        skillHt: "Mwen ka kominike pwofesyonèlman pa imèl.",
-        skillEn: "I can communicate professionally by email.",
-      },
-    ],
+    scaleLabelsHt: computerRebuildConfidenceScaleHt,
+    competencies: computerRebuildCoreCompetencies,
     openQuestions: [
       { id: "most-confident", promptHt: "Ki konpetans ou pi konfyan de li?" },
       { id: "practice-more", promptHt: "Ki konpetans ou ta renmen pratike plis?" },

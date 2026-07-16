@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRightIcon, LaptopIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, LaptopIcon, SparklesIcon } from "@/components/ui/icons";
+import { computerRebuildSkillsIntake } from "@/content/computer-rebuild/skills-intake";
 import {
   useComputerPlatform,
   type PreferredPlatform,
 } from "@/lib/use-computer-platform";
 import { cn } from "@/lib/cn";
 
-type Step = "welcome" | "choose" | "unsure" | "confirm";
+export const computerSkillsIntakeStorageKey =
+  "jamezzi:computer:essentials:skills-intake";
+
+type Step = "welcome" | "choose" | "unsure" | "confirm" | "skills";
 
 export function ComputerPlatformOnboarding({
   firstLessonSlug,
@@ -19,11 +23,35 @@ export function ComputerPlatformOnboarding({
   const { platform, setPlatform } = useComputerPlatform();
   const [step, setStep] = useState<Step>("welcome");
   const [chosen, setChosen] = useState<PreferredPlatform | null>(platform);
+  const [ratings, setRatings] = useState<(number | null)[]>(() =>
+    computerRebuildSkillsIntake.competencies.map(() => null),
+  );
 
   function choose(next: PreferredPlatform) {
     setChosen(next);
     setPlatform(next);
-    setStep("confirm");
+    setStep("skills");
+  }
+
+  function setRating(index: number, value: number) {
+    setRatings((prev) => {
+      const next = [...prev];
+      next[index] = value;
+      return next;
+    });
+  }
+
+  function saveIntakeIfRated() {
+    if (ratings.every((r) => r === null)) return;
+    try {
+      window.localStorage.setItem(
+        computerSkillsIntakeStorageKey,
+        JSON.stringify({ ratings, savedAt: new Date().toISOString() }),
+      );
+    } catch {
+      // Intake stays unrecorded if storage is blocked — the growth summary
+      // just falls back to showing current levels with no comparison.
+    }
   }
 
   return (
@@ -146,6 +174,79 @@ export function ComputerPlatformOnboarding({
           </div>
         )}
 
+        {step === "skills" && (
+          <div>
+            <div className="bg-indigo-light text-indigo-dark mb-6 inline-flex size-14 items-center justify-center rounded-full">
+              <SparklesIcon className="size-6" />
+            </div>
+            <p className="text-eyebrow text-indigo-dark mb-3">
+              YON DENYE BAGAY ANVAN OU KÒMANSE
+            </p>
+            <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+              {computerRebuildSkillsIntake.titleHt}
+            </h1>
+            <p className="text-muted mb-7 text-[15px] leading-[1.6]">
+              {computerRebuildSkillsIntake.intro}
+            </p>
+            <div className="mb-7">
+              {computerRebuildSkillsIntake.competencies.map((item, index) => (
+                <div
+                  key={item.skillHt}
+                  className={cn(
+                    "border-border border-b py-4.5",
+                    index === 0 && "border-t",
+                  )}
+                >
+                  <p className="text-ink mb-3 text-[14.5px] font-semibold">
+                    {item.skillHt}
+                  </p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {computerRebuildSkillsIntake.scaleLabelsHt.map(
+                      (label, scaleIndex) => {
+                        const selected = ratings[index] === scaleIndex;
+                        return (
+                          <button
+                            key={label}
+                            type="button"
+                            onClick={() => setRating(index, scaleIndex)}
+                            className={cn(
+                              "min-h-14 rounded-[10px] px-2 py-2 text-center text-[12px] leading-[1.35] transition",
+                              selected
+                                ? "border-indigo bg-indigo-light border-2 font-semibold"
+                                : "border-border border bg-[#FCFCFE]",
+                            )}
+                          >
+                            {label}
+                          </button>
+                        );
+                      },
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  saveIntakeIfRated();
+                  setStep("confirm");
+                }}
+                className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+              >
+                Kontinye <ArrowRightIcon className="size-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setStep("confirm")}
+                className="text-indigo-dark min-h-11 text-sm font-semibold"
+              >
+                Sote etap sa a
+              </button>
+            </div>
+          </div>
+        )}
+
         {step === "confirm" && chosen && (
           <div>
             <p className="text-eyebrow text-indigo-dark mb-3">TOUT BAGAY PARE</p>
@@ -160,7 +261,7 @@ export function ComputerPlatformOnboarding({
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href={`/academy/courses/computer-internet-essentials/lessons/${firstLessonSlug}`}
+                href={`/academy/courses/computer-internet-essentials/rebuild/${firstLessonSlug}`}
                 className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
               >
                 Kòmanse Modil 1 <ArrowRightIcon className="size-4" />
