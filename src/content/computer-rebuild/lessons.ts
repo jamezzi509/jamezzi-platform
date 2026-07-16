@@ -5110,6 +5110,988 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m5-l1",
+    slug: "kisa-yon-aplikasyon-ye",
+    moduleId: "m5",
+    order: 1,
+    titleHt: "Ki Sa Yon Aplikasyon Ye?",
+    titleEn: "What Is an Application?",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Distenge yon aplikasyon enstale de yon sit entènèt",
+      "Rekonèt diferans ant aplikasyon gratis ak peye, sistèm ak twazyèm pati",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike ki sa yon aplikasyon ye epi distenge yon aplikasyon enstale de yon sit ou vizite nan navigatè a.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **aplikasyon (application)** — yo rele l tou **pwogram** oswa **lojisyèl** — se yon zouti ou enstale sou òdinatè ou pou fè yon travay espesifik: ekri, kalkile, gade foto, jwe. Gen de kalite: yon **aplikasyon enstale** viv dirèkteman sou òdinatè a epi ou ka louvri l san entènèt; yon **aplikasyon wèb (web app)** mache nan navigatè a (tankou Chrome oswa Safari) epi souvan mande entènèt. Gen tou aplikasyon **gratis** ak aplikasyon **peye**, ak aplikasyon **sistèm** (ki vini deja enstale, tankou Kalkilatris) kont aplikasyon **twazyèm pati** (ou enstale ou menm apre).",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Aplikasyon (Application)",
+            definition: "Yon pwogram ou enstale sou òdinatè a pou fè yon travay espesifik.",
+            example: "Yon aplikasyon tretman tèks se yon aplikasyon ou itilize pou ekri dokiman.",
+          },
+          {
+            term: "Aplikasyon Wèb (Web App)",
+            definition: "Yon zouti ki mache dirèkteman nan navigatè a, san bezwen enstale l.",
+            example: "Anpil sèvis imèl mache tankou aplikasyon wèb ou louvri nan Chrome oswa Safari.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Gade sou òdinatè ou epi jwenn twa aplikasyon ki deja enstale. Idantifye si chak youn se yon aplikasyon sistèm oswa yon aplikasyon twazyèm pati.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Panse tout sa ou wè nan navigatè a se yon 'aplikasyon' menm jan ak sa ki enstale sou òdinatè a.",
+          right: "Rekonèt yon sit entènèt ou vizite nan navigatè a diferan de yon aplikasyon ki enstale dirèkteman sou òdinatè a.",
+          why: "Konprann diferans lan ede w konnen kote pou chèche yon zouti, epi si ou bezwen entènèt pou itilize l.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the difference between an application I install on my computer and a web app I use inside my browser?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konnen ki aplikasyon ou deja genyen sou òdinatè ou.",
+          objective: "Jwenn twa aplikasyon diferan epi idantifye si yo se sistèm, twazyèm pati, gratis, oswa peye.",
+          requiredSteps: [
+            "Jwenn twa aplikasyon ki enstale sou òdinatè ou",
+            "Idantifye si chak se yon aplikasyon sistèm oswa twazyèm pati",
+          ],
+          successCriteria: ["Ou ka idantifye tip twa aplikasyon san èd"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou itilize yon sèvis imèl dirèkteman nan Chrome, san ou pa enstale anyen. Sa a se ki kalite zouti?",
+            options: [
+              "Yon aplikasyon wèb",
+              "Yon aplikasyon sistèm",
+              "Yon fichye ZIP",
+              "Yon dosye",
+            ],
+            correctIndex: 0,
+            explanation: "Yon zouti ki mache dirèkteman nan navigatè a, san enstalasyon, se yon aplikasyon wèb.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l2",
+    slug: "kote-san-danje-pou-jwenn-aplikasyon",
+    moduleId: "m5",
+    order: 2,
+    titleHt: "Kote San Danje Pou Jwenn Aplikasyon",
+    titleEn: "Safe Places to Get Applications",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Rekonèt kote ofisyèl pou telechaje aplikasyon",
+      "Rekonèt siy avètisman sou sit telechajman ki pa san danje",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka jwenn magazen aplikasyon ofisyèl sou òdinatè ou, epi rekonèt siy avètisman sou sit ki pa san danje.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kote ki pi san danje pou jwenn yon aplikasyon se yon **magazen aplikasyon ofisyèl** (Microsoft Store sou Windows, Mac App Store sou Mac) oswa **sit ofisyèl devlopè** aplikasyon an limenm. Evite sit telechajman ki mande w telechaje soti nan yon lyen ou pa rekonèt, ki gen anpil bouton 'Download' ki fè konfizyon, oswa ki mande enfòmasyon pèsonèl anvan ou telechaje. Yon siy avètisman kle: si sit la mande w peye oswa antre modpas anvan ou wè aplikasyon an, sispann.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Magazen Aplikasyon (App Store)",
+            definition: "Yon plas ofisyèl kote ou ka telechaje aplikasyon ki verifye.",
+            example: "Microsoft Store sou Windows ak Mac App Store sou Mac se de magazen aplikasyon ofisyèl.",
+          },
+          {
+            term: "Sit Ofisyèl Devlopè a",
+            definition: "Sit entènèt konpayi ki fè aplikasyon an limenm pibliye.",
+            example: "Si ou pa jwenn yon aplikasyon nan magazen an, chèche sit ofisyèl konpayi ki fè l la.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: ["Chèche 'Microsoft Store' nan bwat rechèch la epi louvri l pou wè aplikasyon ofisyèl"],
+          mac: ["Chèche 'App Store' nan bwat rechèch la (Spotlight) epi louvri l pou wè aplikasyon ofisyèl"],
+          recoveryNote:
+            "Si ou pa jwenn aplikasyon an nan magazen an, chèche non konpayi a ansanm ak mo 'sit ofisyèl' anvan ou telechaje nenpòt bagay.",
+        },
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Evite sit ki gen anpil bouton 'Download' konfizyonan — souvan se piyèj",
+          "Pa antre modpas oswa enfòmasyon peman sou yon sit ou pa rekonèt anvan ou telechaje",
+          "Si yon sit ensiste anpil pou ou telechaje vit, sa se yon siy avètisman",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I want to download a specific application but I'm not sure if the website I found is official. What signs should make me suspicious?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou bezwen jwenn yon nouvo aplikasyon san mete òdinatè ou an danje.",
+          objective: "Louvri magazen aplikasyon ofisyèl la epi chèche yon aplikasyon ou konnen.",
+          requiredSteps: [
+            "Louvri Microsoft Store (Windows) oswa App Store (Mac)",
+            "Chèche non yon aplikasyon ou konnen",
+          ],
+          successCriteria: ["Ou jwenn magazen an san konfizyon", "Rechèch la montre rezilta ki gen rapò"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon sit telechajman ensiste anpil pou ou klike yon bouton 'Download' klere, epi genyen plizyè lòt bouton 'Download' ki fè konfizyon. Ki sa ou dwe fè?",
+            options: [
+              "Klike premye bouton 'Download' ou wè a",
+              "Sispann epi chèche aplikasyon an nan magazen ofisyèl la oswa sit devlopè a",
+              "Antre modpas ou pou verifye idantite w",
+              "Pataje sit la ak yon zanmi anvan ou telechaje",
+            ],
+            correctIndex: 1,
+            explanation: "Anpil bouton 'Download' konfizyonan se yon gwo siy avètisman — chèche sous ofisyèl la pito.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l3",
+    slug: "enstale-yon-aplikasyon",
+    moduleId: "m5",
+    order: 3,
+    titleHt: "Enstale Yon Aplikasyon",
+    titleEn: "Install an Application",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Enstale yon aplikasyon san danje",
+      "Rekonèt pèmisyon ak akò lisans anvan ou aksepte yo",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka enstale yon aplikasyon soti nan yon sous ou fè konfyans, epi rekonèt pèmisyon ak lojisyèl anplis ou pa mande.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè ou enstale yon aplikasyon, òdinatè a souvan mande w konfime **pèmisyon** (tankou kapasite pou li kreye fichye) ak montre yon **akò lisans** ou dwe li anvan ou aksepte. Pran tan pou gade si gen kaz ki deja tcheke pou enstale **lojisyèl anplis (bundled software)** ou pa mande — desanble yo si yo la. Sou Windows, enstalasyon an souvan mache atravè yon **asistan enstalasyon (installer)** ki mennen ou etap pa etap. Sou Mac, ou souvan **rale ikòn aplikasyon an nan dosye Applications**.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pèmisyon (Permission)",
+            definition: "Otorizasyon yon aplikasyon mande pou l ka fè yon bagay espesifik sou òdinatè ou.",
+            example: "Yon aplikasyon foto ka mande pèmisyon pou l aksede nan foto ou yo.",
+          },
+          {
+            term: "Lojisyèl Anplis (Bundled Software)",
+            definition: "Yon lòt aplikasyon ki tante enstale ansanm ak sa ou vle a, souvan san w pa remake.",
+            example: "Dekache kaz ki tcheke pou 'enstale tou' yon lòt aplikasyon pandan enstalasyon an.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Louvri fichye enstalasyon an epi swiv etap asistan enstalasyon an",
+            "Dekache kaz ki tcheke pou lojisyèl anplis ou pa mande",
+            "Li akò lisans lan anvan ou aksepte, epi klike 'Install' pou fini",
+          ],
+          mac: [
+            "Louvri fichye .dmg la epi rale ikòn aplikasyon an nan dosye Applications",
+            "Louvri aplikasyon an soti nan Applications oswa Launchpad",
+          ],
+          recoveryNote:
+            "Si sistèm nan mande konfimasyon anplis anvan aplikasyon an louvri pou premye fwa, se yon etap sekirite nòmal.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Klike 'Next' rapid san li anyen pandan enstalasyon an, epi aksepte tout kaz ki deja tcheke.",
+          right: "Pran tan pou gade chak etap epi dekache kaz pou lojisyèl anplis ou pa mande.",
+          why: "Anpil enstalasyon eseye ajoute lòt aplikasyon oswa chanje paramèt navigatè a si ou pa fè atansyon.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! During an installation, I saw a checkbox already checked that says it will also install another program. Should I leave it checked?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle enstale yon aplikasyon ou telechaje soti nan yon sous ou fè konfyans.",
+          objective: "Enstale aplikasyon an pandan ou fè atansyon a chak etap, epi verifye pa gen lojisyèl anplis.",
+          requiredSteps: [
+            "Louvri fichye enstalasyon an",
+            "Verifye pa gen kaz tcheke pou lojisyèl anplis",
+            "Fini enstalasyon an epi louvri aplikasyon an yon fwa",
+          ],
+          successCriteria: ["Aplikasyon an enstale san lòt lojisyèl anplis", "Aplikasyon an louvri kòrèkteman"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Pandan yon enstalasyon, ou wè yon kaz ki deja tcheke pou enstale yon lòt aplikasyon ou pa rekonèt. Ki sa ou dwe fè?",
+            options: [
+              "Kite l tcheke epi kontinye",
+              "Dekache kaz la anvan ou kontinye",
+              "Sispann tout enstalasyon an",
+              "Enstale l epi efase l pita",
+            ],
+            correctIndex: 1,
+            explanation: "Dekache kaz ki deja tcheke pou lojisyèl anplis anvan ou kontinye enstalasyon an.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l4",
+    slug: "mete-ajou-ak-retire-yon-aplikasyon",
+    moduleId: "m5",
+    order: 4,
+    titleHt: "Mete Ajou ak Retire Yon Aplikasyon",
+    titleEn: "Update and Remove an Application",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Mete ajou yon aplikasyon",
+      "Dezenstale yon aplikasyon san danje",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka mete yon aplikasyon ajou epi dezenstale yon aplikasyon ou pa bezwen ankò, san efase fichye ou kreye ak li.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Mete ajou (update)** yon aplikasyon enpòtan paske sa ranje pwoblèm ak souvan fèmen twou sekirite. Aplikasyon yo souvan mete ajou tèt yo, oswa ou ka verifye nan magazen aplikasyon an. Pou retire yon aplikasyon, itilize **dezenstale (uninstall)** — sa diferan de efase yon rakousi (shortcut) sou Desktop la, ki sèlman retire aksè rapid la san retire aplikasyon an vrèman. Enpòtan: dezenstale yon aplikasyon **pa toujou efase fichye ou te kreye avè l** — dokiman ou te sovgade rete sou òdinatè a.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Mete Ajou (Update)",
+            definition: "Enstale yon nouvo vèsyon yon aplikasyon ki ranje pwoblèm oswa ajoute fonksyon.",
+            example: "Mete aplikasyon yo ajou regilyèman pou pwoteje òdinatè ou.",
+          },
+          {
+            term: "Dezenstale (Uninstall)",
+            definition: "Retire yon aplikasyon nèt sou òdinatè a, diferan de efase yon rakousi.",
+            example: "Dezenstale yon aplikasyon ou pa itilize ankò pou libere espas.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Ale nan Settings > Apps",
+            "Chèche non aplikasyon an epi klike 'Uninstall'",
+          ],
+          mac: [
+            "Louvri Finder > Applications",
+            "Rale ikòn aplikasyon an nan Trash pou dezenstale l",
+          ],
+          recoveryNote:
+            "Si aplikasyon an pa disparèt apre sa, sonje l ka mande yon rekòmansaj (restart) òdinatè a pou fini pwosesis la.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Efase sèlman ikòn aplikasyon an sou Desktop la epi panse aplikasyon an dezenstale.",
+          right: "Itilize opsyon 'Uninstall' (Windows) oswa rale aplikasyon an nan Trash (Mac) pou vrèman retire l.",
+          why: "Efase yon rakousi sèlman retire aksè rapid la — aplikasyon an ak espas li itilize rete sou òdinatè a.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I uninstalled an application but I'm worried the documents I created with it are gone too. Is that usually the case?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou gen yon aplikasyon ou pa itilize ankò epi ou vle libere espas.",
+          objective: "Verifye si gen mizajou disponib pou yon aplikasyon, epi dezenstale yon aplikasyon ou pa bezwen.",
+          requiredSteps: [
+            "Verifye si yon aplikasyon gen mizajou disponib",
+            "Dezenstale yon aplikasyon ou pa itilize ankò",
+          ],
+          successCriteria: ["Aplikasyon an pa parèt ankò nan lis aplikasyon yo", "Ou konprann fichye ou kreye yo rete"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ou dezenstale yon aplikasyon tretman tèks. Sa k ap rive ak dokiman ou te ekri avè l yo?",
+            options: [
+              "Yo efase otomatikman",
+              "Yo rete sou òdinatè a — se sèlman aplikasyon an ki dezenstale",
+              "Yo voye nan Recycle Bin/Trash",
+              "Yo konprese nan yon fichye ZIP",
+            ],
+            correctIndex: 1,
+            explanation: "Dezenstale yon aplikasyon retire aplikasyon an sèlman — dokiman ou te kreye yo rete sou òdinatè a.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l5",
+    slug: "louvri-modifye-sovgade-ak-feme-yon-dokiman",
+    moduleId: "m5",
+    order: 5,
+    titleHt: "Louvri, Modifye, Sovgade, ak Fèmen Yon Dokiman Debaz",
+    titleEn: "Open, Edit, Save, and Close a Basic Document",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Louvri, modifye, sovgade, ak fèmen yon dokiman debaz",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka louvri yon dokiman senp, fè yon ti modifikasyon, sovgade l, epi fèmen l san pèdi travay ou.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sekans debaz pou travay ak yon dokiman se: **louvri** l (doub klik oswa 'Open' nan aplikasyon an), **modifye** l (ajoute oswa chanje tèks), **sovgade** l (Ctrl+S/Cmd+S), epi **fèmen** l lè ou fini. Leson sa a pa yon fòmasyon konplè sou yon aplikasyon tretman tèks espesifik — se sèlman sekans debaz la ou ka aplike nan nenpòt aplikasyon dokiman senp. Toujou sovgade anvan ou fèmen, sinon dènye chanjman ou yo ka pèdi.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Modifye (Edit)",
+            definition: "Chanje kontni yon dokiman — ajoute, retire, oswa chanje tèks.",
+            example: "Modifye dat la nan dokiman an anvan ou sovgade l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: ["Peze Ctrl+S pou sovgade chanjman yo pandan ou ap travay"],
+          mac: ["Peze Cmd+S pou sovgade chanjman yo pandan ou ap travay"],
+          recoveryNote:
+            "Si aplikasyon an mande w yon non fichye lè ou sovgade pou premye fwa, bay li yon non ki gen sans.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Fèmen yon dokiman san sovgade apre ou fin fè chanjman.",
+          right: "Sovgade (Ctrl+S/Cmd+S) anvan ou fèmen yon dokiman ou modifye.",
+          why: "Chanjman ki pa sovgade disparèt lè ou fèmen dokiman an san konfimasyon.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I made changes to a document but I'm not sure if I saved them before closing it. How can I avoid losing work like that?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon dokiman senp epi ou bezwen fè yon ti modifikasyon.",
+          objective: "Louvri dokiman an, fè yon ti chanjman, sovgade l, epi fèmen l.",
+          requiredSteps: [
+            "Louvri yon dokiman ki egziste deja",
+            "Fè yon ti modifikasyon (ajoute yon fraz oswa chanje yon mo)",
+            "Sovgade dokiman an",
+            "Fèmen dokiman an",
+          ],
+          successCriteria: ["Chanjman an rete apre ou fèmen epi rouvri dokiman an"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou travay ak yon dokiman san pèdi chanjman.",
+            steps: ["Louvri dokiman an", "Modifye kontni li", "Sovgade dokiman an", "Fèmen dokiman an"],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Toujou sovgade apre ou modifye, epi anvan ou fèmen, pou pa pèdi chanjman ou yo.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l6",
+    slug: "sa-ou-dwe-konnen-sou-pdf",
+    moduleId: "m5",
+    order: 6,
+    titleHt: "Sa Ou Dwe Konnen Sou PDF",
+    titleEn: "PDF Essentials",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Louvri, navige, zoom, ak chèche nan yon PDF",
+      "Telechaje ak enprime yon PDF",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka louvri yon PDF, navige ladan l, chèche yon mo, epi telechaje oswa enprime l.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Yon **PDF** se yon fòma dokiman ki gade menm jan sou tout aparèy — se poutèt sa moun itilize l pou rapò, kontra, ak fòmilè. Ou ka **navige** ant paj yo, **zoom** pou li pi klè, ak **chèche** yon mo espesifik nan tout dokiman an. Kèk PDF gen **jaden ranpli (fillable fields)** ou ka klike pou antre enfòmasyon. Leson sa a pa yon fòmasyon sou modifye yon PDF an pwofondè — se sèlman baz pou li, navige, ak enprime yon PDF.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "PDF",
+            definition: "Yon fòma dokiman ki gade menm jan sou tout aparèy ak sistèm opere.",
+            example: "Ekspòte yon rapò an PDF anvan ou pataje l pou l gade menm jan pou tout moun.",
+          },
+          {
+            term: "Jaden Ranpli (Fillable Field)",
+            definition: "Yon espas nan yon PDF ou ka klike pou antre enfòmasyon dirèkteman.",
+            example: "Kèk fòmilè PDF gen jaden ranpli pou non ak dat san ou pa bezwen enprime yo.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Doub klike yon fichye .pdf pou louvri l nan aplikasyon PDF debaz la",
+            "Itilize Ctrl+F pou chèche yon mo, epi Ctrl+P pou enprime",
+          ],
+          mac: [
+            "Doub klike yon fichye .pdf pou louvri l nan Preview",
+            "Itilize Cmd+F pou chèche yon mo, epi Cmd+P pou enprime",
+          ],
+          recoveryNote:
+            "Si PDF la louvri nan navigatè a olye yon aplikasyon apa, ou ka toujou navige, zoom, ak chèche menm jan an.",
+        },
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Louvri yon fichye PDF ou genyen deja. Eseye zoom pou li pi gwo, navige ant de paj, epi chèche yon mo ak Ctrl+F/Cmd+F.",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I have a long PDF and I need to find a specific word in it without reading every page. How do I search inside a PDF?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon dokiman PDF ou bezwen egzamine.",
+          objective: "Louvri PDF la, chèche yon mo espesifik ladan l, epi enprime oswa ekspòte l.",
+          requiredSteps: [
+            "Louvri yon fichye PDF",
+            "Chèche yon mo espesifik nan dokiman an",
+            "Enprime oswa ekspòte yon kopi",
+          ],
+          successCriteria: ["Rechèch la jwenn mo a", "Ou konplete enpresyon oswa ekspòtasyon an san konfizyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Poukisa moun itilize fòma PDF pito pase fòma tankou .docx pou pataje yon dokiman final?",
+            options: [
+              "Paske PDF gade menm jan sou tout aparèy ak sistèm",
+              "Paske PDF pi piti toujou pase lòt fòma",
+              "Paske ou pa ka enprime yon PDF",
+              "Paske PDF otomatikman efase apre yon semèn",
+            ],
+            correctIndex: 0,
+            explanation: "PDF gade menm jan kèlkeswa aparèy la, se pou sa li popilè pou dokiman final.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l7",
+    slug: "aplikasyon-pa-defo",
+    moduleId: "m5",
+    order: 7,
+    titleHt: "Aplikasyon Pa Defo",
+    titleEn: "Default Applications",
+    estimatedMinutes: 8,
+    mode: "shared_steps",
+    objectives: [
+      "Konprann poukisa yon fichye louvri nan yon aplikasyon espesifik",
+      "Itilize 'Open With' pou chwazi yon lòt aplikasyon",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka esplike poukisa yon fichye louvri nan yon sèten aplikasyon, epi itilize 'Open With' pou chwazi yon lòt aplikasyon lè sa nesesè.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Chak tip fichye gen yon **aplikasyon pa defo (default application)** — se aplikasyon ki louvri otomatikman lè ou double-klike fichye a. Pa egzanp, tout .pdf ka louvri toujou nan menm aplikasyon. Si ou vle louvri yon fichye nan yon LÒT aplikasyon pou yon fwa sèlman, itilize **'Open With'** (right-click sou fichye a). Chanje aplikasyon pa defo pou tout tan se yon desizyon ou pa dwe fè san reflechi — fè l sèlman lè ou gen yon rezon klè.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Aplikasyon Pa Defo (Default Application)",
+            definition: "Aplikasyon ki louvri otomatikman lè ou double-klike yon tip fichye.",
+            example: "Si aplikasyon foto pa defo ou a se Photos, tout .jpg louvri ladan l otomatikman.",
+          },
+          {
+            term: "Open With",
+            definition: "Opsyon ki kite w chwazi yon lòt aplikasyon pou louvri yon fichye, pou yon fwa sèlman.",
+            example: "Right-click sou yon fichye epi chwazi 'Open With' pou eseye yon lòt aplikasyon.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: ["Right-click sou fichye a, chwazi 'Open with', epi chwazi aplikasyon ou vle a"],
+          mac: ["Right-click sou fichye a, chwazi 'Open With', epi chwazi aplikasyon ou vle a"],
+          recoveryNote:
+            "Si ou pa wè aplikasyon ou vle a nan lis la, li ka poko enstale sou òdinatè a.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Chanje aplikasyon pa defo pou TOUT tip fichye san w pa konprann konsekans lan.",
+          right: "Itilize 'Open With' pou yon fwa sèlman, san chanje default la, sof si ou gen yon bon rezon.",
+          why: "Chanje default la pou tout tan afekte KIYÈS fwa ou double-klike menm tip fichye a alavni.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! When I double-click a file, it always opens in the same app. How do I open it in a different app just this once?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle louvri yon fichye nan yon lòt aplikasyon pase sa ki louvri otomatikman.",
+          objective: "Itilize 'Open With' pou chwazi yon lòt aplikasyon pou yon fichye espesifik.",
+          requiredSteps: [
+            "Right-click sou yon fichye",
+            "Chwazi 'Open With'",
+            "Chwazi yon lòt aplikasyon nan lis la",
+          ],
+          successCriteria: ["Fichye a louvri nan aplikasyon ou chwazi a", "Aplikasyon pa defo a pa chanje"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou vle louvri yon foto nan yon lòt aplikasyon pou yon fwa sèlman, san chanje aplikasyon pa defo a pou tout tan. Ki sa ou dwe fè?",
+            options: [
+              "Right-click epi itilize 'Open With'",
+              "Chanje default la nan Settings",
+              "Dezenstale aplikasyon pa defo a",
+              "Kreye yon nouvo dosye",
+            ],
+            correctIndex: 0,
+            explanation: "'Open With' kite w chwazi yon lòt aplikasyon pou yon fwa, san afekte default la pou tout tan.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l8",
+    slug: "pemisyon-aplikasyon",
+    moduleId: "m5",
+    order: 8,
+    titleHt: "Pèmisyon Aplikasyon",
+    titleEn: "Application Permissions",
+    estimatedMinutes: 8,
+    mode: "universal",
+    objectives: [
+      "Konprann diferan kalite pèmisyon aplikasyon ka mande",
+      "Deside chwazi yon pèmisyon daprè objektif reyèl aplikasyon an",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt diferan kalite pèmisyon yon aplikasyon ka mande, epi deside si yo fè sans daprè objektif aplikasyon an.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Aplikasyon yo mande **pèmisyon** anvan yo itilize kèk pati sansib nan òdinatè ou: **kamera**, **mikwofòn**, **lokalizasyon (location)**, **fichye**, ak **notifikasyon**. Règ senp lan: mande tèt ou si pèmisyon an fè sans pou sa aplikasyon an fèt pou fè. Yon aplikasyon foto ki mande kamera fè sans; yon aplikasyon kalkilatris ki mande kamera pa fè sans. Ou ka toujou refize yon pèmisyon epi chanje desizyon w pita nan Paramèt.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Pèmisyon Lokalizasyon (Location Permission)",
+            definition: "Otorizasyon ki kite yon aplikasyon konnen kote ou ye.",
+            example: "Yon aplikasyon kat (map) mande pèmisyon lokalizasyon pou l ka montre chemen an.",
+          },
+          {
+            term: "Notifikasyon (Notifications)",
+            definition: "Pèmisyon ki kite yon aplikasyon voye w mesaj menm lè aplikasyon an fèmen.",
+            example: "Yon aplikasyon imèl ka mande pèmisyon notifikasyon pou avèti w lè yon nouvo mesaj rive.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a twa aplikasyon ou itilize. Pou chak youn, di ki pèmisyon (kamera, mikwofòn, lokalizasyon, fichye, notifikasyon) ki ta fè sans pou li mande, e poukisa.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Aksepte tout pèmisyon yon aplikasyon mande san reflechi si yo fè sans.",
+          right: "Mande tèt ou si pèmisyon an gen rapò ak objektif reyèl aplikasyon an anvan ou aksepte l.",
+          why: "Yon aplikasyon ki gen aksè pèmisyon li pa bezwen ka itilize enfòmasyon sa yo pou rezon ou pa dakò avè yo.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! A simple calculator app is asking for camera and location permission. Does that make sense, and how should I decide?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle konprann pèmisyon aplikasyon ou deja genyen yo.",
+          objective: "Chwazi twa aplikasyon epi deside si pèmisyon yo mande fè sans pou objektif yo.",
+          requiredSteps: [
+            "Chwazi twa aplikasyon ou itilize",
+            "Idantifye ki pèmisyon chak youn mande",
+            "Deside si chak pèmisyon fè sans",
+          ],
+          successCriteria: ["Ou eksplike rezònman w pou chak desizyon"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon aplikasyon kalkilatris senp mande pèmisyon pou kamera ak mikwofòn ou. Ki sa sa ta dwe fè w panse?",
+            options: [
+              "Sa nòmal, tout aplikasyon bezwen tout pèmisyon",
+              "Sa etranj — yon kalkilatris pa gen rezon pou bezwen kamera oswa mikwofòn",
+              "Sa vle di aplikasyon an gratis",
+              "Sa vle di aplikasyon an pral mache pi vit",
+            ],
+            correctIndex: 1,
+            explanation: "Yon pèmisyon ki pa gen rapò ak objektif aplikasyon an se yon siy pou poze kesyon anvan ou aksepte.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m5-l9",
+    slug: "misyon-prepare-yon-dokiman",
+    moduleId: "m5",
+    order: 9,
+    titleHt: "Misyon: Prepare Yon Dokiman",
+    titleEn: "Module Mission: Prepare a Document",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 5 nan yon egzèsis dokiman reyèl",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka louvri yon dokiman, modifye l, sovgade yon nouvo kopi ak yon bon non, ekspòte oswa enprime an PDF, epi jwenn fichye final la.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 5 la. Ou pral konbine sa ou aprann sou aplikasyon ak dokiman — louvri, modifye, Save As, ak ekspòte an PDF — nan yon sèl egzèsis reyèl.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon dokiman senp ou bezwen prepare pou pataje.",
+          objective:
+            "Louvri dokiman an, fè yon ti modifikasyon, sovgade yon nouvo kopi ak yon non ki gen sans, ekspòte oswa enprime yon vèsyon PDF, epi jwenn fichye final la.",
+          requiredSteps: [
+            "Louvri yon dokiman ki egziste deja",
+            "Fè yon ti modifikasyon nan dokiman an",
+            "Itilize Save As pou kreye yon nouvo kopi ak yon non ki gen sans",
+            "Ekspòte oswa enprime yon vèsyon PDF",
+            "Jwenn fichye PDF final la nan dosye ou te sovgade l la",
+          ],
+          successCriteria: [
+            "Nouvo kopi a gen yon non ki gen sans",
+            "Yon fichye PDF egziste ak menm kontni modifye a",
+            "Ou konplete tout etap yo san bezwen èd pou pi fò nan yo",
+          ],
+          stretchChallenge: "Ouvri PDF final la epi chèche yon mo espesifik ladan l pou konfime li kòrèk.",
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak zouti ak sa li fè.",
+            pairs: [
+              { term: "Save As", meaning: "Kreye yon nouvo kopi san afekte orijinal la" },
+              { term: "Open With", meaning: "Louvri yon fichye nan yon lòt aplikasyon pou yon fwa" },
+              { term: "Uninstall", meaning: "Retire yon aplikasyon nèt" },
+            ],
+            explanation: "Save As, Open With, ak Uninstall se twa zouti debaz ou itilize souvan ak aplikasyon ak dokiman.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen kontwòl total sou aplikasyon ak dokiman mwen kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 6." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
