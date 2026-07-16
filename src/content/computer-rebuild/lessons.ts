@@ -13580,6 +13580,1247 @@ export const computerRebuildLessons: CourseLesson[] = [
       },
     ],
   },
+  {
+    id: "m13-l1",
+    slug: "panse-tankou-yon-moun-ki-rezoud-pwoblem",
+    moduleId: "m13",
+    order: 1,
+    titleHt: "Panse Tankou Yon Moun Ki Rezoud Pwoblèm",
+    titleEn: "Think Like a Problem Solver",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Memorize ak aplike bouk rezoud-pwoblèm Jamezzi a (8 etap)",
+      "Distenge sentòm yon pwoblèm de kòz li",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka aplike bouk rezoud-pwoblèm Jamezzi a (8 etap) pou nenpòt pwoblèm òdinatè, epi distenge yon sentòm de yon kòz.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Chak leson nan Modil 13 aplike menm **bouk rezoud-pwoblèm Jamezzi a**: 1) **Sispann epi li** — pa panike, li mesaj/sitiyasyon an kalmman. 2) **Dekri sentòm egzat la** — pa 'li pa mache', men 'ekran an rete nwa lè m peze bouton limyè a'. 3) **Mande sa ki chanje** — sa te fèt jis anvan pwoblèm nan kòmanse? 4) **Verifye kòz senp yo** — kouran, kab, paramèt debaz. 5) **Eseye YON SÈL aksyon san danje** — pa fè plizyè bagay anmenm tan. 6) **Teste** — èske aksyon an rezoud pwoblèm nan? 7) **Anrejistre rezilta a** — sa te mache oswa non? 8) **Eskalade lè sa nesesè** — mande èd si etap yo pa rezoud pwoblèm nan. Enpòtan: yon **sentòm** se sa OU wè (ekran nwa), pandan yon **kòz** se REZON ki fè sa rive (batri vid, kab pa konekte, elatriye) — de bagay diferan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Sentòm (Symptom)",
+            definition: "Sa ou wè oswa remake ki pa mache — pa rezon an.",
+            example: "'Ekran an rete nwa' se yon sentòm — kòz la ka batri vid, kab pa konekte, oswa lòt bagay.",
+          },
+          {
+            term: "Kòz (Cause)",
+            definition: "Vrè rezon ki fè yon sentòm rive.",
+            example: "Yon kòz posib pou ekran nwa: batri a vid — verifye kòz la anvan ou eseye rezoud li.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon pwoblèm òdinatè ou te genyen deja. Aplike bouk 8 etap la mantalman — ki nan etap yo ou te fè, e ki nan yo ou te sote?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Eseye plizyè aksyon anmenm tan lè yon bagay pa mache, san ou pa sonje sa ou fè.",
+          right: "Eseye YON SÈL aksyon a la fwa, epi teste — konsa ou konnen egzakteman sa ki rezoud pwoblèm nan.",
+          why: "Si ou fè plizyè bagay anmenm tan epi pwoblèm nan rezoud, ou pa konnen ki aksyon ki te itil — sa fè w pa ka aprann pou pwochen fwa.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you help me apply a calm troubleshooting process to a computer problem I'm having, one step at a time, instead of just giving me a random fix to try?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle entènalize bouk rezoud-pwoblèm Jamezzi a pou itilize l chak fwa yon pwoblèm parèt.",
+          objective: "Site tout uit etap yo nan lòd, epi eksplike diferans ant sentòm ak kòz ak yon egzanp pa w.",
+          requiredSteps: [
+            "Site uit etap bouk la nan lòd kòrèk",
+            "Bay yon egzanp pèsonèl kote ou distenge sentòm de kòz",
+          ],
+          successCriteria: ["Ou site tout uit etap yo san manke okenn"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete uit etap bouk rezoud-pwoblèm Jamezzi a nan lòd kòrèk.",
+            steps: [
+              "Sispann epi li",
+              "Dekri sentòm egzat la",
+              "Mande sa ki chanje",
+              "Verifye kòz senp yo",
+              "Eseye yon sèl aksyon san danje",
+              "Teste",
+              "Anrejistre rezilta a",
+              "Eskalade lè sa nesesè",
+            ],
+            correctOrder: [0, 1, 2, 3, 4, 5, 6, 7],
+            explanation: "Sa a se bouk konplè a — swiv li nan lòd chak fwa pou rezoud pwoblèm san danje ak san konfizyon.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l2",
+    slug: "rekomanse-etenn-domi-ak-fose-femen",
+    moduleId: "m13",
+    order: 2,
+    titleHt: "Rekòmanse, Etenn, Dòmi, ak Fòse Fèmen",
+    titleEn: "Restart, Shut Down, Sleep, and Force Quit",
+    estimatedMinutes: 9,
+    mode: "shared_steps",
+    objectives: [
+      "Distenge rekòmanse, etenn, dòmi, ak fòse fèmen",
+      "Konprann kilè fòse fèmen apwopriye",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka distenge rekòmanse, etenn, dòmi, ak fòse fèmen, epi konnen kilè chak youn apwopriye.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "**Rekòmanse (restart)** etenn epi rimen òdinatè a — sa efase pwoblèm tanporè memwa/lojisyèl souvan. **Etenn (shut down)** koupe kouran konplètman. **Dòmi (sleep)** kenbe travay ou aktif men konsome mwens kouran — bon pou pòz kout. **Fòse fèmen (force quit)** fèmen yon aplikasyon ki bloke, lè fason nòmal la pa mache. **Kilè fòse fèmen apwopriye**: sèlman lè yon aplikasyon vrèman bloke (pa reponn ditou) — pa yon fason nòmal pou fèmen yon aplikasyon k ap mache byen. **Evite kenbe bouton pouvwa a** sof si tout lòt opsyon pa mache — sa ka koupe kouran brital san sovgade travay.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Fòse Fèmen (Force Quit)",
+            definition: "Fèmen yon aplikasyon ki bloke lè fason nòmal la pa mache.",
+            example: "Itilize fòse fèmen sèlman lè yon aplikasyon vrèman pa reponn ditou.",
+          },
+          {
+            term: "Dòmi (Sleep)",
+            definition: "Yon mòd ki kenbe travay ou aktif men konsome mwens kouran pase lè limen konplètman.",
+            example: "Fèmen kouvèti laptop ou souvan mete l an dòmi otomatikman.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Peze Ctrl+Alt+Delete epi chwazi 'Task Manager' pou fòse fèmen yon aplikasyon bloke",
+            "Klike bouton Windows a epi chwazi ikòn pouvwa a pou Rekòmanse, Etenn, oswa Dòmi",
+          ],
+          mac: [
+            "Peze Cmd+Option+Esc pou louvri 'Force Quit Applications'",
+            "Klike meni Apple a epi chwazi Rekòmanse, Etenn, oswa Dòmi",
+          ],
+          recoveryNote:
+            "Si menu nòmal la pa reponn ditou, sa vle di menm ekran an ka bloke — nan ka sa a sèlman, konsidere kenbe bouton pouvwa a.",
+        },
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Kenbe bouton pouvwa a chak fwa yon aplikasyon lan, menm lè sa pa vrèman nesesè.",
+          right: "Eseye fòse fèmen aplikasyon an dabò, epi rekòmanse — kenbe bouton pouvwa a se dènye rekou.",
+          why: "Koupe kouran brital ka lakòz pèt travay ki pa sovgade, oswa menm domaj fichye nan ka ki ra.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! What's the actual difference between restart, shut down, sleep, and force quit — and when should I use each one?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Yon aplikasyon rete bloke sou ekran ou epi pa reponn ditou.",
+          objective: "Fòse fèmen aplikasyon bloke a, epi rekòmanse òdinatè a si sa nesesè.",
+          requiredSteps: [
+            "Itilize fòse fèmen pou aplikasyon bloke a",
+            "Verifye si pwoblèm nan rezoud",
+            "Rekòmanse òdinatè a si aplikasyon an rete pwoblèm",
+          ],
+          successCriteria: ["Aplikasyon bloke a fèmen san ou pa kenbe bouton pouvwa a"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Yon aplikasyon rete bloke — souri a vire men anyen pa reponn depi plizyè minit. Ki premye bagay ou dwe eseye?",
+            options: [
+              "Kenbe bouton pouvwa a imedyatman",
+              "Fòse fèmen aplikasyon an sèlman",
+              "Deprann tout kab yo",
+              "Ranje aplikasyon an ou menm",
+            ],
+            correctIndex: 1,
+            explanation: "Fòse fèmen aplikasyon an sèlman se premye etap apwopriye — kenbe bouton pouvwa a se dènye rekou.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l3",
+    slug: "yon-aplikasyon-bloke-oswa-lan",
+    moduleId: "m13",
+    order: 3,
+    titleHt: "Yon Aplikasyon Bloke oswa Lan",
+    titleEn: "A Frozen or Slow Application",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Aplike bouk rezoud-pwoblèm nan pou yon aplikasyon bloke oswa lan",
+      "Verifye si pwoblèm nan afekte yon sèl aplikasyon oswa tout sistèm nan",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rezoud yon aplikasyon bloke oswa lan lè ou swiv yon sekans kalm: tann, verifye, fèmen, rouvri, mete ajou, rekòmanse.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè yon aplikasyon bloke oswa lan, swiv sekans lan: 1) **Tann** yon ti moman — pafwa aplikasyon an ap trete yon bagay lou. 2) **Verifye si se SÈLMAN yon aplikasyon** ki afekte, oswa tout òdinatè a lan. 3) **Fèmen/fòse fèmen** aplikasyon an si tann pa rezoud pwoblèm nan. 4) **Rouvri** l. 5) Verifye si li bezwen yon **mizajou**. 6) **Rekòmanse** òdinatè a si pwoblèm nan pèsiste. Panse tou a **konsyans estokaj ak memwa** — yon òdinatè ki gen estokaj/memwa prèske plen ka fè aplikasyon yo mache lan oswa bloke pi souvan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Verifye Yon Sèl Aplikasyon (Isolate the App)",
+            definition: "Konfime si pwoblèm nan afekte SÈLMAN yon aplikasyon, oswa tout sistèm nan.",
+            example: "Louvri yon lòt aplikasyon pou wè si li tou lan — sa ede w idantifye si pwoblèm nan jeneral.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a yon fwa yon aplikasyon te bloke oswa lan pou ou. Aplike sekans lan mantalman: tann, verifye, fèmen, rouvri, mete ajou, rekòmanse — ki etap ki te rezoud li?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Rekòmanse tout òdinatè a imedyatman chak fwa yon sèl aplikasyon lan.",
+          right: "Verifye si se sèlman yon aplikasyon ki afekte, epi eseye fèmen/rouvri l anvan ou rekòmanse tout sistèm nan.",
+          why: "Rekòmanse tout sistèm nan pa toujou nesesè epi fè w pèdi tan si se sèlman yon aplikasyon ki gen pwoblèm.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! One specific application keeps freezing on me. What's a calm sequence of things to try before restarting the whole computer?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Yon aplikasyon espesifik kontinye bloke oswa mache lan pou ou.",
+          objective: "Swiv sekans konplè a pou idantifye ak rezoud pwoblèm nan.",
+          requiredSteps: [
+            "Tann epi verifye si se sèlman yon aplikasyon ki afekte",
+            "Fèmen/rouvri aplikasyon an",
+            "Verifye si yon mizajou disponib",
+          ],
+          successCriteria: ["Ou swiv sekans lan nan lòd san panike"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou rezoud yon aplikasyon bloke oswa lan.",
+            steps: ["Tann yon ti moman", "Verifye si se sèlman yon aplikasyon", "Fèmen epi rouvri aplikasyon an", "Rekòmanse òdinatè a si pwoblèm nan pèsiste"],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Sekans kalm sa a evite rekòmanse tout sistèm nan san rezon lè pwoblèm nan sèlman yon sèl aplikasyon.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l4",
+    slug: "yon-odinate-lan",
+    moduleId: "m13",
+    order: 4,
+    titleHt: "Yon Òdinatè Lan",
+    titleEn: "A Slow Computer",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Idantifye kòz komen yon òdinatè lan",
+      "Rekonèt fo 'aplikasyon netwayaj' ki pwomèt twòp",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka idantifye kòz komen yon òdinatè lan, epi rekonèt fo 'aplikasyon netwayaj' ki pwomèt rezilta ki pa reyalis.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Kòz komen yon òdinatè lan: **twòp aplikasyon k ap louvri otomatikman lè ou limen** (startup apps), **twòp aplikasyon/onglè louvri anmenm tan**, **estokaj ba**, **mizajou ki manke**, **chalè twò wo**, ak pafwa **siy malveyan** (aktivite etranj, aplikasyon ou pa rekonèt). Fè atansyon a **fo aplikasyon 'netwayaj (cleaner)'** ki pwomèt fè òdinatè a '10 fwa pi rapid' — anpil nan yo se yo menm ki fè òdinatè a pi lan, oswa pi mal, enstale malveyan. Yon òdinatè lan pa toujou vle di li fini — souvan se yon konbinezon senp faktè ki fasil pou verifye youn pa youn.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Aplikasyon Startup (Startup Apps)",
+            definition: "Pwogram ki louvri otomatikman chak fwa òdinatè a limen, ki ka ralanti demaraj.",
+            example: "Verifye lis aplikasyon startup ou epi dezaktive sa ou pa bezwen chak fwa.",
+          },
+          {
+            term: "Fo Aplikasyon Netwayaj (Fake Cleaner App)",
+            definition: "Yon aplikasyon ki pwomèt vitès dramatik san rezon, souvan yo menm ki kreye pwoblèm.",
+            example: "Evite telechaje yon 'cleaner' ki pwomèt fè òdinatè a '10 fwa pi rapid' — se souvan yon eskrokri.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Verifye estokaj òdinatè ou — konbyen espas ki rete? Si li ba, sa ka youn nan rezon òdinatè a mache lan.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Evite telechaje 'aplikasyon netwayaj' ki pwomèt rezilta dramatik san sous verifye",
+          "Si ou remake aktivite etranj oswa aplikasyon ou pa rekonèt, sispèk yon posib malveyan",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My computer has gotten noticeably slower over the past few weeks. What are the most common, non-alarming reasons for that?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Òdinatè ou vin pi lan pase anvan.",
+          objective: "Verifye omwen twa kòz komen (estokaj, mizajou, aplikasyon startup) san telechaje okenn 'cleaner'.",
+          requiredSteps: [
+            "Verifye espas estokaj ki rete",
+            "Verifye si gen mizajou ki tann",
+            "Gade lis aplikasyon startup ou",
+          ],
+          successCriteria: ["Ou verifye omwen twa kòz posib san itilize yon fo aplikasyon netwayaj"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Ki kòz sa yo se rezon komen ak lejitim yon òdinatè lan? (Chwazi tout ki aplike.)",
+            options: [
+              "Estokaj prèske plen",
+              "Twòp aplikasyon startup",
+              "Koulè fon ekran an twò klere",
+              "Mizajou sistèm ki manke",
+            ],
+            correctIndexes: [0, 1, 3],
+            explanation: "Estokaj, aplikasyon startup, ak mizajou ki manke se twa kòz komen — koulè fon ekran an pa afekte pèfòmans.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l5",
+    slug: "pa-gen-entenet",
+    moduleId: "m13",
+    order: 5,
+    titleHt: "Pa Gen Entènèt",
+    titleEn: "No Internet",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Aplike yon tès kouch pa kouch pou pwoblèm entènèt",
+      "Konprann ikòn Wi-Fi la pa prèv aksè entènèt reyèl",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka swiv yon tès kouch pa kouch (aparèy, routè, founisè, sit) lè pa gen entènèt, epi konprann ikòn Wi-Fi la pa prèv aksè entènèt reyèl.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè pa gen entènèt, teste **kouch pa kouch**: 1) **Aparèy ou** — èske Wi-Fi aktive? 2) **Routè** — limyè yo nòmal? 3) **Founisè** — gen yon pàn sèvis lakay founisè a? 4) **Sit espesifik** — se sèlman yon sit ki pa mache, oswa tout sit? **Ikòn Wi-Fi la ki montre 'konekte' PA PRÈV ou gen aksè entènèt reyèl** — ou ka konekte sou Wi-Fi routè a men routè a limenm pa gen entènèt (yon pwoblèm founisè). Se poutèt sa tès kouch pa kouch la enpòtan — li ede w izole ki NIVO pwoblèm nan ye.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Tès Kouch Pa Kouch (Layered Test)",
+            definition: "Verifye chak nivo (aparèy, routè, founisè, sit) youn pa youn pou izole yon pwoblèm entènèt.",
+            example: "Si aparèy ou konekte men lòt aparèy tou pa gen entènèt, pwoblèm nan gen chans nan routè oswa founisè a.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Panse a dènye fwa entènèt ou pa t mache. Aplike tès kouch pa kouch la mantalman — nan ki nivo pwoblèm nan te ye?",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Wè ikòn Wi-Fi 'konekte' epi sipoze pwoblèm nan pa ka nan koneksyon entènèt.",
+          right: "Konprann ikòn Wi-Fi la montre koneksyon LOKAL sèlman — sa pa garanti aksè entènèt reyèl.",
+          why: "Konfizyon sa a fè moun chèche pwoblèm nan move kote (nan yon sit oswa aplikasyon) pandan se routè/founisè a ki gen pwoblèm.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My Wi-Fi icon shows connected but no websites are loading. What's a step-by-step way to figure out which layer the problem is in?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou senmile yon sitiyasyon kote pa gen entènèt sou òdinatè ou.",
+          objective: "Aplike tès kouch pa kouch la pou izole ki nivo pwoblèm nan ye.",
+          requiredSteps: [
+            "Verifye aparèy ou (Wi-Fi aktive?)",
+            "Verifye routè a (limyè nòmal?)",
+            "Teste yon lòt sit pou konfime si se yon sit espesifik oswa tout entènèt",
+          ],
+          successCriteria: ["Ou izole nivo pwoblèm nan lojikman"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Ikòn Wi-Fi ou montre 'konekte' men okenn sit pa louvri. Ki sa sa vle di?",
+            options: [
+              "Ou gen aksè entènèt reyèl garanti",
+              "Ou konekte lokalman sou routè a, men sa pa garanti aksè entènèt reyèl",
+              "Pwoblèm nan toujou nan aparèy ou",
+              "Ou dwe achte yon nouvo òdinatè",
+            ],
+            correctIndex: 1,
+            explanation: "Ikòn Wi-Fi la montre koneksyon lokal sèlman — routè a ka pa gen entènèt reyèl menm si aparèy ou konekte sou li.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l6",
+    slug: "pa-gen-son-kamera-oswa-mikwofon",
+    moduleId: "m13",
+    order: 6,
+    titleHt: "Pa Gen Son, Kamera, oswa Mikwofòn",
+    titleEn: "No Sound, Camera, or Microphone",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rezoud pwoblèm son, kamera, oswa mikwofòn ki pa mache",
+      "Verifye pèmisyon aplikasyon ak vòlè fizik kamera",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rezoud pwoblèm son, kamera, oswa mikwofòn ki pa mache lè ou verifye mit, volim, aparèy chwazi, pèmisyon, ak koneksyon.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè son, kamera, oswa mikwofòn pa mache, verifye nan lòd: **mit (mute)** aktive pa aksidan? **volim** ba oswa fèmen? **bon aparèy chwazi** nan paramèt (pa egzanp, opalè olye kaskèt)? **pèmisyon** aplikasyon an genyen pou aksede kamera/mikwofòn? gen yon **vòlè fizik (physical shutter)** ki kouvri kamera a? **paramèt aplikasyon** espesifik la kòrèk? epi **rekonekte** aparèy la si li Bluetooth oswa USB. Swiv lis sa a nan lòd olye eseye tout bagay anmenm tan.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Vòlè Fizik (Physical Shutter)",
+            definition: "Yon ti kouvèti fizik sou kèk kamera òdinatè ki bloke vi kamera a menm si li aktive nan lojisyèl.",
+            example: "Verifye vòlè fizik kamera a pa fèmen si videyo ou parèt nwa pandan yon apèl.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Verifye paramèt son/videyo òdinatè ou kounye a. Idantifye ki aparèy ki chwazi pou kamera, mikwofòn, ak opalè.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Sipoze mikwofòn/kamera a domaje san verifye mit, pèmisyon, ak aparèy chwazi dabò.",
+          right: "Swiv lis verifikasyon senp la (mit, volim, aparèy chwazi, pèmisyon) anvan ou konkli gen yon pwoblèm materyèl.",
+          why: "Pifò pwoblèm son/kamera se yon paramèt senp, pa yon domaj materyèl reyèl.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My microphone isn't picking up my voice during a call. What's a calm checklist to go through before assuming it's broken?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Son, kamera, oswa mikwofòn ou sispann mache pandan yon aktivite.",
+          objective: "Swiv lis verifikasyon konplè a pou idantifye ak rezoud pwoblèm nan.",
+          requiredSteps: [
+            "Verifye mit ak volim",
+            "Verifye bon aparèy chwazi nan paramèt",
+            "Verifye pèmisyon aplikasyon an",
+          ],
+          successCriteria: ["Ou swiv lis la nan lòd san panike"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "order_steps",
+            prompt: "Mete etap yo nan lòd kòrèk pou rezoud yon pwoblèm son/kamera/mikwofòn.",
+            steps: ["Verifye mit ak volim", "Verifye bon aparèy chwazi nan paramèt", "Verifye pèmisyon aplikasyon an", "Rekonekte aparèy la si sa nesesè"],
+            correctOrder: [0, 1, 2, 3],
+            explanation: "Kòmanse ak verifikasyon senp yo (mit, volim) anvan ou ale nan pèmisyon ak rekoneksyon.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l7",
+    slug: "pwoblem-enprimant",
+    moduleId: "m13",
+    order: 7,
+    titleHt: "Pwoblèm Enprimant",
+    titleEn: "Printer Problems",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Rezoud pwoblèm enprimant komen nan yon sekans lojik",
+      "Konnen kilè pou retire/ajoute enprimant lan san danje",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rezoud pwoblèm enprimant komen (kouran, koneksyon, liy datant, papye, lank) nan yon sekans lojik.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè enprimant lan pa mache, verifye nan lòd: **kouran** (limen?), **koneksyon** (Wi-Fi/kab byen konekte?), **bon enprimant chwazi** (si ou gen plizyè), **liy datant (queue)** blòke pa yon ansyen travay ki echwe?, **papye** disponib?, **lank/toner** ase?, epi **rekòmanse** enprimant lan ak/oswa òdinatè a. Si anyen pa mache, **retire epi ajoute enprimant lan ankò**, men fè sa **sèlman lè yon gid ofisyèl mennen w**, pa okazyonèlman.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Liy Datant Blòke (Stuck Queue)",
+            definition: "Yon ansyen travay enprime ki echwe ki anpeche nouvo travay yo mache.",
+            example: "Si enprimant lan pa reponn, gade liy datant lan pou wè si yon ansyen travay bloke l.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Si ou gen aksè a yon enprimant, verifye liy datant li pou wè si gen yon travay ki tann depi lontan.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Retire epi ajoute enprimant lan ankò imedyatman, san eseye etap senp yo dabò.",
+          right: "Swiv sekans lan (kouran, koneksyon, liy datant, papye, lank) anvan ou retire/ajoute enprimant lan.",
+          why: "Pifò pwoblèm enprimant se yon bagay senp (liy datant blòke, papye fini) — retire/ajoute a se yon dènye rekou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My printer isn't responding when I try to print. What's a step-by-step way to figure out what's wrong before I do anything drastic?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou senmile yon sitiyasyon kote enprimant lan pa reponn lè ou eseye enprime.",
+          objective: "Swiv sekans konplè a pou idantifye ak rezoud pwoblèm nan.",
+          requiredSteps: [
+            "Verifye kouran ak koneksyon enprimant lan",
+            "Gade liy datant pou yon travay blòke",
+            "Verifye papye ak lank/toner",
+          ],
+          successCriteria: ["Ou swiv sekans lan nan lòd lojik"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou voye yon dokiman pou enprime men anyen pa sòti, epi enprimant lan sanble limen nòmalman. Ki premye bagay ou dwe verifye?",
+            options: [
+              "Retire epi ajoute enprimant lan ankò imedyatman",
+              "Verifye liy datant pou yon travay blòke, epi papye/lank",
+              "Achte yon nouvo enprimant",
+              "Rekòmanse tout rezo lakay ou",
+            ],
+            correctIndex: 1,
+            explanation: "Verifye liy datant ak founiti (papye/lank) yo se premye etap senp anvan ou konsidere aksyon pi dramatik.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l8",
+    slug: "estokaj-plen-sa-pou-fe",
+    moduleId: "m13",
+    order: 8,
+    titleHt: "Estokaj Plen: Sa Pou Fè",
+    titleEn: "Storage Full",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Aplike yon sekans san danje pou libere estokaj",
+      "Evite efase dosye sistèm san w pa rekonèt yo",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka libere estokaj san danje lè ou verifye vi estokaj la, retire fichye ou pa bezwen, ak dezenstale aplikasyon san touche dosye sistèm.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè estokaj plen, aji nan lòd: 1) **Gade vi estokaj** la (paramèt ki montre ki kategori konsome plis espas). 2) **Retire fichye ou konnen ou pa bezwen ankò** (ansyen enstalatè, doub). 3) **Vide Poubèl/Recycle Bin avèk atansyon** — verifye anvan. 4) **Deplase fichye pèsonèl** (foto, videyo) sou cloud oswa yon disk ekstèn. 5) **Dezenstale aplikasyon ou pa itilize ankò**. **Pa janm efase dosye sistèm** ou pa rekonèt — yo souvan nesesè pou òdinatè a fonksyone.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Vi Estokaj (Storage View)",
+            definition: "Yon paramèt ki montre ki kategori fichye (aplikasyon, foto, sistèm) konsome plis espas.",
+            example: "Gade vi estokaj ou anvan ou deside ki fichye pou retire — sa montre kote pi gwo espas la ye.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Louvri vi estokaj òdinatè ou (nan Paramèt). Idantifye ki kategori konsome plis espas.",
+      },
+      {
+        id: "b5",
+        type: "safety",
+        reminders: [
+          "Pa janm efase yon dosye ou pa rekonèt ki sanble fè pati sistèm nan",
+          "Verifye Poubèl/Recycle Bin anvan ou vide l pou tout tan",
+        ],
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! My computer says storage is almost full. What's a safe order of things to try to free up space without risking system files?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou resevwa yon mesaj ki di estokaj ou prèske plen.",
+          objective: "Libere estokaj lè ou swiv sekans san danje a, san touche okenn dosye sistèm.",
+          requiredSteps: [
+            "Gade vi estokaj la pou idantifye pi gwo kategori",
+            "Retire fichye ou konnen ou pa bezwen ankò",
+            "Dezenstale yon aplikasyon ou pa itilize ankò",
+          ],
+          successCriteria: ["Espas lib ogmante san touche dosye sistèm"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou ap chèche libere estokaj epi ou wè yon dosye ak yon non teknik ou pa rekonèt ditou. Ki sa ou dwe fè?",
+            options: [
+              "Efase l paske li pran espas",
+              "Kite l — pa efase dosye sistèm ou pa rekonèt",
+              "Chanje non li",
+              "Deplase l sou yon kle USB",
+            ],
+            correctIndex: 1,
+            explanation: "Dosye sistèm ou pa rekonèt yo souvan nesesè pou òdinatè a fonksyone — pa efase yo.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l9",
+    slug: "mizajou-ak-woutin-antretyen-debaz",
+    moduleId: "m13",
+    order: 9,
+    titleHt: "Mizajou ak Woutin Antretyen Debaz",
+    titleEn: "Updates and Basic Maintenance Routine",
+    estimatedMinutes: 9,
+    mode: "universal",
+    objectives: [
+      "Etabli yon woutin antretyen mansyèl senp",
+      "Sovgade anvan gwo mizajou",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka etabli yon woutin antretyen mansyèl senp ki gen ladan mizajou sistèm/aplikasyon ak yon sovgad anvan gwo mizajou.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Antretyen debaz gen ladan: **mizajou sistèm opere**, **mizajou aplikasyon**, ak **rekòmanse** apre gwo mizajou. **Sovgade travay ou anvan yon GWO mizajou** — pafwa mizajou yo mande plizyè minit epi ka gen ti pwoblèm ra. Yon **verifikasyon mansyèl** senp (estokaj, mizajou, sekirite kont) ka evite anpil pwoblèm pita. Fè atansyon ak **konsyans aparèy ki pa sipòte ankò** — kèk ansyen òdinatè pa ka resevwa dènye mizajou sistèm, ki ka ogmante risk sekirite.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Woutin Antretyen Mansyèl (Monthly Maintenance Routine)",
+            definition: "Yon lis verifikasyon senp ou fè chak mwa: estokaj, mizajou, ak sekirite kont.",
+            example: "Chak premye jou mwa a, verifye estokaj, mizajou, ak si kont ou toujou solid.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "practice",
+        instructions:
+          "Verifye si sistèm opere ak aplikasyon prensipal ou yo ajou. Si ou wè yon mizajou tann, planifye lè ou pral fè l.",
+      },
+      {
+        id: "b5",
+        type: "mistake",
+        mistake: {
+          wrong: "Fè yon gwo mizajou san sovgade travay ou anvan.",
+          right: "Sovgade travay enpòtan ou anvan yon gwo mizajou sistèm opere.",
+          why: "Menm si sa ra, mizajou yo ka pran plis tan pase espere oswa gen yon ti pwoblèm — yon sovgad pwoteje travay ou.",
+        },
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! Can you help me build a simple monthly computer maintenance checklist I can actually stick to?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou vle etabli yon woutin antretyen senp ou ka swiv chak mwa.",
+          objective: "Kreye yon woutin mansyèl ak omwen twa aksyon (mizajou, estokaj, sekirite).",
+          requiredSteps: [
+            "Verifye mizajou sistèm ak aplikasyon",
+            "Verifye estokaj ki rete",
+            "Verifye sekirite kont ou (modpas, 2FA)",
+          ],
+          successCriteria: ["Woutin an gen omwen twa aksyon klè ou ka repete chak mwa"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "multiple_choice",
+            prompt: "Poukisa li bon pratik pou sovgade travay ou anvan yon GWO mizajou sistèm opere?",
+            options: [
+              "Paske mizajou toujou efase tout fichye",
+              "Paske mizajou yo ka pran tan epi gen ti risk ra pwoblèm — sovgad la yon pwoteksyon",
+              "Paske se yon obligasyon legal",
+              "Sa pa gen okenn rezon reyèl",
+            ],
+            correctIndex: 1,
+            explanation: "Sovgade anvan yon gwo mizajou pwoteje travay ou si yon bagay pran plis tan oswa gen yon ti pwoblèm ra.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l10",
+    slug: "mesaj-ere-ak-jwenn-ed",
+    moduleId: "m13",
+    order: 10,
+    titleHt: "Mesaj Erè ak Jwenn Èd",
+    titleEn: "Error Messages and Getting Help",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Li ak anrejistre yon mesaj erè egzat",
+      "Chèche/mande èd yon fason ki bay pi bon repons",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka li tèks egzat yon mesaj erè, kaptire l san danje, epi chèche oswa mande èd yon fason ki bay pi bon chans jwenn yon repons itil.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Lè yon mesaj erè parèt: **li tèks EGZAK la** — pa rezime l nan tèt ou, mo yo enpòtan. **Pran yon screenshot san danje** (verifye pa gen modpas/enfòmasyon sansib vizib nan screenshot la). **Chèche mesaj EGZAK la** ansanm ak kontèks aparèy ou (mak/modèl, sistèm opere). **Mande yon AI san danje** — dekri mesaj la ak kontèks, san pataje enfòmasyon sansib. **Kontakte sipò** si sa nesesè, epi **dekri sa ou deja eseye** — sa ede sipò a ede w pi vit, olye repete menm bagay ou deja fè.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Tèks Egzat (Exact Text)",
+            definition: "Mo egzat yon mesaj erè montre, san rezime oswa chanje.",
+            example: "Kopye tèks egzat mesaj erè a olye di 'li te gen yon erè bizè'.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Verifye yon screenshot pa montre modpas oswa enfòmasyon sansib anvan ou pataje l",
+          "Pa pataje enfòmasyon sansib menm lè ou mande èd yon AI oswa yon moun sou yon mesaj erè",
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Si ou gen yon mesaj erè ou sonje, eseye ekri tèks egzat li. Si ou pa gen youn, panse a kijan ou ta dekri youn ak kontèks konplè.",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! I got this exact error message: [paste the exact text]. My device is [describe device/OS]. Can you help me understand what it might mean and what to try first?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou wè yon mesaj erè (reyèl oswa senmile) sou òdinatè ou.",
+          objective: "Kaptire tèks egzat la san danje, epi eksplike kijan ou ta chèche/mande èd sou li.",
+          requiredSteps: [
+            "Ekri tèks egzat mesaj erè a",
+            "Site kontèks aparèy ou (mak/modèl, sistèm opere)",
+            "Eksplike kijan ou ta mande èd (chèche, AI, oswa sipò) san danje",
+          ],
+          successCriteria: ["Ou itilize tèks egzat, pa yon rezime vag"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "scenario_decision",
+            prompt: "Ou vle chèche sou entènèt pou konprann yon mesaj erè. Ki apwòch ki pi bon chans bay yon bon repons?",
+            options: [
+              "Chèche 'òdinatè m gen yon pwoblèm'",
+              "Chèche tèks EGZAK mesaj erè a ansanm ak kontèks aparèy ou",
+              "Pa chèche ditou, jis rekòmanse òdinatè a",
+              "Chèche non moun ki fè òdinatè a sèlman",
+            ],
+            correctIndex: 1,
+            explanation: "Tèks egzat ak kontèks aparèy bay rezilta rechèch pi presi ak itil pase yon rezime vag.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l11",
+    slug: "konnen-kile-pou-sispann",
+    moduleId: "m13",
+    order: 11,
+    titleHt: "Konnen Kilè Pou Sispann",
+    titleEn: "Know When to Stop",
+    estimatedMinutes: 10,
+    mode: "universal",
+    objectives: [
+      "Rekonèt sitiyasyon ki mande sispann ak chèche èd pwofesyonèl imedyatman",
+      "Konprann limit konpetans pèsonèl nan rezoud pwoblèm",
+    ],
+    reviewStatus: "approved",
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre leson sa a, ou ka rekonèt sitiyasyon kote ou dwe sispann imedyatman epi chèche èd pwofesyonèl, olye kontinye eseye rezoud pwoblèm nan poukont ou.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sispann epi chèche èd pwofesyonèl IMEDYATMAN pou: **batri ki anfle**, **odè brile**, **likid anndan aparèy la**, **konektè pouvwa domaje**, **chòk elektrik repete**, **done presye an danje** (ou pa gen backup ak fichye a ka pèdi), **swpèk vòl kont**, **reparasyon sistèm ki depase konpetans ou**, ak **demontaj materyèl**. Se PA yon echèk pou sispann — se yon deside entelijan. Bouk rezoud-pwoblèm Jamezzi a li menm gen 'eskalade lè sa nesesè' kòm dènye etap — sa vle di **konnen kilè pou sispann fè PATI menm demach lan**, pa yon opsyon apa.",
+      },
+      {
+        id: "b3",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Eskalade (Escalate)",
+            definition: "Pase yon pwoblèm bay yon moun ak plis konpetans oswa zouti, olye kontinye poukont ou.",
+            example: "Apre ou fin eseye etap san danje yo, eskalade bay yon pwofesyonèl si pwoblèm nan pèsiste.",
+          },
+        ],
+      },
+      {
+        id: "b4",
+        type: "safety",
+        reminders: [
+          "Sispann imedyatman ak chèche èd pwofesyonèl pou yon batri anfle, odè brile, oswa likid anndan aparèy la",
+          "Sispann sispèk vòl kont, epi chanje modpas ou soti nan yon aparèy ou fè konfyans",
+          "Konnen kilè pou sispann se yon fòs, pa yon echèk",
+        ],
+      },
+      {
+        id: "b5",
+        type: "practice",
+        instructions:
+          "Panse a lis sitiyasyon 'sispann imedyatman' yo. Ki nan yo ou te deja rankontre, epi èske ou te sispann kòrèkteman?",
+      },
+      {
+        id: "b6",
+        type: "ai_help",
+        aiHelp: {
+          prompt:
+            "Hi! How do I know the difference between a computer problem I can safely try to fix myself and one where I should stop and get professional help right away?",
+          reminder:
+            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
+        },
+      },
+      {
+        id: "b7",
+        type: "mission",
+        mission: {
+          scenario: "Ou pral revize lis sitiyasyon 'sispann imedyatman' yo pou entèriorize yo.",
+          objective: "Site tout sitiyasyon ki mande sispann imedyatman, epi eksplike poukisa 'sispann' se yon pati nòmal bouk rezoud-pwoblèm nan.",
+          requiredSteps: [
+            "Site omwen sis sitiyasyon ki mande sispann imedyatman",
+            "Eksplike poukisa sispann se yon fòs, pa yon echèk",
+          ],
+          successCriteria: ["Ou site sitiyasyon yo kòrèkteman san manke sa ki pi grav yo"],
+        },
+      },
+      {
+        id: "b8",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "select_all",
+            prompt: "Nan ki sitiyasyon sa yo ou dwe sispann imedyatman epi chèche èd pwofesyonèl? (Chwazi tout ki aplike.)",
+            options: [
+              "Ou wè yon batri ki anfle",
+              "Yon aplikasyon lan yon ti kras",
+              "Ou santi yon odè brile ki soti nan aparèy la",
+              "Ou remake likid ki antre anndan aparèy la",
+            ],
+            correctIndexes: [0, 2, 3],
+            explanation: "Batri anfle, odè brile, ak likid anndan aparèy la se sitiyasyon ijan ki mande sispann imedyatman — yon aplikasyon lan pa yon ijans.",
+          },
+        ],
+      },
+      {
+        id: "b9",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen ka fè sa poukont mwen." },
+          { statement: "Mwen ka fè l si yon moun raple m." },
+          { statement: "Mwen bezwen plis pratik." },
+        ],
+      },
+    ],
+  },
+  {
+    id: "m13-l12",
+    slug: "misyon-dyagnostike-anvan-ou-klike",
+    moduleId: "m13",
+    order: 12,
+    titleHt: "Misyon: Dyagnostike Anvan Ou Klike",
+    titleEn: "Module Mission: Diagnose Before You Click",
+    estimatedMinutes: 15,
+    mode: "universal",
+    objectives: [
+      "Konbine tout konpetans Modil 13 nan yon senaryo dyagnostik brancha",
+    ],
+    reviewStatus: "approved",
+    requiredMission: true,
+    blocks: [
+      {
+        id: "b1",
+        type: "goal",
+        outcome:
+          "Apre misyon sa a, ou ka konplete yon senaryo brancha ak yon òdinatè lan, son ki manke, oswa pa gen entènèt, anrejistre chak tès san danje, epi chwazi bon pwen eskalasyon an.",
+      },
+      {
+        id: "b2",
+        type: "explanation",
+        text: "Sa se misyon final Modil 13 la. Ou pral aplike bouk rezoud-pwoblèm Jamezzi a nan yon senaryo reyèl: chwazi YON pwoblèm (òdinatè lan, son ki manke, oswa pa gen entènèt), epi mennen tèt ou nan chak etap bouk la san sote okenn.",
+      },
+      {
+        id: "b3",
+        type: "mission",
+        mission: {
+          scenario: "Chwazi youn nan twa senaryo yo: 1) Òdinatè ou vin lan sibitman. 2) Son sispann mache pandan yon apèl videyo. 3) Wi-Fi montre konekte men pa gen sit ki louvri.",
+          objective: "Aplike bouk rezoud-pwoblèm Jamezzi a konplètman pou senaryo ou chwazi a, jiskaske ou rezoud li oswa idantifye bon pwen eskalasyon an.",
+          requiredSteps: [
+            "Dekri sentòm egzat la (pa yon rezime vag)",
+            "Site sa ki te chanje anvan pwoblèm nan kòmanse",
+            "Verifye kòz senp yo epi eseye YON SÈL aksyon a la fwa",
+            "Anrejistre rezilta chak tès",
+            "Idantifye si ou rezoud pwoblèm nan oswa si ou dwe eskalade",
+          ],
+          successCriteria: [
+            "Ou swiv bouk la nan lòd san sote okenn etap",
+            "Ou anrejistre rezilta chak tès, pa sèlman rezilta final la",
+          ],
+        },
+      },
+      {
+        id: "b4",
+        type: "knowledge_check",
+        questions: [
+          {
+            kind: "match_term",
+            prompt: "Matche chak pwoblèm ak premye bagay ou ta verifye.",
+            pairs: [
+              { term: "Òdinatè lan", meaning: "Aplikasyon startup ak estokaj ki rete" },
+              { term: "Son ki manke", meaning: "Mit ak volim" },
+              { term: "Pa gen entènèt", meaning: "Wi-Fi aktive sou aparèy ou" },
+            ],
+            explanation: "Chak tip pwoblèm gen yon premye verifikasyon senp ki souvan rezoud li san bezwen ale pi lwen.",
+          },
+        ],
+      },
+      {
+        id: "b5",
+        type: "reflection",
+        prompts: [
+          { statement: "Mwen santi m gen konfyans total pou dyagnostike pwoblèm òdinatè kounye a." },
+          { statement: "Mwen ta renmen plis pratik anvan mwen kontinye." },
+          { statement: "Mwen pare pou Modil 14." },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getComputerRebuildLesson(slug: string) {
