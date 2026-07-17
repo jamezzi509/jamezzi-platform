@@ -1,0 +1,51 @@
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-artwork-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-enter {
+  animation: hero-rise var(--duration-hero) var(--ease-primary) both;
+}
+
+.hero-enter-1 {
+  animation-delay: 0ms;
+}
+.hero-enter-2 {
+  animation-delay: 90ms;
+}
+.hero-enter-3 {
+  animation-delay: 160ms;
+}
+.hero-enter-4 {
+  animation-delay: 230ms;
+}
+
+.hero-artwork-fade {
+  animation: hero-artwork-in var(--duration-hero) var(--ease-primary) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter,
+  .hero-artwork-fade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

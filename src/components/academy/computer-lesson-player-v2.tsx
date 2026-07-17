@@ -1,0 +1,1225 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
+import type {
+  ComputerLessonV2,
+  LessonSection,
+  LessonVisual,
+} from "@/content/computer-course-v2";
+import { computerModuleOneV2 } from "@/content/computer-course-v2";
+import {
+  computerProgressStorageKey,
+  readCompletedLessons,
+  saveCompletedLesson,
+} from "@/lib/course-progress";
+import { cn } from "@/lib/cn";
+import {
+  useComputerPlatform,
+  type PreferredPlatform,
+} from "@/lib/use-computer-platform";
+
+type Platform = PreferredPlatform;
+
+export function ComputerLessonPlayerV2({
+  lesson,
+}: {
+  lesson: ComputerLessonV2;
+}) {
+  const { platform, verified, setPlatform, clearPlatform, loaded } =
+    useComputerPlatform();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const closeMenuRef = useRef<HTMLButtonElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const [practiceTasks, setPracticeTasks] = useState<boolean[]>(() =>
+    lesson.practice ? lesson.practice.tasks.map(() => false) : [],
+  );
+  const [practiceEvidence, setPracticeEvidence] = useState<boolean[]>(() =>
+    lesson.practice ? lesson.practice.evidence.map(() => false) : [],
+  );
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [attempts, setAttempts] = useState(0);
+  const [interactionLoaded, setInteractionLoaded] = useState(false);
+  const [completedSlugs, setCompletedSlugs] = useState<string[]>([]);
+  const [saved, setSaved] = useState(false);
+  const checkCorrect = selectedAnswer === lesson.check.correctIndex;
+  const taskComplete = lesson.practice
+    ? lesson.practice.taskRequirement === "one"
+      ? practiceTasks.some(Boolean)
+      : practiceTasks.length > 0 && practiceTasks.every(Boolean)
+    : true;
+  const practiceComplete = lesson.practice
+    ? taskComplete &&
+      practiceEvidence.length > 0 &&
+      practiceEvidence.every(Boolean)
+    : true;
+  const completionReady = practiceComplete && checkCorrect;
+
+  const index = computerModuleOneV2.findIndex((item) => item.id === lesson.id);
+  const previous = index > 0 ? computerModuleOneV2[index - 1] : null;
+  const next =
+    index >= 0 && index < computerModuleOneV2.length - 1
+      ? computerModuleOneV2[index + 1]
+      : null;
+
+  const lessonStateKey = `jamezzi:computer:essentials:lesson-state:${lesson.slug}`;
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      const completed = readCompletedLessons(computerProgressStorageKey);
+      setCompletedSlugs(completed);
+      setSaved(completed.includes(lesson.slug));
+      try {
+        const raw = window.localStorage.getItem(lessonStateKey);
+        if (raw) {
+          const state = JSON.parse(raw) as {
+            tasks?: boolean[];
+            evidence?: boolean[];
+            selectedAnswer?: number | null;
+            attempts?: number;
+          };
+          if (Array.isArray(state.tasks)) setPracticeTasks(state.tasks);
+          if (Array.isArray(state.evidence))
+            setPracticeEvidence(state.evidence);
+          if (
+            state.selectedAnswer === null ||
+            typeof state.selectedAnswer === "number"
+          )
+            setSelectedAnswer(state.selectedAnswer);
+          if (typeof state.attempts === "number") setAttempts(state.attempts);
+        }
+      } catch {
+        // A blocked or malformed local state starts this lesson cleanly.
+      }
+      setInteractionLoaded(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [lesson.slug, lessonStateKey]);
+
+  useEffect(() => {
+    if (!interactionLoaded) return;
+    try {
+      window.localStorage.setItem(
+        lessonStateKey,
+        JSON.stringify({
+          tasks: practiceTasks,
+          evidence: practiceEvidence,
+          selectedAnswer,
+          attempts,
+        }),
+      );
+    } catch {
+      // The lesson still works when browser storage is unavailable.
+    }
+  }, [
+    attempts,
+    interactionLoaded,
+    lessonStateKey,
+    practiceEvidence,
+    practiceTasks,
+    selectedAnswer,
+  ]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const menuTrigger = menuTriggerRef.current;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+      if (event.key !== "Tab") return;
+      const dialog = closeMenuRef.current?.closest('[role="dialog"]');
+      const focusable = dialog?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    closeMenuRef.current?.focus();
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
+      menuTrigger?.focus();
+    };
+  }, [mobileMenuOpen]);
+
+  function markComplete() {
+    if (!completionReady) return;
+    const result = saveCompletedLesson(computerProgressStorageKey, lesson.slug);
+    setSaved(result !== "blocked");
+    if (result !== "blocked") {
+      setCompletedSlugs((current) =>
+        current.includes(lesson.slug) ? current : [...current, lesson.slug],
+      );
+    }
+  }
+
+  const completedCount = completedSlugs.filter((slug) =>
+    computerModuleOneV2.some((item) => item.slug === slug),
+  ).length;
+  const pageProgress = Math.round(
+    (completedCount / computerModuleOneV2.length) * 100,
+  );
+
+  if (!loaded) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-[#F7F6FB] px-5">
+        <p className="text-base text-[#696675]" role="status">
+          Preparing your course path…
+        </p>
+      </main>
+    );
+  }
+
+  if ((!platform || !verified) && lesson.track === "windows-mac")
+    return <PlatformIdentification onChoose={setPlatform} />;
+
+  return (
+    <main className="min-h-screen bg-[#F7F6FB] text-[#171621]">
+      <header className="sticky top-0 z-30 border-b border-[#E7E4EE] bg-white/95 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/academy"
+            className="font-display text-2xl font-semibold tracking-[-0.03em]"
+          >
+            Jamezzi<span className="text-indigo">.</span>
+          </Link>
+          <div className="flex items-center gap-3 text-sm text-[#696675]">
+            <span className="hidden sm:inline">Module 1 completed</span>
+            <div className="h-1.5 w-24 overflow-hidden rounded-full bg-[#ECEAF2] sm:w-36">
+              <div
+                className="bg-indigo h-full rounded-full"
+                style={{ width: `${pageProgress}%` }}
+              />
+            </div>
+            <strong className="text-[#302D3A]">{pageProgress}%</strong>
+          </div>
+        </div>
+      </header>
+
+      <nav
+        className="sticky top-16 z-20 border-b border-[#E7E4EE] bg-white px-4 py-2.5 lg:hidden"
+        aria-label="Mobile course navigation"
+      >
+        <div className="mx-auto flex max-w-[880px] items-center justify-between gap-3">
+          <Link
+            href="/academy/courses/computer-internet-essentials"
+            className="text-[15px] font-semibold text-[#696675]"
+          >
+            ← Course overview
+          </Link>
+          <button
+            ref={menuTriggerRef}
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            className="text-indigo-dark rounded-full border border-[#DCD7E5] bg-[#F7F6FB] px-3.5 py-2 text-[15px] font-bold"
+            aria-haspopup="dialog"
+          >
+            Module 1 · Lessons
+          </button>
+        </div>
+      </nav>
+
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-50 lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Module 1 lessons"
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-[#171621]/55"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close lesson navigation"
+          />
+          <div className="absolute inset-x-0 bottom-0 max-h-[82vh] overflow-y-auto rounded-t-[24px] bg-white px-5 pt-5 pb-8 shadow-[0_-20px_60px_rgba(23,22,33,0.22)]">
+            <div className="mx-auto mb-5 h-1.5 w-11 rounded-full bg-[#D7D2DE]" />
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-indigo-dark text-sm font-bold tracking-[0.12em] uppercase">
+                  Module 1
+                </p>
+                <h2 className="font-display mt-1 text-2xl">
+                  Start with Confidence
+                </h2>
+              </div>
+              <button
+                ref={closeMenuRef}
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex size-10 items-center justify-center rounded-full bg-[#F0EEF5] text-xl"
+                aria-label="Close module lessons"
+              >
+                ×
+              </button>
+            </div>
+            <ol className="mt-6 grid gap-2">
+              {computerModuleOneV2.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    href={`/academy/courses/computer-internet-essentials/learn/${item.slug}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-current={item.id === lesson.id ? "page" : undefined}
+                    className={cn(
+                      "grid grid-cols-[34px_1fr] items-start gap-3 rounded-xl border px-3 py-3.5 text-[15px] leading-snug",
+                      item.id === lesson.id
+                        ? "border-[#CFC9FF] bg-[#EFEDFF] font-semibold text-[#302B62]"
+                        : "border-[#E7E4EE] text-[#5F5A68]",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "flex size-7 items-center justify-center rounded-full text-sm font-bold",
+                        item.id === lesson.id
+                          ? "bg-indigo text-white"
+                          : "bg-[#F0EEF5]",
+                      )}
+                    >
+                      {item.order}
+                    </span>
+                    <span>
+                      {item.title}
+                      {item.id === lesson.id && (
+                        <span className="text-indigo-dark mt-1 block text-sm font-medium">
+                          Current lesson
+                        </span>
+                      )}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+            <Link
+              href="/academy/courses/computer-internet-essentials"
+              className="text-indigo-dark mt-5 flex min-h-12 items-center justify-center rounded-xl border border-[#DCD7E5] text-base font-bold"
+            >
+              View all 15 modules
+            </Link>
+          </div>
+        </div>
+      )}
+
+      <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[270px_minmax(0,1fr)]">
+        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] overflow-y-auto border-r border-[#E7E4EE] bg-white px-5 py-7 lg:block">
+          <Link
+            href="/academy/courses/computer-internet-essentials"
+            className="text-sm text-[#696675]"
+          >
+            ← Course overview
+          </Link>
+          <p className="text-indigo-dark mt-8 text-sm font-bold tracking-[0.13em] uppercase">
+            Module 1
+          </p>
+          <h2 className="font-display mt-2 text-2xl leading-tight">
+            Start with Confidence
+          </h2>
+          <ol className="mt-6 grid gap-1.5">
+            {computerModuleOneV2.map((item) => (
+              <li key={item.id}>
+                <Link
+                  href={`/academy/courses/computer-internet-essentials/learn/${item.slug}`}
+                  aria-current={item.id === lesson.id ? "page" : undefined}
+                  className={cn(
+                    "grid grid-cols-[28px_1fr] gap-2.5 rounded-xl px-2.5 py-3 text-[15px] leading-snug",
+                    item.id === lesson.id
+                      ? "bg-[#EFEDFF] font-semibold text-[#302B62]"
+                      : "text-[#696675] hover:bg-[#F7F6FB]",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "flex size-6 items-center justify-center rounded-full text-sm font-bold",
+                      item.id === lesson.id
+                        ? "bg-indigo text-white"
+                        : "bg-[#F0EEF5]",
+                    )}
+                  >
+                    {item.order}
+                  </span>
+                  <span>{item.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8 rounded-xl bg-[#F7F6FB] p-4 text-[15px] leading-relaxed text-[#696675]">
+            <strong className="block text-[#302D3A]">
+              Completion means evidence
+            </strong>
+            Read the lesson, perform the practice, verify the result, and answer
+            the decision check.
+          </div>
+        </aside>
+
+        <article className="min-w-0">
+          <div className="mx-auto max-w-[880px] px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+            <div className="text-indigo-dark flex flex-wrap items-center gap-2 text-sm font-bold tracking-[0.09em] uppercase">
+              <span>Lesson {lesson.order}</span>
+              <span className="size-1 rounded-full bg-[#B9B4C9]" />
+              <span>{lesson.estimatedMinutes}</span>
+            </div>
+            <h1 className="font-display mt-5 max-w-[780px] text-4xl leading-[0.99] font-semibold tracking-[-0.04em] text-balance sm:text-6xl">
+              {lesson.title}
+            </h1>
+            <p className="mt-6 max-w-[720px] text-xl leading-[1.65] text-[#55515F] sm:text-[21px]">
+              {lesson.promise}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {lesson.badges.map((badge) => (
+                <span
+                  key={badge}
+                  className="rounded-full border border-[#E3DFEA] bg-white px-3 py-1.5 text-sm text-[#625E6C]"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+
+            <section className="relative mt-10 overflow-hidden rounded-[22px] bg-[#242036] px-6 py-7 text-white shadow-[0_20px_55px_rgba(36,32,54,0.18)] sm:px-8">
+              <div className="absolute -top-24 -right-20 size-56 rounded-full bg-[radial-gradient(circle,#756CEC,transparent_68%)] opacity-70" />
+              <h2 className="font-display relative text-2xl">
+                By the end, you can…
+              </h2>
+              <ul className="relative mt-4 grid gap-2 pl-5 text-[#E9E7F4]">
+                {lesson.outcomes.map((outcome) => (
+                  <li key={outcome} className="list-disc">
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <div className="mt-20 grid gap-20">
+              {lesson.sections.map((section, sectionIndex) => (
+                <LessonSectionView
+                  key={`${lesson.id}-${sectionIndex}`}
+                  section={section}
+                  platform={platform}
+                  onChangePlatform={clearPlatform}
+                />
+              ))}
+            </div>
+
+            {lesson.practice && (
+              <PracticeCard
+                practice={lesson.practice}
+                tasks={practiceTasks}
+                evidence={practiceEvidence}
+                onToggleTask={(itemIndex) =>
+                  setPracticeTasks((current) =>
+                    current.map((value, i) =>
+                      i === itemIndex ? !value : value,
+                    ),
+                  )
+                }
+                onToggleEvidence={(itemIndex) =>
+                  setPracticeEvidence((current) =>
+                    current.map((value, i) =>
+                      i === itemIndex ? !value : value,
+                    ),
+                  )
+                }
+              />
+            )}
+
+            <KnowledgeCheck
+              check={lesson.check}
+              selected={selectedAnswer}
+              attempts={attempts}
+              onSelect={(answer) => {
+                if (checkCorrect) return;
+                setSelectedAnswer(answer);
+                setAttempts((count) => count + 1);
+              }}
+            />
+
+            <section className="mt-16 border-t border-[#E2DFE8] pt-8">
+              <p className="max-w-2xl text-[17px] leading-[1.7] text-[#55515F]">
+                {lesson.closing}
+              </p>
+              {!completionReady && (
+                <p className="mt-5 rounded-xl bg-[#FFF8E8] px-4 py-3 text-[15px] leading-relaxed text-[#875006]">
+                  Complete the practice and result check, then answer the
+                  knowledge check correctly before recording this lesson.
+                </p>
+              )}
+              {saved && (
+                <p
+                  className="mt-5 rounded-xl bg-[#EDF9F4] px-4 py-3 text-[15px] font-semibold text-[#126E4E]"
+                  role="status"
+                >
+                  ✓ Lesson completion recorded from your practice confirmation
+                  and knowledge check.
+                </p>
+              )}
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <button
+                  type="button"
+                  disabled={!completionReady || saved}
+                  onClick={markComplete}
+                  className={cn(
+                    "min-h-12 rounded-xl px-5 text-[15px] font-bold",
+                    completionReady && !saved
+                      ? "bg-indigo text-white shadow-[0_10px_25px_rgba(79,70,229,0.24)]"
+                      : "cursor-not-allowed bg-[#DDD9E3] text-[#8A8491]",
+                  )}
+                >
+                  {saved ? "Lesson completed ✓" : "Complete lesson"}
+                </button>
+                {next ? (
+                  <Link
+                    href={`/academy/courses/computer-internet-essentials/learn/${next.slug}`}
+                    className="text-sm text-[#696675] sm:text-right"
+                  >
+                    Next lesson
+                    <strong className="block text-[#242036]">
+                      {next.title} →
+                    </strong>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/academy/courses/computer-internet-essentials"
+                    className="text-indigo-dark text-sm font-semibold"
+                  >
+                    Return to course overview →
+                  </Link>
+                )}
+              </div>
+              {previous && (
+                <Link
+                  href={`/academy/courses/computer-internet-essentials/learn/${previous.slug}`}
+                  className="mt-7 inline-block text-sm text-[#696675]"
+                >
+                  ← {previous.title}
+                </Link>
+              )}
+            </section>
+          </div>
+        </article>
+      </div>
+    </main>
+  );
+}
+
+function PlatformIdentification({
+  onChoose,
+}: {
+  onChoose: (platform: Platform) => void;
+}) {
+  const [unsure, setUnsure] = useState(false);
+  return (
+    <main className="min-h-screen bg-[#F7F6FB] px-5 py-16 text-[#171621] sm:py-20">
+      <section className="mx-auto max-w-[820px]">
+        <Link
+          href="/academy/courses/computer-internet-essentials"
+          className="text-base font-semibold text-[#696675]"
+        >
+          ← Course overview
+        </Link>
+        <p className="text-indigo-dark mt-10 text-sm font-bold tracking-[0.1em] uppercase">
+          Lesson 2 · One-time setup
+        </p>
+        <h1 className="font-display mt-3 text-4xl leading-tight font-semibold sm:text-5xl">
+          Which desktop appears on your computer?
+        </h1>
+        <p className="mt-5 max-w-3xl text-lg leading-[1.7] text-[#5C5865]">
+          A laptop is the device type, not the operating system. Compare what
+          appears on your screen. Your choice will be saved for later lessons,
+          and you can change it intentionally from any platform-specific step.
+        </p>
+        <figure className="mt-7 overflow-hidden rounded-2xl border border-[#E3DFEA] bg-white">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/windows-mac-laptop-comparison.webp"
+            alt="A black Windows laptop showing the Windows 11 desktop beside a silver MacBook Air showing the macOS desktop"
+            width={1680}
+            height={945}
+            priority
+            sizes="(max-width: 860px) 100vw, 820px"
+            className="h-auto w-full"
+          />
+          <figcaption className="border-t border-[#E3DFEA] px-4 py-3 text-base leading-[1.65] text-[#5E5966]">
+            Windows usually shows a Start button and taskbar. macOS shows the
+            Apple menu at the upper left and the Dock. Appearance is a clue; the
+            lesson will show you how to verify the system itself.
+          </figcaption>
+        </figure>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <button
+            type="button"
+            onClick={() => onChoose("windows")}
+            className="min-h-24 rounded-2xl border border-[#C9D8F4] bg-[#F2F6FF] p-5 text-left transition hover:border-[#557DC4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4F46E5]"
+          >
+            <strong className="block text-xl">This looks like Windows</strong>
+            <span className="mt-1 block text-base text-[#5C5865]">
+              Start button · taskbar · File Explorer
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => onChoose("mac")}
+            className="min-h-24 rounded-2xl border border-[#DED2EA] bg-[#FAF5FF] p-5 text-left transition hover:border-[#8A68A4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4F46E5]"
+          >
+            <strong className="block text-xl">This looks like a Mac</strong>
+            <span className="mt-1 block text-base text-[#5C5865]">
+              Apple menu · Dock · Finder
+            </span>
+          </button>
+        </div>
+        <button
+          type="button"
+          onClick={() => setUnsure((value) => !value)}
+          aria-expanded={unsure}
+          className="text-indigo-dark mt-5 min-h-12 text-base font-semibold underline underline-offset-4"
+        >
+          Neither looks like mine / I am still unsure
+        </button>
+        {unsure && (
+          <div className="mt-3 rounded-2xl border border-[#EAD49A] bg-[#FFF8E8] p-5">
+            <h2 className="text-lg font-bold">Do not guess.</h2>
+            <p className="mt-2 text-base leading-[1.7] text-[#6D5421]">
+              You may have ChromeOS on a Chromebook, Linux, an older system, or
+              a restricted work or school computer. Record the words and icons
+              you see without sharing a serial number, password, email address,
+              or product key. Ask a trusted person to help identify the system
+              before choosing a path.
+            </p>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
+
+function LessonSectionView({
+  section,
+  platform,
+  onChangePlatform,
+}: {
+  section: LessonSection;
+  platform: Platform | null;
+  onChangePlatform: () => void;
+}) {
+  if (section.type === "prose") {
+    return (
+      <section>
+        {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
+        <h2 className="font-display mt-2 text-3xl leading-tight sm:text-4xl">
+          {section.title}
+        </h2>
+        <div className="mt-5 grid gap-4 text-lg leading-[1.75] text-[#494653]">
+          {section.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </section>
+    );
+  }
+  if (section.type === "visual") {
+    return (
+      <section>
+        <Eyebrow>See the idea</Eyebrow>
+        <h2 className="font-display mt-2 text-3xl leading-tight sm:text-4xl">
+          {section.title}
+        </h2>
+        <div className="mt-6">
+          <LessonVisualView visual={section.visual} />
+        </div>
+        <p className="mt-4 text-base leading-[1.7] text-[#696675]">
+          {section.caption}
+        </p>
+      </section>
+    );
+  }
+  if (section.type === "comparison") {
+    return (
+      <section>
+        <Eyebrow>Compare</Eyebrow>
+        <h2 className="font-display mt-2 text-3xl leading-tight sm:text-4xl">
+          {section.title}
+        </h2>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          {section.items.map((item) => (
+            <div
+              key={item.label}
+              className={cn(
+                "rounded-2xl border p-5",
+                item.tone === "good"
+                  ? "border-[#B7DECE] bg-[#EDF9F4]"
+                  : item.tone === "warn"
+                    ? "border-[#EAD49A] bg-[#FFF8E8]"
+                    : "border-[#E3DFEA] bg-white",
+              )}
+            >
+              <h3 className="font-bold">{item.label}</h3>
+              <p className="mt-2 text-base leading-[1.65] text-[#5C5865]">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+  if (section.type === "steps") {
+    const current = platform ? section.tracks?.[platform] : undefined;
+    const steps = current?.steps ?? section.steps ?? [];
+    const success = current?.success ?? section.success;
+    return (
+      <section>
+        {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
+        <h2 className="font-display mt-2 text-3xl leading-tight sm:text-4xl">
+          {section.title}
+        </h2>
+        {section.intro && (
+          <p className="mt-4 text-base leading-relaxed text-[#5A5663]">
+            {section.intro}
+          </p>
+        )}
+        {section.tracks && (
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#DCD7E5] bg-[#F7F6FB] px-4 py-3">
+            <p className="text-base font-semibold text-[#34303D]">
+              Showing your saved {platform === "windows" ? "Windows" : "Mac"}{" "}
+              path
+            </p>
+            <button
+              type="button"
+              onClick={onChangePlatform}
+              className="text-indigo-dark text-[15px] font-semibold underline decoration-[#B9B3D7] underline-offset-4"
+            >
+              Change computer
+            </button>
+          </div>
+        )}
+        <ol className="mt-6 grid gap-3">
+          {steps.map((step, index) => (
+            <li
+              key={step}
+              className="grid grid-cols-[40px_1fr] gap-4 rounded-2xl border border-[#E3DFEA] bg-white p-4"
+            >
+              <span className="text-indigo-dark flex size-9 items-center justify-center rounded-full bg-[#EFEDFF] text-sm font-bold">
+                {index + 1}
+              </span>
+              <span className="pt-1 text-[17px] leading-[1.65] text-[#494653]">
+                {step}
+              </span>
+            </li>
+          ))}
+        </ol>
+        {success && (
+          <div className="mt-4 rounded-2xl border border-[#B7DECE] bg-[#EDF9F4] p-5 text-base leading-[1.65] text-[#126E4E]">
+            <strong className="block">What success looks like</strong>
+            {success}
+          </div>
+        )}
+        {section.recovery && (
+          <div className="mt-4 rounded-2xl border border-[#EAD49A] bg-[#FFF8E8] p-5 text-base leading-[1.65] text-[#7F4C08]">
+            <strong className="block">If your screen does not match</strong>
+            {section.recovery}
+          </div>
+        )}
+      </section>
+    );
+  }
+  if (section.type === "decision") {
+    return (
+      <details className="group rounded-2xl border border-[#E3DFEA] bg-white p-5">
+        <summary className="cursor-pointer list-none">
+          <span
+            className={cn(
+              "mr-2 inline-flex rounded-full px-2.5 py-1 text-sm font-bold uppercase",
+              section.tone === "green"
+                ? "bg-[#DDF3E8] text-[#126E4E]"
+                : section.tone === "pause"
+                  ? "bg-[#FFF0C8] text-[#855006]"
+                  : "bg-[#FFE1DE] text-[#A63333]",
+            )}
+          >
+            {section.tone === "green"
+              ? "Green light"
+              : section.tone === "pause"
+                ? "Pause"
+                : "Stop"}
+          </span>
+          <strong>{section.title}</strong>
+          <p className="mt-3 text-base leading-[1.65] text-[#5C5865]">
+            {section.prompt}
+          </p>
+          <span className="text-indigo-dark mt-3 inline-block text-sm font-semibold group-open:hidden">
+            Reveal reasoning ↓
+          </span>
+        </summary>
+        <p className="mt-4 border-t border-[#E7E4EE] pt-4 text-base leading-[1.65] text-[#45414E]">
+          {section.answer}
+        </p>
+      </details>
+    );
+  }
+  return (
+    <section
+      className={cn(
+        "rounded-2xl border p-5",
+        section.tone === "warning"
+          ? "border-[#EAD49A] bg-[#FFF8E8]"
+          : section.tone === "success"
+            ? "border-[#B7DECE] bg-[#EDF9F4]"
+            : "border-[#C9DAFB] bg-[#EFF5FF]",
+      )}
+    >
+      <h2 className="font-bold">{section.title}</h2>
+      <p className="mt-2 text-base leading-[1.65] text-[#514D59]">
+        {section.body}
+      </p>
+    </section>
+  );
+}
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-indigo-dark text-sm font-bold tracking-[0.12em] uppercase">
+      {children}
+    </p>
+  );
+}
+function PracticeCard({
+  practice,
+  tasks,
+  evidence,
+  onToggleTask,
+  onToggleEvidence,
+}: {
+  practice: NonNullable<ComputerLessonV2["practice"]>;
+  tasks: boolean[];
+  evidence: boolean[];
+  onToggleTask: (index: number) => void;
+  onToggleEvidence: (index: number) => void;
+}) {
+  return (
+    <section className="mt-20 rounded-[22px] border border-[#E3DFEA] bg-white p-6 shadow-[0_18px_55px_rgba(35,27,73,0.09)] sm:p-8">
+      <Eyebrow>Your turn</Eyebrow>
+      <h2 className="font-display mt-2 text-3xl">{practice.title}</h2>
+      <p className="mt-3 text-base leading-relaxed text-[#5B5764]">
+        {practice.intro}
+      </p>
+      <div className="mt-6 grid gap-2.5">
+        {practice.tasks.map((task, index) => (
+          <label
+            key={task}
+            className={cn(
+              "flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 text-base leading-[1.65]",
+              tasks[index]
+                ? "border-[#CFC9FF] bg-[#F2F0FF]"
+                : "border-[#E3DFEA]",
+            )}
+          >
+            <input
+              type="checkbox"
+              checked={tasks[index] ?? false}
+              onChange={() => onToggleTask(index)}
+              className="accent-indigo mt-1 size-5"
+            />
+            <span>{task}</span>
+          </label>
+        ))}
+      </div>
+      <p className="mt-3 text-[15px] leading-relaxed text-[#696675]">
+        {practice.taskRequirement === "one"
+          ? "Choose at least one option that is true for you."
+          : "Check each step only after you complete it."}
+      </p>
+      {practice.privacyNote && (
+        <p className="mt-5 rounded-xl bg-[#FFF8E8] p-4 text-[15px] leading-relaxed text-[#7F4C08]">
+          {practice.privacyNote}
+        </p>
+      )}
+      <div className="mt-7 border-t border-[#E7E4EE] pt-6">
+        <h3 className="text-lg font-bold">Confirm the result</h3>
+        <p className="mt-2 text-[15px] leading-relaxed text-[#696675]">
+          These checks are your confirmation, not automatic proof from your
+          computer. Mark only what you actually verified.
+        </p>
+        <div className="mt-3 grid gap-2.5">
+          {practice.evidence.map((item, index) => (
+            <label
+              key={item}
+              className={cn(
+                "flex cursor-pointer items-start gap-3 rounded-xl border p-3.5 text-base leading-[1.65]",
+                evidence[index]
+                  ? "border-[#B7DECE] bg-[#EDF9F4]"
+                  : "border-[#E3DFEA]",
+              )}
+            >
+              <input
+                type="checkbox"
+                checked={evidence[index] ?? false}
+                onChange={() => onToggleEvidence(index)}
+                className="accent-indigo mt-1 size-5"
+              />
+              <span>{item}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function KnowledgeCheck({
+  check,
+  selected,
+  attempts,
+  onSelect,
+}: {
+  check: ComputerLessonV2["check"];
+  selected: number | null;
+  attempts: number;
+  onSelect: (index: number) => void;
+}) {
+  const correct = selected === check.correctIndex;
+  return (
+    <section className="mt-14 rounded-[22px] bg-[#242036] p-6 text-white sm:p-8">
+      <Eyebrow>Prove the idea</Eyebrow>
+      <h2 className="font-display mt-3 text-2xl leading-tight sm:text-3xl">
+        {check.prompt}
+      </h2>
+      <div className="mt-6 grid gap-2.5">
+        {check.options.map((option, index) => (
+          <button
+            key={option}
+            type="button"
+            disabled={correct}
+            onClick={() => onSelect(index)}
+            className={cn(
+              "rounded-xl border px-4 py-3.5 text-left text-base leading-[1.55] text-[#332F40]",
+              selected === index
+                ? correct
+                  ? "border-[#70C19B] bg-[#DFF5EA]"
+                  : "border-[#DD8E88] bg-[#FFE5E3]"
+                : "border-white/15 bg-white hover:border-[#A8A0FF]",
+              correct && "cursor-default",
+            )}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+      {selected !== null && (
+        <p
+          className="mt-4 rounded-xl bg-white/10 p-4 text-base leading-[1.65] text-[#E7E3F0]"
+          role="status"
+        >
+          {correct ? check.correctFeedback : check.incorrectFeedback}
+          {!correct && " Review the explanation, then try again."}
+        </p>
+      )}
+      {attempts > 0 && (
+        <p className="mt-3 text-[15px] text-[#CFC9DC]">
+          Attempts recorded on this device: {attempts}
+        </p>
+      )}
+    </section>
+  );
+}
+
+function LessonVisualView({ visual }: { visual: LessonVisual }) {
+  if (visual.kind === "journey")
+    return (
+      <VisualRow
+        items={[
+          { label: "Know", icon: "know", detail: "Understand the machine" },
+          {
+            label: "Control",
+            icon: "control",
+            detail: "Use it with confidence",
+          },
+          { label: "Work", icon: "work", detail: "Complete useful tasks" },
+          { label: "Protect", icon: "protect", detail: "Recognize real risk" },
+          { label: "Solve", icon: "solve", detail: "Recover from problems" },
+        ]}
+      />
+    );
+  if (visual.kind === "progress")
+    return (
+      <div className="grid gap-3 sm:grid-cols-3">
+        <VisualCard
+          icon="viewed"
+          title="Lesson viewed"
+          text="You opened and read it."
+        />
+        <VisualCard
+          icon="practice"
+          title="Practice completed"
+          text="You performed the task and checked the result."
+        />
+        <VisualCard
+          icon="checkpoint"
+          title="Checkpoint passed"
+          text="You demonstrated understanding in scenarios."
+        />
+      </div>
+    );
+  if (visual.kind === "os-clues")
+    return (
+      <div>
+        <figure className="overflow-hidden rounded-2xl border border-[#E3DFEA] bg-white">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/windows-mac-laptop-comparison.webp"
+            alt="A black Windows laptop showing the Windows 11 desktop beside a silver MacBook Air showing the macOS desktop"
+            width={1680}
+            height={945}
+            sizes="(max-width: 900px) 100vw, 820px"
+            className="h-auto w-full"
+          />
+          <figcaption className="border-t border-[#E3DFEA] px-4 py-3 text-base leading-[1.65] text-[#5E5966]">
+            Compare what appears on the screen. The case color and laptop shape
+            alone do not identify the operating system.
+          </figcaption>
+        </figure>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-[#D8E3FB] bg-[#F2F6FF] p-5">
+            <p className="text-sm font-bold text-[#2455A4]">Windows clues</p>
+            <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+              <span className="rounded-lg bg-white p-3">⊞ Start</span>
+              <span className="rounded-lg bg-white p-3">Taskbar</span>
+              <span className="rounded-lg bg-white p-3">Settings</span>
+              <span className="rounded-lg bg-white p-3">File Explorer</span>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-[#E6DDF1] bg-[#FAF5FF] p-5">
+            <p className="text-sm font-bold text-[#6B3E87]">Mac clues</p>
+            <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+              <span className="rounded-lg bg-white p-3"> Apple menu</span>
+              <span className="rounded-lg bg-white p-3">⌘ Command</span>
+              <span className="rounded-lg bg-white p-3">Finder</span>
+              <span className="rounded-lg bg-white p-3">Menu bar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  if (visual.kind === "risk-levels")
+    return (
+      <div>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <VisualCard
+            number="✓"
+            title="Green light"
+            text="Ordinary, low-consequence exploration."
+            tone="green"
+          />
+          <VisualCard
+            number="…"
+            title="Pause"
+            text="Read, understand, and verify before continuing."
+            tone="amber"
+          />
+          <VisualCard
+            number="!"
+            title="Stop"
+            text="Serious, unclear, destructive, financial, or physical risk."
+            tone="red"
+          />
+        </div>
+      </div>
+    );
+  return (
+    <div className="rounded-[22px] border border-[#E3DFEA] bg-white p-5 sm:p-7">
+      <figure className="mb-6 overflow-hidden rounded-2xl border border-[#E3DFEA] bg-[#F7F4F0]">
+        <div className="relative aspect-[16/9] w-full">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/workstation-before-after.webp"
+            alt="The same learner before and after improving a home computer setup: the laptop moves from a pillow to a stable desk, the mouse comes closer, glare is reduced, feet gain support, and the cable is routed more safely"
+            fill
+            sizes="(max-width: 900px) 100vw, 820px"
+            className="object-cover"
+          />
+        </div>
+        <figcaption className="border-t border-[#E3DFEA] bg-white px-4 py-3 text-[15px] leading-relaxed text-[#5E5966]">
+          Compare the same room and learner. Identify what changed before you
+          read the eight inspection points below.
+        </figcaption>
+      </figure>
+      <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+        <VisualCard
+          number="1"
+          title="Screen"
+          text="Readable, in front, less glare"
+        />
+        <VisualCard
+          number="2"
+          title="Controls"
+          text="Keyboard and mouse nearby"
+        />
+        <VisualCard
+          number="3"
+          title="Support"
+          text="Stable chair, back and feet"
+        />
+        <VisualCard
+          number="4"
+          title="Airflow"
+          text="Stable surface, vents open"
+        />
+        <VisualCard number="5" title="Power" text="Sound cord, safe charger" />
+        <VisualCard number="6" title="Liquids" text="Away from electronics" />
+        <VisualCard number="7" title="Cables" text="Away from walkways" />
+        <VisualCard
+          number="8"
+          title="Movement"
+          text="Change position periodically"
+        />
+      </div>
+    </div>
+  );
+}
+
+type CourseVisualIcon =
+  | "know"
+  | "control"
+  | "work"
+  | "protect"
+  | "solve"
+  | "viewed"
+  | "practice"
+  | "checkpoint";
+
+function CourseStageIcon({ kind }: { kind: CourseVisualIcon }) {
+  const paths: Record<CourseVisualIcon, ReactNode> = {
+    know: (
+      <>
+        <circle cx="12" cy="12" r="7" />
+        <path d="M9.5 12.2 11.2 14l3.7-4" />
+      </>
+    ),
+    control: (
+      <>
+        <rect x="4" y="6" width="16" height="11" rx="2" />
+        <path d="M8 20h8M12 17v3M8 10h8M8 13h5" />
+      </>
+    ),
+    work: (
+      <>
+        <path d="M5 8h14v11H5zM9 8V5h6v3" />
+        <path d="M5 12h14M10 12v2h4v-2" />
+      </>
+    ),
+    protect: (
+      <>
+        <path d="M12 3 19 6v5c0 4.8-2.9 8.2-7 10-4.1-1.8-7-5.2-7-10V6l7-3Z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
+    solve: (
+      <>
+        <path d="M9 18h6M10 21h4" />
+        <path d="M8.5 14.8A6 6 0 1 1 15.5 14.8c-.9.7-1.5 1.5-1.5 2.2h-4c0-.7-.6-1.5-1.5-2.2Z" />
+        <path d="M12 6v2M7.8 8l1.4 1.2M16.2 8l-1.4 1.2" />
+      </>
+    ),
+    viewed: (
+      <>
+        <path d="M3 12s3.2-5 9-5 9 5 9 5-3.2 5-9 5-9-5-9-5Z" />
+        <circle cx="12" cy="12" r="2.5" />
+      </>
+    ),
+    practice: (
+      <>
+        <path d="M7 4h10v16H7zM9 4V2h6v2" />
+        <path d="m9.5 11 1.5 1.5 3.5-3.5M10 16h4" />
+      </>
+    ),
+    checkpoint: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="m8 12 2.5 2.5L16 9" />
+      </>
+    ),
+  };
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="size-6 fill-none stroke-current"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {paths[kind]}
+    </svg>
+  );
+}
+
+function VisualRow({
+  items,
+}: {
+  items: { label: string; icon: CourseVisualIcon; detail: string }[];
+}) {
+  return (
+    <div className="overflow-hidden rounded-[24px] border border-[#DDD8EB] bg-gradient-to-br from-white via-[#F8F6FF] to-[#EFEAFF] p-5 shadow-[0_18px_50px_rgba(63,52,120,0.08)] sm:p-7">
+      <div className="grid gap-3 sm:grid-cols-5">
+        {items.map((item, index) => (
+          <div
+            key={item.label}
+            className="group relative rounded-2xl border border-white/80 bg-white/80 px-3 py-5 text-center shadow-sm"
+          >
+            <span className="bg-indigo-light text-indigo-dark mx-auto flex size-12 items-center justify-center rounded-2xl transition-transform group-hover:-translate-y-0.5">
+              <CourseStageIcon kind={item.icon} />
+            </span>
+            <strong className="mt-3 block text-base">{item.label}</strong>
+            <span className="mt-1 block text-[13px] leading-snug text-[#6D6878]">
+              {item.detail}
+            </span>
+            {index < items.length - 1 && (
+              <span className="text-indigo absolute top-1/2 -right-3 z-10 hidden -translate-y-1/2 text-lg sm:block">
+                →
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+function VisualCard({
+  number,
+  icon,
+  title,
+  text,
+  tone = "plain",
+}: {
+  number?: string;
+  icon?: CourseVisualIcon;
+  title: string;
+  text: string;
+  tone?: "plain" | "green" | "amber" | "red";
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border p-5 shadow-[0_10px_30px_rgba(63,52,120,0.06)]",
+        tone === "green"
+          ? "border-[#B7DECE] bg-[#EDF9F4]"
+          : tone === "amber"
+            ? "border-[#EAD49A] bg-[#FFF8E8]"
+            : tone === "red"
+              ? "border-[#E7B4B0] bg-[#FFF2F1]"
+              : "border-[#E3DFEA] bg-white",
+      )}
+    >
+      <span className="text-indigo-dark flex size-11 items-center justify-center rounded-xl bg-[#EFEDFF] text-sm font-bold">
+        {icon ? <CourseStageIcon kind={icon} /> : number}
+      </span>
+      <strong className="mt-3 block text-[15px]">{title}</strong>
+      <p className="mt-1 text-[15px] leading-[1.55] text-[#696675]">{text}</p>
+    </div>
+  );
+}

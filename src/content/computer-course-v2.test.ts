@@ -1,0 +1,44 @@
+import { describe, expect, it } from "vitest";
+import {
+  computerCourseModulesV2,
+  computerModuleOneV2,
+  getComputerLessonV2,
+} from "@/content/computer-course-v2";
+
+describe("Computer & Internet Essentials V2 architecture", () => {
+  it("locks the course to 15 ordered modules with only Module 1 available", () => {
+    expect(computerCourseModulesV2).toHaveLength(15);
+    expect(computerCourseModulesV2.map((module) => module.order)).toEqual(
+      Array.from({ length: 15 }, (_, index) => index + 1),
+    );
+    expect(computerCourseModulesV2[0].status).toBe("available");
+    expect(
+      computerCourseModulesV2
+        .slice(1)
+        .every((module) => module.status === "in-production"),
+    ).toBe(true);
+  });
+
+  it("contains four unique, ordered Module 1 lessons", () => {
+    expect(computerModuleOneV2).toHaveLength(4);
+    expect(computerModuleOneV2.map((lesson) => lesson.order)).toEqual([
+      1, 2, 3, 4,
+    ]);
+    expect(new Set(computerModuleOneV2.map((lesson) => lesson.slug)).size).toBe(
+      4,
+    );
+    expect(computerModuleOneV2[0].track).toBe("universal");
+    expect(computerModuleOneV2[1].track).toBe("windows-mac");
+  });
+
+  it("does not resolve retired legacy assessment routes", () => {
+    expect(getComputerLessonV2("final-exam")).toBeUndefined();
+    expect(getComputerLessonV2("certificate")).toBeUndefined();
+    expect(getComputerLessonV2("growth-summary")).toBeUndefined();
+  });
+
+  it("requires a real practice choice in the orientation lesson", () => {
+    expect(computerModuleOneV2[0].practice?.taskRequirement).toBe("one");
+    expect(computerModuleOneV2[0].practice?.tasks.length).toBeGreaterThan(1);
+  });
+});

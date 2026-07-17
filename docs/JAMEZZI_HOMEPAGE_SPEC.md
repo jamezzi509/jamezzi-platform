@@ -318,22 +318,22 @@ Both are free and should be self-hosted as optimized WOFF2 files.
 
 ### Responsive sizes
 
-| Element | Mobile | Tablet | Desktop |
-| --- | ---: | ---: | ---: |
-| Hero headline | 52–56px | 72–80px | 104–112px |
-| Major section headline | 38–42px | 48–54px | 56–64px |
-| Product feature headline | 28–32px | 34–38px | 40–44px |
-| Card/guide title | 22–26px | 24–28px | 26–32px |
-| Subheading | 19–21px | 20–22px | 22–24px |
-| Intro paragraph | 18px | 19–20px | 20–22px |
-| Standard body | 17px | 17–18px | 18px |
-| Guides and lessons | 18px | 18px | 18–19px |
-| Navigation | 16px | 15–16px | 15–16px |
-| Buttons | 16px | 15–16px | 15–16px |
-| Supporting text | 15px | 15px | 15–16px |
-| Metadata | 13–14px | 13–14px | 13–14px |
-| Legal | 14px | 14px | 14px |
-| Form fields | 16px minimum | 16px | 16px |
+| Element                  |       Mobile |  Tablet |   Desktop |
+| ------------------------ | -----------: | ------: | --------: |
+| Hero headline            |      52–56px | 72–80px | 104–112px |
+| Major section headline   |      38–42px | 48–54px |   56–64px |
+| Product feature headline |      28–32px | 34–38px |   40–44px |
+| Card/guide title         |      22–26px | 24–28px |   26–32px |
+| Subheading               |      19–21px | 20–22px |   22–24px |
+| Intro paragraph          |         18px | 19–20px |   20–22px |
+| Standard body            |         17px | 17–18px |      18px |
+| Guides and lessons       |         18px |    18px |   18–19px |
+| Navigation               |         16px | 15–16px |   15–16px |
+| Buttons                  |         16px | 15–16px |   15–16px |
+| Supporting text          |         15px |    15px |   15–16px |
+| Metadata                 |      13–14px | 13–14px |   13–14px |
+| Legal                    |         14px |    14px |      14px |
+| Form fields              | 16px minimum |    16px |      16px |
 
 Meaningful mobile text never drops below 14px. Body copy remains 17px. Inputs remain at least 16px.
 
