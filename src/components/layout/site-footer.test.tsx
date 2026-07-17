@@ -21,11 +21,12 @@ describe("SiteFooter", () => {
     expect(screen.getByRole("link", { name: "Cookies" })).toBeInTheDocument();
   });
 
-  it("gives every social icon an accessible name", () => {
+  it("does not publish unfinished social links", () => {
     render(<SiteFooter />);
     for (const name of ["Facebook", "LinkedIn", "X", "Instagram"]) {
-      expect(screen.getByRole("link", { name })).toBeInTheDocument();
+      expect(screen.queryByRole("link", { name })).not.toBeInTheDocument();
     }
+    expect(screen.getByRole("link", { name: "Email" })).toBeInTheDocument();
   });
 
   it("does not render a newsletter form or a language switcher", () => {

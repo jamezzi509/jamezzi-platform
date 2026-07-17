@@ -4,13 +4,10 @@ import { clearCourseProgressFromBrowser } from "@/lib/course-progress";
 describe("clearCourseProgressFromBrowser", () => {
   beforeEach(() => window.localStorage.clear());
 
-  it("clears only the selected course state", () => {
+  it("clears only the selected course namespace", () => {
     window.localStorage.setItem("jamezzi:computer:essentials:completed", "[]");
-    window.localStorage.setItem(
-      "jamezzi:computer:essentials:platform",
-      "windows",
-    );
-    window.localStorage.setItem("jamezzi:english:level-one:completed", "[]");
+    window.localStorage.setItem("jamezzi:computer:essentials:platform", "mac");
+    window.localStorage.setItem("jamezzi:english:completed", "[]");
     window.localStorage.setItem("unrelated", "keep");
 
     clearCourseProgressFromBrowser("computer");
@@ -21,9 +18,7 @@ describe("clearCourseProgressFromBrowser", () => {
     expect(
       window.localStorage.getItem("jamezzi:computer:essentials:platform"),
     ).toBeNull();
-    expect(
-      window.localStorage.getItem("jamezzi:english:level-one:completed"),
-    ).toBe("[]");
+    expect(window.localStorage.getItem("jamezzi:english:completed")).toBe("[]");
     expect(window.localStorage.getItem("unrelated")).toBe("keep");
   });
 });

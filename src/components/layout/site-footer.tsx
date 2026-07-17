@@ -4,22 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
 import { footerGroups, legalLinks } from "@/content/footer";
-import { socialLinks } from "@/content/social";
 import { Container } from "@/components/ui/container";
 import { JamezziMark } from "@/components/layout/jamezzi-mark";
-import {
-  FacebookIcon,
-  LinkedInIcon,
-  XIcon,
-  InstagramIcon,
-} from "@/components/ui/icons";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  LinkedIn: LinkedInIcon,
-  X: XIcon,
-  Instagram: InstagramIcon,
-} as const;
 
 export function SiteFooter() {
   const pathname = usePathname();
@@ -74,21 +60,6 @@ export function SiteFooter() {
           >
             <p className="text-metadata text-night-muted">Connect</p>
             <ul className="mt-3 space-y-2">
-              {socialLinks.map((social) => {
-                const SocialIcon =
-                  socialIcons[social.label as keyof typeof socialIcons];
-                return (
-                  <li key={social.label}>
-                    <Link
-                      href={social.href}
-                      className="text-body text-night-text duration-control ease-primary flex items-center gap-2 transition-colors hover:text-white"
-                    >
-                      <SocialIcon className="size-5" />
-                      {social.label}
-                    </Link>
-                  </li>
-                );
-              })}
               <li>
                 <Link
                   href="/contact"

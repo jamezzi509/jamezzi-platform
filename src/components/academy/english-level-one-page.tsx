@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { EnglishLevelOneLessons } from "@/components/academy/english-level-one-lessons";
 import { Container } from "@/components/ui/container";
-import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
 import { CourseResumeCard } from "@/components/academy/course-resume-card";
 import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
 import { englishLevels } from "@/content/english-course";
@@ -84,10 +83,6 @@ export function EnglishLevelOnePage() {
             </section>
           ))}
         </div>
-
-        <section className="mt-24">
-          <CourseProgressBackup course="english" />
-        </section>
       </Container>
     </main>
   );
