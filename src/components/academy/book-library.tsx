@@ -24,9 +24,9 @@ export function BookLibrary() {
 
       <section className="bg-white py-16 lg:py-24">
         <Container>
-          <div className="grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-5 sm:gap-y-12 md:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
             {academyBooks.map((book, index) => (
-              <article key={book.slug} className="group">
+              <article key={book.slug} className="group min-w-0">
                 <div
                   className="relative w-full overflow-hidden rounded-[10px] shadow-[0_18px_45px_rgba(29,24,46,0.12)]"
                   style={{ aspectRatio: "2 / 3" }}
@@ -40,10 +40,10 @@ export function BookLibrary() {
                     priority={index < 3}
                   />
                 </div>
-                <p className="text-metadata text-muted mt-5">
+                <p className="text-metadata text-muted mt-4 sm:mt-5">
                   {book.topic} · {book.language}
                 </p>
-                <h2 className="text-card-title text-ink mt-2 text-balance">
+                <h2 className="text-ink mt-2 line-clamp-3 text-base leading-snug font-semibold text-balance sm:text-xl">
                   {book.title}
                 </h2>
                 <Link

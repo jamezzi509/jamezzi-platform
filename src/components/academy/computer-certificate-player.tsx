@@ -6,7 +6,11 @@ import { computerCheckpointStorageKey } from "@/components/academy/computer-chec
 import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
 import { computerFinalExamStorageKey } from "@/components/academy/computer-final-exam-player";
 import { computerReadinessReflectionStorageKey } from "@/components/academy/computer-readiness-reflection-player";
-import { ArrowRightIcon, GraduationCapIcon, StampIcon } from "@/components/ui/icons";
+import {
+  ArrowRightIcon,
+  GraduationCapIcon,
+  StampIcon,
+} from "@/components/ui/icons";
 import type { CourseLesson } from "@/content/computer-rebuild/schema";
 import { cn } from "@/lib/cn";
 
@@ -60,14 +64,19 @@ export function ComputerCertificatePlayer({
   >({});
   const [reflectionSaved, setReflectionSaved] = useState(false);
   const [examRecord, setExamRecord] = useState<ExamAttemptRecord | null>(null);
-  const [certificate, setCertificate] = useState<CertificateRecord | null>(null);
+  const [certificate, setCertificate] = useState<CertificateRecord | null>(
+    null,
+  );
   const [nameInput, setNameInput] = useState("");
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setCompletedSlugs(readJson(computerProgressStorageKey, [] as string[]));
       setCheckpointRecords(
-        readJson(computerCheckpointStorageKey, {} as Record<string, CheckpointRecord>),
+        readJson(
+          computerCheckpointStorageKey,
+          {} as Record<string, CheckpointRecord>,
+        ),
       );
       const reflections = readJson(
         computerReadinessReflectionStorageKey,
@@ -75,11 +84,14 @@ export function ComputerCertificatePlayer({
       );
       setReflectionSaved(Boolean(reflections["checkpoint-4"]));
       setExamRecord(
-        readJson(computerFinalExamStorageKey, {} as Record<string, ExamAttemptRecord>)[
-          "final-exam"
-        ] ?? null,
+        readJson(
+          computerFinalExamStorageKey,
+          {} as Record<string, ExamAttemptRecord>,
+        )["final-exam"] ?? null,
       );
-      setCertificate(readJson<CertificateRecord | null>(computerCertificateStorageKey, null));
+      setCertificate(
+        readJson<CertificateRecord | null>(computerCertificateStorageKey, null),
+      );
       setLoaded(true);
     }, 0);
     return () => window.clearTimeout(timer);
@@ -88,12 +100,16 @@ export function ComputerCertificatePlayer({
   const firstIncompleteLesson = allLessons.find(
     (lesson) => !completedSlugs.includes(lesson.slug),
   );
-  const unpassedCheckpoint = ["checkpoint-1", "checkpoint-2", "checkpoint-3"].find(
-    (id) => !checkpointRecords[id]?.passed,
-  );
+  const unpassedCheckpoint = [
+    "checkpoint-1",
+    "checkpoint-2",
+    "checkpoint-3",
+  ].find((id) => !checkpointRecords[id]?.passed);
   const blockers: string[] = [];
   if (firstIncompleteLesson) {
-    blockers.push(`Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`);
+    blockers.push(
+      `Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`,
+    );
   }
   if (unpassedCheckpoint) {
     blockers.push(
@@ -116,7 +132,10 @@ export function ComputerCertificatePlayer({
       issuedAt: new Date().toISOString(),
     };
     try {
-      window.localStorage.setItem(computerCertificateStorageKey, JSON.stringify(record));
+      window.localStorage.setItem(
+        computerCertificateStorageKey,
+        JSON.stringify(record),
+      );
     } catch {
       // Certificate stays ephemeral for this session if storage is blocked.
     }
@@ -131,8 +150,8 @@ export function ComputerCertificatePlayer({
     <main className="bg-white pt-[72px]">
       <div className="mx-auto max-w-[680px] px-5 pt-5 pb-16">
         <p className="text-muted mb-6 text-[12.5px] print:hidden">
-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
-          Sètifika
+          Computer &amp; Internet Essentials{" "}
+          <span className="text-indigo-dark">·</span> Sètifika
         </p>
 
         {!eligible && (
@@ -143,14 +162,17 @@ export function ComputerCertificatePlayer({
             </h1>
             <ul className="border-border grid gap-2.5 rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
               {blockers.map((blocker) => (
-                <li key={blocker} className="text-ink text-[13.5px] leading-[1.6]">
+                <li
+                  key={blocker}
+                  className="text-ink text-[13.5px] leading-[1.6]"
+                >
                   • {blocker}
                 </li>
               ))}
             </ul>
             {firstIncompleteLesson && (
               <Link
-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
+                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
                 className="bg-indigo mt-6 inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
               >
                 Kontinye ak {firstIncompleteLesson.titleHt}
@@ -164,12 +186,15 @@ export function ComputerCertificatePlayer({
           <div>
             <p className="text-eyebrow text-indigo-dark mb-3">FELISITASYON</p>
             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
-              Ou pare pou sètifika ou!
+              Ou pare pou dosye konplesyon ou!
             </h1>
             <p className="text-muted mb-6 text-[15px] leading-[1.6]">
-              Antre non ou jan ou vle l parèt sou sètifika a.
+              Antre non ou jan ou vle l parèt sou dosye a.
             </p>
-            <label htmlFor="student-name" className="text-ink mb-2 block text-[13.5px] font-semibold">
+            <label
+              htmlFor="student-name"
+              className="text-ink mb-2 block text-[13.5px] font-semibold"
+            >
               Non Konplè
             </label>
             <input
@@ -192,76 +217,91 @@ export function ComputerCertificatePlayer({
               )}
             >
               <GraduationCapIcon className="size-4" />
-              Jenere Sètifika Ou
+              Jenere Dosye Ou
             </button>
           </div>
         )}
 
         {eligible && certificate && (
           <div>
-            <div className="border-indigo relative rounded-[18px] border-2 px-7 py-10 text-center">
+            <div className="border-indigo relative rounded-[18px] border-2 px-4 py-7 text-center sm:px-7 sm:py-10">
               <div className="bg-indigo-light text-indigo-dark mx-auto mb-5 inline-flex size-14 items-center justify-center rounded-full">
                 <StampIcon className="size-6" />
               </div>
-              <p className="text-eyebrow text-indigo-dark mb-2">JAMEZZI ACADEMY</p>
+              <p className="text-eyebrow text-indigo-dark mb-2">
+                JAMEZZI ACADEMY
+              </p>
               <h1 className="font-fraunces text-ink mb-1 text-[22px] leading-[1.3] font-semibold italic">
-                Sètifika Fòmasyon
+                Dosye Konplesyon Kou
               </h1>
               <p className="text-muted mb-6 text-[13.5px]">
                 Òdinatè ak Entènèt Esansyèl
               </p>
               <p className="text-muted mb-1.5 text-[12px] tracking-wide uppercase">
-                Sètifye ke
+                Konfime ke
               </p>
-              <p className="font-fraunces text-ink mb-6 text-[26px] font-semibold">
+              <p className="font-fraunces text-ink mb-6 text-[24px] font-semibold break-words sm:text-[26px]">
                 {certificate.studentName}
               </p>
               <p className="text-muted mb-6 text-[14px] leading-[1.6]">
-                fin konplete avèk siksè tout 14 modil, kat Confidence Checkpoint,
-                Kapstòn nan, ak Egzamen Final Computer &amp; Internet Essentials la,
-                ak yon nòt {examRecord?.bestPercent}%.
+                fin konplete avèk siksè tout 14 modil, misyon pratik yo, twa
+                Confidence Checkpoint, refleksyon final sou preparasyon dijital,
+                ak Egzamen Final Computer &amp; Internet Essentials la, ak yon
+                nòt {examRecord?.bestPercent}%.
               </p>
-              <div className="border-border mb-6 grid grid-cols-2 gap-4 border-t pt-5 text-left">
+              <div className="border-border mb-6 grid grid-cols-1 gap-4 border-t pt-5 text-left sm:grid-cols-2">
                 <div>
-                  <p className="text-muted text-[11px] tracking-wide uppercase">Dat</p>
+                  <p className="text-muted text-[11px] tracking-wide uppercase">
+                    Dat
+                  </p>
                   <p className="text-ink text-[13.5px] font-semibold">
-                    {new Date(certificate.issuedAt).toLocaleDateString("fr-HT", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+                    {new Date(certificate.issuedAt).toLocaleDateString(
+                      "fr-HT",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      },
+                    )}
                   </p>
                 </div>
                 <div>
                   <p className="text-muted text-[11px] tracking-wide uppercase">
-                    Kòd Sètifika
+                    ID Lokal
                   </p>
-                  <p className="text-ink font-lesson-mono text-[13.5px] font-semibold">
+                  <p className="text-ink font-lesson-mono text-[13.5px] font-semibold break-all">
                     {certificate.certificateId}
                   </p>
                 </div>
               </div>
               <p className="text-muted text-[11px] leading-[1.5]">
-                Sètifika sa a konfime konplete kou a — li PA yon lisans gouvènman
-                ni yon sètifikasyon repare pwofesyonèl.
+                Dosye sa a konfime konplete kou a sou aparèy sa a — li PA yon
+                lisans gouvènman, yon sètifikasyon reparasyon pwofesyonèl, oswa
+                yon dosye ki ka verifye piblikman sou entènèt.
               </p>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3 print:hidden">
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center print:hidden">
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+                className="bg-indigo inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
               >
-                Enprime Sètifika Ou
+                Enprime Dosye Ou
               </button>
+              <Link
+                href="/academy/courses/computer-internet-essentials"
+                className="border-border text-indigo-dark inline-flex min-h-11 items-center justify-center rounded-full border bg-white px-6 py-2.5 text-center text-sm font-semibold"
+              >
+                Retounen nan paj kou a →
+              </Link>
             </div>
             <p className="text-muted mt-4 text-[12px] leading-[1.6] print:hidden">
-              Kòd sètifika sa a jenere epi sovgade lokalman sou aparèy ou. Platfòm
-              sa a poko gen yon paj verifikasyon piblik an liy kote yon lòt moun
-              ka tape kòd la pou konfime l — sa ta mande yon baz done sèvè ki poko
-              konstwi. Pou kounye a, kòd la sèvi kòm yon idantifyan inik ou ka
-              montre oswa anrejistre.
+              ID sa a jenere epi sovgade lokalman sou aparèy ou. Platfòm sa a
+              poko gen yon paj verifikasyon piblik an liy kote yon lòt moun ka
+              tape ID a pou konfime l — sa ta mande yon baz done sèvè ki poko
+              konstwi. Pou kounye a, li sèvi sèlman kòm yon idantifyan lokal ou
+              ka montre oswa anrejistre.
             </p>
           </div>
         )}

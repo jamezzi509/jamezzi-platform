@@ -74,7 +74,10 @@ export function ComputerFinalExamPlayer({
     const timer = window.setTimeout(() => {
       setCompletedSlugs(readJson(computerProgressStorageKey, [] as string[]));
       setCheckpointRecords(
-        readJson(computerCheckpointStorageKey, {} as Record<string, CheckpointRecord>),
+        readJson(
+          computerCheckpointStorageKey,
+          {} as Record<string, CheckpointRecord>,
+        ),
       );
       const reflections = readJson(
         computerReadinessReflectionStorageKey,
@@ -82,9 +85,10 @@ export function ComputerFinalExamPlayer({
       );
       setReflectionSaved(Boolean(reflections["checkpoint-4"]));
       setRecord(
-        readJson(computerFinalExamStorageKey, {} as Record<string, ExamAttemptRecord>)[
-          exam.id
-        ] ?? null,
+        readJson(
+          computerFinalExamStorageKey,
+          {} as Record<string, ExamAttemptRecord>,
+        )[exam.id] ?? null,
       );
       setLoaded(true);
     }, 0);
@@ -98,12 +102,16 @@ export function ComputerFinalExamPlayer({
   const firstIncompleteLesson = allLessons.find(
     (lesson) => !completedSlugs.includes(lesson.slug),
   );
-  const unpassedCheckpoint = ["checkpoint-1", "checkpoint-2", "checkpoint-3"].find(
-    (id) => !checkpointRecords[id]?.passed,
-  );
+  const unpassedCheckpoint = [
+    "checkpoint-1",
+    "checkpoint-2",
+    "checkpoint-3",
+  ].find((id) => !checkpointRecords[id]?.passed);
   const blockers: string[] = [];
   if (firstIncompleteLesson) {
-    blockers.push(`Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`);
+    blockers.push(
+      `Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`,
+    );
   }
   if (unpassedCheckpoint) {
     blockers.push(
@@ -125,7 +133,11 @@ export function ComputerFinalExamPlayer({
   function updateAnswer(index: number, partial: Partial<CheckAnswer>) {
     setCheckState((prev) => {
       const next = [...prev];
-      next[index] = { ...next[index], ...partial, checked: partial.checked ?? false };
+      next[index] = {
+        ...next[index],
+        ...partial,
+        checked: partial.checked ?? false,
+      };
       return next;
     });
   }
@@ -141,14 +153,17 @@ export function ComputerFinalExamPlayer({
     });
   }
 
-  const allAnswered = checkState.length > 0 && checkState.every((a) => a.checked);
+  const allAnswered =
+    checkState.length > 0 && checkState.every((a) => a.checked);
   const correctCount = checkState.filter((a) => a.correct).length;
   const percent =
     attemptQuestions.length > 0
       ? Math.round((correctCount / attemptQuestions.length) * 100)
       : 0;
   const passed = percent >= exam.passingPercent;
-  const missed = attemptQuestions.filter((_, index) => !checkState[index]?.correct);
+  const missed = attemptQuestions.filter(
+    (_, index) => !checkState[index]?.correct,
+  );
   const missedLessons = [
     ...new Map(missed.map((q) => [q.recommendedLessonSlug, q])).values(),
   ];
@@ -166,7 +181,10 @@ export function ComputerFinalExamPlayer({
         passed: Boolean(prev?.passed) || passed,
       };
       all[exam.id] = next;
-      window.localStorage.setItem(computerFinalExamStorageKey, JSON.stringify(all));
+      window.localStorage.setItem(
+        computerFinalExamStorageKey,
+        JSON.stringify(all),
+      );
       setRecord(next);
     } catch {
       // Attempt stays ephemeral if storage is blocked.
@@ -182,13 +200,15 @@ export function ComputerFinalExamPlayer({
     <main className="bg-white pt-[72px]">
       <div className="mx-auto max-w-[680px] px-5 pt-5 pb-16">
         <p className="text-muted mb-6 text-[12.5px]">
-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
-          {exam.titleHt}
+          Computer &amp; Internet Essentials{" "}
+          <span className="text-indigo-dark">·</span> {exam.titleHt}
         </p>
 
         {!unlocked && (
           <div>
-            <p className="text-eyebrow text-indigo-dark mb-3">FÈMEN POU KOUNYE A</p>
+            <p className="text-eyebrow text-indigo-dark mb-3">
+              FÈMEN POU KOUNYE A
+            </p>
             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
               Fini rès kou a dabò.
             </h1>
@@ -197,14 +217,17 @@ export function ComputerFinalExamPlayer({
             </p>
             <ul className="border-border grid gap-2.5 rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
               {blockers.map((blocker) => (
-                <li key={blocker} className="text-ink text-[13.5px] leading-[1.6]">
+                <li
+                  key={blocker}
+                  className="text-ink text-[13.5px] leading-[1.6]"
+                >
                   • {blocker}
                 </li>
               ))}
             </ul>
             {firstIncompleteLesson && (
               <Link
-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
+                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
                 className="bg-indigo mt-6 inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
               >
                 Kontinye ak {firstIncompleteLesson.titleHt}
@@ -220,8 +243,10 @@ export function ComputerFinalExamPlayer({
             <h1 className="font-fraunces text-ink mb-3 text-[28px] leading-[1.2] font-semibold italic">
               {exam.titleHt}
             </h1>
-            <p className="text-muted mb-6 text-[15px] leading-[1.6]">{exam.intro}</p>
-            <div className="mb-7 grid grid-cols-3 gap-2.5 text-center">
+            <p className="text-muted mb-6 text-[15px] leading-[1.6]">
+              {exam.intro}
+            </p>
+            <div className="mb-7 grid grid-cols-1 gap-2.5 text-center sm:grid-cols-3">
               <div className="bg-indigo-light rounded-xl px-3 py-3.5">
                 <p className="text-ink text-[18px] font-bold">
                   {exam.questionsPerAttempt}
@@ -229,7 +254,9 @@ export function ComputerFinalExamPlayer({
                 <p className="text-muted text-[11.5px]">Kesyon</p>
               </div>
               <div className="bg-indigo-light rounded-xl px-3 py-3.5">
-                <p className="text-ink text-[18px] font-bold">{exam.passingPercent}%</p>
+                <p className="text-ink text-[18px] font-bold">
+                  {exam.passingPercent}%
+                </p>
                 <p className="text-muted text-[11.5px]">Pou Pase</p>
               </div>
               <div className="bg-indigo-light rounded-xl px-3 py-3.5">
@@ -240,7 +267,8 @@ export function ComputerFinalExamPlayer({
             {record && (
               <p className="text-muted mb-6 text-[13px]">
                 Dènye rezilta ou: {record.bestPercent}%
-                {record.passed ? " — ou deja pase l ✅" : ""} ({record.attempts} eseye)
+                {record.passed ? " — ou deja pase l ✅" : ""} ({record.attempts}{" "}
+                eseye)
               </p>
             )}
             <button
@@ -257,8 +285,8 @@ export function ComputerFinalExamPlayer({
           <div>
             <div className="border-border sticky top-[72px] z-10 mb-6 border-b bg-white/95 pt-2.5 pb-3 backdrop-blur-sm">
               <p className="text-muted text-[12.5px]">
-                {checkState.filter((a) => a.checked).length} sou {attemptQuestions.length}{" "}
-                reponn
+                {checkState.filter((a) => a.checked).length} sou{" "}
+                {attemptQuestions.length} reponn
               </p>
             </div>
             <div className="grid gap-8">
@@ -266,7 +294,9 @@ export function ComputerFinalExamPlayer({
                 <QuestionCard
                   key={item.id}
                   question={item.question}
-                  answer={checkState[index] ?? { checked: false, correct: false }}
+                  answer={
+                    checkState[index] ?? { checked: false, correct: false }
+                  }
                   onAnswerChange={(partial) => updateAnswer(index, partial)}
                   onVerify={() => verify(index)}
                 />
@@ -295,13 +325,17 @@ export function ComputerFinalExamPlayer({
             <div
               className={cn(
                 "mb-7 rounded-[18px] px-5.5 py-7.5 text-center",
-                passed ? "bg-indigo text-white" : "bg-indigo-light text-indigo-dark",
+                passed
+                  ? "bg-indigo text-white"
+                  : "bg-indigo-light text-indigo-dark",
               )}
             >
               <div
                 className={cn(
                   "mx-auto mb-3.5 grid size-[70px] -rotate-6 place-items-center rounded-full border-[3px]",
-                  passed ? "border-white bg-white/15" : "border-indigo bg-transparent",
+                  passed
+                    ? "border-white bg-white/15"
+                    : "border-indigo bg-transparent",
                 )}
               >
                 {passed ? (
@@ -325,7 +359,7 @@ export function ComputerFinalExamPlayer({
               </p>
               {passed && (
                 <Link
-                  href="/academy/courses/computer-internet-essentials/rebuild/certificate"
+                  href="/academy/courses/computer-internet-essentials/learn/certificate"
                   className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
                 >
                   <GraduationCapIcon className="size-4" />
@@ -344,7 +378,7 @@ export function ComputerFinalExamPlayer({
                   {missedLessons.map((item) => (
                     <Link
                       key={item.id}
-                      href={`/academy/courses/computer-internet-essentials/rebuild/${item.recommendedLessonSlug}`}
+                      href={`/academy/courses/computer-internet-essentials/learn/${item.recommendedLessonSlug}`}
                       className="border-border flex items-center justify-between rounded-xl border bg-[#FCFCFE] px-4 py-3.5"
                     >
                       <span className="text-ink text-[13.5px] font-semibold">

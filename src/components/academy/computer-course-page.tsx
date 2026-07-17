@@ -2,13 +2,16 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
+import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
+import { CourseResumeCard } from "@/components/academy/course-resume-card";
+import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
 import { computerRebuildLessons } from "@/content/computer-rebuild/lessons";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 
 export function ComputerCoursePage() {
   return (
     <main className="bg-paper">
-      <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[650px] lg:pt-[72px]">
+      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
           <Image
             src="/images/academy/courses/computer-internet-essentials.webp"
@@ -16,19 +19,19 @@ export function ComputerCoursePage() {
             fill
             priority
             sizes="(max-width: 1023px) 100vw, 62vw"
-            className="object-cover"
+            className="object-cover object-[65%_center] sm:object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/85 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
         <Container className="relative z-10">
-          <div className="max-w-2xl py-14">
+          <div className="max-w-2xl py-10 sm:py-14">
             <p className="text-eyebrow text-indigo-dark">
-              JAMEZZI ACADEMY · COMPUTERS &amp; THE INTERNET, NO FEAR
+              JAMEZZI ACADEMY · BEGINNER DIGITAL SKILLS
             </p>
             <h1 className="text-editorial-headline text-ink mt-5 max-w-4xl">
               Computer &amp; Internet Essentials
             </h1>
-            <p className="font-display text-ink mt-5 max-w-3xl text-3xl leading-tight md:text-4xl">
+            <p className="font-display text-ink mt-5 max-w-3xl text-2xl leading-tight sm:text-3xl md:text-4xl">
               Concepts before buttons — build real digital confidence.
             </p>
             <p className="text-intro text-muted mt-7 max-w-xl">
@@ -37,7 +40,7 @@ export function ComputerCoursePage() {
               showing you where to click.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <CtaLink href="/academy/courses/computer-internet-essentials/rebuild/start">
+              <CtaLink href="/academy/courses/computer-internet-essentials/learn">
                 Start Learning <ArrowRightIcon className="size-4" />
               </CtaLink>
               <CtaLink href="#course-path" variant="secondary">
@@ -47,6 +50,19 @@ export function ComputerCoursePage() {
           </div>
         </Container>
       </section>
+
+      <Container>
+        <CourseResumeCard
+          lessons={computerRebuildLessons.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.titleHt,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials/learn/final-exam"
+          language="ht"
+        />
+      </Container>
 
       <section
         id="course-path"
@@ -59,9 +75,9 @@ export function ComputerCoursePage() {
               You&rsquo;re not behind. Start where you are.
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
-              14 modules, from your first day with a computer to full digital
-              independence — plus four confidence checkpoints, a final exam,
-              and a certificate.
+              14 modules, from your first day with a computer to stronger
+              digital independence — plus four confidence checkpoints, a final
+              exam, and a course-completion certificate.
             </p>
           </div>
 
@@ -85,7 +101,7 @@ export function ComputerCoursePage() {
                   <p className="text-body text-muted mt-3">{module.purpose}</p>
                   {firstLesson && (
                     <CtaLink
-                      href={`/academy/courses/computer-internet-essentials/rebuild/${firstLesson.slug}`}
+                      href={`/academy/courses/computer-internet-essentials/learn/${firstLesson.slug}`}
                       variant="link"
                       className="mt-7"
                     >
@@ -121,8 +137,8 @@ export function ComputerCoursePage() {
             />
             <ApproachRow
               number="03"
-              title="A capstone, exam, and free certificate"
-              copy="Finish with a real-world mission in almost every lesson, a comprehensive final exam, and a free Computer & Internet Essentials certificate the moment you pass."
+              title="Real-world missions and a final exam"
+              copy="Apply what you learn through practical missions, complete a comprehensive final exam, and generate a course-completion certificate on this device when you pass."
             />
           </div>
         </Container>
@@ -137,11 +153,17 @@ export function ComputerCoursePage() {
             </h2>
           </div>
           <CtaLink
-            href="/academy/courses/computer-internet-essentials/rebuild/start"
+            href="/academy/courses/computer-internet-essentials/learn"
             variant="inverse"
           >
             Start Learning <ArrowRightIcon className="size-4" />
           </CtaLink>
+        </Container>
+      </section>
+
+      <section className="bg-paper py-16 lg:py-20">
+        <Container>
+          <CourseProgressBackup course="computer" />
         </Container>
       </section>
     </main>

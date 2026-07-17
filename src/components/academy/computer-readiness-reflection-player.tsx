@@ -23,7 +23,8 @@ interface ReadinessRecord {
 function readReadinessRecords(): Record<string, ReadinessRecord> {
   try {
     return JSON.parse(
-      window.localStorage.getItem(computerReadinessReflectionStorageKey) ?? "{}",
+      window.localStorage.getItem(computerReadinessReflectionStorageKey) ??
+        "{}",
     ) as Record<string, ReadinessRecord>;
   } catch {
     return {};
@@ -127,22 +128,25 @@ export function ComputerReadinessReflectionPlayer({
     <main className="bg-white pt-[72px]">
       <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
         <p className="text-muted mb-6 text-[12.5px]">
-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
-          {reflection.titleHt}
+          Computer &amp; Internet Essentials{" "}
+          <span className="text-indigo-dark">·</span> {reflection.titleHt}
         </p>
 
         {!unlocked && (
           <div>
-            <p className="text-eyebrow text-indigo-dark mb-3">FÈMEN POU KOUNYE A</p>
+            <p className="text-eyebrow text-indigo-dark mb-3">
+              FÈMEN POU KOUNYE A
+            </p>
             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
               Fini leson ki anvan yo dabò.
             </h1>
             <p className="text-muted mb-7 text-[15px] leading-[1.6]">
-              Chèk prepare sa a vini apre ou fin konplete Kapstòn nan ak tout kou a.
+              Chèk prepare sa a vini apre ou fin konplete Kapstòn nan ak tout
+              kou a.
             </p>
             {firstIncompleteLesson && (
               <Link
-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
+                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
                 className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
               >
                 Kontinye ak {firstIncompleteLesson.titleHt}
@@ -176,7 +180,7 @@ export function ComputerReadinessReflectionPlayer({
                   <p className="text-ink mb-3 text-[14.5px] font-semibold">
                     {item.skillHt}
                   </p>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                     {reflection.scaleLabelsHt.map((label, scaleIndex) => {
                       const selected = ratings[index] === scaleIndex;
                       return (
@@ -245,7 +249,8 @@ export function ComputerReadinessReflectionPlayer({
             </div>
             {!allRated && (
               <p className="text-muted mt-3 text-[12.5px]">
-                Reponn tout konpetans yo anvan ou sovgade — kesyon ouvè yo pa obligatwa.
+                Reponn tout konpetans yo anvan ou sovgade — kesyon ouvè yo pa
+                obligatwa.
               </p>
             )}
 
@@ -257,13 +262,13 @@ export function ComputerReadinessReflectionPlayer({
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <Link
-                    href="/academy/courses/computer-internet-essentials/rebuild/growth-summary"
+                    href="/academy/courses/computer-internet-essentials/learn/growth-summary"
                     className="border-indigo text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full border-2 bg-white px-6 py-2.5 text-sm font-semibold"
                   >
                     Wè Rezime Kwasans Ou
                   </Link>
                   <Link
-                    href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
+                    href="/academy/courses/computer-internet-essentials/learn/final-exam"
                     className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
                   >
                     Ale nan Egzamen Final la

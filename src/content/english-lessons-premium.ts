@@ -1,5 +1,5 @@
 /**
- * Premium English for Beginners lesson content — Module 1.
+ * Practical English lesson content — Module 1.
  * Ported from AJ's "modil1-leson1-byenveni.jsx" / "modil1-leson2-alfabet.jsx"
  * prototypes. Instructional language is Haitian Creole; taught content is
  * English. Text fields marked "(supports **bold**)" use light inline
@@ -15421,7 +15421,7 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
       { emoji: "🎓", text: "You finished Module 18 — Think in English!" },
       {
         emoji: "🏆",
-        text: "You finished the whole English for Beginners course!",
+        text: "You finished the complete Practical English course!",
       },
     ],
   },

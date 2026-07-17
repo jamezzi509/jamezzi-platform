@@ -15,7 +15,10 @@ import {
   StampIcon,
 } from "@/components/ui/icons";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
-import type { Checkpoint, CourseLesson } from "@/content/computer-rebuild/schema";
+import type {
+  Checkpoint,
+  CourseLesson,
+} from "@/content/computer-rebuild/schema";
 import { cn } from "@/lib/cn";
 
 export const computerCheckpointStorageKey =
@@ -97,14 +100,22 @@ export function ComputerCheckpointPlayer({
 
   const allAnswered = checkState.every((a) => a.checked);
   const correctCount = checkState.filter((a) => a.correct).length;
-  const percent = Math.round((correctCount / checkpoint.questions.length) * 100);
+  const percent = Math.round(
+    (correctCount / checkpoint.questions.length) * 100,
+  );
   const passed = percent >= checkpoint.passingPercent;
-  const missed = checkpoint.questions.filter((_, index) => !checkState[index].correct);
+  const missed = checkpoint.questions.filter(
+    (_, index) => !checkState[index].correct,
+  );
 
   function updateAnswer(index: number, partial: Partial<CheckAnswer>) {
     setCheckState((prev) => {
       const next = [...prev];
-      next[index] = { ...next[index], ...partial, checked: partial.checked ?? false };
+      next[index] = {
+        ...next[index],
+        ...partial,
+        checked: partial.checked ?? false,
+      };
       return next;
     });
   }
@@ -161,23 +172,25 @@ export function ComputerCheckpointPlayer({
     <main className="bg-white pt-[72px]">
       <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
         <p className="text-muted mb-6 text-[12.5px]">
-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
-          {checkpoint.titleHt}
+          Computer &amp; Internet Essentials{" "}
+          <span className="text-indigo-dark">·</span> {checkpoint.titleHt}
         </p>
 
         {!unlocked && (
           <div>
-            <p className="text-eyebrow text-indigo-dark mb-3">CHECKPOINT FÈMEN</p>
+            <p className="text-eyebrow text-indigo-dark mb-3">
+              CHECKPOINT FÈMEN
+            </p>
             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
               Fini leson ki anvan yo dabò.
             </h1>
             <p className="text-muted mb-7 text-[15px] leading-[1.6]">
-              {checkpoint.titleHt} konbine konpetans nan plizyè modil ansanm.
-              Ou bezwen fini tout leson yo anvan ou eseye l.
+              {checkpoint.titleHt} konbine konpetans nan plizyè modil ansanm. Ou
+              bezwen fini tout leson yo anvan ou eseye l.
             </p>
             {firstIncompleteLesson && (
               <Link
-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
+                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
                 className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
               >
                 Kontinye ak {firstIncompleteLesson.titleHt}
@@ -235,7 +248,9 @@ export function ComputerCheckpointPlayer({
                 <QuestionCard
                   key={item.question.prompt}
                   question={item.question}
-                  answer={checkState[index] ?? { checked: false, correct: false }}
+                  answer={
+                    checkState[index] ?? { checked: false, correct: false }
+                  }
                   onAnswerChange={(partial) => updateAnswer(index, partial)}
                   onVerify={() => verify(index)}
                 />
@@ -264,13 +279,17 @@ export function ComputerCheckpointPlayer({
             <div
               className={cn(
                 "mb-7 rounded-[18px] px-5.5 py-7.5 text-center",
-                passed ? "bg-indigo text-white" : "bg-indigo-light text-indigo-dark",
+                passed
+                  ? "bg-indigo text-white"
+                  : "bg-indigo-light text-indigo-dark",
               )}
             >
               <div
                 className={cn(
                   "mx-auto mb-3.5 grid size-[70px] -rotate-6 place-items-center rounded-full border-[3px]",
-                  passed ? "border-white bg-white/15" : "border-indigo bg-transparent",
+                  passed
+                    ? "border-white bg-white/15"
+                    : "border-indigo bg-transparent",
                 )}
               >
                 {passed ? (
@@ -294,7 +313,7 @@ export function ComputerCheckpointPlayer({
               </p>
               {passed && nextModuleFirstLesson && (
                 <Link
-                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextModuleFirstLesson.slug}`}
+                  href={`/academy/courses/computer-internet-essentials/learn/${nextModuleFirstLesson.slug}`}
                   className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
                 >
                   <GraduationCapIcon className="size-4" />
@@ -313,7 +332,7 @@ export function ComputerCheckpointPlayer({
                   {missed.map((item) => (
                     <Link
                       key={item.skillTag}
-                      href={`/academy/courses/computer-internet-essentials/rebuild/${item.recommendedLessonSlug}`}
+                      href={`/academy/courses/computer-internet-essentials/learn/${item.recommendedLessonSlug}`}
                       className="border-border flex items-center justify-between rounded-xl border bg-[#FCFCFE] px-4 py-3.5"
                     >
                       <span className="text-ink text-[14px] font-semibold">

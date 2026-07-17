@@ -1,5 +1,5 @@
 /**
- * Placement quiz — English for Beginners.
+ * Placement quiz — Practical English.
  * Ported from AJ's "tes-plasman-english-beginners.jsx" prototype.
  * Instructional language is Haitian Creole; tested content is English.
  */

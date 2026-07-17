@@ -1,5 +1,5 @@
 /**
- * Final exam for "English for Beginners" — 36 questions, two per module,
+ * Final exam for Practical English — 36 questions, two per module,
  * self-contained so no lesson context is required. 80% (29/36) to pass.
  */
 

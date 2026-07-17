@@ -4,6 +4,44 @@ export interface EnglishModule {
   promise: string;
 }
 
+export interface EnglishLevel {
+  number: number;
+  title: string;
+  promise: string;
+  moduleNumbers: number[];
+}
+
+export const englishLevels: EnglishLevel[] = [
+  {
+    number: 1,
+    title: "Foundations",
+    promise:
+      "Build your first useful sentences and understand how basic English works.",
+    moduleNumbers: [1, 2, 3, 4, 5],
+  },
+  {
+    number: 2,
+    title: "Everyday English",
+    promise:
+      "Speak through common situations using practical verbs and patterns.",
+    moduleNumbers: [6, 7, 8, 9, 10],
+  },
+  {
+    number: 3,
+    title: "Practical English",
+    promise:
+      "Use English for technology, work, listening, and modern daily life.",
+    moduleNumbers: [11, 12, 13, 14],
+  },
+  {
+    number: 4,
+    title: "English Confidence",
+    promise:
+      "Write, understand culture and stories, and respond without translating every word.",
+    moduleNumbers: [15, 16, 17, 18],
+  },
+];
+
 export const englishModules: EnglishModule[] = [
   {
     number: 1,

@@ -11,7 +11,7 @@ export interface CourseSummary {
 export const courses: CourseSummary[] = [
   {
     slug: "english-for-beginners",
-    title: "English for Beginners",
+    title: "Practical English for Haitian Creole Speakers",
     price: 0,
     free: true,
     category: "foundation",
@@ -37,7 +37,7 @@ export const courses: CourseSummary[] = [
     category: "technology",
     availability: "launching-first",
     description:
-      "A judgment-free, Haitian Creole course covering computers, the internet, files, safety and scams, buying and troubleshooting devices, and building lasting digital habits — with checkpoints, a final exam, and a free certificate.",
+      "A judgment-free, Haitian Creole course covering computers, the internet, files, safety and scams, buying and troubleshooting devices, and building lasting digital habits — with checkpoints, practical missions, and a final exam.",
   },
   {
     slug: "ai-for-work-business",

@@ -10,7 +10,7 @@ import {
   SparklesIcon,
   StampIcon,
 } from "@/components/ui/icons";
-import { englishModules } from "@/content/english-course";
+import { englishLevels, englishModules } from "@/content/english-course";
 import {
   computeFinalExamResult,
   EXAM_PASS_THRESHOLD,
@@ -32,6 +32,7 @@ interface ExamState {
   missedModules: number[];
   capstoneText: string;
   capstoneSubmittedAt: string | null;
+  studentName: string;
 }
 
 const emptyExamState: ExamState = {
@@ -41,6 +42,7 @@ const emptyExamState: ExamState = {
   missedModules: [],
   capstoneText: "",
   capstoneSubmittedAt: null,
+  studentName: "",
 };
 
 const totalLessons = englishLevelOneLessons.length;
@@ -48,16 +50,21 @@ const totalLessons = englishLevelOneLessons.length;
 export function EnglishFinalExam() {
   const [screen, setScreen] = useState<Screen>("locked");
   const [completedCount, setCompletedCount] = useState<number | null>(null);
+  const [firstUnpassedLevel, setFirstUnpassedLevel] = useState<number | null>(
+    null,
+  );
   const [examState, setExamState] = useState<ExamState>(emptyExamState);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [selected, setSelected] = useState<number | null>(null);
   const [lastResult, setLastResult] = useState<FinalExamResult | null>(null);
   const [capstoneDraft, setCapstoneDraft] = useState("");
+  const [studentName, setStudentName] = useState("");
 
   useEffect(() => {
     let completed: string[] = [];
     let savedExam = emptyExamState;
+    let unpassedLevel: number | null = null;
     try {
       const savedProgress = window.localStorage.getItem(
         englishProgressStorageKey,
@@ -66,6 +73,15 @@ export function EnglishFinalExam() {
       const savedExamRaw = window.localStorage.getItem(examStorageKey);
       if (savedExamRaw)
         savedExam = { ...emptyExamState, ...JSON.parse(savedExamRaw) };
+      unpassedLevel =
+        englishLevels.find((level) => {
+          const raw = window.localStorage.getItem(
+            `jamezzi:english:level-${level.number}:checkpoint`,
+          );
+          if (!raw) return true;
+          const result = JSON.parse(raw) as { passed?: boolean };
+          return !result.passed;
+        })?.number ?? null;
     } catch {
       // Progress and exam state remain empty if storage is blocked.
     }
@@ -76,9 +92,11 @@ export function EnglishFinalExam() {
 
     const timer = window.setTimeout(() => {
       setCompletedCount(count);
+      setFirstUnpassedLevel(unpassedLevel);
       setExamState(savedExam);
       setCapstoneDraft(savedExam.capstoneText);
-      if (count < totalLessons) {
+      setStudentName(savedExam.studentName);
+      if (!savedExam.passed && (count < totalLessons || unpassedLevel)) {
         setScreen("locked");
       } else if (!savedExam.passed) {
         setScreen("intro");
@@ -165,7 +183,7 @@ export function EnglishFinalExam() {
             </span>
           </div>
 
-          <div className="px-7 pt-7.5 pb-8">
+          <div className="px-5 pt-6 pb-7 sm:px-7 sm:pt-7.5 sm:pb-8">
             {screen === "locked" && (
               <div>
                 <h1 className="text-ink mb-1.5 text-[26px] leading-tight font-bold">
@@ -175,8 +193,8 @@ export function EnglishFinalExam() {
                   </span>
                 </h1>
                 <p className="text-muted mb-6 text-[15px] leading-[1.55]">
-                  Fini tout 18 modil yo anvan ou fè egzamen final la. Sa asire w
-                  gen tout sa ou bezwen pou reyisi.
+                  Fini tout leson yo epi pase kat evalyasyon nivo yo anvan ou fè
+                  egzamen final la. Sa asire w gen tout sa ou bezwen pou reyisi.
                 </p>
                 <div className="mb-6.5">
                   <p className="text-metadata text-muted mb-2">
@@ -192,10 +210,17 @@ export function EnglishFinalExam() {
                   </div>
                 </div>
                 <Link
-                  href="/academy/courses/english-for-beginners/level-1"
+                  href={
+                    (completedCount ?? 0) < totalLessons
+                      ? "/academy/courses/english-for-beginners/learn"
+                      : `/academy/courses/english-for-beginners/checkpoint/${firstUnpassedLevel ?? 1}`
+                  }
                   className="bg-indigo flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-5 text-[15.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.32)]"
                 >
-                  Kontinye Leson yo <ArrowRightIcon className="size-4.5" />
+                  {(completedCount ?? 0) < totalLessons
+                    ? "Kontinye Leson yo"
+                    : `Pase Evalyasyon Nivo ${firstUnpassedLevel ?? 1}`}{" "}
+                  <ArrowRightIcon className="size-4.5" />
                 </Link>
               </div>
             )}
@@ -313,7 +338,7 @@ export function EnglishFinalExam() {
                     return (
                       <Link
                         key={moduleNumber}
-                        href={`/academy/courses/english-for-beginners/level-1/${firstLesson.slug}`}
+                        href={`/academy/courses/english-for-beginners/lessons/${firstLesson.slug}`}
                         className="border-border flex items-center justify-between rounded-[10px] border bg-[#FCFCFE] px-4 py-3"
                       >
                         <span className="text-ink text-[14px] font-medium">
@@ -379,40 +404,80 @@ export function EnglishFinalExam() {
                     Konplete
                   </span>
                   <span className="font-lesson-mono text-[9px] opacity-85">
-                    ENG · BEG
+                    ENG · PRACTICAL
                   </span>
                 </div>
 
                 <p className="font-lesson-mono text-indigo-dark/70 mb-1.5 text-[11.5px] tracking-[0.1em] uppercase">
-                  Sètifika Konplesyon
+                  Dosye Konplesyon Sou Aparèy Sa a
                 </p>
                 <h2 className="text-ink mb-1 text-2xl font-bold">
                   <span className="font-fraunces text-indigo font-semibold italic">
-                    English for Beginners
+                    Anglè Pratik
                   </span>
                 </h2>
                 <p className="text-indigo-dark/70 mb-6 text-[13px]">
                   Skò final: {Math.round(examState.lastScore * 100)}%
                 </p>
 
-                <div className="border-border relative overflow-hidden rounded-[14px] border bg-[#FCFCFE] px-6 py-8">
-                  <div
-                    className="absolute inset-0 backdrop-blur-[3px]"
-                    aria-hidden="true"
-                  />
-                  <div className="relative">
-                    <p className="text-muted mb-4 text-[14px] leading-[1.6]">
-                      🔒 Kreye yon kont gratis pou mete non ou sou sètifika a
-                      epi telechaje l.
-                    </p>
-                    <Link
-                      href="/sign-in"
-                      className="bg-indigo inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.28)]"
-                    >
-                      <GraduationCapIcon className="size-4" />
-                      Kreye Kont Gratis
-                    </Link>
-                  </div>
+                <div className="border-border rounded-[14px] border bg-[#FCFCFE] px-6 py-7">
+                  {!examState.studentName ? (
+                    <div>
+                      <label
+                        htmlFor="english-certificate-name"
+                        className="text-ink mb-2 block text-left text-[13.5px] font-semibold"
+                      >
+                        Non ou jan ou vle li parèt
+                      </label>
+                      <input
+                        id="english-certificate-name"
+                        value={studentName}
+                        onChange={(event) => setStudentName(event.target.value)}
+                        className="border-border focus:border-indigo w-full rounded-xl border bg-white px-4 py-3 text-[14.5px] outline-none"
+                        placeholder="Non ak siyati ou"
+                      />
+                      <button
+                        type="button"
+                        disabled={!studentName.trim()}
+                        onClick={() =>
+                          saveExamState({
+                            ...examState,
+                            studentName: studentName.trim(),
+                          })
+                        }
+                        className="bg-indigo mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-[14.5px] font-semibold text-white disabled:opacity-45"
+                      >
+                        <GraduationCapIcon className="size-4" /> Prepare Dosye
+                        Mwen
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="text-muted text-[12px] tracking-wide uppercase">
+                        Konplete pa
+                      </p>
+                      <p className="font-fraunces text-ink mt-2 text-2xl font-semibold">
+                        {examState.studentName}
+                      </p>
+                      <p className="text-muted mt-4 text-[13px] leading-[1.6]">
+                        Dosye sa a pwodwi epi sovgade sou aparèy sa a. Li poko
+                        gen verifikasyon piblik sou entènèt.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => window.print()}
+                        className="bg-indigo mt-5 inline-flex min-h-11 items-center justify-center rounded-full px-5 text-[14.5px] font-semibold text-white print:hidden"
+                      >
+                        Enprime Dosye Konplesyon
+                      </button>
+                      <Link
+                        href="/academy/courses/english-for-beginners"
+                        className="text-indigo-dark mt-3 inline-flex min-h-10 items-center justify-center px-4 text-[13.5px] font-semibold print:hidden"
+                      >
+                        Retounen nan paj kou a →
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 <button

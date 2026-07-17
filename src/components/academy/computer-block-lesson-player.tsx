@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
 import {
   ArrowRightIcon,
@@ -26,6 +26,7 @@ import {
   type PreferredPlatform,
 } from "@/lib/use-computer-platform";
 import { cn } from "@/lib/cn";
+import { saveCompletedLesson } from "@/lib/course-progress";
 
 const phaseOrder = [
   "learn",
@@ -112,7 +113,8 @@ export function ComputerBlockLessonPlayer({
   allLessons: CourseLesson[];
 }) {
   const { platform: storedPlatform } = useComputerPlatform();
-  const [viewPlatform, setViewPlatform] = useState<PreferredPlatform>("windows");
+  const [viewPlatform, setViewPlatform] =
+    useState<PreferredPlatform>("windows");
 
   useEffect(() => {
     if (!storedPlatform) return;
@@ -122,6 +124,8 @@ export function ComputerBlockLessonPlayer({
 
   const phases = useMemo(() => groupIntoPhases(lesson.blocks), [lesson.blocks]);
   const [step, setStep] = useState(0);
+  const [progressSaved, setProgressSaved] = useState(false);
+  const stepStatusRef = useRef<HTMLParagraphElement>(null);
 
   const moduleOrderById = new Map(
     computerRebuildModules.map((module) => [module.id, module.order]),
@@ -158,6 +162,21 @@ export function ComputerBlockLessonPlayer({
         (reflection) => reflection.afterModuleId === lesson.moduleId,
       )
     : undefined;
+  const currentModule = computerRebuildModules.find(
+    (module) => module.id === lesson.moduleId,
+  );
+  const nextCourseHref = nextCheckpoint
+    ? `/academy/courses/computer-internet-essentials/learn/${nextCheckpoint.id}`
+    : nextReadinessReflection
+      ? `/academy/courses/computer-internet-essentials/learn/${nextReadinessReflection.id}`
+      : nextLesson
+        ? `/academy/courses/computer-internet-essentials/learn/${nextLesson.slug}`
+        : "/academy/courses/computer-internet-essentials/learn/final-exam";
+  const nextCourseLabel = nextCheckpoint
+    ? nextCheckpoint.titleHt
+    : nextReadinessReflection
+      ? nextReadinessReflection.titleHt
+      : (nextLesson?.titleHt ?? "Egzamen final");
 
   const missionBlock = lesson.blocks.find((b) => b.type === "mission");
   const checkBlock = lesson.blocks.find((b) => b.type === "knowledge_check");
@@ -180,7 +199,8 @@ export function ComputerBlockLessonPlayer({
     });
   }
 
-  const requiresMission = Boolean(missionBlock) && lesson.requiredMission !== false;
+  const requiresMission =
+    Boolean(missionBlock) && lesson.requiredMission !== false;
   const requiresCheck = Boolean(checkBlock);
   const checkPassed =
     !requiresCheck || checkState.every((q) => q.checked && q.correct);
@@ -190,38 +210,37 @@ export function ComputerBlockLessonPlayer({
 
   useEffect(() => {
     if (!unlocked) return;
-    try {
-      const saved = JSON.parse(
-        window.localStorage.getItem(computerProgressStorageKey) ?? "[]",
-      ) as string[];
-      window.localStorage.setItem(
-        computerProgressStorageKey,
-        JSON.stringify(Array.from(new Set([...saved, lesson.slug]))),
-      );
-    } catch {
-      // Progress remains ephemeral if storage is blocked.
-    }
+    const saved =
+      saveCompletedLesson(computerProgressStorageKey, lesson.slug) !==
+      "blocked";
+    const timer = window.setTimeout(() => setProgressSaved(saved), 0);
+    return () => window.clearTimeout(timer);
   }, [unlocked, lesson.slug]);
 
   function moveTo(next: number) {
     setStep(Math.max(0, Math.min(next, phases.length - 1)));
     window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(() => stepStatusRef.current?.focus(), 0);
   }
 
   const currentPhase = phases[step];
   const checkStepIndex = phases.findIndex((p) => p.phase === "check");
-  const blockedOnCheck = step === checkStepIndex && requiresCheck && !checkPassed;
+  const blockedOnCheck =
+    step === checkStepIndex && requiresCheck && !checkPassed;
   const continueDisabled = blockedOnCheck;
   const isLastStep = step === phases.length - 1;
 
   return (
     <main className="bg-white pt-[72px]">
-      <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
-        <div className="border-border sticky top-[72px] z-10 mb-6 border-b bg-white/95 pt-2.5 pb-3 backdrop-blur-sm">
-          <p className="text-muted mb-2 text-[12.5px]">
-            Computer &amp; Internet Essentials{" "}
-            <span className="text-indigo-dark">·</span> Leson{" "}
-            {moduleLessonIndex + 1}
+      <div className="mx-auto max-w-[620px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
+        <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
+          <p
+            className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
+            title={`Modil ${currentModule?.order}: ${currentModule?.titleHt ?? currentModule?.titleEn}`}
+          >
+            Modil {currentModule?.order}:{" "}
+            {currentModule?.titleHt ?? currentModule?.titleEn} · Leson{" "}
+            {moduleLessonIndex + 1} sou {moduleLessons.length}
             {lesson.mode === "platform_variant" && (
               <>
                 {" "}
@@ -231,7 +250,14 @@ export function ComputerBlockLessonPlayer({
             )}
           </p>
           <div className="mb-2 flex items-center gap-2.5">
-            <div className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full">
+            <div
+              className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full"
+              role="progressbar"
+              aria-label={`Pwogrè Modil ${currentModule?.order ?? ""}`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={moduleProgressPercent}
+            >
               <div
                 className="bg-indigo h-full rounded-full"
                 style={{ width: `${moduleProgressPercent}%` }}
@@ -241,32 +267,34 @@ export function ComputerBlockLessonPlayer({
               {moduleProgressPercent}%
             </span>
           </div>
-          <div className="flex items-center justify-between text-[12.5px]">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-[12px] sm:gap-3 sm:text-[12.5px]">
             {prevLesson ? (
               <Link
-                href={`/academy/courses/computer-internet-essentials/rebuild/${prevLesson.slug}`}
-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
+                href={`/academy/courses/computer-internet-essentials/learn/${prevLesson.slug}`}
+                className="text-indigo-dark min-w-0 truncate font-semibold"
+                title={prevLesson.titleHt}
               >
-                ← {prevLesson.titleHt}
+                ← <span className="sm:hidden">Anvan</span>
+                <span className="hidden sm:inline">{prevLesson.titleHt}</span>
               </Link>
             ) : (
               <span className="text-border">← Premye leson</span>
             )}
-            {nextLesson ? (
-              <Link
-                href={`/academy/courses/computer-internet-essentials/rebuild/${nextLesson.slug}`}
-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
-              >
-                {nextLesson.titleHt} →
-              </Link>
-            ) : (
-              <Link
-                href="/academy/courses/computer-internet-essentials/rebuild"
-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
-              >
-                Tout Leson →
-              </Link>
-            )}
+            <Link
+              href="/academy/courses/computer-internet-essentials"
+              className="text-muted hover:text-indigo-dark font-semibold"
+            >
+              <span className="sm:hidden">Plan</span>
+              <span className="hidden sm:inline">Plan kou a</span>
+            </Link>
+            <Link
+              href={nextCourseHref}
+              className="text-indigo-dark min-w-0 truncate text-right font-semibold"
+              title={nextCourseLabel}
+            >
+              <span className="sm:hidden">Apre</span>
+              <span className="hidden sm:inline">{nextCourseLabel}</span> →
+            </Link>
           </div>
         </div>
 
@@ -282,9 +310,20 @@ export function ComputerBlockLessonPlayer({
               />
             ))}
           </div>
-          <p className="font-lesson-mono text-indigo-dark/70 text-[11px] tracking-[0.1em] uppercase">
-            Etap {step + 1} sou {phases.length} · {phaseLabels[currentPhase.phase]}
+          <p
+            ref={stepStatusRef}
+            tabIndex={-1}
+            aria-live="polite"
+            className="font-lesson-mono text-indigo-dark/70 focus-visible:ring-indigo rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
+          >
+            Etap {step + 1} sou {phases.length} ·{" "}
+            {phaseLabels[currentPhase.phase]}
           </p>
+          {progressSaved && (
+            <p className="text-metadata text-indigo-dark mt-2" role="status">
+              ✓ Pwogrè leson sa a anrejistre sou aparèy sa a.
+            </p>
+          )}
         </div>
 
         {currentPhase.phase === "learn" && (
@@ -312,13 +351,14 @@ export function ComputerBlockLessonPlayer({
             onToggleStep={toggleStep}
           />
         )}
-        {currentPhase.phase === "check" && checkBlock?.type === "knowledge_check" && (
-          <CheckPhase
-            questions={checkBlock.questions}
-            state={checkState}
-            onChange={setCheckState}
-          />
-        )}
+        {currentPhase.phase === "check" &&
+          checkBlock?.type === "knowledge_check" && (
+            <CheckPhase
+              questions={checkBlock.questions}
+              state={checkState}
+              onChange={setCheckState}
+            />
+          )}
         {currentPhase.phase === "reflect" && (
           <ReflectPhase
             blocks={currentPhase.blocks}
@@ -330,12 +370,12 @@ export function ComputerBlockLessonPlayer({
         )}
 
         {!isLastStep && (
-          <div className="border-border mt-8 flex items-center justify-between border-t pt-6">
+          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
             <button
               type="button"
               onClick={() => moveTo(step - 1)}
               disabled={step === 0}
-              className="text-indigo-dark min-h-11 text-sm font-semibold disabled:opacity-0"
+              className="text-indigo-dark min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
             >
               ← Tounen
             </button>
@@ -344,7 +384,7 @@ export function ComputerBlockLessonPlayer({
               onClick={() => moveTo(step + 1)}
               disabled={continueDisabled}
               className={cn(
-                "min-h-12 rounded-full px-7 text-sm font-semibold",
+                "min-h-12 min-w-[132px] rounded-full px-6 text-sm font-semibold",
                 continueDisabled
                   ? "bg-indigo-light text-muted cursor-not-allowed"
                   : "bg-indigo cursor-pointer text-white",
@@ -355,7 +395,7 @@ export function ComputerBlockLessonPlayer({
           </div>
         )}
         {isLastStep && (
-          <div className="mt-8">
+          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
             <button
               type="button"
               onClick={() => moveTo(step - 1)}
@@ -471,7 +511,8 @@ function PlatformPhase({
         </div>
       ) : (
         <p className="text-muted text-[13.5px]">
-          Leson sa a pa bezwen etap espesifik pou {viewPlatform === "windows" ? "Windows" : "Mac"}.
+          Leson sa a pa bezwen etap espesifik pou{" "}
+          {viewPlatform === "windows" ? "Windows" : "Mac"}.
         </p>
       )}
       {block.steps.recoveryNote && (
@@ -624,8 +665,8 @@ function MissionPhase({
                   Travay Pou Fè
                 </p>
                 <p className="text-muted text-[11.5px] font-semibold">
-                  {stepsDone.filter(Boolean).length} sou {mission.mission.requiredSteps.length}{" "}
-                  konplete
+                  {stepsDone.filter(Boolean).length} sou{" "}
+                  {mission.mission.requiredSteps.length} konplete
                 </p>
               </div>
               <div className="grid gap-1.5">
@@ -809,6 +850,7 @@ export function QuestionCard({
                 key={option}
                 type="button"
                 onClick={() => onAnswerChange({ selectedIndex: index })}
+                aria-pressed={isSelected}
                 className={cn(
                   "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
                   isSelected
@@ -841,6 +883,7 @@ export function QuestionCard({
                       : [...selected, index],
                   })
                 }
+                aria-pressed={isSelected}
                 className={cn(
                   "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
                   isSelected
@@ -887,6 +930,7 @@ export function QuestionCard({
       )}
       {answer.checked && (
         <p
+          role={answer.correct ? "status" : "alert"}
           className={cn(
             "mt-2.5 text-[13.5px]",
             answer.correct ? "text-success" : "text-error",
@@ -927,6 +971,7 @@ function OrderStepsInput({
                     : [...order, index],
                 )
               }
+              aria-pressed={isPicked}
               className={cn(
                 "flex min-h-11 items-center gap-3 rounded-[10px] px-4 py-3 text-left text-[14px] transition",
                 isPicked
@@ -991,6 +1036,7 @@ function MatchTermInput({
                   key={meaning}
                   type="button"
                   onClick={() => choose(pair.term, meaning)}
+                  aria-pressed={isSelected}
                   className={cn(
                     "min-h-9 rounded-lg px-3 py-2 text-left text-[13px]",
                     isSelected
@@ -1036,6 +1082,7 @@ function ReflectPhase({
                 key={prompt.statement}
                 type="button"
                 onClick={() => setChosen(index)}
+                aria-pressed={chosen === index}
                 className={cn(
                   "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14px]",
                   chosen === index
@@ -1048,8 +1095,7 @@ function ReflectPhase({
             ))}
           </div>
           <p className="text-muted mt-2 text-[12px]">
-            Sa a pa yon nòt — li sèlman ede w remake sa ou ta dwe pratike
-            ankò.
+            Sa a pa yon nòt — li sèlman ede w remake sa ou ta dwe pratike ankò.
           </p>
         </div>
       )}
@@ -1092,7 +1138,7 @@ function ReflectPhase({
             <div className="mt-5 flex flex-col items-center gap-3">
               {nextCheckpoint && (
                 <Link
-                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextCheckpoint.id}`}
+                  href={`/academy/courses/computer-internet-essentials/learn/${nextCheckpoint.id}`}
                   className="text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
                 >
                   <StampIcon className="size-4" />
@@ -1102,7 +1148,7 @@ function ReflectPhase({
               )}
               {nextReadinessReflection && (
                 <Link
-                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextReadinessReflection.id}`}
+                  href={`/academy/courses/computer-internet-essentials/learn/${nextReadinessReflection.id}`}
                   className="text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
                 >
                   <SparklesIcon className="size-4" />
@@ -1113,8 +1159,8 @@ function ReflectPhase({
               <Link
                 href={
                   nextLesson
-                    ? `/academy/courses/computer-internet-essentials/rebuild/${nextLesson.slug}`
-                    : "/academy/courses/computer-internet-essentials/rebuild"
+                    ? `/academy/courses/computer-internet-essentials/learn/${nextLesson.slug}`
+                    : "/academy/courses/computer-internet-essentials/learn"
                 }
                 className={cn(
                   "inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold",
@@ -1124,7 +1170,9 @@ function ReflectPhase({
                 )}
               >
                 <GraduationCapIcon className="size-4" />
-                {nextLesson ? `Kontinye ak ${nextLesson.titleHt}` : "Tounen nan Tout Leson"}
+                {nextLesson
+                  ? `Kontinye ak ${nextLesson.titleHt}`
+                  : "Tounen nan Tout Leson"}
                 <ArrowRightIcon className="size-4" />
               </Link>
             </div>

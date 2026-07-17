@@ -13,6 +13,7 @@ import {
   placementQuestions,
   placementStartOver,
 } from "@/content/english-placement-quiz";
+import { englishLevelOneLessons } from "@/content/english-level-one";
 import { cn } from "@/lib/cn";
 
 type Screen = "intro" | "quiz" | "result";
@@ -59,6 +60,11 @@ export function EnglishPlacementQuiz() {
 
   const placement = screen === "result" ? computePlacement(answers) : null;
   const alreadyAtStart = placement?.num === 1;
+  const recommendedLesson = placement
+    ? englishLevelOneLessons.find(
+        (lesson) => lesson.moduleNumber === placement.num,
+      )
+    : null;
 
   return (
     <main className="bg-white pt-[72px]">
@@ -76,7 +82,7 @@ export function EnglishPlacementQuiz() {
             </span>
           </div>
 
-          <div className="px-7 pt-7.5 pb-8">
+          <div className="px-5 pt-6 pb-7 sm:px-7 sm:pt-7.5 sm:pb-8">
             {screen === "intro" && (
               <div>
                 <h1 className="text-ink mb-1.5 text-[28px] leading-tight font-bold">
@@ -86,10 +92,9 @@ export function EnglishPlacementQuiz() {
                   </span>
                 </h1>
                 <p className="text-muted mb-5.5 text-[15px] leading-[1.55]">
-                  Anvan ou kòmanse kou <strong>English for Beginners</strong>{" "}
-                  la, reponn 15 ti kesyon kout. Sa ap ede nou konnen egzakteman
-                  ki kote pou ou kòmanse -- pou ou pa pèdi tan sou bagay ou
-                  konnen deja.
+                  Anvan ou kòmanse kou <strong>Anglè Pratik</strong> la, reponn
+                  15 ti kesyon kout. Sa ap ede nou konnen egzakteman ki kote pou
+                  ou kòmanse -- pou ou pa pèdi tan sou bagay ou konnen deja.
                 </p>
 
                 <div className="mb-6.5 grid gap-2.5">
@@ -216,13 +221,22 @@ export function EnglishPlacementQuiz() {
                 <p className="text-muted mb-6.5 text-[14.5px] leading-[1.6]">
                   {alreadyAtStart
                     ? "Ou ka kòmanse depi nan kòmansman an, san sote anyen."
-                    : `Nivo sa a montre kote ou ta ka kòmanse pi devan. Men se ou menm ki chwazi — pa gen anyen ki fòse ou. Kounye a, Modil ${placementStartOver.num} (${placementStartOver.name}) se sa ki disponib.`}
+                    : `Nivo sa a montre kote ou ta ka kòmanse pi devan. Tout modil yo disponib, epi ou ka toujou kòmanse depi nan premye a si ou vle revize fondasyon yo.`}
                 </p>
 
                 <div className="grid gap-2.5">
+                  {recommendedLesson && !alreadyAtStart && (
+                    <Link
+                      href={`/academy/courses/english-for-beginners/lessons/${recommendedLesson.slug}`}
+                      className="bg-indigo flex min-h-12 items-center justify-center gap-2 rounded-full px-4 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.28)]"
+                    >
+                      <GraduationCapIcon className="size-4" />
+                      Kòmanse nan Modil {placement.num}
+                    </Link>
+                  )}
                   <Link
-                    href="/academy/courses/english-for-beginners/level-1"
-                    className="bg-indigo flex min-h-12 items-center justify-center gap-2 rounded-full px-4 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.28)]"
+                    href="/academy/courses/english-for-beginners/learn#level-1"
+                    className="border-border text-indigo-dark flex min-h-12 items-center justify-center gap-2 rounded-full border px-4 text-[14.5px] font-semibold"
                   >
                     <GraduationCapIcon className="size-4" />
                     Kòmanse Depi Kòmansman an -- Modil {placementStartOver.num}

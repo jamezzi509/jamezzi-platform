@@ -19,7 +19,11 @@ interface ReadinessRecord {
   updatedAt: string;
 }
 
-const levelLabelsHt = ["Pa ka fè l toujou", "Ka fè l ak èd", "Ka fè l poukont li"];
+const levelLabelsHt = [
+  "Pa ka fè l toujou",
+  "Ka fè l ak èd",
+  "Ka fè l poukont li",
+];
 
 function levelLabel(level: number | null): string {
   if (level === null || !levelLabelsHt[level]) return "Pa evalye";
@@ -41,7 +45,12 @@ export function ComputerGrowthSummaryPlayer() {
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setIntake(readJson<SkillsIntakeRecord | null>(computerSkillsIntakeStorageKey, null));
+      setIntake(
+        readJson<SkillsIntakeRecord | null>(
+          computerSkillsIntakeStorageKey,
+          null,
+        ),
+      );
       const reflections = readJson(
         computerReadinessReflectionStorageKey,
         {} as Record<string, ReadinessRecord>,
@@ -75,7 +84,7 @@ export function ComputerGrowthSummaryPlayer() {
             Dijital Ou a, ki vini apre Kapstòn nan ak tout kou a.
           </p>
           <Link
-            href="/academy/courses/computer-internet-essentials/rebuild/checkpoint-4"
+            href="/academy/courses/computer-internet-essentials/learn/checkpoint-4"
             className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
           >
             Ale nan Checkpoint 4
@@ -91,10 +100,14 @@ export function ComputerGrowthSummaryPlayer() {
     const beforeLevel = intake?.ratings[index] ?? null;
     const afterLevel = after?.ratings[index] ?? null;
     const delta =
-      beforeLevel !== null && afterLevel !== null ? afterLevel - beforeLevel : null;
+      beforeLevel !== null && afterLevel !== null
+        ? afterLevel - beforeLevel
+        : null;
     return { competency, beforeLevel, afterLevel, delta };
   });
-  const improvedCount = rows.filter((r) => r.delta !== null && r.delta > 0).length;
+  const improvedCount = rows.filter(
+    (r) => r.delta !== null && r.delta > 0,
+  ).length;
   const comparableCount = rows.filter((r) => r.delta !== null).length;
 
   return (
@@ -122,14 +135,17 @@ export function ComputerGrowthSummaryPlayer() {
         ) : (
           <p className="text-muted mb-8 text-[15px] leading-[1.6]">
             Ou pa t fè evalyasyon kòmansman an, donk nou pa ka montre w yon
-            konparezon. Men men kote ou ye kounye a — sa ka sèvi kòm pwen
-            depa ou pou pwochen kou ou.
+            konparezon. Men men kote ou ye kounye a — sa ka sèvi kòm pwen depa
+            ou pou pwochen kou ou.
           </p>
         )}
 
         <div className="mb-4">
           {rows.map(({ competency, beforeLevel, afterLevel, delta }) => (
-            <div key={competency.skillHt} className="border-border border-b py-4.5 first:border-t">
+            <div
+              key={competency.skillHt}
+              className="border-border border-b py-4.5 first:border-t"
+            >
               <p className="text-ink mb-2.5 text-[14.5px] font-semibold">
                 {competency.skillHt}
               </p>
@@ -173,7 +189,7 @@ export function ComputerGrowthSummaryPlayer() {
 
         <div className="mt-7 flex flex-wrap items-center gap-3">
           <Link
-            href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
+            href="/academy/courses/computer-internet-essentials/learn/final-exam"
             className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
           >
             Ale nan Egzamen Final la

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
 import {
   CheckIcon,
@@ -12,8 +12,11 @@ import {
   VolumeIcon,
 } from "@/components/ui/icons";
 import { englishLevelOneLessons } from "@/content/english-level-one";
+import { englishLevels } from "@/content/english-course";
 import type { EnglishPremiumLesson } from "@/content/english-lessons-premium";
+import { getEnglishRecordedAudio } from "@/content/english-audio";
 import { cn } from "@/lib/cn";
+import { saveCompletedLesson } from "@/lib/course-progress";
 
 const steps = [
   { key: "learn", label: "Aprann" },
@@ -35,28 +38,78 @@ function renderLessonText(text: string) {
   });
 }
 
-function speak(text: string) {
+let activeAudio: HTMLAudioElement | null = null;
+
+function getPreferredVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  const preferredNames = [
+    "Microsoft Aria Online (Natural)",
+    "Microsoft Jenny Online (Natural)",
+    "Google US English",
+    "Samantha",
+    "Ava",
+  ];
+  return (
+    preferredNames
+      .map((name) => voices.find((voice) => voice.name.includes(name)))
+      .find(Boolean) ??
+    voices.find((voice) => voice.lang === "en-US" && !voice.localService) ??
+    voices.find((voice) => voice.lang === "en-US") ??
+    voices.find((voice) => voice.lang.startsWith("en")) ??
+    null
+  );
+}
+
+function speakWithDeviceVoice(text: string, slow: boolean) {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "en-US";
-  const availableVoices = window.speechSynthesis.getVoices();
-  const preferredNames = [
-    "Samantha",
-    "Ava",
-    "Google US English",
-    "Aria",
-    "Jenny",
-  ];
-  utterance.voice =
-    preferredNames
-      .map((name) => availableVoices.find((item) => item.name.includes(name)))
-      .find(Boolean) ??
-    availableVoices.find((item) => item.lang === "en-US") ??
-    null;
-  utterance.rate = 0.88;
+  utterance.voice = getPreferredVoice();
+  utterance.rate = slow ? 0.68 : 0.9;
   utterance.pitch = 1;
   window.speechSynthesis.speak(utterance);
+}
+
+function playEnglishAudio(text: string, slow = false) {
+  if (typeof window === "undefined") return;
+  activeAudio?.pause();
+  window.speechSynthesis?.cancel();
+
+  const recordedAudio = getEnglishRecordedAudio(text);
+  if (!recordedAudio) {
+    speakWithDeviceVoice(text, slow);
+    return;
+  }
+
+  const audio = new Audio(recordedAudio);
+  activeAudio = audio;
+  audio.playbackRate = slow ? 0.72 : 1;
+  audio.preservesPitch = true;
+  audio.play().catch(() => speakWithDeviceVoice(text, slow));
+}
+
+function AudioControls({ text }: { text: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <button
+        type="button"
+        onClick={() => playEnglishAudio(text)}
+        className="text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full bg-white px-2.5 py-1.5 text-xs font-semibold"
+        aria-label={`Koute pwononsyasyon pou ${text}`}
+      >
+        <VolumeIcon className="size-3.5" /> Jwe
+      </button>
+      <button
+        type="button"
+        onClick={() => playEnglishAudio(text, true)}
+        className="border-border text-muted inline-flex min-h-9 items-center rounded-full border bg-white px-2.5 py-1.5 text-[11px] font-semibold"
+        aria-label={`Koute ${text} pi dousman`}
+      >
+        0.7×
+      </button>
+    </span>
+  );
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -203,6 +256,8 @@ export function EnglishPremiumLessonPlayer({
   const [missionDone, setMissionDone] = useState(false);
   const [thinkText, setThinkText] = useState("");
   const [copied, setCopied] = useState(false);
+  const [progressSaved, setProgressSaved] = useState(false);
+  const stepStatusRef = useRef<HTMLParagraphElement>(null);
 
   const lessonIndex = englishLevelOneLessons.findIndex(
     (item) => item.slug === lesson.slug,
@@ -225,6 +280,27 @@ export function EnglishPremiumLessonPlayer({
     lessonIndex >= 0 && lessonIndex < totalLessons - 1
       ? englishLevelOneLessons[lessonIndex + 1]
       : null;
+  const currentLevel = englishLevels.find((level) =>
+    level.moduleNumbers.includes(currentModuleNumber),
+  );
+  const isLastLessonInLevel = Boolean(
+    currentLevel &&
+    !englishLevelOneLessons
+      .slice(lessonIndex + 1)
+      .some((item) => currentLevel.moduleNumbers.includes(item.moduleNumber)),
+  );
+  const nextCourseHref = isLastLessonInLevel
+    ? currentLevel?.number === englishLevels.length
+      ? "/academy/courses/english-for-beginners/final-exam"
+      : `/academy/courses/english-for-beginners/checkpoint/${currentLevel?.number}`
+    : nextLesson
+      ? `/academy/courses/english-for-beginners/lessons/${nextLesson.slug}`
+      : "/academy/courses/english-for-beginners/final-exam";
+  const nextCourseLabel = isLastLessonInLevel
+    ? currentLevel?.number === englishLevels.length
+      ? "Evalyasyon final"
+      : `Evalyasyon Nivo ${currentLevel?.number}`
+    : (nextLesson?.title ?? "Evalyasyon final");
 
   const activePattern = lesson.patternBuilderOptions[patternIndex];
   const practiceCorrect = practiceSelected === lesson.practice.correctIndex;
@@ -238,17 +314,10 @@ export function EnglishPremiumLessonPlayer({
 
   useEffect(() => {
     if (!unlocked) return;
-    try {
-      const saved = JSON.parse(
-        window.localStorage.getItem(englishProgressStorageKey) ?? "[]",
-      ) as string[];
-      window.localStorage.setItem(
-        englishProgressStorageKey,
-        JSON.stringify(Array.from(new Set([...saved, lesson.slug]))),
-      );
-    } catch {
-      // Progress remains ephemeral if storage is blocked.
-    }
+    const saved =
+      saveCompletedLesson(englishProgressStorageKey, lesson.slug) !== "blocked";
+    const timer = window.setTimeout(() => setProgressSaved(saved), 0);
+    return () => window.clearTimeout(timer);
   }, [unlocked, lesson.slug]);
 
   function copyPrompt() {
@@ -260,6 +329,7 @@ export function EnglishPremiumLessonPlayer({
   function moveTo(nextStep: number) {
     setStep(Math.max(0, Math.min(nextStep, steps.length - 1)));
     window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(() => stepStatusRef.current?.focus(), 0);
   }
 
   const practiceStepBlocked =
@@ -269,16 +339,26 @@ export function EnglishPremiumLessonPlayer({
 
   return (
     <main className="bg-white pt-[72px]">
-      <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
+      <div className="mx-auto max-w-[620px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
         {/* COURSE NAVIGATION */}
-        <div className="border-border sticky top-[72px] z-10 mb-6 border-b bg-white/95 pt-2.5 pb-3 backdrop-blur-sm">
-          <p className="text-muted mb-2 text-[12.5px]">
-            English for Beginners <span className="text-indigo-dark">·</span>{" "}
-            {lesson.moduleTitle} <span className="text-indigo-dark">·</span>{" "}
-            Leson {moduleLessonIndex + 1}
+        <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
+          <p
+            className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
+            title={`Nivo ${currentLevel?.number} · Modil ${currentModuleNumber}: ${lesson.moduleTitle}`}
+          >
+            Nivo {currentLevel?.number} · Modil {currentModuleNumber}:{" "}
+            {lesson.moduleTitle} · Leson {moduleLessonIndex + 1} sou{" "}
+            {moduleLessons.length}
           </p>
           <div className="mb-2 flex items-center gap-2.5">
-            <div className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full">
+            <div
+              className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full"
+              role="progressbar"
+              aria-label={`Pwogrè Modil ${currentModuleNumber}`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={moduleProgressPercent}
+            >
               <div
                 className="bg-indigo h-full rounded-full"
                 style={{ width: `${moduleProgressPercent}%` }}
@@ -288,32 +368,34 @@ export function EnglishPremiumLessonPlayer({
               Modil {currentModuleNumber} · {moduleProgressPercent}%
             </span>
           </div>
-          <div className="flex items-center justify-between text-[12.5px]">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-[12px] sm:gap-3 sm:text-[12.5px]">
             {prevLesson ? (
               <Link
-                href={`/academy/courses/english-for-beginners/level-1/${prevLesson.slug}`}
-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
+                href={`/academy/courses/english-for-beginners/lessons/${prevLesson.slug}`}
+                className="text-indigo-dark min-w-0 truncate font-semibold"
+                title={prevLesson.title}
               >
-                ← {prevLesson.title}
+                ← <span className="sm:hidden">Anvan</span>
+                <span className="hidden sm:inline">{prevLesson.title}</span>
               </Link>
             ) : (
               <span className="text-border">← Premye leson</span>
             )}
-            {nextLesson ? (
-              <Link
-                href={`/academy/courses/english-for-beginners/level-1/${nextLesson.slug}`}
-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
-              >
-                {nextLesson.title} →
-              </Link>
-            ) : (
-              <Link
-                href="/academy/courses/english-for-beginners/level-1"
-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
-              >
-                Nivo 1 →
-              </Link>
-            )}
+            <Link
+              href="/academy/courses/english-for-beginners/learn"
+              className="text-muted hover:text-indigo-dark font-semibold"
+            >
+              <span className="sm:hidden">Plan</span>
+              <span className="hidden sm:inline">Tout leson</span>
+            </Link>
+            <Link
+              href={nextCourseHref}
+              className="text-indigo-dark min-w-0 truncate text-right font-semibold"
+              title={nextCourseLabel}
+            >
+              <span className="sm:hidden">Apre</span>
+              <span className="hidden sm:inline">{nextCourseLabel}</span> →
+            </Link>
           </div>
         </div>
 
@@ -330,9 +412,19 @@ export function EnglishPremiumLessonPlayer({
               />
             ))}
           </div>
-          <p className="font-lesson-mono text-indigo-dark/70 text-[11px] tracking-[0.1em] uppercase">
+          <p
+            ref={stepStatusRef}
+            tabIndex={-1}
+            aria-live="polite"
+            className="font-lesson-mono text-indigo-dark/70 focus-visible:ring-indigo rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
+          >
             Etap {step + 1} sou {steps.length} · {steps[step].label}
           </p>
+          {progressSaved && (
+            <p className="text-metadata text-indigo-dark mt-2" role="status">
+              ✓ Pwogrè leson sa a anrejistre sou aparèy sa a.
+            </p>
+          )}
         </div>
 
         {/* STEP 1: LEARN — Hero, Before You Start, Understand, See It In Action */}
@@ -393,9 +485,10 @@ export function EnglishPremiumLessonPlayer({
                     <span className="text-lg" aria-hidden="true">
                       {example.emoji}
                     </span>
-                    <div>
-                      <div className="text-[15px] font-semibold">
-                        {example.line}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-col items-start justify-between gap-3 text-[15px] font-semibold sm:flex-row sm:items-center">
+                        <span>{example.line}</span>
+                        <AudioControls text={example.line} />
                       </div>
                       <div className="text-indigo-dark/70 text-xs">
                         {example.tag}
@@ -421,6 +514,7 @@ export function EnglishPremiumLessonPlayer({
                   key={option.chipLabel}
                   type="button"
                   onClick={() => setPatternIndex(index)}
+                  aria-pressed={index === patternIndex}
                   className={cn(
                     "min-h-11 rounded-full px-4 py-2 text-sm font-semibold transition",
                     index === patternIndex
@@ -435,6 +529,9 @@ export function EnglishPremiumLessonPlayer({
             <div className="bg-indigo rounded-2xl px-5 py-5.5 text-center">
               <span className="font-fraunces block text-2xl font-semibold text-white italic">
                 {activePattern.display}
+              </span>
+              <span className="mt-3 inline-flex">
+                <AudioControls text={activePattern.display} />
               </span>
               {activePattern.caption && (
                 <span className="mt-2 block text-[13px] text-white/80">
@@ -463,14 +560,7 @@ export function EnglishPremiumLessonPlayer({
                       <span className="text-[16.5px] font-bold">
                         {item.word}
                       </span>
-                      <button
-                        type="button"
-                        onClick={() => speak(item.word)}
-                        className="text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full bg-white px-2.5 py-1.5 text-xs font-semibold"
-                        aria-label={`Koute pwononsyasyon pou ${item.word}`}
-                      >
-                        <VolumeIcon className="size-3.5" /> Jwe
-                      </button>
+                      <AudioControls text={item.word} />
                     </div>
                     <div className="text-muted mb-1 text-[13px]">
                       {item.ipa} · Kreyòl: <strong>{item.kreyol}</strong>
@@ -493,13 +583,7 @@ export function EnglishPremiumLessonPlayer({
                   <span className="font-lesson-mono text-indigo-dark/70 text-[13px]">
                     {lesson.pronunciationIpa}
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => speak(lesson.pronunciationWord)}
-                    className="bg-indigo-light text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-semibold"
-                  >
-                    <VolumeIcon className="size-3.5" /> Jwe
-                  </button>
+                  <AudioControls text={lesson.pronunciationWord} />
                 </div>
                 <p className="text-muted mb-1.5 text-[13.5px]">
                   💡 {renderLessonText(lesson.mouthTip)}
@@ -563,6 +647,7 @@ export function EnglishPremiumLessonPlayer({
                         setPracticeSelected(index);
                         setPracticeChecked(false);
                       }}
+                      aria-pressed={isSelected}
                       className={cn(
                         "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
                         isSelected
@@ -592,6 +677,7 @@ export function EnglishPremiumLessonPlayer({
               </button>
               {practiceChecked && (
                 <p
+                  role={practiceCorrect ? "status" : "alert"}
                   className={cn(
                     "mt-2.5 text-[13.5px]",
                     practiceCorrect ? "text-success" : "text-error",
@@ -614,6 +700,7 @@ export function EnglishPremiumLessonPlayer({
                 value={thinkText}
                 onChange={(event) => setThinkText(event.target.value)}
                 placeholder={lesson.thinkPlaceholder}
+                aria-label="Ekri repons ou an Anglè"
                 className="border-border min-h-16 w-full rounded-[10px] border p-3 text-[14.5px]"
               />
             </div>
@@ -721,22 +808,18 @@ export function EnglishPremiumLessonPlayer({
                   {unlocked
                     ? nextLesson
                       ? `Stanp ajoute nan Pasaport Aprantisaj ou — ${nextLesson.title} louvri.`
-                      : "Stanp ajoute nan Pasaport Aprantisaj ou — ou fini Nivo 1!"
+                      : `Stanp ajoute nan Pasaport Aprantisaj ou — ou fini Nivo ${currentLevel?.number ?? 4}!`
                     : "Reponn kesyon pratik la kòrèkteman epi koche misyon an."}
                 </p>
                 {unlocked && (
                   <Link
-                    href={
-                      nextLesson
-                        ? `/academy/courses/english-for-beginners/level-1/${nextLesson.slug}`
-                        : "/academy/courses/english-for-beginners/level-1"
-                    }
+                    href={nextCourseHref}
                     className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
                   >
                     <GraduationCapIcon className="size-4" />
-                    {nextLesson
-                      ? `Kontinye ak ${nextLesson.title}`
-                      : "Retounen nan Nivo 1"}
+                    {isLastLessonInLevel
+                      ? nextCourseLabel
+                      : `Kontinye ak ${nextLesson?.title}`}
                   </Link>
                 )}
               </div>
@@ -746,12 +829,12 @@ export function EnglishPremiumLessonPlayer({
 
         {/* STEP NAVIGATION */}
         {step < steps.length - 1 && (
-          <div className="border-border mt-8 flex items-center justify-between border-t pt-6">
+          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
             <button
               type="button"
               onClick={() => moveTo(step - 1)}
               disabled={step === 0}
-              className="text-indigo-dark min-h-11 text-sm font-semibold disabled:opacity-0"
+              className="text-indigo-dark min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
             >
               ← Tounen
             </button>
@@ -760,7 +843,7 @@ export function EnglishPremiumLessonPlayer({
               onClick={() => moveTo(step + 1)}
               disabled={continueDisabled}
               className={cn(
-                "min-h-12 rounded-full px-7 text-sm font-semibold",
+                "min-h-12 min-w-[132px] rounded-full px-6 text-sm font-semibold",
                 continueDisabled
                   ? "bg-indigo-light text-muted cursor-not-allowed"
                   : "bg-indigo cursor-pointer text-white",
@@ -771,7 +854,7 @@ export function EnglishPremiumLessonPlayer({
           </div>
         )}
         {step === steps.length - 1 && (
-          <div className="mt-8">
+          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
             <button
               type="button"
               onClick={() => moveTo(step - 1)}

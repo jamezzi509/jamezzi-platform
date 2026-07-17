@@ -27,7 +27,7 @@ export function CoursePreviewPage({ course }: { course: CourseSummary }) {
   const preview = previews[course.slug];
   return (
     <main className="bg-paper">
-      <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[650px] lg:pt-[72px]">
+      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
           <Image
             src={preview.image}
@@ -35,12 +35,12 @@ export function CoursePreviewPage({ course }: { course: CourseSummary }) {
             fill
             priority
             sizes="(max-width: 1023px) 100vw, 62vw"
-            className="object-cover"
+            className="object-cover object-[65%_center] sm:object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/86 lg:via-[#f8f5f0]/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/86 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
         <Container className="relative z-10">
-          <div className="max-w-2xl py-14">
+          <div className="max-w-2xl py-10 sm:py-14">
             <p className="text-eyebrow text-indigo-dark">
               JAMEZZI ACADEMY · {course.category}
             </p>

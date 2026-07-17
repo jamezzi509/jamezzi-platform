@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ComingSoon } from "@/components/coming-soon";
 import { BookDetail, BookLibrary } from "@/components/academy/book-library";
 import { CourseLibrary } from "@/components/academy/course-library";
@@ -12,14 +13,13 @@ import { ComputerBlockLessonPlayer } from "@/components/academy/computer-block-l
 import { ComputerCertificatePlayer } from "@/components/academy/computer-certificate-player";
 import { ComputerCheckpointPlayer } from "@/components/academy/computer-checkpoint-player";
 import { ComputerCoursePage } from "@/components/academy/computer-course-page";
-import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
-import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
 import { ComputerFinalExamPlayer } from "@/components/academy/computer-final-exam-player";
 import { ComputerGrowthSummaryPlayer } from "@/components/academy/computer-growth-summary-player";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishFinalExam } from "@/components/academy/english-final-exam";
+import { EnglishLevelCheckpoint } from "@/components/academy/english-level-checkpoint";
 import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
 import { EnglishPlacementQuiz } from "@/components/academy/english-placement-quiz";
 import { EnglishWelcomeLesson } from "@/components/academy/english-welcome-lesson";
@@ -32,7 +32,6 @@ import {
   GraduationCapIcon,
 } from "@/components/ui/icons";
 import { academyBooks } from "@/content/books";
-import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
 import { getComputerRebuildCheckpoint } from "@/content/computer-rebuild/checkpoints";
 import { computerRebuildFinalExam } from "@/content/computer-rebuild/final-exam";
 import {
@@ -83,9 +82,9 @@ export async function generateMetadata({
     slug[2] === "placement"
   ) {
     return {
-      title: "Placement Quiz — English for Beginners",
+      title: "Placement Quiz — Practical English",
       description:
-        "Answer 15 quick questions so we know exactly where to start you in English for Beginners.",
+        "Answer 15 quick questions to find the right starting point in Practical English for Haitian Creole Speakers.",
     };
   }
 
@@ -95,38 +94,9 @@ export async function generateMetadata({
     slug[2] === "final-exam"
   ) {
     return {
-      title: "Final Exam — English for Beginners",
+      title: "Final Exam — Practical English",
       description:
-        "Take the comprehensive final exam across all 18 modules of English for Beginners and earn your certificate.",
-    };
-  }
-
-  if (
-    slug?.[0] === "courses" &&
-    slug[1] === "computer-internet-essentials" &&
-    slug[2] === "lessons" &&
-    slug[3]
-  ) {
-    const lesson = computerEssentialsLessons.find(
-      (item) => item.slug === slug[3],
-    );
-    return {
-      title: lesson
-        ? `${lesson.title} — Computer & Internet Essentials`
-        : "Computer & Internet Essentials",
-      description: lesson?.outcome ?? "Computer & Internet Essentials lesson.",
-    };
-  }
-
-  if (
-    slug?.[0] === "courses" &&
-    slug[1] === "computer-internet-essentials" &&
-    slug[2] === "lessons"
-  ) {
-    return {
-      title: "Lessons — Computer & Internet Essentials",
-      description:
-        "Concepts before buttons — build real digital confidence, one lesson at a time.",
+        "Take the comprehensive final assessment across all 18 modules of Practical English for Haitian Creole Speakers.",
     };
   }
 
@@ -152,7 +122,7 @@ function AcademyHub() {
   }));
   return (
     <main className="bg-paper">
-      <section className="relative flex min-h-[640px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[670px] lg:pt-[72px]">
+      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[670px] lg:pt-[72px]">
         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
           <Image
             src="/images/academy/academy-hero.webp"
@@ -160,12 +130,12 @@ function AcademyHub() {
             fill
             priority
             sizes="(max-width: 1023px) 100vw, 62vw"
-            className="object-cover object-center"
+            className="object-cover object-[62%_center] sm:object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/85 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
         <Container className="relative z-10">
-          <div className="max-w-2xl py-14">
+          <div className="max-w-2xl py-10 sm:py-14">
             <p className="text-eyebrow text-indigo-dark">JAMEZZI ACADEMY</p>
             <h1 className="text-editorial-headline text-ink mt-5 max-w-3xl">
               Practical knowledge, built to be used.
@@ -221,12 +191,12 @@ function AcademyHub() {
             href="/academy/books"
             cta="Browse All Books"
           />
-          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6 lg:gap-6">
+          <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:mt-12 sm:grid-cols-3 sm:gap-5 lg:grid-cols-6 lg:gap-6">
             {academyBooks.map((book, index) => (
               <Link
                 key={book.slug}
                 href={`/academy/books/${book.slug}`}
-                className="group"
+                className="group min-w-0"
               >
                 <div
                   className="relative w-full overflow-hidden rounded-[8px] shadow-[0_14px_35px_rgba(29,24,46,0.12)]"
@@ -242,7 +212,7 @@ function AcademyHub() {
                   />
                 </div>
                 <p className="text-metadata text-muted mt-4">{book.topic}</p>
-                <h3 className="text-ink mt-1 text-base leading-snug font-semibold">
+                <h3 className="text-ink mt-1 line-clamp-3 text-sm leading-snug font-semibold sm:text-base">
                   {book.title}
                 </h3>
               </Link>
@@ -273,17 +243,17 @@ function AcademyHub() {
         </Container>
       </section>
 
-      <section className="relative min-h-[500px] overflow-hidden bg-[#eeeaff] py-20 lg:flex lg:items-center lg:py-24">
+      <section className="relative min-h-[440px] overflow-hidden bg-[#eeeaff] py-16 sm:min-h-[500px] sm:py-20 lg:flex lg:items-center lg:py-24">
         <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
           <Image
             src="/images/academy/academy-hero.webp"
             alt="James leading a practical seminar"
             fill
             sizes="(max-width: 1023px) 100vw, 58vw"
-            className="object-cover"
+            className="object-cover object-[62%_center] lg:object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#eeeaff] via-[#eeeaff]/95 to-[#eeeaff]/15 lg:via-[#eeeaff]/88" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#eeeaff] via-[#eeeaff]/95 via-70% to-[#eeeaff]/40 sm:to-[#eeeaff]/15 lg:via-[#eeeaff]/88" />
         <Container className="relative z-10">
           <div className="max-w-2xl">
             <p className="text-eyebrow text-indigo-dark">EVENTS & SEMINARS</p>
@@ -375,7 +345,19 @@ export default async function AcademyPage({
   if (
     slug[0] === "courses" &&
     slug[1] === "english-for-beginners" &&
-    slug[2] === "level-1" &&
+    slug[2] === "checkpoint" &&
+    slug[3]
+  ) {
+    const levelNumber = Number(slug[3]);
+    if (Number.isInteger(levelNumber) && levelNumber >= 1 && levelNumber <= 4) {
+      return <EnglishLevelCheckpoint levelNumber={levelNumber} />;
+    }
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "english-for-beginners" &&
+    slug[2] === "lessons" &&
     slug[3]
   ) {
     return <EnglishWelcomeLesson lessonSlug={slug[3]} />;
@@ -384,20 +366,36 @@ export default async function AcademyPage({
   if (
     slug[0] === "courses" &&
     slug[1] === "english-for-beginners" &&
-    slug[2] === "level-1"
+    slug[2] === "learn"
   ) {
     return <EnglishLevelOnePage />;
   }
 
   if (
     slug[0] === "courses" &&
+    slug[1] === "english-for-beginners" &&
+    slug[2] === "level-1"
+  ) {
+    redirect(
+      slug[3]
+        ? `/academy/courses/english-for-beginners/lessons/${slug[3]}`
+        : "/academy/courses/english-for-beginners/learn",
+    );
+  }
+
+  if (
+    slug[0] === "courses" &&
     slug[1] === "computer-internet-essentials" &&
-    slug[2] === "rebuild" &&
-    slug[3] === "start"
+    slug[2] === "learn" &&
+    !slug[3]
   ) {
     return (
       <ComputerPlatformOnboarding
         firstLessonSlug={computerRebuildLessons[0].slug}
+        lessons={computerRebuildLessons.map((lesson) => ({
+          slug: lesson.slug,
+          title: lesson.titleHt,
+        }))}
       />
     );
   }
@@ -405,7 +403,7 @@ export default async function AcademyPage({
   if (
     slug[0] === "courses" &&
     slug[1] === "computer-internet-essentials" &&
-    slug[2] === "rebuild" &&
+    slug[2] === "learn" &&
     slug[3]
   ) {
     const checkpoint = getComputerRebuildCheckpoint(slug[3]);
@@ -454,10 +452,13 @@ export default async function AcademyPage({
   if (
     slug[0] === "courses" &&
     slug[1] === "computer-internet-essentials" &&
-    slug[2] === "lessons" &&
-    slug[3]
+    slug[2] === "rebuild"
   ) {
-    return <ComputerEssentialsLessonDetail lessonSlug={slug[3]} />;
+    redirect(
+      slug[3] && slug[3] !== "start"
+        ? `/academy/courses/computer-internet-essentials/learn/${slug[3]}`
+        : "/academy/courses/computer-internet-essentials/learn",
+    );
   }
 
   if (
@@ -465,7 +466,7 @@ export default async function AcademyPage({
     slug[1] === "computer-internet-essentials" &&
     slug[2] === "lessons"
   ) {
-    return <ComputerEssentialsPage />;
+    redirect("/academy/courses/computer-internet-essentials/learn");
   }
 
   if (slug[0] === "courses" && slug[1] === "computer-internet-essentials") {
