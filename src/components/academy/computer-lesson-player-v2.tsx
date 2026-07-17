@@ -1016,65 +1016,99 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
     return (
       <div className="grid gap-3 sm:grid-cols-2">
         {[
-          ["Laptop", "▰", "One folding, portable unit"],
-          ["Desktop", "▯  ▮", "Separate display and computer unit"],
-          ["All-in-one", "▣", "Computer built into the display housing"],
-          ["Tablet / 2-in-1", "▭", "Touch-first; keyboard may detach or fold"],
-        ].map(([title, mark, detail]) => (
-          <div
+          [
+            "01",
+            "Laptop",
+            "computer-family-laptop.webp",
+            "One folding unit with built-in keyboard and touchpad",
+          ],
+          [
+            "02",
+            "Desktop",
+            "computer-family-desktop.webp",
+            "Separate monitor, tower, keyboard, and mouse",
+          ],
+          [
+            "03",
+            "All-in-one",
+            "computer-family-all-in-one.webp",
+            "Computer built into the display housing",
+          ],
+          [
+            "04",
+            "Tablet / 2-in-1",
+            "computer-family-tablet-2-in-1.webp",
+            "Touchscreen with a detachable keyboard",
+          ],
+        ].map(([number, title, filename, detail]) => (
+          <figure
             key={title}
-            className="rounded-2xl border border-[#DDD8E8] bg-white p-5"
+            className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
           >
-            <div
-              className="flex min-h-28 items-center justify-center rounded-xl bg-[linear-gradient(145deg,#F0EEFF,#F7F4FA)] text-5xl tracking-[0.15em] text-[#5146CC]"
-              aria-hidden="true"
-            >
-              {mark}
-            </div>
-            <h3 className="mt-4 text-lg font-bold">{title}</h3>
-            <p className="mt-1 text-[15px] leading-relaxed text-[#696675]">
-              {detail}
-            </p>
-          </div>
+            <Image
+              src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+              alt={`${title}: ${detail}`}
+              width={720}
+              height={720}
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="aspect-square h-auto w-full object-cover"
+            />
+            <figcaption className="border-t border-[#E3DFEA] p-4">
+              <span className="text-xs font-bold text-[#5146CC]">{number}</span>
+              <strong className="mt-1 block text-lg">{title}</strong>
+              <span className="mt-1 block text-sm leading-relaxed text-[#696675]">
+                {detail}
+              </span>
+            </figcaption>
+          </figure>
         ))}
       </div>
     );
   if (visual.kind === "outside-parts")
     return (
-      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
-        <div className="mx-auto max-w-2xl rounded-[20px] bg-[#242036] p-4 shadow-[0_24px_55px_rgba(36,32,54,.18)]">
-          <div className="relative aspect-[16/9] rounded-xl bg-[linear-gradient(145deg,#DAD7FF,#F6F4FF)]">
+      <div className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+        <div className="relative">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/laptop-parts-photo.webp"
+            alt="Open laptop photographed from above so its exterior parts can be identified"
+            width={1680}
+            height={945}
+            sizes="(max-width: 900px) 100vw, 820px"
+            className="h-auto w-full"
+          />
+          {[
+            ["Camera", "top-[6%] left-[46%]"],
+            ["Display", "top-[25%] left-[18%]"],
+            ["Keyboard", "top-[66%] left-[43%]"],
+            ["Touchpad", "top-[82%] left-[55%]"],
+            ["Ports", "top-[72%] left-[5%]"],
+          ].map(([label, position]) => (
             <span
-              className="absolute top-2 left-1/2 size-2 -translate-x-1/2 rounded-full bg-[#676174]"
-              aria-hidden="true"
-            />
-            <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">
-              Camera
+              key={label}
+              className={cn(
+                "absolute rounded-full border border-white/70 bg-[#242036]/90 px-3 py-1.5 text-xs font-bold text-white shadow-lg backdrop-blur",
+                position,
+              )}
+            >
+              {label}
             </span>
-            <span className="absolute right-4 bottom-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">
-              Display
-            </span>
-          </div>
-          <div
-            className="mt-3 grid grid-cols-10 gap-1 rounded-xl bg-[#3C374F] p-3"
-            aria-label="Simplified keyboard and touchpad diagram"
-          >
-            {Array.from({ length: 30 }, (_, index) => (
-              <span key={index} className="h-3 rounded-sm bg-[#777086]" />
-            ))}
-            <span className="col-span-4 col-start-4 mt-2 h-10 rounded-md border border-[#777086]" />
-          </div>
+          ))}
         </div>
-        <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {["Input", "Output", "Power", "Cooling"].map((label, index) => (
+        <div className="grid grid-cols-2 border-t border-[#E3DFEA] sm:grid-cols-4">
+          {[
+            ["Input", "Keyboard · touchpad · camera"],
+            ["Output", "Display · speakers"],
+            ["Power", "Button · charger · battery"],
+            ["Cooling", "Vents · airflow"],
+          ].map(([label, detail]) => (
             <div
               key={label}
-              className="rounded-xl bg-[#F3F1FA] p-3 text-center"
+              className="border-r border-[#E3DFEA] p-4 last:border-r-0"
             >
-              <span className="text-sm font-bold text-[#5146CC]">
-                0{index + 1}
+              <strong className="block text-[15px]">{label}</strong>
+              <span className="mt-1 block text-sm leading-snug text-[#696675]">
+                {detail}
               </span>
-              <strong className="mt-1 block text-[15px]">{label}</strong>
             </div>
           ))}
         </div>
@@ -1084,64 +1118,89 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
     return (
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          ["USB-A", "▭", "rectangular"],
-          ["USB-C", "▱", "small + reversible"],
-          ["HDMI", "⬡", "display + audio"],
-          ["Ethernet", "⌑", "wired network"],
-          ["3.5 mm audio", "○", "round audio"],
-          ["SD card", "▰", "removable storage"],
-        ].map(([name, shape, clue]) => (
-          <div
+          ["USB-A", "connector-usb-a.webp", "Rectangular USB plug"],
+          ["USB-C", "connector-usb-c.webp", "Small reversible USB plug"],
+          ["HDMI", "connector-hdmi.webp", "Full-size display plug"],
+          [
+            "Ethernet",
+            "connector-ethernet.webp",
+            "RJ45 plug with retaining clip",
+          ],
+          ["3.5 mm audio", "connector-audio-jack.webp", "Round audio plug"],
+          [
+            "SD card",
+            "connector-sd-card.webp",
+            "Full-size removable memory card",
+          ],
+        ].map(([name, filename, description], index) => (
+          <figure
             key={name}
-            className="flex items-center gap-4 rounded-2xl border border-[#DDD8E8] bg-white p-4"
+            className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
           >
-            <span
-              className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#EFEDFF] text-3xl text-[#5146CC]"
-              aria-hidden="true"
-            >
-              {shape}
-            </span>
-            <div>
-              <strong className="block">{name}</strong>
-              <span className="text-sm text-[#696675]">{clue}</span>
-            </div>
-          </div>
+            <Image
+              src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+              alt={`${name}: ${description}`}
+              width={720}
+              height={720}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 270px"
+              className="aspect-square h-auto w-full bg-[#F7F3ED] object-cover"
+            />
+            <figcaption className="border-t border-[#E3DFEA] p-4">
+              <span className="text-xs font-bold text-[#5146CC]">
+                0{index + 1}
+              </span>
+              <strong className="mt-1 block">{name}</strong>
+              <span className="mt-1 block text-sm text-[#696675]">
+                {description}
+              </span>
+            </figcaption>
+          </figure>
         ))}
       </div>
     );
   if (visual.kind === "cable-match")
     return (
-      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
-        <div className="grid items-center gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
-          {[
-            ["1", "Computer", "source port"],
-            ["2", "Cable / adapter", "connector + capability"],
-            ["3", "Accessory", "destination port"],
-          ].map(([number, title, detail], index) => (
-            <div key={title} className="contents">
-              {index > 0 && (
-                <span
-                  className="hidden text-2xl text-[#7168E8] sm:block"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-              )}
-              <div className="rounded-2xl bg-[#F3F1FA] p-5 text-center">
-                <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-[#5146CC] text-sm font-bold text-white">
-                  {number}
-                </span>
-                <strong className="mt-3 block">{title}</strong>
-                <span className="mt-1 block text-sm text-[#696675]">
-                  {detail}
-                </span>
+      <div className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+        <Image
+          src="/images/academy/courses/computer-internet-essentials/v2/connection-chain-photo.webp"
+          alt="A laptop connected by USB-C to a hub, with the hub connected by HDMI to a monitor and by cable to a mouse"
+          width={1680}
+          height={945}
+          sizes="(max-width: 900px) 100vw, 820px"
+          className="h-auto w-full"
+        />
+        <div className="border-t border-[#E3DFEA] p-5 sm:p-7">
+          <div className="grid items-center gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+            {[
+              ["1", "Computer", "source port"],
+              ["2", "Cable / adapter", "connector + capability"],
+              ["3", "Accessory", "destination port"],
+            ].map(([number, title, detail], index) => (
+              <div key={title} className="contents">
+                {index > 0 && (
+                  <span
+                    className="hidden text-2xl text-[#7168E8] sm:block"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                )}
+                <div className="rounded-2xl bg-[#F3F1FA] p-5 text-center">
+                  <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-[#5146CC] text-sm font-bold text-white">
+                    {number}
+                  </span>
+                  <strong className="mt-3 block">{title}</strong>
+                  <span className="mt-1 block text-sm text-[#696675]">
+                    {detail}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <p className="mt-5 rounded-xl bg-[#FFF6DD] p-4 text-center text-[15px] font-semibold text-[#76510D]">
+            Physical fit + supported purpose + sufficient power
+          </p>
         </div>
-        <p className="mt-5 rounded-xl bg-[#FFF6DD] p-4 text-center text-[15px] font-semibold text-[#76510D]">
-          Physical fit + supported purpose + sufficient power
-        </p>
       </div>
     );
   if (visual.kind === "accessory-chain")
