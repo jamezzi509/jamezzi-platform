@@ -296,10 +296,10 @@ export function ComputerBlockLessonPlayer({
               J
             </span>
             <span>
-              <span className="block text-sm font-bold tracking-wide">
+              <span className="block text-base font-bold tracking-wide">
                 Jamezzi Academy
               </span>
-              <span className="text-night-muted block text-[11px]">
+              <span className="text-night-muted block text-xs">
                 Computer & Internet Essentials
               </span>
             </span>
@@ -373,7 +373,7 @@ export function ComputerBlockLessonPlayer({
               ref={stepStatusRef}
               tabIndex={-1}
               aria-live="polite"
-              className="font-lesson-mono text-indigo-dark mb-6 text-[11px] tracking-[0.12em] uppercase focus:outline-none"
+              className="font-lesson-mono text-indigo-dark mb-6 text-xs tracking-[0.12em] uppercase focus:outline-none"
             >
               Etap {step + 1} sou {phases.length} ·{" "}
               {phaseLabels[currentPhase.phase]}
@@ -457,7 +457,7 @@ export function ComputerBlockLessonPlayer({
 
           <aside className="border-border sticky top-5 hidden overflow-hidden rounded-[20px] border bg-white shadow-[0_18px_50px_rgba(29,24,46,0.07)] lg:block">
             <div className="bg-night px-5 py-5 text-white">
-              <p className="text-coral text-[10px] font-bold tracking-[0.14em] uppercase">
+              <p className="text-coral text-xs font-bold tracking-[0.14em] uppercase">
                 Nan leson sa a
               </p>
               <p className="mt-2 text-sm leading-snug font-semibold">
@@ -497,7 +497,7 @@ export function ComputerBlockLessonPlayer({
                       <span className="block text-xs font-bold">
                         {phaseLabels[item.phase]}
                       </span>
-                      <span className="block text-[10px] opacity-70">
+                      <span className="block text-xs opacity-70">
                         {index === step
                           ? "W ap travay la"
                           : index < step
@@ -510,7 +510,7 @@ export function ComputerBlockLessonPlayer({
               ))}
             </ol>
             <div className="border-border border-t px-5 py-4">
-              <p className="text-muted text-[11px] leading-relaxed">
+              <p className="text-muted text-xs leading-relaxed">
                 Objektif: konprann konsèp la, wè li sou ekran, epi pratike li.
               </p>
             </div>
@@ -542,10 +542,13 @@ function LearnPhase({
         <h1 className="font-display text-ink max-w-3xl text-4xl leading-[1.02] text-balance sm:text-5xl">
           {lesson.titleHt}
         </h1>
-        <p className="text-muted mt-3 text-sm sm:text-base">{lesson.titleEn}</p>
+        <p className="text-muted mt-3 text-base sm:text-lg">{lesson.titleEn}</p>
       </div>
       {isConceptBenchmark ? (
-        <OperatingSystemConceptVisual />
+        <>
+          <OperatingSystemHeroVisual />
+          <OperatingSystemConceptVisual />
+        </>
       ) : (
         <div className="border-border bg-paper relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
           <Image
@@ -592,37 +595,184 @@ const operatingSystemConcepts = [
     example: "Windows 11 · macOS",
     explanation: "Fondasyon ki fè aparèy la mache",
     accent: "bg-[#E8EEFF] text-[#2452A5]",
-    symbol: "OS",
+    icon: "os",
   },
   {
     label: "App",
     example: "Word · WhatsApp",
     explanation: "Zouti ou louvri pou fè yon travay",
     accent: "bg-[#E8F7F1] text-[#147A61]",
-    symbol: "APP",
+    icon: "app",
   },
   {
     label: "Browser",
     example: "Chrome · Safari",
     explanation: "Pòt ou itilize pou antre sou entènèt",
     accent: "bg-[#F0EAFE] text-[#6041B5]",
-    symbol: "WEB",
+    icon: "browser",
   },
   {
     label: "Website",
     example: "Google.com · Jamezzi.com",
     explanation: "Yon kote ou vizite anndan Browser la",
     accent: "bg-[#FFF0E8] text-[#B9522F]",
-    symbol: ".COM",
+    icon: "website",
   },
   {
     label: "File",
     example: "PDF · Photo · Document",
     explanation: "Yon bagay ki gen non epi ki sovgade",
     accent: "bg-[#FFF7D9] text-[#8B6414]",
-    symbol: "FILE",
+    icon: "file",
   },
 ] as const;
+
+function OperatingSystemHeroVisual() {
+  return (
+    <figure className="border-border bg-night relative mb-6 min-h-[280px] overflow-hidden rounded-[20px] border shadow-[0_20px_55px_rgba(29,24,46,0.16)] sm:min-h-[360px]">
+      <Image
+        src={`${lessonImageBase}/what-is-an-operating-system.webp`}
+        alt="Yon laptop ki montre yon sistèm operasyon sou ekran li"
+        fill
+        priority
+        sizes="(max-width: 1024px) 100vw, 1000px"
+        className="object-cover object-center"
+      />
+      <div className="from-night via-night/60 absolute inset-0 bg-gradient-to-r to-transparent" />
+      <div className="absolute inset-y-0 left-0 flex max-w-md flex-col justify-center p-6 text-white sm:p-9">
+        <p className="font-lesson-mono text-coral text-xs font-bold tracking-[0.14em] uppercase">
+          Wè li sou ekran an
+        </p>
+        <h2 className="font-display mt-3 text-3xl leading-tight sm:text-4xl">
+          Operating System lan se fondasyon aparèy la.
+        </h2>
+        <p className="text-night-text mt-4 text-sm leading-relaxed sm:text-base">
+          Windows ak macOS kontwole ekran an, fichye yo, aplikasyon yo, ak
+          aparèy ki konekte yo.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-2">
+          <span className="text-night rounded-full bg-white px-3 py-2 text-xs font-bold">
+            Windows 11
+          </span>
+          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold text-white backdrop-blur">
+            macOS
+          </span>
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+function ConceptIcon({
+  type,
+}: {
+  type: (typeof operatingSystemConcepts)[number]["icon"];
+}) {
+  if (type === "os") {
+    return (
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        className="size-7"
+        aria-hidden="true"
+      >
+        <rect
+          x="4"
+          y="5"
+          width="24"
+          height="17"
+          rx="2.5"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M10 27h12M13 22l-1 5m7-5 1 5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path d="M8 9h7v9H8zm9 0h7v9h-7z" fill="currentColor" opacity=".22" />
+      </svg>
+    );
+  }
+  if (type === "app") {
+    return (
+      <svg
+        viewBox="0 0 32 32"
+        fill="currentColor"
+        className="size-7"
+        aria-hidden="true"
+      >
+        <rect x="5" y="5" width="9" height="9" rx="2.5" />
+        <rect x="18" y="5" width="9" height="9" rx="2.5" opacity=".35" />
+        <rect x="5" y="18" width="9" height="9" rx="2.5" opacity=".35" />
+        <rect x="18" y="18" width="9" height="9" rx="2.5" opacity=".35" />
+      </svg>
+    );
+  }
+  if (type === "browser") {
+    return (
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        className="size-7"
+        aria-hidden="true"
+      >
+        <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2" />
+        <path
+          d="M5 16h22M16 5c3 3.2 4.5 6.9 4.5 11S19 23.8 16 27c-3-3.2-4.5-6.9-4.5-11S13 8.2 16 5Z"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
+  if (type === "website") {
+    return (
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        className="size-7"
+        aria-hidden="true"
+      >
+        <rect
+          x="3.5"
+          y="5"
+          width="25"
+          height="22"
+          rx="3"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M4 11h24M8 16h10M8 20h15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity=".75"
+        />
+        <circle cx="8" cy="8" r="1" fill="currentColor" />
+        <circle cx="12" cy="8" r="1" fill="currentColor" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 32 32" fill="none" className="size-7" aria-hidden="true">
+      <path
+        d="M8 3.5h11l6 6V28H8V3.5Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19 4v6h6M12 16h9M12 21h7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 function OperatingSystemConceptVisual() {
   return (
@@ -644,17 +794,17 @@ function OperatingSystemConceptVisual() {
             <div className="border-border flex min-h-32 w-full flex-col rounded-2xl border bg-white p-3.5">
               <span
                 className={cn(
-                  "mb-3 inline-flex size-10 items-center justify-center rounded-xl text-[10px] font-black tracking-tight",
+                  "mb-4 inline-flex size-12 items-center justify-center rounded-xl",
                   concept.accent,
                 )}
               >
-                {concept.symbol}
+                <ConceptIcon type={concept.icon} />
               </span>
-              <p className="text-ink text-sm font-bold">{concept.label}</p>
-              <p className="text-indigo-dark mt-1 text-[11px] font-semibold">
+              <p className="text-ink text-base font-bold">{concept.label}</p>
+              <p className="text-indigo-dark mt-1 text-xs font-semibold">
                 {concept.example}
               </p>
-              <p className="text-muted mt-3 text-xs leading-snug">
+              <p className="text-muted mt-3 text-sm leading-snug">
                 {concept.explanation}
               </p>
             </div>
