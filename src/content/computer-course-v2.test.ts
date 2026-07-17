@@ -2,20 +2,35 @@ import { describe, expect, it } from "vitest";
 import {
   computerCourseModulesV2,
   computerModuleOneV2,
+  computerModuleTwoV2,
   getComputerLessonV2,
 } from "@/content/computer-course-v2";
 
 describe("Computer & Internet Essentials V2 architecture", () => {
-  it("locks the course to 15 ordered modules with only Module 1 available", () => {
+  it("locks the course to 15 ordered modules with Modules 1 and 2 available", () => {
     expect(computerCourseModulesV2).toHaveLength(15);
     expect(computerCourseModulesV2.map((module) => module.order)).toEqual(
       Array.from({ length: 15 }, (_, index) => index + 1),
     );
     expect(computerCourseModulesV2[0].status).toBe("available");
+    expect(computerCourseModulesV2[1].status).toBe("available");
     expect(
       computerCourseModulesV2
-        .slice(1)
+        .slice(2)
         .every((module) => module.status === "in-production"),
+    ).toBe(true);
+  });
+
+  it("contains five unique, ordered Module 2 lessons", () => {
+    expect(computerModuleTwoV2).toHaveLength(5);
+    expect(computerModuleTwoV2.map((lesson) => lesson.order)).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+    expect(new Set(computerModuleTwoV2.map((lesson) => lesson.slug)).size).toBe(
+      5,
+    );
+    expect(
+      computerModuleTwoV2.every((lesson) => lesson.moduleId === "m2"),
     ).toBe(true);
   });
 

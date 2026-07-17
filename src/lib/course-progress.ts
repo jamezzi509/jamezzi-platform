@@ -20,6 +20,27 @@ export function clearCourseProgressFromBrowser(
   keys.forEach((key) => window.localStorage.removeItem(key));
 }
 
+export function clearLessonProgressFromBrowser(
+  progressStorageKey: string,
+  lessonSlugs: string[],
+) {
+  const targets = new Set(lessonSlugs);
+  const remaining = readCompletedLessons(progressStorageKey).filter(
+    (slug) => !targets.has(slug),
+  );
+  window.localStorage.setItem(progressStorageKey, JSON.stringify(remaining));
+  lessonSlugs.forEach((slug) =>
+    window.localStorage.removeItem(
+      `jamezzi:computer:essentials:lesson-state:${slug}`,
+    ),
+  );
+  window.dispatchEvent(
+    new CustomEvent(courseProgressChangedEvent, {
+      detail: { storageKey: progressStorageKey },
+    }),
+  );
+}
+
 export function readCompletedLessons(storageKey: string): string[] {
   try {
     const parsed = JSON.parse(

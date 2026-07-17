@@ -5,7 +5,12 @@ export type LessonVisual =
   | { kind: "progress" }
   | { kind: "os-clues" }
   | { kind: "risk-levels" }
-  | { kind: "workstation" };
+  | { kind: "workstation" }
+  | { kind: "computer-families" }
+  | { kind: "outside-parts" }
+  | { kind: "port-map" }
+  | { kind: "cable-match" }
+  | { kind: "accessory-chain" };
 
 export type LessonSection =
   | {
@@ -76,7 +81,7 @@ export interface CourseCheck {
 export interface ComputerLessonV2 {
   id: string;
   slug: string;
-  moduleId: "m1";
+  moduleId: "m1" | "m2";
   order: number;
   title: string;
   promise: string;
@@ -158,7 +163,7 @@ export const computerCourseModulesV2 = [
   order: index + 1,
   title,
   purpose,
-  status: index === 0 ? ("available" as const) : ("in-production" as const),
+  status: index < 2 ? ("available" as const) : ("in-production" as const),
 }));
 
 export const computerModuleOneV2: ComputerLessonV2[] = [
@@ -634,6 +639,550 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
   },
 ];
 
+export const computerModuleTwoV2: ComputerLessonV2[] = [
+  {
+    id: "m2-l1-v2",
+    slug: "recognize-computer-families",
+    moduleId: "m2",
+    order: 1,
+    title: "Recognize the Computer in Front of You",
+    promise:
+      "Tell a laptop, desktop, all-in-one, and tablet-style computer apart—and know what that difference changes.",
+    estimatedMinutes: "10–12 minutes",
+    track: "universal",
+    badges: ["Visual identification", "No jargon required"],
+    outcomes: [
+      "Name the main physical computer families from visible evidence.",
+      "Separate the device type from its operating system and manufacturer.",
+      "Locate the computer unit that contains the processor, memory, and storage.",
+    ],
+    sections: [
+      {
+        type: "prose",
+        eyebrow: "Begin with what is physical",
+        title: "Device type is not operating system",
+        paragraphs: [
+          "Laptop, desktop, all-in-one, and tablet describe physical arrangements. Windows, macOS, and ChromeOS are operating systems. Dell, HP, Lenovo, and Apple are manufacturers. These labels answer different questions and should not be used as substitutes for one another.",
+          "The computer unit contains the main processing hardware, memory, and storage. In a laptop it sits beneath the keyboard. In a desktop it is usually a separate tower or small box. In an all-in-one it is built into the display housing.",
+        ],
+      },
+      {
+        type: "visual",
+        title: "Four common computer families",
+        caption:
+          "Identify the arrangement first. Brand, color, and screen wallpaper are not reliable evidence of the device family.",
+        visual: { kind: "computer-families" },
+      },
+      {
+        type: "comparison",
+        title: "What changes with the form",
+        items: [
+          {
+            label: "Laptop",
+            description:
+              "Screen, keyboard, pointing surface, battery, and computer unit travel together.",
+          },
+          {
+            label: "Desktop",
+            description:
+              "A separate computer unit connects to a monitor, keyboard, mouse, and power.",
+          },
+          {
+            label: "All-in-one",
+            description:
+              "The computer unit and display share one housing; keyboard and mouse remain separate.",
+          },
+          {
+            label: "Tablet or 2-in-1",
+            description:
+              "Touch is central. A detachable or folding keyboard may change how it is used.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        title: "A Chromebook is not simply a Windows laptop",
+        body: "A Chromebook may look like another laptop but normally runs ChromeOS. This course's split procedures cover Windows 11 and macOS. Do not choose Windows merely because the computer is not a Mac.",
+        tone: "warning",
+      },
+    ],
+    practice: {
+      title: "Identify your physical setup",
+      intro:
+        "Look at the arrangement—not the logo—and select every statement you verified.",
+      tasks: [
+        "I identified whether the computer unit is beneath the keyboard, inside the display, or in a separate case.",
+        "I identified whether the keyboard and pointing device are built in or separate.",
+        "I named the device family without using the operating-system name as evidence.",
+      ],
+      evidence: [
+        "I can name the physical computer family and point to the computer unit.",
+      ],
+    },
+    check: {
+      prompt:
+        "A computer has a separate monitor, keyboard, mouse, and tower. Which description is strongest?",
+      options: [
+        "A Windows computer",
+        "A desktop computer",
+        "A Dell operating system",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. The separate computer unit and peripherals identify the desktop arrangement; they do not prove the brand or operating system.",
+      incorrectFeedback:
+        "Use the visible physical arrangement. A separate tower and monitor identify a desktop, while brand and operating system require different evidence.",
+    },
+    closing:
+      "You can now identify the arrangement. Next, learn the outside parts you can inspect safely without opening the computer.",
+    nextTitle: "Know the Parts You Can See and Touch",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m2-l2-v2",
+    slug: "outside-computer-parts",
+    moduleId: "m2",
+    order: 2,
+    title: "Know the Parts You Can See and Touch",
+    promise:
+      "Build a useful map of the screen, camera, microphone, keyboard, pointing device, speakers, vents, and power controls.",
+    estimatedMinutes: "12–15 minutes",
+    track: "universal",
+    badges: ["Hands-on inspection", "Safe handling"],
+    outcomes: [
+      "Locate common exterior parts without opening the computer.",
+      "Explain the difference between input, output, power, and cooling parts.",
+      "Inspect vents and physical warning signs safely.",
+    ],
+    sections: [
+      {
+        type: "visual",
+        title: "A practical outside-parts map",
+        caption:
+          "Your model may place parts elsewhere. Use the function and the manufacturer's guide when a symbol or opening is unclear.",
+        visual: { kind: "outside-parts" },
+      },
+      {
+        type: "comparison",
+        title: "Four jobs the parts perform",
+        items: [
+          {
+            label: "Input",
+            description:
+              "Keyboard, mouse, touchpad, touchscreen, camera, and microphone send information into the computer.",
+          },
+          {
+            label: "Output",
+            description:
+              "Display, speakers, and connected printers present information from the computer.",
+          },
+          {
+            label: "Power",
+            description:
+              "Power button, battery, charging port, adapter, and cable supply or control electrical power.",
+          },
+          {
+            label: "Cooling",
+            description:
+              "Vents and fans move heat away. Blocking them can reduce cooling.",
+          },
+        ],
+      },
+      {
+        type: "steps",
+        title: "Inspect without taking anything apart",
+        steps: [
+          "Save your work and place the computer on a stable, dry surface.",
+          "Locate the display, camera area, keyboard, pointing device, speakers, and power button.",
+          "Look along the sides and back for vents and connection openings.",
+          "Check for damage, swelling, liquid, smoke, sparks, burning smell, or dangerous heat.",
+        ],
+        success:
+          "You can point to the common exterior parts without forcing, probing, or opening the case.",
+        recovery:
+          "If you see swelling, smoke, sparks, liquid damage, a burning smell, or dangerous heat, stop using and charging the device and seek qualified help. Do not press or puncture a swollen battery area.",
+      },
+      {
+        type: "callout",
+        title: "An opening is not automatically a vent",
+        body: "Ports, speaker grilles, microphone holes, and vents can look similar. Never insert a tool or cable merely because it seems to fit. Look for a label, symbol, model guide, or known connector shape.",
+        tone: "warning",
+      },
+    ],
+    practice: {
+      title: "Point, name, and explain",
+      intro:
+        "Using your own computer or a trusted photo, locate the parts without opening the case.",
+      tasks: [
+        "Point to two input parts.",
+        "Point to two output parts.",
+        "Locate the power control and charging connection.",
+        "Locate a likely cooling vent without inserting anything into it.",
+      ],
+      evidence: [
+        "I can name each part and explain its job.",
+        "I completed the inspection without forcing or opening anything.",
+      ],
+    },
+    check: {
+      prompt:
+        "You find a narrow opening on the side of a laptop but cannot identify it. What should you do?",
+      options: [
+        "Test every cable until one fits",
+        "Use its symbol, model guide, or specifications to identify it",
+        "Push a paper clip into it",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. Identification comes before insertion. Symbols and model documentation are safer evidence than trial and force.",
+      incorrectFeedback:
+        "Do not probe or force an unknown opening. Identify it from a symbol, known shape, or the model's documentation first.",
+    },
+    closing:
+      "You have a safe exterior map. Next, organize ports by the job they can perform rather than memorizing a wall of names.",
+    nextTitle: "Recognize Ports by Purpose",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m2-l3-v2",
+    slug: "recognize-computer-ports",
+    moduleId: "m2",
+    order: 3,
+    title: "Recognize Ports by Purpose",
+    promise:
+      "Identify the most common connection shapes and avoid the dangerous assumption that matching shapes guarantee matching abilities.",
+    estimatedMinutes: "15–18 minutes",
+    track: "universal",
+    badges: ["Port map", "USB-C truth"],
+    outcomes: [
+      "Recognize common USB-A, USB-C, HDMI, audio, Ethernet, and SD openings.",
+      "Match a port to data, display, network, audio, storage, or power purposes.",
+      "Explain why USB-C shape alone does not prove speed, video, or charging capability.",
+    ],
+    sections: [
+      {
+        type: "visual",
+        title: "Shape starts the search; purpose finishes it",
+        caption:
+          "The diagram is simplified for recognition. Confirm the exact capability in the device specifications before buying a cable or adapter.",
+        visual: { kind: "port-map" },
+      },
+      {
+        type: "comparison",
+        title: "Common purposes",
+        items: [
+          {
+            label: "USB-A",
+            description:
+              "Rectangular USB connector used by many keyboards, mice, printers, flash drives, and other accessories.",
+          },
+          {
+            label: "USB-C",
+            description:
+              "Small reversible connector. Depending on the device and cable, it may carry data, power, video, or a combination.",
+          },
+          {
+            label: "HDMI",
+            description:
+              "Common digital display connection that can carry video and audio to a monitor, TV, or projector.",
+          },
+          {
+            label: "Ethernet",
+            description:
+              "Wired network connection with a wider modular plug and retaining clip.",
+          },
+          {
+            label: "3.5 mm audio",
+            description:
+              "Round analog connection commonly used for headphones, headsets, speakers, or microphones, depending on its label.",
+          },
+          {
+            label: "SD or microSD",
+            description:
+              "Slot for a removable memory card. The card size and supported format must match.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        title: "USB-C is a connector, not one guaranteed feature set",
+        body: "Two USB-C ports can look identical while supporting different data speeds, charging power, display output, or Thunderbolt/USB4 features. Check the symbols and the exact model specifications; also check the cable's supported data rate and power rating.",
+        tone: "warning",
+      },
+      {
+        type: "steps",
+        title: "Identify a port without guessing",
+        steps: [
+          "Observe the shape without inserting anything.",
+          "Look for a nearby symbol or label.",
+          "Find the exact computer model and its official port specifications.",
+          "Match the required purpose—data, power, video, audio, network, or storage—to both the port and accessory.",
+        ],
+        success:
+          "You can state the connector shape, intended purpose, and source that confirms the capability.",
+      },
+    ],
+    practice: {
+      title: "Create a port inventory",
+      intro:
+        "Inspect the outside of your computer and record only what you can verify.",
+      tasks: [
+        "Count the USB-A openings you can verify.",
+        "Count the USB-C openings you can verify.",
+        "Locate any display, audio, network, or card opening.",
+        "Choose one uncertain port and find it in the official specifications for the exact model.",
+      ],
+      evidence: [
+        "I separated connector shape from confirmed capability.",
+        "I did not force a cable into an uncertain opening.",
+      ],
+    },
+    check: {
+      prompt:
+        "A USB-C plug physically fits a laptop port. What does that fact alone prove?",
+      options: [
+        "The port supports every USB-C feature",
+        "The connector shapes are compatible",
+        "The cable can definitely charge the laptop at full power",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. Physical fit proves the connector shapes match, not that every data, display, or power feature is supported.",
+      incorrectFeedback:
+        "USB-C capabilities vary. A physical fit does not guarantee a particular speed, display mode, or charging level.",
+    },
+    closing:
+      "You can now identify a likely connection and verify its purpose. Next, match the entire connection: both ends, the cable, the adapter, and power requirements.",
+    nextTitle: "Match Cables, Adapters, and Chargers",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m2-l4-v2",
+    slug: "match-cables-adapters-chargers",
+    moduleId: "m2",
+    order: 4,
+    title: "Match Cables, Adapters, and Chargers",
+    promise:
+      "Choose connections by both endpoints and required capability—not by appearance or a sales claim.",
+    estimatedMinutes: "15–18 minutes",
+    track: "universal",
+    badges: ["Connection planning", "Power safety"],
+    outcomes: [
+      "Distinguish a cable, adapter, hub, dock, and power adapter.",
+      "Check both endpoint connectors before connecting equipment.",
+      "Verify that a charger and cable meet the device manufacturer's requirements.",
+    ],
+    sections: [
+      {
+        type: "visual",
+        title: "Every connection is a chain",
+        caption:
+          "A connection works only when the source, port, cable or adapter, destination, and required capability agree.",
+        visual: { kind: "cable-match" },
+      },
+      {
+        type: "comparison",
+        title: "The pieces do different jobs",
+        items: [
+          {
+            label: "Cable",
+            description:
+              "Carries power, data, audio, video, or a supported combination between two connectors.",
+          },
+          {
+            label: "Adapter",
+            description:
+              "Changes one connector or interface into another for a specific supported purpose.",
+          },
+          {
+            label: "Hub",
+            description:
+              "Expands one connection into several accessory ports; capabilities vary by model.",
+          },
+          {
+            label: "Dock",
+            description:
+              "Provides a larger set of connections and may add charging, displays, networking, and peripherals; compatibility still must be checked.",
+          },
+        ],
+      },
+      {
+        type: "steps",
+        title: "Use the five-check connection rule",
+        steps: [
+          "Name the source device and the destination accessory.",
+          "Identify the connector at both ends.",
+          "Name the required job: power, data, display, audio, or network.",
+          "Verify that every port, cable, and adapter in the chain supports that job.",
+          "Connect without force, then check the expected result.",
+        ],
+        success:
+          "The connector seats easily and the expected result appears without heat, smell, sparks, or damage.",
+        recovery:
+          "If it does not fit easily, stop. If it fits but does not work, disconnect safely and verify capability and settings instead of repeatedly forcing or reconnecting it.",
+      },
+      {
+        type: "callout",
+        title: "Charging requires more than a fitting plug",
+        body: "Use a power adapter and cable that meet the computer manufacturer's requirements for connector, supported charging standard, and power. A lower-capability supply may charge slowly or not keep up; damaged, counterfeit, or incompatible power equipment can create risk.",
+        tone: "warning",
+      },
+    ],
+    practice: {
+      title: "Plan one connection before making it",
+      intro:
+        "Choose a real accessory you already own. Do not purchase anything for this practice.",
+      tasks: [
+        "Name the source and destination.",
+        "Identify both connector ends.",
+        "State the job the connection must perform.",
+        "Verify the port, cable, and adapter capabilities from labels or specifications.",
+        "Connect gently and confirm the expected result.",
+      ],
+      evidence: [
+        "I checked both ends and the required capability before connecting.",
+        "I stopped rather than forcing an uncertain connector.",
+      ],
+    },
+    check: {
+      prompt:
+        "A USB-C cable transfers phone photos but will not power a laptop correctly. What is the best explanation?",
+      options: [
+        "Every USB-C cable has identical capability",
+        "The cable or power adapter may not support the laptop's required charging power",
+        "The connector must actually be HDMI",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. Matching USB-C shapes do not guarantee the cable and adapter support the required charging power.",
+      incorrectFeedback:
+        "USB-C cables and power adapters have different supported capabilities. Check the laptop requirements and cable/adapter ratings.",
+    },
+    closing:
+      "You can now plan a complete connection instead of buying by shape alone. Finish the module by choosing and verifying useful accessories without collecting unnecessary hardware.",
+    nextTitle: "Build a Useful Accessory Setup",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m2-l5-v2",
+    slug: "build-accessory-setup",
+    moduleId: "m2",
+    order: 5,
+    title: "Build a Useful Accessory Setup",
+    promise:
+      "Choose only the accessories that solve a real problem, connect one safely, and prove the result.",
+    estimatedMinutes: "12–15 minutes",
+    track: "universal",
+    badges: ["Module mission", "Evidence required"],
+    outcomes: [
+      "Match accessories to a specific need.",
+      "Distinguish built-in, wired, wireless, and adapter-dependent options.",
+      "Complete and verify one low-risk accessory connection.",
+    ],
+    sections: [
+      {
+        type: "visual",
+        title: "Need first, accessory second",
+        caption:
+          "A premium setup is not the one with the most objects. It is the smallest reliable setup that solves the learner's actual needs.",
+        visual: { kind: "accessory-chain" },
+      },
+      {
+        type: "comparison",
+        title: "Start with the problem",
+        items: [
+          {
+            label: "More comfortable control",
+            description:
+              "An external mouse, keyboard, or ergonomic pointing device may help when built-in controls are uncomfortable.",
+          },
+          {
+            label: "Clearer communication",
+            description:
+              "Headphones, a headset, microphone, camera, or better lighting may improve calls after built-in equipment is tested.",
+          },
+          {
+            label: "More screen space",
+            description:
+              "A monitor can help only when the computer, port, cable, and display support the planned connection.",
+          },
+          {
+            label: "Move or protect files",
+            description:
+              "A compatible external drive or memory card can help, but it is not automatically a complete backup system.",
+          },
+        ],
+      },
+      {
+        type: "steps",
+        eyebrow: "Module 2 mission",
+        title: "Connect one low-risk accessory and prove it works",
+        steps: [
+          "State the problem the accessory solves.",
+          "Inspect the accessory and computer for damage.",
+          "Identify whether the connection is built-in, wired, wireless, or adapter-dependent.",
+          "Use the five-check connection rule from the previous lesson.",
+          "Perform a small test: move the pointer, type a sentence, play test audio, view the display, or open a non-private test file.",
+          "Disconnect or store it safely when finished.",
+        ],
+        success:
+          "You can name the need, explain the connection, and demonstrate the expected result.",
+        recovery:
+          "If the accessory requests unexpected permissions, software, payment, secrets, or administrator access, pause and verify the manufacturer and purpose before continuing.",
+      },
+      {
+        type: "callout",
+        title: "Wireless is still a connection",
+        body: "Bluetooth and other wireless accessories still require compatibility, power, pairing, and sometimes permission. Do not accept an unknown pairing request simply because it appears nearby.",
+        tone: "info",
+      },
+    ],
+    practice: {
+      title: "Complete the Module 2 evidence mission",
+      intro:
+        "Use an accessory you already own or inspect a trusted setup with its owner. Do not buy equipment for this activity.",
+      tasks: [
+        "Name the device family and locate the computer unit.",
+        "Point to two input/output parts and one verified port.",
+        "Explain the complete connection chain.",
+        "Connect or inspect one low-risk accessory.",
+        "Demonstrate the expected result.",
+      ],
+      evidence: [
+        "I identified the computer and connection without guessing from brand or shape alone.",
+        "I demonstrated a working result or clearly explained why I stopped.",
+        "I did not expose private files, account details, serial numbers, or passwords.",
+      ],
+    },
+    check: {
+      prompt:
+        "Which is the strongest evidence that an accessory setup is appropriate?",
+      options: [
+        "It includes many expensive devices",
+        "It solves a named need, is compatible, and passes a safe functional test",
+        "Its connector can be pushed into an opening",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. Need, verified compatibility, safe connection, and a demonstrated result are meaningful evidence.",
+      incorrectFeedback:
+        "Price, quantity, and physical fit do not prove usefulness or compatibility. Start with the need and verify the result.",
+    },
+    closing:
+      "Module 2 is complete when you can identify the machine, map its exterior parts and ports, plan a compatible connection, and demonstrate one useful accessory result.",
+    verifiedAt: "2026-07-17",
+  },
+];
+
+export const computerLessonsV2 = [
+  ...computerModuleOneV2,
+  ...computerModuleTwoV2,
+];
+
+export function getComputerModuleLessonsV2(moduleId: "m1" | "m2") {
+  return moduleId === "m1" ? computerModuleOneV2 : computerModuleTwoV2;
+}
+
 export function getComputerLessonV2(slug: string) {
-  return computerModuleOneV2.find((lesson) => lesson.slug === slug);
+  return computerLessonsV2.find((lesson) => lesson.slug === slug);
 }

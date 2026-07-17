@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import {
   courseProgressChangedEvent,
+  clearLessonProgressFromBrowser,
   clearCourseProgressFromBrowser,
   isProgressEventFor,
   readCompletedLessons,
@@ -26,6 +27,11 @@ export function CourseResumeCard({
   completionAction,
   completionEyebrow,
   resetCourse,
+  resetLessonSlugs,
+  newEyebrow,
+  newTitle,
+  newAction,
+  resetLabel = "Module 1",
   language = "en",
 }: {
   lessons: ResumeLesson[];
@@ -37,6 +43,11 @@ export function CourseResumeCard({
   completionAction?: string;
   completionEyebrow?: string;
   resetCourse?: CourseProgressNamespace;
+  resetLessonSlugs?: string[];
+  newEyebrow?: string;
+  newTitle?: string;
+  newAction?: string;
+  resetLabel?: string;
   language?: "en" | "ht";
 }) {
   const [completed, setCompleted] = useState<string[] | null>(null);
@@ -100,24 +111,28 @@ export function CourseResumeCard({
           eyebrow: isComplete
             ? (completionEyebrow ?? "COURSE LESSONS COMPLETE")
             : isNew
-              ? "READY WHEN YOU ARE"
+              ? (newEyebrow ?? "READY WHEN YOU ARE")
               : "CONTINUE WHERE YOU LEFT OFF",
           title: isComplete
             ? (completionTitle ?? "You’re ready for the final assessment.")
             : isNew
-              ? "Your first lesson is ready."
+              ? (newTitle ?? "Your first lesson is ready.")
               : nextLesson.title,
           action: isComplete
             ? (completionAction ?? "Take the final assessment")
             : isNew
-              ? "Start the first lesson"
+              ? (newAction ?? "Start the first lesson")
               : "Continue learning",
           progress: `${completedCount} of ${lessons.length} lessons completed`,
         };
 
   function resetProgress() {
     if (!resetCourse) return;
-    clearCourseProgressFromBrowser(resetCourse);
+    if (resetLessonSlugs) {
+      clearLessonProgressFromBrowser(progressStorageKey, resetLessonSlugs);
+    } else {
+      clearCourseProgressFromBrowser(resetCourse);
+    }
     setCompleted([]);
     setConfirmReset(false);
     window.location.reload();
@@ -158,7 +173,7 @@ export function CourseResumeCard({
             (confirmReset ? (
               <div className="flex flex-wrap items-center justify-end gap-2 rounded-xl border border-[#E4AAA5] bg-[#FFF2F1] p-3">
                 <span className="w-full text-right text-[15px] font-semibold text-[#7F2824]">
-                  Clear Module 1 progress on this browser?
+                  Clear {resetLabel} progress on this browser?
                 </span>
                 <button
                   type="button"
@@ -181,7 +196,7 @@ export function CourseResumeCard({
                 onClick={() => setConfirmReset(true)}
                 className="min-h-11 px-3 text-base font-semibold text-[#8C302B] underline underline-offset-4"
               >
-                Start Module 1 over
+                Start {resetLabel} over
               </button>
             ))}
         </div>

@@ -7,6 +7,7 @@ import { computerProgressStorageKey } from "@/lib/course-progress";
 import {
   computerCourseModulesV2,
   computerModuleOneV2,
+  computerModuleTwoV2,
 } from "@/content/computer-course-v2";
 
 export function ComputerCoursePage() {
@@ -66,6 +67,27 @@ export function ComputerCoursePage() {
           completionTitle="You completed Start with Confidence."
           completionAction="Review the course path"
           resetCourse="computer"
+          resetLessonSlugs={computerModuleOneV2.map((lesson) => lesson.slug)}
+          language="en"
+        />
+        <CourseResumeCard
+          lessons={computerModuleTwoV2.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.title,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials"
+          completionHref="/academy/courses/computer-internet-essentials#course-path"
+          completionEyebrow="MODULE 2 COMPLETE"
+          completionTitle="You know the machine in front of you."
+          completionAction="Review the course path"
+          newEyebrow="MODULE 2 · READY WHEN YOU ARE"
+          newTitle="Know the Machine in Front of You"
+          newAction="Start Module 2"
+          resetCourse="computer"
+          resetLessonSlugs={computerModuleTwoV2.map((lesson) => lesson.slug)}
+          resetLabel="Module 2"
           language="en"
         />
       </Container>
@@ -82,15 +104,20 @@ export function ComputerCoursePage() {
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
               A 15-module course architecture built around real computer
-              independence. Module 1 is available now; every later module stays
-              unavailable until its lessons and assessments meet this standard.
+              independence. Modules 1 and 2 are available now; every later
+              module stays unavailable until its lessons and assessments meet
+              this standard.
             </p>
           </div>
 
           <div className="border-border mt-12 grid border-t lg:grid-cols-2">
             {computerCourseModulesV2.map((module) => {
               const firstLesson =
-                module.order === 1 ? computerModuleOneV2[0] : null;
+                module.order === 1
+                  ? computerModuleOneV2[0]
+                  : module.order === 2
+                    ? computerModuleTwoV2[0]
+                    : null;
 
               return (
                 <article

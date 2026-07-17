@@ -9,7 +9,7 @@ import type {
   LessonSection,
   LessonVisual,
 } from "@/content/computer-course-v2";
-import { computerModuleOneV2 } from "@/content/computer-course-v2";
+import { getComputerModuleLessonsV2 } from "@/content/computer-course-v2";
 import {
   computerProgressStorageKey,
   readCompletedLessons,
@@ -57,11 +57,17 @@ export function ComputerLessonPlayerV2({
     : true;
   const completionReady = practiceComplete && checkCorrect;
 
-  const index = computerModuleOneV2.findIndex((item) => item.id === lesson.id);
-  const previous = index > 0 ? computerModuleOneV2[index - 1] : null;
+  const moduleLessons = getComputerModuleLessonsV2(lesson.moduleId);
+  const moduleNumber = lesson.moduleId === "m1" ? 1 : 2;
+  const moduleTitle =
+    lesson.moduleId === "m1"
+      ? "Start with Confidence"
+      : "Know the Machine in Front of You";
+  const index = moduleLessons.findIndex((item) => item.id === lesson.id);
+  const previous = index > 0 ? moduleLessons[index - 1] : null;
   const next =
-    index >= 0 && index < computerModuleOneV2.length - 1
-      ? computerModuleOneV2[index + 1]
+    index >= 0 && index < moduleLessons.length - 1
+      ? moduleLessons[index + 1]
       : null;
 
   const lessonStateKey = `jamezzi:computer:essentials:lesson-state:${lesson.slug}`;
@@ -165,10 +171,10 @@ export function ComputerLessonPlayerV2({
   }
 
   const completedCount = completedSlugs.filter((slug) =>
-    computerModuleOneV2.some((item) => item.slug === slug),
+    moduleLessons.some((item) => item.slug === slug),
   ).length;
   const pageProgress = Math.round(
-    (completedCount / computerModuleOneV2.length) * 100,
+    (completedCount / moduleLessons.length) * 100,
   );
 
   if (!loaded) {
@@ -195,7 +201,9 @@ export function ComputerLessonPlayerV2({
             Jamezzi<span className="text-indigo">.</span>
           </Link>
           <div className="flex items-center gap-3 text-sm text-[#696675]">
-            <span className="hidden sm:inline">Module 1 progress</span>
+            <span className="hidden sm:inline">
+              Module {moduleNumber} progress
+            </span>
             <div className="h-1.5 w-24 overflow-hidden rounded-full bg-[#ECEAF2] sm:w-36">
               <div
                 className="bg-indigo h-full rounded-full"
@@ -225,7 +233,7 @@ export function ComputerLessonPlayerV2({
             className="text-indigo-dark rounded-full border border-[#DCD7E5] bg-[#F7F6FB] px-3.5 py-2 text-[15px] font-bold"
             aria-haspopup="dialog"
           >
-            Module 1 · Lessons
+            Module {moduleNumber} · Lessons
           </button>
         </div>
       </nav>
@@ -235,7 +243,7 @@ export function ComputerLessonPlayerV2({
           className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
           aria-modal="true"
-          aria-label="Module 1 lessons"
+          aria-label={`Module ${moduleNumber} lessons`}
         >
           <button
             type="button"
@@ -248,11 +256,9 @@ export function ComputerLessonPlayerV2({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-indigo-dark text-sm font-bold tracking-[0.12em] uppercase">
-                  Module 1
+                  Module {moduleNumber}
                 </p>
-                <h2 className="font-display mt-1 text-2xl">
-                  Start with Confidence
-                </h2>
+                <h2 className="font-display mt-1 text-2xl">{moduleTitle}</h2>
               </div>
               <button
                 ref={closeMenuRef}
@@ -265,7 +271,7 @@ export function ComputerLessonPlayerV2({
               </button>
             </div>
             <ol className="mt-6 grid gap-2">
-              {computerModuleOneV2.map((item) => (
+              {moduleLessons.map((item) => (
                 <li key={item.id}>
                   <Link
                     href={`/academy/courses/computer-internet-essentials/learn/${item.slug}`}
@@ -319,13 +325,13 @@ export function ComputerLessonPlayerV2({
             ← Course overview
           </Link>
           <p className="text-indigo-dark mt-8 text-sm font-bold tracking-[0.13em] uppercase">
-            Module 1
+            Module {moduleNumber}
           </p>
           <h2 className="font-display mt-2 text-2xl leading-tight">
-            Start with Confidence
+            {moduleTitle}
           </h2>
           <ol className="mt-6 grid gap-1.5">
-            {computerModuleOneV2.map((item) => (
+            {moduleLessons.map((item) => (
               <li key={item.id}>
                 <Link
                   href={`/academy/courses/computer-internet-essentials/learn/${item.slug}`}
@@ -1003,6 +1009,161 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
               <span className="rounded-lg bg-white p-3">Menu bar</span>
             </div>
           </div>
+        </div>
+      </div>
+    );
+  if (visual.kind === "computer-families")
+    return (
+      <div className="grid gap-3 sm:grid-cols-2">
+        {[
+          ["Laptop", "▰", "One folding, portable unit"],
+          ["Desktop", "▯  ▮", "Separate display and computer unit"],
+          ["All-in-one", "▣", "Computer built into the display housing"],
+          ["Tablet / 2-in-1", "▭", "Touch-first; keyboard may detach or fold"],
+        ].map(([title, mark, detail]) => (
+          <div
+            key={title}
+            className="rounded-2xl border border-[#DDD8E8] bg-white p-5"
+          >
+            <div
+              className="flex min-h-28 items-center justify-center rounded-xl bg-[linear-gradient(145deg,#F0EEFF,#F7F4FA)] text-5xl tracking-[0.15em] text-[#5146CC]"
+              aria-hidden="true"
+            >
+              {mark}
+            </div>
+            <h3 className="mt-4 text-lg font-bold">{title}</h3>
+            <p className="mt-1 text-[15px] leading-relaxed text-[#696675]">
+              {detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    );
+  if (visual.kind === "outside-parts")
+    return (
+      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
+        <div className="mx-auto max-w-2xl rounded-[20px] bg-[#242036] p-4 shadow-[0_24px_55px_rgba(36,32,54,.18)]">
+          <div className="relative aspect-[16/9] rounded-xl bg-[linear-gradient(145deg,#DAD7FF,#F6F4FF)]">
+            <span
+              className="absolute top-2 left-1/2 size-2 -translate-x-1/2 rounded-full bg-[#676174]"
+              aria-hidden="true"
+            />
+            <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">
+              Camera
+            </span>
+            <span className="absolute right-4 bottom-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">
+              Display
+            </span>
+          </div>
+          <div
+            className="mt-3 grid grid-cols-10 gap-1 rounded-xl bg-[#3C374F] p-3"
+            aria-label="Simplified keyboard and touchpad diagram"
+          >
+            {Array.from({ length: 30 }, (_, index) => (
+              <span key={index} className="h-3 rounded-sm bg-[#777086]" />
+            ))}
+            <span className="col-span-4 col-start-4 mt-2 h-10 rounded-md border border-[#777086]" />
+          </div>
+        </div>
+        <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {["Input", "Output", "Power", "Cooling"].map((label, index) => (
+            <div
+              key={label}
+              className="rounded-xl bg-[#F3F1FA] p-3 text-center"
+            >
+              <span className="text-sm font-bold text-[#5146CC]">
+                0{index + 1}
+              </span>
+              <strong className="mt-1 block text-[15px]">{label}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  if (visual.kind === "port-map")
+    return (
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          ["USB-A", "▭", "rectangular"],
+          ["USB-C", "▱", "small + reversible"],
+          ["HDMI", "⬡", "display + audio"],
+          ["Ethernet", "⌑", "wired network"],
+          ["3.5 mm audio", "○", "round audio"],
+          ["SD card", "▰", "removable storage"],
+        ].map(([name, shape, clue]) => (
+          <div
+            key={name}
+            className="flex items-center gap-4 rounded-2xl border border-[#DDD8E8] bg-white p-4"
+          >
+            <span
+              className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#EFEDFF] text-3xl text-[#5146CC]"
+              aria-hidden="true"
+            >
+              {shape}
+            </span>
+            <div>
+              <strong className="block">{name}</strong>
+              <span className="text-sm text-[#696675]">{clue}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  if (visual.kind === "cable-match")
+    return (
+      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
+        <div className="grid items-center gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+          {[
+            ["1", "Computer", "source port"],
+            ["2", "Cable / adapter", "connector + capability"],
+            ["3", "Accessory", "destination port"],
+          ].map(([number, title, detail], index) => (
+            <div key={title} className="contents">
+              {index > 0 && (
+                <span
+                  className="hidden text-2xl text-[#7168E8] sm:block"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              )}
+              <div className="rounded-2xl bg-[#F3F1FA] p-5 text-center">
+                <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-[#5146CC] text-sm font-bold text-white">
+                  {number}
+                </span>
+                <strong className="mt-3 block">{title}</strong>
+                <span className="mt-1 block text-sm text-[#696675]">
+                  {detail}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-5 rounded-xl bg-[#FFF6DD] p-4 text-center text-[15px] font-semibold text-[#76510D]">
+          Physical fit + supported purpose + sufficient power
+        </p>
+      </div>
+    );
+  if (visual.kind === "accessory-chain")
+    return (
+      <div className="rounded-[22px] bg-[#242036] p-6 text-white sm:p-8">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            ["01", "Name the need", "What problem are you solving?"],
+            ["02", "Verify the match", "Ports, capability, power, trust"],
+            ["03", "Prove the result", "Run one small functional test"],
+          ].map(([number, title, detail]) => (
+            <div
+              key={number}
+              className="rounded-2xl border border-white/15 bg-white/[.07] p-5"
+            >
+              <span className="text-sm font-bold text-[#AFA8FF]">{number}</span>
+              <strong className="mt-8 block text-lg">{title}</strong>
+              <span className="mt-2 block text-sm leading-relaxed text-[#D7D3E4]">
+                {detail}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     );
