@@ -23,6 +23,11 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isLearningWorkspace =
+    pathname.includes("/academy/courses/") && pathname.includes("/learn/");
+
+  if (isLearningWorkspace) return null;
+
   return (
     <header
       className={cn(

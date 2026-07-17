@@ -1,6 +1,10 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { SiteFooter } from "@/components/layout/site-footer";
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
 
 describe("SiteFooter", () => {
   it("renders the locked bottom-bar copyright line", () => {

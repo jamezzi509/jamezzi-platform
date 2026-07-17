@@ -288,180 +288,234 @@ export function ComputerBlockLessonPlayer({
   const isLastStep = step === phases.length - 1;
 
   return (
-    <main className="bg-white pt-[72px]">
-      <div className="mx-auto max-w-[820px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
-        <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
-          <p
-            className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
-            title={`Modil ${currentModule?.order}: ${currentModule?.titleHt ?? currentModule?.titleEn}`}
-          >
-            Modil {currentModule?.order}:{" "}
-            {currentModule?.titleHt ?? currentModule?.titleEn} · Leson{" "}
-            {moduleLessonIndex + 1} sou {moduleLessons.length}
-            {lesson.mode === "platform_variant" && (
-              <>
-                {" "}
-                <span className="text-indigo-dark">·</span> Vèsyon{" "}
-                {viewPlatform === "windows" ? "Windows" : "Mac"}
-              </>
-            )}
-          </p>
-          <div className="mb-2 flex items-center gap-2.5">
-            <div
-              className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full"
-              role="progressbar"
-              aria-label={`Pwogrè Modil ${currentModule?.order ?? ""}`}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={moduleProgressPercent}
-            >
+    <main className="min-h-screen bg-[#F4F2ED]">
+      <header className="bg-night text-white">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-10">
+          <Link href="/academy" className="flex items-center gap-3">
+            <span className="bg-indigo font-display flex size-10 items-center justify-center rounded-xl text-xl">
+              J
+            </span>
+            <span>
+              <span className="block text-sm font-bold tracking-wide">
+                Jamezzi Academy
+              </span>
+              <span className="text-night-muted block text-[11px]">
+                Computer & Internet Essentials
+              </span>
+            </span>
+          </Link>
+          <div className="hidden min-w-72 md:block">
+            <div className="text-night-muted mb-1.5 flex justify-between text-[11px]">
+              <span>
+                Modil {currentModule?.order} · Leson {moduleLessonIndex + 1}/
+                {moduleLessons.length}
+              </span>
+              <span>{moduleProgressPercent}%</span>
+            </div>
+            <div className="h-1.5 overflow-hidden rounded-full bg-white/15">
               <div
-                className="bg-indigo h-full rounded-full"
+                className="bg-coral h-full rounded-full"
                 style={{ width: `${moduleProgressPercent}%` }}
               />
             </div>
-            <span className="text-muted shrink-0 text-[11.5px] whitespace-nowrap">
-              {moduleProgressPercent}%
-            </span>
           </div>
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-[12px] sm:gap-3 sm:text-[12.5px]">
-            {prevLesson ? (
-              <Link
-                href={`/academy/courses/computer-internet-essentials/learn/${prevLesson.slug}`}
-                className="text-indigo-dark min-w-0 truncate font-semibold"
-                title={prevLesson.titleHt}
-              >
-                ← <span className="sm:hidden">Anvan</span>
-                <span className="hidden sm:inline">{prevLesson.titleHt}</span>
-              </Link>
-            ) : (
-              <span className="text-border">← Premye leson</span>
-            )}
-            <Link
-              href="/academy/courses/computer-internet-essentials"
-              className="text-muted hover:text-indigo-dark font-semibold"
-            >
-              <span className="sm:hidden">Plan</span>
-              <span className="hidden sm:inline">Plan kou a</span>
-            </Link>
-            <Link
-              href={nextCourseHref}
-              className="text-indigo-dark min-w-0 truncate text-right font-semibold"
-              title={nextCourseLabel}
-            >
-              <span className="sm:hidden">Apre</span>
-              <span className="hidden sm:inline">{nextCourseLabel}</span> →
-            </Link>
-          </div>
-        </div>
-
-        <div className="mb-7">
-          <div className="mb-2 flex gap-1.5">
-            {phases.map((item, index) => (
-              <div
-                key={item.phase}
-                className={cn(
-                  "h-1.5 flex-1 rounded-full",
-                  index <= step ? "bg-indigo" : "bg-indigo-light",
-                )}
-              />
-            ))}
-          </div>
-          <p
-            ref={stepStatusRef}
-            tabIndex={-1}
-            aria-live="polite"
-            className="font-lesson-mono text-indigo-dark/70 focus-visible:ring-indigo rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
+          <Link
+            href="/academy/courses/computer-internet-essentials"
+            className="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10"
           >
-            Etap {step + 1} sou {phases.length} ·{" "}
-            {phaseLabels[currentPhase.phase]}
-          </p>
-          {progressSaved && (
-            <p className="text-metadata text-indigo-dark mt-2" role="status">
-              ✓ Pwogrè leson sa a anrejistre sou aparèy sa a.
-            </p>
-          )}
+            Plan kou a
+          </Link>
         </div>
+      </header>
 
-        {currentPhase.phase === "learn" && (
-          <LearnPhase lesson={lesson} blocks={currentPhase.blocks} />
-        )}
-        {currentPhase.phase === "words" && (
-          <WordsPhase blocks={currentPhase.blocks} />
-        )}
-        {currentPhase.phase === "platform" && (
-          <PlatformPhase
-            blocks={currentPhase.blocks}
-            viewPlatform={viewPlatform}
-            onSwap={() =>
-              setViewPlatform(viewPlatform === "windows" ? "mac" : "windows")
-            }
-          />
-        )}
-        {currentPhase.phase === "practice" && (
-          <PracticePhase blocks={currentPhase.blocks} />
-        )}
-        {currentPhase.phase === "mission" && (
-          <MissionPhase
-            blocks={currentPhase.blocks}
-            stepsDone={stepsDone}
-            onToggleStep={toggleStep}
-          />
-        )}
-        {currentPhase.phase === "check" &&
-          checkBlock?.type === "knowledge_check" && (
-            <CheckPhase
-              questions={checkBlock.questions}
-              state={checkState}
-              onChange={setCheckState}
-            />
+      <nav className="border-border bg-white" aria-label="Lesson navigation">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-3 text-xs sm:px-6 lg:px-10">
+          {prevLesson ? (
+            <Link
+              href={`/academy/courses/computer-internet-essentials/learn/${prevLesson.slug}`}
+              className="text-indigo-dark truncate font-semibold"
+            >
+              ← {prevLesson.titleHt}
+            </Link>
+          ) : (
+            <span />
           )}
-        {currentPhase.phase === "reflect" && (
-          <ReflectPhase
-            blocks={currentPhase.blocks}
-            unlocked={unlocked}
-            nextLesson={nextLesson}
-            nextCheckpoint={nextCheckpoint}
-            nextReadinessReflection={nextReadinessReflection}
-          />
-        )}
+          <span className="text-muted hidden sm:block">
+            {currentModule?.titleHt ?? currentModule?.titleEn}
+          </span>
+          <Link
+            href={nextCourseHref}
+            className="text-indigo-dark truncate text-right font-semibold"
+          >
+            {nextCourseLabel} →
+          </Link>
+        </div>
+      </nav>
 
-        {!isLastStep && (
-          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
+      <div className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-10 lg:py-8">
+        <div className="mb-4 flex gap-1.5 lg:hidden">
+          {phases.map((item, index) => (
             <button
+              key={item.phase}
               type="button"
-              onClick={() => moveTo(step - 1)}
-              disabled={step === 0}
-              className="text-indigo-dark min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
-            >
-              ← Tounen
-            </button>
-            <button
-              type="button"
-              onClick={() => moveTo(step + 1)}
-              disabled={continueDisabled}
+              onClick={() => moveTo(index)}
+              aria-label={phaseLabels[item.phase]}
               className={cn(
-                "min-h-12 min-w-[132px] rounded-full px-6 text-sm font-semibold",
-                continueDisabled
-                  ? "bg-indigo-light text-muted cursor-not-allowed"
-                  : "bg-indigo cursor-pointer text-white",
+                "h-2 flex-1 rounded-full",
+                index <= step ? "bg-indigo" : "bg-indigo-light",
               )}
+            />
+          ))}
+        </div>
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_270px]">
+          <section className="border-border min-w-0 rounded-[24px] border bg-white p-5 shadow-[0_24px_70px_rgba(29,24,46,0.08)] sm:p-8 lg:p-10">
+            <p
+              ref={stepStatusRef}
+              tabIndex={-1}
+              aria-live="polite"
+              className="font-lesson-mono text-indigo-dark mb-6 text-[11px] tracking-[0.12em] uppercase focus:outline-none"
             >
-              Kontinye →
-            </button>
-          </div>
-        )}
-        {isLastStep && (
-          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
-            <button
-              type="button"
-              onClick={() => moveTo(step - 1)}
-              className="text-indigo-dark min-h-11 text-sm font-semibold"
-            >
-              ← Tounen
-            </button>
-          </div>
-        )}
+              Etap {step + 1} sou {phases.length} ·{" "}
+              {phaseLabels[currentPhase.phase]}
+            </p>
+            {progressSaved && (
+              <p className="text-metadata text-success mb-4" role="status">
+                ✓ Pwogrè leson sa a anrejistre.
+              </p>
+            )}
+            {currentPhase.phase === "learn" && (
+              <LearnPhase lesson={lesson} blocks={currentPhase.blocks} />
+            )}
+            {currentPhase.phase === "words" && (
+              <WordsPhase blocks={currentPhase.blocks} />
+            )}
+            {currentPhase.phase === "platform" && (
+              <PlatformPhase
+                blocks={currentPhase.blocks}
+                viewPlatform={viewPlatform}
+                onSwap={() =>
+                  setViewPlatform(
+                    viewPlatform === "windows" ? "mac" : "windows",
+                  )
+                }
+              />
+            )}
+            {currentPhase.phase === "practice" && (
+              <PracticePhase blocks={currentPhase.blocks} />
+            )}
+            {currentPhase.phase === "mission" && (
+              <MissionPhase
+                blocks={currentPhase.blocks}
+                stepsDone={stepsDone}
+                onToggleStep={toggleStep}
+              />
+            )}
+            {currentPhase.phase === "check" &&
+              checkBlock?.type === "knowledge_check" && (
+                <CheckPhase
+                  questions={checkBlock.questions}
+                  state={checkState}
+                  onChange={setCheckState}
+                />
+              )}
+            {currentPhase.phase === "reflect" && (
+              <ReflectPhase
+                blocks={currentPhase.blocks}
+                unlocked={unlocked}
+                nextLesson={nextLesson}
+                nextCheckpoint={nextCheckpoint}
+                nextReadinessReflection={nextReadinessReflection}
+              />
+            )}
+
+            <div className="border-border mt-10 flex items-center justify-between border-t pt-5">
+              <button
+                type="button"
+                onClick={() => moveTo(step - 1)}
+                disabled={step === 0}
+                className="text-indigo-dark min-h-11 text-sm font-semibold disabled:opacity-0"
+              >
+                ← Tounen
+              </button>
+              {!isLastStep && (
+                <button
+                  type="button"
+                  onClick={() => moveTo(step + 1)}
+                  disabled={continueDisabled}
+                  className={cn(
+                    "min-h-12 rounded-full px-7 text-sm font-semibold",
+                    continueDisabled
+                      ? "bg-indigo-light text-muted"
+                      : "bg-indigo text-white shadow-[0_10px_25px_rgba(79,70,229,0.25)]",
+                  )}
+                >
+                  Kontinye →
+                </button>
+              )}
+            </div>
+          </section>
+
+          <aside className="border-border sticky top-5 hidden overflow-hidden rounded-[20px] border bg-white shadow-[0_18px_50px_rgba(29,24,46,0.07)] lg:block">
+            <div className="bg-night px-5 py-5 text-white">
+              <p className="text-coral text-[10px] font-bold tracking-[0.14em] uppercase">
+                Nan leson sa a
+              </p>
+              <p className="mt-2 text-sm leading-snug font-semibold">
+                {lesson.titleHt}
+              </p>
+              <p className="text-night-muted mt-1 text-xs">
+                {lesson.estimatedMinutes} minit
+              </p>
+            </div>
+            <ol className="p-2">
+              {phases.map((item, index) => (
+                <li key={item.phase}>
+                  <button
+                    type="button"
+                    onClick={() => moveTo(index)}
+                    aria-current={index === step ? "step" : undefined}
+                    className={cn(
+                      "flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition",
+                      index === step
+                        ? "bg-indigo-light text-indigo-dark"
+                        : "text-muted hover:bg-paper",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "flex size-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold",
+                        index < step
+                          ? "bg-success text-white"
+                          : index === step
+                            ? "bg-indigo text-white"
+                            : "bg-paper text-muted",
+                      )}
+                    >
+                      {index < step ? "✓" : index + 1}
+                    </span>
+                    <span>
+                      <span className="block text-xs font-bold">
+                        {phaseLabels[item.phase]}
+                      </span>
+                      <span className="block text-[10px] opacity-70">
+                        {index === step
+                          ? "W ap travay la"
+                          : index < step
+                            ? "Konplete"
+                            : "Apre sa"}
+                      </span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+            <div className="border-border border-t px-5 py-4">
+              <p className="text-muted text-[11px] leading-relaxed">
+                Objektif: konprann konsèp la, wè li sou ekran, epi pratike li.
+              </p>
+            </div>
+          </aside>
+        </div>
       </div>
     </main>
   );

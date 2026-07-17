@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
 import { footerGroups, legalLinks } from "@/content/footer";
 import { socialLinks } from "@/content/social";
@@ -19,6 +22,12 @@ const socialIcons = {
 } as const;
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  const isLearningWorkspace =
+    pathname.includes("/academy/courses/") && pathname.includes("/learn/");
+
+  if (isLearningWorkspace) return null;
+
   return (
     <footer className="bg-night text-night-text">
       <Container className="py-10">
