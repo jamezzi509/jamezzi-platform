@@ -559,7 +559,7 @@ function LearnPhase({
             platform={viewPlatform}
             onPlatformChange={onPlatformChange}
           />
-          <OperatingSystemConceptVisual platform={viewPlatform} />
+          <OperatingSystemConceptVisual />
         </>
       ) : (
         <div className="border-border bg-paper relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
@@ -606,41 +606,31 @@ const operatingSystemConcepts = [
     label: "Operating System",
     example: "Windows 11 · macOS",
     explanation: "Fondasyon ki fè aparèy la mache",
-    accent: "bg-[#E8EEFF] text-[#2452A5]",
-    icon: "os",
-    image: "what-is-an-operating-system",
+    image: "operating-system",
   },
   {
     label: "App",
     example: "Word · WhatsApp",
     explanation: "Zouti ou louvri pou fè yon travay",
-    accent: "bg-[#E8F7F1] text-[#147A61]",
-    icon: "app",
-    image: "installing-and-uninstalling-apps",
+    image: "apps",
   },
   {
     label: "Browser",
     example: "Chrome · Safari",
     explanation: "Pòt ou itilize pou antre sou entènèt",
-    accent: "bg-[#F0EAFE] text-[#6041B5]",
-    icon: "browser",
-    image: "browser-basics",
+    image: "browser",
   },
   {
     label: "Website",
     example: "Google.com · Jamezzi.com",
     explanation: "Yon kote ou vizite anndan Browser la",
-    accent: "bg-[#FFF0E8] text-[#B9522F]",
-    icon: "website",
-    image: "recognizing-fake-websites",
+    image: "website",
   },
   {
     label: "File",
     example: "PDF · Photo · Document",
     explanation: "Yon bagay ki gen non epi ki sovgade",
-    accent: "bg-[#FFF7D9] text-[#8B6414]",
-    icon: "file",
-    image: "what-is-a-file-and-folder",
+    image: "files",
   },
 ] as const;
 
@@ -712,131 +702,7 @@ function OperatingSystemHeroVisual({
   );
 }
 
-function ConceptIcon({
-  type,
-}: {
-  type: (typeof operatingSystemConcepts)[number]["icon"];
-}) {
-  if (type === "os") {
-    return (
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        className="size-7"
-        aria-hidden="true"
-      >
-        <rect
-          x="4"
-          y="5"
-          width="24"
-          height="17"
-          rx="2.5"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path
-          d="M10 27h12M13 22l-1 5m7-5 1 5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path d="M8 9h7v9H8zm9 0h7v9h-7z" fill="currentColor" opacity=".22" />
-      </svg>
-    );
-  }
-  if (type === "app") {
-    return (
-      <svg
-        viewBox="0 0 32 32"
-        fill="currentColor"
-        className="size-7"
-        aria-hidden="true"
-      >
-        <rect x="5" y="5" width="9" height="9" rx="2.5" />
-        <rect x="18" y="5" width="9" height="9" rx="2.5" opacity=".35" />
-        <rect x="5" y="18" width="9" height="9" rx="2.5" opacity=".35" />
-        <rect x="18" y="18" width="9" height="9" rx="2.5" opacity=".35" />
-      </svg>
-    );
-  }
-  if (type === "browser") {
-    return (
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        className="size-7"
-        aria-hidden="true"
-      >
-        <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="2" />
-        <path
-          d="M5 16h22M16 5c3 3.2 4.5 6.9 4.5 11S19 23.8 16 27c-3-3.2-4.5-6.9-4.5-11S13 8.2 16 5Z"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
-    );
-  }
-  if (type === "website") {
-    return (
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        className="size-7"
-        aria-hidden="true"
-      >
-        <rect
-          x="3.5"
-          y="5"
-          width="25"
-          height="22"
-          rx="3"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path
-          d="M4 11h24M8 16h10M8 20h15"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          opacity=".75"
-        />
-        <circle cx="8" cy="8" r="1" fill="currentColor" />
-        <circle cx="12" cy="8" r="1" fill="currentColor" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 32 32" fill="none" className="size-7" aria-hidden="true">
-      <path
-        d="M8 3.5h11l6 6V28H8V3.5Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M19 4v6h6M12 16h9M12 21h7"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function OperatingSystemConceptVisual({
-  platform,
-}: {
-  platform: PreferredPlatform;
-}) {
-  const [selectedConcept, setSelectedConcept] = useState(0);
-  const activeConcept = operatingSystemConcepts[selectedConcept];
-  const activeImage =
-    activeConcept.icon === "os"
-      ? platform === "windows"
-        ? "finder-and-file-explorer-windows"
-        : "finder-and-file-explorer-mac"
-      : activeConcept.image;
-
+function OperatingSystemConceptVisual() {
   return (
     <figure className="border-border mb-6 overflow-hidden rounded-[18px] border bg-[#FBFAF7] p-4 shadow-[0_16px_45px_rgba(29,24,46,0.10)] sm:p-6">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -847,39 +713,21 @@ function OperatingSystemConceptVisual({
           </h2>
         </div>
         <p className="text-muted max-w-xs text-sm leading-relaxed">
-          Klike sou chak kat pou wè yon egzanp reyèl sou ekran an.
+          Yon imaj klè, yon non, ak yon sèl travay pou chak bagay.
         </p>
       </div>
       <div className="grid gap-2.5 lg:grid-cols-5">
         {operatingSystemConcepts.map((concept, index) => (
           <div key={concept.label} className="relative flex lg:block">
-            <button
-              type="button"
-              onClick={() => setSelectedConcept(index)}
-              aria-pressed={selectedConcept === index}
-              className={cn(
-                "border-border flex min-h-32 w-full flex-col overflow-hidden rounded-2xl border bg-white text-left transition",
-                selectedConcept === index
-                  ? "ring-indigo shadow-[0_12px_30px_rgba(79,70,229,0.14)] ring-2"
-                  : "hover:-translate-y-0.5 hover:shadow-md",
-              )}
-            >
+            <div className="border-border flex min-h-32 w-full flex-col overflow-hidden rounded-2xl border bg-white text-left">
               <span className="bg-paper relative block aspect-[16/9] w-full overflow-hidden">
                 <Image
-                  src={`${lessonImageBase}/${concept.icon === "os" ? (platform === "windows" ? "finder-and-file-explorer-windows" : "finder-and-file-explorer-mac") : concept.image}.webp`}
+                  src={`/images/academy/courses/computer-internet-essentials/concepts/${concept.image}.webp`}
                   alt={`Egzanp ${concept.label}`}
                   fill
                   sizes="(max-width: 1024px) 50vw, 180px"
                   className="object-cover"
                 />
-                <span
-                  className={cn(
-                    "absolute bottom-2 left-2 inline-flex size-10 items-center justify-center rounded-xl shadow-sm",
-                    concept.accent,
-                  )}
-                >
-                  <ConceptIcon type={concept.icon} />
-                </span>
               </span>
               <span className="flex flex-1 flex-col p-3.5">
                 <span className="text-ink text-base font-bold">
@@ -892,7 +740,7 @@ function OperatingSystemConceptVisual({
                   {concept.explanation}
                 </span>
               </span>
-            </button>
+            </div>
             {index < operatingSystemConcepts.length - 1 && (
               <span
                 className="text-coral absolute top-1/2 -right-2.5 z-10 hidden -translate-y-1/2 rounded-full bg-[#FBFAF7] px-1 text-lg lg:block"
@@ -903,41 +751,6 @@ function OperatingSystemConceptVisual({
             )}
           </div>
         ))}
-      </div>
-      <div className="border-border mt-5 grid overflow-hidden rounded-2xl border bg-white md:grid-cols-[1.25fr_.75fr]">
-        <div className="bg-paper relative min-h-[240px] sm:min-h-[310px]">
-          <Image
-            key={activeImage}
-            src={`${lessonImageBase}/${activeImage}.webp`}
-            alt={`${activeConcept.label}: ${activeConcept.example}`}
-            fill
-            sizes="(max-width: 768px) 100vw, 650px"
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col justify-center p-5 sm:p-7">
-          <span
-            className={cn(
-              "inline-flex size-12 items-center justify-center rounded-xl",
-              activeConcept.accent,
-            )}
-          >
-            <ConceptIcon type={activeConcept.icon} />
-          </span>
-          <p className="text-indigo-dark mt-5 text-xs font-bold tracking-[0.12em] uppercase">
-            Men sa li ye
-          </p>
-          <h3 className="font-display text-ink mt-2 text-3xl">
-            {activeConcept.label}
-          </h3>
-          <p className="text-indigo-dark mt-2 text-sm font-bold">
-            {activeConcept.example}
-          </p>
-          <p className="text-muted mt-3 text-base leading-relaxed">
-            {activeConcept.explanation}. Gade imaj la epi aprann rekonèt li
-            anvan ou kontinye.
-          </p>
-        </div>
       </div>
       <figcaption className="bg-indigo-light text-ink mt-4 rounded-xl px-4 py-3 text-sm leading-relaxed">
         <strong>Egzanp:</strong> Windows fè òdinatè a mache → ou louvri Chrome →
