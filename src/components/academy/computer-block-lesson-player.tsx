@@ -29,6 +29,10 @@ import {
 } from "@/lib/use-computer-platform";
 import { cn } from "@/lib/cn";
 import { saveCompletedLesson } from "@/lib/course-progress";
+import {
+  canSaveCompletedLesson,
+  isCoursePhaseComplete,
+} from "@/lib/course-phase-progress";
 
 const phaseOrder = [
   "learn",
@@ -236,7 +240,7 @@ function renderText(text: string) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-lesson-mono text-indigo-dark/75 mb-3 text-xs font-bold tracking-[0.12em] uppercase">
+    <div className="font-lesson-mono text-indigo-dark/80 mb-4 text-sm font-bold tracking-[0.1em] uppercase">
       {children}
     </div>
   );
@@ -327,6 +331,7 @@ export function ComputerBlockLessonPlayer({
       ? checkBlock.questions.map(() => ({ checked: false, correct: false }))
       : [],
   );
+  const [reflectionChosen, setReflectionChosen] = useState<number | null>(null);
 
   function toggleStep(index: number) {
     setStepsDone((prev) => {
@@ -344,20 +349,31 @@ export function ComputerBlockLessonPlayer({
   const missionDone = stepsDone.length > 0 && stepsDone.every(Boolean);
   const missionPassed = !requiresMission || missionDone;
   const unlocked = checkPassed && missionPassed;
+  const requiresReflection = phases.some((phase) => phase.phase === "reflect");
+  const evidence = {
+    missionDone: missionPassed,
+    checkPassed,
+    reflectionChosen: reflectionChosen !== null,
+  };
+  const completionReady = canSaveCompletedLesson(evidence, requiresReflection);
 
   useEffect(() => {
-    if (!unlocked) return;
+    if (!completionReady) return;
     const saved =
       saveCompletedLesson(computerProgressStorageKey, lesson.slug) !==
       "blocked";
     const timer = window.setTimeout(() => setProgressSaved(saved), 0);
     return () => window.clearTimeout(timer);
-  }, [unlocked, lesson.slug]);
+  }, [completionReady, lesson.slug]);
 
   function moveTo(next: number) {
     setStep(Math.max(0, Math.min(next, phases.length - 1)));
     window.scrollTo({ top: 0, behavior: "smooth" });
     window.setTimeout(() => stepStatusRef.current?.focus(), 0);
+  }
+
+  function phaseIsComplete(phase: Phase): boolean {
+    return isCoursePhaseComplete(phase, evidence);
   }
 
   const currentPhase = phases[step];
@@ -379,7 +395,7 @@ export function ComputerBlockLessonPlayer({
               <span className="block text-base font-bold tracking-wide">
                 Jamezzi Academy
               </span>
-              <span className="text-night-muted block text-xs">
+              <span className="text-night-muted block text-sm">
                 Computer & Internet Essentials
               </span>
             </span>
@@ -510,6 +526,8 @@ export function ComputerBlockLessonPlayer({
                 nextLesson={nextLesson}
                 nextCheckpoint={nextCheckpoint}
                 nextReadinessReflection={nextReadinessReflection}
+                chosen={reflectionChosen}
+                onChoose={setReflectionChosen}
               />
             )}
 
@@ -545,10 +563,10 @@ export function ComputerBlockLessonPlayer({
               <p className="text-coral text-xs font-bold tracking-[0.14em] uppercase">
                 Nan leson sa a
               </p>
-              <p className="mt-2 text-sm leading-snug font-semibold">
+              <p className="mt-2 text-base leading-snug font-semibold">
                 {lesson.titleHt}
               </p>
-              <p className="text-night-muted mt-1 text-xs">
+              <p className="text-night-muted mt-1 text-sm">
                 {lesson.estimatedMinutes} minit
               </p>
             </div>
@@ -569,25 +587,27 @@ export function ComputerBlockLessonPlayer({
                     <span
                       className={cn(
                         "flex size-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold",
-                        index < step
+                        phaseIsComplete(item.phase)
                           ? "bg-success text-white"
                           : index === step
                             ? "bg-indigo text-white"
                             : "bg-paper text-muted",
                       )}
                     >
-                      {index < step ? "✓" : index + 1}
+                      {phaseIsComplete(item.phase) ? "✓" : index + 1}
                     </span>
                     <span>
-                      <span className="block text-xs font-bold">
+                      <span className="block text-sm font-bold">
                         {phaseLabels[item.phase]}
                       </span>
-                      <span className="block text-xs opacity-70">
+                      <span className="mt-0.5 block text-sm opacity-70">
                         {index === step
                           ? "W ap travay la"
-                          : index < step
+                          : phaseIsComplete(item.phase)
                             ? "Konplete"
-                            : "Apre sa"}
+                            : index < step
+                              ? "Revize ankò"
+                              : "Apre sa"}
                       </span>
                     </span>
                   </button>
@@ -595,7 +615,7 @@ export function ComputerBlockLessonPlayer({
               ))}
             </ol>
             <div className="border-border border-t px-5 py-4">
-              <p className="text-muted text-xs leading-relaxed">
+              <p className="text-muted text-sm leading-relaxed">
                 Objektif: konprann konsèp la, wè li sou ekran, epi pratike li.
               </p>
             </div>
@@ -642,20 +662,20 @@ function LearnPhase({
           <OperatingSystemConceptVisual />
         </>
       ) : (
-        <figure className="border-border bg-paper mb-6 overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
-          <div className="relative aspect-[16/9] w-full overflow-hidden">
+        <figure className="border-border bg-paper mb-7 overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
+          <div className="relative h-[220px] w-full overflow-hidden sm:h-[280px] lg:h-[320px]">
             <Image
               src={lessonVisual(lesson)}
               alt={`Vizyal leson: ${lesson.titleHt}`}
               fill
               priority
               sizes="(max-width: 860px) 100vw, 820px"
-              className="object-cover"
+              className="object-contain p-3 sm:p-5"
             />
           </div>
-          <figcaption className="text-muted bg-white px-5 py-3 text-sm leading-relaxed">
-            Gade vizyal la anvan ou kontinye. Idantifye sa ou deja rekonèt ladan
-            l.
+          <figcaption className="text-ink border-border border-t bg-white px-5 py-3.5 text-base leading-relaxed">
+            <strong>Gade byen:</strong> idantifye pati ou deja rekonèt yo, epi
+            konekte yo ak eksplikasyon ki anba a.
           </figcaption>
         </figure>
       )}
@@ -1025,7 +1045,7 @@ function PlatformPhase({
         </p>
       )}
       {block.steps.recoveryNote && (
-        <p className="text-muted mt-3 text-[13px] italic">
+        <p className="text-muted mt-3 text-base leading-relaxed italic">
           Si ekran ou sanble diferan: {block.steps.recoveryNote}
         </p>
       )}
@@ -1033,7 +1053,7 @@ function PlatformPhase({
         <button
           type="button"
           onClick={onSwap}
-          className="text-indigo-dark mt-4 text-[13.5px] font-semibold"
+          className="text-indigo-dark mt-4 text-base font-semibold"
         >
           Gade etap {other === "windows" ? "Windows" : "Mac"} yo pito →
         </button>
@@ -1047,10 +1067,10 @@ function PlatformPhase({
                 key={device.label}
                 className="border-border rounded-xl border bg-[#FCFCFE] px-4 py-3.5"
               >
-                <p className="text-indigo-dark mb-1 text-[13px] font-bold">
+                <p className="text-indigo-dark mb-2 text-base font-bold">
                   📱 {device.label}
                 </p>
-                <ul className="text-muted list-inside list-disc text-[13.5px] leading-[1.6]">
+                <ul className="text-muted list-inside list-disc text-base leading-[1.7]">
                   {device.items.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -1073,7 +1093,7 @@ function PracticePhase({ blocks }: { blocks: LessonBlock[] }) {
       {practice?.type === "practice" && (
         <div>
           <SectionLabel>Pratike San Danje</SectionLabel>
-          <p className="text-muted text-[14.5px] leading-[1.6]">
+          <p className="text-muted text-lg leading-[1.7]">
             {renderText(practice.instructions)}
           </p>
         </div>
@@ -1083,27 +1103,27 @@ function PracticePhase({ blocks }: { blocks: LessonBlock[] }) {
           <SectionLabel>⚠️ Erè Komen</SectionLabel>
           <div className="mb-2 flex flex-wrap gap-2.5">
             <div className="bg-error/10 flex-1 rounded-[10px] px-3.5 py-2.5">
-              <span className="text-error text-sm font-bold">
+              <span className="text-error text-base leading-relaxed font-bold">
                 ❌ {mistake.mistake.wrong}
               </span>
             </div>
             <div className="bg-success/10 flex-1 rounded-[10px] px-3.5 py-2.5">
-              <span className="text-success text-sm font-bold">
+              <span className="text-success text-base leading-relaxed font-bold">
                 ✅ {mistake.mistake.right}
               </span>
             </div>
           </div>
-          <p className="text-muted text-[13.5px]">
+          <p className="text-muted text-base leading-relaxed">
             {renderText(mistake.mistake.why)}
           </p>
         </div>
       )}
       {safety?.type === "safety" && (
         <div className="border-border rounded-xl border bg-[#FBEAE0] px-4.5 py-4">
-          <p className="text-ink mb-2 text-[13px] font-bold">
+          <p className="text-ink mb-2 text-base font-bold">
             Anvan ou kontinye
           </p>
-          <ul className="text-ink list-inside list-disc text-[13.5px] leading-[1.6]">
+          <ul className="text-ink list-inside list-disc text-base leading-[1.7]">
             {safety.reminders.map((reminder) => (
               <li key={reminder}>{reminder}</li>
             ))}
@@ -1138,12 +1158,12 @@ function MissionPhase({
       {aiHelp?.type === "ai_help" && (
         <div>
           <SectionLabel>🤖 Mande AI</SectionLabel>
-          <div className="bg-night text-night-text font-lesson-mono relative rounded-xl px-4.5 py-4 text-[13px] leading-relaxed">
+          <div className="bg-night text-night-text font-lesson-mono relative rounded-xl px-5 py-5 pr-28 text-base leading-relaxed">
             {aiHelp.aiHelp.prompt}
             <button
               type="button"
               onClick={() => copyPrompt(aiHelp.aiHelp.prompt)}
-              className="bg-indigo absolute top-3 right-3 inline-flex min-h-8 items-center gap-1.5 rounded-full px-3 py-1.5 font-sans text-[11.5px] font-semibold text-white"
+              className="bg-indigo absolute top-3 right-3 inline-flex min-h-10 items-center gap-1.5 rounded-full px-4 py-2 font-sans text-sm font-semibold text-white"
             >
               {copied ? (
                 <CheckIcon className="size-3.5" />
@@ -1153,7 +1173,7 @@ function MissionPhase({
               {copied ? "Kopye!" : "Kopye"}
             </button>
           </div>
-          <p className="text-muted mt-2.5 text-[12.5px] italic">
+          <p className="text-muted mt-3 text-sm leading-relaxed italic">
             {aiHelp.aiHelp.reminder}
           </p>
         </div>
@@ -1162,10 +1182,10 @@ function MissionPhase({
         <div>
           <SectionLabel>🎯 Misyon Nan Lavi Reyèl</SectionLabel>
           <div className="rounded-[10px] border-l-4 border-[#E07A3F] bg-[#FBEAE0] px-4.5 py-4">
-            <p className="text-ink mb-2 text-[14.5px] font-semibold">
+            <p className="text-ink mb-2 text-lg leading-relaxed font-semibold">
               {mission.mission.scenario}
             </p>
-            <p className="text-ink mb-3 text-[13.5px]">
+            <p className="text-ink mb-4 text-base leading-relaxed">
               {mission.mission.objective}
             </p>
             <div className="mb-3">
@@ -1194,7 +1214,7 @@ function MissionPhase({
                       />
                       <span
                         className={cn(
-                          "text-ink text-[13.5px] leading-[1.5]",
+                          "text-ink text-base leading-[1.6]",
                           done && "text-muted line-through",
                         )}
                       >
@@ -1209,19 +1229,19 @@ function MissionPhase({
               <p className="text-indigo-dark mb-1.5 text-[11.5px] font-bold tracking-wide uppercase">
                 Ou fini lè
               </p>
-              <ul className="text-ink list-inside list-disc text-[13px] leading-[1.6]">
+              <ul className="text-ink list-inside list-disc text-base leading-[1.7]">
                 {mission.mission.successCriteria.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
             {mission.mission.hint && (
-              <p className="text-muted mb-3 text-[12.5px] italic">
+              <p className="text-muted mb-3 text-sm leading-relaxed italic">
                 Konsèy: {mission.mission.hint}
               </p>
             )}
             {mission.mission.stretchChallenge && (
-              <p className="text-muted mb-3 text-[12.5px]">
+              <p className="text-muted mb-3 text-sm leading-relaxed">
                 <span className="font-semibold">Vle plis?</span>{" "}
                 {mission.mission.stretchChallenge}
               </p>
@@ -1345,7 +1365,7 @@ export function QuestionCard({
 
   return (
     <div>
-      <p className="mb-3 text-[14.5px] font-semibold">{question.prompt}</p>
+      <p className="mb-4 text-lg leading-relaxed font-semibold">{question.prompt}</p>
 
       {(question.kind === "multiple_choice" ||
         question.kind === "scenario_decision") && (
@@ -1361,7 +1381,7 @@ export function QuestionCard({
                 onClick={() => onAnswerChange({ selectedIndex: index })}
                 aria-pressed={isSelected}
                 className={cn(
-                  "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
+                  "min-h-14 rounded-xl px-5 py-4 text-left text-base leading-relaxed transition",
                   isSelected
                     ? "border-indigo border-2 font-semibold"
                     : "border-border border bg-[#FCFCFE] font-medium",
@@ -1394,7 +1414,7 @@ export function QuestionCard({
                 }
                 aria-pressed={isSelected}
                 className={cn(
-                  "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
+                  "min-h-14 rounded-xl px-5 py-4 text-left text-base leading-relaxed transition",
                   isSelected
                     ? "border-indigo border-2 font-semibold"
                     : "border-border border bg-[#FCFCFE] font-medium",
@@ -1441,7 +1461,7 @@ export function QuestionCard({
         <p
           role={answer.correct ? "status" : "alert"}
           className={cn(
-            "mt-2.5 text-[13.5px]",
+            "mt-3 text-base leading-relaxed",
             answer.correct ? "text-success" : "text-error",
           )}
         >
@@ -1570,64 +1590,77 @@ function ReflectPhase({
   nextLesson,
   nextCheckpoint,
   nextReadinessReflection,
+  chosen,
+  onChoose,
 }: {
   blocks: LessonBlock[];
   unlocked: boolean;
   nextLesson: CourseLesson | null;
   nextCheckpoint?: Checkpoint;
   nextReadinessReflection?: ReadinessReflection;
+  chosen: number | null;
+  onChoose: (index: number) => void;
 }) {
   const reflection = blocks.find((b) => b.type === "reflection");
-  const [chosen, setChosen] = useState<number | null>(null);
 
   return (
-    <div className="grid gap-7">
+    <div className="grid gap-8">
       {reflection?.type === "reflection" && (
-        <div>
-          <SectionLabel>Kijan ou santi w?</SectionLabel>
-          <div className="grid gap-2">
+        <section>
+          <p className="text-eyebrow text-indigo-dark mb-3">DÈNYE ETAP</p>
+          <h1 className="font-display text-ink text-4xl leading-tight sm:text-5xl">
+            Kisa ou ka fè poukont ou kounye a?
+          </h1>
+          <p className="text-muted mt-3 max-w-3xl text-lg leading-relaxed">
+            Chwazi repons ki pi onèt la. Sa ap ede w konnen si ou pare pou
+            kontinye oswa si yon ti pratik ankò ap itil.
+          </p>
+          <div className="mt-7 grid gap-3 sm:grid-cols-3">
             {reflection.prompts.map((prompt, index) => (
               <button
                 key={prompt.statement}
                 type="button"
-                onClick={() => setChosen(index)}
+                onClick={() => onChoose(index)}
                 aria-pressed={chosen === index}
                 className={cn(
-                  "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14px]",
+                  "min-h-28 rounded-2xl px-5 py-5 text-left text-base leading-relaxed transition",
                   chosen === index
-                    ? "border-indigo border-2 font-semibold"
-                    : "border-border border bg-[#FCFCFE]",
+                    ? "border-indigo bg-indigo-light border-2 font-semibold shadow-[0_10px_30px_rgba(79,70,229,0.12)]"
+                    : "border-border border bg-[#FCFCFE] hover:border-indigo/40 hover:bg-paper",
                 )}
               >
+                <span className="text-indigo-dark mb-3 block text-sm font-bold">
+                  {index === 0 ? "Mwen pare" : index === 1 ? "Prèske pare" : "Mwen bezwen pratike"}
+                </span>
                 {prompt.statement}
               </button>
             ))}
           </div>
-          <p className="text-muted mt-2 text-[12px]">
+          <p className="text-muted mt-3 text-sm">
             Sa a pa yon nòt — li sèlman ede w remake sa ou ta dwe pratike ankò.
           </p>
-        </div>
+        </section>
       )}
 
-      <div>
-        <SectionLabel>🏆 Pwogrè</SectionLabel>
+      <section>
+        <SectionLabel>🏆 Rezilta leson an</SectionLabel>
         <div
           className={cn(
-            "rounded-[18px] px-5.5 py-7.5 text-center",
-            unlocked
+            "rounded-[18px] px-6 py-7 text-center sm:px-8",
+            unlocked && chosen !== null
               ? "bg-indigo text-white"
-              : "bg-indigo-light text-indigo-dark/70",
+              : "border-border border bg-paper text-ink",
           )}
         >
           <div
             className={cn(
               "mx-auto mb-3.5 grid size-[70px] -rotate-6 place-items-center rounded-full border-[3px]",
-              unlocked
+              unlocked && chosen !== null
                 ? "border-white bg-white/15"
-                : "border-indigo-light bg-transparent",
+                : "border-indigo/20 bg-white",
             )}
           >
-            {unlocked ? (
+            {unlocked && chosen !== null ? (
               <SparklesIcon className="size-7" />
             ) : (
               <StampIcon className="size-6.5" />
@@ -1639,11 +1672,13 @@ function ReflectPhase({
               unlocked && "font-fraunces italic",
             )}
           >
-            {unlocked
+            {unlocked && chosen !== null
               ? "Leson Konplete! 🎉"
-              : "Fini quiz la ak misyon an pou dekloke stanp lan"}
+              : !unlocked
+                ? "Fini misyon an ak quiz la anvan ou fini leson an"
+                : "Chwazi refleksyon ou anlè a pou fini leson an"}
           </h3>
-          {unlocked && (
+          {unlocked && chosen !== null && (
             <div className="mt-5 flex flex-col items-center gap-3">
               {nextCheckpoint && (
                 <Link
@@ -1687,7 +1722,7 @@ function ReflectPhase({
             </div>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

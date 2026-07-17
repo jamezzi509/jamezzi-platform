@@ -442,6 +442,7 @@ export default async function AcademyPage({
     if (lesson) {
       return (
         <ComputerBlockLessonPlayer
+          key={lesson.id}
           lesson={lesson}
           allLessons={computerRebuildLessons}
         />
