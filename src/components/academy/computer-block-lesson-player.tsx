@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
@@ -38,6 +39,62 @@ const phaseOrder = [
   "reflect",
 ] as const;
 type Phase = (typeof phaseOrder)[number];
+
+const lessonImageBase =
+  "/images/academy/courses/computer-internet-essentials/lessons";
+
+const moduleVisuals: Record<string, string> = {
+  m1: "welcome-to-computers",
+  m2: "what-is-a-computer",
+  m3: "mouse-and-trackpad",
+  m4: "what-is-a-file-and-folder",
+  m5: "working-with-pdf",
+  m6: "what-is-the-internet",
+  m7: "browser-basics",
+  m8: "what-is-email",
+  m9: "what-is-the-cloud",
+  m10: "external-devices",
+  m11: "creating-strong-passwords",
+  m12: "desktop-vs-laptop",
+  m13: "restart-vs-shutdown",
+  m14: "using-your-computer-mission",
+};
+
+const visualKeywordRules = [
+  ["operating system", "what-is-an-operating-system"],
+  ["hardware", "hardware-vs-software"],
+  ["software", "hardware-vs-software"],
+  ["keyboard", "keyboard-basics"],
+  ["mouse", "mouse-and-trackpad"],
+  ["trackpad", "mouse-and-trackpad"],
+  ["screenshot", "screenshots-and-screen-recording"],
+  ["wi-fi", "wifi-and-connecting"],
+  ["wifi", "wifi-and-connecting"],
+  ["browser", "browser-basics"],
+  ["search engine", "search-engines-and-the-address-bar"],
+  ["email", "what-is-email"],
+  ["password", "creating-strong-passwords"],
+  ["cloud", "what-is-the-cloud"],
+  ["bluetooth", "bluetooth-basics"],
+  ["usb", "usb-and-hdmi"],
+  ["hdmi", "usb-and-hdmi"],
+  ["pdf", "working-with-pdf"],
+  ["folder", "what-is-a-file-and-folder"],
+  ["file", "what-is-a-file-and-folder"],
+  ["virus", "what-is-a-virus"],
+  ["scam", "spotting-online-scams"],
+  ["artificial intelligence", "what-is-ai"],
+  [" ai ", "what-is-ai"],
+] as const;
+
+function lessonVisual(lesson: CourseLesson) {
+  const searchable = ` ${lesson.titleEn.toLowerCase()} ${lesson.slug.toLowerCase()} `;
+  const matched = visualKeywordRules.find(([keyword]) =>
+    searchable.includes(keyword),
+  );
+  const filename = matched?.[1] ?? moduleVisuals[lesson.moduleId];
+  return `${lessonImageBase}/${filename}.webp`;
+}
 
 const phaseLabels: Record<Phase, string> = {
   learn: "Aprann",
@@ -232,7 +289,7 @@ export function ComputerBlockLessonPlayer({
 
   return (
     <main className="bg-white pt-[72px]">
-      <div className="mx-auto max-w-[620px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
+      <div className="mx-auto max-w-[820px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
         <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
           <p
             className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
@@ -327,7 +384,7 @@ export function ComputerBlockLessonPlayer({
         </div>
 
         {currentPhase.phase === "learn" && (
-          <LearnPhase blocks={currentPhase.blocks} />
+          <LearnPhase lesson={lesson} blocks={currentPhase.blocks} />
         )}
         {currentPhase.phase === "words" && (
           <WordsPhase blocks={currentPhase.blocks} />
@@ -410,19 +467,53 @@ export function ComputerBlockLessonPlayer({
   );
 }
 
-function LearnPhase({ blocks }: { blocks: LessonBlock[] }) {
+function LearnPhase({
+  lesson,
+  blocks,
+}: {
+  lesson: CourseLesson;
+  blocks: LessonBlock[];
+}) {
   const goal = blocks.find((b) => b.type === "goal");
   const explanation = blocks.find((b) => b.type === "explanation");
   const diagram = blocks.find((b) => b.type === "diagram");
+  const isConceptBenchmark =
+    lesson.slug === "sistem-operasyon-aplikasyon-navigate-sit-ak-fichye";
   return (
     <div>
-      {diagram?.type === "diagram" && (
-        <div className="border-border bg-paper mb-6 flex aspect-[16/9] w-full items-center justify-center rounded-[18px] border">
-          <p className="text-muted px-8 text-center text-[13px]">
-            [Diagram: {diagram.diagram.diagramId}]
-            {diagram.diagram.caption ? ` — ${diagram.diagram.caption}` : ""}
-          </p>
+      <div className="mb-6">
+        <p className="text-eyebrow text-indigo-dark mb-3">
+          LESON {lesson.order} · {lesson.estimatedMinutes} MINIT
+        </p>
+        <h1 className="font-display text-ink max-w-3xl text-4xl leading-[1.02] text-balance sm:text-5xl">
+          {lesson.titleHt}
+        </h1>
+        <p className="text-muted mt-3 text-sm sm:text-base">{lesson.titleEn}</p>
+      </div>
+      {isConceptBenchmark ? (
+        <OperatingSystemConceptVisual />
+      ) : (
+        <div className="border-border bg-paper relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
+          <Image
+            src={lessonVisual(lesson)}
+            alt={`Vizyal leson: ${lesson.titleHt}`}
+            fill
+            priority
+            sizes="(max-width: 860px) 100vw, 820px"
+            className="object-cover"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-5 pt-14 pb-4 text-white">
+            <p className="text-xs font-semibold tracking-wide uppercase">
+              Gade · Konprann · Pratike
+            </p>
+          </div>
         </div>
+      )}
+      {!isConceptBenchmark && diagram?.type === "diagram" && (
+        <InstructionalDiagram
+          id={diagram.diagram.diagramId}
+          caption={diagram.diagram.caption}
+        />
       )}
       {goal?.type === "goal" && (
         <div className="bg-indigo-light text-ink mb-6 rounded-[10px] px-3.5 py-3 text-sm">
@@ -438,6 +529,206 @@ function LearnPhase({ blocks }: { blocks: LessonBlock[] }) {
         </div>
       )}
     </div>
+  );
+}
+
+const operatingSystemConcepts = [
+  {
+    label: "Operating System",
+    example: "Windows 11 · macOS",
+    explanation: "Fondasyon ki fè aparèy la mache",
+    accent: "bg-[#E8EEFF] text-[#2452A5]",
+    symbol: "OS",
+  },
+  {
+    label: "App",
+    example: "Word · WhatsApp",
+    explanation: "Zouti ou louvri pou fè yon travay",
+    accent: "bg-[#E8F7F1] text-[#147A61]",
+    symbol: "APP",
+  },
+  {
+    label: "Browser",
+    example: "Chrome · Safari",
+    explanation: "Pòt ou itilize pou antre sou entènèt",
+    accent: "bg-[#F0EAFE] text-[#6041B5]",
+    symbol: "WEB",
+  },
+  {
+    label: "Website",
+    example: "Google.com · Jamezzi.com",
+    explanation: "Yon kote ou vizite anndan Browser la",
+    accent: "bg-[#FFF0E8] text-[#B9522F]",
+    symbol: ".COM",
+  },
+  {
+    label: "File",
+    example: "PDF · Photo · Document",
+    explanation: "Yon bagay ki gen non epi ki sovgade",
+    accent: "bg-[#FFF7D9] text-[#8B6414]",
+    symbol: "FILE",
+  },
+] as const;
+
+function OperatingSystemConceptVisual() {
+  return (
+    <figure className="border-border mb-6 overflow-hidden rounded-[18px] border bg-[#FBFAF7] p-4 shadow-[0_16px_45px_rgba(29,24,46,0.10)] sm:p-6">
+      <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-eyebrow text-indigo-dark">MODÈL MANTAL LA</p>
+          <h2 className="font-display text-ink mt-2 text-2xl leading-tight sm:text-3xl">
+            Senk bagay. Senk travay diferan.
+          </h2>
+        </div>
+        <p className="text-muted max-w-xs text-xs leading-relaxed">
+          Swiv yo agoch pou adwat jan ou itilize yo sou yon òdinatè.
+        </p>
+      </div>
+      <div className="grid gap-2.5 lg:grid-cols-5">
+        {operatingSystemConcepts.map((concept, index) => (
+          <div key={concept.label} className="relative flex lg:block">
+            <div className="border-border flex min-h-32 w-full flex-col rounded-2xl border bg-white p-3.5">
+              <span
+                className={cn(
+                  "mb-3 inline-flex size-10 items-center justify-center rounded-xl text-[10px] font-black tracking-tight",
+                  concept.accent,
+                )}
+              >
+                {concept.symbol}
+              </span>
+              <p className="text-ink text-sm font-bold">{concept.label}</p>
+              <p className="text-indigo-dark mt-1 text-[11px] font-semibold">
+                {concept.example}
+              </p>
+              <p className="text-muted mt-3 text-xs leading-snug">
+                {concept.explanation}
+              </p>
+            </div>
+            {index < operatingSystemConcepts.length - 1 && (
+              <span
+                className="text-coral absolute top-1/2 -right-2.5 z-10 hidden -translate-y-1/2 rounded-full bg-[#FBFAF7] px-1 text-lg lg:block"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+      <figcaption className="bg-indigo-light text-ink mt-4 rounded-xl px-4 py-3 text-sm leading-relaxed">
+        <strong>Egzanp:</strong> Windows fè òdinatè a mache → ou louvri Chrome →
+        ou vizite Jamezzi.com → ou telechaje yon PDF File.
+      </figcaption>
+    </figure>
+  );
+}
+
+const diagramContent: Record<
+  string,
+  { eyebrow: string; title: string; nodes: string[] }
+> = {
+  "input-processing-output-storage": {
+    eyebrow: "KIJAN ÒDINATÈ A PANSE",
+    title: "Done antre, òdinatè a travay sou yo, epi li bay yon rezilta.",
+    nodes: [
+      "Antre\nKlavye · Sourit",
+      "Pwosesis\nCPU",
+      "Sòti\nEkran · Son",
+      "Depo\nFichye",
+    ],
+  },
+  "isp-modem-router-device-chain": {
+    eyebrow: "CHEMEN ENTÈNÈT LA",
+    title: "Koneksyon an pase atravè plizyè etap anvan li rive sou aparèy ou.",
+    nodes: ["Founisè\nEntènèt", "Modèm", "Routeur\nWi-Fi", "Aparèy ou"],
+  },
+  "folder-hierarchy-example": {
+    eyebrow: "ÒGANIZE FICHYE YO",
+    title: "Yon gwo dosye ka genyen ti dosye ki klase fichye yo.",
+    nodes: ["Dokiman", "Travay", "Fakti 2026", "Fakti_Jiyè.pdf"],
+  },
+  "browser-search-engine-website-page-map": {
+    eyebrow: "PA KONFONN YO",
+    title: "Navigatè a louvri motè rechèch la, ki ede w jwenn sit ak paj.",
+    nodes: [
+      "Navigatè\nChrome",
+      "Motè rechèch\nGoogle",
+      "Sit entènèt",
+      "Yon paj",
+    ],
+  },
+  "email-sender-recipient-delivery-chain": {
+    eyebrow: "KIJAN IMÈL VWAYAJE",
+    title:
+      "Mesaj la soti nan bwat ou, pase sou entènèt, epi rive nan bwat moun nan.",
+    nodes: ["Ou menm", "Sèvè imèl ou", "Entènèt", "Moun k ap resevwa"],
+  },
+  "local-vs-cloud-storage-comparison": {
+    eyebrow: "DE KOTE FICHYE KA RETE",
+    title:
+      "Depo lokal rete sou aparèy la; cloud la rete sou yon sèvis entènèt.",
+    nodes: ["Depo lokal\nAparèy ou", "Senkronizasyon", "Cloud\nSou entènèt"],
+  },
+  "computer-ports-usb-hdmi-audio-power": {
+    eyebrow: "PÒ ÒDINATÈ YO",
+    title: "Fòm pò a ede w konnen ki kab oswa aparèy ki mache ladan l.",
+    nodes: [
+      "USB\nDone + kouran",
+      "HDMI\nVideyo + son",
+      "Audio\nKas",
+      "Power\nChajè",
+    ],
+  },
+  "print-chain-computer-driver-printer-paper": {
+    eyebrow: "CHEMEN ENPRIMAN AN",
+    title: "Dokiman an bezwen lojisyèl, koneksyon, enprimant, epi papye.",
+    nodes: ["Dokiman", "Driver", "Enprimant", "Papye"],
+  },
+};
+
+function InstructionalDiagram({
+  id,
+  caption,
+}: {
+  id: string;
+  caption?: string;
+}) {
+  const content = diagramContent[id];
+  if (!content) return null;
+
+  return (
+    <figure className="border-border bg-night mb-6 overflow-hidden rounded-[18px] border px-5 py-6 text-white sm:px-7 sm:py-8">
+      <p className="font-lesson-mono text-coral mb-2 text-[10px] tracking-[0.14em] uppercase">
+        {content.eyebrow}
+      </p>
+      <h2 className="font-display max-w-2xl text-2xl leading-tight sm:text-3xl">
+        {content.title}
+      </h2>
+      <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        {content.nodes.map((node, index) => (
+          <div key={node} className="flex min-w-0 items-center gap-2">
+            <div className="flex min-h-20 flex-1 items-center rounded-xl border border-white/15 bg-white/8 px-4 py-3">
+              <p className="text-sm leading-snug font-semibold whitespace-pre-line">
+                {node}
+              </p>
+            </div>
+            {index < content.nodes.length - 1 && (
+              <span
+                className="text-coral hidden shrink-0 text-lg lg:block"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+      {caption && (
+        <figcaption className="text-night-text mt-4 text-xs leading-relaxed">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   );
 }
 

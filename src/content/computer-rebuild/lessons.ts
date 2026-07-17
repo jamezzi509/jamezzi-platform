@@ -1556,14 +1556,14 @@ export const computerRebuildLessons: CourseLesson[] = [
     slug: "sistem-operasyon-aplikasyon-navigate-sit-ak-fichye",
     moduleId: "m2",
     order: 8,
-    titleHt: "Sistèm Operasyon, Aplikasyon, Navigatè, Sit, ak Fichye",
-    titleEn: "Operating System, Application, Browser, Website, and File",
-    estimatedMinutes: 10,
-    mode: "universal",
+    titleHt: "Operating System, App, Browser, Website, ak File",
+    titleEn: "Senk bagay diferan ou itilize chak fwa ou sou òdinatè",
+    estimatedMinutes: 14,
+    mode: "shared_steps",
     objectives: [
-      "Distenge sistèm operasyon de aplikasyon",
-      "Distenge navigatè de sit entènèt",
-      "Konprann yon sit pa yon aplikasyon enstale",
+      "Distenge Operating System de App",
+      "Distenge Browser de Website",
+      "Rekonèt yon File kòm enfòmasyon ki sovgade",
     ],
     reviewStatus: "approved",
     blocks: [
@@ -1571,19 +1571,83 @@ export const computerRebuildLessons: CourseLesson[] = [
         id: "b1",
         type: "goal",
         outcome:
-          "Apre leson sa a, ou ka distenge sistèm operasyon, aplikasyon, navigatè, sit entènèt, ak fichye san konfizyon.",
+          "Apre leson sa a, ou ka gade Windows, Word, Chrome, Google.com, ak yon PDF epi mete chak nan bon kategori li san konfizyon.",
       },
       {
         id: "b2",
         type: "explanation",
-        text: "Sa se modèl mantal konplè a. **Sistèm operasyon** an (Windows/macOS) se pa Microsoft Office — Office se yon aplikasyon ki mache SOU sistèm operasyon an. **Chrome/Safari** se yon navigatè, li pa Google oswa entènèt la limenm — navigatè a se pòt dantre a. Yon **sit entènèt** pa yon aplikasyon enstale — ou vizite l atravè navigatè a, ou pa telechaje l tankou yon aplikasyon.",
+        text: "Kenbe mo ou wè sou ekran an an English: **Operating System (OS)** se fondasyon aparèy la; **App** se yon zouti ki mache sou fondasyon sa a; **Browser** se app ou itilize pou ale sou entènèt; **Website** se yon kote ou vizite anndan browser la; epi **File** se yon bagay ou kreye, resevwa, oswa sovgade. Windows se yon OS. Microsoft Word se yon App. Chrome se yon Browser. Google.com se yon Website. Yon PDF se yon File.",
+      },
+      {
+        id: "b2-diagram",
+        type: "diagram",
+        diagram: {
+          diagramId: "os-app-browser-website-file-model",
+          caption:
+            "Pa memorize tradiksyon yo. Aprann rekonèt non English yo ak wòl chak bagay jwe sou ekran an.",
+        },
+      },
+      {
+        id: "b2-words",
+        type: "vocabulary",
+        words: [
+          {
+            term: "Operating System (OS)",
+            definition: "Sistèm prensipal ki kontwole aparèy la epi fè lòt pwogram yo mache.",
+            example: "Windows 11 ak macOS se Operating Systems.",
+          },
+          {
+            term: "App (Application)",
+            definition: "Yon zouti ou louvri pou fè yon travay espesifik.",
+            example: "Microsoft Word ak WhatsApp se Apps.",
+          },
+          {
+            term: "Browser",
+            definition: "App ki sèvi kòm pòt pou antre sou entènèt la.",
+            example: "Chrome, Safari, Edge, ak Firefox se Browsers.",
+          },
+          {
+            term: "Website",
+            definition: "Yon kote sou entènèt ou vizite atravè yon Browser.",
+            example: "Jamezzi.com ak Google.com se Websites.",
+          },
+          {
+            term: "File",
+            definition: "Enfòmasyon ki gen yon non epi ki sovgade yon kote.",
+            example: "Yon foto, PDF, Word document, oswa videyo se Files.",
+          },
+        ],
+      },
+      {
+        id: "b2-platform",
+        type: "platform_steps",
+        steps: {
+          windows: [
+            "Operating System: ouvri Settings → System → About; chèche Windows specifications.",
+            "Apps: ouvri Start; aplikasyon ou yo parèt nan lis la.",
+            "Browser ak Website: ouvri Chrome oswa Edge; non Website la parèt nan address bar la.",
+            "Files: ouvri File Explorer; chèche Documents oswa Downloads.",
+          ],
+          mac: [
+            "Operating System: klike Apple menu → About This Mac; chèche macOS.",
+            "Apps: ouvri Applications oswa Launchpad.",
+            "Browser ak Website: ouvri Safari oswa Chrome; non Website la parèt nan address bar la.",
+            "Files: ouvri Finder; chèche Documents oswa Downloads.",
+          ],
+          recoveryNote: "Si non meni yo yon ti jan diferan, chèche mo English ki an bold yo; vèsyon sistèm nan ka chanje pozisyon yon bouton.",
+        },
+      },
+      {
+        id: "b2-practice",
+        type: "practice",
+        instructions: "Sou aparèy ou, jwenn youn nan chak: OS, App, Browser, Website, ak File. Di fraz la awotvwa: ‘Chrome se Browser mwen; Google.com se yon Website mwen louvri ladan l.’",
       },
       {
         id: "b3",
         type: "mistake",
         mistake: {
-          wrong: "Konfonn 'Windows' oswa 'Mac' ak 'Microsoft Office' oswa 'Chrome' ak 'Google/entènèt la'.",
-          right: "Konprann sistèm operasyon an se fondasyon; aplikasyon (Office), navigatè (Chrome), ak sit (Google.com) se twa bagay diferan ki mache sou fondasyon sa a.",
+          wrong: "Di ‘Google se Browser mwen’ oswa ‘Windows se Microsoft Office.’",
+          right: "Di ‘Chrome se Browser mwen; Google.com se yon Website’ epi ‘Windows se OS la; Word se yon App.’",
           why: "Konfizyon sa a se youn nan pi gwo sous konfizyon debaz — konprann li klèman fè tout rès kou a pi fasil.",
         },
       },
