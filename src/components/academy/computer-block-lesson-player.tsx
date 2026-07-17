@@ -15,6 +15,7 @@ import {
 import { computerRebuildCheckpoints } from "@/content/computer-rebuild/checkpoints";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 import { computerRebuildReadinessReflections } from "@/content/computer-rebuild/readiness-reflection";
+import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
 import type {
   Checkpoint,
   CourseLesson,
@@ -61,38 +62,117 @@ const moduleVisuals: Record<string, string> = {
 };
 
 const visualKeywordRules = [
+  ["application", "installing-and-uninstalling-apps"],
+  ["app", "installing-and-uninstalling-apps"],
   ["operating system", "what-is-an-operating-system"],
+  ["cpu", "hardware-vs-software"],
+  ["ram", "managing-storage"],
+  ["storage", "managing-storage"],
+  ["power button", "charging-and-power-button"],
+  ["battery", "charging-and-power-button"],
   ["hardware", "hardware-vs-software"],
   ["software", "hardware-vs-software"],
   ["keyboard", "keyboard-basics"],
   ["mouse", "mouse-and-trackpad"],
   ["trackpad", "mouse-and-trackpad"],
   ["screenshot", "screenshots-and-screen-recording"],
+  ["desktop", "the-desktop"],
+  ["taskbar", "taskbar-dock-and-start-menu"],
+  ["dock", "taskbar-dock-and-start-menu"],
+  ["settings", "settings-and-personalization"],
   ["wi-fi", "wifi-and-connecting"],
   ["wifi", "wifi-and-connecting"],
   ["browser", "browser-basics"],
   ["search engine", "search-engines-and-the-address-bar"],
   ["email", "what-is-email"],
+  ["attachment", "email-attachments"],
+  ["phishing", "recognizing-email-scams"],
   ["password", "creating-strong-passwords"],
+  ["two-factor", "two-factor-authentication"],
+  ["backup", "cloud-backup"],
   ["cloud", "what-is-the-cloud"],
   ["bluetooth", "bluetooth-basics"],
+  ["printer", "external-devices"],
+  ["print", "external-devices"],
+  ["webcam", "webcam-and-microphone"],
+  ["microphone", "webcam-and-microphone"],
   ["usb", "usb-and-hdmi"],
   ["hdmi", "usb-and-hdmi"],
   ["pdf", "working-with-pdf"],
   ["folder", "what-is-a-file-and-folder"],
   ["file", "what-is-a-file-and-folder"],
+  ["zip", "zip-and-compression"],
+  ["download", "downloads-and-uploads"],
+  ["upload", "downloads-and-uploads"],
   ["virus", "what-is-a-virus"],
   ["scam", "spotting-online-scams"],
   ["artificial intelligence", "what-is-ai"],
   [" ai ", "what-is-ai"],
 ] as const;
 
+const visualStopWords = new Set([
+  "a",
+  "an",
+  "and",
+  "the",
+  "to",
+  "of",
+  "your",
+  "you",
+  "with",
+  "for",
+  "is",
+  "on",
+  "in",
+  "how",
+  "basic",
+  "module",
+  "mission",
+]);
+
+function titleTokens(value: string) {
+  return new Set(
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9 ]/g, " ")
+      .split(/\s+/)
+      .filter((token) => token && !visualStopWords.has(token)),
+  );
+}
+
+function titleSimilarity(left: string, right: string) {
+  const leftTokens = titleTokens(left);
+  const rightTokens = titleTokens(right);
+  let shared = 0;
+  for (const token of leftTokens) {
+    if (rightTokens.has(token)) shared += 1;
+  }
+  return shared / Math.max(leftTokens.size, rightTokens.size, 1);
+}
+
+function matchesVisualKeyword(searchable: string, keyword: string) {
+  if (/^[a-z0-9]+$/.test(keyword)) {
+    return titleTokens(searchable).has(keyword);
+  }
+  return searchable.includes(keyword);
+}
+
 function lessonVisual(lesson: CourseLesson) {
   const searchable = ` ${lesson.titleEn.toLowerCase()} ${lesson.slug.toLowerCase()} `;
-  const matched = visualKeywordRules.find(([keyword]) =>
-    searchable.includes(keyword),
-  );
-  const filename = matched?.[1] ?? moduleVisuals[lesson.moduleId];
+  const matched = visualKeywordRules
+    .filter(([keyword]) => matchesVisualKeyword(searchable, keyword))
+    .sort(([left], [right]) => right.length - left.length)[0];
+  const closestLegacyVisual = computerEssentialsLessons
+    .map((candidate) => ({
+      ...candidate,
+      score: titleSimilarity(lesson.titleEn, candidate.title),
+    }))
+    .sort((left, right) => right.score - left.score)[0];
+  const filename =
+    matched?.[1] ??
+    (closestLegacyVisual?.score >= 0.45
+      ? closestLegacyVisual.slug
+      : moduleVisuals[lesson.moduleId]);
   return `${lessonImageBase}/${filename}.webp`;
 }
 
@@ -156,7 +236,7 @@ function renderText(text: string) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-lesson-mono text-indigo-dark/70 mb-2.5 text-[11px] tracking-[0.12em] uppercase">
+    <div className="font-lesson-mono text-indigo-dark/75 mb-3 text-xs font-bold tracking-[0.12em] uppercase">
       {children}
     </div>
   );
@@ -562,21 +642,22 @@ function LearnPhase({
           <OperatingSystemConceptVisual />
         </>
       ) : (
-        <div className="border-border bg-paper relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
-          <Image
-            src={lessonVisual(lesson)}
-            alt={`Vizyal leson: ${lesson.titleHt}`}
-            fill
-            priority
-            sizes="(max-width: 860px) 100vw, 820px"
-            className="object-cover"
-          />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-5 pt-14 pb-4 text-white">
-            <p className="text-xs font-semibold tracking-wide uppercase">
-              Gade · Konprann · Pratike
-            </p>
+        <figure className="border-border bg-paper mb-6 overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <Image
+              src={lessonVisual(lesson)}
+              alt={`Vizyal leson: ${lesson.titleHt}`}
+              fill
+              priority
+              sizes="(max-width: 860px) 100vw, 820px"
+              className="object-cover"
+            />
           </div>
-        </div>
+          <figcaption className="text-muted bg-white px-5 py-3 text-sm leading-relaxed">
+            Gade vizyal la anvan ou kontinye. Idantifye sa ou deja rekonèt ladan
+            l.
+          </figcaption>
+        </figure>
       )}
       {!isConceptBenchmark && diagram?.type === "diagram" && (
         <InstructionalDiagram
@@ -592,7 +673,7 @@ function LearnPhase({
       {explanation?.type === "explanation" && (
         <div>
           <SectionLabel>🧠 Eksplikasyon Senp</SectionLabel>
-          <p className="text-muted text-[14.5px] leading-[1.6]">
+          <p className="text-muted text-base leading-[1.7]">
             {renderText(explanation.text)}
           </p>
         </div>
@@ -884,11 +965,11 @@ function WordsPhase({ blocks }: { blocks: LessonBlock[] }) {
               index % 2 === 0 ? "bg-indigo-light" : "bg-indigo/10",
             )}
           >
-            <div className="mb-1 text-[16.5px] font-bold">{item.term}</div>
-            <div className="text-muted mb-1.5 text-[13.5px]">
+            <div className="mb-1 text-lg font-bold">{item.term}</div>
+            <div className="text-muted mb-1.5 text-base leading-relaxed">
               {item.definition}
             </div>
-            <div className="text-ink text-[13.5px] italic">
+            <div className="text-ink text-[15px] leading-relaxed italic">
               &ldquo;{item.example}&rdquo;
             </div>
           </div>
@@ -933,12 +1014,12 @@ function PlatformPhase({
               <span className="bg-indigo flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white">
                 {index + 1}
               </span>
-              <span className="text-[14px]">{text}</span>
+              <span className="text-base leading-relaxed">{text}</span>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-muted text-[13.5px]">
+        <p className="text-muted text-base leading-relaxed">
           Leson sa a pa bezwen etap espesifik pou{" "}
           {viewPlatform === "windows" ? "Windows" : "Mac"}.
         </p>
