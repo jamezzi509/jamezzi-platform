@@ -1,0 +1,3903 @@
+diff --git a/src/app/academy/[[...slug]]/page.tsx b/src/app/academy/[[...slug]]/page.tsx
+index 4e2f30f..51fbe01 100644
+--- a/src/app/academy/[[...slug]]/page.tsx
++++ b/src/app/academy/[[...slug]]/page.tsx
+@@ -1,6 +1,7 @@
+ import type { Metadata } from "next";
+ import Image from "next/image";
+ import Link from "next/link";
++import { redirect } from "next/navigation";
+ import { ComingSoon } from "@/components/coming-soon";
+ import { BookDetail, BookLibrary } from "@/components/academy/book-library";
+ import { CourseLibrary } from "@/components/academy/course-library";
+@@ -12,14 +13,13 @@ import { ComputerBlockLessonPlayer } from "@/components/academy/computer-block-l
+ import { ComputerCertificatePlayer } from "@/components/academy/computer-certificate-player";
+ import { ComputerCheckpointPlayer } from "@/components/academy/computer-checkpoint-player";
+ import { ComputerCoursePage } from "@/components/academy/computer-course-page";
+-import { ComputerEssentialsLessonDetail } from "@/components/academy/computer-essentials-lesson-detail";
+-import { ComputerEssentialsPage } from "@/components/academy/computer-essentials-page";
+ import { ComputerFinalExamPlayer } from "@/components/academy/computer-final-exam-player";
+ import { ComputerGrowthSummaryPlayer } from "@/components/academy/computer-growth-summary-player";
+ import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
+ import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
+ import { EnglishCoursePage } from "@/components/academy/english-course-page";
+ import { EnglishFinalExam } from "@/components/academy/english-final-exam";
++import { EnglishLevelCheckpoint } from "@/components/academy/english-level-checkpoint";
+ import { EnglishLevelOnePage } from "@/components/academy/english-level-one-page";
+ import { EnglishPlacementQuiz } from "@/components/academy/english-placement-quiz";
+ import { EnglishWelcomeLesson } from "@/components/academy/english-welcome-lesson";
+@@ -32,7 +32,6 @@ import {
+   GraduationCapIcon,
+ } from "@/components/ui/icons";
+ import { academyBooks } from "@/content/books";
+-import { computerEssentialsLessons } from "@/content/computer-essentials-lessons";
+ import { getComputerRebuildCheckpoint } from "@/content/computer-rebuild/checkpoints";
+ import { computerRebuildFinalExam } from "@/content/computer-rebuild/final-exam";
+ import {
+@@ -83,9 +82,9 @@ export async function generateMetadata({
+     slug[2] === "placement"
+   ) {
+     return {
+-      title: "Placement Quiz — English for Beginners",
++      title: "Placement Quiz — Practical English",
+       description:
+-        "Answer 15 quick questions so we know exactly where to start you in English for Beginners.",
++        "Answer 15 quick questions to find the right starting point in Practical English for Haitian Creole Speakers.",
+     };
+   }
+ 
+@@ -95,38 +94,9 @@ export async function generateMetadata({
+     slug[2] === "final-exam"
+   ) {
+     return {
+-      title: "Final Exam — English for Beginners",
++      title: "Final Exam — Practical English",
+       description:
+-        "Take the comprehensive final exam across all 18 modules of English for Beginners and earn your certificate.",
+-    };
+-  }
+-
+-  if (
+-    slug?.[0] === "courses" &&
+-    slug[1] === "computer-internet-essentials" &&
+-    slug[2] === "lessons" &&
+-    slug[3]
+-  ) {
+-    const lesson = computerEssentialsLessons.find(
+-      (item) => item.slug === slug[3],
+-    );
+-    return {
+-      title: lesson
+-        ? `${lesson.title} — Computer & Internet Essentials`
+-        : "Computer & Internet Essentials",
+-      description: lesson?.outcome ?? "Computer & Internet Essentials lesson.",
+-    };
+-  }
+-
+-  if (
+-    slug?.[0] === "courses" &&
+-    slug[1] === "computer-internet-essentials" &&
+-    slug[2] === "lessons"
+-  ) {
+-    return {
+-      title: "Lessons — Computer & Internet Essentials",
+-      description:
+-        "Concepts before buttons — build real digital confidence, one lesson at a time.",
++        "Take the comprehensive final assessment across all 18 modules of Practical English for Haitian Creole Speakers.",
+     };
+   }
+ 
+@@ -152,7 +122,7 @@ function AcademyHub() {
+   }));
+   return (
+     <main className="bg-paper">
+-      <section className="relative flex min-h-[640px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[670px] lg:pt-[72px]">
++      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[670px] lg:pt-[72px]">
+         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
+           <Image
+             src="/images/academy/academy-hero.webp"
+@@ -160,12 +130,12 @@ function AcademyHub() {
+             fill
+             priority
+             sizes="(max-width: 1023px) 100vw, 62vw"
+-            className="object-cover object-center"
++            className="object-cover object-[62%_center] sm:object-center"
+           />
+         </div>
+-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
++        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/85 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
+         <Container className="relative z-10">
+-          <div className="max-w-2xl py-14">
++          <div className="max-w-2xl py-10 sm:py-14">
+             <p className="text-eyebrow text-indigo-dark">JAMEZZI ACADEMY</p>
+             <h1 className="text-editorial-headline text-ink mt-5 max-w-3xl">
+               Practical knowledge, built to be used.
+@@ -221,12 +191,12 @@ function AcademyHub() {
+             href="/academy/books"
+             cta="Browse All Books"
+           />
+-          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6 lg:gap-6">
++          <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:mt-12 sm:grid-cols-3 sm:gap-5 lg:grid-cols-6 lg:gap-6">
+             {academyBooks.map((book, index) => (
+               <Link
+                 key={book.slug}
+                 href={`/academy/books/${book.slug}`}
+-                className="group"
++                className="group min-w-0"
+               >
+                 <div
+                   className="relative w-full overflow-hidden rounded-[8px] shadow-[0_14px_35px_rgba(29,24,46,0.12)]"
+@@ -242,7 +212,7 @@ function AcademyHub() {
+                   />
+                 </div>
+                 <p className="text-metadata text-muted mt-4">{book.topic}</p>
+-                <h3 className="text-ink mt-1 text-base leading-snug font-semibold">
++                <h3 className="text-ink mt-1 line-clamp-3 text-sm leading-snug font-semibold sm:text-base">
+                   {book.title}
+                 </h3>
+               </Link>
+@@ -273,17 +243,17 @@ function AcademyHub() {
+         </Container>
+       </section>
+ 
+-      <section className="relative min-h-[500px] overflow-hidden bg-[#eeeaff] py-20 lg:flex lg:items-center lg:py-24">
++      <section className="relative min-h-[440px] overflow-hidden bg-[#eeeaff] py-16 sm:min-h-[500px] sm:py-20 lg:flex lg:items-center lg:py-24">
+         <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
+           <Image
+             src="/images/academy/academy-hero.webp"
+             alt="James leading a practical seminar"
+             fill
+             sizes="(max-width: 1023px) 100vw, 58vw"
+-            className="object-cover"
++            className="object-cover object-[62%_center] lg:object-center"
+           />
+         </div>
+-        <div className="absolute inset-0 bg-gradient-to-r from-[#eeeaff] via-[#eeeaff]/95 to-[#eeeaff]/15 lg:via-[#eeeaff]/88" />
++        <div className="absolute inset-0 bg-gradient-to-r from-[#eeeaff] via-[#eeeaff]/95 via-70% to-[#eeeaff]/40 sm:to-[#eeeaff]/15 lg:via-[#eeeaff]/88" />
+         <Container className="relative z-10">
+           <div className="max-w-2xl">
+             <p className="text-eyebrow text-indigo-dark">EVENTS & SEMINARS</p>
+@@ -375,7 +345,19 @@ export default async function AcademyPage({
+   if (
+     slug[0] === "courses" &&
+     slug[1] === "english-for-beginners" &&
+-    slug[2] === "level-1" &&
++    slug[2] === "checkpoint" &&
++    slug[3]
++  ) {
++    const levelNumber = Number(slug[3]);
++    if (Number.isInteger(levelNumber) && levelNumber >= 1 && levelNumber <= 4) {
++      return <EnglishLevelCheckpoint levelNumber={levelNumber} />;
++    }
++  }
++
++  if (
++    slug[0] === "courses" &&
++    slug[1] === "english-for-beginners" &&
++    slug[2] === "lessons" &&
+     slug[3]
+   ) {
+     return <EnglishWelcomeLesson lessonSlug={slug[3]} />;
+@@ -384,20 +366,36 @@ export default async function AcademyPage({
+   if (
+     slug[0] === "courses" &&
+     slug[1] === "english-for-beginners" &&
+-    slug[2] === "level-1"
++    slug[2] === "learn"
+   ) {
+     return <EnglishLevelOnePage />;
+   }
+ 
++  if (
++    slug[0] === "courses" &&
++    slug[1] === "english-for-beginners" &&
++    slug[2] === "level-1"
++  ) {
++    redirect(
++      slug[3]
++        ? `/academy/courses/english-for-beginners/lessons/${slug[3]}`
++        : "/academy/courses/english-for-beginners/learn",
++    );
++  }
++
+   if (
+     slug[0] === "courses" &&
+     slug[1] === "computer-internet-essentials" &&
+-    slug[2] === "rebuild" &&
+-    slug[3] === "start"
++    slug[2] === "learn" &&
++    !slug[3]
+   ) {
+     return (
+       <ComputerPlatformOnboarding
+         firstLessonSlug={computerRebuildLessons[0].slug}
++        lessons={computerRebuildLessons.map((lesson) => ({
++          slug: lesson.slug,
++          title: lesson.titleHt,
++        }))}
+       />
+     );
+   }
+@@ -405,7 +403,7 @@ export default async function AcademyPage({
+   if (
+     slug[0] === "courses" &&
+     slug[1] === "computer-internet-essentials" &&
+-    slug[2] === "rebuild" &&
++    slug[2] === "learn" &&
+     slug[3]
+   ) {
+     const checkpoint = getComputerRebuildCheckpoint(slug[3]);
+@@ -454,10 +452,13 @@ export default async function AcademyPage({
+   if (
+     slug[0] === "courses" &&
+     slug[1] === "computer-internet-essentials" &&
+-    slug[2] === "lessons" &&
+-    slug[3]
++    slug[2] === "rebuild"
+   ) {
+-    return <ComputerEssentialsLessonDetail lessonSlug={slug[3]} />;
++    redirect(
++      slug[3] && slug[3] !== "start"
++        ? `/academy/courses/computer-internet-essentials/learn/${slug[3]}`
++        : "/academy/courses/computer-internet-essentials/learn",
++    );
+   }
+ 
+   if (
+@@ -465,7 +466,7 @@ export default async function AcademyPage({
+     slug[1] === "computer-internet-essentials" &&
+     slug[2] === "lessons"
+   ) {
+-    return <ComputerEssentialsPage />;
++    redirect("/academy/courses/computer-internet-essentials/learn");
+   }
+ 
+   if (slug[0] === "courses" && slug[1] === "computer-internet-essentials") {
+diff --git a/src/components/academy/book-library.tsx b/src/components/academy/book-library.tsx
+index dc1a787..bfd1b68 100644
+--- a/src/components/academy/book-library.tsx
++++ b/src/components/academy/book-library.tsx
+@@ -24,9 +24,9 @@ export function BookLibrary() {
+ 
+       <section className="bg-white py-16 lg:py-24">
+         <Container>
+-          <div className="grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
++          <div className="grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-5 sm:gap-y-12 md:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
+             {academyBooks.map((book, index) => (
+-              <article key={book.slug} className="group">
++              <article key={book.slug} className="group min-w-0">
+                 <div
+                   className="relative w-full overflow-hidden rounded-[10px] shadow-[0_18px_45px_rgba(29,24,46,0.12)]"
+                   style={{ aspectRatio: "2 / 3" }}
+@@ -40,10 +40,10 @@ export function BookLibrary() {
+                     priority={index < 3}
+                   />
+                 </div>
+-                <p className="text-metadata text-muted mt-5">
++                <p className="text-metadata text-muted mt-4 sm:mt-5">
+                   {book.topic} · {book.language}
+                 </p>
+-                <h2 className="text-card-title text-ink mt-2 text-balance">
++                <h2 className="text-ink mt-2 line-clamp-3 text-base leading-snug font-semibold text-balance sm:text-xl">
+                   {book.title}
+                 </h2>
+                 <Link
+diff --git a/src/components/academy/computer-block-lesson-player.tsx b/src/components/academy/computer-block-lesson-player.tsx
+index 81bab90..fc8f2f9 100644
+--- a/src/components/academy/computer-block-lesson-player.tsx
++++ b/src/components/academy/computer-block-lesson-player.tsx
+@@ -1,7 +1,7 @@
+ "use client";
+ 
+ import Link from "next/link";
+-import { useEffect, useMemo, useState } from "react";
++import { useEffect, useMemo, useRef, useState } from "react";
+ import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
+ import {
+   ArrowRightIcon,
+@@ -26,6 +26,7 @@ import {
+   type PreferredPlatform,
+ } from "@/lib/use-computer-platform";
+ import { cn } from "@/lib/cn";
++import { saveCompletedLesson } from "@/lib/course-progress";
+ 
+ const phaseOrder = [
+   "learn",
+@@ -112,7 +113,8 @@ export function ComputerBlockLessonPlayer({
+   allLessons: CourseLesson[];
+ }) {
+   const { platform: storedPlatform } = useComputerPlatform();
+-  const [viewPlatform, setViewPlatform] = useState<PreferredPlatform>("windows");
++  const [viewPlatform, setViewPlatform] =
++    useState<PreferredPlatform>("windows");
+ 
+   useEffect(() => {
+     if (!storedPlatform) return;
+@@ -122,6 +124,8 @@ export function ComputerBlockLessonPlayer({
+ 
+   const phases = useMemo(() => groupIntoPhases(lesson.blocks), [lesson.blocks]);
+   const [step, setStep] = useState(0);
++  const [progressSaved, setProgressSaved] = useState(false);
++  const stepStatusRef = useRef<HTMLParagraphElement>(null);
+ 
+   const moduleOrderById = new Map(
+     computerRebuildModules.map((module) => [module.id, module.order]),
+@@ -158,6 +162,21 @@ export function ComputerBlockLessonPlayer({
+         (reflection) => reflection.afterModuleId === lesson.moduleId,
+       )
+     : undefined;
++  const currentModule = computerRebuildModules.find(
++    (module) => module.id === lesson.moduleId,
++  );
++  const nextCourseHref = nextCheckpoint
++    ? `/academy/courses/computer-internet-essentials/learn/${nextCheckpoint.id}`
++    : nextReadinessReflection
++      ? `/academy/courses/computer-internet-essentials/learn/${nextReadinessReflection.id}`
++      : nextLesson
++        ? `/academy/courses/computer-internet-essentials/learn/${nextLesson.slug}`
++        : "/academy/courses/computer-internet-essentials/learn/final-exam";
++  const nextCourseLabel = nextCheckpoint
++    ? nextCheckpoint.titleHt
++    : nextReadinessReflection
++      ? nextReadinessReflection.titleHt
++      : (nextLesson?.titleHt ?? "Egzamen final");
+ 
+   const missionBlock = lesson.blocks.find((b) => b.type === "mission");
+   const checkBlock = lesson.blocks.find((b) => b.type === "knowledge_check");
+@@ -180,7 +199,8 @@ export function ComputerBlockLessonPlayer({
+     });
+   }
+ 
+-  const requiresMission = Boolean(missionBlock) && lesson.requiredMission !== false;
++  const requiresMission =
++    Boolean(missionBlock) && lesson.requiredMission !== false;
+   const requiresCheck = Boolean(checkBlock);
+   const checkPassed =
+     !requiresCheck || checkState.every((q) => q.checked && q.correct);
+@@ -190,38 +210,37 @@ export function ComputerBlockLessonPlayer({
+ 
+   useEffect(() => {
+     if (!unlocked) return;
+-    try {
+-      const saved = JSON.parse(
+-        window.localStorage.getItem(computerProgressStorageKey) ?? "[]",
+-      ) as string[];
+-      window.localStorage.setItem(
+-        computerProgressStorageKey,
+-        JSON.stringify(Array.from(new Set([...saved, lesson.slug]))),
+-      );
+-    } catch {
+-      // Progress remains ephemeral if storage is blocked.
+-    }
++    const saved =
++      saveCompletedLesson(computerProgressStorageKey, lesson.slug) !==
++      "blocked";
++    const timer = window.setTimeout(() => setProgressSaved(saved), 0);
++    return () => window.clearTimeout(timer);
+   }, [unlocked, lesson.slug]);
+ 
+   function moveTo(next: number) {
+     setStep(Math.max(0, Math.min(next, phases.length - 1)));
+     window.scrollTo({ top: 0, behavior: "smooth" });
++    window.setTimeout(() => stepStatusRef.current?.focus(), 0);
+   }
+ 
+   const currentPhase = phases[step];
+   const checkStepIndex = phases.findIndex((p) => p.phase === "check");
+-  const blockedOnCheck = step === checkStepIndex && requiresCheck && !checkPassed;
++  const blockedOnCheck =
++    step === checkStepIndex && requiresCheck && !checkPassed;
+   const continueDisabled = blockedOnCheck;
+   const isLastStep = step === phases.length - 1;
+ 
+   return (
+     <main className="bg-white pt-[72px]">
+-      <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
+-        <div className="border-border sticky top-[72px] z-10 mb-6 border-b bg-white/95 pt-2.5 pb-3 backdrop-blur-sm">
+-          <p className="text-muted mb-2 text-[12.5px]">
+-            Computer &amp; Internet Essentials{" "}
+-            <span className="text-indigo-dark">·</span> Leson{" "}
+-            {moduleLessonIndex + 1}
++      <div className="mx-auto max-w-[620px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
++        <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
++          <p
++            className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
++            title={`Modil ${currentModule?.order}: ${currentModule?.titleHt ?? currentModule?.titleEn}`}
++          >
++            Modil {currentModule?.order}:{" "}
++            {currentModule?.titleHt ?? currentModule?.titleEn} · Leson{" "}
++            {moduleLessonIndex + 1} sou {moduleLessons.length}
+             {lesson.mode === "platform_variant" && (
+               <>
+                 {" "}
+@@ -231,7 +250,14 @@ export function ComputerBlockLessonPlayer({
+             )}
+           </p>
+           <div className="mb-2 flex items-center gap-2.5">
+-            <div className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full">
++            <div
++              className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full"
++              role="progressbar"
++              aria-label={`Pwogrè Modil ${currentModule?.order ?? ""}`}
++              aria-valuemin={0}
++              aria-valuemax={100}
++              aria-valuenow={moduleProgressPercent}
++            >
+               <div
+                 className="bg-indigo h-full rounded-full"
+                 style={{ width: `${moduleProgressPercent}%` }}
+@@ -241,32 +267,34 @@ export function ComputerBlockLessonPlayer({
+               {moduleProgressPercent}%
+             </span>
+           </div>
+-          <div className="flex items-center justify-between text-[12.5px]">
++          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-[12px] sm:gap-3 sm:text-[12.5px]">
+             {prevLesson ? (
+               <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${prevLesson.slug}`}
+-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
++                href={`/academy/courses/computer-internet-essentials/learn/${prevLesson.slug}`}
++                className="text-indigo-dark min-w-0 truncate font-semibold"
++                title={prevLesson.titleHt}
+               >
+-                ← {prevLesson.titleHt}
++                ← <span className="sm:hidden">Anvan</span>
++                <span className="hidden sm:inline">{prevLesson.titleHt}</span>
+               </Link>
+             ) : (
+               <span className="text-border">← Premye leson</span>
+             )}
+-            {nextLesson ? (
+-              <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${nextLesson.slug}`}
+-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
+-              >
+-                {nextLesson.titleHt} →
+-              </Link>
+-            ) : (
+-              <Link
+-                href="/academy/courses/computer-internet-essentials/rebuild"
+-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
+-              >
+-                Tout Leson →
+-              </Link>
+-            )}
++            <Link
++              href="/academy/courses/computer-internet-essentials"
++              className="text-muted hover:text-indigo-dark font-semibold"
++            >
++              <span className="sm:hidden">Plan</span>
++              <span className="hidden sm:inline">Plan kou a</span>
++            </Link>
++            <Link
++              href={nextCourseHref}
++              className="text-indigo-dark min-w-0 truncate text-right font-semibold"
++              title={nextCourseLabel}
++            >
++              <span className="sm:hidden">Apre</span>
++              <span className="hidden sm:inline">{nextCourseLabel}</span> →
++            </Link>
+           </div>
+         </div>
+ 
+@@ -282,9 +310,20 @@ export function ComputerBlockLessonPlayer({
+               />
+             ))}
+           </div>
+-          <p className="font-lesson-mono text-indigo-dark/70 text-[11px] tracking-[0.1em] uppercase">
+-            Etap {step + 1} sou {phases.length} · {phaseLabels[currentPhase.phase]}
++          <p
++            ref={stepStatusRef}
++            tabIndex={-1}
++            aria-live="polite"
++            className="font-lesson-mono text-indigo-dark/70 focus-visible:ring-indigo rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
++          >
++            Etap {step + 1} sou {phases.length} ·{" "}
++            {phaseLabels[currentPhase.phase]}
+           </p>
++          {progressSaved && (
++            <p className="text-metadata text-indigo-dark mt-2" role="status">
++              ✓ Pwogrè leson sa a anrejistre sou aparèy sa a.
++            </p>
++          )}
+         </div>
+ 
+         {currentPhase.phase === "learn" && (
+@@ -312,13 +351,14 @@ export function ComputerBlockLessonPlayer({
+             onToggleStep={toggleStep}
+           />
+         )}
+-        {currentPhase.phase === "check" && checkBlock?.type === "knowledge_check" && (
+-          <CheckPhase
+-            questions={checkBlock.questions}
+-            state={checkState}
+-            onChange={setCheckState}
+-          />
+-        )}
++        {currentPhase.phase === "check" &&
++          checkBlock?.type === "knowledge_check" && (
++            <CheckPhase
++              questions={checkBlock.questions}
++              state={checkState}
++              onChange={setCheckState}
++            />
++          )}
+         {currentPhase.phase === "reflect" && (
+           <ReflectPhase
+             blocks={currentPhase.blocks}
+@@ -330,12 +370,12 @@ export function ComputerBlockLessonPlayer({
+         )}
+ 
+         {!isLastStep && (
+-          <div className="border-border mt-8 flex items-center justify-between border-t pt-6">
++          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
+             <button
+               type="button"
+               onClick={() => moveTo(step - 1)}
+               disabled={step === 0}
+-              className="text-indigo-dark min-h-11 text-sm font-semibold disabled:opacity-0"
++              className="text-indigo-dark min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
+             >
+               ← Tounen
+             </button>
+@@ -344,7 +384,7 @@ export function ComputerBlockLessonPlayer({
+               onClick={() => moveTo(step + 1)}
+               disabled={continueDisabled}
+               className={cn(
+-                "min-h-12 rounded-full px-7 text-sm font-semibold",
++                "min-h-12 min-w-[132px] rounded-full px-6 text-sm font-semibold",
+                 continueDisabled
+                   ? "bg-indigo-light text-muted cursor-not-allowed"
+                   : "bg-indigo cursor-pointer text-white",
+@@ -355,7 +395,7 @@ export function ComputerBlockLessonPlayer({
+           </div>
+         )}
+         {isLastStep && (
+-          <div className="mt-8">
++          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
+             <button
+               type="button"
+               onClick={() => moveTo(step - 1)}
+@@ -471,7 +511,8 @@ function PlatformPhase({
+         </div>
+       ) : (
+         <p className="text-muted text-[13.5px]">
+-          Leson sa a pa bezwen etap espesifik pou {viewPlatform === "windows" ? "Windows" : "Mac"}.
++          Leson sa a pa bezwen etap espesifik pou{" "}
++          {viewPlatform === "windows" ? "Windows" : "Mac"}.
+         </p>
+       )}
+       {block.steps.recoveryNote && (
+@@ -624,8 +665,8 @@ function MissionPhase({
+                   Travay Pou Fè
+                 </p>
+                 <p className="text-muted text-[11.5px] font-semibold">
+-                  {stepsDone.filter(Boolean).length} sou {mission.mission.requiredSteps.length}{" "}
+-                  konplete
++                  {stepsDone.filter(Boolean).length} sou{" "}
++                  {mission.mission.requiredSteps.length} konplete
+                 </p>
+               </div>
+               <div className="grid gap-1.5">
+@@ -809,6 +850,7 @@ export function QuestionCard({
+                 key={option}
+                 type="button"
+                 onClick={() => onAnswerChange({ selectedIndex: index })}
++                aria-pressed={isSelected}
+                 className={cn(
+                   "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
+                   isSelected
+@@ -841,6 +883,7 @@ export function QuestionCard({
+                       : [...selected, index],
+                   })
+                 }
++                aria-pressed={isSelected}
+                 className={cn(
+                   "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
+                   isSelected
+@@ -887,6 +930,7 @@ export function QuestionCard({
+       )}
+       {answer.checked && (
+         <p
++          role={answer.correct ? "status" : "alert"}
+           className={cn(
+             "mt-2.5 text-[13.5px]",
+             answer.correct ? "text-success" : "text-error",
+@@ -927,6 +971,7 @@ function OrderStepsInput({
+                     : [...order, index],
+                 )
+               }
++              aria-pressed={isPicked}
+               className={cn(
+                 "flex min-h-11 items-center gap-3 rounded-[10px] px-4 py-3 text-left text-[14px] transition",
+                 isPicked
+@@ -991,6 +1036,7 @@ function MatchTermInput({
+                   key={meaning}
+                   type="button"
+                   onClick={() => choose(pair.term, meaning)}
++                  aria-pressed={isSelected}
+                   className={cn(
+                     "min-h-9 rounded-lg px-3 py-2 text-left text-[13px]",
+                     isSelected
+@@ -1036,6 +1082,7 @@ function ReflectPhase({
+                 key={prompt.statement}
+                 type="button"
+                 onClick={() => setChosen(index)}
++                aria-pressed={chosen === index}
+                 className={cn(
+                   "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14px]",
+                   chosen === index
+@@ -1048,8 +1095,7 @@ function ReflectPhase({
+             ))}
+           </div>
+           <p className="text-muted mt-2 text-[12px]">
+-            Sa a pa yon nòt — li sèlman ede w remake sa ou ta dwe pratike
+-            ankò.
++            Sa a pa yon nòt — li sèlman ede w remake sa ou ta dwe pratike ankò.
+           </p>
+         </div>
+       )}
+@@ -1092,7 +1138,7 @@ function ReflectPhase({
+             <div className="mt-5 flex flex-col items-center gap-3">
+               {nextCheckpoint && (
+                 <Link
+-                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextCheckpoint.id}`}
++                  href={`/academy/courses/computer-internet-essentials/learn/${nextCheckpoint.id}`}
+                   className="text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                 >
+                   <StampIcon className="size-4" />
+@@ -1102,7 +1148,7 @@ function ReflectPhase({
+               )}
+               {nextReadinessReflection && (
+                 <Link
+-                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextReadinessReflection.id}`}
++                  href={`/academy/courses/computer-internet-essentials/learn/${nextReadinessReflection.id}`}
+                   className="text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                 >
+                   <SparklesIcon className="size-4" />
+@@ -1113,8 +1159,8 @@ function ReflectPhase({
+               <Link
+                 href={
+                   nextLesson
+-                    ? `/academy/courses/computer-internet-essentials/rebuild/${nextLesson.slug}`
+-                    : "/academy/courses/computer-internet-essentials/rebuild"
++                    ? `/academy/courses/computer-internet-essentials/learn/${nextLesson.slug}`
++                    : "/academy/courses/computer-internet-essentials/learn"
+                 }
+                 className={cn(
+                   "inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold",
+@@ -1124,7 +1170,9 @@ function ReflectPhase({
+                 )}
+               >
+                 <GraduationCapIcon className="size-4" />
+-                {nextLesson ? `Kontinye ak ${nextLesson.titleHt}` : "Tounen nan Tout Leson"}
++                {nextLesson
++                  ? `Kontinye ak ${nextLesson.titleHt}`
++                  : "Tounen nan Tout Leson"}
+                 <ArrowRightIcon className="size-4" />
+               </Link>
+             </div>
+diff --git a/src/components/academy/computer-certificate-player.tsx b/src/components/academy/computer-certificate-player.tsx
+index d532d0f..febbfff 100644
+--- a/src/components/academy/computer-certificate-player.tsx
++++ b/src/components/academy/computer-certificate-player.tsx
+@@ -6,7 +6,11 @@ import { computerCheckpointStorageKey } from "@/components/academy/computer-chec
+ import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
+ import { computerFinalExamStorageKey } from "@/components/academy/computer-final-exam-player";
+ import { computerReadinessReflectionStorageKey } from "@/components/academy/computer-readiness-reflection-player";
+-import { ArrowRightIcon, GraduationCapIcon, StampIcon } from "@/components/ui/icons";
++import {
++  ArrowRightIcon,
++  GraduationCapIcon,
++  StampIcon,
++} from "@/components/ui/icons";
+ import type { CourseLesson } from "@/content/computer-rebuild/schema";
+ import { cn } from "@/lib/cn";
+ 
+@@ -60,14 +64,19 @@ export function ComputerCertificatePlayer({
+   >({});
+   const [reflectionSaved, setReflectionSaved] = useState(false);
+   const [examRecord, setExamRecord] = useState<ExamAttemptRecord | null>(null);
+-  const [certificate, setCertificate] = useState<CertificateRecord | null>(null);
++  const [certificate, setCertificate] = useState<CertificateRecord | null>(
++    null,
++  );
+   const [nameInput, setNameInput] = useState("");
+ 
+   useEffect(() => {
+     const timer = window.setTimeout(() => {
+       setCompletedSlugs(readJson(computerProgressStorageKey, [] as string[]));
+       setCheckpointRecords(
+-        readJson(computerCheckpointStorageKey, {} as Record<string, CheckpointRecord>),
++        readJson(
++          computerCheckpointStorageKey,
++          {} as Record<string, CheckpointRecord>,
++        ),
+       );
+       const reflections = readJson(
+         computerReadinessReflectionStorageKey,
+@@ -75,11 +84,14 @@ export function ComputerCertificatePlayer({
+       );
+       setReflectionSaved(Boolean(reflections["checkpoint-4"]));
+       setExamRecord(
+-        readJson(computerFinalExamStorageKey, {} as Record<string, ExamAttemptRecord>)[
+-          "final-exam"
+-        ] ?? null,
++        readJson(
++          computerFinalExamStorageKey,
++          {} as Record<string, ExamAttemptRecord>,
++        )["final-exam"] ?? null,
++      );
++      setCertificate(
++        readJson<CertificateRecord | null>(computerCertificateStorageKey, null),
+       );
+-      setCertificate(readJson<CertificateRecord | null>(computerCertificateStorageKey, null));
+       setLoaded(true);
+     }, 0);
+     return () => window.clearTimeout(timer);
+@@ -88,12 +100,16 @@ export function ComputerCertificatePlayer({
+   const firstIncompleteLesson = allLessons.find(
+     (lesson) => !completedSlugs.includes(lesson.slug),
+   );
+-  const unpassedCheckpoint = ["checkpoint-1", "checkpoint-2", "checkpoint-3"].find(
+-    (id) => !checkpointRecords[id]?.passed,
+-  );
++  const unpassedCheckpoint = [
++    "checkpoint-1",
++    "checkpoint-2",
++    "checkpoint-3",
++  ].find((id) => !checkpointRecords[id]?.passed);
+   const blockers: string[] = [];
+   if (firstIncompleteLesson) {
+-    blockers.push(`Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`);
++    blockers.push(
++      `Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`,
++    );
+   }
+   if (unpassedCheckpoint) {
+     blockers.push(
+@@ -116,7 +132,10 @@ export function ComputerCertificatePlayer({
+       issuedAt: new Date().toISOString(),
+     };
+     try {
+-      window.localStorage.setItem(computerCertificateStorageKey, JSON.stringify(record));
++      window.localStorage.setItem(
++        computerCertificateStorageKey,
++        JSON.stringify(record),
++      );
+     } catch {
+       // Certificate stays ephemeral for this session if storage is blocked.
+     }
+@@ -131,8 +150,8 @@ export function ComputerCertificatePlayer({
+     <main className="bg-white pt-[72px]">
+       <div className="mx-auto max-w-[680px] px-5 pt-5 pb-16">
+         <p className="text-muted mb-6 text-[12.5px] print:hidden">
+-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
+-          Sètifika
++          Computer &amp; Internet Essentials{" "}
++          <span className="text-indigo-dark">·</span> Sètifika
+         </p>
+ 
+         {!eligible && (
+@@ -143,14 +162,17 @@ export function ComputerCertificatePlayer({
+             </h1>
+             <ul className="border-border grid gap-2.5 rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+               {blockers.map((blocker) => (
+-                <li key={blocker} className="text-ink text-[13.5px] leading-[1.6]">
++                <li
++                  key={blocker}
++                  className="text-ink text-[13.5px] leading-[1.6]"
++                >
+                   • {blocker}
+                 </li>
+               ))}
+             </ul>
+             {firstIncompleteLesson && (
+               <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
++                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
+                 className="bg-indigo mt-6 inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+               >
+                 Kontinye ak {firstIncompleteLesson.titleHt}
+@@ -164,12 +186,15 @@ export function ComputerCertificatePlayer({
+           <div>
+             <p className="text-eyebrow text-indigo-dark mb-3">FELISITASYON</p>
+             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+-              Ou pare pou sètifika ou!
++              Ou pare pou dosye konplesyon ou!
+             </h1>
+             <p className="text-muted mb-6 text-[15px] leading-[1.6]">
+-              Antre non ou jan ou vle l parèt sou sètifika a.
++              Antre non ou jan ou vle l parèt sou dosye a.
+             </p>
+-            <label htmlFor="student-name" className="text-ink mb-2 block text-[13.5px] font-semibold">
++            <label
++              htmlFor="student-name"
++              className="text-ink mb-2 block text-[13.5px] font-semibold"
++            >
+               Non Konplè
+             </label>
+             <input
+@@ -192,76 +217,91 @@ export function ComputerCertificatePlayer({
+               )}
+             >
+               <GraduationCapIcon className="size-4" />
+-              Jenere Sètifika Ou
++              Jenere Dosye Ou
+             </button>
+           </div>
+         )}
+ 
+         {eligible && certificate && (
+           <div>
+-            <div className="border-indigo relative rounded-[18px] border-2 px-7 py-10 text-center">
++            <div className="border-indigo relative rounded-[18px] border-2 px-4 py-7 text-center sm:px-7 sm:py-10">
+               <div className="bg-indigo-light text-indigo-dark mx-auto mb-5 inline-flex size-14 items-center justify-center rounded-full">
+                 <StampIcon className="size-6" />
+               </div>
+-              <p className="text-eyebrow text-indigo-dark mb-2">JAMEZZI ACADEMY</p>
++              <p className="text-eyebrow text-indigo-dark mb-2">
++                JAMEZZI ACADEMY
++              </p>
+               <h1 className="font-fraunces text-ink mb-1 text-[22px] leading-[1.3] font-semibold italic">
+-                Sètifika Fòmasyon
++                Dosye Konplesyon Kou
+               </h1>
+               <p className="text-muted mb-6 text-[13.5px]">
+                 Òdinatè ak Entènèt Esansyèl
+               </p>
+               <p className="text-muted mb-1.5 text-[12px] tracking-wide uppercase">
+-                Sètifye ke
++                Konfime ke
+               </p>
+-              <p className="font-fraunces text-ink mb-6 text-[26px] font-semibold">
++              <p className="font-fraunces text-ink mb-6 text-[24px] font-semibold break-words sm:text-[26px]">
+                 {certificate.studentName}
+               </p>
+               <p className="text-muted mb-6 text-[14px] leading-[1.6]">
+-                fin konplete avèk siksè tout 14 modil, kat Confidence Checkpoint,
+-                Kapstòn nan, ak Egzamen Final Computer &amp; Internet Essentials la,
+-                ak yon nòt {examRecord?.bestPercent}%.
++                fin konplete avèk siksè tout 14 modil, misyon pratik yo, twa
++                Confidence Checkpoint, refleksyon final sou preparasyon dijital,
++                ak Egzamen Final Computer &amp; Internet Essentials la, ak yon
++                nòt {examRecord?.bestPercent}%.
+               </p>
+-              <div className="border-border mb-6 grid grid-cols-2 gap-4 border-t pt-5 text-left">
++              <div className="border-border mb-6 grid grid-cols-1 gap-4 border-t pt-5 text-left sm:grid-cols-2">
+                 <div>
+-                  <p className="text-muted text-[11px] tracking-wide uppercase">Dat</p>
++                  <p className="text-muted text-[11px] tracking-wide uppercase">
++                    Dat
++                  </p>
+                   <p className="text-ink text-[13.5px] font-semibold">
+-                    {new Date(certificate.issuedAt).toLocaleDateString("fr-HT", {
+-                      year: "numeric",
+-                      month: "long",
+-                      day: "numeric",
+-                    })}
++                    {new Date(certificate.issuedAt).toLocaleDateString(
++                      "fr-HT",
++                      {
++                        year: "numeric",
++                        month: "long",
++                        day: "numeric",
++                      },
++                    )}
+                   </p>
+                 </div>
+                 <div>
+                   <p className="text-muted text-[11px] tracking-wide uppercase">
+-                    Kòd Sètifika
++                    ID Lokal
+                   </p>
+-                  <p className="text-ink font-lesson-mono text-[13.5px] font-semibold">
++                  <p className="text-ink font-lesson-mono text-[13.5px] font-semibold break-all">
+                     {certificate.certificateId}
+                   </p>
+                 </div>
+               </div>
+               <p className="text-muted text-[11px] leading-[1.5]">
+-                Sètifika sa a konfime konplete kou a — li PA yon lisans gouvènman
+-                ni yon sètifikasyon repare pwofesyonèl.
++                Dosye sa a konfime konplete kou a sou aparèy sa a — li PA yon
++                lisans gouvènman, yon sètifikasyon reparasyon pwofesyonèl, oswa
++                yon dosye ki ka verifye piblikman sou entènèt.
+               </p>
+             </div>
+ 
+-            <div className="mt-6 flex flex-wrap items-center gap-3 print:hidden">
++            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center print:hidden">
+               <button
+                 type="button"
+                 onClick={() => window.print()}
+-                className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
++                className="bg-indigo inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+               >
+-                Enprime Sètifika Ou
++                Enprime Dosye Ou
+               </button>
++              <Link
++                href="/academy/courses/computer-internet-essentials"
++                className="border-border text-indigo-dark inline-flex min-h-11 items-center justify-center rounded-full border bg-white px-6 py-2.5 text-center text-sm font-semibold"
++              >
++                Retounen nan paj kou a →
++              </Link>
+             </div>
+             <p className="text-muted mt-4 text-[12px] leading-[1.6] print:hidden">
+-              Kòd sètifika sa a jenere epi sovgade lokalman sou aparèy ou. Platfòm
+-              sa a poko gen yon paj verifikasyon piblik an liy kote yon lòt moun
+-              ka tape kòd la pou konfime l — sa ta mande yon baz done sèvè ki poko
+-              konstwi. Pou kounye a, kòd la sèvi kòm yon idantifyan inik ou ka
+-              montre oswa anrejistre.
++              ID sa a jenere epi sovgade lokalman sou aparèy ou. Platfòm sa a
++              poko gen yon paj verifikasyon piblik an liy kote yon lòt moun ka
++              tape ID a pou konfime l — sa ta mande yon baz done sèvè ki poko
++              konstwi. Pou kounye a, li sèvi sèlman kòm yon idantifyan lokal ou
++              ka montre oswa anrejistre.
+             </p>
+           </div>
+         )}
+diff --git a/src/components/academy/computer-checkpoint-player.tsx b/src/components/academy/computer-checkpoint-player.tsx
+index da3c16d..e78bd10 100644
+--- a/src/components/academy/computer-checkpoint-player.tsx
++++ b/src/components/academy/computer-checkpoint-player.tsx
+@@ -15,7 +15,10 @@ import {
+   StampIcon,
+ } from "@/components/ui/icons";
+ import { computerRebuildModules } from "@/content/computer-rebuild/modules";
+-import type { Checkpoint, CourseLesson } from "@/content/computer-rebuild/schema";
++import type {
++  Checkpoint,
++  CourseLesson,
++} from "@/content/computer-rebuild/schema";
+ import { cn } from "@/lib/cn";
+ 
+ export const computerCheckpointStorageKey =
+@@ -97,14 +100,22 @@ export function ComputerCheckpointPlayer({
+ 
+   const allAnswered = checkState.every((a) => a.checked);
+   const correctCount = checkState.filter((a) => a.correct).length;
+-  const percent = Math.round((correctCount / checkpoint.questions.length) * 100);
++  const percent = Math.round(
++    (correctCount / checkpoint.questions.length) * 100,
++  );
+   const passed = percent >= checkpoint.passingPercent;
+-  const missed = checkpoint.questions.filter((_, index) => !checkState[index].correct);
++  const missed = checkpoint.questions.filter(
++    (_, index) => !checkState[index].correct,
++  );
+ 
+   function updateAnswer(index: number, partial: Partial<CheckAnswer>) {
+     setCheckState((prev) => {
+       const next = [...prev];
+-      next[index] = { ...next[index], ...partial, checked: partial.checked ?? false };
++      next[index] = {
++        ...next[index],
++        ...partial,
++        checked: partial.checked ?? false,
++      };
+       return next;
+     });
+   }
+@@ -161,23 +172,25 @@ export function ComputerCheckpointPlayer({
+     <main className="bg-white pt-[72px]">
+       <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
+         <p className="text-muted mb-6 text-[12.5px]">
+-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
+-          {checkpoint.titleHt}
++          Computer &amp; Internet Essentials{" "}
++          <span className="text-indigo-dark">·</span> {checkpoint.titleHt}
+         </p>
+ 
+         {!unlocked && (
+           <div>
+-            <p className="text-eyebrow text-indigo-dark mb-3">CHECKPOINT FÈMEN</p>
++            <p className="text-eyebrow text-indigo-dark mb-3">
++              CHECKPOINT FÈMEN
++            </p>
+             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+               Fini leson ki anvan yo dabò.
+             </h1>
+             <p className="text-muted mb-7 text-[15px] leading-[1.6]">
+-              {checkpoint.titleHt} konbine konpetans nan plizyè modil ansanm.
+-              Ou bezwen fini tout leson yo anvan ou eseye l.
++              {checkpoint.titleHt} konbine konpetans nan plizyè modil ansanm. Ou
++              bezwen fini tout leson yo anvan ou eseye l.
+             </p>
+             {firstIncompleteLesson && (
+               <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
++                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
+                 className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+               >
+                 Kontinye ak {firstIncompleteLesson.titleHt}
+@@ -235,7 +248,9 @@ export function ComputerCheckpointPlayer({
+                 <QuestionCard
+                   key={item.question.prompt}
+                   question={item.question}
+-                  answer={checkState[index] ?? { checked: false, correct: false }}
++                  answer={
++                    checkState[index] ?? { checked: false, correct: false }
++                  }
+                   onAnswerChange={(partial) => updateAnswer(index, partial)}
+                   onVerify={() => verify(index)}
+                 />
+@@ -264,13 +279,17 @@ export function ComputerCheckpointPlayer({
+             <div
+               className={cn(
+                 "mb-7 rounded-[18px] px-5.5 py-7.5 text-center",
+-                passed ? "bg-indigo text-white" : "bg-indigo-light text-indigo-dark",
++                passed
++                  ? "bg-indigo text-white"
++                  : "bg-indigo-light text-indigo-dark",
+               )}
+             >
+               <div
+                 className={cn(
+                   "mx-auto mb-3.5 grid size-[70px] -rotate-6 place-items-center rounded-full border-[3px]",
+-                  passed ? "border-white bg-white/15" : "border-indigo bg-transparent",
++                  passed
++                    ? "border-white bg-white/15"
++                    : "border-indigo bg-transparent",
+                 )}
+               >
+                 {passed ? (
+@@ -294,7 +313,7 @@ export function ComputerCheckpointPlayer({
+               </p>
+               {passed && nextModuleFirstLesson && (
+                 <Link
+-                  href={`/academy/courses/computer-internet-essentials/rebuild/${nextModuleFirstLesson.slug}`}
++                  href={`/academy/courses/computer-internet-essentials/learn/${nextModuleFirstLesson.slug}`}
+                   className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                 >
+                   <GraduationCapIcon className="size-4" />
+@@ -313,7 +332,7 @@ export function ComputerCheckpointPlayer({
+                   {missed.map((item) => (
+                     <Link
+                       key={item.skillTag}
+-                      href={`/academy/courses/computer-internet-essentials/rebuild/${item.recommendedLessonSlug}`}
++                      href={`/academy/courses/computer-internet-essentials/learn/${item.recommendedLessonSlug}`}
+                       className="border-border flex items-center justify-between rounded-xl border bg-[#FCFCFE] px-4 py-3.5"
+                     >
+                       <span className="text-ink text-[14px] font-semibold">
+diff --git a/src/components/academy/computer-course-page.tsx b/src/components/academy/computer-course-page.tsx
+index 3c650ce..ba57447 100644
+--- a/src/components/academy/computer-course-page.tsx
++++ b/src/components/academy/computer-course-page.tsx
+@@ -2,13 +2,16 @@ import Image from "next/image";
+ import { Container } from "@/components/ui/container";
+ import { CtaLink } from "@/components/ui/cta-link";
+ import { ArrowRightIcon } from "@/components/ui/icons";
++import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
++import { CourseResumeCard } from "@/components/academy/course-resume-card";
++import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
+ import { computerRebuildLessons } from "@/content/computer-rebuild/lessons";
+ import { computerRebuildModules } from "@/content/computer-rebuild/modules";
+ 
+ export function ComputerCoursePage() {
+   return (
+     <main className="bg-paper">
+-      <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[650px] lg:pt-[72px]">
++      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
+         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
+           <Image
+             src="/images/academy/courses/computer-internet-essentials.webp"
+@@ -16,19 +19,19 @@ export function ComputerCoursePage() {
+             fill
+             priority
+             sizes="(max-width: 1023px) 100vw, 62vw"
+-            className="object-cover"
++            className="object-cover object-[65%_center] sm:object-center"
+           />
+         </div>
+-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
++        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/85 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
+         <Container className="relative z-10">
+-          <div className="max-w-2xl py-14">
++          <div className="max-w-2xl py-10 sm:py-14">
+             <p className="text-eyebrow text-indigo-dark">
+-              JAMEZZI ACADEMY · COMPUTERS &amp; THE INTERNET, NO FEAR
++              JAMEZZI ACADEMY · BEGINNER DIGITAL SKILLS
+             </p>
+             <h1 className="text-editorial-headline text-ink mt-5 max-w-4xl">
+               Computer &amp; Internet Essentials
+             </h1>
+-            <p className="font-display text-ink mt-5 max-w-3xl text-3xl leading-tight md:text-4xl">
++            <p className="font-display text-ink mt-5 max-w-3xl text-2xl leading-tight sm:text-3xl md:text-4xl">
+               Concepts before buttons — build real digital confidence.
+             </p>
+             <p className="text-intro text-muted mt-7 max-w-xl">
+@@ -37,7 +40,7 @@ export function ComputerCoursePage() {
+               showing you where to click.
+             </p>
+             <div className="mt-8 flex flex-wrap gap-4">
+-              <CtaLink href="/academy/courses/computer-internet-essentials/rebuild/start">
++              <CtaLink href="/academy/courses/computer-internet-essentials/learn">
+                 Start Learning <ArrowRightIcon className="size-4" />
+               </CtaLink>
+               <CtaLink href="#course-path" variant="secondary">
+@@ -48,6 +51,19 @@ export function ComputerCoursePage() {
+         </Container>
+       </section>
+ 
++      <Container>
++        <CourseResumeCard
++          lessons={computerRebuildLessons.map((lesson) => ({
++            slug: lesson.slug,
++            title: lesson.titleHt,
++          }))}
++          progressStorageKey={computerProgressStorageKey}
++          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
++          assessmentHref="/academy/courses/computer-internet-essentials/learn/final-exam"
++          language="ht"
++        />
++      </Container>
++
+       <section
+         id="course-path"
+         className="scroll-mt-24 bg-white py-20 lg:py-24"
+@@ -59,9 +75,9 @@ export function ComputerCoursePage() {
+               You&rsquo;re not behind. Start where you are.
+             </h2>
+             <p className="text-body text-muted mt-4 max-w-2xl">
+-              14 modules, from your first day with a computer to full digital
+-              independence — plus four confidence checkpoints, a final exam,
+-              and a certificate.
++              14 modules, from your first day with a computer to stronger
++              digital independence — plus four confidence checkpoints, a final
++              exam, and a course-completion certificate.
+             </p>
+           </div>
+ 
+@@ -85,7 +101,7 @@ export function ComputerCoursePage() {
+                   <p className="text-body text-muted mt-3">{module.purpose}</p>
+                   {firstLesson && (
+                     <CtaLink
+-                      href={`/academy/courses/computer-internet-essentials/rebuild/${firstLesson.slug}`}
++                      href={`/academy/courses/computer-internet-essentials/learn/${firstLesson.slug}`}
+                       variant="link"
+                       className="mt-7"
+                     >
+@@ -121,8 +137,8 @@ export function ComputerCoursePage() {
+             />
+             <ApproachRow
+               number="03"
+-              title="A capstone, exam, and free certificate"
+-              copy="Finish with a real-world mission in almost every lesson, a comprehensive final exam, and a free Computer & Internet Essentials certificate the moment you pass."
++              title="Real-world missions and a final exam"
++              copy="Apply what you learn through practical missions, complete a comprehensive final exam, and generate a course-completion certificate on this device when you pass."
+             />
+           </div>
+         </Container>
+@@ -137,13 +153,19 @@ export function ComputerCoursePage() {
+             </h2>
+           </div>
+           <CtaLink
+-            href="/academy/courses/computer-internet-essentials/rebuild/start"
++            href="/academy/courses/computer-internet-essentials/learn"
+             variant="inverse"
+           >
+             Start Learning <ArrowRightIcon className="size-4" />
+           </CtaLink>
+         </Container>
+       </section>
++
++      <section className="bg-paper py-16 lg:py-20">
++        <Container>
++          <CourseProgressBackup course="computer" />
++        </Container>
++      </section>
+     </main>
+   );
+ }
+diff --git a/src/components/academy/computer-final-exam-player.tsx b/src/components/academy/computer-final-exam-player.tsx
+index bfbf3cb..19f4707 100644
+--- a/src/components/academy/computer-final-exam-player.tsx
++++ b/src/components/academy/computer-final-exam-player.tsx
+@@ -74,7 +74,10 @@ export function ComputerFinalExamPlayer({
+     const timer = window.setTimeout(() => {
+       setCompletedSlugs(readJson(computerProgressStorageKey, [] as string[]));
+       setCheckpointRecords(
+-        readJson(computerCheckpointStorageKey, {} as Record<string, CheckpointRecord>),
++        readJson(
++          computerCheckpointStorageKey,
++          {} as Record<string, CheckpointRecord>,
++        ),
+       );
+       const reflections = readJson(
+         computerReadinessReflectionStorageKey,
+@@ -82,9 +85,10 @@ export function ComputerFinalExamPlayer({
+       );
+       setReflectionSaved(Boolean(reflections["checkpoint-4"]));
+       setRecord(
+-        readJson(computerFinalExamStorageKey, {} as Record<string, ExamAttemptRecord>)[
+-          exam.id
+-        ] ?? null,
++        readJson(
++          computerFinalExamStorageKey,
++          {} as Record<string, ExamAttemptRecord>,
++        )[exam.id] ?? null,
+       );
+       setLoaded(true);
+     }, 0);
+@@ -98,12 +102,16 @@ export function ComputerFinalExamPlayer({
+   const firstIncompleteLesson = allLessons.find(
+     (lesson) => !completedSlugs.includes(lesson.slug),
+   );
+-  const unpassedCheckpoint = ["checkpoint-1", "checkpoint-2", "checkpoint-3"].find(
+-    (id) => !checkpointRecords[id]?.passed,
+-  );
++  const unpassedCheckpoint = [
++    "checkpoint-1",
++    "checkpoint-2",
++    "checkpoint-3",
++  ].find((id) => !checkpointRecords[id]?.passed);
+   const blockers: string[] = [];
+   if (firstIncompleteLesson) {
+-    blockers.push(`Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`);
++    blockers.push(
++      `Fini "${firstIncompleteLesson.titleHt}" ak lòt leson ki rete yo`,
++    );
+   }
+   if (unpassedCheckpoint) {
+     blockers.push(
+@@ -125,7 +133,11 @@ export function ComputerFinalExamPlayer({
+   function updateAnswer(index: number, partial: Partial<CheckAnswer>) {
+     setCheckState((prev) => {
+       const next = [...prev];
+-      next[index] = { ...next[index], ...partial, checked: partial.checked ?? false };
++      next[index] = {
++        ...next[index],
++        ...partial,
++        checked: partial.checked ?? false,
++      };
+       return next;
+     });
+   }
+@@ -141,14 +153,17 @@ export function ComputerFinalExamPlayer({
+     });
+   }
+ 
+-  const allAnswered = checkState.length > 0 && checkState.every((a) => a.checked);
++  const allAnswered =
++    checkState.length > 0 && checkState.every((a) => a.checked);
+   const correctCount = checkState.filter((a) => a.correct).length;
+   const percent =
+     attemptQuestions.length > 0
+       ? Math.round((correctCount / attemptQuestions.length) * 100)
+       : 0;
+   const passed = percent >= exam.passingPercent;
+-  const missed = attemptQuestions.filter((_, index) => !checkState[index]?.correct);
++  const missed = attemptQuestions.filter(
++    (_, index) => !checkState[index]?.correct,
++  );
+   const missedLessons = [
+     ...new Map(missed.map((q) => [q.recommendedLessonSlug, q])).values(),
+   ];
+@@ -166,7 +181,10 @@ export function ComputerFinalExamPlayer({
+         passed: Boolean(prev?.passed) || passed,
+       };
+       all[exam.id] = next;
+-      window.localStorage.setItem(computerFinalExamStorageKey, JSON.stringify(all));
++      window.localStorage.setItem(
++        computerFinalExamStorageKey,
++        JSON.stringify(all),
++      );
+       setRecord(next);
+     } catch {
+       // Attempt stays ephemeral if storage is blocked.
+@@ -182,13 +200,15 @@ export function ComputerFinalExamPlayer({
+     <main className="bg-white pt-[72px]">
+       <div className="mx-auto max-w-[680px] px-5 pt-5 pb-16">
+         <p className="text-muted mb-6 text-[12.5px]">
+-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
+-          {exam.titleHt}
++          Computer &amp; Internet Essentials{" "}
++          <span className="text-indigo-dark">·</span> {exam.titleHt}
+         </p>
+ 
+         {!unlocked && (
+           <div>
+-            <p className="text-eyebrow text-indigo-dark mb-3">FÈMEN POU KOUNYE A</p>
++            <p className="text-eyebrow text-indigo-dark mb-3">
++              FÈMEN POU KOUNYE A
++            </p>
+             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+               Fini rès kou a dabò.
+             </h1>
+@@ -197,14 +217,17 @@ export function ComputerFinalExamPlayer({
+             </p>
+             <ul className="border-border grid gap-2.5 rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+               {blockers.map((blocker) => (
+-                <li key={blocker} className="text-ink text-[13.5px] leading-[1.6]">
++                <li
++                  key={blocker}
++                  className="text-ink text-[13.5px] leading-[1.6]"
++                >
+                   • {blocker}
+                 </li>
+               ))}
+             </ul>
+             {firstIncompleteLesson && (
+               <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
++                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
+                 className="bg-indigo mt-6 inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+               >
+                 Kontinye ak {firstIncompleteLesson.titleHt}
+@@ -220,8 +243,10 @@ export function ComputerFinalExamPlayer({
+             <h1 className="font-fraunces text-ink mb-3 text-[28px] leading-[1.2] font-semibold italic">
+               {exam.titleHt}
+             </h1>
+-            <p className="text-muted mb-6 text-[15px] leading-[1.6]">{exam.intro}</p>
+-            <div className="mb-7 grid grid-cols-3 gap-2.5 text-center">
++            <p className="text-muted mb-6 text-[15px] leading-[1.6]">
++              {exam.intro}
++            </p>
++            <div className="mb-7 grid grid-cols-1 gap-2.5 text-center sm:grid-cols-3">
+               <div className="bg-indigo-light rounded-xl px-3 py-3.5">
+                 <p className="text-ink text-[18px] font-bold">
+                   {exam.questionsPerAttempt}
+@@ -229,7 +254,9 @@ export function ComputerFinalExamPlayer({
+                 <p className="text-muted text-[11.5px]">Kesyon</p>
+               </div>
+               <div className="bg-indigo-light rounded-xl px-3 py-3.5">
+-                <p className="text-ink text-[18px] font-bold">{exam.passingPercent}%</p>
++                <p className="text-ink text-[18px] font-bold">
++                  {exam.passingPercent}%
++                </p>
+                 <p className="text-muted text-[11.5px]">Pou Pase</p>
+               </div>
+               <div className="bg-indigo-light rounded-xl px-3 py-3.5">
+@@ -240,7 +267,8 @@ export function ComputerFinalExamPlayer({
+             {record && (
+               <p className="text-muted mb-6 text-[13px]">
+                 Dènye rezilta ou: {record.bestPercent}%
+-                {record.passed ? " — ou deja pase l ✅" : ""} ({record.attempts} eseye)
++                {record.passed ? " — ou deja pase l ✅" : ""} ({record.attempts}{" "}
++                eseye)
+               </p>
+             )}
+             <button
+@@ -257,8 +285,8 @@ export function ComputerFinalExamPlayer({
+           <div>
+             <div className="border-border sticky top-[72px] z-10 mb-6 border-b bg-white/95 pt-2.5 pb-3 backdrop-blur-sm">
+               <p className="text-muted text-[12.5px]">
+-                {checkState.filter((a) => a.checked).length} sou {attemptQuestions.length}{" "}
+-                reponn
++                {checkState.filter((a) => a.checked).length} sou{" "}
++                {attemptQuestions.length} reponn
+               </p>
+             </div>
+             <div className="grid gap-8">
+@@ -266,7 +294,9 @@ export function ComputerFinalExamPlayer({
+                 <QuestionCard
+                   key={item.id}
+                   question={item.question}
+-                  answer={checkState[index] ?? { checked: false, correct: false }}
++                  answer={
++                    checkState[index] ?? { checked: false, correct: false }
++                  }
+                   onAnswerChange={(partial) => updateAnswer(index, partial)}
+                   onVerify={() => verify(index)}
+                 />
+@@ -295,13 +325,17 @@ export function ComputerFinalExamPlayer({
+             <div
+               className={cn(
+                 "mb-7 rounded-[18px] px-5.5 py-7.5 text-center",
+-                passed ? "bg-indigo text-white" : "bg-indigo-light text-indigo-dark",
++                passed
++                  ? "bg-indigo text-white"
++                  : "bg-indigo-light text-indigo-dark",
+               )}
+             >
+               <div
+                 className={cn(
+                   "mx-auto mb-3.5 grid size-[70px] -rotate-6 place-items-center rounded-full border-[3px]",
+-                  passed ? "border-white bg-white/15" : "border-indigo bg-transparent",
++                  passed
++                    ? "border-white bg-white/15"
++                    : "border-indigo bg-transparent",
+                 )}
+               >
+                 {passed ? (
+@@ -325,7 +359,7 @@ export function ComputerFinalExamPlayer({
+               </p>
+               {passed && (
+                 <Link
+-                  href="/academy/courses/computer-internet-essentials/rebuild/certificate"
++                  href="/academy/courses/computer-internet-essentials/learn/certificate"
+                   className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                 >
+                   <GraduationCapIcon className="size-4" />
+@@ -344,7 +378,7 @@ export function ComputerFinalExamPlayer({
+                   {missedLessons.map((item) => (
+                     <Link
+                       key={item.id}
+-                      href={`/academy/courses/computer-internet-essentials/rebuild/${item.recommendedLessonSlug}`}
++                      href={`/academy/courses/computer-internet-essentials/learn/${item.recommendedLessonSlug}`}
+                       className="border-border flex items-center justify-between rounded-xl border bg-[#FCFCFE] px-4 py-3.5"
+                     >
+                       <span className="text-ink text-[13.5px] font-semibold">
+diff --git a/src/components/academy/computer-growth-summary-player.tsx b/src/components/academy/computer-growth-summary-player.tsx
+index e0db565..6183004 100644
+--- a/src/components/academy/computer-growth-summary-player.tsx
++++ b/src/components/academy/computer-growth-summary-player.tsx
+@@ -19,7 +19,11 @@ interface ReadinessRecord {
+   updatedAt: string;
+ }
+ 
+-const levelLabelsHt = ["Pa ka fè l toujou", "Ka fè l ak èd", "Ka fè l poukont li"];
++const levelLabelsHt = [
++  "Pa ka fè l toujou",
++  "Ka fè l ak èd",
++  "Ka fè l poukont li",
++];
+ 
+ function levelLabel(level: number | null): string {
+   if (level === null || !levelLabelsHt[level]) return "Pa evalye";
+@@ -41,7 +45,12 @@ export function ComputerGrowthSummaryPlayer() {
+ 
+   useEffect(() => {
+     const timer = window.setTimeout(() => {
+-      setIntake(readJson<SkillsIntakeRecord | null>(computerSkillsIntakeStorageKey, null));
++      setIntake(
++        readJson<SkillsIntakeRecord | null>(
++          computerSkillsIntakeStorageKey,
++          null,
++        ),
++      );
+       const reflections = readJson(
+         computerReadinessReflectionStorageKey,
+         {} as Record<string, ReadinessRecord>,
+@@ -75,7 +84,7 @@ export function ComputerGrowthSummaryPlayer() {
+             Dijital Ou a, ki vini apre Kapstòn nan ak tout kou a.
+           </p>
+           <Link
+-            href="/academy/courses/computer-internet-essentials/rebuild/checkpoint-4"
++            href="/academy/courses/computer-internet-essentials/learn/checkpoint-4"
+             className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+           >
+             Ale nan Checkpoint 4
+@@ -91,10 +100,14 @@ export function ComputerGrowthSummaryPlayer() {
+     const beforeLevel = intake?.ratings[index] ?? null;
+     const afterLevel = after?.ratings[index] ?? null;
+     const delta =
+-      beforeLevel !== null && afterLevel !== null ? afterLevel - beforeLevel : null;
++      beforeLevel !== null && afterLevel !== null
++        ? afterLevel - beforeLevel
++        : null;
+     return { competency, beforeLevel, afterLevel, delta };
+   });
+-  const improvedCount = rows.filter((r) => r.delta !== null && r.delta > 0).length;
++  const improvedCount = rows.filter(
++    (r) => r.delta !== null && r.delta > 0,
++  ).length;
+   const comparableCount = rows.filter((r) => r.delta !== null).length;
+ 
+   return (
+@@ -122,14 +135,17 @@ export function ComputerGrowthSummaryPlayer() {
+         ) : (
+           <p className="text-muted mb-8 text-[15px] leading-[1.6]">
+             Ou pa t fè evalyasyon kòmansman an, donk nou pa ka montre w yon
+-            konparezon. Men men kote ou ye kounye a — sa ka sèvi kòm pwen
+-            depa ou pou pwochen kou ou.
++            konparezon. Men men kote ou ye kounye a — sa ka sèvi kòm pwen depa
++            ou pou pwochen kou ou.
+           </p>
+         )}
+ 
+         <div className="mb-4">
+           {rows.map(({ competency, beforeLevel, afterLevel, delta }) => (
+-            <div key={competency.skillHt} className="border-border border-b py-4.5 first:border-t">
++            <div
++              key={competency.skillHt}
++              className="border-border border-b py-4.5 first:border-t"
++            >
+               <p className="text-ink mb-2.5 text-[14.5px] font-semibold">
+                 {competency.skillHt}
+               </p>
+@@ -173,7 +189,7 @@ export function ComputerGrowthSummaryPlayer() {
+ 
+         <div className="mt-7 flex flex-wrap items-center gap-3">
+           <Link
+-            href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
++            href="/academy/courses/computer-internet-essentials/learn/final-exam"
+             className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+           >
+             Ale nan Egzamen Final la
+diff --git a/src/components/academy/computer-platform-onboarding.tsx b/src/components/academy/computer-platform-onboarding.tsx
+index 09b7e00..008207f 100644
+--- a/src/components/academy/computer-platform-onboarding.tsx
++++ b/src/components/academy/computer-platform-onboarding.tsx
+@@ -1,32 +1,72 @@
+ "use client";
+ 
+ import Link from "next/link";
+-import { useState } from "react";
+-import { ArrowRightIcon, LaptopIcon, SparklesIcon } from "@/components/ui/icons";
++import { useEffect, useRef, useState } from "react";
++import {
++  ArrowRightIcon,
++  LaptopIcon,
++  SparklesIcon,
++} from "@/components/ui/icons";
+ import { computerRebuildSkillsIntake } from "@/content/computer-rebuild/skills-intake";
+ import {
+   useComputerPlatform,
+   type PreferredPlatform,
+ } from "@/lib/use-computer-platform";
+ import { cn } from "@/lib/cn";
++import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
+ 
+ export const computerSkillsIntakeStorageKey =
+   "jamezzi:computer:essentials:skills-intake";
+ 
+-type Step = "welcome" | "choose" | "unsure" | "confirm" | "skills";
++type Step =
++  | "loading"
++  | "returning"
++  | "welcome"
++  | "choose"
++  | "unsure"
++  | "confirm"
++  | "skills";
+ 
+ export function ComputerPlatformOnboarding({
+   firstLessonSlug,
++  lessons,
+ }: {
+   firstLessonSlug: string;
++  lessons: { slug: string; title: string }[];
+ }) {
+-  const { platform, setPlatform } = useComputerPlatform();
+-  const [step, setStep] = useState<Step>("welcome");
++  const { platform, setPlatform, loaded } = useComputerPlatform();
++  const initialized = useRef(false);
++  const [step, setStep] = useState<Step>("loading");
+   const [chosen, setChosen] = useState<PreferredPlatform | null>(platform);
++  const [completed, setCompleted] = useState<string[]>([]);
+   const [ratings, setRatings] = useState<(number | null)[]>(() =>
+     computerRebuildSkillsIntake.competencies.map(() => null),
+   );
+ 
++  useEffect(() => {
++    if (!loaded || initialized.current) return;
++    initialized.current = true;
++    let saved: string[] = [];
++    try {
++      const raw = window.localStorage.getItem(computerProgressStorageKey);
++      if (raw) saved = JSON.parse(raw) as string[];
++    } catch {
++      // Start onboarding normally when storage is unavailable.
++    }
++    setCompleted(saved);
++    setChosen(platform);
++    // Choosing a platform is enough to prove onboarding was completed. A
++    // learner who skipped the optional intake should not be sent through the
++    // welcome flow again on the next visit.
++    setStep(platform ? "returning" : "welcome");
++  }, [loaded, platform]);
++
++  const completedSet = new Set(completed);
++  const nextLesson = lessons.find((lesson) => !completedSet.has(lesson.slug));
++  const completedCount = lessons.filter((lesson) =>
++    completedSet.has(lesson.slug),
++  ).length;
++
+   function choose(next: PreferredPlatform) {
+     setChosen(next);
+     setPlatform(next);
+@@ -62,6 +102,51 @@ export function ComputerPlatformOnboarding({
+   return (
+     <main className="bg-white pt-[72px]">
+       <div className="mx-auto max-w-[620px] px-5 py-16">
++        {step === "loading" && (
++          <p className="text-muted text-sm" role="status">
++            N ap prepare chemen aprantisaj ou…
++          </p>
++        )}
++
++        {step === "returning" && (
++          <div>
++            <p className="text-eyebrow text-indigo-dark mb-3">BYENVENI ANKÒ</p>
++            <h1 className="font-fraunces text-ink mb-3 text-[30px] leading-[1.15] font-semibold italic">
++              {nextLesson
++                ? "Kontinye kote ou te rete a."
++                : "Ou fini tout leson yo."}
++            </h1>
++            <p className="text-muted mb-2 text-[15.5px] leading-[1.6]">
++              {completedCount} sou {lessons.length} leson fini
++            </p>
++            {nextLesson && (
++              <p className="text-ink mb-7 text-[17px] font-semibold">
++                Pwochen leson: {nextLesson.title}
++              </p>
++            )}
++            <div className="flex flex-wrap items-center gap-3">
++              <Link
++                href={
++                  nextLesson
++                    ? `/academy/courses/computer-internet-essentials/learn/${nextLesson.slug}`
++                    : "/academy/courses/computer-internet-essentials/learn/final-exam"
++                }
++                className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
++              >
++                {nextLesson ? "Kontinye aprann" : "Pran evalyasyon final la"}
++                <ArrowRightIcon className="size-4" />
++              </Link>
++              <button
++                type="button"
++                onClick={() => setStep("choose")}
++                className="text-indigo-dark min-h-11 text-sm font-semibold"
++              >
++                Chanje Windows/Mac
++              </button>
++            </div>
++          </div>
++        )}
++
+         {step === "welcome" && (
+           <div>
+             <div className="bg-indigo-light text-indigo-dark mb-6 inline-flex size-14 items-center justify-center rounded-full">
+@@ -71,16 +156,16 @@ export function ComputerPlatformOnboarding({
+               Ou pa pral kraze anyen.
+             </h1>
+             <p className="text-muted mb-3 text-[15.5px] leading-[1.6]">
+-              Kou sa a pral ede w konprann kijan òdinatè ak entènèt la
+-              reyèlman fonksyone, itilize pwòp òdinatè ou ak konfyans, pwoteje
+-              tèt ou sou entènèt, òganize fichye ou, kominike klèman, epi
+-              rezoud pwoblèm ki rive nan wout la.
++              Kou sa a pral ede w konprann kijan òdinatè ak entènèt la reyèlman
++              fonksyone, itilize pwòp òdinatè ou ak konfyans, pwoteje tèt ou sou
++              entènèt, òganize fichye ou, kominike klèman, epi rezoud pwoblèm ki
++              rive nan wout la.
+             </p>
+             <p className="text-muted mb-8 text-[15.5px] leading-[1.6]">
+               Ou pa pral aprann tout bagay sou òdinatè. Ou pral aprann sa ou
+-              bezwen pou ou sispann santi w pèdi, yon ti aksyon nan yon fwa.
+-              Yon ekran ou pa rekonèt se pa yon òdinatè domaje — erè isit se
+-              yon pati nan aprantisaj la, se pa yon bagay pou ou pè.
++              bezwen pou ou sispann santi w pèdi, yon ti aksyon nan yon fwa. Yon
++              ekran ou pa rekonèt se pa yon òdinatè domaje — erè isit se yon
++              pati nan aprantisaj la, se pa yon bagay pou ou pè.
+             </p>
+             <button
+               type="button"
+@@ -101,9 +186,9 @@ export function ComputerPlatformOnboarding({
+               Ki òdinatè ou pral itilize pi plis?
+             </h1>
+             <p className="text-muted mb-7 text-[15px] leading-[1.6]">
+-              Pifò leson mache menm jan toupatou. Lè etap yo reyèlman diferan,
+-              n ap montre w vèsyon pou òdinatè pa ou. Ou ka chanje sa nenpòt
+-              lè nan meni kou a.
++              Pifò leson mache menm jan toupatou. Lè etap yo reyèlman diferan, n
++              ap montre w vèsyon pou òdinatè pa ou. Ou ka chanje sa nenpòt lè
++              nan meni kou a.
+             </p>
+             <div className="grid gap-3 sm:grid-cols-2">
+               <PlatformCard
+@@ -138,9 +223,8 @@ export function ComputerPlatformOnboarding({
+             <div className="mb-4 grid gap-2.5">
+               <div className="border-border rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+                 <p className="text-ink mb-1 text-[14.5px] font-bold">
+-                  Yon ba rete nan pati anba ekran an, epi nan kwen anba
+-                  agoch la gen yon bouton ou ka klike pou louvri yon meni
+-                  pwogram.
++                  Yon ba rete nan pati anba ekran an, epi nan kwen anba agoch la
++                  gen yon bouton ou ka klike pou louvri yon meni pwogram.
+                 </p>
+                 <button
+                   type="button"
+@@ -152,9 +236,9 @@ export function ComputerPlatformOnboarding({
+               </div>
+               <div className="border-border rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+                 <p className="text-ink mb-1 text-[14.5px] font-bold">
+-                  Yon ti ba fen ak mo tankou &ldquo;File, Edit, View&rdquo;
+-                  rete toupatou nan tèt ekran an, kèlkeswa sa ki louvri, epi
+-                  yon ranje ikòn pwogram rete anba oswa sou kote ekran an.
++                  Yon ti ba fen ak mo tankou &ldquo;File, Edit, View&rdquo; rete
++                  toupatou nan tèt ekran an, kèlkeswa sa ki louvri, epi yon
++                  ranje ikòn pwogram rete anba oswa sou kote ekran an.
+                 </p>
+                 <button
+                   type="button"
+@@ -205,7 +289,7 @@ export function ComputerPlatformOnboarding({
+                   <p className="text-ink mb-3 text-[14.5px] font-semibold">
+                     {item.skillHt}
+                   </p>
+-                  <div className="grid grid-cols-3 gap-2">
++                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                     {computerRebuildSkillsIntake.scaleLabelsHt.map(
+                       (label, scaleIndex) => {
+                         const selected = ratings[index] === scaleIndex;
+@@ -254,19 +338,22 @@ export function ComputerPlatformOnboarding({
+ 
+         {step === "confirm" && chosen && (
+           <div>
+-            <p className="text-eyebrow text-indigo-dark mb-3">TOUT BAGAY PARE</p>
++            <p className="text-eyebrow text-indigo-dark mb-3">
++              TOUT BAGAY PARE
++            </p>
+             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+               Ou nan chemen {chosen === "windows" ? "Windows" : "Mac"} la.
+             </h1>
+             <p className="text-muted mb-8 text-[15px] leading-[1.6]">
+-              Chak leson pral montre w etap {chosen === "windows" ? "Windows" : "Mac"} pa
+-              default. Si yon leson mache menm jan sou tou de òdinatè yo, nou
+-              p ap fè w chwazi san rezon. Ou ka chanje chemen nenpòt lè —
+-              anyen ou fin fè p ap pèdi.
++              Chak leson pral montre w etap{" "}
++              {chosen === "windows" ? "Windows" : "Mac"} pa default. Si yon
++              leson mache menm jan sou tou de òdinatè yo, nou p ap fè w chwazi
++              san rezon. Ou ka chanje chemen nenpòt lè — anyen ou fin fè p ap
++              pèdi.
+             </p>
+             <div className="flex flex-wrap items-center gap-3">
+               <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstLessonSlug}`}
++                href={`/academy/courses/computer-internet-essentials/learn/${firstLessonSlug}`}
+                 className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+               >
+                 Kòmanse Modil 1 <ArrowRightIcon className="size-4" />
+diff --git a/src/components/academy/computer-readiness-reflection-player.tsx b/src/components/academy/computer-readiness-reflection-player.tsx
+index c7cfe7f..6abbee5 100644
+--- a/src/components/academy/computer-readiness-reflection-player.tsx
++++ b/src/components/academy/computer-readiness-reflection-player.tsx
+@@ -23,7 +23,8 @@ interface ReadinessRecord {
+ function readReadinessRecords(): Record<string, ReadinessRecord> {
+   try {
+     return JSON.parse(
+-      window.localStorage.getItem(computerReadinessReflectionStorageKey) ?? "{}",
++      window.localStorage.getItem(computerReadinessReflectionStorageKey) ??
++        "{}",
+     ) as Record<string, ReadinessRecord>;
+   } catch {
+     return {};
+@@ -127,22 +128,25 @@ export function ComputerReadinessReflectionPlayer({
+     <main className="bg-white pt-[72px]">
+       <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
+         <p className="text-muted mb-6 text-[12.5px]">
+-          Computer &amp; Internet Essentials <span className="text-indigo-dark">·</span>{" "}
+-          {reflection.titleHt}
++          Computer &amp; Internet Essentials{" "}
++          <span className="text-indigo-dark">·</span> {reflection.titleHt}
+         </p>
+ 
+         {!unlocked && (
+           <div>
+-            <p className="text-eyebrow text-indigo-dark mb-3">FÈMEN POU KOUNYE A</p>
++            <p className="text-eyebrow text-indigo-dark mb-3">
++              FÈMEN POU KOUNYE A
++            </p>
+             <h1 className="font-fraunces text-ink mb-3 text-[26px] leading-[1.2] font-semibold italic">
+               Fini leson ki anvan yo dabò.
+             </h1>
+             <p className="text-muted mb-7 text-[15px] leading-[1.6]">
+-              Chèk prepare sa a vini apre ou fin konplete Kapstòn nan ak tout kou a.
++              Chèk prepare sa a vini apre ou fin konplete Kapstòn nan ak tout
++              kou a.
+             </p>
+             {firstIncompleteLesson && (
+               <Link
+-                href={`/academy/courses/computer-internet-essentials/rebuild/${firstIncompleteLesson.slug}`}
++                href={`/academy/courses/computer-internet-essentials/learn/${firstIncompleteLesson.slug}`}
+                 className="bg-indigo inline-flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
+               >
+                 Kontinye ak {firstIncompleteLesson.titleHt}
+@@ -176,7 +180,7 @@ export function ComputerReadinessReflectionPlayer({
+                   <p className="text-ink mb-3 text-[14.5px] font-semibold">
+                     {item.skillHt}
+                   </p>
+-                  <div className="grid grid-cols-3 gap-2">
++                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                     {reflection.scaleLabelsHt.map((label, scaleIndex) => {
+                       const selected = ratings[index] === scaleIndex;
+                       return (
+@@ -245,7 +249,8 @@ export function ComputerReadinessReflectionPlayer({
+             </div>
+             {!allRated && (
+               <p className="text-muted mt-3 text-[12.5px]">
+-                Reponn tout konpetans yo anvan ou sovgade — kesyon ouvè yo pa obligatwa.
++                Reponn tout konpetans yo anvan ou sovgade — kesyon ouvè yo pa
++                obligatwa.
+               </p>
+             )}
+ 
+@@ -257,13 +262,13 @@ export function ComputerReadinessReflectionPlayer({
+                 </p>
+                 <div className="flex flex-wrap items-center justify-center gap-3">
+                   <Link
+-                    href="/academy/courses/computer-internet-essentials/rebuild/growth-summary"
++                    href="/academy/courses/computer-internet-essentials/learn/growth-summary"
+                     className="border-indigo text-indigo-dark inline-flex min-h-11 items-center gap-2 rounded-full border-2 bg-white px-6 py-2.5 text-sm font-semibold"
+                   >
+                     Wè Rezime Kwasans Ou
+                   </Link>
+                   <Link
+-                    href="/academy/courses/computer-internet-essentials/rebuild/final-exam"
++                    href="/academy/courses/computer-internet-essentials/learn/final-exam"
+                     className="bg-indigo inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+                   >
+                     Ale nan Egzamen Final la
+diff --git a/src/components/academy/course-preview-page.tsx b/src/components/academy/course-preview-page.tsx
+index fbeec07..e278570 100644
+--- a/src/components/academy/course-preview-page.tsx
++++ b/src/components/academy/course-preview-page.tsx
+@@ -27,7 +27,7 @@ export function CoursePreviewPage({ course }: { course: CourseSummary }) {
+   const preview = previews[course.slug];
+   return (
+     <main className="bg-paper">
+-      <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[650px] lg:pt-[72px]">
++      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
+         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
+           <Image
+             src={preview.image}
+@@ -35,12 +35,12 @@ export function CoursePreviewPage({ course }: { course: CourseSummary }) {
+             fill
+             priority
+             sizes="(max-width: 1023px) 100vw, 62vw"
+-            className="object-cover"
++            className="object-cover object-[65%_center] sm:object-center"
+           />
+         </div>
+-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/86 lg:via-[#f8f5f0]/72" />
++        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/86 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
+         <Container className="relative z-10">
+-          <div className="max-w-2xl py-14">
++          <div className="max-w-2xl py-10 sm:py-14">
+             <p className="text-eyebrow text-indigo-dark">
+               JAMEZZI ACADEMY · {course.category}
+             </p>
+diff --git a/src/components/academy/course-progress-backup.tsx b/src/components/academy/course-progress-backup.tsx
+new file mode 100644
+index 0000000..edba625
+--- /dev/null
++++ b/src/components/academy/course-progress-backup.tsx
+@@ -0,0 +1,125 @@
++"use client";
++
++import { useRef, useState } from "react";
++import { CheckIcon } from "@/components/ui/icons";
++
++interface BackupFile {
++  version: 1;
++  course: "english" | "computer";
++  exportedAt: string;
++  values: Record<string, string>;
++}
++
++const prefixes = {
++  english: "jamezzi:english:",
++  computer: "jamezzi:computer:",
++} as const;
++
++export function CourseProgressBackup({
++  course,
++}: {
++  course: keyof typeof prefixes;
++}) {
++  const inputRef = useRef<HTMLInputElement>(null);
++  const [message, setMessage] = useState("");
++
++  function downloadBackup() {
++    const values: Record<string, string> = {};
++    for (let index = 0; index < window.localStorage.length; index += 1) {
++      const key = window.localStorage.key(index);
++      if (key?.startsWith(prefixes[course])) {
++        values[key] = window.localStorage.getItem(key) ?? "";
++      }
++    }
++    const backup: BackupFile = {
++      version: 1,
++      course,
++      exportedAt: new Date().toISOString(),
++      values,
++    };
++    const blob = new Blob([JSON.stringify(backup, null, 2)], {
++      type: "application/json",
++    });
++    const url = URL.createObjectURL(blob);
++    const anchor = document.createElement("a");
++    anchor.href = url;
++    anchor.download = `jamezzi-${course}-progress.json`;
++    anchor.click();
++    URL.revokeObjectURL(url);
++    setMessage("Progress backup downloaded.");
++  }
++
++  async function restoreBackup(file: File) {
++    try {
++      const backup = JSON.parse(await file.text()) as Partial<BackupFile>;
++      if (
++        backup.version !== 1 ||
++        backup.course !== course ||
++        !backup.values ||
++        typeof backup.values !== "object"
++      ) {
++        throw new Error("invalid");
++      }
++      const validEntries = Object.entries(backup.values).filter(
++        ([key, value]) =>
++          key.startsWith(prefixes[course]) && typeof value === "string",
++      );
++      if (!validEntries.length) throw new Error("empty");
++      validEntries.forEach(([key, value]) =>
++        window.localStorage.setItem(key, value),
++      );
++      setMessage("Progress restored. Refreshing the course…");
++      window.setTimeout(() => window.location.reload(), 700);
++    } catch {
++      setMessage("This is not a valid progress backup for this course.");
++    } finally {
++      if (inputRef.current) inputRef.current.value = "";
++    }
++  }
++
++  return (
++    <div className="border-border rounded-[18px] border bg-white p-6 sm:p-7">
++      <p className="text-eyebrow text-indigo-dark">SAVE YOUR PROGRESS</p>
++      <h2 className="text-card-title text-ink mt-3">Keep a private backup.</h2>
++      <p className="text-body text-muted mt-3 max-w-2xl">
++        Guest progress stays in this browser. Download a small backup file if
++        you want to protect it or move it to another device. It contains course
++        progress only—not passwords or personal account information.
++      </p>
++      <div className="mt-5 flex flex-wrap gap-3">
++        <button
++          type="button"
++          onClick={downloadBackup}
++          className="bg-indigo text-button min-h-11 rounded-full px-5 text-white"
++        >
++          Download Progress
++        </button>
++        <button
++          type="button"
++          onClick={() => inputRef.current?.click()}
++          className="border-border text-button text-ink min-h-11 rounded-full border bg-white px-5"
++        >
++          Restore Progress
++        </button>
++        <input
++          ref={inputRef}
++          type="file"
++          accept="application/json,.json"
++          className="sr-only"
++          onChange={(event) => {
++            const file = event.target.files?.[0];
++            if (file) void restoreBackup(file);
++          }}
++        />
++      </div>
++      {message && (
++        <p
++          className="text-metadata text-indigo-dark mt-4 flex items-center gap-2"
++          aria-live="polite"
++        >
++          <CheckIcon className="size-4" /> {message}
++        </p>
++      )}
++    </div>
++  );
++}
+diff --git a/src/components/academy/course-resume-card.tsx b/src/components/academy/course-resume-card.tsx
+new file mode 100644
+index 0000000..c194cd4
+--- /dev/null
++++ b/src/components/academy/course-resume-card.tsx
+@@ -0,0 +1,137 @@
++"use client";
++
++import Link from "next/link";
++import { useEffect, useState } from "react";
++import { ArrowRightIcon } from "@/components/ui/icons";
++import {
++  courseProgressChangedEvent,
++  isProgressEventFor,
++  readCompletedLessons,
++} from "@/lib/course-progress";
++
++interface ResumeLesson {
++  slug: string;
++  title: string;
++}
++
++export function CourseResumeCard({
++  lessons,
++  progressStorageKey,
++  lessonBaseHref,
++  assessmentHref,
++  language = "en",
++}: {
++  lessons: ResumeLesson[];
++  progressStorageKey: string;
++  lessonBaseHref: string;
++  assessmentHref: string;
++  language?: "en" | "ht";
++}) {
++  const [completed, setCompleted] = useState<string[] | null>(null);
++
++  useEffect(() => {
++    const refresh = () => {
++      setCompleted(readCompletedLessons(progressStorageKey));
++    };
++    const handleProgress = (event: Event) => {
++      if (isProgressEventFor(event, progressStorageKey)) refresh();
++    };
++    const handleStorage = (event: StorageEvent) => {
++      if (event.key === progressStorageKey) refresh();
++    };
++    const timer = window.setTimeout(refresh, 0);
++    window.addEventListener(courseProgressChangedEvent, handleProgress);
++    window.addEventListener("storage", handleStorage);
++    return () => {
++      window.clearTimeout(timer);
++      window.removeEventListener(courseProgressChangedEvent, handleProgress);
++      window.removeEventListener("storage", handleStorage);
++    };
++  }, [progressStorageKey]);
++
++  if (completed === null || lessons.length === 0) return null;
++
++  const completedSet = new Set(completed);
++  const completedCount = lessons.filter((lesson) =>
++    completedSet.has(lesson.slug),
++  ).length;
++  const nextLesson = lessons.find((lesson) => !completedSet.has(lesson.slug));
++  const percent = Math.round((completedCount / lessons.length) * 100);
++  const isComplete = !nextLesson;
++  const isNew = completedCount === 0;
++  const href = isComplete
++    ? assessmentHref
++    : `${lessonBaseHref}/${nextLesson.slug}`;
++
++  const copy =
++    language === "ht"
++      ? {
++          eyebrow: isComplete
++            ? "LESON YO FINI"
++            : isNew
++              ? "KÒMANSE LÈ OU PARE"
++              : "KONTINYE KOTE OU TE RETE A",
++          title: isComplete
++            ? "Ou pare pou evalyasyon final la."
++            : isNew
++              ? "Premye leson ou pare."
++              : nextLesson.title,
++          action: isComplete
++            ? "Pran evalyasyon final la"
++            : isNew
++              ? "Kòmanse premye leson an"
++              : "Kontinye aprann",
++          progress: `${completedCount} sou ${lessons.length} leson fini`,
++        }
++      : {
++          eyebrow: isComplete
++            ? "COURSE LESSONS COMPLETE"
++            : isNew
++              ? "READY WHEN YOU ARE"
++              : "CONTINUE WHERE YOU LEFT OFF",
++          title: isComplete
++            ? "You’re ready for the final assessment."
++            : isNew
++              ? "Your first lesson is ready."
++              : nextLesson.title,
++          action: isComplete
++            ? "Take the final assessment"
++            : isNew
++              ? "Start the first lesson"
++              : "Continue learning",
++          progress: `${completedCount} of ${lessons.length} lessons completed`,
++        };
++
++  return (
++    <section className="border-border mt-12 overflow-hidden rounded-2xl border bg-white shadow-[0_18px_55px_rgba(35,31,70,0.06)]">
++      <div className="grid gap-7 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:p-10">
++        <div>
++          <p className="text-eyebrow text-indigo-dark">{copy.eyebrow}</p>
++          <h2 className="text-feature-headline-sm text-ink mt-3">
++            {copy.title}
++          </h2>
++          <p className="text-metadata text-muted mt-3">{copy.progress}</p>
++          <div
++            className="mt-4 h-2 max-w-xl overflow-hidden rounded-full bg-[#ECEAF5]"
++            role="progressbar"
++            aria-label={copy.progress}
++            aria-valuemin={0}
++            aria-valuemax={100}
++            aria-valuenow={percent}
++          >
++            <div
++              className="bg-indigo h-full rounded-full transition-[width]"
++              style={{ width: `${percent}%` }}
++            />
++          </div>
++        </div>
++        <Link
++          href={href}
++          className="bg-indigo inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold text-white"
++        >
++          {copy.action} <ArrowRightIcon className="size-4" />
++        </Link>
++      </div>
++    </section>
++  );
++}
+diff --git a/src/components/academy/english-course-page.tsx b/src/components/academy/english-course-page.tsx
+index 4046d3a..741d4f9 100644
+--- a/src/components/academy/english-course-page.tsx
++++ b/src/components/academy/english-course-page.tsx
+@@ -2,14 +2,13 @@ import Image from "next/image";
+ import { Container } from "@/components/ui/container";
+ import { CtaLink } from "@/components/ui/cta-link";
+ import { ArrowRightIcon } from "@/components/ui/icons";
+-import { englishModules } from "@/content/english-course";
++import { englishLevels, englishModules } from "@/content/english-course";
+ import { englishLevelOneLessons } from "@/content/english-level-one";
+-import { cn } from "@/lib/cn";
+ 
+ export function EnglishCoursePage() {
+   return (
+     <main className="bg-paper">
+-      <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#f8f5f0] pt-24 lg:min-h-[650px] lg:pt-[72px]">
++      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
+         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
+           <Image
+             src="/images/academy/courses/english-for-beginners.webp"
+@@ -17,28 +16,28 @@ export function EnglishCoursePage() {
+             fill
+             priority
+             sizes="(max-width: 1023px) 100vw, 62vw"
+-            className="object-cover"
++            className="object-cover object-[65%_center] sm:object-center"
+           />
+         </div>
+-        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 to-[#f8f5f0]/10 sm:via-[#f8f5f0]/85 lg:via-[#f8f5f0]/72" />
++        <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-[#f8f5f0]/95 via-70% to-[#f8f5f0]/35 sm:via-[#f8f5f0]/85 sm:to-[#f8f5f0]/10 lg:via-[#f8f5f0]/72" />
+         <Container className="relative z-10">
+-          <div className="max-w-2xl py-14">
++          <div className="max-w-2xl py-10 sm:py-14">
+             <p className="text-eyebrow text-indigo-dark">
+               JAMEZZI ACADEMY · FREE COURSE
+             </p>
+             <h1 className="text-editorial-headline text-ink mt-5 max-w-4xl">
+-              English for Beginners
++              Practical English for Haitian Creole Speakers
+             </h1>
+-            <p className="font-display text-ink mt-5 max-w-3xl text-3xl leading-tight md:text-4xl">
++            <p className="font-display text-ink mt-5 max-w-3xl text-2xl leading-tight sm:text-3xl md:text-4xl">
+               Speak, understand, and use English in real life.
+             </p>
+             <p className="text-intro text-muted mt-7 max-w-xl">
+-              A practical course for true beginners. Learn in clear steps,
+-              practice what you hear, and build confidence. The complete course
+-              is free, and you do not need an account to begin.
++              Begin with your first words, then progress toward everyday,
++              professional, and confident English. The complete course is free,
++              and you do not need an account to begin.
+             </p>
+             <div className="mt-8 flex flex-wrap gap-4">
+-              <CtaLink href="/academy/courses/english-for-beginners/level-1">
++              <CtaLink href="/academy/courses/english-for-beginners/learn">
+                 Start Learning <ArrowRightIcon className="size-4" />
+               </CtaLink>
+               <CtaLink href="#course-path" variant="secondary">
+@@ -60,44 +59,43 @@ export function EnglishCoursePage() {
+               Start simple. Build toward real confidence.
+             </h2>
+             <p className="text-body text-muted mt-4 max-w-2xl">
+-              18 modules, built one at a time. Modules with lessons ready are
+-              open now — the rest are coming soon.
++              Four achievable levels. All 18 modules and 151 lessons are open.
+             </p>
+           </div>
+ 
+           <div className="border-border mt-12 grid border-t lg:grid-cols-2">
+-            {englishModules.map((module) => {
++            {englishLevels.map((level) => {
++              const levelModules = englishModules.filter((module) =>
++                level.moduleNumbers.includes(module.number),
++              );
+               const firstLesson = englishLevelOneLessons.find(
+-                (lesson) => lesson.moduleNumber === module.number,
++                (lesson) => lesson.moduleNumber === level.moduleNumbers[0],
+               );
+-              const available = Boolean(firstLesson);
+ 
+               return (
+                 <article
+-                  key={module.number}
+-                  className={cn(
+-                    "border-border scroll-mt-28 border-b py-9 lg:px-8 lg:odd:border-r lg:odd:pl-0 lg:even:pr-0",
+-                    !available && "opacity-60",
+-                  )}
++                  key={level.number}
++                  className="border-border scroll-mt-28 border-b py-9 lg:px-8 lg:odd:border-r lg:odd:pl-0 lg:even:pr-0"
+                 >
+                   <p className="text-eyebrow text-indigo-dark">
+-                    MODULE {module.number}
++                    LEVEL {level.number}
+                   </p>
+                   <h3 className="text-feature-headline-sm text-ink mt-4">
+-                    {module.title}
++                    {level.title}
+                   </h3>
+-                  <p className="text-body text-muted mt-3">{module.promise}</p>
+-                  {available && firstLesson ? (
++                  <p className="text-body text-muted mt-3">{level.promise}</p>
++                  <p className="text-metadata text-muted mt-4">
++                    {levelModules.map((module) => module.title).join(" · ")}
++                  </p>
++                  {firstLesson && (
+                     <CtaLink
+-                      href={`/academy/courses/english-for-beginners/level-1/${firstLesson.slug}`}
++                      href={`/academy/courses/english-for-beginners/learn#level-${level.number}`}
+                       variant="link"
+                       className="mt-7"
+                     >
+-                      Open Module {module.number}{" "}
++                      Explore Level {level.number}{" "}
+                       <ArrowRightIcon className="size-4" />
+                     </CtaLink>
+-                  ) : (
+-                    <p className="text-metadata text-muted mt-7">Coming soon</p>
+                   )}
+                 </article>
+               );
+@@ -123,12 +121,12 @@ export function EnglishCoursePage() {
+             <AccessRow
+               number="02"
+               title="Create a free account when it helps"
+-              copy="Use an account to sync progress across devices, keep a learning dashboard, and preserve your final exam record."
++              copy="Account-based progress syncing is planned. For now, guest progress stays in this browser on this device."
+             />
+             <AccessRow
+               number="03"
+-              title="Earn the free certificate"
+-              copy="The final exam and certificate are free. An account is only required at that point so the certificate can be issued and verified."
++              title="Complete the final assessment"
++              copy="The final exam is free. After passing, you can print a device-issued completion record. Public certificate verification will come later with student accounts."
+             />
+           </div>
+         </Container>
+@@ -139,11 +137,11 @@ export function EnglishCoursePage() {
+           <div>
+             <p className="text-eyebrow text-white/70">START WHERE YOU ARE</p>
+             <h2 className="font-display mt-3 max-w-3xl text-4xl leading-tight md:text-5xl">
+-              Your first English lesson is free.
++              Start learning practical English today.
+             </h2>
+           </div>
+           <CtaLink
+-            href="/academy/courses/english-for-beginners/level-1"
++            href="/academy/courses/english-for-beginners/learn"
+             variant="inverse"
+           >
+             Start Learning <ArrowRightIcon className="size-4" />
+diff --git a/src/components/academy/english-final-exam.tsx b/src/components/academy/english-final-exam.tsx
+index b7055e0..9e82108 100644
+--- a/src/components/academy/english-final-exam.tsx
++++ b/src/components/academy/english-final-exam.tsx
+@@ -10,7 +10,7 @@ import {
+   SparklesIcon,
+   StampIcon,
+ } from "@/components/ui/icons";
+-import { englishModules } from "@/content/english-course";
++import { englishLevels, englishModules } from "@/content/english-course";
+ import {
+   computeFinalExamResult,
+   EXAM_PASS_THRESHOLD,
+@@ -32,6 +32,7 @@ interface ExamState {
+   missedModules: number[];
+   capstoneText: string;
+   capstoneSubmittedAt: string | null;
++  studentName: string;
+ }
+ 
+ const emptyExamState: ExamState = {
+@@ -41,6 +42,7 @@ const emptyExamState: ExamState = {
+   missedModules: [],
+   capstoneText: "",
+   capstoneSubmittedAt: null,
++  studentName: "",
+ };
+ 
+ const totalLessons = englishLevelOneLessons.length;
+@@ -48,16 +50,21 @@ const totalLessons = englishLevelOneLessons.length;
+ export function EnglishFinalExam() {
+   const [screen, setScreen] = useState<Screen>("locked");
+   const [completedCount, setCompletedCount] = useState<number | null>(null);
++  const [firstUnpassedLevel, setFirstUnpassedLevel] = useState<number | null>(
++    null,
++  );
+   const [examState, setExamState] = useState<ExamState>(emptyExamState);
+   const [index, setIndex] = useState(0);
+   const [answers, setAnswers] = useState<Record<number, number>>({});
+   const [selected, setSelected] = useState<number | null>(null);
+   const [lastResult, setLastResult] = useState<FinalExamResult | null>(null);
+   const [capstoneDraft, setCapstoneDraft] = useState("");
++  const [studentName, setStudentName] = useState("");
+ 
+   useEffect(() => {
+     let completed: string[] = [];
+     let savedExam = emptyExamState;
++    let unpassedLevel: number | null = null;
+     try {
+       const savedProgress = window.localStorage.getItem(
+         englishProgressStorageKey,
+@@ -66,6 +73,15 @@ export function EnglishFinalExam() {
+       const savedExamRaw = window.localStorage.getItem(examStorageKey);
+       if (savedExamRaw)
+         savedExam = { ...emptyExamState, ...JSON.parse(savedExamRaw) };
++      unpassedLevel =
++        englishLevels.find((level) => {
++          const raw = window.localStorage.getItem(
++            `jamezzi:english:level-${level.number}:checkpoint`,
++          );
++          if (!raw) return true;
++          const result = JSON.parse(raw) as { passed?: boolean };
++          return !result.passed;
++        })?.number ?? null;
+     } catch {
+       // Progress and exam state remain empty if storage is blocked.
+     }
+@@ -76,9 +92,11 @@ export function EnglishFinalExam() {
+ 
+     const timer = window.setTimeout(() => {
+       setCompletedCount(count);
++      setFirstUnpassedLevel(unpassedLevel);
+       setExamState(savedExam);
+       setCapstoneDraft(savedExam.capstoneText);
+-      if (count < totalLessons) {
++      setStudentName(savedExam.studentName);
++      if (!savedExam.passed && (count < totalLessons || unpassedLevel)) {
+         setScreen("locked");
+       } else if (!savedExam.passed) {
+         setScreen("intro");
+@@ -165,7 +183,7 @@ export function EnglishFinalExam() {
+             </span>
+           </div>
+ 
+-          <div className="px-7 pt-7.5 pb-8">
++          <div className="px-5 pt-6 pb-7 sm:px-7 sm:pt-7.5 sm:pb-8">
+             {screen === "locked" && (
+               <div>
+                 <h1 className="text-ink mb-1.5 text-[26px] leading-tight font-bold">
+@@ -175,8 +193,8 @@ export function EnglishFinalExam() {
+                   </span>
+                 </h1>
+                 <p className="text-muted mb-6 text-[15px] leading-[1.55]">
+-                  Fini tout 18 modil yo anvan ou fè egzamen final la. Sa asire w
+-                  gen tout sa ou bezwen pou reyisi.
++                  Fini tout leson yo epi pase kat evalyasyon nivo yo anvan ou fè
++                  egzamen final la. Sa asire w gen tout sa ou bezwen pou reyisi.
+                 </p>
+                 <div className="mb-6.5">
+                   <p className="text-metadata text-muted mb-2">
+@@ -192,10 +210,17 @@ export function EnglishFinalExam() {
+                   </div>
+                 </div>
+                 <Link
+-                  href="/academy/courses/english-for-beginners/level-1"
++                  href={
++                    (completedCount ?? 0) < totalLessons
++                      ? "/academy/courses/english-for-beginners/learn"
++                      : `/academy/courses/english-for-beginners/checkpoint/${firstUnpassedLevel ?? 1}`
++                  }
+                   className="bg-indigo flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-5 text-[15.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.32)]"
+                 >
+-                  Kontinye Leson yo <ArrowRightIcon className="size-4.5" />
++                  {(completedCount ?? 0) < totalLessons
++                    ? "Kontinye Leson yo"
++                    : `Pase Evalyasyon Nivo ${firstUnpassedLevel ?? 1}`}{" "}
++                  <ArrowRightIcon className="size-4.5" />
+                 </Link>
+               </div>
+             )}
+@@ -313,7 +338,7 @@ export function EnglishFinalExam() {
+                     return (
+                       <Link
+                         key={moduleNumber}
+-                        href={`/academy/courses/english-for-beginners/level-1/${firstLesson.slug}`}
++                        href={`/academy/courses/english-for-beginners/lessons/${firstLesson.slug}`}
+                         className="border-border flex items-center justify-between rounded-[10px] border bg-[#FCFCFE] px-4 py-3"
+                       >
+                         <span className="text-ink text-[14px] font-medium">
+@@ -379,40 +404,80 @@ export function EnglishFinalExam() {
+                     Konplete
+                   </span>
+                   <span className="font-lesson-mono text-[9px] opacity-85">
+-                    ENG · BEG
++                    ENG · PRACTICAL
+                   </span>
+                 </div>
+ 
+                 <p className="font-lesson-mono text-indigo-dark/70 mb-1.5 text-[11.5px] tracking-[0.1em] uppercase">
+-                  Sètifika Konplesyon
++                  Dosye Konplesyon Sou Aparèy Sa a
+                 </p>
+                 <h2 className="text-ink mb-1 text-2xl font-bold">
+                   <span className="font-fraunces text-indigo font-semibold italic">
+-                    English for Beginners
++                    Anglè Pratik
+                   </span>
+                 </h2>
+                 <p className="text-indigo-dark/70 mb-6 text-[13px]">
+                   Skò final: {Math.round(examState.lastScore * 100)}%
+                 </p>
+ 
+-                <div className="border-border relative overflow-hidden rounded-[14px] border bg-[#FCFCFE] px-6 py-8">
+-                  <div
+-                    className="absolute inset-0 backdrop-blur-[3px]"
+-                    aria-hidden="true"
+-                  />
+-                  <div className="relative">
+-                    <p className="text-muted mb-4 text-[14px] leading-[1.6]">
+-                      🔒 Kreye yon kont gratis pou mete non ou sou sètifika a
+-                      epi telechaje l.
+-                    </p>
+-                    <Link
+-                      href="/sign-in"
+-                      className="bg-indigo inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.28)]"
+-                    >
+-                      <GraduationCapIcon className="size-4" />
+-                      Kreye Kont Gratis
+-                    </Link>
+-                  </div>
++                <div className="border-border rounded-[14px] border bg-[#FCFCFE] px-6 py-7">
++                  {!examState.studentName ? (
++                    <div>
++                      <label
++                        htmlFor="english-certificate-name"
++                        className="text-ink mb-2 block text-left text-[13.5px] font-semibold"
++                      >
++                        Non ou jan ou vle li parèt
++                      </label>
++                      <input
++                        id="english-certificate-name"
++                        value={studentName}
++                        onChange={(event) => setStudentName(event.target.value)}
++                        className="border-border focus:border-indigo w-full rounded-xl border bg-white px-4 py-3 text-[14.5px] outline-none"
++                        placeholder="Non ak siyati ou"
++                      />
++                      <button
++                        type="button"
++                        disabled={!studentName.trim()}
++                        onClick={() =>
++                          saveExamState({
++                            ...examState,
++                            studentName: studentName.trim(),
++                          })
++                        }
++                        className="bg-indigo mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-[14.5px] font-semibold text-white disabled:opacity-45"
++                      >
++                        <GraduationCapIcon className="size-4" /> Prepare Dosye
++                        Mwen
++                      </button>
++                    </div>
++                  ) : (
++                    <div>
++                      <p className="text-muted text-[12px] tracking-wide uppercase">
++                        Konplete pa
++                      </p>
++                      <p className="font-fraunces text-ink mt-2 text-2xl font-semibold">
++                        {examState.studentName}
++                      </p>
++                      <p className="text-muted mt-4 text-[13px] leading-[1.6]">
++                        Dosye sa a pwodwi epi sovgade sou aparèy sa a. Li poko
++                        gen verifikasyon piblik sou entènèt.
++                      </p>
++                      <button
++                        type="button"
++                        onClick={() => window.print()}
++                        className="bg-indigo mt-5 inline-flex min-h-11 items-center justify-center rounded-full px-5 text-[14.5px] font-semibold text-white print:hidden"
++                      >
++                        Enprime Dosye Konplesyon
++                      </button>
++                      <Link
++                        href="/academy/courses/english-for-beginners"
++                        className="text-indigo-dark mt-3 inline-flex min-h-10 items-center justify-center px-4 text-[13.5px] font-semibold print:hidden"
++                      >
++                        Retounen nan paj kou a →
++                      </Link>
++                    </div>
++                  )}
+                 </div>
+ 
+                 <button
+diff --git a/src/components/academy/english-level-checkpoint.tsx b/src/components/academy/english-level-checkpoint.tsx
+new file mode 100644
+index 0000000..9938b8e
+--- /dev/null
++++ b/src/components/academy/english-level-checkpoint.tsx
+@@ -0,0 +1,321 @@
++"use client";
++
++import Link from "next/link";
++import { useEffect, useMemo, useState } from "react";
++import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
++import {
++  ArrowRightIcon,
++  CheckIcon,
++  RotateCcwIcon,
++} from "@/components/ui/icons";
++import { englishLevels, englishModules } from "@/content/english-course";
++import { finalExamQuestions } from "@/content/english-final-exam";
++import { englishLevelOneLessons } from "@/content/english-level-one";
++import { cn } from "@/lib/cn";
++
++type Screen = "locked" | "intro" | "quiz" | "result";
++
++export function EnglishLevelCheckpoint({
++  levelNumber,
++}: {
++  levelNumber: number;
++}) {
++  const level = englishLevels.find((item) => item.number === levelNumber);
++  const levelLessons = useMemo(
++    () =>
++      englishLevelOneLessons.filter((lesson) =>
++        level?.moduleNumbers.includes(lesson.moduleNumber),
++      ),
++    [level],
++  );
++  const questions = useMemo(
++    () =>
++      finalExamQuestions.filter((question) =>
++        level?.moduleNumbers.includes(question.moduleNumber),
++      ),
++    [level],
++  );
++  const [screen, setScreen] = useState<Screen>("locked");
++  const [completedCount, setCompletedCount] = useState(0);
++  const [index, setIndex] = useState(0);
++  const [answers, setAnswers] = useState<Record<number, number>>({});
++  const [selected, setSelected] = useState<number | null>(null);
++
++  useEffect(() => {
++    let completed: string[] = [];
++    try {
++      completed = JSON.parse(
++        window.localStorage.getItem(englishProgressStorageKey) ?? "[]",
++      ) as string[];
++    } catch {
++      // Keep the checkpoint locked if browser storage is unavailable.
++    }
++    const count = levelLessons.filter((lesson) =>
++      completed.includes(lesson.slug),
++    ).length;
++    const timer = window.setTimeout(() => {
++      setCompletedCount(count);
++      setScreen(count === levelLessons.length ? "intro" : "locked");
++    }, 0);
++    return () => window.clearTimeout(timer);
++  }, [levelLessons]);
++
++  if (!level) return null;
++
++  const question = questions[index];
++  const correctCount = questions.filter(
++    (item) => answers[item.id] === item.correctIndex,
++  ).length;
++  const passed = correctCount / questions.length >= 0.8;
++  const missedModules = Array.from(
++    new Set(
++      questions
++        .filter((item) => answers[item.id] !== item.correctIndex)
++        .map((item) => item.moduleNumber),
++    ),
++  );
++  const nextLevel = englishLevels.find(
++    (item) => item.number === level.number + 1,
++  );
++  const nextLevelFirstLesson = nextLevel
++    ? englishLevelOneLessons.find((item) =>
++        nextLevel.moduleNumbers.includes(item.moduleNumber),
++      )
++    : null;
++
++  function start() {
++    setIndex(0);
++    setAnswers({});
++    setSelected(null);
++    setScreen("quiz");
++  }
++
++  function submitAnswer() {
++    if (selected === null) return;
++    const nextAnswers = { ...answers, [question.id]: selected };
++    setAnswers(nextAnswers);
++    setSelected(null);
++    if (index + 1 < questions.length) {
++      setIndex(index + 1);
++    } else {
++      const finalCorrectCount = questions.filter(
++        (item) => nextAnswers[item.id] === item.correctIndex,
++      ).length;
++      const score = Math.round((finalCorrectCount / questions.length) * 100);
++      try {
++        const storageKey = `jamezzi:english:level-${levelNumber}:checkpoint`;
++        const previousRaw = window.localStorage.getItem(storageKey);
++        const previous = previousRaw
++          ? (JSON.parse(previousRaw) as {
++              passed?: boolean;
++              bestScore?: number;
++            })
++          : null;
++        window.localStorage.setItem(
++          storageKey,
++          JSON.stringify({
++            answers: nextAnswers,
++            score,
++            bestScore: Math.max(previous?.bestScore ?? 0, score),
++            passed: Boolean(previous?.passed) || score >= 80,
++            completedAt: new Date().toISOString(),
++          }),
++        );
++      } catch {
++        // Results remain available for the current session.
++      }
++      setScreen("result");
++    }
++  }
++
++  return (
++    <main className="bg-paper pt-28 pb-20 lg:pt-36 lg:pb-28">
++      <div className="mx-auto max-w-2xl px-5">
++        <p className="text-eyebrow text-indigo-dark">
++          EVALYASYON NIVO {level.number}
++        </p>
++        <h1 className="text-editorial-headline text-ink mt-4">{level.title}</h1>
++
++        <div className="border-border mt-10 rounded-[22px] border bg-white p-6 shadow-[0_20px_50px_rgba(29,24,46,0.07)] sm:p-9">
++          {screen === "locked" && (
++            <div>
++              <h2 className="text-feature-headline-sm text-ink">
++                Fini nivo sa a anvan.
++              </h2>
++              <p className="text-body text-muted mt-4">
++                Ou fini {completedCount} sou {levelLessons.length} leson. Fini
++                leson ki rete yo anvan ou fè evalyasyon sa a.
++              </p>
++              <Link
++                href={`/academy/courses/english-for-beginners/learn#level-${level.number}`}
++                className="bg-indigo text-button mt-7 inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-white"
++              >
++                Retounen nan Nivo {level.number}{" "}
++                <ArrowRightIcon className="size-4" />
++              </Link>
++            </div>
++          )}
++
++          {screen === "intro" && (
++            <div>
++              <h2 className="text-feature-headline-sm text-ink">
++                Verifye sa ou metrize.
++              </h2>
++              <p className="text-body text-muted mt-4">
++                Reponn {questions.length} kesyon ki kouvri tout modil nivo sa a.
++                Fè omwen 80% pou kontinye ak konfyans.
++              </p>
++              <button
++                type="button"
++                onClick={start}
++                className="bg-indigo text-button mt-7 inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-white"
++              >
++                Kòmanse Evalyasyon an <ArrowRightIcon className="size-4" />
++              </button>
++            </div>
++          )}
++
++          {screen === "quiz" && question && (
++            <div>
++              <div className="flex items-center justify-between gap-5">
++                <p className="text-metadata text-muted">
++                  Kesyon {index + 1} sou {questions.length}
++                </p>
++                <p className="text-metadata text-indigo-dark">
++                  Modil {question.moduleNumber}
++                </p>
++              </div>
++              <div
++                className="bg-border mt-3 h-1.5 overflow-hidden rounded-full"
++                role="progressbar"
++                aria-label="Pwogrè evalyasyon an"
++                aria-valuemin={0}
++                aria-valuemax={questions.length}
++                aria-valuenow={index + 1}
++              >
++                <div
++                  className="bg-indigo h-full rounded-full"
++                  style={{
++                    width: `${((index + 1) / questions.length) * 100}%`,
++                  }}
++                />
++              </div>
++              <h2 className="text-card-title text-ink mt-8">
++                {question.prompt}
++              </h2>
++              <div className="mt-6 grid gap-3">
++                {question.options.map((option, optionIndex) => (
++                  <button
++                    key={option}
++                    type="button"
++                    onClick={() => setSelected(optionIndex)}
++                    aria-pressed={selected === optionIndex}
++                    className={cn(
++                      "border-border text-body min-h-14 rounded-[14px] border px-5 py-3 text-left transition-colors",
++                      selected === optionIndex
++                        ? "border-indigo bg-indigo-light text-indigo-dark"
++                        : "text-ink hover:bg-paper",
++                    )}
++                  >
++                    {option}
++                  </button>
++                ))}
++              </div>
++              <button
++                type="button"
++                disabled={selected === null}
++                onClick={submitAnswer}
++                className="bg-indigo text-button mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-6 text-white disabled:cursor-not-allowed disabled:opacity-45"
++              >
++                {index + 1 === questions.length
++                  ? "Gade Rezilta Mwen"
++                  : "Pwochen Kesyon"}{" "}
++                <ArrowRightIcon className="size-4" />
++              </button>
++            </div>
++          )}
++
++          {screen === "result" && (
++            <div>
++              <div
++                className={cn(
++                  "flex size-14 items-center justify-center rounded-full",
++                  passed
++                    ? "bg-success/10 text-success"
++                    : "bg-coral/10 text-coral",
++                )}
++              >
++                {passed ? (
++                  <CheckIcon className="size-7" />
++                ) : (
++                  <RotateCcwIcon className="size-6" />
++                )}
++              </div>
++              <h2 className="text-feature-headline-sm text-ink mt-5">
++                {passed
++                  ? `Nivo ${level.number} fini.`
++                  : "Revize epi eseye ankò."}
++              </h2>
++              <p className="text-body text-muted mt-3">
++                Ou reponn {correctCount} sou {questions.length} kesyon
++                kòrèkteman.
++              </p>
++              {!passed && missedModules.length > 0 && (
++                <div className="border-border mt-6 border-t pt-5">
++                  <p className="text-metadata text-muted">
++                    Sa nou konseye w revize
++                  </p>
++                  <div className="mt-3 flex flex-wrap gap-2">
++                    {missedModules.map((moduleNumber) => {
++                      const courseModule = englishModules.find(
++                        (item) => item.number === moduleNumber,
++                      );
++                      const lesson = englishLevelOneLessons.find(
++                        (item) => item.moduleNumber === moduleNumber,
++                      );
++                      return lesson ? (
++                        <Link
++                          key={moduleNumber}
++                          href={`/academy/courses/english-for-beginners/lessons/${lesson.slug}`}
++                          className="border-border text-button text-indigo-dark rounded-full border px-4 py-2"
++                        >
++                          Modil {moduleNumber}: {courseModule?.title}
++                        </Link>
++                      ) : null;
++                    })}
++                  </div>
++                </div>
++              )}
++              <div className="mt-7 flex flex-wrap gap-3">
++                {passed && nextLevel && nextLevelFirstLesson ? (
++                  <Link
++                    href={`/academy/courses/english-for-beginners/lessons/${nextLevelFirstLesson.slug}`}
++                    className="bg-indigo text-button inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-white"
++                  >
++                    Kòmanse Nivo {nextLevel.number}{" "}
++                    <ArrowRightIcon className="size-4" />
++                  </Link>
++                ) : passed ? (
++                  <Link
++                    href="/academy/courses/english-for-beginners/final-exam"
++                    className="bg-indigo text-button inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-white"
++                  >
++                    Egzamen Final <ArrowRightIcon className="size-4" />
++                  </Link>
++                ) : (
++                  <button
++                    type="button"
++                    onClick={start}
++                    className="bg-indigo text-button inline-flex min-h-12 items-center gap-2 rounded-full px-6 text-white"
++                  >
++                    <RotateCcwIcon className="size-4" /> Eseye Ankò
++                  </button>
++                )}
++              </div>
++            </div>
++          )}
++        </div>
++      </div>
++    </main>
++  );
++}
+diff --git a/src/components/academy/english-level-one-lessons.tsx b/src/components/academy/english-level-one-lessons.tsx
+index f8de292..6d4b7c7 100644
+--- a/src/components/academy/english-level-one-lessons.tsx
++++ b/src/components/academy/english-level-one-lessons.tsx
+@@ -7,70 +7,199 @@ import {
+   englishLevelOneLessons,
+   type EnglishLessonSummary,
+ } from "@/content/english-level-one";
++import { englishModules } from "@/content/english-course";
++import { cn } from "@/lib/cn";
++import {
++  courseProgressChangedEvent,
++  isProgressEventFor,
++  readCompletedLessons,
++} from "@/lib/course-progress";
+ 
+ export const englishProgressStorageKey =
+   "jamezzi:english:first-english:completed";
+ 
+-export function EnglishLevelOneLessons() {
++export function EnglishLevelOneLessons({
++  moduleNumbers,
++  levelNumber,
++  showFinalExam = false,
++}: {
++  moduleNumbers?: number[];
++  levelNumber?: number;
++  showFinalExam?: boolean;
++}) {
+   const [completed, setCompleted] = useState<string[]>([]);
+ 
+   useEffect(() => {
+-    let savedLessons: string[] = [];
+-    try {
+-      const saved = window.localStorage.getItem(englishProgressStorageKey);
+-      if (saved) savedLessons = JSON.parse(saved) as string[];
+-    } catch {
+-      // Lessons remain available if browser storage is blocked.
+-    }
+-    const timer = window.setTimeout(() => setCompleted(savedLessons), 0);
+-    return () => window.clearTimeout(timer);
++    const refresh = () => {
++      setCompleted(readCompletedLessons(englishProgressStorageKey));
++    };
++    const handleProgress = (event: Event) => {
++      if (isProgressEventFor(event, englishProgressStorageKey)) refresh();
++    };
++    const handleStorage = (event: StorageEvent) => {
++      if (event.key === englishProgressStorageKey) refresh();
++    };
++    const timer = window.setTimeout(refresh, 0);
++    window.addEventListener(courseProgressChangedEvent, handleProgress);
++    window.addEventListener("storage", handleStorage);
++    return () => {
++      window.clearTimeout(timer);
++      window.removeEventListener(courseProgressChangedEvent, handleProgress);
++      window.removeEventListener("storage", handleStorage);
++    };
+   }, []);
+ 
++  const visibleLessons = moduleNumbers
++    ? englishLevelOneLessons.filter((lesson) =>
++        moduleNumbers.includes(lesson.moduleNumber),
++      )
++    : englishLevelOneLessons;
++
+   const completedCount = completed.filter((slug) =>
+-    englishLevelOneLessons.some((lesson) => lesson.slug === slug),
++    visibleLessons.some((lesson) => lesson.slug === slug),
+   ).length;
++  const visibleModules = englishModules.filter((module) =>
++    moduleNumbers?.includes(module.number),
++  );
+ 
+   return (
+     <div>
+       <div className="border-border mb-6 flex items-center justify-between gap-5 border-y py-4">
+         <p className="text-metadata text-muted" aria-live="polite">
+-          {completedCount} of {englishLevelOneLessons.length} completed
++          {completedCount} sou {visibleLessons.length} fini
+         </p>
+-        <div className="bg-border h-1.5 w-28 overflow-hidden rounded-full sm:w-44">
++        <div
++          className="bg-border h-1.5 w-28 overflow-hidden rounded-full sm:w-44"
++          role="progressbar"
++          aria-label="Pwogrè nivo a"
++          aria-valuemin={0}
++          aria-valuemax={100}
++          aria-valuenow={
++            visibleLessons.length
++              ? Math.round((completedCount / visibleLessons.length) * 100)
++              : 0
++          }
++        >
+           <div
+             className="bg-indigo h-full rounded-full transition-[width]"
+             style={{
+-              width: `${(completedCount / englishLevelOneLessons.length) * 100}%`,
++              width: `${visibleLessons.length ? (completedCount / visibleLessons.length) * 100 : 0}%`,
+             }}
+           />
+         </div>
+       </div>
+ 
+-      <ol className="border-border border-t">
+-        {englishLevelOneLessons.map((lesson, index) => (
+-          <LessonRow
+-            key={lesson.slug}
+-            lesson={lesson}
+-            index={index}
+-            completed={completed.includes(lesson.slug)}
+-          />
+-        ))}
+-      </ol>
++      <div className="space-y-4">
++        {visibleModules.map((module, moduleIndex) => {
++          const moduleLessons = visibleLessons.filter(
++            (lesson) => lesson.moduleNumber === module.number,
++          );
++          const moduleCompleted = moduleLessons.filter((lesson) =>
++            completed.includes(lesson.slug),
++          ).length;
++          const modulePercent = moduleLessons.length
++            ? Math.round((moduleCompleted / moduleLessons.length) * 100)
++            : 0;
+ 
+-      <Link
+-        href="/academy/courses/english-for-beginners/final-exam"
+-        className="border-border bg-paper mt-8 flex min-h-14 items-center justify-between rounded-[14px] border px-5 py-4"
+-      >
+-        <span>
+-          <span className="text-card-title text-ink block">Final Exam</span>
+-          <span className="text-body text-muted">
+-            {completedCount === englishLevelOneLessons.length
+-              ? "Take the exam and earn your certificate."
+-              : "Unlocks once you finish all 18 modules."}
++          return (
++            <details
++              key={module.number}
++              open={moduleIndex === 0 && moduleCompleted < moduleLessons.length}
++              className="border-border bg-paper group overflow-hidden rounded-[18px] border"
++            >
++              <summary className="focus-visible:ring-indigo flex cursor-pointer list-none items-center gap-5 px-5 py-5 transition-colors hover:bg-white/70 focus-visible:ring-2 focus-visible:outline-none sm:px-6 [&::-webkit-details-marker]:hidden">
++                <span className="border-border text-metadata text-indigo-dark flex size-11 shrink-0 items-center justify-center rounded-full border bg-white">
++                  {String(module.number).padStart(2, "0")}
++                </span>
++                <span className="min-w-0 flex-1">
++                  <span className="text-card-title text-ink block">
++                    {module.title}
++                  </span>
++                  <span className="text-metadata text-muted mt-1 block">
++                    {moduleCompleted} sou {moduleLessons.length} leson fini
++                  </span>
++                </span>
++                <span className="hidden items-center gap-3 sm:flex">
++                  <span className="bg-border h-1.5 w-20 overflow-hidden rounded-full">
++                    <span
++                      className="bg-indigo block h-full rounded-full"
++                      style={{ width: `${modulePercent}%` }}
++                    />
++                  </span>
++                  <span className="text-metadata text-muted w-9 text-right">
++                    {modulePercent}%
++                  </span>
++                </span>
++                <span
++                  aria-hidden="true"
++                  className="text-indigo-dark text-xl transition-transform group-open:rotate-45"
++                >
++                  +
++                </span>
++              </summary>
++
++              <div className="border-border border-t bg-white px-5 sm:px-6">
++                <p className="text-body text-muted border-border border-b py-5">
++                  {module.promise}
++                </p>
++                <ol>
++                  {moduleLessons.map((lesson, lessonIndex) => (
++                    <LessonRow
++                      key={lesson.slug}
++                      lesson={lesson}
++                      index={lessonIndex}
++                      completed={completed.includes(lesson.slug)}
++                    />
++                  ))}
++                </ol>
++              </div>
++            </details>
++          );
++        })}
++      </div>
++
++      {levelNumber && (
++        <Link
++          href={`/academy/courses/english-for-beginners/checkpoint/${levelNumber}`}
++          className={cn(
++            "mt-7 flex min-h-16 items-center justify-between rounded-[16px] border px-5 py-4",
++            completedCount === visibleLessons.length
++              ? "border-indigo/25 bg-indigo-light"
++              : "border-border bg-paper",
++          )}
++        >
++          <span>
++            <span className="text-card-title text-ink block">
++              Evalyasyon Nivo {levelNumber}
++            </span>
++            <span className="text-body text-muted">
++              {completedCount === visibleLessons.length
++                ? "Li louvri — verifye sa ou metrize anvan ou kontinye."
++                : `${visibleLessons.length - completedCount} leson rete anvan li louvri.`}
++            </span>
+           </span>
+-        </span>
+-        <ArrowRightIcon className="text-indigo-dark size-4 shrink-0" />
+-      </Link>
++          <span className="text-indigo-dark shrink-0 text-sm font-semibold">
++            {completedCount === visibleLessons.length ? "Louvri →" : "Fèmen"}
++          </span>
++        </Link>
++      )}
++
++      {showFinalExam && (
++        <Link
++          href="/academy/courses/english-for-beginners/final-exam"
++          className="border-border bg-paper mt-8 flex min-h-14 items-center justify-between rounded-[14px] border px-5 py-4"
++        >
++          <span>
++            <span className="text-card-title text-ink block">
++              Egzamen Final
++            </span>
++            <span className="text-body text-muted">
++              Fini tout kat nivo yo pou debloke evalyasyon final la.
++            </span>
++          </span>
++          <ArrowRightIcon className="text-indigo-dark size-4 shrink-0" />
++        </Link>
++      )}
+     </div>
+   );
+ }
+@@ -97,7 +226,7 @@ function LessonRow({
+   return (
+     <li className="border-border border-b">
+       <Link
+-        href={`/academy/courses/english-for-beginners/level-1/${lesson.slug}`}
++        href={`/academy/courses/english-for-beginners/lessons/${lesson.slug}`}
+         className="group grid min-h-28 gap-3 py-6 sm:grid-cols-[48px_1fr_auto] sm:items-center sm:gap-5"
+       >
+         <LessonNumber
+@@ -105,7 +234,7 @@ function LessonRow({
+         />
+         <LessonCopy lesson={lesson} />
+         <span className="text-button text-indigo-dark inline-flex items-center gap-2">
+-          {completed ? "Review" : "Begin"}
++          {completed ? "Revize" : "Kòmanse"}
+           <ArrowRightIcon className="size-4" />
+         </span>
+       </Link>
+diff --git a/src/components/academy/english-level-one-page.tsx b/src/components/academy/english-level-one-page.tsx
+index 9d0f8d4..4e1f9f4 100644
+--- a/src/components/academy/english-level-one-page.tsx
++++ b/src/components/academy/english-level-one-page.tsx
+@@ -1,6 +1,11 @@
+ import Link from "next/link";
+ import { EnglishLevelOneLessons } from "@/components/academy/english-level-one-lessons";
+ import { Container } from "@/components/ui/container";
++import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
++import { CourseResumeCard } from "@/components/academy/course-resume-card";
++import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
++import { englishLevels } from "@/content/english-course";
++import { englishLevelOneLessons } from "@/content/english-level-one";
+ 
+ export function EnglishLevelOnePage() {
+   return (
+@@ -15,49 +20,73 @@ export function EnglishLevelOnePage() {
+             href="/academy/courses/english-for-beginners"
+             className="hover:text-indigo-dark"
+           >
+-            English for Beginners
++            Practical English
+           </Link>
+-          <span aria-hidden="true"> / Level 1</span>
++          <span aria-hidden="true"> / Kou</span>
+         </nav>
+ 
+         <header className="mt-10 grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-end lg:gap-24">
+           <div>
+-            <p className="text-eyebrow text-indigo-dark">LEVEL 1 · FREE</p>
++            <p className="text-eyebrow text-indigo-dark">KOU KONPLÈ · GRATIS</p>
+             <h1 className="text-editorial-headline text-ink mt-4">
+-              First English
++              Chemen Aprantisaj Anglè Ou
+             </h1>
+             <p className="text-intro text-muted mt-6 max-w-2xl">
+-              Build your first useful sentences and say them with confidence.
++              Kòmanse ak premye fraz itil ou epi avanse rive nan yon Anglè
++              pratik ak plis konfyans atravè kat nivo klè.
+             </p>
+           </div>
+           <div className="border-border border-y py-6">
+             <p className="text-body text-ink">
+-              Start with greetings and your first sentences, then build toward
+-              describing yourself, your things, and your daily life — new
+-              modules open here as they&rsquo;re built.
++              Tout 18 modil ak 151 leson disponib. Kòmanse nan premye leson an
++              oswa itilize tès plasman an pou jwenn bon modil la.
+             </p>
+             <Link
+               href="/academy/courses/english-for-beginners/placement"
+               className="text-button text-indigo-dark mt-5 inline-flex items-center gap-2"
+             >
+-              Already know some English? Take the placement quiz →
++              Ou deja konnen yon ti Anglè? Fè tès plasman an →
+             </Link>
+           </div>
+         </header>
+ 
+-        <section className="mt-16 grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24">
+-          <div>
+-            <p className="text-eyebrow text-indigo-dark">YOUR LESSONS</p>
+-            <h2 className="font-display text-ink mt-4 text-4xl leading-tight md:text-5xl">
+-              Learn one useful thing at a time.
+-            </h2>
+-            <p className="text-body text-muted mt-5">
+-              Lessons open progressively. You can start without creating an
+-              account, and your progress will stay on this device.
+-            </p>
+-          </div>
++        <CourseResumeCard
++          lessons={englishLevelOneLessons.map((lesson) => ({
++            slug: lesson.slug,
++            title: lesson.title,
++          }))}
++          progressStorageKey={englishProgressStorageKey}
++          lessonBaseHref="/academy/courses/english-for-beginners/lessons"
++          assessmentHref="/academy/courses/english-for-beginners/final-exam"
++        />
++
++        <div className="mt-16 space-y-24">
++          {englishLevels.map((level) => (
++            <section
++              id={`level-${level.number}`}
++              key={level.number}
++              className="grid scroll-mt-28 gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24"
++            >
++              <div>
++                <p className="text-eyebrow text-indigo-dark">
++                  NIVO {level.number}
++                </p>
++                <h2 className="font-display text-ink mt-4 text-4xl leading-tight md:text-5xl">
++                  {level.title}
++                </h2>
++                <p className="text-body text-muted mt-5">{level.promise}</p>
++              </div>
++              <EnglishLevelOneLessons
++                moduleNumbers={level.moduleNumbers}
++                levelNumber={level.number}
++                showFinalExam={level.number === englishLevels.length}
++              />
++            </section>
++          ))}
++        </div>
+ 
+-          <EnglishLevelOneLessons />
++        <section className="mt-24">
++          <CourseProgressBackup course="english" />
+         </section>
+       </Container>
+     </main>
+diff --git a/src/components/academy/english-placement-quiz.tsx b/src/components/academy/english-placement-quiz.tsx
+index f2dfba2..dd53420 100644
+--- a/src/components/academy/english-placement-quiz.tsx
++++ b/src/components/academy/english-placement-quiz.tsx
+@@ -13,6 +13,7 @@ import {
+   placementQuestions,
+   placementStartOver,
+ } from "@/content/english-placement-quiz";
++import { englishLevelOneLessons } from "@/content/english-level-one";
+ import { cn } from "@/lib/cn";
+ 
+ type Screen = "intro" | "quiz" | "result";
+@@ -59,6 +60,11 @@ export function EnglishPlacementQuiz() {
+ 
+   const placement = screen === "result" ? computePlacement(answers) : null;
+   const alreadyAtStart = placement?.num === 1;
++  const recommendedLesson = placement
++    ? englishLevelOneLessons.find(
++        (lesson) => lesson.moduleNumber === placement.num,
++      )
++    : null;
+ 
+   return (
+     <main className="bg-white pt-[72px]">
+@@ -76,7 +82,7 @@ export function EnglishPlacementQuiz() {
+             </span>
+           </div>
+ 
+-          <div className="px-7 pt-7.5 pb-8">
++          <div className="px-5 pt-6 pb-7 sm:px-7 sm:pt-7.5 sm:pb-8">
+             {screen === "intro" && (
+               <div>
+                 <h1 className="text-ink mb-1.5 text-[28px] leading-tight font-bold">
+@@ -86,10 +92,9 @@ export function EnglishPlacementQuiz() {
+                   </span>
+                 </h1>
+                 <p className="text-muted mb-5.5 text-[15px] leading-[1.55]">
+-                  Anvan ou kòmanse kou <strong>English for Beginners</strong>{" "}
+-                  la, reponn 15 ti kesyon kout. Sa ap ede nou konnen egzakteman
+-                  ki kote pou ou kòmanse -- pou ou pa pèdi tan sou bagay ou
+-                  konnen deja.
++                  Anvan ou kòmanse kou <strong>Anglè Pratik</strong> la, reponn
++                  15 ti kesyon kout. Sa ap ede nou konnen egzakteman ki kote pou
++                  ou kòmanse -- pou ou pa pèdi tan sou bagay ou konnen deja.
+                 </p>
+ 
+                 <div className="mb-6.5 grid gap-2.5">
+@@ -216,13 +221,22 @@ export function EnglishPlacementQuiz() {
+                 <p className="text-muted mb-6.5 text-[14.5px] leading-[1.6]">
+                   {alreadyAtStart
+                     ? "Ou ka kòmanse depi nan kòmansman an, san sote anyen."
+-                    : `Nivo sa a montre kote ou ta ka kòmanse pi devan. Men se ou menm ki chwazi — pa gen anyen ki fòse ou. Kounye a, Modil ${placementStartOver.num} (${placementStartOver.name}) se sa ki disponib.`}
++                    : `Nivo sa a montre kote ou ta ka kòmanse pi devan. Tout modil yo disponib, epi ou ka toujou kòmanse depi nan premye a si ou vle revize fondasyon yo.`}
+                 </p>
+ 
+                 <div className="grid gap-2.5">
++                  {recommendedLesson && !alreadyAtStart && (
++                    <Link
++                      href={`/academy/courses/english-for-beginners/lessons/${recommendedLesson.slug}`}
++                      className="bg-indigo flex min-h-12 items-center justify-center gap-2 rounded-full px-4 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.28)]"
++                    >
++                      <GraduationCapIcon className="size-4" />
++                      Kòmanse nan Modil {placement.num}
++                    </Link>
++                  )}
+                   <Link
+-                    href="/academy/courses/english-for-beginners/level-1"
+-                    className="bg-indigo flex min-h-12 items-center justify-center gap-2 rounded-full px-4 text-[14.5px] font-semibold text-white shadow-[0_10px_24px_rgba(79,70,229,0.28)]"
++                    href="/academy/courses/english-for-beginners/learn#level-1"
++                    className="border-border text-indigo-dark flex min-h-12 items-center justify-center gap-2 rounded-full border px-4 text-[14.5px] font-semibold"
+                   >
+                     <GraduationCapIcon className="size-4" />
+                     Kòmanse Depi Kòmansman an -- Modil {placementStartOver.num}
+diff --git a/src/components/academy/english-premium-lesson-player.tsx b/src/components/academy/english-premium-lesson-player.tsx
+index 1fc3a08..b280396 100644
+--- a/src/components/academy/english-premium-lesson-player.tsx
++++ b/src/components/academy/english-premium-lesson-player.tsx
+@@ -1,7 +1,7 @@
+ "use client";
+ 
+ import Link from "next/link";
+-import { useEffect, useState } from "react";
++import { useEffect, useRef, useState } from "react";
+ import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
+ import {
+   CheckIcon,
+@@ -12,8 +12,11 @@ import {
+   VolumeIcon,
+ } from "@/components/ui/icons";
+ import { englishLevelOneLessons } from "@/content/english-level-one";
++import { englishLevels } from "@/content/english-course";
+ import type { EnglishPremiumLesson } from "@/content/english-lessons-premium";
++import { getEnglishRecordedAudio } from "@/content/english-audio";
+ import { cn } from "@/lib/cn";
++import { saveCompletedLesson } from "@/lib/course-progress";
+ 
+ const steps = [
+   { key: "learn", label: "Aprann" },
+@@ -35,30 +38,80 @@ function renderLessonText(text: string) {
+   });
+ }
+ 
+-function speak(text: string) {
+-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+-  window.speechSynthesis.cancel();
+-  const utterance = new SpeechSynthesisUtterance(text);
+-  utterance.lang = "en-US";
+-  const availableVoices = window.speechSynthesis.getVoices();
++let activeAudio: HTMLAudioElement | null = null;
++
++function getPreferredVoice() {
++  const voices = window.speechSynthesis.getVoices();
+   const preferredNames = [
++    "Microsoft Aria Online (Natural)",
++    "Microsoft Jenny Online (Natural)",
++    "Google US English",
+     "Samantha",
+     "Ava",
+-    "Google US English",
+-    "Aria",
+-    "Jenny",
+   ];
+-  utterance.voice =
++  return (
+     preferredNames
+-      .map((name) => availableVoices.find((item) => item.name.includes(name)))
++      .map((name) => voices.find((voice) => voice.name.includes(name)))
+       .find(Boolean) ??
+-    availableVoices.find((item) => item.lang === "en-US") ??
+-    null;
+-  utterance.rate = 0.88;
++    voices.find((voice) => voice.lang === "en-US" && !voice.localService) ??
++    voices.find((voice) => voice.lang === "en-US") ??
++    voices.find((voice) => voice.lang.startsWith("en")) ??
++    null
++  );
++}
++
++function speakWithDeviceVoice(text: string, slow: boolean) {
++  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
++  window.speechSynthesis.cancel();
++  const utterance = new SpeechSynthesisUtterance(text);
++  utterance.lang = "en-US";
++  utterance.voice = getPreferredVoice();
++  utterance.rate = slow ? 0.68 : 0.9;
+   utterance.pitch = 1;
+   window.speechSynthesis.speak(utterance);
+ }
+ 
++function playEnglishAudio(text: string, slow = false) {
++  if (typeof window === "undefined") return;
++  activeAudio?.pause();
++  window.speechSynthesis?.cancel();
++
++  const recordedAudio = getEnglishRecordedAudio(text);
++  if (!recordedAudio) {
++    speakWithDeviceVoice(text, slow);
++    return;
++  }
++
++  const audio = new Audio(recordedAudio);
++  activeAudio = audio;
++  audio.playbackRate = slow ? 0.72 : 1;
++  audio.preservesPitch = true;
++  audio.play().catch(() => speakWithDeviceVoice(text, slow));
++}
++
++function AudioControls({ text }: { text: string }) {
++  return (
++    <span className="inline-flex items-center gap-1.5">
++      <button
++        type="button"
++        onClick={() => playEnglishAudio(text)}
++        className="text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full bg-white px-2.5 py-1.5 text-xs font-semibold"
++        aria-label={`Koute pwononsyasyon pou ${text}`}
++      >
++        <VolumeIcon className="size-3.5" /> Jwe
++      </button>
++      <button
++        type="button"
++        onClick={() => playEnglishAudio(text, true)}
++        className="border-border text-muted inline-flex min-h-9 items-center rounded-full border bg-white px-2.5 py-1.5 text-[11px] font-semibold"
++        aria-label={`Koute ${text} pi dousman`}
++      >
++        0.7×
++      </button>
++    </span>
++  );
++}
++
+ function SectionLabel({ children }: { children: React.ReactNode }) {
+   return (
+     <div className="font-lesson-mono text-indigo-dark/70 mb-2.5 text-[11px] tracking-[0.12em] uppercase">
+@@ -203,6 +256,8 @@ export function EnglishPremiumLessonPlayer({
+   const [missionDone, setMissionDone] = useState(false);
+   const [thinkText, setThinkText] = useState("");
+   const [copied, setCopied] = useState(false);
++  const [progressSaved, setProgressSaved] = useState(false);
++  const stepStatusRef = useRef<HTMLParagraphElement>(null);
+ 
+   const lessonIndex = englishLevelOneLessons.findIndex(
+     (item) => item.slug === lesson.slug,
+@@ -225,6 +280,27 @@ export function EnglishPremiumLessonPlayer({
+     lessonIndex >= 0 && lessonIndex < totalLessons - 1
+       ? englishLevelOneLessons[lessonIndex + 1]
+       : null;
++  const currentLevel = englishLevels.find((level) =>
++    level.moduleNumbers.includes(currentModuleNumber),
++  );
++  const isLastLessonInLevel = Boolean(
++    currentLevel &&
++    !englishLevelOneLessons
++      .slice(lessonIndex + 1)
++      .some((item) => currentLevel.moduleNumbers.includes(item.moduleNumber)),
++  );
++  const nextCourseHref = isLastLessonInLevel
++    ? currentLevel?.number === englishLevels.length
++      ? "/academy/courses/english-for-beginners/final-exam"
++      : `/academy/courses/english-for-beginners/checkpoint/${currentLevel?.number}`
++    : nextLesson
++      ? `/academy/courses/english-for-beginners/lessons/${nextLesson.slug}`
++      : "/academy/courses/english-for-beginners/final-exam";
++  const nextCourseLabel = isLastLessonInLevel
++    ? currentLevel?.number === englishLevels.length
++      ? "Evalyasyon final"
++      : `Evalyasyon Nivo ${currentLevel?.number}`
++    : (nextLesson?.title ?? "Evalyasyon final");
+ 
+   const activePattern = lesson.patternBuilderOptions[patternIndex];
+   const practiceCorrect = practiceSelected === lesson.practice.correctIndex;
+@@ -238,17 +314,10 @@ export function EnglishPremiumLessonPlayer({
+ 
+   useEffect(() => {
+     if (!unlocked) return;
+-    try {
+-      const saved = JSON.parse(
+-        window.localStorage.getItem(englishProgressStorageKey) ?? "[]",
+-      ) as string[];
+-      window.localStorage.setItem(
+-        englishProgressStorageKey,
+-        JSON.stringify(Array.from(new Set([...saved, lesson.slug]))),
+-      );
+-    } catch {
+-      // Progress remains ephemeral if storage is blocked.
+-    }
++    const saved =
++      saveCompletedLesson(englishProgressStorageKey, lesson.slug) !== "blocked";
++    const timer = window.setTimeout(() => setProgressSaved(saved), 0);
++    return () => window.clearTimeout(timer);
+   }, [unlocked, lesson.slug]);
+ 
+   function copyPrompt() {
+@@ -260,6 +329,7 @@ export function EnglishPremiumLessonPlayer({
+   function moveTo(nextStep: number) {
+     setStep(Math.max(0, Math.min(nextStep, steps.length - 1)));
+     window.scrollTo({ top: 0, behavior: "smooth" });
++    window.setTimeout(() => stepStatusRef.current?.focus(), 0);
+   }
+ 
+   const practiceStepBlocked =
+@@ -269,16 +339,26 @@ export function EnglishPremiumLessonPlayer({
+ 
+   return (
+     <main className="bg-white pt-[72px]">
+-      <div className="mx-auto max-w-[620px] px-5 pt-5 pb-16">
++      <div className="mx-auto max-w-[620px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
+         {/* COURSE NAVIGATION */}
+-        <div className="border-border sticky top-[72px] z-10 mb-6 border-b bg-white/95 pt-2.5 pb-3 backdrop-blur-sm">
+-          <p className="text-muted mb-2 text-[12.5px]">
+-            English for Beginners <span className="text-indigo-dark">·</span>{" "}
+-            {lesson.moduleTitle} <span className="text-indigo-dark">·</span>{" "}
+-            Leson {moduleLessonIndex + 1}
++        <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
++          <p
++            className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
++            title={`Nivo ${currentLevel?.number} · Modil ${currentModuleNumber}: ${lesson.moduleTitle}`}
++          >
++            Nivo {currentLevel?.number} · Modil {currentModuleNumber}:{" "}
++            {lesson.moduleTitle} · Leson {moduleLessonIndex + 1} sou{" "}
++            {moduleLessons.length}
+           </p>
+           <div className="mb-2 flex items-center gap-2.5">
+-            <div className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full">
++            <div
++              className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full"
++              role="progressbar"
++              aria-label={`Pwogrè Modil ${currentModuleNumber}`}
++              aria-valuemin={0}
++              aria-valuemax={100}
++              aria-valuenow={moduleProgressPercent}
++            >
+               <div
+                 className="bg-indigo h-full rounded-full"
+                 style={{ width: `${moduleProgressPercent}%` }}
+@@ -288,32 +368,34 @@ export function EnglishPremiumLessonPlayer({
+               Modil {currentModuleNumber} · {moduleProgressPercent}%
+             </span>
+           </div>
+-          <div className="flex items-center justify-between text-[12.5px]">
++          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-[12px] sm:gap-3 sm:text-[12.5px]">
+             {prevLesson ? (
+               <Link
+-                href={`/academy/courses/english-for-beginners/level-1/${prevLesson.slug}`}
+-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
++                href={`/academy/courses/english-for-beginners/lessons/${prevLesson.slug}`}
++                className="text-indigo-dark min-w-0 truncate font-semibold"
++                title={prevLesson.title}
+               >
+-                ← {prevLesson.title}
++                ← <span className="sm:hidden">Anvan</span>
++                <span className="hidden sm:inline">{prevLesson.title}</span>
+               </Link>
+             ) : (
+               <span className="text-border">← Premye leson</span>
+             )}
+-            {nextLesson ? (
+-              <Link
+-                href={`/academy/courses/english-for-beginners/level-1/${nextLesson.slug}`}
+-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
+-              >
+-                {nextLesson.title} →
+-              </Link>
+-            ) : (
+-              <Link
+-                href="/academy/courses/english-for-beginners/level-1"
+-                className="text-indigo-dark inline-flex items-center gap-1 font-semibold"
+-              >
+-                Nivo 1 →
+-              </Link>
+-            )}
++            <Link
++              href="/academy/courses/english-for-beginners/learn"
++              className="text-muted hover:text-indigo-dark font-semibold"
++            >
++              <span className="sm:hidden">Plan</span>
++              <span className="hidden sm:inline">Tout leson</span>
++            </Link>
++            <Link
++              href={nextCourseHref}
++              className="text-indigo-dark min-w-0 truncate text-right font-semibold"
++              title={nextCourseLabel}
++            >
++              <span className="sm:hidden">Apre</span>
++              <span className="hidden sm:inline">{nextCourseLabel}</span> →
++            </Link>
+           </div>
+         </div>
+ 
+@@ -330,9 +412,19 @@ export function EnglishPremiumLessonPlayer({
+               />
+             ))}
+           </div>
+-          <p className="font-lesson-mono text-indigo-dark/70 text-[11px] tracking-[0.1em] uppercase">
++          <p
++            ref={stepStatusRef}
++            tabIndex={-1}
++            aria-live="polite"
++            className="font-lesson-mono text-indigo-dark/70 focus-visible:ring-indigo rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
++          >
+             Etap {step + 1} sou {steps.length} · {steps[step].label}
+           </p>
++          {progressSaved && (
++            <p className="text-metadata text-indigo-dark mt-2" role="status">
++              ✓ Pwogrè leson sa a anrejistre sou aparèy sa a.
++            </p>
++          )}
+         </div>
+ 
+         {/* STEP 1: LEARN — Hero, Before You Start, Understand, See It In Action */}
+@@ -393,9 +485,10 @@ export function EnglishPremiumLessonPlayer({
+                     <span className="text-lg" aria-hidden="true">
+                       {example.emoji}
+                     </span>
+-                    <div>
+-                      <div className="text-[15px] font-semibold">
+-                        {example.line}
++                    <div className="min-w-0 flex-1">
++                      <div className="flex flex-col items-start justify-between gap-3 text-[15px] font-semibold sm:flex-row sm:items-center">
++                        <span>{example.line}</span>
++                        <AudioControls text={example.line} />
+                       </div>
+                       <div className="text-indigo-dark/70 text-xs">
+                         {example.tag}
+@@ -421,6 +514,7 @@ export function EnglishPremiumLessonPlayer({
+                   key={option.chipLabel}
+                   type="button"
+                   onClick={() => setPatternIndex(index)}
++                  aria-pressed={index === patternIndex}
+                   className={cn(
+                     "min-h-11 rounded-full px-4 py-2 text-sm font-semibold transition",
+                     index === patternIndex
+@@ -436,6 +530,9 @@ export function EnglishPremiumLessonPlayer({
+               <span className="font-fraunces block text-2xl font-semibold text-white italic">
+                 {activePattern.display}
+               </span>
++              <span className="mt-3 inline-flex">
++                <AudioControls text={activePattern.display} />
++              </span>
+               {activePattern.caption && (
+                 <span className="mt-2 block text-[13px] text-white/80">
+                   {activePattern.caption}
+@@ -463,14 +560,7 @@ export function EnglishPremiumLessonPlayer({
+                       <span className="text-[16.5px] font-bold">
+                         {item.word}
+                       </span>
+-                      <button
+-                        type="button"
+-                        onClick={() => speak(item.word)}
+-                        className="text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full bg-white px-2.5 py-1.5 text-xs font-semibold"
+-                        aria-label={`Koute pwononsyasyon pou ${item.word}`}
+-                      >
+-                        <VolumeIcon className="size-3.5" /> Jwe
+-                      </button>
++                      <AudioControls text={item.word} />
+                     </div>
+                     <div className="text-muted mb-1 text-[13px]">
+                       {item.ipa} · Kreyòl: <strong>{item.kreyol}</strong>
+@@ -493,13 +583,7 @@ export function EnglishPremiumLessonPlayer({
+                   <span className="font-lesson-mono text-indigo-dark/70 text-[13px]">
+                     {lesson.pronunciationIpa}
+                   </span>
+-                  <button
+-                    type="button"
+-                    onClick={() => speak(lesson.pronunciationWord)}
+-                    className="bg-indigo-light text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-semibold"
+-                  >
+-                    <VolumeIcon className="size-3.5" /> Jwe
+-                  </button>
++                  <AudioControls text={lesson.pronunciationWord} />
+                 </div>
+                 <p className="text-muted mb-1.5 text-[13.5px]">
+                   💡 {renderLessonText(lesson.mouthTip)}
+@@ -563,6 +647,7 @@ export function EnglishPremiumLessonPlayer({
+                         setPracticeSelected(index);
+                         setPracticeChecked(false);
+                       }}
++                      aria-pressed={isSelected}
+                       className={cn(
+                         "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
+                         isSelected
+@@ -592,6 +677,7 @@ export function EnglishPremiumLessonPlayer({
+               </button>
+               {practiceChecked && (
+                 <p
++                  role={practiceCorrect ? "status" : "alert"}
+                   className={cn(
+                     "mt-2.5 text-[13.5px]",
+                     practiceCorrect ? "text-success" : "text-error",
+@@ -614,6 +700,7 @@ export function EnglishPremiumLessonPlayer({
+                 value={thinkText}
+                 onChange={(event) => setThinkText(event.target.value)}
+                 placeholder={lesson.thinkPlaceholder}
++                aria-label="Ekri repons ou an Anglè"
+                 className="border-border min-h-16 w-full rounded-[10px] border p-3 text-[14.5px]"
+               />
+             </div>
+@@ -721,22 +808,18 @@ export function EnglishPremiumLessonPlayer({
+                   {unlocked
+                     ? nextLesson
+                       ? `Stanp ajoute nan Pasaport Aprantisaj ou — ${nextLesson.title} louvri.`
+-                      : "Stanp ajoute nan Pasaport Aprantisaj ou — ou fini Nivo 1!"
++                      : `Stanp ajoute nan Pasaport Aprantisaj ou — ou fini Nivo ${currentLevel?.number ?? 4}!`
+                     : "Reponn kesyon pratik la kòrèkteman epi koche misyon an."}
+                 </p>
+                 {unlocked && (
+                   <Link
+-                    href={
+-                      nextLesson
+-                        ? `/academy/courses/english-for-beginners/level-1/${nextLesson.slug}`
+-                        : "/academy/courses/english-for-beginners/level-1"
+-                    }
++                    href={nextCourseHref}
+                     className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                   >
+                     <GraduationCapIcon className="size-4" />
+-                    {nextLesson
+-                      ? `Kontinye ak ${nextLesson.title}`
+-                      : "Retounen nan Nivo 1"}
++                    {isLastLessonInLevel
++                      ? nextCourseLabel
++                      : `Kontinye ak ${nextLesson?.title}`}
+                   </Link>
+                 )}
+               </div>
+@@ -746,12 +829,12 @@ export function EnglishPremiumLessonPlayer({
+ 
+         {/* STEP NAVIGATION */}
+         {step < steps.length - 1 && (
+-          <div className="border-border mt-8 flex items-center justify-between border-t pt-6">
++          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
+             <button
+               type="button"
+               onClick={() => moveTo(step - 1)}
+               disabled={step === 0}
+-              className="text-indigo-dark min-h-11 text-sm font-semibold disabled:opacity-0"
++              className="text-indigo-dark min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
+             >
+               ← Tounen
+             </button>
+@@ -760,7 +843,7 @@ export function EnglishPremiumLessonPlayer({
+               onClick={() => moveTo(step + 1)}
+               disabled={continueDisabled}
+               className={cn(
+-                "min-h-12 rounded-full px-7 text-sm font-semibold",
++                "min-h-12 min-w-[132px] rounded-full px-6 text-sm font-semibold",
+                 continueDisabled
+                   ? "bg-indigo-light text-muted cursor-not-allowed"
+                   : "bg-indigo cursor-pointer text-white",
+@@ -771,7 +854,7 @@ export function EnglishPremiumLessonPlayer({
+           </div>
+         )}
+         {step === steps.length - 1 && (
+-          <div className="mt-8">
++          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
+             <button
+               type="button"
+               onClick={() => moveTo(step - 1)}
+diff --git a/src/content/courses.ts b/src/content/courses.ts
+index 198e631..0abb334 100644
+--- a/src/content/courses.ts
++++ b/src/content/courses.ts
+@@ -11,7 +11,7 @@ export interface CourseSummary {
+ export const courses: CourseSummary[] = [
+   {
+     slug: "english-for-beginners",
+-    title: "English for Beginners",
++    title: "Practical English for Haitian Creole Speakers",
+     price: 0,
+     free: true,
+     category: "foundation",
+@@ -37,7 +37,7 @@ export const courses: CourseSummary[] = [
+     category: "technology",
+     availability: "launching-first",
+     description:
+-      "A judgment-free, Haitian Creole course covering computers, the internet, files, safety and scams, buying and troubleshooting devices, and building lasting digital habits — with checkpoints, a final exam, and a free certificate.",
++      "A judgment-free, Haitian Creole course covering computers, the internet, files, safety and scams, buying and troubleshooting devices, and building lasting digital habits — with checkpoints, practical missions, and a final exam.",
+   },
+   {
+     slug: "ai-for-work-business",
+diff --git a/src/content/english-audio.ts b/src/content/english-audio.ts
+new file mode 100644
+index 0000000..189b090
+--- /dev/null
++++ b/src/content/english-audio.ts
+@@ -0,0 +1,12 @@
++/**
++ * Recorded English audio registry.
++ *
++ * Add reviewed MP3 files under public/audio/english and register their exact
++ * phrase here. The lesson player uses these files first and falls back to the
++ * learner's device voice only when a recording has not been produced yet.
++ */
++export const englishRecordedAudio: Record<string, string> = {};
++
++export function getEnglishRecordedAudio(text: string) {
++  return englishRecordedAudio[text.trim()] ?? null;
++}
+diff --git a/src/content/english-course.ts b/src/content/english-course.ts
+index 63bc4ff..f76e6f1 100644
+--- a/src/content/english-course.ts
++++ b/src/content/english-course.ts
+@@ -4,6 +4,44 @@ export interface EnglishModule {
+   promise: string;
+ }
+ 
++export interface EnglishLevel {
++  number: number;
++  title: string;
++  promise: string;
++  moduleNumbers: number[];
++}
++
++export const englishLevels: EnglishLevel[] = [
++  {
++    number: 1,
++    title: "Foundations",
++    promise:
++      "Build your first useful sentences and understand how basic English works.",
++    moduleNumbers: [1, 2, 3, 4, 5],
++  },
++  {
++    number: 2,
++    title: "Everyday English",
++    promise:
++      "Speak through common situations using practical verbs and patterns.",
++    moduleNumbers: [6, 7, 8, 9, 10],
++  },
++  {
++    number: 3,
++    title: "Practical English",
++    promise:
++      "Use English for technology, work, listening, and modern daily life.",
++    moduleNumbers: [11, 12, 13, 14],
++  },
++  {
++    number: 4,
++    title: "English Confidence",
++    promise:
++      "Write, understand culture and stories, and respond without translating every word.",
++    moduleNumbers: [15, 16, 17, 18],
++  },
++];
++
+ export const englishModules: EnglishModule[] = [
+   {
+     number: 1,
+diff --git a/src/content/english-final-exam.ts b/src/content/english-final-exam.ts
+index b98a80c..b26370b 100644
+--- a/src/content/english-final-exam.ts
++++ b/src/content/english-final-exam.ts
+@@ -1,5 +1,5 @@
+ /**
+- * Final exam for "English for Beginners" — 36 questions, two per module,
++ * Final exam for Practical English — 36 questions, two per module,
+  * self-contained so no lesson context is required. 80% (29/36) to pass.
+  */
+ 
+diff --git a/src/content/english-lessons-premium.ts b/src/content/english-lessons-premium.ts
+index 4935b8d..9497cb5 100644
+--- a/src/content/english-lessons-premium.ts
++++ b/src/content/english-lessons-premium.ts
+@@ -1,5 +1,5 @@
+ /**
+- * Premium English for Beginners lesson content — Module 1.
++ * Practical English lesson content — Module 1.
+  * Ported from AJ's "modil1-leson1-byenveni.jsx" / "modil1-leson2-alfabet.jsx"
+  * prototypes. Instructional language is Haitian Creole; taught content is
+  * English. Text fields marked "(supports **bold**)" use light inline
+@@ -15421,7 +15421,7 @@ export const englishPremiumLessons: EnglishPremiumLesson[] = [
+       { emoji: "🎓", text: "You finished Module 18 — Think in English!" },
+       {
+         emoji: "🏆",
+-        text: "You finished the whole English for Beginners course!",
++        text: "You finished the complete Practical English course!",
+       },
+     ],
+   },
+diff --git a/src/content/english-placement-quiz.ts b/src/content/english-placement-quiz.ts
+index f215027..485df7b 100644
+--- a/src/content/english-placement-quiz.ts
++++ b/src/content/english-placement-quiz.ts
+@@ -1,5 +1,5 @@
+ /**
+- * Placement quiz — English for Beginners.
++ * Placement quiz — Practical English.
+  * Ported from AJ's "tes-plasman-english-beginners.jsx" prototype.
+  * Instructional language is Haitian Creole; tested content is English.
+  */
+diff --git a/src/lib/course-progress.ts b/src/lib/course-progress.ts
+new file mode 100644
+index 0000000..e041250
+--- /dev/null
++++ b/src/lib/course-progress.ts
+@@ -0,0 +1,44 @@
++export const courseProgressChangedEvent = "jamezzi:course-progress-changed";
++
++export function readCompletedLessons(storageKey: string): string[] {
++  try {
++    const parsed = JSON.parse(
++      window.localStorage.getItem(storageKey) ?? "[]",
++    ) as unknown;
++    return Array.isArray(parsed)
++      ? parsed.filter((value): value is string => typeof value === "string")
++      : [];
++  } catch {
++    return [];
++  }
++}
++
++export function saveCompletedLesson(
++  storageKey: string,
++  lessonSlug: string,
++): "saved" | "existing" | "blocked" {
++  try {
++    const completed = readCompletedLessons(storageKey);
++    if (completed.includes(lessonSlug)) return "existing";
++    window.localStorage.setItem(
++      storageKey,
++      JSON.stringify([...completed, lessonSlug]),
++    );
++    window.dispatchEvent(
++      new CustomEvent(courseProgressChangedEvent, {
++        detail: { storageKey, lessonSlug },
++      }),
++    );
++    return "saved";
++  } catch {
++    return "blocked";
++  }
++}
++
++export function isProgressEventFor(event: Event, storageKey: string) {
++  return (
++    event instanceof CustomEvent &&
++    (event.detail as { storageKey?: unknown } | undefined)?.storageKey ===
++      storageKey
++  );
++}
