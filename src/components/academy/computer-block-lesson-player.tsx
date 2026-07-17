@@ -384,7 +384,12 @@ export function ComputerBlockLessonPlayer({
               </p>
             )}
             {currentPhase.phase === "learn" && (
-              <LearnPhase lesson={lesson} blocks={currentPhase.blocks} />
+              <LearnPhase
+                lesson={lesson}
+                blocks={currentPhase.blocks}
+                viewPlatform={viewPlatform}
+                onPlatformChange={setViewPlatform}
+              />
             )}
             {currentPhase.phase === "words" && (
               <WordsPhase blocks={currentPhase.blocks} />
@@ -524,9 +529,13 @@ export function ComputerBlockLessonPlayer({
 function LearnPhase({
   lesson,
   blocks,
+  viewPlatform,
+  onPlatformChange,
 }: {
   lesson: CourseLesson;
   blocks: LessonBlock[];
+  viewPlatform: PreferredPlatform;
+  onPlatformChange: (platform: PreferredPlatform) => void;
 }) {
   const goal = blocks.find((b) => b.type === "goal");
   const explanation = blocks.find((b) => b.type === "explanation");
@@ -546,8 +555,11 @@ function LearnPhase({
       </div>
       {isConceptBenchmark ? (
         <>
-          <OperatingSystemHeroVisual />
-          <OperatingSystemConceptVisual />
+          <OperatingSystemHeroVisual
+            platform={viewPlatform}
+            onPlatformChange={onPlatformChange}
+          />
+          <OperatingSystemConceptVisual platform={viewPlatform} />
         </>
       ) : (
         <div className="border-border bg-paper relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-[18px] border shadow-[0_16px_45px_rgba(29,24,46,0.10)]">
@@ -596,6 +608,7 @@ const operatingSystemConcepts = [
     explanation: "Fondasyon ki fè aparèy la mache",
     accent: "bg-[#E8EEFF] text-[#2452A5]",
     icon: "os",
+    image: "what-is-an-operating-system",
   },
   {
     label: "App",
@@ -603,6 +616,7 @@ const operatingSystemConcepts = [
     explanation: "Zouti ou louvri pou fè yon travay",
     accent: "bg-[#E8F7F1] text-[#147A61]",
     icon: "app",
+    image: "installing-and-uninstalling-apps",
   },
   {
     label: "Browser",
@@ -610,6 +624,7 @@ const operatingSystemConcepts = [
     explanation: "Pòt ou itilize pou antre sou entènèt",
     accent: "bg-[#F0EAFE] text-[#6041B5]",
     icon: "browser",
+    image: "browser-basics",
   },
   {
     label: "Website",
@@ -617,6 +632,7 @@ const operatingSystemConcepts = [
     explanation: "Yon kote ou vizite anndan Browser la",
     accent: "bg-[#FFF0E8] text-[#B9522F]",
     icon: "website",
+    image: "recognizing-fake-websites",
   },
   {
     label: "File",
@@ -624,15 +640,27 @@ const operatingSystemConcepts = [
     explanation: "Yon bagay ki gen non epi ki sovgade",
     accent: "bg-[#FFF7D9] text-[#8B6414]",
     icon: "file",
+    image: "what-is-a-file-and-folder",
   },
 ] as const;
 
-function OperatingSystemHeroVisual() {
+function OperatingSystemHeroVisual({
+  platform,
+  onPlatformChange,
+}: {
+  platform: PreferredPlatform;
+  onPlatformChange: (platform: PreferredPlatform) => void;
+}) {
+  const isWindows = platform === "windows";
   return (
     <figure className="border-border bg-night relative mb-6 min-h-[280px] overflow-hidden rounded-[20px] border shadow-[0_20px_55px_rgba(29,24,46,0.16)] sm:min-h-[360px]">
       <Image
-        src={`${lessonImageBase}/what-is-an-operating-system.webp`}
-        alt="Yon laptop ki montre yon sistèm operasyon sou ekran li"
+        src={`${lessonImageBase}/${isWindows ? "finder-and-file-explorer-windows" : "finder-and-file-explorer-mac"}.webp`}
+        alt={
+          isWindows
+            ? "Windows 11 File Explorer sou ekran yon òdinatè"
+            : "macOS Finder sou ekran yon òdinatè"
+        }
         fill
         priority
         sizes="(max-width: 1024px) 100vw, 1000px"
@@ -647,16 +675,37 @@ function OperatingSystemHeroVisual() {
           Operating System lan se fondasyon aparèy la.
         </h2>
         <p className="text-night-text mt-4 text-sm leading-relaxed sm:text-base">
-          Windows ak macOS kontwole ekran an, fichye yo, aplikasyon yo, ak
-          aparèy ki konekte yo.
+          {isWindows
+            ? "Windows kontwole Desktop la, File Explorer, Apps, ak aparèy ki konekte yo."
+            : "macOS kontwole Desktop la, Finder, Apps, ak aparèy ki konekte yo."}
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
-          <span className="text-night rounded-full bg-white px-3 py-2 text-xs font-bold">
+          <button
+            type="button"
+            onClick={() => onPlatformChange("windows")}
+            aria-pressed={isWindows}
+            className={cn(
+              "rounded-full px-4 py-2.5 text-sm font-bold transition",
+              isWindows
+                ? "text-night bg-white"
+                : "border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white/20",
+            )}
+          >
             Windows 11
-          </span>
-          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-2 text-xs font-bold text-white backdrop-blur">
+          </button>
+          <button
+            type="button"
+            onClick={() => onPlatformChange("mac")}
+            aria-pressed={!isWindows}
+            className={cn(
+              "rounded-full px-4 py-2.5 text-sm font-bold transition",
+              !isWindows
+                ? "text-night bg-white"
+                : "border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white/20",
+            )}
+          >
             macOS
-          </span>
+          </button>
         </div>
       </div>
     </figure>
@@ -774,7 +823,20 @@ function ConceptIcon({
   );
 }
 
-function OperatingSystemConceptVisual() {
+function OperatingSystemConceptVisual({
+  platform,
+}: {
+  platform: PreferredPlatform;
+}) {
+  const [selectedConcept, setSelectedConcept] = useState(0);
+  const activeConcept = operatingSystemConcepts[selectedConcept];
+  const activeImage =
+    activeConcept.icon === "os"
+      ? platform === "windows"
+        ? "finder-and-file-explorer-windows"
+        : "finder-and-file-explorer-mac"
+      : activeConcept.image;
+
   return (
     <figure className="border-border mb-6 overflow-hidden rounded-[18px] border bg-[#FBFAF7] p-4 shadow-[0_16px_45px_rgba(29,24,46,0.10)] sm:p-6">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -784,30 +846,53 @@ function OperatingSystemConceptVisual() {
             Senk bagay. Senk travay diferan.
           </h2>
         </div>
-        <p className="text-muted max-w-xs text-xs leading-relaxed">
-          Swiv yo agoch pou adwat jan ou itilize yo sou yon òdinatè.
+        <p className="text-muted max-w-xs text-sm leading-relaxed">
+          Klike sou chak kat pou wè yon egzanp reyèl sou ekran an.
         </p>
       </div>
       <div className="grid gap-2.5 lg:grid-cols-5">
         {operatingSystemConcepts.map((concept, index) => (
           <div key={concept.label} className="relative flex lg:block">
-            <div className="border-border flex min-h-32 w-full flex-col rounded-2xl border bg-white p-3.5">
-              <span
-                className={cn(
-                  "mb-4 inline-flex size-12 items-center justify-center rounded-xl",
-                  concept.accent,
-                )}
-              >
-                <ConceptIcon type={concept.icon} />
+            <button
+              type="button"
+              onClick={() => setSelectedConcept(index)}
+              aria-pressed={selectedConcept === index}
+              className={cn(
+                "border-border flex min-h-32 w-full flex-col overflow-hidden rounded-2xl border bg-white text-left transition",
+                selectedConcept === index
+                  ? "ring-indigo shadow-[0_12px_30px_rgba(79,70,229,0.14)] ring-2"
+                  : "hover:-translate-y-0.5 hover:shadow-md",
+              )}
+            >
+              <span className="bg-paper relative block aspect-[16/9] w-full overflow-hidden">
+                <Image
+                  src={`${lessonImageBase}/${concept.icon === "os" ? (platform === "windows" ? "finder-and-file-explorer-windows" : "finder-and-file-explorer-mac") : concept.image}.webp`}
+                  alt={`Egzanp ${concept.label}`}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 180px"
+                  className="object-cover"
+                />
+                <span
+                  className={cn(
+                    "absolute bottom-2 left-2 inline-flex size-10 items-center justify-center rounded-xl shadow-sm",
+                    concept.accent,
+                  )}
+                >
+                  <ConceptIcon type={concept.icon} />
+                </span>
               </span>
-              <p className="text-ink text-base font-bold">{concept.label}</p>
-              <p className="text-indigo-dark mt-1 text-xs font-semibold">
-                {concept.example}
-              </p>
-              <p className="text-muted mt-3 text-sm leading-snug">
-                {concept.explanation}
-              </p>
-            </div>
+              <span className="flex flex-1 flex-col p-3.5">
+                <span className="text-ink text-base font-bold">
+                  {concept.label}
+                </span>
+                <span className="text-indigo-dark mt-1 text-xs font-semibold">
+                  {concept.example}
+                </span>
+                <span className="text-muted mt-3 text-sm leading-snug">
+                  {concept.explanation}
+                </span>
+              </span>
+            </button>
             {index < operatingSystemConcepts.length - 1 && (
               <span
                 className="text-coral absolute top-1/2 -right-2.5 z-10 hidden -translate-y-1/2 rounded-full bg-[#FBFAF7] px-1 text-lg lg:block"
@@ -818,6 +903,41 @@ function OperatingSystemConceptVisual() {
             )}
           </div>
         ))}
+      </div>
+      <div className="border-border mt-5 grid overflow-hidden rounded-2xl border bg-white md:grid-cols-[1.25fr_.75fr]">
+        <div className="bg-paper relative min-h-[240px] sm:min-h-[310px]">
+          <Image
+            key={activeImage}
+            src={`${lessonImageBase}/${activeImage}.webp`}
+            alt={`${activeConcept.label}: ${activeConcept.example}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 650px"
+            className="object-cover"
+          />
+        </div>
+        <div className="flex flex-col justify-center p-5 sm:p-7">
+          <span
+            className={cn(
+              "inline-flex size-12 items-center justify-center rounded-xl",
+              activeConcept.accent,
+            )}
+          >
+            <ConceptIcon type={activeConcept.icon} />
+          </span>
+          <p className="text-indigo-dark mt-5 text-xs font-bold tracking-[0.12em] uppercase">
+            Men sa li ye
+          </p>
+          <h3 className="font-display text-ink mt-2 text-3xl">
+            {activeConcept.label}
+          </h3>
+          <p className="text-indigo-dark mt-2 text-sm font-bold">
+            {activeConcept.example}
+          </p>
+          <p className="text-muted mt-3 text-base leading-relaxed">
+            {activeConcept.explanation}. Gade imaj la epi aprann rekonèt li
+            anvan ou kontinye.
+          </p>
+        </div>
       </div>
       <figcaption className="bg-indigo-light text-ink mt-4 rounded-xl px-4 py-3 text-sm leading-relaxed">
         <strong>Egzanp:</strong> Windows fè òdinatè a mache → ou louvri Chrome →
