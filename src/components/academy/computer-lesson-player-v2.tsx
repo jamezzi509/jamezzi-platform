@@ -195,7 +195,7 @@ export function ComputerLessonPlayerV2({
             Jamezzi<span className="text-indigo">.</span>
           </Link>
           <div className="flex items-center gap-3 text-sm text-[#696675]">
-            <span className="hidden sm:inline">Module 1 completed</span>
+            <span className="hidden sm:inline">Module 1 progress</span>
             <div className="h-1.5 w-24 overflow-hidden rounded-full bg-[#ECEAF2] sm:w-36">
               <div
                 className="bg-indigo h-full rounded-full"
