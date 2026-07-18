@@ -1337,6 +1337,24 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         tone: "warning",
       },
       {
+        type: "comparison",
+        title: "A practical student starting point",
+        items: [
+          {
+            label: "Recommended for most students",
+            description:
+              "Look for 16 GB memory, a 512 GB SSD, and a recent midrange processor. This is a buying target—not a guarantee that every required app will work.",
+            tone: "good",
+          },
+          {
+            label: "When the budget is tight",
+            description:
+              "8 GB memory and a 256 GB SSD can handle basic schoolwork, but provide less room for many open apps, large files, and future needs.",
+            tone: "warn",
+          },
+        ],
+      },
+      {
         type: "steps",
         title: "Capture an offer accurately",
         steps: [
@@ -1527,12 +1545,12 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
           {
             label: "Refurbished",
             description:
-              "May have been inspected, repaired, cleaned, tested, or repackaged. Ask who performed the work, what was tested, what changed, and what warranty applies.",
+              "May have been inspected, repaired, cleaned, tested, or repackaged. A recent refurbished computer can be a better value than a brand-new low-end one. Ask who did the work, what was tested, and what warranty applies.",
           },
           {
             label: "Used",
             description:
-              "Has a prior owner or use history. Price may be lower, while condition, battery, support, ownership, and return risk require stronger inspection.",
+              "Has a prior owner or use history. Used does not have to mean old: prefer a recent model that still receives security updates and supports required software, then inspect its battery, condition, ownership, and return risk.",
           },
         ],
       },
@@ -1548,6 +1566,12 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         ],
         success:
           "You can state who must help, for how long, under which written terms, and what evidence you must keep.",
+      },
+      {
+        type: "callout",
+        title: "Buy used when it is recent—not merely cheap",
+        body: "A well-built recent used business computer may outlast a brand-new bargain model. Verify the exact model and year, current operating-system support, required software, battery condition, account or organization locks, and written return or warranty terms. Reject a computer whose low price depends on missing support or an unresolved lock.",
+        tone: "info",
       },
       {
         type: "callout",

@@ -36,6 +36,15 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     ).toBe(true);
   });
 
+  it("gives beginners a concise buying baseline without treating used as old", () => {
+    const moduleThreeCopy = JSON.stringify(computerModuleThreeV2);
+
+    expect(moduleThreeCopy).toContain("16 GB memory");
+    expect(moduleThreeCopy).toContain("512 GB SSD");
+    expect(moduleThreeCopy).toContain("Used does not have to mean old");
+    expect(moduleThreeCopy).toContain("still receives security updates");
+  });
+
   it("contains five unique, ordered Module 2 lessons", () => {
     expect(computerModuleTwoV2).toHaveLength(5);
     expect(computerModuleTwoV2.map((lesson) => lesson.order)).toEqual([
