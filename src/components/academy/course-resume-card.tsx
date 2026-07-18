@@ -48,7 +48,7 @@ export function CourseResumeCard({
   newTitle?: string;
   newAction?: string;
   resetLabel?: string;
-  language?: "en" | "ht";
+  language?: "en" | "ht" | "fr";
 }) {
   const [completed, setCompleted] = useState<string[] | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
@@ -107,24 +107,65 @@ export function CourseResumeCard({
               : "Kontinye aprann",
           progress: `${completedCount} sou ${lessons.length} leson fini`,
         }
-      : {
-          eyebrow: isComplete
-            ? (completionEyebrow ?? "COURSE LESSONS COMPLETE")
-            : isNew
-              ? (newEyebrow ?? "READY WHEN YOU ARE")
-              : "CONTINUE WHERE YOU LEFT OFF",
-          title: isComplete
-            ? (completionTitle ?? "You’re ready for the final assessment.")
-            : isNew
-              ? (newTitle ?? "Your first lesson is ready.")
-              : nextLesson.title,
-          action: isComplete
-            ? (completionAction ?? "Take the final assessment")
-            : isNew
-              ? (newAction ?? "Start the first lesson")
-              : "Continue learning",
-          progress: `${completedCount} of ${lessons.length} lessons completed`,
-        };
+      : language === "fr"
+        ? {
+            eyebrow: isComplete
+              ? (completionEyebrow ?? "LEÇONS TERMINÉES")
+              : isNew
+                ? (newEyebrow ?? "COMMENCEZ QUAND VOUS ÊTES PRÊT")
+                : "REPRENEZ OÙ VOUS VOUS ÊTES ARRÊTÉ",
+            title: isComplete
+              ? (completionTitle ?? "Vous êtes prêt pour l’évaluation finale.")
+              : isNew
+                ? (newTitle ?? "Votre première leçon est prête.")
+                : nextLesson.title,
+            action: isComplete
+              ? (completionAction ?? "Passer l’évaluation finale")
+              : isNew
+                ? (newAction ?? "Commencer la première leçon")
+                : "Continuer à apprendre",
+            progress: `${completedCount} leçons terminées sur ${lessons.length}`,
+          }
+        : {
+            eyebrow: isComplete
+              ? (completionEyebrow ?? "COURSE LESSONS COMPLETE")
+              : isNew
+                ? (newEyebrow ?? "READY WHEN YOU ARE")
+                : "CONTINUE WHERE YOU LEFT OFF",
+            title: isComplete
+              ? (completionTitle ?? "You’re ready for the final assessment.")
+              : isNew
+                ? (newTitle ?? "Your first lesson is ready.")
+                : nextLesson.title,
+            action: isComplete
+              ? (completionAction ?? "Take the final assessment")
+              : isNew
+                ? (newAction ?? "Start the first lesson")
+                : "Continue learning",
+            progress: `${completedCount} of ${lessons.length} lessons completed`,
+          };
+
+  const resetCopy =
+    language === "ht"
+      ? {
+          prompt: `Efase pwogrè ${resetLabel} nan navigatè sa a?`,
+          cancel: "Anile",
+          confirm: "Wi, rekòmanse",
+          trigger: `Rekòmanse ${resetLabel}`,
+        }
+      : language === "fr"
+        ? {
+            prompt: `Effacer la progression de ${resetLabel} dans ce navigateur ?`,
+            cancel: "Annuler",
+            confirm: "Oui, recommencer",
+            trigger: `Recommencer ${resetLabel}`,
+          }
+        : {
+            prompt: `Clear ${resetLabel} progress on this browser?`,
+            cancel: "Cancel",
+            confirm: "Yes, start over",
+            trigger: `Start ${resetLabel} over`,
+          };
 
   function resetProgress() {
     if (!resetCourse) return;
@@ -173,21 +214,21 @@ export function CourseResumeCard({
             (confirmReset ? (
               <div className="flex flex-wrap items-center justify-end gap-2 rounded-xl border border-[#E4AAA5] bg-[#FFF2F1] p-3">
                 <span className="w-full text-right text-[15px] font-semibold text-[#7F2824]">
-                  Clear {resetLabel} progress on this browser?
+                  {resetCopy.prompt}
                 </span>
                 <button
                   type="button"
                   onClick={() => setConfirmReset(false)}
                   className="min-h-10 px-3 text-[15px] font-semibold text-[#5E5966]"
                 >
-                  Cancel
+                  {resetCopy.cancel}
                 </button>
                 <button
                   type="button"
                   onClick={resetProgress}
                   className="min-h-10 rounded-full bg-[#A63731] px-4 text-[15px] font-semibold text-white"
                 >
-                  Yes, start over
+                  {resetCopy.confirm}
                 </button>
               </div>
             ) : (
@@ -196,7 +237,7 @@ export function CourseResumeCard({
                 onClick={() => setConfirmReset(true)}
                 className="min-h-11 px-3 text-base font-semibold text-[#8C302B] underline underline-offset-4"
               >
-                Start {resetLabel} over
+                {resetCopy.trigger}
               </button>
             ))}
         </div>

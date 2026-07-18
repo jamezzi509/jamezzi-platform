@@ -81,7 +81,7 @@ export interface CourseCheck {
 export interface ComputerLessonV2 {
   id: string;
   slug: string;
-  moduleId: "m1" | "m2";
+  moduleId: "m1" | "m2" | "m3";
   order: number;
   title: string;
   promise: string;
@@ -163,7 +163,7 @@ export const computerCourseModulesV2 = [
   order: index + 1,
   title,
   purpose,
-  status: index < 2 ? ("available" as const) : ("in-production" as const),
+  status: index < 3 ? ("available" as const) : ("in-production" as const),
 }));
 
 export const computerModuleOneV2: ComputerLessonV2[] = [
@@ -1174,13 +1174,560 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
   },
 ];
 
+export const computerModuleThreeV2: ComputerLessonV2[] = [
+  {
+    id: "m3-l1-v2",
+    slug: "define-computer-needs-budget",
+    moduleId: "m3",
+    order: 1,
+    title: "Start with Needs, Not Advertisements",
+    promise:
+      "Turn the work you actually do, where you do it, and what you can spend into a short buying brief.",
+    estimatedMinutes: "12–15 minutes",
+    track: "universal",
+    badges: ["Buying brief", "Budget protection"],
+    outcomes: [
+      "Separate required tasks from attractive extras.",
+      "Choose the physical computer family that fits the real setting.",
+      "Calculate a total budget that includes necessary accessories and support.",
+    ],
+    sections: [
+      {
+        type: "prose",
+        eyebrow: "Reverse the sales process",
+        title: "The computer is a tool for a job",
+        paragraphs: [
+          "A product page begins with the machine. A good buying decision begins with your work. Write down the tasks, software, places, connections, and files the computer must handle before comparing models.",
+          "Price alone is not value. A cheap computer that cannot run required software is expensive. A powerful computer that spends its life opening email may also waste money.",
+        ],
+      },
+      {
+        type: "visual",
+        title: "Choose the physical arrangement first",
+        caption:
+          "Laptop, desktop, all-in-one, and 2-in-1 designs solve different portability, space, repair, and accessory needs. The operating system is a separate decision.",
+        visual: { kind: "computer-families" },
+      },
+      {
+        type: "comparison",
+        title: "Required, preferred, and unnecessary",
+        items: [
+          {
+            label: "Required",
+            description:
+              "Without it, a named task, app, connection, accessibility need, or school/work rule fails.",
+            tone: "good",
+          },
+          {
+            label: "Preferred",
+            description:
+              "It improves comfort, speed, battery life, screen space, or convenience but the work can continue without it.",
+          },
+          {
+            label: "Unnecessary now",
+            description:
+              "It sounds impressive but does not solve a need in the buying brief. Do not pay for it accidentally.",
+            tone: "warn",
+          },
+        ],
+      },
+      {
+        type: "steps",
+        title: "Build the total budget",
+        steps: [
+          "Set the maximum amount you can pay without risking essential expenses.",
+          "List required computer, tax, delivery, charger, adapter, mouse, bag, monitor, software, or setup costs.",
+          "Keep a reserve for a return trip, data transfer, repair, or missing accessory.",
+          "Reject offers whose real total exceeds the limit.",
+        ],
+        success:
+          "You know the maximum total, required tasks, required connections, and acceptable device family before shopping.",
+      },
+    ],
+    practice: {
+      title: "Write a one-page buying brief",
+      intro: "Do this before opening a store or marketplace.",
+      tasks: [
+        "List five tasks the computer must perform.",
+        "Name required apps or confirm that browser-based tools are acceptable.",
+        "Choose laptop, desktop, all-in-one, or 2-in-1 and explain why.",
+        "List required ports, screen, camera, microphone, keyboard, or accessibility needs.",
+        "Calculate the maximum total cost, not only the advertised computer price.",
+      ],
+      evidence: [
+        "I separated requirements from preferences.",
+        "My total budget includes required extras.",
+      ],
+    },
+    check: {
+      prompt: "Which is the strongest first step before comparing computers?",
+      options: [
+        "Choose the model with the largest discount",
+        "Write the tasks, required software, setting, connections, and total budget",
+        "Choose the processor with the longest name",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. A buying brief creates criteria that offers can be tested against.",
+      incorrectFeedback:
+        "Discounts and product names do not define your needs. Begin with tasks, constraints, and total cost.",
+    },
+    closing:
+      "Your buying brief is the standard every offer must meet. Next, translate common specifications into consequences you can actually use.",
+    nextTitle: "Read Specifications Without Sales Jargon",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m3-l2-v2",
+    slug: "read-computer-specifications",
+    moduleId: "m3",
+    order: 2,
+    title: "Read Specifications Without Sales Jargon",
+    promise:
+      "Understand processor, memory, storage, graphics, display, battery, and ports well enough to reject a misleading offer.",
+    estimatedMinutes: "18–22 minutes",
+    track: "universal",
+    badges: ["Specification decoder", "Minimum ≠ recommendation"],
+    outcomes: [
+      "Explain what CPU, RAM, storage, GPU, display, and ports affect.",
+      "Distinguish an operating-system minimum from a sensible purchase target.",
+      "Record exact specifications instead of accepting vague labels such as fast or powerful.",
+    ],
+    sections: [
+      {
+        type: "comparison",
+        title: "Six specifications, six different jobs",
+        items: [
+          {
+            label: "Processor (CPU)",
+            description:
+              "Executes instructions. Exact model and generation matter; a family name alone does not establish performance.",
+          },
+          {
+            label: "Memory (RAM)",
+            description:
+              "Holds active work. More memory helps keep more or heavier apps active without slowing from memory pressure.",
+          },
+          {
+            label: "Storage",
+            description:
+              "Holds the system, apps, and files. Capacity and drive type are different facts; SSD storage is generally faster than HDD storage.",
+          },
+          {
+            label: "Graphics (GPU)",
+            description:
+              "Produces graphics and may accelerate games, video, design, and some AI work. Everyday tasks often use integrated graphics.",
+          },
+          {
+            label: "Display",
+            description:
+              "Size, resolution, brightness, color, touch, and refresh rate affect different needs. One number does not describe the whole screen.",
+          },
+          {
+            label: "Ports + wireless",
+            description:
+              "Determine what connects directly. Verify exact capabilities; USB-C shape alone does not promise video or charging.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        title: "Windows 11 minimums are an eligibility floor",
+        body: "Microsoft currently lists 4 GB RAM and 64 GB storage among Windows 11 minimum requirements. Those figures mean the system can qualify; they are not a promise of comfortable everyday use or enough room for your files. Microsoft’s current consumer guidance describes 8 GB RAM for everyday tasks and 16 GB or more for gaming or creative work. Recheck official guidance when buying because requirements change.",
+        tone: "warning",
+      },
+      {
+        type: "steps",
+        title: "Capture an offer accurately",
+        steps: [
+          "Record the exact model number of the computer.",
+          "Record the exact processor name, installed RAM, storage capacity and type, graphics, display size and resolution, ports, wireless, and operating system.",
+          "Mark any missing fact as unknown—not as acceptable.",
+          "Verify important claims on the manufacturer’s specification page for that exact model.",
+        ],
+        success:
+          "A second person could identify the exact configuration from your notes without relying on the seller’s adjectives.",
+      },
+      {
+        type: "callout",
+        title:
+          "Storage shown in the advertisement is not fully available space",
+        body: "The operating system, built-in apps, recovery data, formatting, and future updates use part of the advertised capacity. Plan from the files and apps you expect to keep, plus free space for normal operation and updates.",
+        tone: "info",
+      },
+    ],
+    practice: {
+      title: "Decode one real specification sheet",
+      intro:
+        "Use a manufacturer page or a written offer; do not buy anything for this activity.",
+      tasks: [
+        "Find the exact computer model.",
+        "Record CPU, RAM, storage capacity and type, graphics, display, ports, wireless, and operating system.",
+        "Circle every missing or vague fact.",
+        "Match each specification to one requirement in your buying brief.",
+      ],
+      evidence: [
+        "I recorded exact facts rather than fast, pro, or powerful.",
+        "I treated minimum requirements as a floor, not a buying recommendation.",
+      ],
+      privacyNote:
+        "Do not record a serial number, service tag, account identifier, or product key.",
+    },
+    check: {
+      prompt:
+        "A listing says a computer has 4 GB RAM and 64 GB storage and meets Windows 11 minimums. What can you conclude?",
+      options: [
+        "It is automatically a good purchase for every learner",
+        "It may meet part of the eligibility floor, but comfort, usable space, processor compatibility, and the learner’s tasks still require verification",
+        "It will edit video smoothly",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. Minimum eligibility is not a complete buying recommendation.",
+      incorrectFeedback:
+        "The operating-system floor does not prove comfort, capacity, compatibility, or fitness for a particular workload.",
+    },
+    closing:
+      "You can now turn a listing into verifiable facts. Next, choose Windows or Mac from required software, workflow, support, and total cost—not from social pressure.",
+    nextTitle: "Choose Windows or Mac for the Work",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m3-l3-v2",
+    slug: "choose-windows-or-mac-to-buy",
+    moduleId: "m3",
+    order: 3,
+    title: "Choose Windows or Mac for the Work",
+    promise:
+      "Make the platform decision from compatibility, support, workflow, and full cost while keeping your saved course path separate.",
+    estimatedMinutes: "12–15 minutes",
+    track: "universal",
+    badges: ["Platform decision", "No brand loyalty test"],
+    outcomes: [
+      "Check required software and peripherals before choosing a platform.",
+      "Compare support, workflow, integration, repair, and total cost.",
+      "Avoid assuming that your current computer path must determine your next purchase.",
+    ],
+    sections: [
+      {
+        type: "prose",
+        eyebrow: "A fresh decision",
+        title: "What you own and what you should buy are different questions",
+        paragraphs: [
+          "Your saved Windows or Mac course path controls the instructions you see for the computer you are using now. It does not force the purchase decision.",
+          "Choose the next computer from evidence: required apps, file formats, school or employer rules, peripherals, people who can support you, accessibility tools, and total cost.",
+        ],
+      },
+      {
+        type: "comparison",
+        title: "Compare the complete environment",
+        items: [
+          {
+            label: "Software + services",
+            description:
+              "Confirm the exact required app, version, license, browser, plug-in, and file format on the intended operating system.",
+          },
+          {
+            label: "People + support",
+            description:
+              "Consider who can help locally, warranty service, documentation language, training, and repair availability.",
+          },
+          {
+            label: "Devices + files",
+            description:
+              "Check printers, monitors, drives, cameras, phones, specialized equipment, and file exchange with other people.",
+          },
+          {
+            label: "Total ownership",
+            description:
+              "Include adapters, software subscriptions, storage, warranty, repairs, data transfer, and replacement accessories.",
+          },
+        ],
+      },
+      {
+        type: "steps",
+        title: "Use a blocking-requirement test",
+        steps: [
+          "List anything that absolutely must work.",
+          "Find official compatibility evidence for Windows and for macOS.",
+          "If one platform fails a required item, record the exact blocker.",
+          "If both work, compare comfort, support, total cost, and preference.",
+          "Keep the decision provisional until the exact model passes inspection and return-policy checks.",
+        ],
+        success:
+          "You can explain the chosen platform using named requirements, not status, fear, or brand loyalty.",
+      },
+      {
+        type: "callout",
+        title: "A web app may reduce platform differences—but verify",
+        body: "Some work happens entirely in a modern browser, while other tools require a specific desktop app, driver, security system, or organization-managed device. Test the real workflow instead of assuming that a website name guarantees equivalence.",
+        tone: "info",
+      },
+    ],
+    practice: {
+      title: "Build a platform evidence table",
+      intro: "Compare only the requirements in your buying brief.",
+      tasks: [
+        "Check each required app or service on Windows.",
+        "Check each required app or service on macOS.",
+        "Check required peripherals and file exchange.",
+        "Compare local help, warranty service, and total cost.",
+        "Write the strongest reason for the current choice and the fact that could change it.",
+      ],
+      evidence: [
+        "Every blocking requirement has evidence or is marked unknown.",
+        "My current saved course path did not automatically decide the purchase.",
+      ],
+    },
+    check: {
+      prompt:
+        "A learner currently uses Windows. What is the strongest reason to buy another Windows computer?",
+      options: [
+        "The course saved Windows earlier",
+        "Required software, devices, support, and total cost are verified and Windows is the better fit",
+        "Mac computers are always wrong",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. The new purchase must be justified independently from the current-device setting.",
+      incorrectFeedback:
+        "The saved path only controls instructions for the current computer. A purchase requires fresh compatibility and cost evidence.",
+    },
+    closing:
+      "You have a platform decision that can survive questions. Next, compare new, refurbished, and used computers without treating those words as guarantees.",
+    nextTitle: "Compare New, Refurbished, and Used",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m3-l4-v2",
+    slug: "compare-new-refurbished-used-computers",
+    moduleId: "m3",
+    order: 4,
+    title: "Compare New, Refurbished, and Used Computers",
+    promise:
+      "Judge condition, seller responsibility, warranty, returns, ownership locks, and support instead of trusting a condition label.",
+    estimatedMinutes: "15–18 minutes",
+    track: "universal",
+    badges: ["Condition evidence", "Seller protection"],
+    outcomes: [
+      "Distinguish condition claims from enforceable protections.",
+      "Check warranty and return terms before payment.",
+      "Recognize ownership, account, and management locks that can make a computer unusable.",
+    ],
+    sections: [
+      {
+        type: "comparison",
+        title: "The label is only the beginning",
+        items: [
+          {
+            label: "New",
+            description:
+              "Normally sold as unused, but still verify exact configuration, sealed contents, warranty start, seller, return window, and regional coverage.",
+          },
+          {
+            label: "Refurbished",
+            description:
+              "May have been inspected, repaired, cleaned, tested, or repackaged. Ask who performed the work, what was tested, what changed, and what warranty applies.",
+          },
+          {
+            label: "Used",
+            description:
+              "Has a prior owner or use history. Price may be lower, while condition, battery, support, ownership, and return risk require stronger inspection.",
+          },
+        ],
+      },
+      {
+        type: "steps",
+        title: "Read protection before condition",
+        steps: [
+          "Identify the legal seller and obtain a receipt.",
+          "Read the return deadline, allowed reasons, fees, required condition, and who pays shipping.",
+          "Read who provides the warranty, what it covers, exclusions, duration, and remedy.",
+          "Ask whether the battery, charger, storage, display, keyboard, ports, and enclosure were tested.",
+          "Confirm the device is removed from the previous owner’s accounts and organization management.",
+        ],
+        success:
+          "You can state who must help, for how long, under which written terms, and what evidence you must keep.",
+      },
+      {
+        type: "callout",
+        title: "A warranty is a written promise with limits",
+        body: "Do not treat the word warranty as complete protection. Read the written coverage and remedy. Consumer rights vary by country and seller, so preserve the listing, receipt, serial or service record privately, and all written terms.",
+        tone: "warning",
+      },
+      {
+        type: "decision",
+        title: "A cheap computer is still signed into another owner",
+        prompt:
+          "The seller says the account can be removed later after payment.",
+        answer:
+          "Stop. Ownership or organization locks can prevent setup or normal use. Require the seller to remove the device from their accounts and management, then verify setup before paying.",
+        tone: "stop",
+      },
+    ],
+    practice: {
+      title: "Audit one condition offer",
+      intro:
+        "Use an advertisement or written quote without contacting or paying a seller.",
+      tasks: [
+        "Identify new, refurbished, or used—and who makes that claim.",
+        "Find the exact seller and return terms.",
+        "Find the written warranty provider, duration, coverage, and remedy.",
+        "List the physical and account checks still required.",
+        "Record every missing answer as risk.",
+      ],
+      evidence: [
+        "I did not treat refurbished or warranty as self-explanatory.",
+        "I know what must be verified before money changes hands.",
+      ],
+      privacyNote:
+        "Keep real serial numbers, addresses, receipts, and account information private.",
+    },
+    check: {
+      prompt: "Which refurbished offer provides the strongest evidence?",
+      options: [
+        "Like new, trust me",
+        "A named seller provides the exact model, test report, written condition, return policy, and warranty terms",
+        "No returns because it is cheap",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. Named responsibility and written, testable terms are stronger than adjectives.",
+      incorrectFeedback:
+        "A condition word is not evidence. Look for exact configuration, testing, seller responsibility, returns, and warranty terms.",
+    },
+    closing:
+      "You can now compare the protection around an offer. Finish the module by scoring candidates and inspecting the finalist before paying.",
+    nextTitle: "Compare, Inspect, and Decide",
+    verifiedAt: "2026-07-17",
+  },
+  {
+    id: "m3-l5-v2",
+    slug: "compare-inspect-buy-computer",
+    moduleId: "m3",
+    order: 5,
+    title: "Compare, Inspect, and Decide",
+    promise:
+      "Use one evidence sheet to compare offers, test the finalist, protect payment, and walk away when a required fact fails.",
+    estimatedMinutes: "20–25 minutes",
+    track: "universal",
+    badges: ["Buying mission", "Walk-away rules"],
+    outcomes: [
+      "Compare offers using the same requirements and total-cost method.",
+      "Inspect a computer without exposing private information or accepting ownership locks.",
+      "Make a buy, wait, or reject decision with written evidence.",
+    ],
+    sections: [
+      {
+        type: "steps",
+        eyebrow: "Before meeting or checkout",
+        title: "Build the comparison sheet",
+        steps: [
+          "Create one row per required task, specification, connection, support term, and cost.",
+          "Create one column per candidate.",
+          "Enter verified facts, source links or documents, and unknowns.",
+          "Calculate the same total-cost period for every candidate.",
+          "Reject any candidate that fails a true requirement; do not average away a blocker.",
+        ],
+        success:
+          "Every candidate is measured against the same buying brief, with missing information visible.",
+      },
+      {
+        type: "steps",
+        eyebrow: "Before payment",
+        title: "Inspect the finalist",
+        steps: [
+          "Verify exact model and configuration from the system information and written specification.",
+          "Inspect enclosure, hinges, screen, keyboard, touchpad or mouse, camera, microphone, speakers, ports, charger, cable, and vents.",
+          "Start or restart it; look for account, activation, firmware, organization-management, or setup locks.",
+          "Check battery status with the operating system or manufacturer tool when available; runtime claims are estimates, not guarantees.",
+          "Test Wi-Fi, charging, required ports, and one non-private file or app workflow.",
+          "Confirm receipt, return terms, warranty, included items, total price, and payment method before transferring money.",
+        ],
+        success:
+          "The exact computer passes required physical, system, ownership, connection, and protection checks.",
+        recovery:
+          "If the seller prevents inspection, pressures immediate payment, changes the terms, requests secrets, or asks for an unsafe payment method, leave. A missed deal is cheaper than an unusable computer.",
+      },
+      {
+        type: "comparison",
+        title: "Three honest decisions",
+        items: [
+          {
+            label: "Buy",
+            description:
+              "All requirements pass, unknowns are resolved, total cost fits, inspection succeeds, and written protection is acceptable.",
+            tone: "good",
+          },
+          {
+            label: "Wait",
+            description:
+              "The computer may fit, but a material fact, test, budget item, or term remains unresolved.",
+            tone: "warn",
+          },
+          {
+            label: "Reject",
+            description:
+              "A requirement fails, ownership is unclear, risk is unacceptable, evidence conflicts, or pressure replaces verification.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        title: "Payment safety depends on context",
+        body: "Prefer a lawful payment method that provides a receipt and any available dispute protection. Never expose passwords or verification codes. Do not meet an unknown seller alone or in an unsafe location. Local laws and protections differ; verify them where the purchase occurs.",
+        tone: "warning",
+      },
+    ],
+    practice: {
+      title: "Complete the first-computer decision mission",
+      intro:
+        "Compare at least two real offers without purchasing during the exercise.",
+      tasks: [
+        "Apply the same buying brief to both offers.",
+        "Record exact specifications and total cost.",
+        "Audit condition, seller, returns, and warranty.",
+        "Write the inspection plan for the leading candidate.",
+        "Choose Buy, Wait, or Reject and cite the evidence.",
+      ],
+      evidence: [
+        "My decision traces back to requirements and verified facts.",
+        "I have written walk-away rules before payment.",
+        "I kept private account, payment, and device identifiers out of the course.",
+      ],
+      privacyNote:
+        "Do not upload receipts, IDs, payment details, addresses, serial numbers, passwords, or verification codes.",
+    },
+    check: {
+      prompt:
+        "A candidate has the lowest price but fails one required app and the seller will not allow inspection. What is the evidence-based decision?",
+      options: [
+        "Buy because price outweighs every other fact",
+        "Reject it; a blocking requirement fails and inspection is refused",
+        "Send the seller your password for remote testing",
+      ],
+      correctIndex: 1,
+      correctFeedback:
+        "Correct. A blocker and refused inspection are not balanced away by a low price.",
+      incorrectFeedback:
+        "Required compatibility and inspection are gates. Price cannot make an unusable or unverifiable computer suitable.",
+    },
+    closing:
+      "Module 3 is complete when you can define the need, read the facts, compare platforms and condition, inspect the finalist, and defend a Buy, Wait, or Reject decision without sales pressure deciding for you.",
+    verifiedAt: "2026-07-17",
+  },
+];
+
 export const computerLessonsV2 = [
   ...computerModuleOneV2,
   ...computerModuleTwoV2,
+  ...computerModuleThreeV2,
 ];
 
-export function getComputerModuleLessonsV2(moduleId: "m1" | "m2") {
-  return moduleId === "m1" ? computerModuleOneV2 : computerModuleTwoV2;
+export function getComputerModuleLessonsV2(moduleId: "m1" | "m2" | "m3") {
+  if (moduleId === "m1") return computerModuleOneV2;
+  if (moduleId === "m2") return computerModuleTwoV2;
+  return computerModuleThreeV2;
 }
 
 export function getComputerLessonV2(slug: string) {

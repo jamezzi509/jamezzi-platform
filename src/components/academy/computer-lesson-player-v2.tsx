@@ -9,7 +9,10 @@ import type {
   LessonSection,
   LessonVisual,
 } from "@/content/computer-course-v2";
-import { getComputerModuleLessonsV2 } from "@/content/computer-course-v2";
+import {
+  computerCourseModulesV2,
+  getComputerModuleLessonsV2,
+} from "@/content/computer-course-v2";
 import {
   computerProgressStorageKey,
   readCompletedLessons,
@@ -58,11 +61,10 @@ export function ComputerLessonPlayerV2({
   const completionReady = practiceComplete && checkCorrect;
 
   const moduleLessons = getComputerModuleLessonsV2(lesson.moduleId);
-  const moduleNumber = lesson.moduleId === "m1" ? 1 : 2;
+  const moduleNumber = Number(lesson.moduleId.slice(1));
   const moduleTitle =
-    lesson.moduleId === "m1"
-      ? "Start with Confidence"
-      : "Know the Machine in Front of You";
+    computerCourseModulesV2.find((module) => module.order === moduleNumber)
+      ?.title ?? "Computer & Internet Essentials";
   const index = moduleLessons.findIndex((item) => item.id === lesson.id);
   const previous = index > 0 ? moduleLessons[index - 1] : null;
   const next =

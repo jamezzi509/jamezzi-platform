@@ -7,6 +7,7 @@ import { computerProgressStorageKey } from "@/lib/course-progress";
 import {
   computerCourseModulesV2,
   computerModuleOneV2,
+  computerModuleThreeV2,
   computerModuleTwoV2,
 } from "@/content/computer-course-v2";
 
@@ -71,6 +72,26 @@ export function ComputerCoursePage() {
           language="en"
         />
         <CourseResumeCard
+          lessons={computerModuleThreeV2.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.title,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials"
+          completionHref="/academy/courses/computer-internet-essentials#course-path"
+          completionEyebrow="MODULE 3 COMPLETE"
+          completionTitle="You can choose a computer from evidence."
+          completionAction="Review the course path"
+          newEyebrow="MODULE 3 · READY WHEN YOU ARE"
+          newTitle="Choose and Buy Your First Computer"
+          newAction="Start Module 3"
+          resetCourse="computer"
+          resetLessonSlugs={computerModuleThreeV2.map((lesson) => lesson.slug)}
+          resetLabel="Module 3"
+          language="en"
+        />
+        <CourseResumeCard
           lessons={computerModuleTwoV2.map((lesson) => ({
             slug: lesson.slug,
             title: lesson.title,
@@ -104,9 +125,9 @@ export function ComputerCoursePage() {
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
               A 15-module course architecture built around real computer
-              independence. Modules 1 and 2 are available now; every later
-              module stays unavailable until its lessons and assessments meet
-              this standard.
+              independence. Modules 1–3 are available now; every later module
+              stays unavailable until its lessons and assessments meet this
+              standard.
             </p>
           </div>
 
@@ -117,7 +138,9 @@ export function ComputerCoursePage() {
                   ? computerModuleOneV2[0]
                   : module.order === 2
                     ? computerModuleTwoV2[0]
-                    : null;
+                    : module.order === 3
+                      ? computerModuleThreeV2[0]
+                      : null;
 
               return (
                 <article

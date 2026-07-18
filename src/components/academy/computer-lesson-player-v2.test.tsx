@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { ComputerLessonPlayerV2 } from "@/components/academy/computer-lesson-player-v2";
 import {
   computerModuleOneV2,
+  computerModuleThreeV2,
   computerModuleTwoV2,
 } from "@/content/computer-course-v2";
 import {
@@ -96,5 +97,19 @@ describe("ComputerLessonPlayerV2", () => {
       screen.getByRole("button", { name: /Module 2 · Lessons/i }),
     ).toBeInTheDocument();
     expect(screen.getByText("Module 2 progress")).toBeInTheDocument();
+  });
+
+  it("uses Module 3 navigation and progress for a Module 3 lesson", async () => {
+    render(<ComputerLessonPlayerV2 lesson={computerModuleThreeV2[0]} />);
+
+    expect(
+      await screen.findByRole("heading", {
+        name: computerModuleThreeV2[0].title,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Module 3 · Lessons/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Module 3 progress")).toBeInTheDocument();
   });
 });
