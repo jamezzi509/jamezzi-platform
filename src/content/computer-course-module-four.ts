@@ -19,6 +19,13 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     ],
     sections: [
       {
+        type: "visual",
+        title: "Find the physical button—and use the screen menu for Restart",
+        caption:
+          "Power-button location varies by computer. Use the photographed examples to recognize the hardware; use the Windows or Mac screen path for ordinary Sleep, Restart, and Shut Down actions.",
+        visual: { kind: "power-controls" },
+      },
+      {
         type: "comparison",
         title: "Four actions with different results",
         items: [

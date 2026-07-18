@@ -15,6 +15,7 @@ export type LessonVisual =
   | { kind: "port-map" }
   | { kind: "cable-match" }
   | { kind: "accessory-chain" }
+  | { kind: "power-controls" }
   | { kind: "pointer-controls" }
   | { kind: "keyboard-map" }
   | { kind: "text-editing" }

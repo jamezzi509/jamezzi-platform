@@ -128,5 +128,22 @@ describe("ComputerLessonPlayerV2", () => {
       screen.getByRole("button", { name: /Module 4 · Lessons/i }),
     ).toBeInTheDocument();
     expect(screen.getByText("Module 4 progress")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: /Windows laptop power button/i,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: /desktop computer tower/i,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: /Touch ID key.*power button/i,
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("⊞ Start")).toBeInTheDocument();
+    expect(screen.getAllByText("Restart…").length).toBeGreaterThan(0);
   });
 });

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   computerCourseModulesV2,
+  computerLessonsV2,
   computerModuleFourV2,
   computerModuleOneV2,
   computerModuleThreeV2,
@@ -36,6 +37,23 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     expect(
       computerModuleFourV2.every((lesson) => lesson.moduleId === "m4"),
     ).toBe(true);
+  });
+
+  it("requires every lesson from Module 4 forward to include an instructional visual", () => {
+    const lessonsUnderPremiumVisualStandard = computerLessonsV2.filter(
+      (lesson) => Number(lesson.moduleId.slice(1)) >= 4,
+    );
+    expect(
+      lessonsUnderPremiumVisualStandard.every((lesson) =>
+        lesson.sections.some((section) => section.type === "visual"),
+      ),
+    ).toBe(true);
+    expect(computerModuleFourV2[0].sections).toContainEqual(
+      expect.objectContaining({
+        type: "visual",
+        visual: { kind: "power-controls" },
+      }),
+    );
   });
 
   it("contains five unique, ordered Module 3 lessons", () => {

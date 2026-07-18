@@ -1228,6 +1228,235 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
         </div>
       </div>
     );
+  if (visual.kind === "power-controls")
+    return (
+      <div className="space-y-6">
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[
+            {
+              number: "01",
+              title: "Windows laptop",
+              filename: "power-button-windows-laptop.webp",
+              alt: "Close-up of a Windows laptop power button marked with the universal power symbol",
+              detail: "Often above the keyboard or included in its top row",
+            },
+            {
+              number: "02",
+              title: "Desktop tower",
+              filename: "power-button-desktop.webp",
+              alt: "Close-up of the physical power button on the front of a desktop computer tower",
+              detail:
+                "Usually on the front or top of the computer tower—not the monitor",
+            },
+            {
+              number: "03",
+              title: "Mac Touch ID",
+              filename: "power-button-mac-touch-id.webp",
+              alt: "Close-up of the Touch ID key at the top-right of a Mac laptop keyboard, which is also its power button",
+              detail:
+                "On current Mac laptops, the top-right Touch ID key is also power",
+            },
+          ].map(({ number, title, filename, alt, detail }) => (
+            <figure
+              key={title}
+              className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
+            >
+              <div className="relative">
+                <Image
+                  src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+                  alt={alt}
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="aspect-[3/2] h-auto w-full object-cover"
+                />
+                <span className="absolute top-3 left-3 flex size-8 items-center justify-center rounded-full bg-[#242036]/90 text-xs font-bold text-white shadow-lg">
+                  {number}
+                </span>
+              </div>
+              <figcaption className="border-t border-[#E3DFEA] p-4">
+                <strong className="block text-base">{title}</strong>
+                <span className="mt-1 block text-sm leading-relaxed text-[#696675]">
+                  {detail}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <div className="overflow-hidden rounded-[22px] border border-[#CBD9EF] bg-[#F4F8FF]">
+            <div className="flex items-center gap-3 border-b border-[#CBD9EF] bg-[#E8F1FF] px-5 py-4">
+              <span
+                className="flex size-9 items-center justify-center rounded-lg bg-[#1769D2] text-lg text-white"
+                aria-hidden="true"
+              >
+                ⊞
+              </span>
+              <div>
+                <strong className="block">Windows 11</strong>
+                <span className="text-sm text-[#53657C]">
+                  Normal Restart path
+                </span>
+              </div>
+            </div>
+            <div className="p-5">
+              <ol className="grid gap-3">
+                {[
+                  [
+                    "1",
+                    "Select Start",
+                    "Choose the Windows logo on the taskbar.",
+                  ],
+                  [
+                    "2",
+                    "Select Power",
+                    "Choose the circular power symbol in the Start menu.",
+                  ],
+                  [
+                    "3",
+                    "Select Restart",
+                    "Read the word Restart before selecting it.",
+                  ],
+                ].map(([number, title, detail]) => (
+                  <li
+                    key={number}
+                    className="grid grid-cols-[36px_1fr] gap-3 rounded-xl bg-white p-3 shadow-[0_4px_16px_rgba(49,81,130,0.08)]"
+                  >
+                    <span className="flex size-9 items-center justify-center rounded-full bg-[#1769D2] text-sm font-bold text-white">
+                      {number}
+                    </span>
+                    <span>
+                      <strong className="block">{title}</strong>
+                      <span className="mt-0.5 block text-sm text-[#5E6875]">
+                        {detail}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#182233] p-4 text-sm font-bold text-white">
+                <span className="rounded-lg bg-[#1769D2] px-3 py-2">
+                  ⊞ Start
+                </span>
+                <span aria-hidden="true">→</span>
+                <span className="rounded-lg bg-white/10 px-3 py-2">
+                  ⏻ Power
+                </span>
+                <span aria-hidden="true">→</span>
+                <span className="rounded-lg bg-white px-3 py-2 text-[#182233]">
+                  Restart
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-[22px] border border-[#D9D3E3] bg-[#F8F6FA]">
+            <div className="flex items-center gap-3 border-b border-[#D9D3E3] bg-[#EEEAF2] px-5 py-4">
+              <span
+                className="flex size-9 items-center justify-center rounded-lg bg-[#242036] text-xl text-white"
+                aria-hidden="true"
+              >
+                
+              </span>
+              <div>
+                <strong className="block">macOS</strong>
+                <span className="text-sm text-[#665F70]">
+                  Normal Restart path
+                </span>
+              </div>
+            </div>
+            <div className="p-5">
+              <ol className="grid gap-3">
+                {[
+                  [
+                    "1",
+                    "Open the Apple menu",
+                    "Choose  at the top-left of the screen.",
+                  ],
+                  [
+                    "2",
+                    "Choose Restart…",
+                    "Read the menu item before selecting it.",
+                  ],
+                  [
+                    "3",
+                    "Read the confirmation",
+                    "Decide whether open windows should return, then confirm.",
+                  ],
+                ].map(([number, title, detail]) => (
+                  <li
+                    key={number}
+                    className="grid grid-cols-[36px_1fr] gap-3 rounded-xl bg-white p-3 shadow-[0_4px_16px_rgba(63,48,75,0.07)]"
+                  >
+                    <span className="flex size-9 items-center justify-center rounded-full bg-[#242036] text-sm font-bold text-white">
+                      {number}
+                    </span>
+                    <span>
+                      <strong className="block">{title}</strong>
+                      <span className="mt-0.5 block text-sm text-[#68616F]">
+                        {detail}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <div className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#242036] p-4 text-sm font-bold text-white">
+                <span className="rounded-lg bg-white/10 px-3 py-2">
+                   Apple menu
+                </span>
+                <span aria-hidden="true">→</span>
+                <span className="rounded-lg bg-white px-3 py-2 text-[#242036]">
+                  Restart…
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            [
+              "◐",
+              "Sleep",
+              "Short break",
+              "Session remains ready; some power use continues.",
+            ],
+            [
+              "↻",
+              "Restart",
+              "Start fresh",
+              "Closes the session and starts the operating system again.",
+            ],
+            [
+              "⏻",
+              "Shut down",
+              "Turn off",
+              "Closes the session and powers the computer off.",
+            ],
+          ].map(([icon, title, label, detail]) => (
+            <div
+              key={title}
+              className="rounded-2xl border border-[#DDD8E8] bg-white p-5"
+            >
+              <span
+                className="flex size-11 items-center justify-center rounded-xl bg-[#EFEDFF] text-2xl text-[#5146CC]"
+                aria-hidden="true"
+              >
+                {icon}
+              </span>
+              <span className="mt-5 block text-xs font-bold tracking-[0.08em] text-[#5146CC] uppercase">
+                {label}
+              </span>
+              <strong className="mt-1 block text-lg">{title}</strong>
+              <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
+                {detail}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   if (visual.kind === "pointer-controls")
     return (
       <div className="grid gap-4 lg:grid-cols-2">
