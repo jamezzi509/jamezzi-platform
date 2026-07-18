@@ -1228,6 +1228,197 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
         </div>
       </div>
     );
+  if (visual.kind === "pointer-controls")
+    return (
+      <div className="grid gap-4 lg:grid-cols-2">
+        <figure className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+          <div className="relative">
+            <Image
+              src="/images/academy/courses/computer-internet-essentials/v2/control-mouse.webp"
+              alt="A real computer mouse photographed from above with distinct left button, right button, and scroll wheel"
+              width={1400}
+              height={933}
+              sizes="(max-width: 1024px) 100vw, 410px"
+              className="h-auto w-full"
+            />
+            <span className="absolute top-[12%] left-[18%] rounded-full bg-[#242036]/90 px-3 py-1.5 text-xs font-bold text-white">
+              1
+            </span>
+            <span className="absolute top-[12%] right-[18%] rounded-full bg-[#242036]/90 px-3 py-1.5 text-xs font-bold text-white">
+              2
+            </span>
+            <span className="absolute top-[20%] left-1/2 -translate-x-1/2 rounded-full bg-[#5146CC] px-3 py-1.5 text-xs font-bold text-white">
+              3
+            </span>
+          </div>
+          <figcaption className="grid grid-cols-3 border-t border-[#E3DFEA] text-center text-sm">
+            <span className="p-3">
+              <b>1</b> Left click
+            </span>
+            <span className="border-x border-[#E3DFEA] p-3">
+              <b>2</b> Right click
+            </span>
+            <span className="p-3">
+              <b>3</b> Scroll wheel
+            </span>
+          </figcaption>
+        </figure>
+        <figure className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/control-touchpads.webp"
+            alt="Two real laptop pointing surfaces showing a smaller touchpad and a larger trackpad"
+            width={1600}
+            height={878}
+            sizes="(max-width: 1024px) 100vw, 410px"
+            className="h-auto w-full"
+          />
+          <figcaption className="grid grid-cols-2 border-t border-[#E3DFEA] text-center text-sm">
+            <span className="p-3">Move with one finger</span>
+            <span className="border-l border-[#E3DFEA] p-3">
+              Scroll with two fingers
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    );
+  if (visual.kind === "keyboard-map")
+    return (
+      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["01", "Typing", "Letters · numbers · punctuation · Space"],
+            ["02", "Editing", "Backspace · Delete · Enter · Tab"],
+            ["03", "Navigation", "Arrow keys · Home · End · Page keys"],
+            ["04", "Modifiers", "Shift · Control · Alt/Option · Command"],
+          ].map(([number, title, keys]) => (
+            <div key={number} className="rounded-2xl bg-[#F3F1FA] p-5">
+              <span className="text-xs font-bold text-[#5146CC]">{number}</span>
+              <strong className="mt-4 block text-lg">{title}</strong>
+              <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
+                {keys}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div
+          className="mt-4 flex flex-wrap gap-2"
+          aria-label="Example keyboard keys"
+        >
+          {[
+            "Shift",
+            "Caps Lock",
+            "Tab",
+            "Enter ↵",
+            "Backspace ⌫",
+            "←",
+            "↑",
+            "↓",
+            "→",
+            "Ctrl",
+            "Alt / Option",
+            "⌘ Command",
+          ].map((key) => (
+            <kbd
+              key={key}
+              className="rounded-lg border border-[#CBC5D8] bg-[#FAF9FC] px-3 py-2 text-sm font-semibold shadow-[0_2px_0_#D8D3E1]"
+            >
+              {key}
+            </kbd>
+          ))}
+        </div>
+      </div>
+    );
+  if (visual.kind === "text-editing")
+    return (
+      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
+        <div className="rounded-xl border border-[#DDD8E8] bg-[#FCFBFD] p-5 text-lg leading-relaxed">
+          The learner{" "}
+          <mark className="rounded bg-[#DCD8FF] px-1 text-[#242036]">
+            selects this text
+          </mark>{" "}
+          before choosing one editing action.
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-4">
+          {[
+            ["1", "Select", "Define the target"],
+            ["2", "Act", "Copy, cut, paste, replace"],
+            ["3", "Verify", "Read the visible result"],
+            ["4", "Recover", "Undo when needed"],
+          ].map(([number, title, detail]) => (
+            <div key={number} className="rounded-xl bg-[#F3F1FA] p-4">
+              <span className="flex size-7 items-center justify-center rounded-full bg-[#5146CC] text-xs font-bold text-white">
+                {number}
+              </span>
+              <strong className="mt-3 block">{title}</strong>
+              <span className="mt-1 block text-sm text-[#696675]">
+                {detail}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  if (visual.kind === "shortcut-map")
+    return (
+      <div className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+        <div className="grid grid-cols-[1fr_1fr_1fr] bg-[#242036] px-4 py-3 text-sm font-bold text-white sm:px-6">
+          <span>Action</span>
+          <span>Windows</span>
+          <span>Mac</span>
+        </div>
+        {[
+          ["Copy", "Ctrl+C", "⌘+C"],
+          ["Paste", "Ctrl+V", "⌘+V"],
+          ["Cut", "Ctrl+X", "⌘+X"],
+          ["Undo", "Ctrl+Z", "⌘+Z"],
+          ["Redo", "Ctrl+Y", "⌘+Shift+Z"],
+          ["Select all", "Ctrl+A", "⌘+A"],
+          ["Save", "Ctrl+S", "⌘+S"],
+          ["Find", "Ctrl+F", "⌘+F"],
+        ].map(([action, windows, mac], index) => (
+          <div
+            key={action}
+            className={cn(
+              "grid grid-cols-[1fr_1fr_1fr] items-center px-4 py-3 text-sm sm:px-6",
+              index % 2 ? "bg-[#F7F5FB]" : "bg-white",
+            )}
+          >
+            <strong>{action}</strong>
+            <kbd>{windows}</kbd>
+            <kbd>{mac}</kbd>
+          </div>
+        ))}
+      </div>
+    );
+  if (visual.kind === "comfort-controls")
+    return (
+      <div className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+        <Image
+          src="/images/academy/courses/computer-internet-essentials/v2/control-comfort-workstation.webp"
+          alt="An adult learner at a comfortable workstation with the laptop raised, an external keyboard and mouse within reach, relaxed shoulders, and supported feet"
+          width={1536}
+          height={1024}
+          sizes="(max-width: 900px) 100vw, 820px"
+          className="h-auto w-full"
+        />
+        <div className="grid grid-cols-2 border-t border-[#E3DFEA] sm:grid-cols-4">
+          {[
+            "Screen near eye level",
+            "Input within reach",
+            "Shoulders relaxed",
+            "Feet supported",
+          ].map((label, index) => (
+            <div
+              key={label}
+              className="border-r border-[#E3DFEA] p-4 text-sm last:border-r-0"
+            >
+              <span className="font-bold text-[#5146CC]">0{index + 1}</span>
+              <strong className="mt-1 block">{label}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   if (visual.kind === "risk-levels")
     return (
       <div>

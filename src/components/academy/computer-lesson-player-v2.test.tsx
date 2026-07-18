@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { ComputerLessonPlayerV2 } from "@/components/academy/computer-lesson-player-v2";
 import {
   computerModuleOneV2,
+  computerModuleFourV2,
   computerModuleThreeV2,
   computerModuleTwoV2,
 } from "@/content/computer-course-v2";
@@ -111,5 +112,21 @@ describe("ComputerLessonPlayerV2", () => {
       screen.getByRole("button", { name: /Module 3 · Lessons/i }),
     ).toBeInTheDocument();
     expect(screen.getByText("Module 3 progress")).toBeInTheDocument();
+  });
+
+  it("uses Module 4 navigation and progress for a Module 4 lesson", async () => {
+    window.localStorage.setItem(computerPlatformStorageKey, "windows");
+    window.localStorage.setItem(computerPlatformVerifiedStorageKey, "true");
+    render(<ComputerLessonPlayerV2 lesson={computerModuleFourV2[0]} />);
+
+    expect(
+      await screen.findByRole("heading", {
+        name: computerModuleFourV2[0].title,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Module 4 · Lessons/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Module 4 progress")).toBeInTheDocument();
   });
 });

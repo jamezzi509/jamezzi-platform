@@ -19,6 +19,9 @@ describe("ComputerCoursePage", () => {
     const moduleThree = screen.getAllByRole("heading", {
       name: "Choose and Buy Your First Computer",
     })[0];
+    const moduleFour = screen.getAllByRole("heading", {
+      name: "Control the Computer",
+    })[0];
 
     expect(
       moduleOne.compareDocumentPosition(moduleTwo) &
@@ -26,6 +29,10 @@ describe("ComputerCoursePage", () => {
     ).toBeTruthy();
     expect(
       moduleTwo.compareDocumentPosition(moduleThree) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      moduleThree.compareDocumentPosition(moduleFour) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
   });

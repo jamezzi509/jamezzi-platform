@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   computerCourseModulesV2,
+  computerModuleFourV2,
   computerModuleOneV2,
   computerModuleThreeV2,
   computerModuleTwoV2,
@@ -8,7 +9,7 @@ import {
 } from "@/content/computer-course-v2";
 
 describe("Computer & Internet Essentials V2 architecture", () => {
-  it("locks the course to 15 ordered modules with Modules 1–3 available", () => {
+  it("locks the course to 15 ordered modules with Modules 1–4 available", () => {
     expect(computerCourseModulesV2).toHaveLength(15);
     expect(computerCourseModulesV2.map((module) => module.order)).toEqual(
       Array.from({ length: 15 }, (_, index) => index + 1),
@@ -16,10 +17,24 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     expect(computerCourseModulesV2[0].status).toBe("available");
     expect(computerCourseModulesV2[1].status).toBe("available");
     expect(computerCourseModulesV2[2].status).toBe("available");
+    expect(computerCourseModulesV2[3].status).toBe("available");
     expect(
       computerCourseModulesV2
-        .slice(3)
+        .slice(4)
         .every((module) => module.status === "in-production"),
+    ).toBe(true);
+  });
+
+  it("contains six unique, ordered Module 4 lessons", () => {
+    expect(computerModuleFourV2).toHaveLength(6);
+    expect(computerModuleFourV2.map((lesson) => lesson.order)).toEqual([
+      1, 2, 3, 4, 5, 6,
+    ]);
+    expect(
+      new Set(computerModuleFourV2.map((lesson) => lesson.slug)).size,
+    ).toBe(6);
+    expect(
+      computerModuleFourV2.every((lesson) => lesson.moduleId === "m4"),
     ).toBe(true);
   });
 

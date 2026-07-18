@@ -6,6 +6,7 @@ import { CourseResumeCard } from "@/components/academy/course-resume-card";
 import { computerProgressStorageKey } from "@/lib/course-progress";
 import {
   computerCourseModulesV2,
+  computerModuleFourV2,
   computerModuleOneV2,
   computerModuleThreeV2,
   computerModuleTwoV2,
@@ -111,6 +112,26 @@ export function ComputerCoursePage() {
           resetLabel="Module 3"
           language="en"
         />
+        <CourseResumeCard
+          lessons={computerModuleFourV2.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.title,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials"
+          completionHref="/academy/courses/computer-internet-essentials#course-path"
+          completionEyebrow="MODULE 4 COMPLETE"
+          completionTitle="You can control the computer deliberately."
+          completionAction="Review the course path"
+          newEyebrow="MODULE 4 · READY WHEN YOU ARE"
+          newTitle="Control the Computer"
+          newAction="Start Module 4"
+          resetCourse="computer"
+          resetLessonSlugs={computerModuleFourV2.map((lesson) => lesson.slug)}
+          resetLabel="Module 4"
+          language="en"
+        />
       </Container>
 
       <section
@@ -125,7 +146,7 @@ export function ComputerCoursePage() {
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
               A 15-module course architecture built around real computer
-              independence. Modules 1–3 are available now; every later module
+              independence. Modules 1–4 are available now; every later module
               stays unavailable until its lessons and assessments meet this
               standard.
             </p>
@@ -140,7 +161,9 @@ export function ComputerCoursePage() {
                     ? computerModuleTwoV2[0]
                     : module.order === 3
                       ? computerModuleThreeV2[0]
-                      : null;
+                      : module.order === 4
+                        ? computerModuleFourV2[0]
+                        : null;
 
               return (
                 <article

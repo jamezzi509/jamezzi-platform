@@ -1,3 +1,7 @@
+import { computerModuleFourV2 } from "@/content/computer-course-module-four";
+
+export { computerModuleFourV2 } from "@/content/computer-course-module-four";
+
 export type CourseTrack = "universal" | "windows-mac";
 
 export type LessonVisual =
@@ -10,7 +14,12 @@ export type LessonVisual =
   | { kind: "outside-parts" }
   | { kind: "port-map" }
   | { kind: "cable-match" }
-  | { kind: "accessory-chain" };
+  | { kind: "accessory-chain" }
+  | { kind: "pointer-controls" }
+  | { kind: "keyboard-map" }
+  | { kind: "text-editing" }
+  | { kind: "shortcut-map" }
+  | { kind: "comfort-controls" };
 
 export type LessonSection =
   | {
@@ -81,7 +90,7 @@ export interface CourseCheck {
 export interface ComputerLessonV2 {
   id: string;
   slug: string;
-  moduleId: "m1" | "m2" | "m3";
+  moduleId: "m1" | "m2" | "m3" | "m4";
   order: number;
   title: string;
   promise: string;
@@ -163,7 +172,7 @@ export const computerCourseModulesV2 = [
   order: index + 1,
   title,
   purpose,
-  status: index < 3 ? ("available" as const) : ("in-production" as const),
+  status: index < 4 ? ("available" as const) : ("in-production" as const),
 }));
 
 export const computerModuleOneV2: ComputerLessonV2[] = [
@@ -1746,12 +1755,16 @@ export const computerLessonsV2 = [
   ...computerModuleOneV2,
   ...computerModuleTwoV2,
   ...computerModuleThreeV2,
+  ...computerModuleFourV2,
 ];
 
-export function getComputerModuleLessonsV2(moduleId: "m1" | "m2" | "m3") {
+export function getComputerModuleLessonsV2(
+  moduleId: "m1" | "m2" | "m3" | "m4",
+) {
   if (moduleId === "m1") return computerModuleOneV2;
   if (moduleId === "m2") return computerModuleTwoV2;
-  return computerModuleThreeV2;
+  if (moduleId === "m3") return computerModuleThreeV2;
+  return computerModuleFourV2;
 }
 
 export function getComputerLessonV2(slug: string) {
