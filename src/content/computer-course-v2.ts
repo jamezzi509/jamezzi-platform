@@ -4,10 +4,18 @@ export { computerModuleFourV2 } from "@/content/computer-course-module-four";
 
 export type CourseTrack = "universal" | "windows-mac";
 
+export type ComputerLessonInteraction =
+  | { kind: "course-orientation" }
+  | { kind: "identify-device-and-system" }
+  | { kind: "risk-classifier" }
+  | { kind: "workspace-inspection" };
+
 export type LessonVisual =
+  | { kind: "course-method" }
   | { kind: "journey" }
   | { kind: "progress" }
   | { kind: "os-clues" }
+  | { kind: "system-verification" }
   | { kind: "risk-levels" }
   | { kind: "workstation" }
   | { kind: "computer-families" }
@@ -100,6 +108,7 @@ export interface ComputerLessonV2 {
   badges: string[];
   outcomes: string[];
   sections: LessonSection[];
+  interaction?: ComputerLessonInteraction;
   practice?: CoursePractice;
   check: CourseCheck;
   closing: string;
@@ -182,61 +191,62 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
     slug: "welcome-build-computer-independence",
     moduleId: "m1",
     order: 1,
-    title: "Welcome: Build Independence with Your Computer",
+    title: "How This Course Works",
     promise:
-      "See exactly how this course turns reading into real computer ability—and choose the result that matters most to you.",
+      "Learn how to move through a lesson, practice safely, check a result, and reset without damaging your progress.",
     estimatedMinutes: "8–10 minutes",
     track: "universal",
     badges: ["Read anywhere", "Course orientation"],
     outcomes: [
-      "Explain what you will be able to do by the end of the course.",
-      "Distinguish viewing a lesson, completing practice, and passing a checkpoint.",
-      "Choose one personal result that gives the course a purpose.",
+      "Recognize the lesson menu, practice area, result check, and progress control.",
+      "Explain why opening a page is different from demonstrating a skill.",
+      "Use and reset a sample activity without changing real progress.",
     ],
     sections: [
       {
         type: "prose",
-        eyebrow: "A different promise",
-        title: "Uncertainty is not inability",
+        eyebrow: "Start here",
+        title: "You do not need to know the computer already",
         paragraphs: [
-          "You may already use a phone every day and still feel uncertain when you sit in front of a computer. A window disappears. A message asks you to choose something. A file downloads, but you cannot find it. You may worry that one wrong click will damage the computer.",
-          "Those experiences do not mean you are bad with technology. They usually mean nobody has shown you how the parts fit together.",
-          "This course will not ask you to memorize dozens of buttons without understanding them. You will learn what the computer is doing, see the action clearly, perform it yourself, and check the result.",
+          "A lesson is one part of the course. It explains one skill and gives you a safe place to practice it. A module is a group of lessons that work toward a larger result.",
+          "The lesson menu moves between lessons. The practice area lets you try the skill. The result check asks what actually happened. Progress is recorded only after the required practice and question are complete.",
+          "If you make a mistake in a course activity, use its Reset button and try again. Resetting a sample is not the same as deleting your files or resetting the computer.",
         ],
       },
       {
         type: "visual",
-        title: "The journey ahead",
+        title: "How each skill becomes useful",
         caption:
-          "Each stage supports the next. You first understand the machine, then control it, use it, protect it, and solve ordinary problems.",
-        visual: { kind: "journey" },
+          "First see the idea, then practice it safely, then use it on the real computer and check the result.",
+        visual: { kind: "course-method" },
       },
       {
         type: "prose",
-        title: "Independence does not mean knowing everything",
+        title: "Practice comes before course credit",
         paragraphs: [
-          "By the end, you should depend less on another person for ordinary computer tasks. You will still ask for help when a problem involves real risk.",
-          "Independence means knowing what you can handle, how to investigate a problem, and when to stop. Pretending to understand a risky action is not confidence.",
+          "Seeing an instruction helps you understand it. Practicing shows whether you can perform it. A result check confirms what happened after the action.",
+          "Some skills can be checked inside the course, such as choosing, typing, or dragging. Other skills must happen on the real computer. For those, the lesson tells you exactly what result to look for and when to stop.",
         ],
       },
       {
         type: "visual",
         title: "Three kinds of progress",
         caption:
-          "A green checkmark means different things depending on the evidence. The course never treats opening a page as proof that you can perform the skill.",
+          "Not started means no practice is recorded. Practicing means you are working through the activity. Demonstrated means the required practice and result check were completed.",
         visual: { kind: "progress" },
       },
       {
         type: "callout",
         title: "Your screen may not look identical",
-        body: "Screens vary by operating-system version, manufacturer, language, settings, and updates. Follow the named label and recognition cues. If your screen is substantially different, use the alternate route or stop and ask for help instead of choosing random options.",
+        body: "Your screen may use a different language, color, version, or layout. Follow the written label and the surrounding clues—not color alone. If the named control is missing, stop and use the recovery instructions instead of choosing random buttons.",
         tone: "info",
       },
     ],
+    interaction: { kind: "course-orientation" },
     practice: {
       title: "Choose your reason for learning",
       intro:
-        "Select the result that matters most to you now. This is your first evidence of progress—not a test.",
+        "After completing the sample activity above, choose one reason that makes this course useful to you.",
       tasks: [
         "I want to use a computer without fear.",
         "I want to manage my documents and files.",
@@ -247,12 +257,13 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
       ],
       taskRequirement: "one",
       evidence: [
-        "I selected at least one goal that is personally useful to me.",
+        "I completed and reset the sample activity.",
+        "I selected at least one useful goal.",
       ],
     },
     check: {
       prompt:
-        "A learner read a lesson about creating folders but did not try the steps. Which statement is accurate?",
+        "A learner opens a lesson about changing volume but does not try the practice. What has happened?",
       options: [
         "The skill has been mastered.",
         "The lesson was viewed, but the practice is not yet complete.",
@@ -265,8 +276,8 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
         "Not yet. Opening or reading a lesson does not prove the learner performed the skill. Practice and checkpoint evidence are recorded separately.",
     },
     closing:
-      "You now know how this course defines progress. Next, identify the system in front of you so every later procedure can show the correct path.",
-    nextTitle: "Choose Your Path: Windows or Mac",
+      "You can now use the lesson controls and recover inside a sample. Next, identify the physical computer and the system shown on its screen.",
+    nextTitle: "Identify Your Computer and Its System",
     verifiedAt: "2026-07-17",
   },
   {
@@ -274,33 +285,42 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
     slug: "choose-windows-or-mac",
     moduleId: "m1",
     order: 2,
-    title: "Choose Your Path: Windows or Mac",
+    title: "Identify Your Computer and Its System",
     promise:
-      "Identify the operating system in front of you and verify it from the computer itself—not from appearance alone.",
+      "Separate the physical device from the software on its screen, then verify Windows, Mac, or an honest unsure result.",
     estimatedMinutes: "10–15 minutes",
-    track: "windows-mac",
+    track: "universal",
     badges: ["Practice on your computer", "Windows + Mac"],
     outcomes: [
-      "Identify whether the computer uses Windows or macOS.",
+      "Name the physical device as a laptop, desktop, all-in-one, or 2-in-1.",
+      "Identify whether the computer uses Windows or macOS without using case color or wallpaper as proof.",
       "Confirm the system and version from the computer’s information screen.",
       "Select the correct course track without guessing from brand alone.",
     ],
     sections: [
       {
         type: "prose",
-        eyebrow: "Build the idea",
-        title: "The operating system is the main environment",
+        eyebrow: "Two different questions",
+        title: "The device is physical; the operating system is software",
         paragraphs: [
-          "The operating system is the main software that manages the computer and gives you the environment where you open apps, organize files, connect devices, and change settings.",
-          "This course teaches Windows 11, made by Microsoft, and macOS, made by Apple for Mac computers. The concepts often match, but labels and locations can differ. Choosing the correct track prevents you from searching for a control that does not exist on your system.",
+          "Laptop, desktop, all-in-one, and 2-in-1 describe the physical computer. You can see and touch the device.",
+          "The operating system is the main software that starts when the computer turns on. It displays the desktop, opens apps, manages files, and provides settings. This course gives separate instructions for Windows 11 and macOS when their labels or locations differ.",
+          "A Windows laptop and a MacBook are both laptops. The word laptop alone does not tell you which operating system appears on the screen.",
         ],
       },
       {
         type: "visual",
         title: "Recognition clues—not final proof",
         caption:
-          "Use these clues to orient yourself, then confirm the result through the operating system’s information screen.",
+          "The desktop provides clues. Verification comes from the computer’s own information screen.",
         visual: { kind: "os-clues" },
+      },
+      {
+        type: "visual",
+        title: "What the verification screen should contain",
+        caption:
+          "Windows places its edition and version under Windows specifications. About This Mac displays the macOS name and version. Do not copy serial numbers, product keys, account email addresses, or passwords into the course.",
+        visual: { kind: "system-verification" },
       },
       {
         type: "steps",
@@ -339,6 +359,7 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
         tone: "warning",
       },
     ],
+    interaction: { kind: "identify-device-and-system" },
     practice: {
       title: "Verify your system",
       intro:
@@ -371,8 +392,8 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
         "A brand or keyboard is only a clue. The operating system’s own information page is stronger evidence.",
     },
     closing:
-      "Your platform choice is now based on evidence. Next, learn when it is safe to explore and when an unfamiliar action deserves a pause or a stop.",
-    nextTitle: "Explore Safely: Green Light, Pause, or Stop",
+      "You separated the device from the system and checked the system’s own information. Next, judge what is safe to explore and what requires a pause or stop.",
+    nextTitle: "Green Light, Pause, or Stop",
     verifiedAt: "2026-07-17",
   },
   {
@@ -380,9 +401,9 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
     slug: "explore-safely",
     moduleId: "m1",
     order: 3,
-    title: "Explore Safely: Green Light, Pause, or Stop",
+    title: "Green Light, Pause, or Stop",
     promise:
-      "Replace fear with a practical judgment system for ordinary actions, privacy choices, and serious warnings.",
+      "Judge an unfamiliar action by what it can change, then choose whether to continue, pause, or stop.",
     estimatedMinutes: "12–15 minutes",
     track: "universal",
     badges: ["Decision practice", "Safety foundation"],
@@ -394,11 +415,11 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
     sections: [
       {
         type: "prose",
-        eyebrow: "Controlled confidence",
-        title: "Fear and care are not the same",
+        eyebrow: "Judge the possible result",
+        title: "A button's color does not tell you whether it is safe",
         paragraphs: [
-          "If you fear every button, you cannot practice. If you accept every prompt, you can create unnecessary risk. The goal is controlled confidence.",
-          "Most ordinary navigation is recoverable. Other actions deserve more care because they can remove information, share private data, install software, spend money, or change the system.",
+          "Green Light means the action is ordinary, low-consequence, and easy to reverse. Pause means you need to read, verify, save, or ask a question first. Stop means money, secrets, permanent loss, unknown software, physical danger, or unclear ownership is involved.",
+          "A green button can still cause a risky action. A red message can be a fake warning. Read what the action will do and decide from the consequence.",
         ],
       },
       {
@@ -477,21 +498,17 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
         tone: "warning",
       },
     ],
+    interaction: { kind: "risk-classifier" },
     practice: {
-      title: "Classify six actions",
+      title: "Try one reversible Green Light action",
       intro:
-        "Use the consequence—not your fear level—to choose Green light, Pause, or Stop.",
+        "The seven scenarios above are checked automatically. Now perform one harmless change on the real computer and restore it.",
       tasks: [
-        "Open a trusted app already installed.",
-        "Allow a website to use your location.",
-        "Edit one word in a practice sentence.",
-        "Enter an administrator password for an unfamiliar installer.",
-        "Choose Erase All Content and Settings before making a backup.",
-        "Respond to unexpected smoke, sparks, swelling, or burning smell.",
+        "Change the volume by a small amount, confirm that it changed, then return it to a comfortable level.",
       ],
       evidence: [
-        "I can explain why each action is Green light, Pause, or Stop.",
-        "I used the four-question pause for the unfamiliar requests.",
+        "I completed all seven browser scenarios correctly.",
+        "I changed and restored one low-risk setting on the real computer.",
       ],
     },
     check: {
@@ -508,7 +525,7 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
         "Scrolling is ordinarily low-risk. Smoke is a physical danger that requires stopping. A location request is the action that requires a pause and informed choice.",
     },
     closing:
-      "You now have a way to explore without accepting every prompt. Next, make the physical learning space safer and easier to use.",
+      "You can now judge an action by its possible result. Next, inspect the physical space around the computer.",
     nextTitle: "Prepare a Safe, Comfortable Learning Space",
     verifiedAt: "2026-07-17",
   },
@@ -609,18 +626,14 @@ export const computerModuleOneV2: ComputerLessonV2[] = [
           "The lesson is readable, controls are within reach, the computer is stable with open vents, and no physical warning sign is present.",
       },
     ],
+    interaction: { kind: "workspace-inspection" },
     practice: {
-      title: "Reset your real learning space",
+      title: "Improve your real learning space",
       intro:
-        "Make the safest useful improvements available now. Expensive furniture is not required.",
+        "The hotspot and builder activities above are checked automatically. Now make at least two useful improvements around the real device. Expensive furniture is not required.",
       tasks: [
-        "Adjust the screen for readable text and reduced glare.",
-        "Bring the keyboard and pointing device closer.",
-        "Improve foot or back support if possible.",
-        "Clear the vents and stabilize the computer.",
-        "Move drinks and unsafe cables.",
-        "Inspect power equipment and the device for physical warning signs.",
-        "Plan a position change or short movement break.",
+        "Make at least two improvements: screen readability, control reach, support, airflow, liquids, cables, or distractions.",
+        "Inspect the device and power equipment for smoke, sparks, burning smell, exposed wires, swelling, liquid damage, or dangerous heat.",
       ],
       evidence: [
         "I can read without leaning or squinting.",

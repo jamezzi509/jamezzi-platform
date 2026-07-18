@@ -44,7 +44,7 @@ None required. Lesson 1.1 must work for a learner who does not yet have a comput
 
 The sandbox has a visible Reset sample button and cannot damage course progress.
 
-### Lesson 1.2 — Identify the Computer and Operating System
+### Lesson 2 — Identify the Computer and Operating System
 
 #### Beginner explanation
 

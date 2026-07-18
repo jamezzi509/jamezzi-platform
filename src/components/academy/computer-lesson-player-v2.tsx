@@ -23,6 +23,7 @@ import {
   useComputerPlatform,
   type PreferredPlatform,
 } from "@/lib/use-computer-platform";
+import { ComputerModuleOneInteraction } from "@/components/academy/computer-module-one-interactions";
 
 type Platform = PreferredPlatform;
 
@@ -44,6 +45,9 @@ export function ComputerLessonPlayerV2({
   );
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [attempts, setAttempts] = useState(0);
+  const [interactiveComplete, setInteractiveComplete] = useState(
+    !lesson.interaction,
+  );
   const [interactionLoaded, setInteractionLoaded] = useState(false);
   const [completedSlugs, setCompletedSlugs] = useState<string[]>([]);
   const [saved, setSaved] = useState(false);
@@ -58,7 +62,8 @@ export function ComputerLessonPlayerV2({
       practiceEvidence.length > 0 &&
       practiceEvidence.every(Boolean)
     : true;
-  const completionReady = practiceComplete && checkCorrect;
+  const completionReady =
+    practiceComplete && interactiveComplete && checkCorrect;
 
   const moduleLessons = getComputerModuleLessonsV2(lesson.moduleId);
   const moduleNumber = Number(lesson.moduleId.slice(1));
@@ -87,6 +92,7 @@ export function ComputerLessonPlayerV2({
             evidence?: boolean[];
             selectedAnswer?: number | null;
             attempts?: number;
+            interactiveComplete?: boolean;
           };
           if (Array.isArray(state.tasks)) setPracticeTasks(state.tasks);
           if (Array.isArray(state.evidence))
@@ -97,6 +103,7 @@ export function ComputerLessonPlayerV2({
           )
             setSelectedAnswer(state.selectedAnswer);
           if (typeof state.attempts === "number") setAttempts(state.attempts);
+          if (state.interactiveComplete === true) setInteractiveComplete(true);
         }
       } catch {
         // A blocked or malformed local state starts this lesson cleanly.
@@ -116,6 +123,7 @@ export function ComputerLessonPlayerV2({
           evidence: practiceEvidence,
           selectedAnswer,
           attempts,
+          interactiveComplete,
         }),
       );
     } catch {
@@ -124,6 +132,7 @@ export function ComputerLessonPlayerV2({
   }, [
     attempts,
     interactionLoaded,
+    interactiveComplete,
     lessonStateKey,
     practiceEvidence,
     practiceTasks,
@@ -407,12 +416,21 @@ export function ComputerLessonPlayerV2({
               </ul>
             </section>
 
+            {lesson.interaction && (
+              <ComputerModuleOneInteraction
+                interaction={lesson.interaction}
+                platform={verified ? platform : null}
+                onChoosePlatform={setPlatform}
+                onComplete={() => setInteractiveComplete(true)}
+              />
+            )}
+
             <div className="mt-20 grid gap-20">
               {lesson.sections.map((section, sectionIndex) => (
                 <LessonSectionView
                   key={`${lesson.id}-${sectionIndex}`}
                   section={section}
-                  platform={platform}
+                  platform={verified ? platform : null}
                   onChangePlatform={clearPlatform}
                 />
               ))}
@@ -457,8 +475,8 @@ export function ComputerLessonPlayerV2({
               </p>
               {!completionReady && (
                 <p className="mt-5 rounded-xl bg-[#FFF8E8] px-4 py-3 text-[15px] leading-relaxed text-[#875006]">
-                  Complete the practice and result check, then answer the
-                  knowledge check correctly before recording this lesson.
+                  Complete the interactive practice, any real-device result
+                  checks, and the knowledge check before recording this lesson.
                 </p>
               )}
               {saved && (
@@ -696,16 +714,19 @@ function LessonSectionView({
         {section.tracks && (
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#DCD7E5] bg-[#F7F6FB] px-4 py-3">
             <p className="text-base font-semibold text-[#34303D]">
-              Showing your saved {platform === "windows" ? "Windows" : "Mac"}{" "}
-              path
+              {platform
+                ? `Showing your saved ${platform === "windows" ? "Windows" : "Mac"} path`
+                : "Choose Windows or Mac in the practice above to reveal the matching steps."}
             </p>
-            <button
-              type="button"
-              onClick={onChangePlatform}
-              className="text-indigo-dark text-[15px] font-semibold underline decoration-[#B9B3D7] underline-offset-4"
-            >
-              Change computer
-            </button>
+            {platform && (
+              <button
+                type="button"
+                onClick={onChangePlatform}
+                className="text-indigo-dark text-[15px] font-semibold underline decoration-[#B9B3D7] underline-offset-4"
+              >
+                Change computer
+              </button>
+            )}
           </div>
         )}
         <ol className="mt-6 grid gap-3">
@@ -939,6 +960,41 @@ function KnowledgeCheck({
 }
 
 function LessonVisualView({ visual }: { visual: LessonVisual }) {
+  if (visual.kind === "course-method")
+    return (
+      <div
+        className="grid gap-3 sm:grid-cols-3"
+        role="img"
+        aria-label="Three-step course method: see the idea, practice safely, and use it on your computer"
+      >
+        {[
+          ["1", "See the idea", "Learn the name, purpose, and visual clue."],
+          [
+            "2",
+            "Practice safely",
+            "Try it in the course and receive feedback.",
+          ],
+          [
+            "3",
+            "Use it for real",
+            "Do it on your computer and check the result.",
+          ],
+        ].map(([number, label, detail]) => (
+          <div
+            key={number}
+            className="rounded-2xl border border-[#DDD8EC] bg-white p-5"
+          >
+            <span className="bg-indigo flex size-9 items-center justify-center rounded-full text-sm font-bold text-white">
+              {number}
+            </span>
+            <strong className="mt-4 block text-lg">{label}</strong>
+            <p className="mt-2 text-[15px] leading-relaxed text-[#666170]">
+              {detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    );
   if (visual.kind === "journey")
     return (
       <VisualRow
@@ -1009,6 +1065,67 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
               <span className="rounded-lg bg-white p-3">⌘ Command</span>
               <span className="rounded-lg bg-white p-3">Finder</span>
               <span className="rounded-lg bg-white p-3">Menu bar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  if (visual.kind === "system-verification")
+    return (
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="overflow-hidden rounded-[22px] border border-[#C9D8F4] bg-[#F4F8FF]">
+          <div className="flex items-center justify-between border-b border-[#C9D8F4] bg-[#E7F0FF] px-5 py-4">
+            <div>
+              <span className="text-xs font-bold tracking-[0.08em] text-[#2455A4] uppercase">
+                Windows verification
+              </span>
+              <strong className="mt-1 block">Settings · System · About</strong>
+            </div>
+            <span className="flex size-10 items-center justify-center rounded-xl bg-[#1769D2] text-xl text-white">
+              ⊞
+            </span>
+          </div>
+          <div className="p-5">
+            <div className="rounded-xl bg-white p-5 shadow-[0_8px_25px_rgba(36,85,164,0.08)]">
+              <p className="font-bold">Windows specifications</p>
+              <dl className="mt-4 grid grid-cols-[110px_1fr] gap-y-3 text-sm">
+                <dt className="text-[#647083]">Edition</dt>
+                <dd className="font-semibold">Windows 11</dd>
+                <dt className="text-[#647083]">Version</dt>
+                <dd className="font-semibold">Your version appears here</dd>
+              </dl>
+              <p className="mt-5 rounded-lg bg-[#FFF8E8] p-3 text-sm text-[#7F4C08]">
+                Leave device ID, product ID, and account details private.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="overflow-hidden rounded-[22px] border border-[#DDD5E6] bg-[#F8F6FA]">
+          <div className="flex items-center justify-between border-b border-[#DDD5E6] bg-[#EEEAF2] px-5 py-4">
+            <div>
+              <span className="text-xs font-bold tracking-[0.08em] text-[#5C426D] uppercase">
+                Mac verification
+              </span>
+              <strong className="mt-1 block">
+                Apple menu · About This Mac
+              </strong>
+            </div>
+            <span className="flex size-10 items-center justify-center rounded-xl bg-[#242036] text-xl text-white">
+              
+            </span>
+          </div>
+          <div className="p-5">
+            <div className="rounded-xl bg-white p-5 text-center shadow-[0_8px_25px_rgba(70,53,82,0.08)]">
+              <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[linear-gradient(145deg,#7168E8,#B45BDD)] text-2xl text-white">
+                
+              </span>
+              <p className="mt-4 font-bold">macOS</p>
+              <p className="mt-1 text-sm text-[#696675]">
+                The system name and version appear here.
+              </p>
+              <p className="mt-5 rounded-lg bg-[#FFF8E8] p-3 text-left text-sm text-[#7F4C08]">
+                Leave the serial number and account details private.
+              </p>
             </div>
           </div>
         </div>

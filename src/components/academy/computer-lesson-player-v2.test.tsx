@@ -33,18 +33,17 @@ describe("ComputerLessonPlayerV2", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("asks once in Lesson 2 and persists the selected path", async () => {
+  it("identifies the device and persists the selected system inside Lesson 2", async () => {
     render(<ComputerLessonPlayerV2 lesson={computerModuleOneV2[1]} />);
 
     expect(
       await screen.findByRole("heading", {
-        name: /Which desktop appears on your computer/i,
+        name: computerModuleOneV2[1].title,
       }),
     ).toBeInTheDocument();
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /This looks like Windows/i }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /Laptop:/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^Windows/i }));
 
     await waitFor(() =>
       expect(window.localStorage.getItem(computerPlatformStorageKey)).toBe(
@@ -55,21 +54,21 @@ describe("ComputerLessonPlayerV2", () => {
       window.localStorage.getItem(computerPlatformVerifiedStorageKey),
     ).toBe("true");
     expect(
-      await screen.findByRole("heading", {
-        name: computerModuleOneV2[1].title,
-      }),
+      screen.getByText(/Showing your saved Windows path/i),
     ).toBeInTheDocument();
   });
 
-  it("does not let an older unverified saved value bypass the choice", async () => {
+  it("does not preselect an older unverified saved system", async () => {
     window.localStorage.setItem(computerPlatformStorageKey, "windows");
 
     render(<ComputerLessonPlayerV2 lesson={computerModuleOneV2[1]} />);
 
+    const windowsChoice = await screen.findByRole("button", {
+      name: /^Windows/i,
+    });
+    expect(windowsChoice).toHaveAttribute("aria-pressed", "false");
     expect(
-      await screen.findByRole("heading", {
-        name: /Which desktop appears on your computer/i,
-      }),
+      screen.getByText(/Choose Windows or Mac in the practice above/i),
     ).toBeInTheDocument();
   });
 

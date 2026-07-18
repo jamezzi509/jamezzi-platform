@@ -47,27 +47,172 @@ export type ComputerLessonQualityRecord =
 export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   {
     slug: "welcome-build-computer-independence",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: course orientation needs clearer beginner language and verifiable interaction.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      beginnerLanguageAudit: "passed",
+      factualAudit: "passed",
+      missingStepAudit: "passed",
+      windowsMacAudit: "not-applicable",
+      accessibilityAudit: "passed",
+      mobileAudit: "passed",
+      translationAudit: "passed",
+      recoveryAudit: "passed",
+      visuals: [
+        {
+          id: "m1-course-method",
+          type: "diagram",
+          teaches: "The see, practice, and real-device learning sequence",
+          translatableLabels: true,
+        },
+        {
+          id: "m1-progress-states",
+          type: "diagram",
+          teaches:
+            "The difference between viewing, practicing, and demonstrating",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m1-course-orientation-sandbox",
+          verifies:
+            "Open, answer, reset, reopen, and recover inside a sample lesson",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [],
+    },
   },
   {
     slug: "choose-windows-or-mac",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: identification flow needs a full visual and recovery audit.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      beginnerLanguageAudit: "passed",
+      factualAudit: "passed",
+      missingStepAudit: "passed",
+      windowsMacAudit: "passed",
+      accessibilityAudit: "passed",
+      mobileAudit: "passed",
+      translationAudit: "passed",
+      recoveryAudit: "passed",
+      visuals: [
+        {
+          id: "m1-device-family-photos",
+          type: "photo",
+          teaches:
+            "Laptop, desktop, all-in-one, and tablet or 2-in-1 recognition",
+          translatableLabels: true,
+        },
+        {
+          id: "m1-windows-mac-desktop-comparison",
+          type: "screen",
+          teaches: "Visible Windows and macOS desktop recognition clues",
+          translatableLabels: true,
+        },
+        {
+          id: "m1-system-verification-panels",
+          type: "screen",
+          teaches: "Where Windows and macOS identify their name and version",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m1-device-system-identifier",
+          verifies:
+            "Separate physical device family from operating system without guessing",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m1-real-system-verification",
+          verifies:
+            "Open the real system information screen and find system name and version",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "explore-safely",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: risk decisions need interactive scenario practice.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      beginnerLanguageAudit: "passed",
+      factualAudit: "passed",
+      missingStepAudit: "passed",
+      windowsMacAudit: "not-applicable",
+      accessibilityAudit: "passed",
+      mobileAudit: "passed",
+      translationAudit: "passed",
+      recoveryAudit: "passed",
+      visuals: [
+        {
+          id: "m1-risk-levels",
+          type: "diagram",
+          teaches: "Green Light, Pause, and Stop consequences",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m1-risk-classifier",
+          verifies:
+            "Correctly classify seven ordinary, privacy, scam, file, password, and physical-safety situations",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m1-reversible-volume-change",
+          verifies:
+            "Change and restore a low-risk setting on the real computer",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "prepare-learning-space",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: workstation guidance needs action-level visual verification.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      beginnerLanguageAudit: "passed",
+      factualAudit: "passed",
+      missingStepAudit: "passed",
+      windowsMacAudit: "not-applicable",
+      accessibilityAudit: "passed",
+      mobileAudit: "passed",
+      translationAudit: "passed",
+      recoveryAudit: "passed",
+      visuals: [
+        {
+          id: "m1-workstation-before-after",
+          type: "photo",
+          teaches:
+            "Visible reach, airflow, liquid, glare, cable, and support problems",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m1-workstation-inspection",
+          verifies: "Inspect six hotspots and build a safer arrangement",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m1-real-workspace-reset",
+          verifies:
+            "Make two real setup improvements and inspect physical warning signs",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "recognize-computer-families",

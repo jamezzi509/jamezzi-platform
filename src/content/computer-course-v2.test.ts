@@ -100,7 +100,10 @@ describe("Computer & Internet Essentials V2 architecture", () => {
       4,
     );
     expect(computerModuleOneV2[0].track).toBe("universal");
-    expect(computerModuleOneV2[1].track).toBe("windows-mac");
+    expect(computerModuleOneV2[1].track).toBe("universal");
+    expect(computerModuleOneV2.every((lesson) => lesson.interaction)).toBe(
+      true,
+    );
   });
 
   it("does not resolve retired legacy assessment routes", () => {
