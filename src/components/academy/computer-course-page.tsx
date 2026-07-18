@@ -72,26 +72,6 @@ export function ComputerCoursePage() {
           language="en"
         />
         <CourseResumeCard
-          lessons={computerModuleThreeV2.map((lesson) => ({
-            slug: lesson.slug,
-            title: lesson.title,
-          }))}
-          progressStorageKey={computerProgressStorageKey}
-          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
-          assessmentHref="/academy/courses/computer-internet-essentials"
-          completionHref="/academy/courses/computer-internet-essentials#course-path"
-          completionEyebrow="MODULE 3 COMPLETE"
-          completionTitle="You can choose a computer from evidence."
-          completionAction="Review the course path"
-          newEyebrow="MODULE 3 · READY WHEN YOU ARE"
-          newTitle="Choose and Buy Your First Computer"
-          newAction="Start Module 3"
-          resetCourse="computer"
-          resetLessonSlugs={computerModuleThreeV2.map((lesson) => lesson.slug)}
-          resetLabel="Module 3"
-          language="en"
-        />
-        <CourseResumeCard
           lessons={computerModuleTwoV2.map((lesson) => ({
             slug: lesson.slug,
             title: lesson.title,
@@ -109,6 +89,26 @@ export function ComputerCoursePage() {
           resetCourse="computer"
           resetLessonSlugs={computerModuleTwoV2.map((lesson) => lesson.slug)}
           resetLabel="Module 2"
+          language="en"
+        />
+        <CourseResumeCard
+          lessons={computerModuleThreeV2.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.title,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials"
+          completionHref="/academy/courses/computer-internet-essentials#course-path"
+          completionEyebrow="MODULE 3 COMPLETE"
+          completionTitle="You can choose a computer from evidence."
+          completionAction="Review the course path"
+          newEyebrow="MODULE 3 · READY WHEN YOU ARE"
+          newTitle="Choose and Buy Your First Computer"
+          newAction="Start Module 3"
+          resetCourse="computer"
+          resetLessonSlugs={computerModuleThreeV2.map((lesson) => lesson.slug)}
+          resetLabel="Module 3"
           language="en"
         />
       </Container>
