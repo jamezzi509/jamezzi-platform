@@ -24,6 +24,7 @@ import {
   type PreferredPlatform,
 } from "@/lib/use-computer-platform";
 import { ComputerModuleOneInteraction } from "@/components/academy/computer-module-one-interactions";
+import { ComputerModuleTwoInteraction } from "@/components/academy/computer-module-two-interactions";
 
 type Platform = PreferredPlatform;
 
@@ -416,14 +417,20 @@ export function ComputerLessonPlayerV2({
               </ul>
             </section>
 
-            {lesson.interaction && (
-              <ComputerModuleOneInteraction
-                interaction={lesson.interaction}
-                platform={verified ? platform : null}
-                onChoosePlatform={setPlatform}
-                onComplete={() => setInteractiveComplete(true)}
-              />
-            )}
+            {lesson.interaction &&
+              (lesson.moduleId === "m1" ? (
+                <ComputerModuleOneInteraction
+                  interaction={lesson.interaction}
+                  platform={verified ? platform : null}
+                  onChoosePlatform={setPlatform}
+                  onComplete={() => setInteractiveComplete(true)}
+                />
+              ) : lesson.moduleId === "m2" ? (
+                <ComputerModuleTwoInteraction
+                  interaction={lesson.interaction}
+                  onComplete={() => setInteractiveComplete(true)}
+                />
+              ) : null)}
 
             <div className="mt-20 grid gap-20">
               {lesson.sections.map((section, sectionIndex) => (
@@ -1231,6 +1238,63 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
             </div>
           ))}
         </div>
+        <div className="grid gap-3 border-t border-[#E3DFEA] bg-[#F8F7FB] p-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              title: "Built-in camera",
+              filename: "part-webcam-closeup.webp",
+              alt: "Close-up of a built-in webcam centered in the top bezel of a laptop display",
+              detail: "Usually in the frame above the screen",
+            },
+            {
+              title: "Cooling vents",
+              filename: "part-vents-closeup.webp",
+              alt: "Close-up of cooling vent grilles on the underside and rear edge of a laptop",
+              detail: "Openings that allow heat and moving air to escape",
+            },
+            {
+              title: "Charging port",
+              filename: "part-charging-port-closeup.webp",
+              alt: "Close-up of a round laptop charging port and its matching barrel charger plug",
+              detail:
+                "This example uses a round barrel connector; other computers use USB-C or another shape",
+            },
+            {
+              title: "Power button",
+              filename: "power-button-windows-laptop.webp",
+              alt: "Close-up of a laptop power button marked with the universal power symbol",
+              detail:
+                "Starts the computer; holding it down is not the normal shutdown method",
+            },
+            {
+              title: "Desktop monitor and tower",
+              filename: "computer-family-desktop.webp",
+              alt: "Desktop setup with a separate monitor, computer tower, keyboard, and mouse",
+              detail:
+                "The monitor shows the picture; the tower is the computer unit",
+            },
+          ].map(({ title, filename, alt, detail }) => (
+            <figure
+              key={title}
+              className="overflow-hidden rounded-xl border border-[#DDD8E8] bg-white"
+            >
+              <Image
+                src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+                alt={alt}
+                width={1200}
+                height={900}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 210px"
+                className="aspect-[4/3] h-auto w-full object-cover"
+              />
+              <figcaption className="p-3">
+                <strong className="block text-[15px]">{title}</strong>
+                <span className="mt-1 block text-sm leading-snug text-[#696675]">
+                  {detail}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     );
   if (visual.kind === "port-map")
@@ -1320,6 +1384,27 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
             Physical fit + supported purpose + sufficient power
           </p>
         </div>
+        <figure className="grid border-t border-[#E3DFEA] bg-[#F8F7FB] sm:grid-cols-[.9fr_1.1fr] sm:items-center">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/charger-power-adapter.webp"
+            alt="Laptop power adapter with its wall plug, power brick, cable, and round barrel charging connector"
+            width={1200}
+            height={900}
+            sizes="(max-width: 640px) 100vw, 380px"
+            className="aspect-[4/3] h-auto w-full object-cover"
+          />
+          <figcaption className="p-5 sm:p-7">
+            <strong className="block text-lg">
+              A charger is a complete power chain
+            </strong>
+            <span className="mt-2 block text-base leading-relaxed text-[#696675]">
+              This example has a wall plug, cable, power adapter (the brick),
+              and a round barrel connector. Other laptops use USB-C or another
+              connector. The connector, charging standard, and power rating must
+              meet the computer manufacturer&apos;s requirements.
+            </span>
+          </figcaption>
+        </figure>
       </div>
     );
   if (visual.kind === "accessory-chain")

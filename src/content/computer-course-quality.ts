@@ -44,6 +44,17 @@ export type ComputerLessonQualityRecord =
       evidence: ApprovedCourseQualityEvidence;
     };
 
+const moduleTwoCommonAudit = {
+  beginnerLanguageAudit: "passed",
+  factualAudit: "passed",
+  missingStepAudit: "passed",
+  windowsMacAudit: "not-applicable",
+  accessibilityAudit: "passed",
+  mobileAudit: "passed",
+  translationAudit: "passed",
+  recoveryAudit: "passed",
+} as const;
+
 export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   {
     slug: "welcome-build-computer-independence",
@@ -216,33 +227,177 @@ export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   },
   {
     slug: "recognize-computer-families",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: photographs exist but recognition practice is not interactive.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleTwoCommonAudit,
+      visuals: [
+        {
+          id: "m2-four-computer-family-photos",
+          type: "photo",
+          teaches: "Laptop, desktop, all-in-one, and 2-in-1 arrangements",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m2-family-photo-identifier",
+          verifies: "Identify all four physical arrangements from photographs",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m2-real-device-family-inspection",
+          verifies:
+            "Name the learner's physical computer family from visible evidence",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "outside-computer-parts",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: the parts photograph needs a learner-controlled identification exercise.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleTwoCommonAudit,
+      visuals: [
+        {
+          id: "m2-laptop-exterior-and-part-closeups",
+          type: "photo",
+          teaches:
+            "Camera, display, keyboard, touchpad, ports, charging, power, and cooling context",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m2-exterior-hotspot-locator",
+          verifies:
+            "Locate exterior parts and match input, output, cooling, and power jobs",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m2-real-exterior-inspection",
+          verifies:
+            "Locate applicable parts and inspect physical warning signs without opening the case",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "recognize-computer-ports",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: connector photography needs matching and misconception feedback.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleTwoCommonAudit,
+      visuals: [
+        {
+          id: "m2-six-connector-closeups",
+          type: "photo",
+          teaches: "USB-A, USB-C, HDMI, Ethernet, audio, and SD recognition",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m2-port-photo-match",
+          verifies:
+            "Match six connector photographs and reject the USB-C capability myth",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m2-real-port-inventory",
+          verifies:
+            "Inspect visible ports without inserting or forcing a connector",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "match-cables-adapters-chargers",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: the connection chain needs an interactive matching simulation.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleTwoCommonAudit,
+      visuals: [
+        {
+          id: "m2-connection-chain-photo-diagram",
+          type: "photo",
+          teaches:
+            "Source, cable or adapter, destination, capability, and power as one chain",
+          translatableLabels: true,
+        },
+        {
+          id: "m2-power-adapter-photo",
+          type: "photo",
+          teaches:
+            "Wall plug, cable, power adapter, and charging connector as one power chain",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m2-connection-builder",
+          verifies:
+            "Solve display, network, charging, and do-not-force connection decisions",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m2-real-accessory-connection",
+          verifies: "Plan, connect, and test one owned low-risk accessory",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "build-accessory-setup",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: setup decisions need visual candidates and result verification.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleTwoCommonAudit,
+      visuals: [
+        {
+          id: "m2-ten-accessory-photos",
+          type: "photo",
+          teaches:
+            "Mouse, keyboard, headset, webcam, external drive, hub, dock, printer, monitor, and surge protector recognition",
+          translatableLabels: true,
+        },
+        {
+          id: "m2-need-match-test-diagram",
+          type: "diagram",
+          teaches: "Choose by need, verify compatibility, and prove the result",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m2-accessory-planner",
+          verifies:
+            "Build the smallest compatible setup for a stated student need",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m2-module-evidence-mission",
+          verifies:
+            "Identify, connect or inspect, and demonstrate one useful accessory result",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "define-computer-needs-budget",

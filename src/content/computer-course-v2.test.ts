@@ -89,6 +89,9 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     expect(
       computerModuleTwoV2.every((lesson) => lesson.moduleId === "m2"),
     ).toBe(true);
+    expect(computerModuleTwoV2.every((lesson) => lesson.interaction)).toBe(
+      true,
+    );
   });
 
   it("contains four unique, ordered Module 1 lessons", () => {

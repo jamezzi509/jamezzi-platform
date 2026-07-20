@@ -8,7 +8,12 @@ export type ComputerLessonInteraction =
   | { kind: "course-orientation" }
   | { kind: "identify-device-and-system" }
   | { kind: "risk-classifier" }
-  | { kind: "workspace-inspection" };
+  | { kind: "workspace-inspection" }
+  | { kind: "computer-family-identifier" }
+  | { kind: "outside-parts-locator" }
+  | { kind: "port-photo-match" }
+  | { kind: "connection-builder" }
+  | { kind: "accessory-planner" };
 
 export type LessonVisual =
   | { kind: "course-method" }
@@ -729,6 +734,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
         tone: "warning",
       },
     ],
+    interaction: { kind: "computer-family-identifier" },
     practice: {
       title: "Identify your physical setup",
       intro:
@@ -759,7 +765,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
     closing:
       "You can now identify the arrangement. Next, learn the outside parts you can inspect safely without opening the computer.",
     nextTitle: "Know the Parts You Can See and Touch",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m2-l2-v2",
@@ -778,6 +784,16 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
       "Inspect vents and physical warning signs safely.",
     ],
     sections: [
+      {
+        type: "prose",
+        eyebrow: "Build the map before touching anything",
+        title: "The outside parts have different jobs",
+        paragraphs: [
+          "An exterior part is a part you can see or use without opening the computer. The display is the surface that shows pictures and words. On a desktop, the display is usually called a monitor; the separate tower or small box is the computer unit. Turning off the monitor does not necessarily turn off the computer.",
+          "A camera captures video, a microphone captures sound, and speakers play sound. A keyboard enters letters and commands. A mouse, touchpad, or touchscreen moves or selects what is on the screen. These are controls you use; they are not the same thing as the operating system.",
+          "The power button starts the computer. The charging port receives power from a compatible charger. Cooling vents let air and heat move. Do not cover vents, probe an unknown opening, or open the case for this lesson.",
+        ],
+      },
       {
         type: "visual",
         title: "A practical outside-parts map",
@@ -832,6 +848,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
         tone: "warning",
       },
     ],
+    interaction: { kind: "outside-parts-locator" },
     practice: {
       title: "Point, name, and explain",
       intro:
@@ -864,7 +881,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
     closing:
       "You have a safe exterior map. Next, organize ports by the job they can perform rather than memorizing a wall of names.",
     nextTitle: "Recognize Ports by Purpose",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m2-l3-v2",
@@ -885,9 +902,9 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
     sections: [
       {
         type: "visual",
-        title: "Shape starts the search; purpose finishes it",
+        title: "Recognize each connector from a real close-up",
         caption:
-          "The diagram is simplified for recognition. Confirm the exact capability in the device specifications before buying a cable or adapter.",
+          "Shape starts the search; purpose finishes it. Confirm the exact capability in the device specifications before buying a cable or adapter.",
         visual: { kind: "port-map" },
       },
       {
@@ -945,6 +962,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
           "You can state the connector shape, intended purpose, and source that confirms the capability.",
       },
     ],
+    interaction: { kind: "port-photo-match" },
     practice: {
       title: "Create a port inventory",
       intro:
@@ -977,7 +995,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
     closing:
       "You can now identify a likely connection and verify its purpose. Next, match the entire connection: both ends, the cable, the adapter, and power requirements.",
     nextTitle: "Match Cables, Adapters, and Chargers",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m2-l4-v2",
@@ -1051,6 +1069,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
         tone: "warning",
       },
     ],
+    interaction: { kind: "connection-builder" },
     practice: {
       title: "Plan one connection before making it",
       intro:
@@ -1084,7 +1103,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
     closing:
       "You can now plan a complete connection instead of buying by shape alone. Finish the module by choosing and verifying useful accessories without collecting unnecessary hardware.",
     nextTitle: "Build a Useful Accessory Setup",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m2-l5-v2",
@@ -1134,7 +1153,28 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
             description:
               "A compatible external drive or memory card can help, but it is not automatically a complete backup system.",
           },
+          {
+            label: "More compatible connections",
+            description:
+              "A hub adds several basic ports. A dock may add displays, network, charging, and more ports, but the computer and dock must support the same features.",
+          },
+          {
+            label: "Paper output",
+            description:
+              "A printer is useful only when paper copies are a repeated need and its ink, paper, software, and connection costs are understood.",
+          },
+          {
+            label: "Power protection",
+            description:
+              "A properly rated surge protector can add outlets and limited surge protection. It does not repair unsafe wiring, and power strips must not be chained together.",
+          },
         ],
+      },
+      {
+        type: "callout",
+        title: "Do not buy every accessory by default",
+        body: "Test the computer's built-in keyboard, touchpad, camera, microphone, speakers, screen, and ports first. Buy a mouse, keyboard, webcam, monitor, printer, drive, hub, dock, or surge protector only for a named need and after checking compatibility and safety. More equipment does not automatically make a better student setup.",
+        tone: "warning",
       },
       {
         type: "steps",
@@ -1160,6 +1200,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
         tone: "info",
       },
     ],
+    interaction: { kind: "accessory-planner" },
     practice: {
       title: "Complete the Module 2 evidence mission",
       intro:
@@ -1193,7 +1234,7 @@ export const computerModuleTwoV2: ComputerLessonV2[] = [
     },
     closing:
       "Module 2 is complete when you can identify the machine, map its exterior parts and ports, plan a compatible connection, and demonstrate one useful accessory result.",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
 ];
 
