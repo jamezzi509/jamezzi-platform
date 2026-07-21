@@ -17,20 +17,87 @@ export function isModuleFiveVisual(visual: LessonVisual) {
 }
 
 export function ModuleFiveVisual({ visual }: { visual: LessonVisual }) {
+  let diagram: ReactNode;
   if (visual.kind === "desktop-anatomy")
-    return (
+    diagram = (
       <div className="grid gap-5 lg:grid-cols-2">
         <Desktop os="windows" />
         <Desktop os="mac" />
       </div>
     );
-  if (visual.kind === "window-anatomy") return <WindowAnatomy />;
-  if (visual.kind === "taskbar-dock") return <LauncherVisual />;
-  if (visual.kind === "application-switching") return <SwitcherVisual />;
-  if (visual.kind === "interface-controls") return <ControlsVisual />;
-  if (visual.kind === "window-layout") return <LayoutVisual />;
-  if (visual.kind === "notifications-controls") return <NotificationsVisual />;
-  return <RecoveryVisual />;
+  else if (visual.kind === "window-anatomy") diagram = <WindowAnatomy />;
+  else if (visual.kind === "taskbar-dock") diagram = <LauncherVisual />;
+  else if (visual.kind === "application-switching")
+    diagram = <SwitcherVisual />;
+  else if (visual.kind === "interface-controls") diagram = <ControlsVisual />;
+  else if (visual.kind === "window-layout") diagram = <LayoutVisual />;
+  else if (visual.kind === "notifications-controls")
+    diagram = <NotificationsVisual />;
+  else diagram = <RecoveryVisual />;
+
+  const photos: Record<string, [string, string, string]> = {
+    "desktop-anatomy": [
+      "navigation-desktop-real.webp",
+      "A real Windows laptop displaying its desktop workspace",
+      "Real-world view: the desktop fills the screen and the taskbar sits along the bottom.",
+    ],
+    "window-anatomy": [
+      "navigation-window-real.webp",
+      "A real laptop with a document application open in a movable window",
+      "Real-world view: an application window sits over the desktop without filling the entire screen.",
+    ],
+    "taskbar-dock": [
+      "navigation-taskbar-dock-real.webp",
+      "Windows and Mac laptops side by side showing their different launch areas",
+      "Real-world comparison: Windows uses a taskbar; macOS uses a menu bar and Dock.",
+    ],
+    "application-switching": [
+      "navigation-switching-real.webp",
+      "An adult learner working with several open application windows",
+      "Real-world view: several applications can remain open while only one receives input.",
+    ],
+    "interface-controls": [
+      "navigation-controls-real.webp",
+      "A hand using a mouse while a settings window is open",
+      "Real-world view: checkboxes, a list, a slider, and action buttons appear together in one settings window.",
+    ],
+    "window-layout": [
+      "navigation-layout-real.webp",
+      "A monitor displaying two application windows arranged side by side",
+      "Real-world view: two separate windows share the screen for comparison and note-taking.",
+    ],
+    "notifications-controls": [
+      "navigation-notifications-real.webp",
+      "A laptop displaying a notification panel and common quick controls",
+      "Real-world view: messages and frequently used system controls can appear in the same panel.",
+    ],
+    "screen-recovery": [
+      "navigation-recovery-real.webp",
+      "An adult learner recovering an application window hidden behind another",
+      "Real-world view: overlapping windows can make open work appear missing even though it is still available.",
+    ],
+  };
+  const [filename, alt, caption] = photos[visual.kind];
+  return (
+    <div className="space-y-6">
+      <figure className="overflow-hidden rounded-[24px] border border-[#D9D4E4] bg-white shadow-[0_18px_48px_rgba(37,31,63,.12)]">
+        <Image
+          src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+          alt={alt}
+          width={1600}
+          height={900}
+          sizes="(max-width: 1024px) 100vw, 900px"
+          className="aspect-video w-full object-cover"
+        />
+        <figcaption className="border-t border-[#E2DEE8] p-4 text-sm leading-relaxed text-[#625D69]">
+          <strong className="text-[#282334]">Photographic context.</strong>{" "}
+          {caption} Exact controls and translated labels are shown in the
+          interactive diagram below.
+        </figcaption>
+      </figure>
+      {diagram}
+    </div>
+  );
 }
 
 function Desktop({ os }: { os: "windows" | "mac" }) {
@@ -330,3 +397,5 @@ function RecoveryVisual() {
     </Frame>
   );
 }
+import Image from "next/image";
+import type { ReactNode } from "react";

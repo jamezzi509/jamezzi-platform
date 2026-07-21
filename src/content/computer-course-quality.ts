@@ -152,6 +152,12 @@ const moduleFiveQualityRecords: ComputerLessonQualityRecord[] = [
     recoveryAudit: "passed" as const,
     visuals: [
       {
+        id: `m5-${visualId}-photo`,
+        type: "photo" as const,
+        teaches: `Real-world physical context for ${teaches.toLowerCase()}`,
+        translatableLabels: true as const,
+      },
+      {
         id: `m5-${visualId}`,
         type: "screen" as const,
         teaches,
