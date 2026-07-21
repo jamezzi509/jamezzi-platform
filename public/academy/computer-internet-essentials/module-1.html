@@ -108,8 +108,8 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 .osmini:hover{border-color:var(--brand2)}.osmini.good{border-color:var(--good)}.osmini.bad{border-color:var(--danger)}
 .osmini .cap{position:absolute;bottom:0;left:0;right:0;background:rgba(11,15,23,.75);color:#fff;font-size:12px;font-weight:700;padding:6px;text-align:center}
 /* ===== Windows surface (1.2 & 1.8) ===== */
-.desk-ico{position:absolute;display:flex;flex-direction:column;gap:4px;align-items:center;width:78px;background:none;border:1px solid transparent;border-radius:6px;padding:6px 4px;cursor:pointer;color:#0b2a55}
-.desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:12px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
+.desk-ico{position:absolute;display:flex;flex-direction:column;gap:6px;align-items:center;width:92px;background:none;border:1px solid transparent;border-radius:6px;padding:8px 6px;cursor:pointer;color:#0b2a55}
+.desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:14.5px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
 .taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;background:rgba(240,243,247,.82);backdrop-filter:blur(30px);border-top:1px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:5px}
 .tbi{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;cursor:pointer}.tbi:hover{background:rgba(0,0,0,.06)}
 .tbclock{position:absolute;right:14px;font-size:12.5px;color:#1b1b1b;text-align:right;line-height:1.35}
@@ -137,7 +137,7 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 .arow{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #eee;font-size:14.5px}.arow:last-child{border-bottom:none}.arow .k{color:var(--w-t2)}.arow .v{font-weight:600;text-align:right}
 .arow.hl{cursor:pointer;border-radius:6px;padding:12px 10px;margin:0 -10px}.arow.hl:hover{background:#eef5ff}.arow.hl.on{background:#e4f0ff;outline:2px solid var(--w-accent)}
 .ahd{font-size:15.5px;font-weight:600;margin:8px 0 10px}
-.notsure{position:absolute;bottom:56px;right:14px;background:rgba(255,255,255,.85);border:1px dashed #8aa;color:#0b2a55;font-size:12px;padding:9px 13px;border-radius:9px;cursor:pointer;font-family:var(--font)}
+.notsure{position:absolute;bottom:64px;left:14px;background:rgba(255,255,255,.85);border:1px dashed #8aa;color:#0b2a55;font-size:13px;padding:9px 13px;border-radius:9px;cursor:pointer;font-family:var(--font)}
 .notsure:hover{background:#fff}
 .hsdesk{position:absolute;width:38px;height:38px;border-radius:50%;background:rgba(var(--brand-rgb),.92);color:#fff;border:2px solid #fff;font-weight:800;cursor:pointer;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 10px rgba(0,0,0,.4);animation:pulse 1.6s infinite}
 .hsdesk.done{background:var(--good);animation:none}
@@ -389,8 +389,8 @@ function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">
 function L1(){const d=C[1][S.lang];const st=S.st[0];st.tried=st.tried||{};
  const stage=$("stage");stage.className="stage desk";
  stage.innerHTML=bloom()+'<div style="position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:10px">'+
-   d.icons.map((n,k)=>'<button class="desk-ico" style="position:relative" data-k="'+k+'"><div style="width:40px;height:40px;border-radius:9px;background:'+['#f6c445','#b14bff','#3aa0ef'][k]+';display:grid;place-items:center;color:#fff;font-size:20px">'+['📁','🎨','🔢'][k]+'</div><span>'+n+'</span></button>').join("")+'</div>'+
-   '<div style="position:absolute;bottom:14px;left:16px;right:16px;color:#0b2a55;background:rgba(255,255,255,.72);border-radius:12px;padding:12px 14px;font-size:14px">'+d.lead+'</div>';
+   d.icons.map((n,k)=>'<button class="desk-ico" style="position:relative" data-k="'+k+'"><div style="width:52px;height:52px;border-radius:11px;background:'+['#f6c445','#b14bff','#3aa0ef'][k]+';display:grid;place-items:center;color:#fff;font-size:26px">'+['📁','🎨','🔢'][k]+'</div><span>'+n+'</span></button>').join("")+'</div>'+
+   '<div style="position:absolute;bottom:14px;left:16px;right:16px;color:#0b2a55;background:rgba(255,255,255,.72);border-radius:12px;padding:14px 16px;font-size:15.5px">'+d.lead+'</div>';
  stage.querySelectorAll(".desk-ico").forEach(b=>b.addEventListener("click",()=>{const k=+b.dataset.k;
    if(!st.tried[k]){st.tried[k]=true;ai(d.fb[k],"good");}
    const c=Object.keys(st.tried).length;if(c>=3){setObj(0);setObj(1);ai(d.done,"good");}}));
@@ -399,7 +399,7 @@ function L1(){const d=C[1][S.lang];const st=S.st[0];st.tried=st.tried||{};
 function L2(){const d=C2[S.lang];const st=S.st[1];st.win=st.win||{};
  const stage=$("stage");stage.className="stage desk";
  stage.innerHTML=bloom()+
-  '<button class="desk-ico" data-icon="pc" style="top:14px;left:14px"><div style="width:38px;height:38px;border-radius:8px;background:#2f6fd6;display:grid;place-items:center;color:#fff;font-size:18px">🖥️</div><span>This PC</span></button>'+
+  '<button class="desk-ico" data-icon="pc" style="top:14px;left:14px"><div style="width:50px;height:50px;border-radius:10px;background:#2f6fd6;display:grid;place-items:center;color:#fff;font-size:24px">🖥️</div><span>This PC</span></button>'+
   '<div class="taskbar"><button class="tbi" id="startBtn">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div><div class="tbi" id="tbSet">⚙️</div><div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
   '<div class="startmenu" id="sm"><div class="ssearch">🔎 &nbsp;Type here to search</div><div class="sl">Pinned</div><div class="sgrid"><button class="sapp" id="ssSet"><svg viewBox="0 0 24 24"><path fill="#3a3a3a" d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4l1.9-1.5-1.9-3.3-2.3.6a7 7 0 00-1.4-.8l-.4-2.4h-3.8l-.4 2.4c-.5.2-1 .5-1.4.8l-2.3-.6L5.2 11 7 12.5v1.5L5.2 15.5l1.9 3.3 2.3-.6c.4.3.9.6 1.4.8l.4 2.4h3.8l.4-2.4c.5-.2 1-.5 1.4-.8l2.3.6 1.9-3.3L21 16z"/></svg>Settings</button><button class="sapp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#1e88e5"/></svg>Edge</button><button class="sapp"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="#2f6fd6"/></svg>Mail</button><button class="sapp"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="#3aa0ef"/></svg>Photos</button></div></div>'+
   '<div class="win" id="win"><div class="wtb">⚙️ Settings<div class="wc"><span>—</span><span>▢</span><span class="cl" id="winClose">✕</span></div></div><div class="wbody"><div class="wnav"><div class="acct"><div class="ava"></div><div><div class="nm">Student</div><div class="em">student@academy.local</div></div></div>'+
@@ -489,7 +489,7 @@ function L7(){const d=C[7][S.lang];const st=S.st[6];st.seen=st.seen||{};
 function L8(){const d=C8[S.lang];const st=S.st[7];st.spots=st.spots||{};
  const stage=$("stage");stage.className="stage desk";
  stage.innerHTML=bloom()+
-  '<button class="desk-ico" id="courseIco" style="top:14px;left:14px"><div style="width:40px;height:40px;border-radius:9px;background:var(--brand);display:grid;place-items:center;color:#fff;font-size:20px">🎓</div><span>Kou a</span></button>'+
+  '<button class="desk-ico" id="courseIco" style="top:14px;left:14px"><div style="width:52px;height:52px;border-radius:11px;background:var(--brand);display:grid;place-items:center;color:#fff;font-size:26px">🎓</div><span>Kou a</span></button>'+
   '<div class="hsdesk" data-s="0" style="left:50%;top:40%;transform:translateX(-50%)">1</div>'+
   '<div class="taskbar"><button class="tbi">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div>'+
     '<div class="hsdesk" data-s="1" style="position:relative">2</div>'+
@@ -506,7 +506,8 @@ function L8(){const d=C8[S.lang];const st=S.st[7];st.spots=st.spots||{};
 }
 /* inject a floating Next button on desktop lessons */
 function injectNext(){const done=S.done[S.cur];const b=document.createElement("button");b.className="btn p";b.id="nextBtn";b.textContent=UI[S.lang].next;b.disabled=!done;
- b.style.cssText="position:absolute;bottom:12px;right:14px;z-index:6";b.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));$("stage").appendChild(b);}
+ const clearTaskbar=$("stage").querySelector(".taskbar")?64:12;
+ b.style.cssText="position:absolute;bottom:"+clearTaskbar+"px;right:14px;z-index:6";b.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));$("stage").appendChild(b);}
 
 /* ---------- lang / reset ---------- */
 function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
