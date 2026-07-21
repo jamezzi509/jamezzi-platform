@@ -37,6 +37,9 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     expect(
       computerModuleFourV2.every((lesson) => lesson.moduleId === "m4"),
     ).toBe(true);
+    expect(computerModuleFourV2.every((lesson) => lesson.interaction)).toBe(
+      true,
+    );
   });
 
   it("requires every lesson from Module 4 forward to include an instructional visual", () => {

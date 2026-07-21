@@ -17,6 +17,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
       "Save work before a power action.",
       "Explain why holding the power button is an emergency action.",
     ],
+    interaction: { kind: "power-decision-simulator" },
     sections: [
       {
         type: "visual",
@@ -119,7 +120,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     closing:
       "You can now change power state deliberately. Next, make the pointer go exactly where you intend.",
     nextTitle: "Control the Pointer",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m4-l2-v2",
@@ -137,6 +138,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
       "Use single-click, double-click, secondary click, scroll, and drag.",
       "Recover when a click or drag produces the wrong result.",
     ],
+    interaction: { kind: "pointer-control-circuit" },
     sections: [
       {
         type: "visual",
@@ -217,7 +219,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     closing:
       "Your pointer is now a controlled tool. Next, map the keys that make typing and navigation possible.",
     nextTitle: "Understand the Keyboard and Type Confidently",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m4-l3-v2",
@@ -235,6 +237,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
       "Use Shift, Caps Lock, Backspace, Delete, Tab, Enter, and arrows correctly.",
       "Choose a reliable method for accented characters.",
     ],
+    interaction: { kind: "keyboard-key-trainer" },
     sections: [
       {
         type: "visual",
@@ -242,6 +245,28 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
         caption:
           "Your keyboard may place or name a few keys differently. Match the printed label and function rather than memorizing an exact position.",
         visual: { kind: "keyboard-map" },
+      },
+      {
+        type: "comparison",
+        title: "The letters printed on the keys reveal the layout",
+        items: [
+          {
+            label: "QWERTY",
+            description:
+              "The first letter row begins Q-W-E-R-T-Y. It is common on English-language keyboards, but language and region settings still determine the characters produced.",
+          },
+          {
+            label: "AZERTY",
+            description:
+              "The first letter row begins A-Z-E-R-T-Y. It is common on French-language keyboards. Do not assume the keys match a QWERTY picture.",
+          },
+          {
+            label: "Printed label vs. active layout",
+            description:
+              "The printed key is physical; the active keyboard layout is software. If they do not match, pressing a key can produce a different character.",
+            tone: "warn",
+          },
+        ],
       },
       {
         type: "comparison",
@@ -329,7 +354,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     closing:
       "You can now produce and correct characters. Next, control whole pieces of text without fear.",
     nextTitle: "Select and Edit Text Without Fear",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m4-l4-v2",
@@ -347,6 +372,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
       "Explain the clipboard and the difference between copy and cut.",
       "Use undo and redo as deliberate recovery tools.",
     ],
+    interaction: { kind: "text-editing-workbench" },
     sections: [
       {
         type: "visual",
@@ -419,7 +445,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     closing:
       "You can now edit with a recovery route. Next, turn repeated actions into a small set of useful shortcuts.",
     nextTitle: "Use Essential Shortcuts",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m4-l5-v2",
@@ -437,6 +463,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
       "Match Control on Windows with Command on Mac for common shortcuts.",
       "Use a menu when a shortcut is forgotten or intercepted by an app.",
     ],
+    interaction: { kind: "shortcut-key-trainer" },
     sections: [
       {
         type: "visual",
@@ -496,7 +523,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     closing:
       "You now have a compact shortcut toolkit. Finish the module by making the computer physically and visually comfortable to control.",
     nextTitle: "Make the Computer Comfortable and Accessible",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m4-l6-v2",
@@ -514,6 +541,7 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
       "Change one safe setting and verify its effect.",
       "Arrange a workstation to reduce avoidable strain.",
     ],
+    interaction: { kind: "accessibility-simulator" },
     sections: [
       {
         type: "visual",
@@ -582,6 +610,12 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
         body: "A tool is useful when it removes a barrier. Learners do not need a diagnosis or permission from the course to explore reversible accessibility settings. Organization-managed computers may restrict changes, so follow school or workplace rules.",
         tone: "success",
       },
+      {
+        type: "callout",
+        title: "Browser zoom and system text size are not the same",
+        body: "Browser zoom usually changes one website. System text size or display scaling affects more of the computer. Start with the smallest change that solves the problem, test the difficult task, and keep a route back to the original value.",
+        tone: "info",
+      },
     ],
     practice: {
       title: "Module mission: Control Without Guessing",
@@ -618,6 +652,6 @@ export const computerModuleFourV2: ComputerLessonV2[] = [
     },
     closing:
       "Module 4 is complete when you can control power, pointer, keyboard, text, shortcuts, and one comfort setting while explaining and verifying each result.",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
 ];

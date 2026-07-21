@@ -18,7 +18,13 @@ export type ComputerLessonInteraction =
   | { kind: "specification-decoder" }
   | { kind: "platform-buying-decision" }
   | { kind: "condition-offer-audit" }
-  | { kind: "candidate-buying-mission" };
+  | { kind: "candidate-buying-mission" }
+  | { kind: "power-decision-simulator" }
+  | { kind: "pointer-control-circuit" }
+  | { kind: "keyboard-key-trainer" }
+  | { kind: "text-editing-workbench" }
+  | { kind: "shortcut-key-trainer" }
+  | { kind: "accessibility-simulator" };
 
 export type LessonVisual =
   | { kind: "course-method" }

@@ -66,6 +66,17 @@ const moduleThreeCommonAudit = {
   recoveryAudit: "passed",
 } as const;
 
+const moduleFourCommonAudit = {
+  beginnerLanguageAudit: "passed",
+  factualAudit: "passed",
+  missingStepAudit: "passed",
+  windowsMacAudit: "passed",
+  accessibilityAudit: "passed",
+  mobileAudit: "passed",
+  translationAudit: "passed",
+  recoveryAudit: "passed",
+} as const;
+
 export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   {
     slug: "welcome-build-computer-independence",
@@ -575,39 +586,171 @@ export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   },
   {
     slug: "power-sleep-restart-shutdown",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: new power visuals still require beginner-language, UI, and interaction validation.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleFourCommonAudit,
+      visuals: [
+        {
+          id: "m4-power-photos-and-menus",
+          type: "photo",
+          teaches:
+            "Physical power buttons and normal Windows and Mac power-menu routes",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m4-power-decision-simulator",
+          verifies:
+            "Choose Sleep, Restart, Shut down, or pause and inspect from beginner scenarios",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m4-real-power-rehearsal",
+          verifies:
+            "Save, locate the named power menu, sleep, and wake a real computer",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "mouse-touchpad-pointer-control",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: gesture demonstrations and a real pointer-control practice board are missing.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleFourCommonAudit,
+      windowsMacAudit: "not-applicable",
+      visuals: [
+        {
+          id: "m4-pointer-photos",
+          type: "photo",
+          teaches:
+            "Mouse buttons, scroll wheel, touchpad, and trackpad recognition",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m4-pointer-control-circuit",
+          verifies: "Single, double, secondary click, scroll, move, and undo",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [],
+    },
   },
   {
     slug: "keyboard-map-multilingual-typing",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: real keyboard photography and multilingual typing interaction are missing.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleFourCommonAudit,
+      visuals: [
+        {
+          id: "m4-keyboard-photo-library",
+          type: "photo",
+          teaches:
+            "Full Windows and Mac keyboards plus close-ups of six essential key groups",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m4-keyboard-key-trainer",
+          verifies:
+            "Physical key events and Haitian Creole and French character entry",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [],
+    },
   },
   {
     slug: "select-edit-copy-paste-text",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: editing needs a functional practice surface and complete visual sequence.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleFourCommonAudit,
+      windowsMacAudit: "not-applicable",
+      visuals: [
+        {
+          id: "m4-editing-chain",
+          type: "diagram",
+          teaches: "Select, act, verify, and recover",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m4-text-editing-workbench",
+          verifies:
+            "Selection, copy, cut, paste, visible verification, and undo",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [],
+    },
   },
   {
     slug: "essential-keyboard-shortcuts",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: shortcut chords need visual key states and keyboard-event practice.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleFourCommonAudit,
+      visuals: [
+        {
+          id: "m4-shortcut-map",
+          type: "diagram",
+          teaches: "Equivalent Windows Control and Mac Command combinations",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m4-shortcut-key-trainer",
+          verifies:
+            "Seven browser-captured keyboard combinations with menu or touch fallback",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [],
+    },
   },
   {
     slug: "computer-comfort-accessibility-controls",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: accessibility controls need Windows/Mac visuals and reversible simulation.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleFourCommonAudit,
+      visuals: [
+        {
+          id: "m4-comfort-workstation",
+          type: "photo",
+          teaches: "A stable workstation with an external keyboard and mouse",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m4-accessibility-simulator",
+          verifies:
+            "Change text, pointer, contrast, captions, and motion settings and restore the view",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m4-real-comfort-check",
+          verifies:
+            "Locate an equivalent setting on the learner's real Windows or Mac computer",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
 ];
 

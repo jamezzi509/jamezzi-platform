@@ -26,6 +26,7 @@ import {
 import { ComputerModuleOneInteraction } from "@/components/academy/computer-module-one-interactions";
 import { ComputerModuleTwoInteraction } from "@/components/academy/computer-module-two-interactions";
 import { ComputerModuleThreeInteraction } from "@/components/academy/computer-module-three-interactions";
+import { ComputerModuleFourInteraction } from "@/components/academy/computer-module-four-interactions";
 
 type Platform = PreferredPlatform;
 
@@ -434,6 +435,12 @@ export function ComputerLessonPlayerV2({
               ) : lesson.moduleId === "m3" ? (
                 <ComputerModuleThreeInteraction
                   interaction={lesson.interaction}
+                  onComplete={() => setInteractiveComplete(true)}
+                />
+              ) : lesson.moduleId === "m4" ? (
+                <ComputerModuleFourInteraction
+                  interaction={lesson.interaction}
+                  platform={verified ? platform : null}
                   onComplete={() => setInteractiveComplete(true)}
                 />
               ) : null)}
@@ -1961,48 +1968,138 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
     );
   if (visual.kind === "keyboard-map")
     return (
-      <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="space-y-5">
+        <div className="grid gap-4 sm:grid-cols-2">
           {[
-            ["01", "Typing", "Letters · numbers · punctuation · Space"],
-            ["02", "Editing", "Backspace · Delete · Enter · Tab"],
-            ["03", "Navigation", "Arrow keys · Home · End · Page keys"],
-            ["04", "Modifiers", "Shift · Control · Alt/Option · Command"],
-          ].map(([number, title, keys]) => (
-            <div key={number} className="rounded-2xl bg-[#F3F1FA] p-5">
-              <span className="text-xs font-bold text-[#5146CC]">{number}</span>
-              <strong className="mt-4 block text-lg">{title}</strong>
-              <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
-                {keys}
-              </span>
-            </div>
+            [
+              "keyboard-windows-desktop.webp",
+              "Windows desktop keyboard",
+              "A full-size separate keyboard, including a number pad",
+            ],
+            [
+              "keyboard-windows-laptop.webp",
+              "Windows laptop keyboard",
+              "A compact keyboard built into a laptop above its touchpad",
+            ],
+            [
+              "keyboard-mac-laptop.webp",
+              "Mac laptop keyboard",
+              "A Mac keyboard with Command and Option modifier keys",
+            ],
+            [
+              "keyboard-french-azerty.webp",
+              "French AZERTY laptop keyboard",
+              "Its first letter row begins A-Z-E-R-T-Y instead of Q-W-E-R-T-Y",
+            ],
+          ].map(([filename, title, detail]) => (
+            <figure
+              key={filename}
+              className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
+            >
+              <Image
+                src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+                alt={`${title} photographed from above with its printed key labels visible`}
+                width={1600}
+                height={900}
+                className="aspect-video w-full object-cover"
+              />
+              <figcaption className="p-4">
+                <strong className="block">{title}</strong>
+                <span className="mt-1 block text-sm text-[#696675]">
+                  {detail}
+                </span>
+              </figcaption>
+            </figure>
           ))}
         </div>
-        <div
-          className="mt-4 flex flex-wrap gap-2"
-          aria-label="Example keyboard keys"
-        >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            "Shift",
-            "Caps Lock",
-            "Tab",
-            "Enter ↵",
-            "Backspace ⌫",
-            "←",
-            "↑",
-            "↓",
-            "→",
-            "Ctrl",
-            "Alt / Option",
-            "⌘ Command",
-          ].map((key) => (
-            <kbd
-              key={key}
-              className="rounded-lg border border-[#CBC5D8] bg-[#FAF9FC] px-3 py-2 text-sm font-semibold shadow-[0_2px_0_#D8D3E1]"
+            [
+              "keyboard-shift-caps.webp",
+              "Shift and Caps Lock",
+              "Shift changes one character; Caps Lock stays on until changed.",
+            ],
+            [
+              "keyboard-enter-backspace.webp",
+              "Enter and Backspace",
+              "Enter confirms or starts a line; Backspace removes near the insertion point.",
+            ],
+            [
+              "keyboard-arrows.webp",
+              "Arrow keys",
+              "Move through text or an interface without erasing anything.",
+            ],
+            [
+              "keyboard-modifiers-windows-mac.webp",
+              "Windows and Mac modifiers",
+              "Control and Alt on Windows; Command and Option on Mac.",
+            ],
+          ].map(([filename, title, detail]) => (
+            <figure
+              key={filename}
+              className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
             >
-              {key}
-            </kbd>
+              <Image
+                src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+                alt={`Close-up photograph showing ${title}`}
+                width={1200}
+                height={900}
+                className="aspect-[4/3] w-full object-cover"
+              />
+              <figcaption className="p-4">
+                <strong className="block text-[15px]">{title}</strong>
+                <span className="mt-1 block text-sm leading-snug text-[#696675]">
+                  {detail}
+                </span>
+              </figcaption>
+            </figure>
           ))}
+        </div>
+        <div className="rounded-[22px] border border-[#DDD8E8] bg-white p-5 sm:p-7">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["01", "Typing", "Letters · numbers · punctuation · Space"],
+              ["02", "Editing", "Backspace · Delete · Enter · Tab"],
+              ["03", "Navigation", "Arrow keys · Home · End · Page keys"],
+              ["04", "Modifiers", "Shift · Control · Alt/Option · Command"],
+            ].map(([number, title, keys]) => (
+              <div key={number} className="rounded-2xl bg-[#F3F1FA] p-5">
+                <span className="text-xs font-bold text-[#5146CC]">
+                  {number}
+                </span>
+                <strong className="mt-4 block text-lg">{title}</strong>
+                <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
+                  {keys}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div
+            className="mt-4 flex flex-wrap gap-2"
+            aria-label="Example keyboard keys"
+          >
+            {[
+              "Shift",
+              "Caps Lock",
+              "Tab",
+              "Enter ↵",
+              "Backspace ⌫",
+              "←",
+              "↑",
+              "↓",
+              "→",
+              "Ctrl",
+              "Alt / Option",
+              "⌘ Command",
+            ].map((key) => (
+              <kbd
+                key={key}
+                className="rounded-lg border border-[#CBC5D8] bg-[#FAF9FC] px-3 py-2 text-sm font-semibold shadow-[0_2px_0_#D8D3E1]"
+              >
+                {key}
+              </kbd>
+            ))}
+          </div>
         </div>
       </div>
     );
