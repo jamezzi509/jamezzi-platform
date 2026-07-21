@@ -67,6 +67,14 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     expect(
       computerModuleThreeV2.every((lesson) => lesson.moduleId === "m3"),
     ).toBe(true);
+    expect(computerModuleThreeV2.every((lesson) => lesson.interaction)).toBe(
+      true,
+    );
+    expect(
+      computerModuleThreeV2.every((lesson) =>
+        lesson.sections.some((section) => section.type === "visual"),
+      ),
+    ).toBe(true);
   });
 
   it("gives beginners a concise buying baseline without treating used as old", () => {

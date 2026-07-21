@@ -13,7 +13,12 @@ export type ComputerLessonInteraction =
   | { kind: "outside-parts-locator" }
   | { kind: "port-photo-match" }
   | { kind: "connection-builder" }
-  | { kind: "accessory-planner" };
+  | { kind: "accessory-planner" }
+  | { kind: "buying-brief-builder" }
+  | { kind: "specification-decoder" }
+  | { kind: "platform-buying-decision" }
+  | { kind: "condition-offer-audit" }
+  | { kind: "candidate-buying-mission" };
 
 export type LessonVisual =
   | { kind: "course-method" }
@@ -28,6 +33,11 @@ export type LessonVisual =
   | { kind: "port-map" }
   | { kind: "cable-match" }
   | { kind: "accessory-chain" }
+  | { kind: "buying-needs" }
+  | { kind: "specification-parts" }
+  | { kind: "buying-platforms" }
+  | { kind: "condition-comparison" }
+  | { kind: "buying-inspection" }
   | { kind: "power-controls" }
   | { kind: "pointer-controls" }
   | { kind: "keyboard-map" }
@@ -1267,10 +1277,10 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
       },
       {
         type: "visual",
-        title: "Choose the physical arrangement first",
+        title: "Choose the work before the machine",
         caption:
-          "Laptop, desktop, all-in-one, and 2-in-1 designs solve different portability, space, repair, and accessory needs. The operating system is a separate decision.",
-        visual: { kind: "computer-families" },
+          "The same advertised computer can be sensible for one learner and wrong for another. Tasks, location, portability, required connections, and total cost come first.",
+        visual: { kind: "buying-needs" },
       },
       {
         type: "comparison",
@@ -1308,6 +1318,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
           "You know the maximum total, required tasks, required connections, and acceptable device family before shopping.",
       },
     ],
+    interaction: { kind: "buying-brief-builder" },
     practice: {
       title: "Write a one-page buying brief",
       intro: "Do this before opening a store or marketplace.",
@@ -1339,7 +1350,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
     closing:
       "Your buying brief is the standard every offer must meet. Next, translate common specifications into consequences you can actually use.",
     nextTitle: "Read Specifications Without Sales Jargon",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m3-l2-v2",
@@ -1358,6 +1369,13 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
       "Record exact specifications instead of accepting vague labels such as fast or powerful.",
     ],
     sections: [
+      {
+        type: "visual",
+        title: "Memory and storage are different physical parts",
+        caption:
+          "RAM holds active work temporarily. SSD and HDD storage retain the system, apps, and files. Most current laptops use SSD storage; an HDD may still appear in older or external equipment.",
+        visual: { kind: "specification-parts" },
+      },
       {
         type: "comparison",
         title: "Six specifications, six different jobs",
@@ -1401,9 +1419,22 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         tone: "warning",
       },
       {
+        type: "callout",
+        title:
+          "Do not buy a Windows 10-only computer as a normal recommendation",
+        body: "Microsoft ended standard Windows 10 support on October 14, 2025. A computer may still turn on after support ends, but normal security updates are no longer provided unless an applicable extended-support option is used. For a purchase, verify official Windows 11 eligibility on the exact model rather than trusting the seller's statement.",
+        tone: "warning",
+      },
+      {
         type: "comparison",
         title: "A practical student starting point",
         items: [
+          {
+            label: "Processor target",
+            description:
+              "For ordinary student work, begin comparisons with a recent midrange processor such as an Intel Core i5/Core 5 class, AMD Ryzen 5 class, or Apple M-series Mac. These names are not proof that models are equal: verify the exact chip, age, operating-system support, and required apps.",
+            tone: "good",
+          },
           {
             label: "Recommended for most students",
             description:
@@ -1414,6 +1445,12 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
             label: "When the budget is tight",
             description:
               "8 GB memory and a 256 GB SSD can handle basic schoolwork, but provide less room for many open apps, large files, and future needs.",
+            tone: "warn",
+          },
+          {
+            label: "No honest universal GHz minimum",
+            description:
+              "A newer processor can outperform an older processor at a lower clock speed. Do not set a buying rule such as at least 3 GHz. Use the exact model, generation, independent evidence, and the software maker's requirements.",
             tone: "warn",
           },
         ],
@@ -1438,6 +1475,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         tone: "info",
       },
     ],
+    interaction: { kind: "specification-decoder" },
     practice: {
       title: "Decode one real specification sheet",
       intro:
@@ -1472,7 +1510,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
     closing:
       "You can now turn a listing into verifiable facts. Next, choose Windows or Mac from required software, workflow, support, and total cost—not from social pressure.",
     nextTitle: "Choose Windows or Mac for the Work",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m3-l3-v2",
@@ -1491,6 +1529,13 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
       "Avoid assuming that your current computer path must determine your next purchase.",
     ],
     sections: [
+      {
+        type: "visual",
+        title: "Two capable computers; one evidence-based decision",
+        caption:
+          "A familiar desktop or attractive body does not prove compatibility. Check the exact software, devices, support, ownership cost, and current operating-system support.",
+        visual: { kind: "buying-platforms" },
+      },
       {
         type: "prose",
         eyebrow: "A fresh decision",
@@ -1527,6 +1572,34 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         ],
       },
       {
+        type: "comparison",
+        title: "Important platform buying checks",
+        items: [
+          {
+            label: "Windows computer",
+            description:
+              "Verify Windows 11 support, exact hardware, required apps and drivers, repair options, and the total price. The Windows name does not make every Windows computer equally capable.",
+          },
+          {
+            label: "Apple-silicon Mac",
+            description:
+              "M-series Macs use Apple-designed processors. For a used Mac, verify the exact model, current macOS support, required apps, ports, storage, battery, and Activation Lock before paying.",
+          },
+          {
+            label: "Older Intel Mac",
+            description:
+              "Some Intel Macs can still run supported macOS versions, but the supported list is shrinking. Buy only after checking the exact model against Apple's current compatibility list and required software.",
+            tone: "warn",
+          },
+          {
+            label: "Chromebook",
+            description:
+              "A Chromebook normally runs ChromeOS, not Windows or macOS. It can fit browser-based work, but required desktop apps, device support, storage, and the automatic-update date must be verified.",
+            tone: "warn",
+          },
+        ],
+      },
+      {
         type: "steps",
         title: "Use a blocking-requirement test",
         steps: [
@@ -1546,6 +1619,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         tone: "info",
       },
     ],
+    interaction: { kind: "platform-buying-decision" },
     practice: {
       title: "Build a platform evidence table",
       intro: "Compare only the requirements in your buying brief.",
@@ -1578,7 +1652,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
     closing:
       "You have a platform decision that can survive questions. Next, compare new, refurbished, and used computers without treating those words as guarantees.",
     nextTitle: "Compare New, Refurbished, and Used",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m3-l4-v2",
@@ -1597,6 +1671,13 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
       "Recognize ownership, account, and management locks that can make a computer unusable.",
     ],
     sections: [
+      {
+        type: "visual",
+        title: "Condition words need visible and written evidence",
+        caption:
+          "New, refurbished, and used describe different histories—not automatic quality levels. Exact model, support, testing, battery, ownership, returns, and warranty still decide the risk.",
+        visual: { kind: "condition-comparison" },
+      },
       {
         type: "comparison",
         title: "The label is only the beginning",
@@ -1653,6 +1734,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         tone: "stop",
       },
     ],
+    interaction: { kind: "condition-offer-audit" },
     practice: {
       title: "Audit one condition offer",
       intro:
@@ -1687,7 +1769,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
     closing:
       "You can now compare the protection around an offer. Finish the module by scoring candidates and inspecting the finalist before paying.",
     nextTitle: "Compare, Inspect, and Decide",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
   {
     id: "m3-l5-v2",
@@ -1706,6 +1788,13 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
       "Make a buy, wait, or reject decision with written evidence.",
     ],
     sections: [
+      {
+        type: "visual",
+        title: "Inspect evidence before transferring money",
+        caption:
+          "Some problems are cosmetic; others are blockers or safety warnings. Inspect the physical computer, start it, verify ownership and specifications, and test the required functions.",
+        visual: { kind: "buying-inspection" },
+      },
       {
         type: "steps",
         eyebrow: "Before meeting or checkout",
@@ -1767,6 +1856,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
         tone: "warning",
       },
     ],
+    interaction: { kind: "candidate-buying-mission" },
     practice: {
       title: "Complete the first-computer decision mission",
       intro:
@@ -1802,7 +1892,7 @@ export const computerModuleThreeV2: ComputerLessonV2[] = [
     },
     closing:
       "Module 3 is complete when you can define the need, read the facts, compare platforms and condition, inspect the finalist, and defend a Buy, Wait, or Reject decision without sales pressure deciding for you.",
-    verifiedAt: "2026-07-17",
+    verifiedAt: "2026-07-20",
   },
 ];
 

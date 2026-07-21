@@ -25,6 +25,7 @@ import {
 } from "@/lib/use-computer-platform";
 import { ComputerModuleOneInteraction } from "@/components/academy/computer-module-one-interactions";
 import { ComputerModuleTwoInteraction } from "@/components/academy/computer-module-two-interactions";
+import { ComputerModuleThreeInteraction } from "@/components/academy/computer-module-three-interactions";
 
 type Platform = PreferredPlatform;
 
@@ -427,6 +428,11 @@ export function ComputerLessonPlayerV2({
                 />
               ) : lesson.moduleId === "m2" ? (
                 <ComputerModuleTwoInteraction
+                  interaction={lesson.interaction}
+                  onComplete={() => setInteractiveComplete(true)}
+                />
+              ) : lesson.moduleId === "m3" ? (
+                <ComputerModuleThreeInteraction
                   interaction={lesson.interaction}
                   onComplete={() => setInteractiveComplete(true)}
                 />
@@ -1426,6 +1432,247 @@ function LessonVisualView({ visual }: { visual: LessonVisual }) {
                 {detail}
               </span>
             </div>
+          ))}
+        </div>
+      </div>
+    );
+  if (visual.kind === "buying-needs")
+    return (
+      <div className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+        <div className="grid gap-px bg-[#DDD8E8] sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["Tasks", "What must it do?", "Browser · classes · design · games"],
+            [
+              "Place",
+              "Where will it live?",
+              "Travel · one desk · shared space",
+            ],
+            [
+              "Requirements",
+              "What must work?",
+              "Apps · ports · camera · access",
+            ],
+            ["Total cost", "What is the limit?", "Computer · extras · reserve"],
+          ].map(([label, title, detail], index) => (
+            <div key={label} className="bg-white p-5">
+              <span className="flex size-9 items-center justify-center rounded-full bg-[#EFEDFF] text-sm font-bold text-[#5146CC]">
+                {index + 1}
+              </span>
+              <strong className="mt-4 block text-lg">{title}</strong>
+              <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
+                {detail}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-3 bg-[#F8F7FB] p-4 sm:grid-cols-4">
+          {[
+            "computer-family-laptop.webp",
+            "computer-family-desktop.webp",
+            "computer-family-all-in-one.webp",
+            "computer-family-tablet-2-in-1.webp",
+          ].map((filename, index) => (
+            <Image
+              key={filename}
+              src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+              alt={
+                [
+                  "Laptop computer",
+                  "Desktop computer with separate monitor and tower",
+                  "All-in-one computer",
+                  "Tablet-style two-in-one computer",
+                ][index]
+              }
+              width={600}
+              height={600}
+              className="aspect-square w-full rounded-xl object-cover"
+            />
+          ))}
+        </div>
+        <p className="border-t border-[#E3DFEA] bg-[#242036] p-5 text-center font-semibold text-white">
+          Need → requirement → verified specification → total cost
+        </p>
+      </div>
+    );
+  if (visual.kind === "specification-parts")
+    return (
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          [
+            "CPU",
+            "buying-cpu.webp",
+            "Executes instructions",
+            "Compare the exact model and generation—not GHz or a family label alone",
+          ],
+          [
+            "RAM",
+            "buying-ram.webp",
+            "Temporary working space",
+            "Helps keep active apps and work available",
+          ],
+          [
+            "SSD",
+            "buying-ssd.webp",
+            "Fast permanent storage",
+            "Keeps the system, apps, and files after shutdown",
+          ],
+          [
+            "HDD",
+            "buying-hdd.webp",
+            "Older mechanical storage",
+            "Often slower; still found in older or external equipment",
+          ],
+        ].map(([title, filename, short, detail]) => (
+          <figure
+            key={title}
+            className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
+          >
+            <Image
+              src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+              alt={`${title} computer component`}
+              width={1200}
+              height={900}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <figcaption className="p-4">
+              <strong className="text-lg">{title}</strong>
+              <span className="mt-1 block text-sm font-semibold text-[#5146CC]">
+                {short}
+              </span>
+              <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
+                {detail}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    );
+  if (visual.kind === "buying-platforms")
+    return (
+      <figure className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+        <Image
+          src="/images/academy/courses/computer-internet-essentials/v2/buying-windows-mac.webp"
+          alt="A modern Windows laptop and an Apple-silicon style Mac laptop shown side by side"
+          width={1600}
+          height={900}
+          className="h-auto w-full"
+        />
+        <figcaption className="grid gap-px border-t border-[#DDD8E8] bg-[#DDD8E8] sm:grid-cols-4">
+          {[
+            "Required apps",
+            "Devices + files",
+            "People + support",
+            "Complete cost",
+          ].map((item, index) => (
+            <span
+              key={item}
+              className="bg-white p-4 text-center text-sm font-semibold"
+            >
+              <b className="mr-2 text-[#5146CC]">0{index + 1}</b>
+              {item}
+            </span>
+          ))}
+        </figcaption>
+      </figure>
+    );
+  if (visual.kind === "condition-comparison")
+    return (
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[
+          [
+            "New",
+            "buying-new-laptop.webp",
+            "Unused does not replace exact specifications, returns, or warranty.",
+          ],
+          [
+            "Refurbished",
+            "buying-refurbished-laptop.webp",
+            "Ask who tested or repaired it and what written protection applies.",
+          ],
+          [
+            "Used",
+            "buying-used-laptop.webp",
+            "Recent and verified can be smart; old and merely cheap can be costly.",
+          ],
+        ].map(([title, filename, detail]) => (
+          <figure
+            key={title}
+            className="overflow-hidden rounded-2xl border border-[#DDD8E8] bg-white"
+          >
+            <Image
+              src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+              alt={`${title} laptop condition example`}
+              width={1200}
+              height={900}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <figcaption className="p-4">
+              <strong className="text-lg">{title}</strong>
+              <span className="mt-2 block text-sm leading-relaxed text-[#696675]">
+                {detail}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    );
+  if (visual.kind === "buying-inspection")
+    return (
+      <div className="space-y-4">
+        <figure className="overflow-hidden rounded-[22px] border border-[#DDD8E8] bg-white">
+          <Image
+            src="/images/academy/courses/computer-internet-essentials/v2/inspection-test-setup.webp"
+            alt="Used laptop inspection setup with charger, mouse, headphones, and test flash drive"
+            width={1200}
+            height={900}
+            className="h-auto w-full"
+          />
+          <figcaption className="p-4 text-sm leading-relaxed text-[#696675]">
+            Bring only safe test items. Never use a private account, personal
+            file, password, or payment information during a seller inspection.
+          </figcaption>
+        </figure>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            [
+              "Cracked hinge",
+              "inspection-cracked-hinge.webp",
+              "Structural blocker",
+            ],
+            [
+              "Swollen battery",
+              "inspection-swollen-battery.webp",
+              "Stop: safety warning",
+            ],
+            [
+              "Screen defects",
+              "inspection-screen-defects.webp",
+              "Visible functional defect",
+            ],
+            [
+              "Frayed charger",
+              "inspection-frayed-charger.webp",
+              "Stop: replace damaged power equipment",
+            ],
+          ].map(([title, filename, detail]) => (
+            <figure
+              key={title}
+              className="overflow-hidden rounded-xl border border-[#DDD8E8] bg-white"
+            >
+              <Image
+                src={`/images/academy/courses/computer-internet-essentials/v2/${filename}`}
+                alt={`${title} inspection example`}
+                width={1200}
+                height={900}
+                className="aspect-[4/3] w-full object-cover"
+              />
+              <figcaption className="p-3">
+                <strong className="block text-[15px]">{title}</strong>
+                <span className="mt-1 block text-sm leading-snug text-[#696675]">
+                  {detail}
+                </span>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

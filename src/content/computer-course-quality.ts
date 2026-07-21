@@ -55,6 +55,17 @@ const moduleTwoCommonAudit = {
   recoveryAudit: "passed",
 } as const;
 
+const moduleThreeCommonAudit = {
+  beginnerLanguageAudit: "passed",
+  factualAudit: "passed",
+  missingStepAudit: "passed",
+  windowsMacAudit: "passed",
+  accessibilityAudit: "passed",
+  mobileAudit: "passed",
+  translationAudit: "passed",
+  recoveryAudit: "passed",
+} as const;
+
 export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   {
     slug: "welcome-build-computer-independence",
@@ -401,33 +412,166 @@ export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   },
   {
     slug: "define-computer-needs-budget",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: the buying brief needs a guided interactive builder.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleThreeCommonAudit,
+      visuals: [
+        {
+          id: "m3-needs-to-cost-path",
+          type: "diagram",
+          teaches: "Tasks, place, requirements, device family, and total cost",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m3-buying-brief-builder",
+          verifies:
+            "Choose work, location, and budget constraints and produce a buying starting point",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m3-real-buying-brief",
+          verifies:
+            "Write required tasks, apps, connections, and full budget without shopping",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "read-computer-specifications",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: specifications need real listing examples and a decoder interaction.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleThreeCommonAudit,
+      visuals: [
+        {
+          id: "m3-cpu-ram-ssd-hdd-photos",
+          type: "photo",
+          teaches:
+            "Physical recognition and separate jobs of CPU, RAM, SSD, and HDD",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m3-specification-decoder",
+          verifies:
+            "Decode five part, model, capacity, and recommendation claims",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m3-real-spec-sheet",
+          verifies:
+            "Record exact model, CPU, memory, storage, screen, ports, wireless, and system",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "choose-windows-or-mac-to-buy",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: platform comparison needs concrete visual examples and decision evidence.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleThreeCommonAudit,
+      visuals: [
+        {
+          id: "m3-windows-mac-buying-photo",
+          type: "photo",
+          teaches:
+            "Windows and Mac are separate buying candidates judged by the same evidence",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m3-platform-buying-decision",
+          verifies:
+            "Resolve four compatibility, blocker, and unknown-information scenarios",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m3-real-platform-table",
+          verifies:
+            "Verify required software, devices, support, and total cost for both systems",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "compare-new-refurbished-used-computers",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: condition labels need real visual examples and seller-protection comparison.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleThreeCommonAudit,
+      visuals: [
+        {
+          id: "m3-new-refurbished-used-photos",
+          type: "photo",
+          teaches: "Condition histories without implying automatic quality",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m3-condition-offer-audit",
+          verifies:
+            "Judge three offers from support, ownership, testing, returns, and warranty",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m3-real-condition-offer",
+          verifies:
+            "Audit one written offer without contacting or paying a seller",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "compare-inspect-buy-computer",
-    status: "needs-rebuild",
-    reason:
-      "Restart review: inspection needs a guided visual checklist and candidate-scoring interaction.",
+    status: "approved",
+    standard: paidCourseQualityStandardVersion,
+    evidence: {
+      ...moduleThreeCommonAudit,
+      visuals: [
+        {
+          id: "m3-inspection-photos",
+          type: "photo",
+          teaches:
+            "Test setup, cracked hinge, swollen battery, screen defects, and frayed charger",
+          translatableLabels: true,
+        },
+      ],
+      interactions: [
+        {
+          id: "m3-candidate-buying-mission",
+          verifies:
+            "Apply blockers, select a finalist, require all inspection gates, and make an honest wait decision",
+          keyboardAccessible: true,
+        },
+      ],
+      realDevicePractice: [
+        {
+          id: "m3-real-comparison-mission",
+          verifies:
+            "Compare at least two real offers and write an inspection and walk-away plan",
+          browserCannotVerify: true,
+        },
+      ],
+    },
   },
   {
     slug: "power-sleep-restart-shutdown",
