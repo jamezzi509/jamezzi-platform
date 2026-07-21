@@ -31,7 +31,12 @@ export function ComputerModuleFiveInteraction({
   if (kind === "desktop-identifier")
     return <DesktopIdentifier onComplete={onComplete} />;
   if (kind === "window-control-simulator")
-    return <WindowSimulator onComplete={onComplete} />;
+    return (
+      <WindowSimulator
+        platform={platform ?? "windows"}
+        onComplete={onComplete}
+      />
+    );
   if (kind === "taskbar-dock-lab")
     return <TaskbarDockLab onComplete={onComplete} />;
   if (kind === "app-switcher-lab")
@@ -170,7 +175,13 @@ function DesktopIdentifier({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-function WindowSimulator({ onComplete }: { onComplete: () => void }) {
+function WindowSimulator({
+  platform,
+  onComplete,
+}: {
+  platform: PreferredPlatform;
+  onComplete: () => void;
+}) {
   const [state, setState] = useState<
     "normal" | "minimized" | "maximized" | "closed"
   >("normal");
@@ -209,33 +220,68 @@ function WindowSimulator({ onComplete }: { onComplete: () => void }) {
               state === "maximized" ? "min-h-72" : "mx-auto max-w-xl",
             )}
           >
-            <div className="flex justify-between border-b p-3">
-              <strong>Practice notes</strong>
-              <span className="flex gap-2">
-                <button
-                  aria-label="Minimize"
-                  onClick={() => act("minimized", "minimize")}
-                >
-                  —
-                </button>
-                <button
-                  aria-label={state === "maximized" ? "Restore" : "Maximize"}
-                  onClick={() =>
-                    act(
-                      state === "maximized" ? "normal" : "maximized",
-                      state === "maximized" ? "restore" : "maximize",
-                    )
-                  }
-                >
-                  □
-                </button>
-                <button
-                  aria-label="Close"
-                  onClick={() => act("closed", "close")}
-                >
-                  ×
-                </button>
-              </span>
+            <div
+              className={cn(
+                "relative flex min-h-12 items-center border-b p-3",
+                platform === "windows" ? "justify-between" : "justify-center",
+              )}
+            >
+              {platform === "mac" && (
+                <span className="absolute left-3 flex gap-2">
+                  <button
+                    aria-label="Close"
+                    onClick={() => act("closed", "close")}
+                    className="size-4 rounded-full bg-[#FF5F57]"
+                  />
+                  <button
+                    aria-label="Minimize"
+                    onClick={() => act("minimized", "minimize")}
+                    className="size-4 rounded-full bg-[#FEBC2E]"
+                  />
+                  <button
+                    aria-label={
+                      state === "maximized" ? "Restore" : "Enter full screen"
+                    }
+                    onClick={() =>
+                      act(
+                        state === "maximized" ? "normal" : "maximized",
+                        state === "maximized" ? "restore" : "maximize",
+                      )
+                    }
+                    className="size-4 rounded-full bg-[#28C840]"
+                  />
+                </span>
+              )}
+              <strong>
+                Practice notes · {platform === "mac" ? "macOS" : "Windows"}
+              </strong>
+              {platform === "windows" && (
+                <span className="flex gap-4">
+                  <button
+                    aria-label="Minimize"
+                    onClick={() => act("minimized", "minimize")}
+                  >
+                    —
+                  </button>
+                  <button
+                    aria-label={state === "maximized" ? "Restore" : "Maximize"}
+                    onClick={() =>
+                      act(
+                        state === "maximized" ? "normal" : "maximized",
+                        state === "maximized" ? "restore" : "maximize",
+                      )
+                    }
+                  >
+                    □
+                  </button>
+                  <button
+                    aria-label="Close"
+                    onClick={() => act("closed", "close")}
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
             </div>
             <p className="p-6">
               Observe the window before and after every action.
@@ -260,17 +306,17 @@ function TaskbarDockLab({ onComplete }: { onComplete: () => void }) {
     [
       "The icon stays visible, but the app is not running.",
       "Pinned",
-      ["Pinned", "Open", "Active"],
+      ["Pinned", "Open", "Frontmost"],
     ],
     [
       "The app is running behind another window.",
       "Open",
-      ["Pinned", "Open", "Active"],
+      ["Pinned", "Open", "Frontmost"],
     ],
     [
       "The app currently receives keyboard commands.",
-      "Active",
-      ["Pinned", "Open", "Active"],
+      "Frontmost",
+      ["Pinned", "Open", "Frontmost"],
     ],
     [
       "The app is already open. How should you return?",
@@ -281,7 +327,7 @@ function TaskbarDockLab({ onComplete }: { onComplete: () => void }) {
   return (
     <ChoiceSequence
       title="Taskbar and Dock state lab"
-      intro="Read pinned, open, and active as different states."
+      intro="Read pinned, open, and frontmost as different states. On Mac, confirm frontmost from the window and menu bar—not a special Dock marker."
       questions={q}
       onComplete={onComplete}
     />

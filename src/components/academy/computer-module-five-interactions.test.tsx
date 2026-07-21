@@ -41,12 +41,33 @@ describe("Module 5 navigation practice", () => {
     fireEvent.click(screen.getByRole("button", { name: "Close" }));
     await waitFor(() => expect(done).toHaveBeenCalled());
   });
+  it("uses Mac traffic-light controls without Windows maximize wording", async () => {
+    const onComplete = vi.fn();
+    render(
+      <ComputerModuleFiveInteraction
+        interaction={{ kind: "window-control-simulator" }}
+        platform="mac"
+        onComplete={onComplete}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Minimize" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Return to Practice/i }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Enter full screen" }));
+    fireEvent.click(screen.getByRole("button", { name: "Restore" }));
+    fireEvent.click(screen.getByRole("button", { name: "Close" }));
+    await waitFor(() => expect(onComplete).toHaveBeenCalled());
+    expect(
+      screen.queryByRole("button", { name: "Maximize" }),
+    ).not.toBeInTheDocument();
+  });
   it("reads Taskbar and Dock states", async () => {
     const done = renderLab("taskbar-dock-lab");
     for (const answer of [
       "Pinned",
       "Open",
-      "Active",
+      "Frontmost",
       "Select its existing indicator",
     ])
       fireEvent.click(screen.getByRole("button", { name: answer }));

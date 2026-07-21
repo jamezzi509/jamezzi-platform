@@ -689,7 +689,7 @@ function LessonSectionView({
           {section.title}
         </h2>
         <div className="mt-6">
-          <LessonVisualView visual={section.visual} />
+          <LessonVisualView visual={section.visual} platform={platform} />
         </div>
         <p className="mt-4 text-base leading-[1.7] text-[#696675]">
           {section.caption}
@@ -990,8 +990,15 @@ function KnowledgeCheck({
   );
 }
 
-function LessonVisualView({ visual }: { visual: LessonVisual }) {
-  if (isModuleFiveVisual(visual)) return <ModuleFiveVisual visual={visual} />;
+function LessonVisualView({
+  visual,
+  platform,
+}: {
+  visual: LessonVisual;
+  platform: Platform | null;
+}) {
+  if (isModuleFiveVisual(visual))
+    return <ModuleFiveVisual visual={visual} platform={platform} />;
   if (visual.kind === "course-method")
     return (
       <div

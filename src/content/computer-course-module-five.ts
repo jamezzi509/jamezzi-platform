@@ -199,7 +199,7 @@ export const computerModuleFiveV2: ComputerLessonV2[] = [
     track: "windows-mac",
     badges: ["Taskbar", "Dock"],
     outcomes: [
-      "Distinguish pinned, open, and active applications.",
+      "Distinguish pinned, open, and frontmost applications using platform-appropriate evidence.",
       "Return to an open application.",
       "Explain why pinning is not installation.",
     ],
@@ -227,9 +227,9 @@ export const computerModuleFiveV2: ComputerLessonV2[] = [
               "The app is running and may have one or more windows, including minimized windows.",
           },
           {
-            label: "Active",
+            label: "Frontmost / active",
             description:
-              "This is the application currently receiving keyboard and menu commands.",
+              "This is the application currently receiving keyboard and menu commands. Windows may highlight its taskbar icon. On macOS, confirm the front window and application name in the menu bar; the Dock does not provide a separate universal active marker.",
           },
         ],
       },
@@ -285,7 +285,7 @@ export const computerModuleFiveV2: ComputerLessonV2[] = [
     badges: ["Multitasking", "Switching"],
     outcomes: [
       "Identify the active application.",
-      "Switch with the Taskbar, Dock, Alt+Tab, or Command+Tab.",
+      "Use the Taskbar or Alt+Tab to move among Windows windows, or the Dock or Command+Tab to move among Mac applications.",
       "Find an application behind or beneath another window.",
     ],
     interaction: { kind: "app-switcher-lab" },
@@ -563,9 +563,9 @@ export const computerModuleFiveV2: ComputerLessonV2[] = [
     sections: [
       {
         type: "visual",
-        title: "Messages and controls share a system area",
+        title: "Messages and quick controls open from separate system surfaces",
         caption:
-          "Windows uses notifications and Quick Settings; macOS uses Notification Center and Control Center. Available controls depend on hardware and settings.",
+          "Windows 11 separates Notification Center from Quick Settings. macOS separates Notification Center from Control Center. They open from nearby system areas, and available controls depend on hardware and settings.",
         visual: { kind: "notifications-controls" },
       },
       {
