@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 1 — Ou Gen Plas Ou nan Monn Dijital la</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:12.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:13px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.desk{background:linear-gradient(160deg,#e6f0fa 0%,#cfe1f3 30%,#a9cdec 62%,#7fb0e4 100%)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.h1r{font-weight:700;font-size:16.5px}.instr{font-size:14px;color:var(--dim);line-height:1.6;margin-top:8px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+/* lab common */
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+/* bins / items */
+.items{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:grab;font-size:14px;font-weight:600}
+.chip.gone{display:none}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.bin{border:2px dashed var(--edge2);border-radius:16px;padding:16px;min-height:120px;text-align:center}
+.bin.hw{border-color:#16a34a55}.bin.sw{border-color:#7c5cff55}
+.bin h4{font-size:15px;margin-bottom:4px}.bin p{font-size:12px;color:var(--mute)}
+.bin .drop{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.bin .placed{padding:8px 12px;border-radius:9px;font-size:13px;font-weight:600;background:var(--ink-600)}
+.bin.over{background:rgba(var(--brand-rgb),.08)}
+/* flow (IPOS) */
+.flow{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap}
+.node{flex:1;min-width:120px;border:1px solid var(--edge2);border-radius:14px;padding:16px;text-align:center;background:var(--ink-700);cursor:pointer;transition:.2s}
+.node.lit{border-color:var(--brand);box-shadow:0 0 0 3px rgba(var(--brand-rgb),.25)}
+.node.read{border-color:var(--good)}
+.node .ni{font-size:26px}.node .nt{font-weight:700;margin-top:6px;font-size:14px}.node .nd{font-size:11.5px;color:var(--mute);margin-top:3px}
+.arrow{color:var(--mute);font-size:20px}
+.node .ni svg{height:50px;width:auto;display:block;margin:0 auto}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:12px 10px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.sel{outline:2px solid var(--brand);outline-offset:1px}
+.partcard.done{border-color:var(--good)}
+.partart{height:100px;display:grid;place-items:center}.partart svg{max-height:100px;max-width:100%}
+.partn{font-weight:700;font-size:14.5px;margin-top:10px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.chip .cico{display:inline-flex;vertical-align:middle}.chip .cico svg{width:24px;height:24px}
+.devcard .pic svg{max-height:100px;max-width:100%;height:auto}
+/* hotspots (label parts) */
+.stageA{position:relative;display:inline-block;margin-top:16px}
+.hs{position:absolute;width:34px;height:34px;border-radius:50%;background:rgba(var(--brand-rgb),.9);color:#fff;border:2px solid #fff;font-weight:800;cursor:pointer;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.hs.done{background:var(--good)}
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.cat{padding:11px 16px;border-radius:11px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:13.5px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}.cat.dis{opacity:.4}
+/* device cards */
+.devgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:18px}
+.devcard{border:1px solid var(--edge);border-radius:16px;padding:16px;background:var(--ink-700);text-align:center}
+.devcard .pic{display:grid;place-items:center;height:96px}
+.devopts{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.devopts button{font-size:12px;font-weight:600;padding:7px 11px;border-radius:9px;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);cursor:pointer}
+.devopts button.good{background:var(--good);border-color:var(--good);color:#062611}.devopts button.bad{background:var(--danger);border-color:var(--danger);color:#fff}
+.devopts.locked button:not(.good){opacity:.4}
+/* mini OS desktops (1.7) */
+.osgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.osmini{border:2px solid transparent;border-radius:14px;overflow:hidden;cursor:pointer;background:#0f1420;position:relative;aspect-ratio:16/10}
+.osmini:hover{border-color:var(--brand2)}.osmini.good{border-color:var(--good)}.osmini.bad{border-color:var(--danger)}
+.osmini .cap{position:absolute;bottom:0;left:0;right:0;background:rgba(11,15,23,.75);color:#fff;font-size:12px;font-weight:700;padding:6px;text-align:center}
+/* ===== Windows surface (1.2 & 1.8) ===== */
+.desk-ico{position:absolute;display:flex;flex-direction:column;gap:4px;align-items:center;width:78px;background:none;border:1px solid transparent;border-radius:6px;padding:6px 4px;cursor:pointer;color:#0b2a55}
+.desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:12px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;background:rgba(240,243,247,.82);backdrop-filter:blur(30px);border-top:1px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:5px}
+.tbi{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;cursor:pointer}.tbi:hover{background:rgba(0,0,0,.06)}
+.tbclock{position:absolute;right:14px;font-size:12.5px;color:#1b1b1b;text-align:right;line-height:1.35}
+.pulse{animation:pulse 1.6s infinite;border-radius:8px}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,95,184,.5)}70%{box-shadow:0 0 0 11px rgba(0,95,184,0)}100%{box-shadow:0 0 0 0 rgba(0,95,184,0)}}
+.startmenu{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);width:410px;max-width:92%;border-radius:10px;padding:16px;display:none;background:rgba(238,242,247,.9);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.55);box-shadow:0 26px 60px rgba(0,20,60,.4)}
+.startmenu .ssearch{height:38px;border-radius:19px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;align-items:center;gap:9px;padding:0 15px;color:#8a8f98;font-size:13.5px}
+.sl{font-size:13px;font-weight:600;color:#3a3a3a;margin:16px 2px 10px}.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.sapp{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 4px;border-radius:8px;cursor:pointer;font-size:12px;color:#1b1b1b;border:none;background:none}.sapp:hover{background:rgba(0,0,0,.06)}.sapp svg{width:32px;height:32px}
+.win{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:min(700px,92%);height:min(470px,86%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);display:none;font-family:var(--seg);color:var(--w-t1)}
+.wtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px}
+.wtb .wc{margin-left:auto;display:flex}.wtb .wc span{width:46px;height:36px;display:grid;place-items:center;font-size:12px;color:#444;cursor:pointer}.wtb .wc .cl:hover{background:#c42b1c;color:#fff}
+.wbody{display:flex;height:calc(100% - 36px)}
+.wnav{width:196px;flex:none;padding:10px;overflow:auto}
+.wnav .acct{display:flex;gap:10px;align-items:center;padding:9px}.wnav .acct .ava{width:34px;height:34px;border-radius:50%;background:conic-gradient(from 200deg,#6aa0ff,#8b5cf6,#22c55e,#6aa0ff);flex:none}
+.wnav .acct .nm{font-size:13.5px;font-weight:600}.wnav .acct .em{font-size:12px;color:var(--w-t2)}
+.wni{display:flex;align-items:center;gap:12px;padding:9px 11px;border-radius:6px;font-size:14px;color:var(--w-t1);cursor:pointer;position:relative}
+.wni:hover{background:rgba(0,0,0,.045)}.wni.sel{background:rgba(0,0,0,.05)}.wni.sel::before{content:"";position:absolute;left:1px;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--w-accent)}
+.wni .i{width:20px;display:grid;place-items:center;color:var(--w-accent)}
+.wcontent{flex:1;min-width:0;background:var(--w-content);border-left:1px solid rgba(0,0,0,.05);overflow:auto;padding:20px 26px}
+.wh1{font-size:28px;font-weight:600;margin-bottom:16px}
+.srow{display:flex;align-items:center;gap:14px;padding:13px 12px;border-radius:6px;border:1px solid transparent;cursor:pointer}.srow:hover{background:#f3f3f3;border-color:#ededed}
+.srow .si{width:36px;height:36px;border-radius:8px;background:#eef3fb;display:grid;place-items:center;flex:none}.srow .sn{font-size:15px}.srow .ss{font-size:12.5px;color:var(--w-t2)}.srow .ch{margin-left:auto;color:#8a8a8a;font-size:18px}
+.srow.target{outline:2px solid var(--w-accent);outline-offset:1px}
+.aboutcard{border:1px solid var(--w-stroke);border-radius:8px;background:#fff;padding:6px 16px;margin-bottom:16px}
+.arow{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #eee;font-size:14.5px}.arow:last-child{border-bottom:none}.arow .k{color:var(--w-t2)}.arow .v{font-weight:600;text-align:right}
+.arow.hl{cursor:pointer;border-radius:6px;padding:12px 10px;margin:0 -10px}.arow.hl:hover{background:#eef5ff}.arow.hl.on{background:#e4f0ff;outline:2px solid var(--w-accent)}
+.ahd{font-size:15.5px;font-weight:600;margin:8px 0 10px}
+.notsure{position:absolute;bottom:56px;right:14px;background:rgba(255,255,255,.85);border:1px dashed #8aa;color:#0b2a55;font-size:12px;padding:9px 13px;border-radius:9px;cursor:pointer;font-family:var(--font)}
+.notsure:hover{background:#fff}
+.hsdesk{position:absolute;width:38px;height:38px;border-radius:50%;background:rgba(var(--brand-rgb),.92);color:#fff;border:2px solid #fff;font-weight:800;cursor:pointer;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 10px rgba(0,0,0,.4);animation:pulse 1.6s infinite}
+.hsdesk.done{background:var(--good);animation:none}
+.lockscr{position:absolute;inset:0;background:linear-gradient(160deg,#0b1f3a,#123a6e);display:grid;place-items:center;color:#dbe8ff;cursor:pointer;z-index:5}
+.lockscr .cl{font-size:44px;font-weight:300}.lockscr .hint{font-size:13px;color:#9fc4f0;margin-top:8px}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></div>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 1 · 1.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 8</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Konplete leson an",completed:"Konplete ✓",next:"Pwochen →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Fonksyone","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M1={ht:["Byenveni: Ou P ap Kraze Anyen","Idantifye Òdinatè ki Devan Ou","Kisa yon Òdinatè Ye?","Antre, Trètman, Sòti, Depo","Materyèl ak Lojisyèl","Òdinatè an Plizyè Fòm","Windows ak Lòt Sistèm","Premye Misyon Dijital Ou"],
+ fr:["Bienvenue : Vous Ne Casserez Rien","Identifiez l’Ordinateur","Qu’est-ce qu’un Ordinateur ?","Entrée, Traitement, Sortie, Stockage","Matériel et Logiciel","Ordinateurs de Différentes Formes","Windows et Autres Systèmes","Première Mission Numérique"],
+ en:["Welcome: You Won’t Break Anything","Identify the Computer","What Is a Computer?","Input, Processing, Output, Storage","Hardware and Software","Computers in Different Forms","Windows and Other Systems","Your First Digital Mission"]};
+
+/* ============ lesson content ============ */
+const C={
+/* ---- 1.1 Welcome / safe sandbox ---- */
+1:{ht:{lead:"Anvan tout bagay, an nou retire laperèz. Klike sou 3 bagay sou biwo a — ou p ap kraze anyen. Chak fwa, w ap wè: anyen pa gate.",
+   objs:["Eseye 3 bagay diferan","Wè ke anyen pa kraze"],
+   icons:["Dosye mwen","Chwazi koulè","Kalkilatris"],
+   welcome:"Bonjou! Mwen se asistan ou. Klike sou nenpòt ikòn sou biwo a. Pa pè — nou pa ka kraze anyen.",
+   fb:["Ou louvri « Dosye mwen ». Wè? Yon fenèt jis louvri. Fèmen l lè w vle.","Ou chanje koulè a — epi ou ka chanje l tounen. Anyen pa pèdi.","Ou louvri Kalkilatris la. Se yon zouti, li la pou ede w."],
+   done:"Ou wè? Ou klike, epi tout bagay byen. Se konsa w ap aprann — san laperèz."},
+ fr:{lead:"Avant tout, enlevons la peur. Cliquez sur 3 choses du bureau — vous ne casserez rien. À chaque fois : rien n’est abîmé.",
+   objs:["Essayer 3 choses différentes","Constater que rien ne casse"],icons:["Mes documents","Changer la couleur","Calculatrice"],
+   welcome:"Bonjour ! Je suis votre assistant. Cliquez sur n’importe quelle icône. N’ayez pas peur — on ne casse rien.",
+   fb:["Vous avez ouvert « Mes documents ». Voyez ? Juste une fenêtre. Fermez-la quand vous voulez.","Vous avez changé la couleur — et vous pouvez la remettre. Rien n’est perdu.","Vous avez ouvert la Calculatrice. C’est un outil, là pour vous aider."],
+   done:"Vous voyez ? Vous cliquez, et tout va bien. C’est ainsi qu’on apprend — sans peur."},
+ en:{lead:"First, let’s remove the fear. Click 3 things on the desktop — you won’t break anything. Each time: nothing is damaged.",
+   objs:["Try 3 different things","See that nothing breaks"],icons:["My Documents","Change color","Calculator"],
+   welcome:"Hi! I’m your assistant. Click any icon on the desktop. Don’t be afraid — we can’t break anything.",
+   fb:["You opened “My Documents.” See? Just a window. Close it whenever you like.","You changed the color — and you can change it back. Nothing is lost.","You opened the Calculator. It’s a tool, here to help you."],
+   done:"See? You click, and everything is fine. That’s how you learn — without fear."}},
+/* ---- 1.3 What is a computer (IPOS flow) ---- */
+3:{ht:{lead:"Yon òdinatè fè 4 bagay: li resevwa ANTRE, li fè TRÈTMAN, li bay SÒTI, epi li ka fè DEPO. Peze tòch la epi swiv chemen an, apre klike sou chak etap.",
+   objs:["Peze yon tòch (kouri chemen an)","Li tou lè 4 etap yo"],press:"Peze yon tòch ⌨️",
+   nodes:[["⌨️","Antre","Ou tape yon lèt"],["🧠","Trètman","Òdinatè a konprann li"],["🖥️","Sòti","Li parèt sou ekran an"],["💾","Depo","Li ka sove pou pita"]],
+   welcome:"An nou wè kijan yon òdinatè travay. Peze bouton « Peze yon tòch » a.",runFb:"Bèl! Ou wè enfòmasyon an vwayaje: Antre → Trètman → Sòti. Kounye a klike sou chak etap pou li sa l vle di.",
+   nodeFb:["ANTRE: se kote enfòmasyon antre — klavye, sourit.","TRÈTMAN: CPU a « panse » epi fè travay la.","SÒTI: rezilta a parèt — ekran, son.","DEPO: sove enfòmasyon pou jwenn li pita — SSD."],
+   done:"Ou konnen l kounye a: Antre, Trètman, Sòti, Depo. Se sa chak òdinatè fè."},
+ fr:{lead:"Un ordinateur fait 4 choses : ENTRÉE, TRAITEMENT, SORTIE, et STOCKAGE. Appuyez sur une touche et suivez le chemin, puis cliquez chaque étape.",
+   objs:["Appuyer sur une touche (lancer le flux)","Lire les 4 étapes"],press:"Appuyer sur une touche ⌨️",
+   nodes:[["⌨️","Entrée","Vous tapez une lettre"],["🧠","Traitement","L’ordinateur la comprend"],["🖥️","Sortie","Elle apparaît à l’écran"],["💾","Stockage","On peut la sauvegarder"]],
+   welcome:"Voyons comment un ordinateur fonctionne. Appuyez sur « Appuyer sur une touche ».",runFb:"Bien ! L’information voyage : Entrée → Traitement → Sortie. Cliquez maintenant chaque étape.",
+   nodeFb:["ENTRÉE : par où l’info entre — clavier, souris.","TRAITEMENT : le CPU « réfléchit » et fait le travail.","SORTIE : le résultat apparaît — écran, son.","STOCKAGE : sauvegarder pour retrouver plus tard — SSD."],
+   done:"Vous le savez : Entrée, Traitement, Sortie, Stockage. C’est ce que fait tout ordinateur."},
+ en:{lead:"A computer does 4 things: INPUT, PROCESSING, OUTPUT, and STORAGE. Press a key and follow the path, then click each step.",
+   objs:["Press a key (run the flow)","Read all 4 steps"],press:"Press a key ⌨️",
+   nodes:[["⌨️","Input","You type a letter"],["🧠","Processing","The computer understands it"],["🖥️","Output","It appears on screen"],["💾","Storage","It can be saved for later"]],
+   welcome:"Let’s see how a computer works. Press the “Press a key” button.",runFb:"Nice! The information travels: Input → Processing → Output. Now click each step.",
+   nodeFb:["INPUT: where info comes in — keyboard, mouse.","PROCESSING: the CPU “thinks” and does the work.","OUTPUT: the result appears — screen, sound.","STORAGE: save it to find later — SSD."],
+   done:"Now you know it: Input, Processing, Output, Storage. That’s what every computer does."}},
+/* ---- 1.4 Label parts ---- */
+4:{ht:{lead:"Klike sou chak nimewo sou òdinatè a, epi chwazi ki wòl li: Antre, Trètman, Sòti, oswa Depo.",
+   objs:["Klase tou lè 4 pyès yo kòrèkteman"],cats:["Antre","Trètman","Sòti","Depo"],
+   parts:[{ans:0,art:"keyboard",n:"Klavye"},{ans:2,art:"monitor",n:"Ekran"},{ans:1,art:"cpu",n:"CPU"},{ans:3,art:"ssd",n:"SSD"}],
+   welcome:"Klike sou yon nimewo sou òdinatè a, epi di ki wòl pyès sa a genyen.",
+   ok:["Kòrèk! Klavye a = ANTRE.","Kòrèk! Ekran an = SÒTI.","Kòrèk! CPU a = TRÈTMAN.","Kòrèk! SSD a = DEPO."],
+   bad:"Pa egzakteman. Reflechi: èske pyès sa a resevwa, trete, montre, oswa sove enfòmasyon? Eseye ankò.",
+   done:"Bèl travay! Ou klase tout pyès yo: Antre, Trètman, Sòti, Depo."},
+ fr:{lead:"Cliquez chaque numéro sur l’ordinateur, puis choisissez son rôle : Entrée, Traitement, Sortie ou Stockage.",
+   objs:["Classer les 4 pièces correctement"],cats:["Entrée","Traitement","Sortie","Stockage"],
+   parts:[{ans:0,art:"keyboard",n:"Clavier"},{ans:2,art:"monitor",n:"Écran"},{ans:1,art:"cpu",n:"CPU"},{ans:3,art:"ssd",n:"SSD"}],
+   welcome:"Cliquez un numéro sur l’ordinateur, puis dites le rôle de cette pièce.",
+   ok:["Correct ! Le clavier = ENTRÉE.","Correct ! L’écran = SORTIE.","Correct ! Le CPU = TRAITEMENT.","Correct ! Le SSD = STOCKAGE."],
+   bad:"Pas tout à fait. Réfléchissez : cette pièce reçoit, traite, affiche ou sauvegarde l’info ? Réessayez.",
+   done:"Bravo ! Vous avez classé toutes les pièces : Entrée, Traitement, Sortie, Stockage."},
+ en:{lead:"Click each number on the computer, then choose its role: Input, Processing, Output, or Storage.",
+   objs:["Classify all 4 parts correctly"],cats:["Input","Processing","Output","Storage"],
+   parts:[{ans:0,art:"keyboard",n:"Keyboard"},{ans:2,art:"monitor",n:"Screen"},{ans:1,art:"cpu",n:"CPU"},{ans:3,art:"ssd",n:"SSD"}],
+   welcome:"Click a number on the computer, then say that part’s role.",
+   ok:["Correct! The keyboard = INPUT.","Correct! The screen = OUTPUT.","Correct! The CPU = PROCESSING.","Correct! The SSD = STORAGE."],
+   bad:"Not quite. Think: does this part receive, process, show, or save information? Try again.",
+   done:"Great work! You classified every part: Input, Processing, Output, Storage."}},
+/* ---- 1.5 Hardware vs Software ---- */
+5:{ht:{lead:"Klike sou yon eleman, apre klike sou bwat kòrèk la: MATERYÈL (ou ka manyen l) oswa LOJISYÈL (yon pwogram).",
+   objs:["Klase tout eleman yo kòrèkteman"],hw:"Materyèl",hwd:"Ou ka manyen l",sw:"Lojisyèl",swd:"Yon pwogram",
+   items:[{n:"Ekran",a:"hw"},{n:"Klavye",a:"hw"},{n:"CPU",a:"hw"},{n:"Navigatè Wèb",a:"sw"},{n:"Windows",a:"sw",trap:1},{n:"App Foto",a:"sw"}],
+   welcome:"Klike sou yon eleman, apre chwazi Materyèl oswa Lojisyèl. Fè atansyon ak youn ki ka twonpe w!",
+   ok:"Kòrèk!",trap:"Byen wè! Windows sanble fè pati machin nan, men se yon LOJISYÈL — pwogram prensipal la.",
+   bad:"Pa sa. Mande tèt ou: èske m ka manyen l? Si wi, se materyèl. Si non, se lojisyèl.",
+   done:"Pafè! Ou konnen diferans lan: materyèl ou ka manyen, lojisyèl se pwogram."},
+ fr:{lead:"Cliquez un élément, puis la bonne boîte : MATÉRIEL (on peut le toucher) ou LOGICIEL (un programme).",
+   objs:["Classer tous les éléments correctement"],hw:"Matériel",hwd:"On peut le toucher",sw:"Logiciel",swd:"Un programme",
+   items:[{n:"Écran",a:"hw"},{n:"Clavier",a:"hw"},{n:"CPU",a:"hw"},{n:"Navigateur",a:"sw"},{n:"Windows",a:"sw",trap:1},{n:"Appli Photo",a:"sw"}],
+   welcome:"Cliquez un élément, puis choisissez Matériel ou Logiciel. Attention à un piège !",
+   ok:"Correct !",trap:"Bien vu ! Windows semble faire partie de la machine, mais c’est un LOGICIEL — le programme principal.",
+   bad:"Non. Demandez-vous : puis-je le toucher ? Si oui, c’est du matériel. Sinon, du logiciel.",
+   done:"Parfait ! Vous connaissez la différence : le matériel se touche, le logiciel est un programme."},
+ en:{lead:"Click an item, then the correct bin: HARDWARE (you can touch it) or SOFTWARE (a program).",
+   objs:["Classify all items correctly"],hw:"Hardware",hwd:"You can touch it",sw:"Software",swd:"A program",
+   items:[{n:"Monitor",a:"hw"},{n:"Keyboard",a:"hw"},{n:"CPU",a:"hw"},{n:"Web Browser",a:"sw"},{n:"Windows",a:"sw",trap:1},{n:"Photo App",a:"sw"}],
+   welcome:"Click an item, then choose Hardware or Software. Watch out for one that can fool you!",
+   ok:"Correct!",trap:"Good eye! Windows feels like part of the machine, but it’s SOFTWARE — the master program.",
+   bad:"No. Ask yourself: can I touch it? If yes, hardware. If not, software.",
+   done:"Perfect! You know the difference: hardware you can touch, software is a program."}},
+/* ---- 1.6 Forms ---- */
+6:{ht:{lead:"Òdinatè vin an plizyè fòm. Gade chak aparèy epi chwazi non li.",
+   objs:["Idantifye tou lè 4 aparèy yo"],
+   devs:[{t:"desktop",ans:0},{t:"laptop",ans:1},{t:"tablet",ans:2},{t:"phone",ans:3}],
+   opts:["Desktop","Laptop","Tablèt","Telefòn"],
+   welcome:"Gade chak aparèy epi chwazi non ki kòrèk la.",ok:"Kòrèk!",bad:"Pa sa a. Gade fòm nan ankò.",
+   done:"Byen! Ou rekonèt fòm òdinatè yo: desktop, laptop, tablèt, telefòn — yo tout se òdinatè."},
+ fr:{lead:"Les ordinateurs ont plusieurs formes. Regardez chaque appareil et choisissez son nom.",
+   objs:["Identifier les 4 appareils"],devs:[{t:"desktop",ans:0},{t:"laptop",ans:1},{t:"tablet",ans:2},{t:"phone",ans:3}],
+   opts:["Ordinateur de bureau","Portable","Tablette","Téléphone"],
+   welcome:"Regardez chaque appareil et choisissez le bon nom.",ok:"Correct !",bad:"Pas celui-ci. Regardez la forme.",
+   done:"Bien ! Vous reconnaissez les formes : bureau, portable, tablette, téléphone — tous des ordinateurs."},
+ en:{lead:"Computers come in many forms. Look at each device and choose its name.",
+   objs:["Identify all 4 devices"],devs:[{t:"desktop",ans:0},{t:"laptop",ans:1},{t:"tablet",ans:2},{t:"phone",ans:3}],
+   opts:["Desktop","Laptop","Tablet","Phone"],
+   welcome:"Look at each device and choose the correct name.",ok:"Correct!",bad:"Not this one. Look at the shape.",
+   done:"Nice! You recognize the forms: desktop, laptop, tablet, phone — all computers."}},
+/* ---- 1.7 Windows vs other OS ---- */
+7:{ht:{lead:"Chak sistèm operasyon gen pwòp aparans li. Ki youn ki se Windows? Klike sou li. Apre, klike sou 2 lòt yo pou wè ki sa yo ye.",
+   objs:["Idantifye Windows la","Wè 2 lòt sistèm yo"],
+   os:[{k:"win",cap:"Windows"},{k:"mac",cap:"macOS"},{k:"cros",cap:"ChromeOS"}],
+   welcome:"Twa biwo, twa sistèm. Windows gen bouton Start la ak ikòn ki nan mitan anba a. Ki youn?",
+   winOk:"Egzat! Windows: bouton Start la ak ikòn yo nan mitan ba tach la. Se sa ou pral itilize.",
+   winBad:"Pa sa a. Chèche bouton Start la ak ikòn ki santre anba a — se Windows.",
+   macFb:"Sa se macOS (Apple): gen yon ba meni anlè ak yon « Dock » ikòn anba. Enstriksyon yo ka yon ti jan diferan.",
+   crosFb:"Sa se ChromeOS (Chromebook): gen yon sèk ak ikòn agoch anba. Li depann anpil sou entènèt.",
+   done:"Ou wè: menm travay la, men chak sistèm parèt diferan. Kou sa a itilize Windows."},
+ fr:{lead:"Chaque système a son apparence. Lequel est Windows ? Cliquez dessus. Puis cliquez les 2 autres pour voir.",
+   objs:["Identifier Windows","Voir les 2 autres systèmes"],os:[{k:"win",cap:"Windows"},{k:"mac",cap:"macOS"},{k:"cros",cap:"ChromeOS"}],
+   welcome:"Trois bureaux, trois systèmes. Windows a le bouton Démarrer et des icônes au centre en bas. Lequel ?",
+   winOk:"Exact ! Windows : bouton Démarrer et icônes au centre de la barre. C’est ce que vous utiliserez.",
+   winBad:"Pas celui-ci. Cherchez le bouton Démarrer et les icônes centrées en bas.",
+   macFb:"C’est macOS (Apple) : barre de menu en haut et un « Dock » en bas. Les instructions diffèrent un peu.",
+   crosFb:"C’est ChromeOS (Chromebook) : un cercle et des icônes en bas à gauche. Très dépendant d’internet.",
+   done:"Vous voyez : même tâche, apparence différente. Ce cours utilise Windows."},
+ en:{lead:"Each system has its own look. Which is Windows? Click it. Then click the other 2 to see what they are.",
+   objs:["Identify Windows","See the 2 other systems"],os:[{k:"win",cap:"Windows"},{k:"mac",cap:"macOS"},{k:"cros",cap:"ChromeOS"}],
+   welcome:"Three desktops, three systems. Windows has the Start button and centered icons at the bottom. Which one?",
+   winOk:"Exactly! Windows: Start button and centered taskbar icons. This is what you’ll use.",
+   winBad:"Not this one. Look for the Start button and centered icons at the bottom.",
+   macFb:"That’s macOS (Apple): a menu bar on top and a “Dock” below. Instructions differ a little.",
+   crosFb:"That’s ChromeOS (Chromebook): a circle and icons at the bottom-left. Very internet-dependent.",
+   done:"See: same task, different look. This course uses Windows."}},
+};
+/* ---- 1.2 & 1.8 use the Windows desktop; content: ---- */
+const C2={ /* 1.2 identify windows (compact port) */
+ ht:{lead:"Misyon: konfime ke òdinatè sa a sèvi ak Windows. Louvri Start → Settings → System → About.",objs:["Louvri Start","Louvri Settings","Ale nan About","Konfime Windows"],
+  welcome:"Klike sou bouton Start la (logo ble a) anba nan mitan.",fbStart:"Byen! Klike sou « Settings ».",fbSet:"Desann epi klike sou « About » anba lis la.",fbAbout:"Gade liy « Edition » — klike sou li pou konfime.",fbConf:"Pafè! « Windows 11 Home » — sa se sistèm operasyon w lan.",wrong:"Rete sou « System » — se la About ye.",notsure:"Si ekran w pa sanble sa, petèt se yon lòt sistèm. Kanpe epi mande èd.",done:"Ekselan! Ou konfime se Windows."},
+ fr:{lead:"Mission : confirmer que cet ordinateur utilise Windows. Ouvrez Démarrer → Paramètres → Système → À propos.",objs:["Ouvrir Démarrer","Ouvrir Paramètres","Aller à À propos","Confirmer Windows"],
+  welcome:"Cliquez le bouton Démarrer (logo bleu) en bas au centre.",fbStart:"Bien ! Cliquez « Settings ».",fbSet:"Descendez et cliquez « About ».",fbAbout:"Regardez « Edition » — cliquez pour confirmer.",fbConf:"Parfait ! « Windows 11 Home » — voilà votre système.",wrong:"Restez sur « System » — c’est là qu’est About.",notsure:"Si votre écran diffère, c’est peut-être un autre système. Arrêtez-vous et demandez.",done:"Excellent ! Windows confirmé."},
+ en:{lead:"Mission: confirm this computer runs Windows. Open Start → Settings → System → About.",objs:["Open Start","Open Settings","Go to About","Confirm Windows"],
+  welcome:"Click the Start button (blue logo) at the bottom center.",fbStart:"Good! Click “Settings.”",fbSet:"Scroll and click “About.”",fbAbout:"Look at “Edition” — click it to confirm.",fbConf:"Perfect! “Windows 11 Home” — that’s your operating system.",wrong:"Stay on “System” — that’s where About is.",notsure:"If your screen differs, it may be another system. Pause and ask for help.",done:"Excellent! Windows confirmed."}};
+const C8={ /* 1.8 first mission */
+ ht:{lead:"Premye misyon w! 1) Reveye ekran an. 2) Klike sou 3 endikatè (ekran, entènèt, kouran). 3) Louvri kou a. 4) Retounen.",objs:["Reveye òdinatè a","Idantifye 3 endikatè","Louvri kou a","Retounen an sekirite"],
+  welcome:"Ann kòmanse! Klike sou ekran an pou reveye òdinatè a.",wake:"Byen! Òdinatè a limen. Kounye a klike sou 3 pwen ble yo (ekran, entènèt, kouran).",
+  spots:["Ekran an — se kote ou wè bagay yo.","Endikatè entènèt — li montre si w konekte.","Bouton kouran — pou limen/etenn."],allspots:"Bèl! Ou jwenn tout endikatè yo. Kounye a louvri « Kou a » sou biwo a.",
+  openCourse:"Ekselan! Kou a louvri. Pou fini: fèmen l pou retounen an sekirite.",done:"Misyon konplete! Ou reveye òdinatè a, jwenn endikatè yo, louvri kou a, epi retounen. Ou pare!"},
+ fr:{lead:"Votre première mission ! 1) Réveillez l’écran. 2) Cliquez 3 indicateurs. 3) Ouvrez le cours. 4) Revenez.",objs:["Réveiller l’ordinateur","Identifier 3 indicateurs","Ouvrir le cours","Revenir en sécurité"],
+  welcome:"Commençons ! Cliquez sur l’écran pour réveiller l’ordinateur.",wake:"Bien ! L’ordinateur est allumé. Cliquez les 3 points bleus (écran, internet, alimentation).",
+  spots:["L’écran — là où vous voyez les choses.","Indicateur internet — montre si vous êtes connecté.","Bouton d’alimentation — allumer/éteindre."],allspots:"Bien ! Vous avez trouvé les indicateurs. Ouvrez « Le cours » sur le bureau.",
+  openCourse:"Excellent ! Le cours est ouvert. Pour finir : fermez-le pour revenir en sécurité.",done:"Mission accomplie ! Vous avez tout fait. Vous êtes prêt !"},
+ en:{lead:"Your first mission! 1) Wake the screen. 2) Click 3 indicators. 3) Open the course. 4) Return.",objs:["Wake the computer","Identify 3 indicators","Open the course","Return safely"],
+  welcome:"Let’s begin! Click the screen to wake the computer.",wake:"Good! The computer is on. Click the 3 blue dots (screen, internet, power).",
+  spots:["The screen — where you see things.","Internet indicator — shows if you’re connected.","Power button — to turn on/off."],allspots:"Nice! You found the indicators. Now open “The course” on the desktop.",
+  openCourse:"Excellent! The course is open. To finish: close it to return safely.",done:"Mission complete! You woke it, found the indicators, opened the course, and returned. You’re ready!"}};
+
+/* ============ shared SVG ============ */
+const winLogo='<svg width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="3" width="8.4" height="8.4" rx="1" fill="#0f8bea"/><rect x="12.6" y="3" width="8.4" height="8.4" rx="1" fill="#0f8bea"/><rect x="3" y="12.6" width="8.4" height="8.4" rx="1" fill="#0f8bea"/><rect x="12.6" y="12.6" width="8.4" height="8.4" rx="1" fill="#0f8bea"/></svg>';
+function bloom(){return '<div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:min(104%,720px);height:min(104%,720px);pointer-events:none"><div style="position:absolute;inset:0;background:radial-gradient(closest-side,rgba(255,255,255,.7),transparent 72%)"></div><svg viewBox="0 0 400 400" width="100%" height="100%" style="filter:blur(.6px)"><defs><linearGradient id="pf" x1="0" y1="1" x2="0.6" y2="0"><stop offset="0" stop-color="#2f6fd6"/><stop offset="0.5" stop-color="#5b98ea"/><stop offset="1" stop-color="#cfe8ff"/></linearGradient><linearGradient id="pf2" x1="0" y1="1" x2="0.6" y2="0"><stop offset="0" stop-color="#1f4fb5"/><stop offset="0.55" stop-color="#4b86e2"/><stop offset="1" stop-color="#a9d2ff"/></linearGradient><linearGradient id="pf3" x1="0" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#7db4f2"/><stop offset="1" stop-color="#eef7ff"/></linearGradient></defs><g fill="url(#pf2)" opacity=".9">'+pet(5,'150 66 200 30 250 66 250 150')+'</g><g fill="url(#pf)" opacity=".95" transform="rotate(36 200 200)">'+pet(5,'160 96 200 66 242 96 240 160')+'</g><g fill="url(#pf3)" opacity=".95" transform="rotate(18 200 200)">'+pet(5,'176 132 200 110 224 132 224 176')+'</g><circle cx="200" cy="200" r="28" fill="#eff8ff"/><circle cx="200" cy="200" r="14" fill="#cfe6ff"/></svg></div>';}
+function pet(n,c){const p=c.split(' ');let s="";for(let i=0;i<n;i++)s+='<path d="M200 200 C'+p[0]+' '+p[1]+' '+p[2]+' '+p[3]+' C'+p[4]+' '+p[5]+' '+p[6]+' '+p[7]+' 200 200 Z" transform="rotate('+(i*72)+' 200 200)"/>';return s;}
+/* ===== instructional illustrations (recognizable, labeled) ===== */
+function _keys(x,y,w,cnt,gap,h){let s="";const kw=(w-(cnt-1)*gap)/cnt;for(let i=0;i<cnt;i++)s+='<rect x="'+(x+i*(kw+gap)).toFixed(1)+'" y="'+y+'" width="'+kw.toFixed(1)+'" height="'+h+'" rx="1.5" fill="#eef2f7" stroke="#aab4c2" stroke-width="1"/>';return s;}
+function _pins(x,y,len,n,dir){let s="";const step=len/n;for(let i=0;i<n;i++){const px=dir==='h'?(x+i*step):x,py=dir==='h'?y:(y+i*step);s+='<rect x="'+px.toFixed(1)+'" y="'+py.toFixed(1)+'" width="'+(dir==='h'?(step-1.5):8).toFixed(1)+'" height="'+(dir==='h'?8:(step-1.5)).toFixed(1)+'" rx="1" fill="#e6c15a"/>';}return s;}
+function _dots(x,y,cols,rows,gx,gy){let s="";for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)s+='<rect x="'+(x+c*gx)+'" y="'+(y+r*gy)+'" width="10" height="10" rx="3" fill="#cfe0ff"/>';return s;}
+const PART={
+ keyboard:'<svg viewBox="0 0 150 96" width="150" height="96"><rect x="6" y="14" width="138" height="74" rx="8" fill="#c3ccd8" stroke="#8b98a8" stroke-width="2"/>'+_keys(16,22,118,12,3,11)+_keys(16,37,118,12,3,11)+_keys(20,52,110,11,3,11)+'<rect x="46" y="68" width="58" height="12" rx="2.5" fill="#eef2f7" stroke="#aab4c2" stroke-width="1"/>'+_keys(16,68,26,2,3,12)+_keys(108,68,26,2,3,12)+'</svg>',
+ monitor:'<svg viewBox="0 0 150 116" width="150" height="116"><rect x="16" y="8" width="118" height="78" rx="6" fill="#20262f" stroke="#0e1218" stroke-width="2"/><rect x="23" y="15" width="104" height="64" rx="2" fill="#2f6fd6"/><rect x="23" y="63" width="104" height="16" fill="#1c4fa0"/><rect x="32" y="67" width="11" height="8" rx="1.5" fill="#dbe8ff"/><rect x="47" y="67" width="9" height="8" rx="1.5" fill="#dbe8ff"/><rect x="66" y="90" width="18" height="12" fill="#20262f"/><rect x="50" y="102" width="50" height="7" rx="3.5" fill="#20262f"/></svg>',
+ cpu:'<svg viewBox="0 0 120 120" width="120" height="120">'+_pins(30,12,60,12,'h')+_pins(30,100,60,12,'h')+_pins(12,30,60,12,'v')+_pins(100,30,60,12,'v')+'<rect x="28" y="28" width="64" height="64" rx="6" fill="#232d3a" stroke="#0e141d" stroke-width="2"/><rect x="37" y="37" width="46" height="46" rx="4" fill="#4a5768"/><text x="60" y="65" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#e7edf6" text-anchor="middle">CPU</text></svg>',
+ ssd:'<svg viewBox="0 0 150 72" width="150" height="72"><rect x="14" y="20" width="122" height="32" rx="3" fill="#1f6b3a" stroke="#124a27" stroke-width="2"/><rect x="24" y="26" width="34" height="20" rx="2" fill="#12161c"/><rect x="64" y="26" width="34" height="20" rx="2" fill="#12161c"/><rect x="104" y="24" width="24" height="24" rx="2" fill="#12161c"/><rect x="6" y="24" width="10" height="24" fill="#e6c15a"/><text x="75" y="66" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#a7e3bf" text-anchor="middle">SSD</text></svg>'};
+const DEV={
+ laptop:'<svg viewBox="0 0 160 116" width="160" height="116"><rect x="30" y="8" width="100" height="68" rx="5" fill="#20262f" stroke="#0e1218" stroke-width="2"/><rect x="36" y="14" width="88" height="56" rx="2" fill="#2f6fd6"/><rect x="36" y="56" width="88" height="14" fill="#1c4fa0"/><path d="M14 84 h132 l10 18 H4 Z" fill="#c3ccd8" stroke="#8b98a8" stroke-width="2"/>'+_keys(42,88,76,10,2.5,4)+'<rect x="66" y="95" width="28" height="5" rx="2.5" fill="#aab4c2"/></svg>',
+ desktop:'<svg viewBox="0 0 172 120" width="172" height="120"><rect x="8" y="8" width="104" height="70" rx="5" fill="#20262f" stroke="#0e1218" stroke-width="2"/><rect x="14" y="14" width="92" height="58" rx="2" fill="#2f6fd6"/><rect x="52" y="78" width="16" height="10" fill="#20262f"/><rect x="38" y="88" width="44" height="6" rx="3" fill="#3a4757"/><rect x="122" y="14" width="42" height="82" rx="4" fill="#2a3340" stroke="#0e1218" stroke-width="2"/><circle cx="143" cy="26" r="3.5" fill="#2f8bff"/><rect x="132" y="38" width="22" height="3" rx="1.5" fill="#556673"/><rect x="132" y="45" width="22" height="3" rx="1.5" fill="#556673"/><rect x="132" y="74" width="22" height="12" rx="1" fill="#1b222c"/><rect x="14" y="100" width="92" height="16" rx="3" fill="#c3ccd8" stroke="#8b98a8" stroke-width="1.5"/>'+_keys(20,103,80,12,2,4)+'</svg>',
+ tablet:'<svg viewBox="0 0 96 126" width="96" height="126"><rect x="8" y="6" width="80" height="114" rx="11" fill="#20262f" stroke="#0e1218" stroke-width="2"/><rect x="15" y="16" width="66" height="94" rx="3" fill="#1c4fa0"/><circle cx="48" cy="11" r="1.6" fill="#556673"/>'+_dots(24,26,3,4,17,20)+'</svg>',
+ phone:'<svg viewBox="0 0 66 126" width="66" height="126"><rect x="10" y="6" width="46" height="114" rx="12" fill="#20262f" stroke="#0e1218" stroke-width="2"/><rect x="15" y="16" width="36" height="90" rx="3" fill="#1c4fa0"/><circle cx="33" cy="11" r="1.6" fill="#556673"/>'+_dots(19,24,3,4,11,20)+'</svg>'};
+const ICON={
+ monitor:'<svg viewBox="0 0 24 24" width="24" height="24"><rect x="3" y="4" width="18" height="12" rx="1.5" fill="#3a6fd8"/><rect x="4.5" y="5.5" width="15" height="9" rx=".8" fill="#7fa8e8"/><rect x="9" y="17" width="6" height="2" fill="#8b98a8"/><rect x="7" y="19" width="10" height="1.6" rx=".8" fill="#8b98a8"/></svg>',
+ keyboard:'<svg viewBox="0 0 24 24" width="24" height="24"><rect x="2" y="7" width="20" height="11" rx="2" fill="#c3ccd8"/><rect x="4" y="9" width="3" height="2.4" rx="1" fill="#5a6472"/><rect x="8.5" y="9" width="3" height="2.4" rx="1" fill="#5a6472"/><rect x="13" y="9" width="3" height="2.4" rx="1" fill="#5a6472"/><rect x="17.5" y="9" width="2.5" height="2.4" rx="1" fill="#5a6472"/><rect x="7" y="13.5" width="10" height="2.4" rx="1" fill="#5a6472"/></svg>',
+ cpu:'<svg viewBox="0 0 24 24" width="24" height="24"><rect x="6" y="6" width="12" height="12" rx="2" fill="#4a5768"/><rect x="9" y="9" width="6" height="6" fill="#2a3340"/><g fill="#e6c15a"><rect x="9" y="3" width="1.6" height="3"/><rect x="13.4" y="3" width="1.6" height="3"/><rect x="9" y="18" width="1.6" height="3"/><rect x="13.4" y="18" width="1.6" height="3"/><rect x="3" y="9" width="3" height="1.6"/><rect x="3" y="13.4" width="3" height="1.6"/><rect x="18" y="9" width="3" height="1.6"/><rect x="18" y="13.4" width="3" height="1.6"/></g></svg>',
+ browser:'<svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9" fill="#0e8f9a"/><circle cx="12" cy="12" r="5.5" fill="none" stroke="#fff" stroke-width="1.3"/><path d="M4.5 12h15M12 3.5c2.6 2.6 2.6 14 0 17M12 3.5c-2.6 2.6-2.6 14 0 17" stroke="#fff" stroke-width=".9" fill="none"/></svg>',
+ windows:'<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="5" fill="#3a3a3a"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#e6c15a" stroke-width="1.6"/><path d="M12 7.4v4.6l3.2 2" stroke="#e6c15a" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ photo:'<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="5" fill="#b14bff"/><path d="M4 18l5-6 3.5 4 3-3.5L20 18z" fill="#fff"/><circle cx="8" cy="8" r="2" fill="#fff"/></svg>'};
+function miniOS(k){
+ if(k==="win")return '<svg viewBox="0 0 160 100" width="100%" height="100%"><defs><linearGradient id="winbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe0ff"/><stop offset="1" stop-color="#6fa3e6"/></linearGradient></defs><rect width="160" height="100" fill="url(#winbg)"/><rect x="8" y="8" width="20" height="14" rx="2" fill="rgba(255,255,255,.5)"/><rect x="8" y="26" width="20" height="14" rx="2" fill="rgba(255,255,255,.5)"/><rect y="86" width="160" height="14" fill="rgba(246,248,251,.92)"/><g transform="translate(63,90)"><rect x="0" y="0" width="3" height="3" fill="#3a7bd5"/><rect x="3.8" y="0" width="3" height="3" fill="#3a7bd5"/><rect x="0" y="3.8" width="3" height="3" fill="#3a7bd5"/><rect x="3.8" y="3.8" width="3" height="3" fill="#3a7bd5"/></g><rect x="74" y="90.5" width="6" height="6" rx="1.3" fill="#0e8f9a"/><rect x="83" y="90.5" width="6" height="6" rx="1.3" fill="#7c5cff"/><rect x="92" y="90.5" width="6" height="6" rx="1.3" fill="#2f9e5e"/></svg>';
+ if(k==="mac")return '<svg viewBox="0 0 160 100" width="100%" height="100%"><defs><linearGradient id="macbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6f5bd6"/><stop offset="1" stop-color="#241f52"/></linearGradient></defs><rect width="160" height="100" fill="url(#macbg)"/><rect width="160" height="7" fill="rgba(246,248,251,.94)"/><circle cx="8" cy="3.5" r="2" fill="#333"/><rect x="118" y="1" width="10" height="5" rx="1" fill="#333"/><rect x="132" y="1" width="10" height="5" rx="1" fill="#333"/><rect x="50" y="82" width="60" height="13" rx="6.5" fill="rgba(255,255,255,.4)"/><circle cx="60" cy="88.5" r="3.6" fill="#4a90e2"/><circle cx="71" cy="88.5" r="3.6" fill="#2ecc71"/><circle cx="82" cy="88.5" r="3.6" fill="#f4b400"/><circle cx="93" cy="88.5" r="3.6" fill="#e05a4e"/><circle cx="104" cy="88.5" r="3.6" fill="#8b5cf6"/></svg>';
+ return '<svg viewBox="0 0 160 100" width="100%" height="100%"><defs><linearGradient id="chbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef3f8"/><stop offset="1" stop-color="#cfdcee"/></linearGradient></defs><rect width="160" height="100" fill="url(#chbg)"/><rect y="88" width="160" height="12" fill="#fff"/><circle cx="13" cy="94" r="6.5" fill="#5f6368"/><circle cx="10.5" cy="91.8" r="1.3" fill="#fff"/><circle cx="13" cy="91.8" r="1.3" fill="#fff"/><circle cx="15.5" cy="91.8" r="1.3" fill="#fff"/><circle cx="10.5" cy="96.2" r="1.3" fill="#fff"/><circle cx="13" cy="96.2" r="1.3" fill="#fff"/><circle cx="15.5" cy="96.2" r="1.3" fill="#fff"/><rect x="28" y="91" width="6" height="6" rx="1.3" fill="#fbbc05"/><rect x="38" y="91" width="6" height="6" rx="1.3" fill="#4285f4"/><rect x="48" y="91" width="6" height="6" rx="1.3" fill="#34a853"/></svg>';}
+
+/* ============ engine ============ */
+const NL=8;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){const n=i+1; if(n===2)return C2[S.lang].objs; if(n===8)return C8[S.lang].objs; return (C[n]&&C[n][S.lang].objs)||[];}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===0;
+ let les="";if(active){les='<div class="les">'+M1[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">1.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ m.innerHTML='<div class="mh"><span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span></div>'+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();}const b=$("nextBtn");if(b){b.disabled=false;}}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 1 · 1."+(i+1);$("topTitle").textContent=M1[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8][i];fn();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 1 · 1.'+(i+1)+'</span><div class="labh2">'+M1[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.tried=st.tried||{};
+ const stage=$("stage");stage.className="stage desk";
+ stage.innerHTML=bloom()+'<div style="position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:10px">'+
+   d.icons.map((n,k)=>'<button class="desk-ico" style="position:relative" data-k="'+k+'"><div style="width:40px;height:40px;border-radius:9px;background:'+['#f6c445','#b14bff','#3aa0ef'][k]+';display:grid;place-items:center;color:#fff;font-size:20px">'+['📁','🎨','🔢'][k]+'</div><span>'+n+'</span></button>').join("")+'</div>'+
+   '<div style="position:absolute;bottom:14px;left:16px;right:16px;color:#0b2a55;background:rgba(255,255,255,.72);border-radius:12px;padding:12px 14px;font-size:14px">'+d.lead+'</div>';
+ stage.querySelectorAll(".desk-ico").forEach(b=>b.addEventListener("click",()=>{const k=+b.dataset.k;
+   if(!st.tried[k]){st.tried[k]=true;ai(d.fb[k],"good");}
+   const c=Object.keys(st.tried).length;if(c>=3){setObj(0);setObj(1);ai(d.done,"good");}}));
+ ai(d.welcome,"neutral");injectNext();}
+
+function L2(){const d=C2[S.lang];const st=S.st[1];st.win=st.win||{};
+ const stage=$("stage");stage.className="stage desk";
+ stage.innerHTML=bloom()+
+  '<button class="desk-ico" data-icon="pc" style="top:14px;left:14px"><div style="width:38px;height:38px;border-radius:8px;background:#2f6fd6;display:grid;place-items:center;color:#fff;font-size:18px">🖥️</div><span>This PC</span></button>'+
+  '<div class="taskbar"><button class="tbi" id="startBtn">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div><div class="tbi" id="tbSet">⚙️</div><div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
+  '<div class="startmenu" id="sm"><div class="ssearch">🔎 &nbsp;Type here to search</div><div class="sl">Pinned</div><div class="sgrid"><button class="sapp" id="ssSet"><svg viewBox="0 0 24 24"><path fill="#3a3a3a" d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4l1.9-1.5-1.9-3.3-2.3.6a7 7 0 00-1.4-.8l-.4-2.4h-3.8l-.4 2.4c-.5.2-1 .5-1.4.8l-2.3-.6L5.2 11 7 12.5v1.5L5.2 15.5l1.9 3.3 2.3-.6c.4.3.9.6 1.4.8l.4 2.4h3.8l.4-2.4c.5-.2 1-.5 1.4-.8l2.3.6 1.9-3.3L21 16z"/></svg>Settings</button><button class="sapp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#1e88e5"/></svg>Edge</button><button class="sapp"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="#2f6fd6"/></svg>Mail</button><button class="sapp"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="#3aa0ef"/></svg>Photos</button></div></div>'+
+  '<div class="win" id="win"><div class="wtb">⚙️ Settings<div class="wc"><span>—</span><span>▢</span><span class="cl" id="winClose">✕</span></div></div><div class="wbody"><div class="wnav"><div class="acct"><div class="ava"></div><div><div class="nm">Student</div><div class="em">student@academy.local</div></div></div>'+
+   ['System','Bluetooth & devices','Network & internet','Personalization','Accounts'].map((n,k)=>'<div class="wni'+(k===0?' sel':'')+'" data-nav="'+k+'"><span class="i">◻</span>'+n+'</div>').join("")+
+   '</div><div class="wcontent" id="wcontent"></div></div></div>'+
+  '<button class="notsure" id="notSure">?</button>';
+ const win=$("win");
+ function paneSys(){$("wcontent").innerHTML='<div class="wh1">System</div>'+
+   [['Display'],['Sound'],['Notifications'],['Power'],['Storage'],['About']].map(([n])=>'<div class="srow'+(n==='About'?' target':'')+'" data-sys="'+n+'"><div class="si">⚙️</div><div><div class="sn">'+n+'</div></div><span class="ch">›</span></div>').join("");
+   $("wcontent").querySelectorAll("[data-sys]").forEach(el=>el.addEventListener("click",()=>{if(el.dataset.sys==="About")paneAbout();else ai(d.wrong,"warn");}));}
+ function paneAbout(){setObj(2);ai(d.fbAbout,"good");
+   $("wcontent").innerHTML='<div class="wh1">About</div><div class="ahd">🖥️ Device specifications</div><div class="aboutcard"><div class="arow"><span class="k">Device name</span><span class="v">DESKTOP-ACADEMY</span></div><div class="arow"><span class="k">Processor</span><span class="v">Intel Core i5-1235U</span></div><div class="arow"><span class="k">Installed RAM</span><span class="v">8.00 GB</span></div></div><div class="ahd">⊞ Windows specifications</div><div class="aboutcard"><div class="arow hl" id="edrow"><span class="k">Edition</span><span class="v">Windows 11 Home</span></div><div class="arow"><span class="k">Version</span><span class="v">23H2</span></div></div>';
+   $("edrow").addEventListener("click",()=>{if((S.st[1].obj||[])[3])return;$("edrow").classList.add("on");setObj(3);ai(d.fbConf,"good");setTimeout(()=>ai(d.done,"good"),1500);});}
+ function openSet(){$("sm").style.display="none";win.style.display="block";paneSys();if(!(S.st[1].obj||[])[1]){setObj(1);ai(d.fbSet,"good");}}
+ $("startBtn").addEventListener("click",e=>{e.stopPropagation();const m=$("sm");const o=m.style.display==="block";m.style.display=o?"none":"block";if(!o&&!(S.st[1].obj||[])[0]){setObj(0);ai(d.fbStart,"good");}});
+ $("ssSet").addEventListener("click",openSet);$("tbSet").addEventListener("click",openSet);
+ $("winClose").addEventListener("click",()=>win.style.display="none");
+ $("notSure").addEventListener("click",()=>ai(d.notsure,"warn"));
+ win.querySelectorAll("[data-nav]").forEach(n=>{if(n.dataset.nav!=="0")n.addEventListener("click",()=>ai(d.wrong,"warn"));});
+ document.addEventListener("click",e=>{if(!e.target.closest("#sm")&&!e.target.closest("#startBtn")){const m=$("sm");if(m)m.style.display="none";}});
+ ai(d.welcome,"neutral");injectNext();}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.read=st.read||{};
+ const stage=$("stage");stage.className="stage lab";
+ const na=[PART.keyboard,PART.cpu,PART.monitor,PART.ssd];
+ stage.innerHTML=labHead(2,d.lead)+'<div style="margin-top:16px"><button class="btn p" id="pressBtn">'+d.press+'</button></div>'+
+  '<div class="flow" id="flow">'+d.nodes.map((n,k)=>'<div class="node" data-n="'+k+'"><div class="ni">'+na[k]+'</div><div class="nt">'+n[1]+'</div><div class="nd">'+n[2]+'</div></div>'+(k<3?'<span class="arrow">→</span>':'')).join("")+'</div>'+nextBar();
+ wireNext();
+ $("pressBtn").addEventListener("click",()=>{if(st.ran)return;st.ran=true;const nodes=[...stage.querySelectorAll(".node")];
+   nodes.forEach((nd,k)=>setTimeout(()=>{nd.classList.add("lit");if(k===3){setObj(0);ai(d.runFb,"good");}},k*450));});
+ stage.querySelectorAll(".node").forEach(nd=>nd.addEventListener("click",()=>{const k=+nd.dataset.n;nd.classList.add("read");
+   if(!st.read[k]){st.read[k]=true;ai(d.nodeFb[k],"neutral");}
+   if(Object.keys(st.read).length>=4){setObj(1);setTimeout(()=>ai(d.done,"good"),400);}}));
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.ok=st.ok||{};st.sel=null;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="partgrid">'+d.parts.map((pt,k)=>'<div class="partcard'+(st.ok[k]?' done':'')+'" data-p="'+k+'"><div class="partart">'+PART[pt.art]+'</div><div class="partn">'+pt.n+'</div></div>').join("")+'</div>'+
+   '<div class="cats" id="cats">'+d.cats.map((c,k)=>'<button class="cat" data-c="'+k+'">'+c+'</button>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard").forEach(card=>card.addEventListener("click",()=>{if(card.classList.contains("done"))return;
+   stage.querySelectorAll(".partcard").forEach(x=>x.classList.remove("sel"));card.classList.add("sel");st.sel=+card.dataset.p;ai(d.parts[st.sel].n+" ?","neutral");}));
+ stage.querySelectorAll(".cat").forEach(c=>c.addEventListener("click",()=>{if(st.sel===null){ai(d.welcome,"warn");return;}const p=d.parts[st.sel];
+   if(+c.dataset.c===p.ans){st.ok[st.sel]=true;const card=stage.querySelector('.partcard[data-p="'+st.sel+'"]');card.classList.remove("sel");card.classList.add("done");ai(d.ok[st.sel],"good");st.sel=null;
+     if(Object.keys(st.ok).length>=4){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}
+   else ai(d.bad,"warn");}));
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.sel=null;st.placed=st.placed||{};
+ const stage=$("stage");stage.className="stage lab";
+ const remaining=d.items.map((it,k)=>({it,k})).filter(o=>!st.placed[o.k]);
+ const ia=[ICON.monitor,ICON.keyboard,ICON.cpu,ICON.browser,ICON.windows,ICON.photo];
+ stage.innerHTML=labHead(4,d.lead)+'<div class="items" id="items">'+remaining.map(o=>'<div class="chip" data-i="'+o.k+'"><span class="cico">'+ia[o.k]+'</span>'+o.it.n+'</div>').join("")+'</div>'+
+   '<div class="bins"><button class="bin hw" data-bin="hw"><h4>🔧 '+d.hw+'</h4><p>'+d.hwd+'</p><div class="drop" id="dhw"></div></button><button class="bin sw" data-bin="sw"><h4>💿 '+d.sw+'</h4><p>'+d.swd+'</p><div class="drop" id="dsw"></div></button></div>'+nextBar();
+ wireNext();
+ Object.keys(st.placed).forEach(k=>{const it=d.items[k];$(it.a==="hw"?"dhw":"dsw").insertAdjacentHTML("beforeend",'<span class="placed">'+it.n+'</span>');});
+ stage.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{stage.querySelectorAll(".chip").forEach(x=>x.style.outline="");c.style.outline="2px solid var(--brand)";st.sel=+c.dataset.i;}));
+ stage.querySelectorAll(".bin").forEach(b=>b.addEventListener("click",()=>{if(st.sel===null)return;const it=d.items[st.sel];
+   if(it.a===b.dataset.bin){st.placed[st.sel]=true;$(it.a==="hw"?"dhw":"dsw").insertAdjacentHTML("beforeend",'<span class="placed">'+it.n+'</span>');
+     const chip=stage.querySelector('.chip[data-i="'+st.sel+'"]');if(chip)chip.classList.add("gone");ai(it.trap?d.trap:d.ok,it.trap?"good":"good");st.sel=null;
+     if(Object.keys(st.placed).length>=d.items.length){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}
+   else ai(d.bad,"warn");}));
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.ok=st.ok||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="devgrid">'+d.devs.map((dv,k)=>'<div class="devcard"><div class="pic">'+DEV[dv.t]+'</div><div class="devopts" data-d="'+k+'">'+shuffleOpts(d.opts,dv.ans).map(([label,idx])=>'<button data-o="'+idx+'">'+label+'</button>').join("")+'</div></div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".devopts").forEach(box=>{const k=+box.dataset.d;box.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
+   if(box.classList.contains("locked"))return;if(+btn.dataset.o===d.devs[k].ans){btn.classList.add("good");box.classList.add("locked");st.ok[k]=true;ai(d.ok,"good");
+     if(Object.keys(st.ok).length>=d.devs.length){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}
+   else{btn.classList.add("bad");ai(d.bad,"warn");}}));});
+ ai(d.welcome,"neutral");}
+function shuffleOpts(opts,ans){return opts.map((o,i)=>[o,i]);} // keep stable (deterministic)
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.seen=st.seen||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div class="osgrid">'+d.os.map(o=>'<div class="osmini" data-k="'+o.k+'">'+miniOS(o.k)+'<div class="cap" style="display:none">'+o.cap+'</div></div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".osmini").forEach(m=>m.addEventListener("click",()=>{const k=m.dataset.k;
+   if(k==="win"){if(!(S.st[6].obj||[])[0]){m.classList.add("good");m.querySelector(".cap").style.display="block";setObj(0);ai(d.winOk,"good");}}
+   else{if(!(S.st[6].obj||[])[0]){ai(d.winBad,"warn");return;}m.classList.add("good");m.querySelector(".cap").style.display="block";
+     if(!st.seen[k]){st.seen[k]=true;ai(k==="mac"?d.macFb:d.crosFb,"neutral");}
+     if(Object.keys(st.seen).length>=2){setObj(1);setTimeout(()=>ai(d.done,"good"),400);}}}));
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C8[S.lang];const st=S.st[7];st.spots=st.spots||{};
+ const stage=$("stage");stage.className="stage desk";
+ stage.innerHTML=bloom()+
+  '<button class="desk-ico" id="courseIco" style="top:14px;left:14px"><div style="width:40px;height:40px;border-radius:9px;background:var(--brand);display:grid;place-items:center;color:#fff;font-size:20px">🎓</div><span>Kou a</span></button>'+
+  '<div class="hsdesk" data-s="0" style="left:50%;top:40%;transform:translateX(-50%)">1</div>'+
+  '<div class="taskbar"><button class="tbi">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div>'+
+    '<div class="hsdesk" data-s="1" style="position:relative">2</div>'+
+    '<div class="hsdesk" data-s="2" style="position:relative">3</div>'+
+    '<div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
+  '<div class="win" id="courseWin" style="display:none"><div class="wtb">🎓 Kou a — Academy<div class="wc"><span>—</span><span>▢</span><span class="cl" id="cwClose">✕</span></div></div><div style="padding:26px;text-align:center;color:#1b1b1b"><div style="font-size:40px">🎓</div><div style="font-size:18px;font-weight:600;margin-top:8px">Academy</div><div style="font-size:14px;color:#5c5c5c;margin-top:6px">'+d.openCourse+'</div></div></div>'+
+  '<div class="lockscr" id="lock"><div style="text-align:center"><div class="cl">4:12</div><div class="hint">'+d.welcome+'</div></div></div>';
+ $("lock").addEventListener("click",()=>{$("lock").style.display="none";setObj(0);ai(d.wake,"good");});
+ stage.querySelectorAll(".hsdesk").forEach(h=>h.addEventListener("click",()=>{if(!(S.st[7].obj||[])[0])return;const s=+h.dataset.s;
+   if(!st.spots[s]){st.spots[s]=true;h.classList.add("done");h.textContent="✓";ai(d.spots[s],"neutral");}
+   if(Object.keys(st.spots).length>=3){setObj(1);ai(d.allspots,"good");}}));
+ $("courseIco").addEventListener("click",()=>{if(!(S.st[7].obj||[])[1])return;$("courseWin").style.display="block";if(!(S.st[7].obj||[])[2]){setObj(2);ai(d.openCourse,"good");}});
+ $("cwClose").addEventListener("click",()=>{$("courseWin").style.display="none";if((S.st[7].obj||[])[2]&&!(S.st[7].obj||[])[3]){setObj(3);ai(d.done,"good");}});
+}
+/* inject a floating Next button on desktop lessons */
+function injectNext(){const done=S.done[S.cur];const b=document.createElement("button");b.className="btn p";b.id="nextBtn";b.textContent=UI[S.lang].next;b.disabled=!done;
+ b.style.cssText="position:absolute;bottom:12px;right:14px;z-index:6";b.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));$("stage").appendChild(b);}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};renderSidebar();syncProg();load(S.cur);});
+/* init */
+applyLang();
+</script>
+</body>
+</html>
