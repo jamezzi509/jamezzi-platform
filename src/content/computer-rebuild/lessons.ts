@@ -1628,12 +1628,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Browser ak Website: ouvri Chrome oswa Edge; non Website la parèt nan address bar la.",
             "Files: ouvri File Explorer; chèche Documents oswa Downloads.",
           ],
-          mac: [
-            "Operating System: klike Apple menu → About This Mac; chèche macOS.",
-            "Apps: ouvri Applications oswa Launchpad.",
-            "Browser ak Website: ouvri Safari oswa Chrome; non Website la parèt nan address bar la.",
-            "Files: ouvri Finder; chèche Documents oswa Downloads.",
-          ],
           recoveryNote: "Si non meni yo yon ti jan diferan, chèche mo English ki an bold yo; vèsyon sistèm nan ka chanje pozisyon yon bouton.",
         },
       },
@@ -2243,11 +2237,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Ajoute 'French' (oswa lang ki gen aksan ou bezwen)",
             "Klike ikòn lang nan taskbar la pou chanje ant klavye yo",
           ],
-          mac: [
-            "Ale nan System Settings > Keyboard > Input Sources",
-            "Klike '+' epi ajoute 'French'",
-            "Klike ikòn drapo/lang nan menu bar a pou chanje ant klavye yo",
-          ],
           recoveryNote:
             "Si aksan yo pa parèt kòrèkteman apre ou chanje klavye a, verifye ou chwazi bon klavye a nan meni chanjman rapid la.",
         },
@@ -2325,7 +2314,7 @@ export const computerRebuildLessons: CourseLesson[] = [
     titleHt: "Biwo Windows la",
     titleEn: "The Windows Desktop",
     estimatedMinutes: 10,
-    mode: "platform_variant",
+    mode: "universal",
     objectives: [
       "Rekonèt Desktop, taskbar, ak Start menu sou Windows",
       "Rekonèt system tray a ak notifikasyon yo",
@@ -2437,130 +2426,6 @@ export const computerRebuildLessons: CourseLesson[] = [
     ],
   },
   {
-    id: "m3-l-mac",
-    slug: "biwo-mac-la",
-    moduleId: "m3",
-    order: 6,
-    titleHt: "Biwo Mac la",
-    titleEn: "The Mac Desktop",
-    estimatedMinutes: 10,
-    mode: "platform_variant",
-    objectives: [
-      "Rekonèt Desktop, menu bar, Apple menu, Dock, ak Control Center sou Mac",
-      "Louvri yon aplikasyon soti nan Dock la",
-    ],
-    reviewStatus: "approved",
-    blocks: [
-      {
-        id: "b1",
-        type: "goal",
-        outcome:
-          "Apre leson sa a, ou ka jwenn Desktop, menu bar, Apple menu, Dock, ak Control Center sou yon òdinatè Mac, epi louvri yon aplikasyon.",
-      },
-      {
-        id: "b2",
-        type: "explanation",
-        text: "**Desktop** la se premye ekran ou wè lè òdinatè a fin limen. **Menu bar** a se ti ba fen ki rete toujou nan tèt ekran an, kèlkeswa sa ki louvri — nan kwen agoch li, **Apple menu** a (ti ikòn pòm nan) bay aksè a paramèt sistèm ak opsyon etenn/rebooté. **Dock** la se ranje ikòn ki rete anba (oswa sou kote) ekran an, kote ou jwenn aplikasyon ou itilize souvan. Nan kwen anwo dwat, **Control Center** a bay aksè rapid a Wi-Fi, volim, ak notifikasyon.",
-      },
-      {
-        id: "b3",
-        type: "vocabulary",
-        words: [
-          {
-            term: "Menu Bar",
-            definition: "Ba fen ki rete nan tèt ekran Mac la, ak non aplikasyon k ap louvri kounye a.",
-            example: "Menu bar a toujou montre 'File, Edit, View' pou aplikasyon ki aktif la.",
-          },
-          {
-            term: "Apple Menu",
-            definition: "Ti ikòn pòm nan kwen agoch anwo ki bay aksè a paramèt sistèm ak opsyon etenn.",
-            example: "Klike Apple menu a pou jwenn 'Restart' oswa 'Shut Down'.",
-          },
-          {
-            term: "Dock",
-            definition: "Ranje ikòn ki rete anba ekran an pou louvri aplikasyon rapid.",
-            example: "Klike yon fwa sou ikòn nan Dock la pou louvri aplikasyon an.",
-          },
-          {
-            term: "Control Center",
-            definition: "Meni rapid nan kwen anwo dwat pou Wi-Fi, volim, ak notifikasyon.",
-            example: "Klike Control Center a pou ajiste volim san louvri Settings.",
-          },
-        ],
-      },
-      {
-        id: "b4",
-        type: "practice",
-        instructions:
-          "Gade Dock la nan pati anba ekran an, epi klike yon fwa sou yon ikòn ou rekonèt (tankou Calculator oswa Notes) pou louvri l.",
-      },
-      {
-        id: "b5",
-        type: "mistake",
-        mistake: {
-          wrong: "Panse fèmen fennèt yon aplikasyon (bouton wouj la) etenn aplikasyon an nèt.",
-          right: "Konprann sou Mac, fèmen fennèt la souvan kite aplikasyon an louvri toujou an background.",
-          why: "Sou Mac, X wouj la fèmen fennèt la, men aplikasyon an ka rete aktif — gade Dock la pou konfime.",
-        },
-      },
-      {
-        id: "b6",
-        type: "ai_help",
-        aiHelp: {
-          prompt:
-            "Hi! I'm on a Mac and closed a window with the red X, but I think the app is still open. How can I tell, and how do I fully quit an app?",
-          reminder:
-            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
-        },
-      },
-      {
-        id: "b7",
-        type: "mission",
-        mission: {
-          scenario: "Ou fèk resevwa yon nouvo Mac epi ou vle jwenn yon aplikasyon rapid.",
-          objective: "Louvri yon aplikasyon soti nan Dock la epi remake non li nan menu bar a.",
-          requiredSteps: [
-            "Gade Dock la nan pati anba ekran an",
-            "Klike yon fwa sou yon ikòn aplikasyon",
-            "Gade non aplikasyon an parèt nan menu bar a",
-          ],
-          successCriteria: [
-            "Aplikasyon an louvri sou ekran an",
-            "Ou ka idantifye non aplikasyon aktif la nan menu bar a",
-          ],
-        },
-      },
-      {
-        id: "b8",
-        type: "knowledge_check",
-        questions: [
-          {
-            kind: "multiple_choice",
-            prompt: "Kisa ki rive lè ou klike bouton wouj la pou fèmen yon fennèt sou Mac?",
-            options: [
-              "Aplikasyon an etenn nèt otomatikman",
-              "Fennèt la fèmen, men aplikasyon an ka rete louvri an background",
-              "Òdinatè a etenn",
-              "Tout fichye ou yo sovgade otomatikman",
-            ],
-            correctIndex: 1,
-            explanation:
-              "Sou Mac, fèmen yon fennèt pa menm bagay ak kite yon aplikasyon — verifye Dock la pou konfime si l toujou aktif.",
-          },
-        ],
-      },
-      {
-        id: "b9",
-        type: "reflection",
-        prompts: [
-          { statement: "Mwen ka fè sa poukont mwen." },
-          { statement: "Mwen ka fè l si yon moun raple m." },
-          { statement: "Mwen bezwen plis pratik." },
-        ],
-      },
-    ],
-  },
-  {
     id: "m3-l7",
     slug: "louvri-chanje-feme-fennet",
     moduleId: "m3",
@@ -2610,10 +2475,6 @@ export const computerRebuildLessons: CourseLesson[] = [
           windows: [
             "Peze Alt+Tab pou chanje ant aplikasyon ki louvri",
             "Klike bouton '_' pou minimize, bouton kare pou maximize, X pou fèmen",
-          ],
-          mac: [
-            "Peze Cmd+Tab pou chanje ant aplikasyon ki louvri",
-            "Klike bouton jòn pou minimize, vèt pou maximize, wouj pou fèmen fennèt (aplikasyon ka rete aktif)",
           ],
           recoveryNote:
             "Si ou pa ka jwenn yon aplikasyon ou panse ou fèmen, li ka toujou aktif — chèche l nan taskbar/Dock la.",
@@ -2832,7 +2693,6 @@ export const computerRebuildLessons: CourseLesson[] = [
         type: "platform_steps",
         steps: {
           windows: ["Ctrl+C pou kopye", "Ctrl+X pou koupe", "Ctrl+V pou kole", "Ctrl+Z pou anile, Ctrl+Y pou refè"],
-          mac: ["Cmd+C pou kopye", "Cmd+X pou koupe", "Cmd+V pou kole", "Cmd+Z pou anile, Cmd+Shift+Z pou refè"],
         },
       },
       {
@@ -3016,7 +2876,6 @@ export const computerRebuildLessons: CourseLesson[] = [
         type: "platform_steps",
         steps: {
           windows: ["Klike ikòn rechèch la nan taskbar la (oswa peze tous Windows)", "Tape sa ou chèche"],
-          mac: ["Peze Cmd+Espas pou louvri Spotlight", "Tape sa ou chèche"],
         },
       },
       {
@@ -3206,10 +3065,6 @@ export const computerRebuildLessons: CourseLesson[] = [
           windows: [
             "Peze Windows+Shift+S pou chwazi yon zòn epi kaptire l",
             "Screenshot la kopye nan clipboard — kole l (Ctrl+V) nan yon dokiman si ou vle sovgade l",
-          ],
-          mac: [
-            "Peze Cmd+Shift+4 pou chwazi yon zòn epi kaptire l",
-            "Screenshot la sovgade otomatikman sou Desktop la",
           ],
         },
       },
@@ -3735,11 +3590,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Klike ikòn Wi-Fi la nan kwen anba dwat ekran an",
             "Chwazi non rezo a nan lis la",
             "Antre modpas la epi klike 'Connect'",
-          ],
-          mac: [
-            "Klike ikòn Wi-Fi la nan menu bar a, anwo dwat ekran an",
-            "Chwazi non rezo a nan lis la",
-            "Antre modpas la epi klike 'Join'",
           ],
           android: ["Ale nan Settings > Wi-Fi, chwazi rezo a, epi antre modpas la"],
           iphone: ["Ale nan Settings > Wi-Fi, chwazi rezo a, epi antre modpas la"],
@@ -4674,7 +4524,7 @@ export const computerRebuildLessons: CourseLesson[] = [
     titleHt: "File Explorer sou Windows",
     titleEn: "File Explorer on Windows",
     estimatedMinutes: 9,
-    mode: "platform_variant",
+    mode: "universal",
     objectives: [
       "Navige nan File Explorer sou Windows",
       "Itilize navigation pane, chemen adrès, ak rechèch",
@@ -4782,121 +4632,6 @@ export const computerRebuildLessons: CourseLesson[] = [
     ],
   },
   {
-    id: "m4-l4",
-    slug: "finder-sou-mac",
-    moduleId: "m4",
-    order: 4,
-    titleHt: "Finder sou Mac",
-    titleEn: "Finder on Mac",
-    estimatedMinutes: 9,
-    mode: "platform_variant",
-    objectives: [
-      "Navige nan Finder sou Mac",
-      "Itilize sidebar, chemen, view options, ak tag",
-    ],
-    reviewStatus: "approved",
-    blocks: [
-      {
-        id: "b1",
-        type: "goal",
-        outcome:
-          "Apre leson sa a, ou ka louvri Finder sou Mac epi navige ant dosye yo ak sidebar la, chanje jan fichye yo parèt, epi rekonèt tag koulè.",
-      },
-      {
-        id: "b2",
-        type: "explanation",
-        text: "**Finder** se aplikasyon ki montre w tout fichye ak dosye sou Mac ou — li louvri otomatikman souvan, oswa ou ka klike ikòn li nan Dock la. Sou kote goch la, **sidebar** la montre rakousi tankou Desktop, Documents, ak Downloads. Ou ka chanje jan fichye yo parèt (lis, ikòn, kolòn) nan **view options** yo, anwo fennèt la. Mac gen tou yon sistèm **tag koulè** ou ka mete sou fichye pou make yo (tankou 'Ijan' an wouj), epi yon bwat **rechèch** nan kwen anwo dwat la.",
-      },
-      {
-        id: "b3",
-        type: "vocabulary",
-        words: [
-          {
-            term: "Finder",
-            definition: "Aplikasyon Mac ki montre tout fichye ak dosye sou òdinatè a.",
-            example: "Klike ikòn figi ble a nan Dock la pou louvri Finder.",
-          },
-          {
-            term: "Sidebar",
-            definition: "Lis rakousi sou kote goch Finder pou ale dirèkteman nan yon kote komen.",
-            example: "Klike 'Downloads' nan sidebar la pou wè fichye ou fèk telechaje.",
-          },
-          {
-            term: "Tag",
-            definition: "Etikèt koulè ou ka mete sou yon fichye pou make l san chanje non li.",
-            example: "Mete tag wouj sou yon dosye pou raple w li ijan.",
-          },
-        ],
-      },
-      {
-        id: "b4",
-        type: "practice",
-        instructions:
-          "Louvri Finder (ikòn figi ble a nan Dock la). Klike 'Documents' nan sidebar la, epi eseye chanje view a soti nan lis pou ale nan ikòn (anwo fennèt la).",
-      },
-      {
-        id: "b5",
-        type: "mistake",
-        mistake: {
-          wrong: "Panse ou dwe sèvi ak Spotlight sèlman pou jwenn nenpòt fichye.",
-          right: "Itilize sidebar Finder a pou navige dirèkteman nan yon kote ou konnen deja.",
-          why: "Sidebar la pi rapid lè ou konnen ki dosye w ap chèche a — rechèch se pou lè ou pa sèten kote fichye a ye.",
-        },
-      },
-      {
-        id: "b6",
-        type: "ai_help",
-        aiHelp: {
-          prompt:
-            "Hi! I'm using Finder on a Mac and I want to add a color tag to a file to mark it as important. How do I do that?",
-          reminder:
-            "Pa pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI — e toujou verifye enstriksyon enpòtan anvan ou chanje yon paramèt.",
-        },
-      },
-      {
-        id: "b7",
-        type: "mission",
-        mission: {
-          scenario: "Ou bezwen jwenn yon fichye byen vit sou Mac ou.",
-          objective: "Navige nan Finder pou rive nan Documents, epi itilize rechèch pou jwenn yon fichye.",
-          requiredSteps: [
-            "Louvri Finder",
-            "Klike 'Documents' nan sidebar la",
-            "Tape yon mo nan bwat rechèch la pou jwenn yon fichye",
-          ],
-          successCriteria: ["Ou rive nan Documents san konfizyon", "Rechèch la montre rezilta ki gen rapò"],
-        },
-      },
-      {
-        id: "b8",
-        type: "knowledge_check",
-        questions: [
-          {
-            kind: "multiple_choice",
-            prompt: "Kisa yon tag koulè fè pou yon fichye nan Finder?",
-            options: [
-              "Li chanje non fichye a otomatikman",
-              "Li make fichye a san chanje non li, pou ede w rekonèt li",
-              "Li efase fichye a",
-              "Li konprese fichye a",
-            ],
-            correctIndex: 1,
-            explanation: "Yon tag koulè se yon etikèt vizyèl — li ede w rekonèt fichye a san chanje non li.",
-          },
-        ],
-      },
-      {
-        id: "b9",
-        type: "reflection",
-        prompts: [
-          { statement: "Mwen ka fè sa poukont mwen." },
-          { statement: "Mwen ka fè l si yon moun raple m." },
-          { statement: "Mwen bezwen plis pratik." },
-        ],
-      },
-    ],
-  },
-  {
     id: "m4-l5",
     slug: "kote-komen-tankou-desktop-documents-ak-downloads",
     moduleId: "m4",
@@ -4944,9 +4679,6 @@ export const computerRebuildLessons: CourseLesson[] = [
         steps: {
           windows: [
             "Nan File Explorer, klike Documents, Downloads, oswa Pictures nan navigation pane a",
-          ],
-          mac: [
-            "Nan Finder, klike Documents, Downloads, oswa Pictures nan sidebar la",
           ],
           recoveryNote:
             "Si ou pa wè youn nan dosye sa yo nan lis la, chèche l nan 'This PC' (Windows) oswa 'Go > Home' (Mac).",
@@ -5169,10 +4901,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Peze Ctrl+S pou Save, oswa Ctrl+Shift+S pou Save As nan pifò aplikasyon",
             "Pou ekspòte an PDF, chèche 'File > Export' oswa 'File > Print > Save as PDF'",
           ],
-          mac: [
-            "Peze Cmd+S pou Save, oswa Cmd+Shift+S pou Save As nan pifò aplikasyon",
-            "Pou ekspòte an PDF, chèche 'File > Export as PDF' oswa 'File > Print > Save as PDF'",
-          ],
           recoveryNote:
             "Si ou pa wè opsyon 'Export', chèche nan meni 'File' la — souvan li rele 'Save As' epi ou chwazi PDF kòm fòma.",
         },
@@ -5289,11 +5017,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Right-click nan yon espas vid epi chwazi 'New > Folder' pou kreye yon dosye",
             "Right-click sou yon fichye epi chwazi 'Rename', 'Copy', oswa 'Cut' (pou deplase, kole apre ak Ctrl+V)",
             "Rakousi: F2 pou rename, Ctrl+C pou kopye, Ctrl+X pou koupe, Ctrl+V pou kole",
-          ],
-          mac: [
-            "Right-click nan yon espas vid epi chwazi 'New Folder' pou kreye yon dosye",
-            "Klike yon fichye epi peze Return pou rename, oswa Cmd+C pou kopye, epi Cmd+V pou kole",
-            "Pou deplase, itilize Cmd+C pou kopye epi Cmd+Option+V pou 'Move Item Here'",
           ],
           recoveryNote:
             "Si ou pa sèten si ou kopye oswa deplase yon fichye, verifye si li toujou nan kote orijinal la — si li la toujou, se yon kopi.",
@@ -5412,10 +5135,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Louvri Recycle Bin la (ikòn sou Desktop la)",
             "Right-click sou fichye a epi chwazi 'Restore' pou retounen l kote l te ye",
           ],
-          mac: [
-            "Louvri Trash la (ikòn nan Dock la)",
-            "Right-click sou fichye a epi chwazi 'Put Back' pou retounen l kote l te ye",
-          ],
           recoveryNote:
             "Si ou vide Recycle Bin/Trash la deja, fichye a pa disponib fasil ankò — evite vide l san verifye li.",
         },
@@ -5530,10 +5249,6 @@ export const computerRebuildLessons: CourseLesson[] = [
           windows: [
             "Klike bwat rechèch la nan taskbar la, oswa nan File Explorer, epi tape non fichye a",
             "Pou wè fichye resan, gade 'Quick Access' nan File Explorer",
-          ],
-          mac: [
-            "Peze Cmd+Espas pou louvri Spotlight, epi tape non fichye a",
-            "Pou wè fichye resan, gade 'Recents' nan sidebar Finder a",
           ],
           recoveryNote:
             "Si rechèch la pa jwenn anyen, verifye òtograf mo a, epi eseye yon mo pi jeneral (tankou 'rapò' olye 'rapò-final-vant').",
@@ -5759,10 +5474,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Chwazi fichye yo, right-click, epi chwazi 'Send to > Compressed (zipped) folder' pou konprese",
             "Double-klike yon fichye ZIP epi chwazi 'Extract All' pou ekstrè",
           ],
-          mac: [
-            "Chwazi fichye yo, right-click, epi chwazi 'Compress Items' pou konprese",
-            "Double-klike yon fichye ZIP pou l ekstrè otomatikman nan menm dosye a",
-          ],
           recoveryNote:
             "Si ekstraksyon an echwe, verifye fichye ZIP la pa domaje — eseye telechaje l ankò si li soti sou entènèt.",
         },
@@ -5878,11 +5589,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Konekte kle a nan yon pò USB epi tann li parèt nan File Explorer",
             "Kopye fichye ale/soti nan kle a menm jan ak nenpòt lòt dosye",
             "Anvan ou wete l, klike ikòn 'Safely Remove Hardware' nan system tray a",
-          ],
-          mac: [
-            "Konekte kle a nan yon pò USB epi tann li parèt sou Desktop oswa nan Finder",
-            "Kopye fichye ale/soti nan kle a menm jan ak nenpòt lòt dosye",
-            "Anvan ou wete l, rale ikòn kle a nan Trash (li vin tounen yon ikòn 'Eject'), oswa klike bouton eject akote non li nan Finder",
           ],
           recoveryNote:
             "Si ou wete kle a san ejekte l epi yon fichye sanble domaje, eseye rekonekte l ankò — pafwa fichye a toujou la men li pa parèt imedyatman.",
@@ -6183,7 +5889,6 @@ export const computerRebuildLessons: CourseLesson[] = [
         type: "platform_steps",
         steps: {
           windows: ["Chèche 'Microsoft Store' nan bwat rechèch la epi louvri l pou wè aplikasyon ofisyèl"],
-          mac: ["Chèche 'App Store' nan bwat rechèch la (Spotlight) epi louvri l pou wè aplikasyon ofisyèl"],
           recoveryNote:
             "Si ou pa jwenn aplikasyon an nan magazen an, chèche non konpayi a ansanm ak mo 'sit ofisyèl' anvan ou telechaje nenpòt bagay.",
         },
@@ -6299,10 +6004,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Louvri fichye enstalasyon an epi swiv etap asistan enstalasyon an",
             "Dekache kaz ki tcheke pou lojisyèl anplis ou pa mande",
             "Li akò lisans lan anvan ou aksepte, epi klike 'Install' pou fini",
-          ],
-          mac: [
-            "Louvri fichye .dmg la epi rale ikòn aplikasyon an nan dosye Applications",
-            "Louvri aplikasyon an soti nan Applications oswa Launchpad",
           ],
           recoveryNote:
             "Si sistèm nan mande konfimasyon anplis anvan aplikasyon an louvri pou premye fwa, se yon etap sekirite nòmal.",
@@ -6420,10 +6121,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Ale nan Settings > Apps",
             "Chèche non aplikasyon an epi klike 'Uninstall'",
           ],
-          mac: [
-            "Louvri Finder > Applications",
-            "Rale ikòn aplikasyon an nan Trash pou dezenstale l",
-          ],
           recoveryNote:
             "Si aplikasyon an pa disparèt apre sa, sonje l ka mande yon rekòmansaj (restart) òdinatè a pou fini pwosesis la.",
         },
@@ -6530,7 +6227,6 @@ export const computerRebuildLessons: CourseLesson[] = [
         type: "platform_steps",
         steps: {
           windows: ["Peze Ctrl+S pou sovgade chanjman yo pandan ou ap travay"],
-          mac: ["Peze Cmd+S pou sovgade chanjman yo pandan ou ap travay"],
           recoveryNote:
             "Si aplikasyon an mande w yon non fichye lè ou sovgade pou premye fwa, bay li yon non ki gen sans.",
         },
@@ -6643,10 +6339,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Doub klike yon fichye .pdf pou louvri l nan aplikasyon PDF debaz la",
             "Itilize Ctrl+F pou chèche yon mo, epi Ctrl+P pou enprime",
           ],
-          mac: [
-            "Doub klike yon fichye .pdf pou louvri l nan Preview",
-            "Itilize Cmd+F pou chèche yon mo, epi Cmd+P pou enprime",
-          ],
           recoveryNote:
             "Si PDF la louvri nan navigatè a olye yon aplikasyon apa, ou ka toujou navige, zoom, ak chèche menm jan an.",
         },
@@ -6757,7 +6449,6 @@ export const computerRebuildLessons: CourseLesson[] = [
         type: "platform_steps",
         steps: {
           windows: ["Right-click sou fichye a, chwazi 'Open with', epi chwazi aplikasyon ou vle a"],
-          mac: ["Right-click sou fichye a, chwazi 'Open With', epi chwazi aplikasyon ou vle a"],
           recoveryNote:
             "Si ou pa wè aplikasyon ou vle a nan lis la, li ka poko enstale sou òdinatè a.",
         },
@@ -10332,11 +10023,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Aktive Bluetooth epi klike 'Add device'",
             "Chwazi aparèy la nan lis la lè li parèt",
           ],
-          mac: [
-            "Ale nan System Settings > Bluetooth",
-            "Aktive Bluetooth si li pa deja aktive",
-            "Chwazi aparèy la nan lis la lè li parèt epi klike 'Connect'",
-          ],
           recoveryNote:
             "Si aparèy la pa parèt nan lis la, verifye li nan mòd dekouvèt (souvan kenbe yon bouton pandan plizyè segond).",
         },
@@ -10666,11 +10352,6 @@ export const computerRebuildLessons: CourseLesson[] = [
             "Peze Ctrl+P pou louvri bwat enprime a",
             "Chwazi enprimant, paj, kopi, koulè, ak oryantasyon",
             "Klike 'Print', oswa chwazi 'Save as PDF' kòm 'enprimant' pou kreye yon PDF olye",
-          ],
-          mac: [
-            "Peze Cmd+P pou louvri bwat enprime a",
-            "Chwazi enprimant, paj, kopi, koulè, ak oryantasyon",
-            "Klike 'Print', oswa klike bouton 'PDF' nan kwen anba agoch pou 'Save as PDF' olye",
           ],
           recoveryNote:
             "Si enprimant ou pa parèt nan lis la, verifye li limen ak konekte (Wi-Fi oswa kab) sou menm rezo ak òdinatè a.",
@@ -13806,10 +13487,6 @@ export const computerRebuildLessons: CourseLesson[] = [
           windows: [
             "Peze Ctrl+Alt+Delete epi chwazi 'Task Manager' pou fòse fèmen yon aplikasyon bloke",
             "Klike bouton Windows a epi chwazi ikòn pouvwa a pou Rekòmanse, Etenn, oswa Dòmi",
-          ],
-          mac: [
-            "Peze Cmd+Option+Esc pou louvri 'Force Quit Applications'",
-            "Klike meni Apple a epi chwazi Rekòmanse, Etenn, oswa Dòmi",
           ],
           recoveryNote:
             "Si menu nòmal la pa reponn ditou, sa vle di menm ekran an ka bloke — nan ka sa a sèlman, konsidere kenbe bouton pouvwa a.",
