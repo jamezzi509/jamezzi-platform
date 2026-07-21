@@ -15,8 +15,9 @@ interface OpenWindow {
 interface AppDef {
   id: string;
   label: string;
+  tileClassName: string;
   icon: string;
-  render: (props: { onClose: () => void }) => React.ReactNode;
+  render: () => React.ReactNode;
 }
 
 function CalculatorApp() {
@@ -177,10 +178,125 @@ function SettingRow({
   );
 }
 
+function PaintApp() {
+  const canvasColors = ["#1f2937", "#dc2626", "#2563eb", "#16a34a", "#f59e0b"];
+  const [color, setColor] = useState(canvasColors[0]);
+  const [strokes, setStrokes] = useState<{ x: number; y: number; color: string }[][]>([]);
+  const drawing = useRef(false);
+
+  function pointFromEvent(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    return { x: event.clientX - rect.left, y: event.clientY - rect.top, color };
+  }
+
+  return (
+    <div className="w-[300px] p-2.5">
+      <div className="mb-2 flex items-center gap-1.5">
+        {canvasColors.map((c) => (
+          <button
+            key={c}
+            type="button"
+            onClick={() => setColor(c)}
+            aria-label={`Chwazi koulè ${c}`}
+            className={cn(
+              "size-6 rounded-full border-2 transition",
+              color === c ? "border-ink" : "border-transparent",
+            )}
+            style={{ backgroundColor: c }}
+          />
+        ))}
+        <button
+          type="button"
+          onClick={() => setStrokes([])}
+          className="text-muted ml-auto text-[11.5px] font-semibold underline"
+        >
+          Efase
+        </button>
+      </div>
+      <div
+        onMouseDown={(event) => {
+          drawing.current = true;
+          setStrokes((prev) => [...prev, [pointFromEvent(event)]]);
+        }}
+        onMouseMove={(event) => {
+          if (!drawing.current) return;
+          setStrokes((prev) => {
+            const next = [...prev];
+            next[next.length - 1] = [...next[next.length - 1], pointFromEvent(event)];
+            return next;
+          });
+        }}
+        onMouseUp={() => {
+          drawing.current = false;
+        }}
+        onMouseLeave={() => {
+          drawing.current = false;
+        }}
+        className="border-border h-[180px] w-full cursor-crosshair rounded-md border bg-white"
+      >
+        <svg width="100%" height="100%" className="pointer-events-none">
+          {strokes.map((stroke, i) => (
+            <polyline
+              key={i}
+              points={stroke.map((p) => `${p.x},${p.y}`).join(" ")}
+              fill="none"
+              stroke={stroke[0]?.color ?? "#1f2937"}
+              strokeWidth={3}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          ))}
+        </svg>
+      </div>
+      <p className="text-muted mt-1.5 text-[11.5px]">Klike epi trase ak souri a.</p>
+    </div>
+  );
+}
+
+function FileExplorerApp() {
+  const folders = [
+    { id: "documents", label: "Documents", icon: "📁" },
+    { id: "pictures", label: "Pictures", icon: "🖼️" },
+    { id: "downloads", label: "Downloads", icon: "📥" },
+  ];
+  const [open, setOpen] = useState<string | null>(null);
+  return (
+    <div className="w-[300px] p-3">
+      <div className="mb-2.5 grid grid-cols-3 gap-2">
+        {folders.map((folder) => (
+          <button
+            key={folder.id}
+            type="button"
+            onClick={() => setOpen(folder.id)}
+            className={cn(
+              "flex flex-col items-center gap-1 rounded-md p-2 text-center",
+              open === folder.id ? "bg-indigo-light" : "hover:bg-[#FCFCFE]",
+            )}
+          >
+            <span className="text-[26px]">{folder.icon}</span>
+            <span className="text-[11px]">{folder.label}</span>
+          </button>
+        ))}
+      </div>
+      <div className="border-border rounded-md border bg-[#FCFCFE] p-2.5 text-[12.5px]">
+        {open ? (
+          <p className="text-ink">
+            📄 dosye-{open}.pdf<br />📄 nòt-{open}.txt
+          </p>
+        ) : (
+          <p className="text-muted">Klike yon dosye pou wè sa ki anndan l.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const apps: AppDef[] = [
-  { id: "calculator", label: "Calculator", icon: "🧮", render: () => <CalculatorApp /> },
-  { id: "notepad", label: "Notepad", icon: "📝", render: () => <NotepadApp /> },
-  { id: "settings", label: "Settings", icon: "⚙️", render: () => <SettingsApp /> },
+  { id: "calculator", label: "Calculator", icon: "🧮", tileClassName: "bg-[#eef2ff]", render: () => <CalculatorApp /> },
+  { id: "notepad", label: "Notepad", icon: "📝", tileClassName: "bg-[#fef9c3]", render: () => <NotepadApp /> },
+  { id: "explorer", label: "File Explorer", icon: "🗂️", tileClassName: "bg-[#fef3c7]", render: () => <FileExplorerApp /> },
+  { id: "paint", label: "Paint", icon: "🎨", tileClassName: "bg-[#fee2e2]", render: () => <PaintApp /> },
+  { id: "settings", label: "Settings", icon: "⚙️", tileClassName: "bg-[#e5e7eb]", render: () => <SettingsApp /> },
 ];
 
 const desktopIcons = [
@@ -213,7 +329,7 @@ export function WindowsDesktopSimulator() {
       const id = `${appId}-${nextWindowId.current}`;
       setWindows((prev) => [
         ...prev,
-        { id, appId, title, x: 40 + prev.length * 24, y: 24 + prev.length * 20, minimized: false },
+        { id, appId, title, x: 30 + prev.length * 24, y: 20 + prev.length * 18, minimized: false },
       ]);
       bringToFront(id);
     }
@@ -267,9 +383,10 @@ export function WindowsDesktopSimulator() {
       onMouseMove={onMouseMove}
       onMouseUp={stopDrag}
       onMouseLeave={stopDrag}
-      className="relative aspect-[16/9] w-full overflow-hidden rounded-[18px] border border-[#0e1638] select-none"
+      className="relative aspect-[16/9] w-full overflow-hidden rounded-[18px] border border-[#c7d2e8] select-none"
       style={{
-        background: "linear-gradient(160deg, #1d2a5e 0%, #0e1638 100%)",
+        background:
+          "radial-gradient(circle at 20% 15%, #eaf1ff 0%, transparent 45%), radial-gradient(circle at 80% 75%, #dbe7ff 0%, transparent 50%), linear-gradient(160deg, #cfe0ff 0%, #7fa8e8 55%, #4d76c9 100%)",
       }}
     >
       <div className="absolute top-4 left-4 grid gap-3">
@@ -277,10 +394,10 @@ export function WindowsDesktopSimulator() {
           <button
             key={icon.id}
             type="button"
-            className="flex w-16 flex-col items-center gap-1 rounded-md p-1.5 text-center hover:bg-white/10"
+            className="flex w-16 flex-col items-center gap-1 rounded-md p-1.5 text-center hover:bg-white/15"
           >
-            <span className="text-[26px]">{icon.icon}</span>
-            <span className="text-[10.5px] text-white/90">{icon.label}</span>
+            <span className="text-[26px] drop-shadow">{icon.icon}</span>
+            <span className="text-[10.5px] font-medium text-white drop-shadow">{icon.label}</span>
           </button>
         ))}
       </div>
@@ -292,7 +409,7 @@ export function WindowsDesktopSimulator() {
           <div
             key={win.id}
             style={{ left: win.x, top: win.y, zIndex: 10 + zOrder.indexOf(win.id) }}
-            className="border-border absolute overflow-hidden rounded-lg border bg-white shadow-[0_18px_40px_rgba(0,0,0,0.35)]"
+            className="border-border absolute overflow-hidden rounded-lg border bg-white shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
             onMouseDown={() => bringToFront(win.id)}
           >
             <div
@@ -325,70 +442,127 @@ export function WindowsDesktopSimulator() {
                 </button>
               </div>
             </div>
-            <div>{app?.render({ onClose: () => closeWindow(win.id) })}</div>
+            <div>{app?.render()}</div>
           </div>
         );
       })}
 
       {startOpen && (
-        <div className="absolute bottom-12 left-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-[#1c2440]/95 p-3 shadow-2xl backdrop-blur-sm">
-          <input
-            type="text"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder="Tape non yon aplikasyon..."
-            autoFocus
-            className="mb-2.5 w-full rounded-md border border-white/15 bg-white/10 px-3 py-2 text-[13px] text-white placeholder:text-white/50 outline-none"
-          />
-          <div className="grid gap-1">
+        <div className="absolute bottom-16 left-1/2 w-[300px] -translate-x-1/2 overflow-hidden rounded-xl border border-black/5 bg-white/95 p-4 shadow-2xl backdrop-blur-md sm:w-[360px]">
+          <div className="border-border mb-3 flex items-center gap-2 rounded-full border bg-[#f3f3f5] px-3.5 py-2">
+            <span className="text-muted text-[13px]" aria-hidden="true">
+              🔍
+            </span>
+            <input
+              type="text"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Tape isit la pou chèche"
+              autoFocus
+              className="w-full bg-transparent text-[13px] outline-none"
+            />
+          </div>
+
+          <div className="mb-1.5 flex items-center justify-between">
+            <p className="text-ink text-[12.5px] font-semibold">Pinned</p>
+            <span className="text-muted text-[11px]">Tout aplikasyon &gt;</span>
+          </div>
+          <div className="mb-4 grid grid-cols-5 gap-2">
             {filteredApps.map((app) => (
               <button
                 key={app.id}
                 type="button"
                 onClick={() => openApp(app.id, app.label)}
-                className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[13px] text-white hover:bg-white/10"
+                className="flex flex-col items-center gap-1 rounded-lg p-1.5 text-center hover:bg-black/5"
               >
-                <span className="text-[17px]">{app.icon}</span>
-                {app.label}
+                <span
+                  className={cn(
+                    "flex size-9 items-center justify-center rounded-md text-[16px]",
+                    app.tileClassName,
+                  )}
+                >
+                  {app.icon}
+                </span>
+                <span className="text-ink w-full truncate text-[9.5px] leading-tight">
+                  {app.label}
+                </span>
               </button>
             ))}
             {filteredApps.length === 0 && (
-              <p className="px-2.5 py-2 text-[12.5px] text-white/60">Pa gen rezilta.</p>
+              <p className="text-muted col-span-5 py-2 text-center text-[12px]">
+                Pa gen rezilta pou &ldquo;{search}&rdquo;.
+              </p>
             )}
+          </div>
+
+          <div className="border-border flex items-center justify-between border-t pt-3">
+            <span className="flex items-center gap-2 text-[12px]">
+              <span className="bg-indigo-light flex size-6 items-center justify-center rounded-full text-[12px]">
+                🙂
+              </span>
+              Elèv
+            </span>
+            <span className="text-muted text-[15px]" aria-hidden="true">
+              ⏻
+            </span>
           </div>
         </div>
       )}
 
-      <div className="absolute inset-x-0 bottom-0 flex h-10 items-center gap-2 bg-[#111428]/90 px-2 backdrop-blur-sm">
-        <button
-          type="button"
-          onClick={() => setStartOpen((prev) => !prev)}
-          className={cn(
-            "flex h-7 items-center gap-1.5 rounded px-2.5 text-[12.5px] font-semibold text-white transition",
-            startOpen ? "bg-white/20" : "hover:bg-white/10",
+      <div className="absolute inset-x-0 bottom-2 flex justify-center">
+        <div className="flex items-center gap-1 rounded-full bg-white/90 px-2 py-1.5 shadow-lg backdrop-blur-md">
+          <button
+            type="button"
+            onClick={() => setStartOpen((prev) => !prev)}
+            className={cn(
+              "flex size-8 items-center justify-center rounded-md text-[15px] transition",
+              startOpen ? "bg-black/10" : "hover:bg-black/5",
+            )}
+            aria-label="Start"
+          >
+            ⊞
+          </button>
+          <button
+            type="button"
+            onClick={() => setStartOpen((prev) => !prev)}
+            className="flex size-8 items-center justify-center rounded-md text-[13px] hover:bg-black/5"
+            aria-label="Search"
+          >
+            🔍
+          </button>
+          {apps.slice(0, 3).map((app) => (
+            <button
+              key={app.id}
+              type="button"
+              onClick={() => openApp(app.id, app.label)}
+              className="flex size-8 items-center justify-center rounded-md text-[14px] hover:bg-black/5"
+              aria-label={app.label}
+            >
+              {app.icon}
+            </button>
+          ))}
+          {windows.length > 0 && (
+            <span className="mx-1 h-5 w-px bg-black/10" aria-hidden="true" />
           )}
-        >
-          <span aria-hidden="true">⊞</span> Start
-        </button>
-        <div className="flex items-center gap-1">
           {windows.map((win) => (
             <button
               key={win.id}
               type="button"
               onClick={() => toggleMinimize(win.id)}
               className={cn(
-                "h-7 rounded px-2.5 text-[12px] text-white/90 transition",
-                !win.minimized ? "bg-white/15" : "hover:bg-white/10",
+                "h-8 rounded-md px-2.5 text-[11.5px] font-medium transition",
+                !win.minimized ? "bg-black/10" : "hover:bg-black/5",
               )}
             >
               {win.title}
             </button>
           ))}
-        </div>
-        <div className="ml-auto flex items-center gap-2.5 pr-2 text-[11.5px] text-white/80">
-          <span aria-hidden="true">📶</span>
-          <span aria-hidden="true">🔊</span>
-          <span>2:14 PM</span>
+          <span className="mx-1 h-5 w-px bg-black/10" aria-hidden="true" />
+          <div className="flex items-center gap-1.5 px-1.5 text-[10.5px] text-[#333]">
+            <span aria-hidden="true">📶</span>
+            <span aria-hidden="true">🔊</span>
+            <span className="whitespace-nowrap">2:14 PM</span>
+          </div>
         </div>
       </div>
     </div>
