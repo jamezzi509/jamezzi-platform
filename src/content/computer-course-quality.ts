@@ -77,6 +77,98 @@ const moduleFourCommonAudit = {
   recoveryAudit: "passed",
 } as const;
 
+const moduleFiveQualityRecords: ComputerLessonQualityRecord[] = [
+  [
+    "desktop-taskbar-dock-menu-bar",
+    "desktop-anatomy",
+    "Windows and macOS desktop anatomy",
+    "desktop-identifier",
+    "Identify desktop, Taskbar, Dock, and menu bar by function",
+  ],
+  [
+    "application-window-controls",
+    "window-anatomy",
+    "Window anatomy and platform controls",
+    "window-control-simulator",
+    "Minimize, return, maximize, restore, and close a simulated window",
+  ],
+  [
+    "use-taskbar-or-dock",
+    "taskbar-dock",
+    "Pinned, open, and active application states",
+    "taskbar-dock-lab",
+    "Distinguish pinned, open, active, and existing-window return states",
+  ],
+  [
+    "switch-between-open-applications",
+    "application-switching",
+    "Application switcher and visible focus",
+    "app-switcher-lab",
+    "Switch among three running applications by visible and keyboard routes",
+  ],
+  [
+    "menus-buttons-and-interface-controls",
+    "interface-controls",
+    "Menus, selection controls, slider, disabled command, and apply action",
+    "interface-control-lab",
+    "Operate checkbox, radio, slider, and cancel controls in context",
+  ],
+  [
+    "move-resize-and-arrange-windows",
+    "window-layout",
+    "Two-window side-by-side workspace",
+    "window-arrangement-lab",
+    "Arrange, activate, and scroll the intended window",
+  ],
+  [
+    "notifications-and-quick-controls",
+    "notifications-controls",
+    "Notification types and common quick controls",
+    "notification-triage",
+    "Classify information, permissions, errors, and suspicious prompts",
+  ],
+  [
+    "recover-missing-hidden-or-full-screen-window",
+    "screen-recovery",
+    "Least-disruptive screen recovery sequence",
+    "missing-window-recovery",
+    "Recover minimized, full-screen, covered, waiting, and busy states",
+  ],
+].map(([slug, visualId, teaches, interactionId, verifies]) => ({
+  slug,
+  status: "approved" as const,
+  standard: paidCourseQualityStandardVersion,
+  evidence: {
+    beginnerLanguageAudit: "passed" as const,
+    factualAudit: "passed" as const,
+    missingStepAudit: "passed" as const,
+    windowsMacAudit:
+      slug === "menus-buttons-and-interface-controls"
+        ? ("not-applicable" as const)
+        : ("passed" as const),
+    accessibilityAudit: "passed" as const,
+    mobileAudit: "passed" as const,
+    translationAudit: "passed" as const,
+    recoveryAudit: "passed" as const,
+    visuals: [
+      {
+        id: `m5-${visualId}`,
+        type: "screen" as const,
+        teaches,
+        translatableLabels: true as const,
+      },
+    ],
+    interactions: [
+      {
+        id: `m5-${interactionId}`,
+        verifies,
+        keyboardAccessible: true as const,
+      },
+    ],
+    realDevicePractice: [],
+  },
+}));
+
 export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   {
     slug: "welcome-build-computer-independence",
@@ -752,6 +844,7 @@ export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
       ],
     },
   },
+  ...moduleFiveQualityRecords,
 ];
 
 export function validateApprovedCourseQuality(

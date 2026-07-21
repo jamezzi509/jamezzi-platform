@@ -1,6 +1,8 @@
 import { computerModuleFourV2 } from "@/content/computer-course-module-four";
+import { computerModuleFiveV2 } from "@/content/computer-course-module-five";
 
 export { computerModuleFourV2 } from "@/content/computer-course-module-four";
+export { computerModuleFiveV2 } from "@/content/computer-course-module-five";
 
 export type CourseTrack = "universal" | "windows-mac";
 
@@ -24,7 +26,15 @@ export type ComputerLessonInteraction =
   | { kind: "keyboard-key-trainer" }
   | { kind: "text-editing-workbench" }
   | { kind: "shortcut-key-trainer" }
-  | { kind: "accessibility-simulator" };
+  | { kind: "accessibility-simulator" }
+  | { kind: "desktop-identifier" }
+  | { kind: "window-control-simulator" }
+  | { kind: "taskbar-dock-lab" }
+  | { kind: "app-switcher-lab" }
+  | { kind: "interface-control-lab" }
+  | { kind: "window-arrangement-lab" }
+  | { kind: "notification-triage" }
+  | { kind: "missing-window-recovery" };
 
 export type LessonVisual =
   | { kind: "course-method" }
@@ -49,7 +59,15 @@ export type LessonVisual =
   | { kind: "keyboard-map" }
   | { kind: "text-editing" }
   | { kind: "shortcut-map" }
-  | { kind: "comfort-controls" };
+  | { kind: "comfort-controls" }
+  | { kind: "desktop-anatomy" }
+  | { kind: "window-anatomy" }
+  | { kind: "taskbar-dock" }
+  | { kind: "application-switching" }
+  | { kind: "interface-controls" }
+  | { kind: "window-layout" }
+  | { kind: "notifications-controls" }
+  | { kind: "screen-recovery" };
 
 export type LessonSection =
   | {
@@ -120,7 +138,7 @@ export interface CourseCheck {
 export interface ComputerLessonV2 {
   id: string;
   slug: string;
-  moduleId: "m1" | "m2" | "m3" | "m4";
+  moduleId: "m1" | "m2" | "m3" | "m4" | "m5";
   order: number;
   title: string;
   promise: string;
@@ -203,7 +221,7 @@ export const computerCourseModulesV2 = [
   order: index + 1,
   title,
   purpose,
-  status: index < 4 ? ("available" as const) : ("in-production" as const),
+  status: index < 5 ? ("available" as const) : ("in-production" as const),
 }));
 
 export const computerModuleOneV2: ComputerLessonV2[] = [
@@ -1907,15 +1925,17 @@ export const computerLessonsV2 = [
   ...computerModuleTwoV2,
   ...computerModuleThreeV2,
   ...computerModuleFourV2,
+  ...computerModuleFiveV2,
 ];
 
 export function getComputerModuleLessonsV2(
-  moduleId: "m1" | "m2" | "m3" | "m4",
+  moduleId: "m1" | "m2" | "m3" | "m4" | "m5",
 ) {
   if (moduleId === "m1") return computerModuleOneV2;
   if (moduleId === "m2") return computerModuleTwoV2;
   if (moduleId === "m3") return computerModuleThreeV2;
-  return computerModuleFourV2;
+  if (moduleId === "m4") return computerModuleFourV2;
+  return computerModuleFiveV2;
 }
 
 export function getComputerLessonV2(slug: string) {

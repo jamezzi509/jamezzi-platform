@@ -27,6 +27,11 @@ import { ComputerModuleOneInteraction } from "@/components/academy/computer-modu
 import { ComputerModuleTwoInteraction } from "@/components/academy/computer-module-two-interactions";
 import { ComputerModuleThreeInteraction } from "@/components/academy/computer-module-three-interactions";
 import { ComputerModuleFourInteraction } from "@/components/academy/computer-module-four-interactions";
+import { ComputerModuleFiveInteraction } from "@/components/academy/computer-module-five-interactions";
+import {
+  isModuleFiveVisual,
+  ModuleFiveVisual,
+} from "@/components/academy/computer-module-five-visuals";
 
 type Platform = PreferredPlatform;
 
@@ -439,6 +444,12 @@ export function ComputerLessonPlayerV2({
                 />
               ) : lesson.moduleId === "m4" ? (
                 <ComputerModuleFourInteraction
+                  interaction={lesson.interaction}
+                  platform={verified ? platform : null}
+                  onComplete={() => setInteractiveComplete(true)}
+                />
+              ) : lesson.moduleId === "m5" ? (
+                <ComputerModuleFiveInteraction
                   interaction={lesson.interaction}
                   platform={verified ? platform : null}
                   onComplete={() => setInteractiveComplete(true)}
@@ -980,6 +991,7 @@ function KnowledgeCheck({
 }
 
 function LessonVisualView({ visual }: { visual: LessonVisual }) {
+  if (isModuleFiveVisual(visual)) return <ModuleFiveVisual visual={visual} />;
   if (visual.kind === "course-method")
     return (
       <div
