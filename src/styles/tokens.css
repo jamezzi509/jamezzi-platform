@@ -1,0 +1,68 @@
+@theme {
+  /* Breakpoints (mobile default; xs bumps gutter on larger phones) */
+  --breakpoint-xs: 26rem; /* 416px */
+  --breakpoint-sm: 40rem; /* 640px */
+  --breakpoint-md: 48rem; /* 768px  – tablet */
+  --breakpoint-lg: 64rem; /* 1024px – desktop */
+  --breakpoint-xl: 90rem; /* 1440px – large desktop */
+
+  /* Color tokens */
+  --color-paper: #f7f6f2;
+  --color-white: #ffffff;
+  --color-ink: #11110f;
+  --color-muted: #686762;
+  --color-border: #dfddd6;
+  --color-indigo: #4f46e5;
+  --color-indigo-dark: #3f37c9;
+  --color-indigo-light: #ecebff;
+  --color-violet: #7c3aed;
+  --color-coral: #d97757; /* restrained warm coral accent, hero artwork only */
+
+  /* Product identity accents — Selected Work showcases only */
+  --color-nichr-accent: #4f46e5;
+  --color-endize-accent: #0f766e;
+  --color-clieniq-accent: #b45309;
+
+  --color-night: #111118;
+  --color-night-raised: #1a1a23;
+  --color-night-text: #f7f6f2;
+  --color-night-muted: #aaa9b2;
+  --color-night-border: #30303a;
+
+  --color-success: #18794e;
+  --color-warning: #a15c00;
+  --color-error: #b42318;
+  --color-information: #4f46e5;
+
+  /* Radii */
+  --radius-control: 12px; /* buttons + inputs */
+  --radius-card: 16px; /* standard cards */
+  --radius-showcase: 24px; /* large showcases */
+  --radius-frame: 18px; /* browser / product frames */
+
+  /* Shadows — quiet, minimal */
+  --shadow-quiet:
+    0 1px 2px rgb(17 17 15 / 0.04), 0 1px 1px rgb(17 17 15 / 0.03);
+  --shadow-card: 0 2px 8px rgb(17 17 15 / 0.06), 0 1px 2px rgb(17 17 15 / 0.04);
+  --shadow-showcase:
+    0 12px 32px rgb(17 17 15 / 0.08), 0 2px 8px rgb(17 17 15 / 0.05);
+
+  /* Motion timings */
+  --duration-instant: 120ms;
+  --duration-control: 200ms;
+  --duration-menu: 270ms;
+  --duration-section: 600ms;
+  --duration-hero: 1100ms;
+  --ease-primary: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Fonts */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+
+  /* English for Beginners premium lesson shell only */
+  --font-fraunces: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-lesson-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+
+  /* Max container width */
+  --container-max: 1340px;
+}
