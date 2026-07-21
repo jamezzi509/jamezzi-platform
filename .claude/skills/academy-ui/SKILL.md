@@ -60,9 +60,12 @@ The image can land in any part of the response (sometimes preceded by a text par
 `parts[]` for `inlineData`, don't assume `parts[0]`. After decoding:
 1. Check the actual pixel fill ratio against the white background (some generations leave far
    more empty margin than others) and auto-crop outliers so every photo in a set reads at the
-   same visual weight in its card — don't eyeball this, measure it (see git history on
-   `module-1.html` for the Python/PIL approach: threshold on luminance < ~225 to find the
-   subject's bounding box, pad ~40px, crop, then resize).
+   same visual weight in its card. **A bounding-box/luminance-threshold metric alone is not
+   reliable** — a soft shadow or gradient under the subject can inflate the measured bbox far
+   past the subject's actual size, passing the metric while the photo still looks sparse (this
+   happened with a storage-drive photo that measured "75% fill" but visually occupied ~15% of
+   the frame). Always open and look at each generated photo directly at full size before
+   deciding it's fine — don't trust the metric as a substitute for actually looking.
 2. Resize to ~480px wide (`sips -Z 480`) and convert to WebP (`cwebp -q 82`) — keeps each
    photo under 40KB.
 3. Place behind a white rounded swatch in the dark card (`background:#fff;border-radius:10-12px`)
