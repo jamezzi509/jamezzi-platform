@@ -7,6 +7,7 @@ import { computerProgressStorageKey } from "@/lib/course-progress";
 import {
   computerCourseModulesV2,
   computerModuleFiveV2,
+  computerModuleSixV2,
   computerModuleFourV2,
   computerModuleOneV2,
   computerModuleThreeV2,
@@ -19,6 +20,7 @@ const availableComputerModuleLessons = [
   computerModuleThreeV2,
   computerModuleFourV2,
   computerModuleFiveV2,
+  computerModuleSixV2,
 ];
 
 const availableComputerModuleCount = computerCourseModulesV2.filter(
@@ -163,6 +165,26 @@ export function ComputerCoursePage() {
           resetCourse="computer"
           resetLessonSlugs={computerModuleFiveV2.map((lesson) => lesson.slug)}
           resetLabel="Module 5"
+          language="en"
+        />
+        <CourseResumeCard
+          lessons={computerModuleSixV2.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.title,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials"
+          completionHref="/academy/courses/computer-internet-essentials#course-path"
+          completionEyebrow="MODULE 6 COMPLETE"
+          completionTitle="You can manage applications safely and deliberately."
+          completionAction="Review the course path"
+          newEyebrow="MODULE 6 · READY WHEN YOU ARE"
+          newTitle="Apps and Settings"
+          newAction="Start Module 6"
+          resetCourse="computer"
+          resetLessonSlugs={computerModuleSixV2.map((lesson) => lesson.slug)}
+          resetLabel="Module 6"
           language="en"
         />
       </Container>

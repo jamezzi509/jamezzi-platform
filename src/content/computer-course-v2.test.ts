@@ -4,6 +4,7 @@ import {
   computerLessonsV2,
   computerModuleFourV2,
   computerModuleFiveV2,
+  computerModuleSixV2,
   computerModuleOneV2,
   computerModuleThreeV2,
   computerModuleTwoV2,
@@ -11,7 +12,7 @@ import {
 } from "@/content/computer-course-v2";
 
 describe("Computer & Internet Essentials V2 architecture", () => {
-  it("locks the course to 15 ordered modules with Modules 1–5 available", () => {
+  it("locks the course to 15 ordered modules with Modules 1–6 available", () => {
     expect(computerCourseModulesV2).toHaveLength(15);
     expect(computerCourseModulesV2.map((module) => module.order)).toEqual(
       Array.from({ length: 15 }, (_, index) => index + 1),
@@ -21,10 +22,33 @@ describe("Computer & Internet Essentials V2 architecture", () => {
     expect(computerCourseModulesV2[2].status).toBe("available");
     expect(computerCourseModulesV2[3].status).toBe("available");
     expect(computerCourseModulesV2[4].status).toBe("available");
+    expect(computerCourseModulesV2[5].status).toBe("available");
     expect(
       computerCourseModulesV2
-        .slice(5)
+        .slice(6)
         .every((module) => module.status === "in-production"),
+    ).toBe(true);
+  });
+
+  it("contains nine unique, interactive, photographed Module 6 lessons", () => {
+    expect(computerModuleSixV2).toHaveLength(9);
+    expect(computerModuleSixV2.map((lesson) => lesson.order)).toEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9,
+    ]);
+    expect(new Set(computerModuleSixV2.map((lesson) => lesson.slug)).size).toBe(
+      9,
+    );
+    expect(
+      computerModuleSixV2.every(
+        (lesson) =>
+          lesson.moduleId === "m6" &&
+          lesson.interaction &&
+          lesson.sections.some(
+            (section) =>
+              section.type === "visual" &&
+              section.visual.kind.startsWith("apps-"),
+          ),
+      ),
     ).toBe(true);
   });
 

@@ -1,8 +1,10 @@
 import { computerModuleFourV2 } from "@/content/computer-course-module-four";
 import { computerModuleFiveV2 } from "@/content/computer-course-module-five";
+import { computerModuleSixV2 } from "@/content/computer-course-module-six";
 
 export { computerModuleFourV2 } from "@/content/computer-course-module-four";
 export { computerModuleFiveV2 } from "@/content/computer-course-module-five";
+export { computerModuleSixV2 } from "@/content/computer-course-module-six";
 
 export type CourseTrack = "universal" | "windows-mac";
 
@@ -34,7 +36,16 @@ export type ComputerLessonInteraction =
   | { kind: "interface-control-lab" }
   | { kind: "window-arrangement-lab" }
   | { kind: "notification-triage" }
-  | { kind: "missing-window-recovery" };
+  | { kind: "missing-window-recovery" }
+  | { kind: "app-type-classifier" }
+  | { kind: "installed-app-locator" }
+  | { kind: "trusted-source-gate" }
+  | { kind: "app-listing-audit" }
+  | { kind: "safe-installer" }
+  | { kind: "app-update-router" }
+  | { kind: "app-removal-lab" }
+  | { kind: "permission-decision-lab" }
+  | { kind: "default-app-mission" };
 
 export type LessonVisual =
   | { kind: "course-method" }
@@ -67,7 +78,16 @@ export type LessonVisual =
   | { kind: "interface-controls" }
   | { kind: "window-layout" }
   | { kind: "notifications-controls" }
-  | { kind: "screen-recovery" };
+  | { kind: "screen-recovery" }
+  | { kind: "apps-what-is-app" }
+  | { kind: "apps-find-installed" }
+  | { kind: "apps-trusted-store" }
+  | { kind: "apps-review-listing" }
+  | { kind: "apps-safe-install" }
+  | { kind: "apps-update" }
+  | { kind: "apps-uninstall" }
+  | { kind: "apps-permissions" }
+  | { kind: "apps-default-open-with" };
 
 export type LessonSection =
   | {
@@ -138,7 +158,7 @@ export interface CourseCheck {
 export interface ComputerLessonV2 {
   id: string;
   slug: string;
-  moduleId: "m1" | "m2" | "m3" | "m4" | "m5";
+  moduleId: "m1" | "m2" | "m3" | "m4" | "m5" | "m6";
   order: number;
   title: string;
   promise: string;
@@ -221,7 +241,7 @@ export const computerCourseModulesV2 = [
   order: index + 1,
   title,
   purpose,
-  status: index < 5 ? ("available" as const) : ("in-production" as const),
+  status: index < 6 ? ("available" as const) : ("in-production" as const),
 }));
 
 export const computerModuleOneV2: ComputerLessonV2[] = [
@@ -1926,16 +1946,18 @@ export const computerLessonsV2 = [
   ...computerModuleThreeV2,
   ...computerModuleFourV2,
   ...computerModuleFiveV2,
+  ...computerModuleSixV2,
 ];
 
 export function getComputerModuleLessonsV2(
-  moduleId: "m1" | "m2" | "m3" | "m4" | "m5",
+  moduleId: "m1" | "m2" | "m3" | "m4" | "m5" | "m6",
 ) {
   if (moduleId === "m1") return computerModuleOneV2;
   if (moduleId === "m2") return computerModuleTwoV2;
   if (moduleId === "m3") return computerModuleThreeV2;
   if (moduleId === "m4") return computerModuleFourV2;
-  return computerModuleFiveV2;
+  if (moduleId === "m5") return computerModuleFiveV2;
+  return computerModuleSixV2;
 }
 
 export function getComputerLessonV2(slug: string) {

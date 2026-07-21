@@ -28,10 +28,15 @@ import { ComputerModuleTwoInteraction } from "@/components/academy/computer-modu
 import { ComputerModuleThreeInteraction } from "@/components/academy/computer-module-three-interactions";
 import { ComputerModuleFourInteraction } from "@/components/academy/computer-module-four-interactions";
 import { ComputerModuleFiveInteraction } from "@/components/academy/computer-module-five-interactions";
+import { ComputerModuleSixInteraction } from "@/components/academy/computer-module-six-interactions";
 import {
   isModuleFiveVisual,
   ModuleFiveVisual,
 } from "@/components/academy/computer-module-five-visuals";
+import {
+  isModuleSixVisual,
+  ModuleSixVisual,
+} from "@/components/academy/computer-module-six-visuals";
 
 type Platform = PreferredPlatform;
 
@@ -450,6 +455,12 @@ export function ComputerLessonPlayerV2({
                 />
               ) : lesson.moduleId === "m5" ? (
                 <ComputerModuleFiveInteraction
+                  interaction={lesson.interaction}
+                  platform={verified ? platform : null}
+                  onComplete={() => setInteractiveComplete(true)}
+                />
+              ) : lesson.moduleId === "m6" ? (
+                <ComputerModuleSixInteraction
                   interaction={lesson.interaction}
                   platform={verified ? platform : null}
                   onComplete={() => setInteractiveComplete(true)}
@@ -999,6 +1010,7 @@ function LessonVisualView({
 }) {
   if (isModuleFiveVisual(visual))
     return <ModuleFiveVisual visual={visual} platform={platform} />;
+  if (isModuleSixVisual(visual)) return <ModuleSixVisual visual={visual} />;
   if (visual.kind === "course-method")
     return (
       <div

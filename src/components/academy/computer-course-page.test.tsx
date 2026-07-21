@@ -25,6 +25,9 @@ describe("ComputerCoursePage", () => {
     const moduleFive = screen.getAllByRole("heading", {
       name: "Navigate Windows or macOS",
     })[0];
+    const moduleSix = screen.getAllByRole("heading", {
+      name: "Apps and Settings",
+    })[0];
 
     expect(
       moduleOne.compareDocumentPosition(moduleTwo) &
@@ -43,13 +46,23 @@ describe("ComputerCoursePage", () => {
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(
-      screen.getByText(/Modules 1–5 are available now/i),
+      moduleFive.compareDocumentPosition(moduleSix) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/Modules 1–6 are available now/i),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /Open Module 5/i }),
     ).toHaveAttribute(
       "href",
       "/academy/courses/computer-internet-essentials/learn/desktop-taskbar-dock-menu-bar",
+    );
+    expect(
+      screen.getByRole("link", { name: /Open Module 6/i }),
+    ).toHaveAttribute(
+      "href",
+      "/academy/courses/computer-internet-essentials/learn/understand-app-program-software",
     );
   });
 });

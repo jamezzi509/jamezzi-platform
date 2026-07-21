@@ -175,6 +175,77 @@ const moduleFiveQualityRecords: ComputerLessonQualityRecord[] = [
   },
 }));
 
+const moduleSixQualityRecords: ComputerLessonQualityRecord[] = [
+  [
+    "understand-app-program-software",
+    "apps-what-is-app",
+    "app-type-classifier",
+  ],
+  ["find-installed-apps", "apps-find-installed", "installed-app-locator"],
+  [
+    "choose-trustworthy-app-source",
+    "apps-trusted-store",
+    "trusted-source-gate",
+  ],
+  [
+    "audit-app-listing-cost-compatibility",
+    "apps-review-listing",
+    "app-listing-audit",
+  ],
+  [
+    "install-apps-without-lowering-security",
+    "apps-safe-install",
+    "safe-installer",
+  ],
+  ["keep-apps-updated", "apps-update", "app-update-router"],
+  ["remove-apps-safely", "apps-uninstall", "app-removal-lab"],
+  ["control-app-permissions", "apps-permissions", "permission-decision-lab"],
+  [
+    "choose-default-app-open-with",
+    "apps-default-open-with",
+    "default-app-mission",
+  ],
+].map(([slug, visualId, interactionId]) => ({
+  slug,
+  status: "approved" as const,
+  standard: paidCourseQualityStandardVersion,
+  evidence: {
+    beginnerLanguageAudit: "passed" as const,
+    factualAudit: "passed" as const,
+    missingStepAudit: "passed" as const,
+    windowsMacAudit: "passed" as const,
+    accessibilityAudit: "passed" as const,
+    mobileAudit: "passed" as const,
+    translationAudit: "passed" as const,
+    recoveryAudit: "passed" as const,
+    visuals: [
+      {
+        id: `m6-${visualId}`,
+        type: "photo" as const,
+        teaches:
+          "Real-world application-management context without instructional text embedded in the image",
+        translatableLabels: true as const,
+      },
+    ],
+    interactions: [
+      {
+        id: `m6-${interactionId}`,
+        verifies:
+          "Three evidence-based application-management decisions with corrective feedback",
+        keyboardAccessible: true as const,
+      },
+    ],
+    realDevicePractice: [
+      {
+        id: `m6-${slug}-real-device`,
+        verifies:
+          "Locate the equivalent control on the learner's saved Windows or Mac path",
+        browserCannotVerify: true as const,
+      },
+    ],
+  },
+}));
+
 export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
   {
     slug: "welcome-build-computer-independence",
@@ -851,6 +922,7 @@ export const computerLessonQualityRecords: ComputerLessonQualityRecord[] = [
     },
   },
   ...moduleFiveQualityRecords,
+  ...moduleSixQualityRecords,
 ];
 
 export function validateApprovedCourseQuality(
