@@ -29,6 +29,7 @@ import { ComputerModuleThreeInteraction } from "@/components/academy/computer-mo
 import { ComputerModuleFourInteraction } from "@/components/academy/computer-module-four-interactions";
 import { ComputerModuleFiveInteraction } from "@/components/academy/computer-module-five-interactions";
 import { ComputerModuleSixInteraction } from "@/components/academy/computer-module-six-interactions";
+import { WindowsSafeInstallSimulator } from "@/components/academy/windows-safe-install-simulator";
 import {
   isModuleFiveVisual,
   ModuleFiveVisual,
@@ -208,6 +209,28 @@ export function ComputerLessonPlayerV2({
           Preparing your course path…
         </p>
       </main>
+    );
+  }
+
+  if (lesson.interaction?.kind === "safe-installer") {
+    return (
+      <WindowsSafeInstallSimulator
+        onComplete={() => {
+          setInteractiveComplete(true);
+          const result = saveCompletedLesson(
+            computerProgressStorageKey,
+            lesson.slug,
+          );
+          if (result !== "blocked") {
+            setSaved(true);
+            setCompletedSlugs((current) =>
+              current.includes(lesson.slug)
+                ? current
+                : [...current, lesson.slug],
+            );
+          }
+        }}
+      />
     );
   }
 
