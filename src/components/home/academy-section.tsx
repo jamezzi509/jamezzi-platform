@@ -2,11 +2,7 @@ import type { ReactNode } from "react";
 import NextLink from "next/link";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
-import {
-  CoursesGlyph,
-  BooksGlyph,
-  EventsGlyph,
-} from "@/components/home/academy-glyphs";
+import { BooksGlyph, EventsGlyph } from "@/components/home/academy-glyphs";
 
 function MicIcon() {
   return (
@@ -47,32 +43,6 @@ function BellIcon() {
 }
 
 const learningPaths = [
-  {
-    Glyph: CoursesGlyph,
-    title: "Online Courses",
-    copy: "Self-paced courses with frameworks, workflows, and tools you can apply now.",
-    ctaLabel: "Explore Courses",
-    href: "/academy/courses",
-    preview: (
-      <div className="flex items-center gap-4">
-        <div className="relative flex aspect-square w-20 shrink-0 items-center justify-center overflow-hidden rounded-sm bg-[linear-gradient(145deg,#1c2140,#4937aa)]">
-          <span className="absolute inset-3 rounded-full border border-white/15" />
-          <span className="relative text-2xl text-white/90">⌘</span>
-        </div>
-        <div>
-          <p className="text-metadata text-night-muted">
-            COURSE IN DEVELOPMENT
-          </p>
-          <p className="text-body text-night-text mt-1 font-medium">
-            Computer &amp; Internet Essentials
-          </p>
-          <p className="text-metadata text-night-muted mt-2">
-            6 modules · Self-paced
-          </p>
-        </div>
-      </div>
-    ),
-  },
   {
     Glyph: BooksGlyph,
     title: "Books",
@@ -141,7 +111,7 @@ export function AcademySection() {
           </p>
         </div>
 
-        <div className="divide-night-border grid gap-10 pt-10 lg:grid-cols-3 lg:gap-0 lg:divide-x">
+        <div className="divide-night-border grid gap-10 pt-10 sm:grid-cols-2 lg:gap-0 lg:divide-x">
           {learningPaths.map(
             ({ Glyph, title, copy, ctaLabel, href, preview }) => (
               <div
