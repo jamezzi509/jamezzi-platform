@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
+import { lessonSimulators } from "@/components/academy/simulators/registry";
 import {
   ArrowRightIcon,
   CheckIcon,
@@ -931,6 +932,20 @@ function InstructionalDiagram({
   id: string;
   caption?: string;
 }) {
+  const Simulator = lessonSimulators[id];
+  if (Simulator) {
+    return (
+      <figure className="mb-6">
+        {Simulator()}
+        {caption && (
+          <figcaption className="text-muted mt-3 text-[13px] leading-relaxed">
+            {caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
   const content = diagramContent[id];
   if (!content) return null;
 

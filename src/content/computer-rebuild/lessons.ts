@@ -2340,6 +2340,15 @@ export const computerRebuildLessons: CourseLesson[] = [
           "Apre leson sa a, ou ka jwenn Desktop, taskbar, Start menu, ak system tray sou yon òdinatè Windows, epi louvri yon aplikasyon.",
       },
       {
+        id: "b1-diagram",
+        type: "diagram",
+        diagram: {
+          diagramId: "windows-desktop-basic",
+          caption:
+            "Sa a se yon Desktop Windows ou ka eseye — klike bouton Start la, cheche 'Calculator', epi eseye deplase yon fennèt.",
+        },
+      },
+      {
         id: "b2",
         type: "explanation",
         text: "**Desktop** la se premye ekran ou wè lè òdinatè a fin limen — tankou tab travay ou. **Taskbar** la se ba ki rete toujou nan pati anba ekran an, ak **Start menu** a (bouton Windows nan kwen agoch anba a) se kote ou jwenn tout pwogram ou enstale sou òdinatè a. Nan kwen anba dwat taskbar la, **system tray** a montre ti ikòn pou Wi-Fi, volim, ak lè — se la **notifikasyon** yo parèt tou. Ou ka **pinen** (pin) yon aplikasyon nan taskbar la pou jwenn li pi vit pwochen fwa.",
