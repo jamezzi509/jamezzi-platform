@@ -43,7 +43,18 @@ that size.
 **Trademark check on every generated image**: prompting an image model for "a laptop screen"
 or "a Windows-style desktop" without an explicit exclusion will draw the real Microsoft flag
 logo, Apple logo, etc. Always add "no logos, no brand names, no flags/symbols of any kind" to
-the prompt, and inspect the result before using it.
+the prompt, and inspect the result before using it. A generic negative instruction isn't always
+enough — asking for a prominent "Start button" specifically drew Microsoft's actual four-color
+flag icon even with "no logos" in the prompt. If a first attempt reproduces a real trademark,
+name the *specific* pattern to avoid in the retry (e.g. "a single-color swirl glyph, absolutely
+NOT a four-color grid, NOT a flag").
+
+**When the lesson's objective is "identify X by its actual look," an abstract vector mockup
+usually fails.** Colored dots and generic gradients don't teach real-world recognition — a
+learner who's never seen any OS before has no reliable cue to latch onto. Build the real
+distinguishing layout instead (a Windows-style centered taskbar with a Start button, a macOS
+top menu bar + Dock, a ChromeOS bottom shelf + launcher circle) via generated screenshots, the
+same way as physical device photos.
 
 ## Generating real photos
 A working `GEMINI_API_KEY` lives in `.env.local` (see project memory `reference_gemini_api_key`).
@@ -70,6 +81,11 @@ The image can land in any part of the response (sometimes preceded by a text par
    photo under 40KB.
 3. Place behind a white rounded swatch in the dark card (`background:#fff;border-radius:10-12px`)
    so the studio-white photo background doesn't show a harsh box against dark chrome.
+4. If the generated image is square but the display box isn't (e.g. a 16:10 desktop-comparison
+   thumbnail), don't use `object-fit:cover` — it crops the vertical dimension to fill the box,
+   which can crop away the exact feature the image exists to show (a taskbar, a Dock). Use
+   `object-fit:contain` instead; it letterboxes against the card's existing background rather
+   than losing content.
 
 ## Scaling to real screens
 The lesson stage is a flexible-width container, but if card art, image `max-height`, and label
