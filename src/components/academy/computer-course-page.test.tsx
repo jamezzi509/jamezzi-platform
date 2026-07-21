@@ -22,6 +22,9 @@ describe("ComputerCoursePage", () => {
     const moduleFour = screen.getAllByRole("heading", {
       name: "Control the Computer",
     })[0];
+    const moduleFive = screen.getAllByRole("heading", {
+      name: "Navigate Windows or macOS",
+    })[0];
 
     expect(
       moduleOne.compareDocumentPosition(moduleTwo) &
@@ -35,5 +38,18 @@ describe("ComputerCoursePage", () => {
       moduleThree.compareDocumentPosition(moduleFour) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
+    expect(
+      moduleFour.compareDocumentPosition(moduleFive) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/Modules 1–5 are available now/i),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Open Module 5/i }),
+    ).toHaveAttribute(
+      "href",
+      "/academy/courses/computer-internet-essentials/learn/desktop-taskbar-dock-menu-bar",
+    );
   });
 });

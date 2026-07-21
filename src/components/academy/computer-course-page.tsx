@@ -6,11 +6,24 @@ import { CourseResumeCard } from "@/components/academy/course-resume-card";
 import { computerProgressStorageKey } from "@/lib/course-progress";
 import {
   computerCourseModulesV2,
+  computerModuleFiveV2,
   computerModuleFourV2,
   computerModuleOneV2,
   computerModuleThreeV2,
   computerModuleTwoV2,
 } from "@/content/computer-course-v2";
+
+const availableComputerModuleLessons = [
+  computerModuleOneV2,
+  computerModuleTwoV2,
+  computerModuleThreeV2,
+  computerModuleFourV2,
+  computerModuleFiveV2,
+];
+
+const availableComputerModuleCount = computerCourseModulesV2.filter(
+  (module) => module.status === "available",
+).length;
 
 export function ComputerCoursePage() {
   return (
@@ -132,6 +145,26 @@ export function ComputerCoursePage() {
           resetLabel="Module 4"
           language="en"
         />
+        <CourseResumeCard
+          lessons={computerModuleFiveV2.map((lesson) => ({
+            slug: lesson.slug,
+            title: lesson.title,
+          }))}
+          progressStorageKey={computerProgressStorageKey}
+          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
+          assessmentHref="/academy/courses/computer-internet-essentials"
+          completionHref="/academy/courses/computer-internet-essentials#course-path"
+          completionEyebrow="MODULE 5 COMPLETE"
+          completionTitle="You can navigate Windows or macOS deliberately."
+          completionAction="Review the course path"
+          newEyebrow="MODULE 5 · READY WHEN YOU ARE"
+          newTitle="Navigate Windows or macOS"
+          newAction="Start Module 5"
+          resetCourse="computer"
+          resetLessonSlugs={computerModuleFiveV2.map((lesson) => lesson.slug)}
+          resetLabel="Module 5"
+          language="en"
+        />
       </Container>
 
       <section
@@ -146,24 +179,18 @@ export function ComputerCoursePage() {
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
               A 15-module course architecture built around real computer
-              independence. Modules 1–4 are available now; every later module
-              stays unavailable until its lessons and assessments meet this
-              standard.
+              independence. Modules 1–{availableComputerModuleCount} are
+              available now; every later module stays unavailable until its
+              lessons and assessments meet this standard.
             </p>
           </div>
 
           <div className="border-border mt-12 grid border-t lg:grid-cols-2">
             {computerCourseModulesV2.map((module) => {
               const firstLesson =
-                module.order === 1
-                  ? computerModuleOneV2[0]
-                  : module.order === 2
-                    ? computerModuleTwoV2[0]
-                    : module.order === 3
-                      ? computerModuleThreeV2[0]
-                      : module.order === 4
-                        ? computerModuleFourV2[0]
-                        : null;
+                module.status === "available"
+                  ? availableComputerModuleLessons[module.order - 1]?.[0]
+                  : null;
 
               return (
                 <article
