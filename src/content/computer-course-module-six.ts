@@ -15,6 +15,9 @@ type LessonSeed = {
   visual: LessonVisual;
   visualTitle: string;
   visualCaption: string;
+  detailVisual: LessonVisual;
+  detailVisualTitle: string;
+  detailVisualCaption: string;
   compareTitle: string;
   comparisons: [string, string][];
   stepsTitle: string;
@@ -59,6 +62,12 @@ function makeLesson(seed: LessonSeed, index: number): ComputerLessonV2 {
           label,
           description,
         })),
+      },
+      {
+        type: "visual",
+        title: seed.detailVisualTitle,
+        caption: seed.detailVisualCaption,
+        visual: seed.detailVisual,
       },
       {
         type: "steps",
@@ -124,6 +133,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Apps live in more than one place",
     visualCaption:
       "The photograph provides real computer context. The activity below carries the exact labels so translation never depends on text inside an image.",
+    detailVisual: { kind: "apps-types-map" },
+    detailVisualTitle: "One icon can lead to four different things",
+    detailVisualCaption:
+      "Use location and behavior to distinguish installed software, a browser service, a launcher, and an operating-system component.",
     compareTitle: "Four things beginners often confuse",
     comparisons: [
       [
@@ -196,6 +209,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Search first; browse second",
     visualCaption:
       "A real learner uses search while the platform-specific practice supplies the exact route and feedback.",
+    detailVisual: { kind: "apps-installed-locations" },
+    detailVisualTitle: "The verification location differs by platform",
+    detailVisualCaption:
+      "Search is fast; Installed apps on Windows and Applications on Mac provide stronger local evidence.",
     compareTitle: "Fast routes and verification routes",
     comparisons: [
       ["Start / Spotlight", "Fastest when you know the name."],
@@ -263,6 +280,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Use a safer source before judging the file",
     visualCaption:
       "Stores are safer starting points, not a promise that every app fits your needs. Verify the publisher, cost, permissions, and purpose too.",
+    detailVisual: { kind: "apps-source-ladder" },
+    detailVisualTitle: "Climb down only when the safer source does not have it",
+    detailVisualCaption:
+      "Platform store, verified publisher, and managed organization are explainable sources. Look-alike domains and cracked software fail the gate.",
     compareTitle: "A practical source order",
     comparisons: [
       [
@@ -336,6 +357,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Slow down before the purchase button",
     visualCaption:
       "The real-world photograph shows the decision moment; the audit below makes every required field readable and translatable.",
+    detailVisual: { kind: "apps-listing-anatomy" },
+    detailVisualTitle: "An app listing is a small contract",
+    detailVisualCaption:
+      "The publisher, price model, renewal, compatibility, storage, and permissions all belong to the decision.",
     compareTitle: "Read beyond the headline",
     comparisons: [
       [
@@ -409,6 +434,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "A pause is part of installation",
     visualCaption:
       "The photograph shows the safe pause. The simulator supplies platform-correct controls rather than relying on generated screen text.",
+    detailVisual: { kind: "apps-security-prompts" },
+    detailVisualTitle: "Read the security prompt as evidence",
+    detailVisualCaption:
+      "Windows and macOS use different prompt designs, but both require a matching action, app, and verified publisher before approval.",
     compareTitle: "Common installation packages",
     comparisons: [
       [
@@ -476,6 +505,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Updates need a known route",
     visualCaption:
       "Some apps update through a store; others use their own verified updater. A random webpage cannot reliably inventory your installed applications.",
+    detailVisual: { kind: "apps-update-routes" },
+    detailVisualTitle: "The installation source usually predicts the updater",
+    detailVisualCaption:
+      "Return to the store for store apps, use a verified in-app updater for publisher apps, and reject unsolicited browser scans.",
     compareTitle: "Match the app to its updater",
     comparisons: [
       [
@@ -548,6 +581,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Remove the application—not the wrong object",
     visualCaption:
       "A shortcut, installer, application, document, and subscription are separate things. The removal lab makes those relationships explicit.",
+    detailVisual: { kind: "apps-removal-consequences" },
+    detailVisualTitle: "Uninstall changes one layer—not every related layer",
+    detailVisualCaption:
+      "Documents normally remain, shortcuts lose their target, and subscriptions require a separate cancellation decision.",
     compareTitle: "Removal has separate consequences",
     comparisons: [
       [
@@ -618,6 +655,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "Permission should follow purpose",
     visualCaption:
       "A meeting app may need the camera during a call. A calculator asking for contacts needs investigation. Context changes the decision.",
+    detailVisual: { kind: "apps-permission-panels" },
+    detailVisualTitle: "Review access from the operating system",
+    detailVisualCaption:
+      "Windows Privacy & security and macOS Privacy & Security group access by camera, microphone, location, files, and other categories.",
     compareTitle: "Ask what the feature needs",
     comparisons: [
       [
@@ -691,6 +732,10 @@ const seeds: LessonSeed[] = [
     visualTitle: "One file or every file of this type?",
     visualCaption:
       "Opening once and changing a default are different decisions. Neither action converts or rewrites the file itself.",
+    detailVisual: { kind: "apps-default-scope" },
+    detailVisualTitle: "Choose the scope before choosing the app",
+    detailVisualCaption:
+      "Open with affects this opening; a default affects future openings of that file type. Neither converts the file.",
     compareTitle: "Two choices with different reach",
     comparisons: [
       [

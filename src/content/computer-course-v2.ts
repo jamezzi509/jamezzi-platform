@@ -87,7 +87,16 @@ export type LessonVisual =
   | { kind: "apps-update" }
   | { kind: "apps-uninstall" }
   | { kind: "apps-permissions" }
-  | { kind: "apps-default-open-with" };
+  | { kind: "apps-default-open-with" }
+  | { kind: "apps-types-map" }
+  | { kind: "apps-installed-locations" }
+  | { kind: "apps-source-ladder" }
+  | { kind: "apps-listing-anatomy" }
+  | { kind: "apps-security-prompts" }
+  | { kind: "apps-update-routes" }
+  | { kind: "apps-removal-consequences" }
+  | { kind: "apps-permission-panels" }
+  | { kind: "apps-default-scope" };
 
 export type LessonSection =
   | {

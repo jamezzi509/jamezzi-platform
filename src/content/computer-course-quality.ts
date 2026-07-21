@@ -226,6 +226,13 @@ const moduleSixQualityRecords: ComputerLessonQualityRecord[] = [
           "Real-world application-management context without instructional text embedded in the image",
         translatableLabels: true as const,
       },
+      {
+        id: `m6-${slug}-instructional-screen`,
+        type: "screen" as const,
+        teaches:
+          "Concept-specific relationships, current platform routes, consequences, and decision evidence",
+        translatableLabels: true as const,
+      },
     ],
     interactions: [
       {

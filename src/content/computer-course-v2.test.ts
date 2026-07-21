@@ -43,11 +43,8 @@ describe("Computer & Internet Essentials V2 architecture", () => {
         (lesson) =>
           lesson.moduleId === "m6" &&
           lesson.interaction &&
-          lesson.sections.some(
-            (section) =>
-              section.type === "visual" &&
-              section.visual.kind.startsWith("apps-"),
-          ),
+          lesson.sections.filter((section) => section.type === "visual")
+            .length >= 2,
       ),
     ).toBe(true);
   });

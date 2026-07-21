@@ -1010,7 +1010,8 @@ function LessonVisualView({
 }) {
   if (isModuleFiveVisual(visual))
     return <ModuleFiveVisual visual={visual} platform={platform} />;
-  if (isModuleSixVisual(visual)) return <ModuleSixVisual visual={visual} />;
+  if (isModuleSixVisual(visual))
+    return <ModuleSixVisual visual={visual} platform={platform} />;
   if (visual.kind === "course-method")
     return (
       <div
