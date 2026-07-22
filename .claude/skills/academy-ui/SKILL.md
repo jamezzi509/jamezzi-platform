@@ -594,6 +594,35 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   computer/no sound/no internet) as separate paths, since the pedagogical point — record
   safe tests, then choose the correct escalation point rather than guessing — is fully
   captured by one well-chosen scenario without needing three parallel branches.
+  Module 14 (module-14.html) is the course's final module and closes the migration begun
+  in Module 1 — all 14 modules now run as simulators. Its traps: 14.1 mixing everything
+  into a single catch-all "Misc" folder instead of clear categories; 14.2 assuming a
+  backup made once needs no further checking — reuses 9.5/13.9's backup discipline as an
+  explicit monthly-verification habit; 14.3 sharing a password or bank number with an AI
+  assistant "to get help faster," the same secrets-boundary as every human-facing version
+  of this trap across the course (8.2, 11.3), now applied to AI; 14.4 reuses 12.7's
+  approved-vs-vague comparison pattern, here for tutorial sources instead of refurbished
+  listings — an undated tutorial with no device/version match is a warning sign, not
+  neutral; 14.5 reframes 11.4/12.9's urgency-pressure trap as a wellbeing principle
+  rather than a scam-specific one: strong emotional urgency is a manipulation signal in
+  attention-grabbing apps just as much as in scams; 14.6 skipping the rubric before
+  starting graded work; 14.9 no trap in the punishing sense — confirms the brief's "no
+  aggressive upsell" requirement literally, the trap-right answer states there is no
+  pressure to enroll in anything immediately. Lesson 14.7 is the course's capstone,
+  ported near-verbatim from the brief's own Capstone Specification (`computer-internet-
+  essentials-complete-curriculum.md` § 11): a fictional community group's event needs a
+  complete digital package. Its 6 objectives collapse the spec's 16 granular required
+  tasks into rubric-aligned groups (file organization+naming, document+PDF handling,
+  image+backup, email+attachment, safety/scam recognition via a real vs. fake message
+  pair reusing the fake-row-among-real-rows pattern one last time, and troubleshooting
+  reasoning) — this is the only lesson in the entire series with 6 objectives, and the
+  only one whose content was deliberately structured to touch nearly every module's core
+  skill in one exercise. Since this is the last module, `markModuleComplete()` does not
+  inject a "Continue to Module N+1" link — there is no Module 15 — but instead calls
+  `injectCourseComplete()`, which shows a 🎓 finale and a "Return to Course" link back to
+  `/academy/courses/computer-internet-essentials`. Any future course that reaches its
+  final module should follow this same completion-vs-continue branching rather than
+  reusing the standard `injectContinueModuleN()` pattern verbatim.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
