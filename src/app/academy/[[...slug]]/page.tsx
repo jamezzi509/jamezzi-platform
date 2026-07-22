@@ -18,6 +18,8 @@ import { ComputerGrowthSummaryPlayer } from "@/components/academy/computer-growt
 import { ComputerModuleSimulator } from "@/components/academy/computer-module-simulator";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
+import { DominateDigitalCoursePage } from "@/components/academy/dominate-digital-course-page";
+import { DominateDigitalModuleSimulator } from "@/components/academy/dominate-digital-module-simulator";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishFinalExam } from "@/components/academy/english-final-exam";
 import { EnglishLevelCheckpoint } from "@/components/academy/english-level-checkpoint";
@@ -42,6 +44,7 @@ import {
 } from "@/content/computer-rebuild/lessons";
 import { getComputerRebuildReadinessReflection } from "@/content/computer-rebuild/readiness-reflection";
 import { courses, launchingFirstCourses } from "@/content/courses";
+import { getDominateDigitalLesson } from "@/content/dominate-digital/lessons";
 import { titleFromSlug } from "@/lib/format";
 
 /**
@@ -71,6 +74,18 @@ const computerSimulatorModules: Record<
   m12: { moduleNumber: 12, title: "Modil 12 — Achte yon Òdinatè" },
   m13: { moduleNumber: 13, title: "Modil 13 — Rezoud Pwoblèm" },
   m14: { moduleNumber: 14, title: "Modil 14 — Endepandans Dijital" },
+};
+
+/**
+ * Digital Marketing & AI modules built as standalone simulators so far --
+ * same pattern as computerSimulatorModules. Only Module 1 exists; modules
+ * 2-20 will be added to this map as each one is built.
+ */
+const dominateDigitalSimulatorModules: Record<
+  string,
+  { moduleNumber: number; title: string }
+> = {
+  m1: { moduleNumber: 1, title: "Modil 1 — Baz Maketing Dijital" },
 };
 
 export async function generateMetadata({
@@ -522,6 +537,41 @@ export default async function AcademyPage({
 
   if (slug[0] === "courses" && slug[1] === "english-for-beginners") {
     return <EnglishCoursePage />;
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "digital-marketing-ai" &&
+    slug[2] === "learn" &&
+    !slug[3]
+  ) {
+    redirect(
+      `/academy/courses/digital-marketing-ai/learn/${getDominateDigitalLesson("what-is-digital-marketing")?.slug}`,
+    );
+  }
+
+  if (
+    slug[0] === "courses" &&
+    slug[1] === "digital-marketing-ai" &&
+    slug[2] === "learn" &&
+    slug[3]
+  ) {
+    const lesson = getDominateDigitalLesson(slug[3]);
+    const simulatorModule = lesson
+      ? dominateDigitalSimulatorModules[lesson.moduleId]
+      : undefined;
+    if (simulatorModule) {
+      return (
+        <DominateDigitalModuleSimulator
+          moduleNumber={simulatorModule.moduleNumber}
+          title={simulatorModule.title}
+        />
+      );
+    }
+  }
+
+  if (slug[0] === "courses" && slug[1] === "digital-marketing-ai" && !slug[2]) {
+    return <DominateDigitalCoursePage />;
   }
 
   if (slug[0] === "courses" && slug[1] && hasCoursePreview(slug[1])) {

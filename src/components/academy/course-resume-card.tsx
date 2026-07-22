@@ -20,12 +20,25 @@ export function CourseResumeCard({
   lessonBaseHref,
   assessmentHref,
   language = "en",
+  completeOverride,
 }: {
   lessons: ResumeLesson[];
   progressStorageKey: string;
   lessonBaseHref: string;
   assessmentHref: string;
   language?: "en" | "ht";
+  /**
+   * Override the "all lessons complete" state -- default copy/href assumes
+   * a final assessment exists. Courses still mid-build (more modules coming)
+   * should pass this so "complete" means "everything published so far",
+   * not a false claim that the whole course or a final exam is done.
+   */
+  completeOverride?: {
+    href: string;
+    eyebrow: string;
+    title: string;
+    action: string;
+  };
 }) {
   const [completed, setCompleted] = useState<string[] | null>(null);
 
@@ -60,24 +73,24 @@ export function CourseResumeCard({
   const isComplete = !nextLesson;
   const isNew = completedCount === 0;
   const href = isComplete
-    ? assessmentHref
+    ? (completeOverride?.href ?? assessmentHref)
     : `${lessonBaseHref}/${nextLesson.slug}`;
 
   const copy =
     language === "ht"
       ? {
           eyebrow: isComplete
-            ? "LESON YO FINI"
+            ? (completeOverride?.eyebrow ?? "LESON YO FINI")
             : isNew
               ? "KÒMANSE LÈ OU PARE"
               : "KONTINYE KOTE OU TE RETE A",
           title: isComplete
-            ? "Ou pare pou evalyasyon final la."
+            ? (completeOverride?.title ?? "Ou pare pou evalyasyon final la.")
             : isNew
               ? "Premye leson ou pare."
               : nextLesson.title,
           action: isComplete
-            ? "Pran evalyasyon final la"
+            ? (completeOverride?.action ?? "Pran evalyasyon final la")
             : isNew
               ? "Kòmanse premye leson an"
               : "Kontinye aprann",
@@ -85,17 +98,17 @@ export function CourseResumeCard({
         }
       : {
           eyebrow: isComplete
-            ? "COURSE LESSONS COMPLETE"
+            ? (completeOverride?.eyebrow ?? "COURSE LESSONS COMPLETE")
             : isNew
               ? "READY WHEN YOU ARE"
               : "CONTINUE WHERE YOU LEFT OFF",
           title: isComplete
-            ? "You’re ready for the final assessment."
+            ? (completeOverride?.title ?? "You’re ready for the final assessment.")
             : isNew
               ? "Your first lesson is ready."
               : nextLesson.title,
           action: isComplete
-            ? "Take the final assessment"
+            ? (completeOverride?.action ?? "Take the final assessment")
             : isNew
               ? "Start the first lesson"
               : "Continue learning",

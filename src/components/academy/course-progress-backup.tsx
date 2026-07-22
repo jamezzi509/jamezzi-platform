@@ -5,7 +5,7 @@ import { CheckIcon } from "@/components/ui/icons";
 
 interface BackupFile {
   version: 1;
-  course: "english" | "computer";
+  course: "english" | "computer" | "digitalMarketing";
   exportedAt: string;
   values: Record<string, string>;
 }
@@ -13,6 +13,7 @@ interface BackupFile {
 const prefixes = {
   english: "jamezzi:english:",
   computer: "jamezzi:computer:",
+  digitalMarketing: "jamezzi:digital-marketing-ai:",
 } as const;
 
 export function CourseProgressBackup({
