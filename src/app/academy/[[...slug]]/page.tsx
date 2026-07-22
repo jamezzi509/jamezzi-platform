@@ -59,6 +59,7 @@ const computerSimulatorModules: Record<
   },
   m2: { moduleNumber: 2, title: "Modil 2 — Kijan Yon Òdinatè Mache" },
   m3: { moduleNumber: 3, title: "Modil 3 — Kontwole Òdinatè Ou" },
+  m4: { moduleNumber: 4, title: "Modil 4 — Fichye ak Dosye" },
 };
 
 export async function generateMetadata({

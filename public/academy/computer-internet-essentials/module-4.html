@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 4 — Fichye ak Dosye</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.gone{display:none}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.sel{outline:2px solid var(--brand);outline-offset:1px}
+.partcard.done{border-color:var(--good)}
+.partart{height:100px;display:grid;place-items:center;background:#fff;border-radius:12px}.partart svg{max-height:100px;max-width:100%}
+.partart img{max-height:90px;max-width:85%;object-fit:contain}
+.partn{font-weight:700;font-size:15px;margin-top:12px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}.cat.dis{opacity:.4}
+.tileicon{width:24px;height:24px;flex:none}
+.photohead{background:#fff;border-radius:12px;padding:10px;max-width:340px;margin-top:18px}.photohead img{width:100%;display:block;border-radius:8px}
+.flow{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap}
+.node{flex:1;min-width:120px;border:1px solid var(--edge2);border-radius:14px;padding:16px;text-align:center;background:var(--ink-700);cursor:pointer;transition:.2s}
+.node.lit{border-color:var(--brand);box-shadow:0 0 0 3px rgba(var(--brand-rgb),.25)}
+.node.read{border-color:var(--good)}
+.node .ni{font-size:26px}.node .nt{font-weight:700;margin-top:8px;font-size:16px}.node .nd{font-size:13px;color:var(--mute);margin-top:4px}
+.arrow{color:var(--mute);font-size:24px}
+/* windows chrome (inline, no full desktop) */
+.winpanel{position:relative;width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.wtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.wbody{display:flex;min-height:260px}
+.wnav{width:170px;flex:none;background:#f3f3f3;padding:10px;border-right:1px solid var(--w-stroke)}
+.wni{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;font-size:13.5px;cursor:pointer}
+.wni:hover{background:rgba(0,0,0,.05)}.wni.sel{background:#e4f0ff;font-weight:600}
+.wcontent{flex:1;background:var(--w-content);overflow:auto;padding:16px 20px}
+.wpath{font-size:12.5px;color:var(--w-t2);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.wsearch{height:32px;border-radius:6px;background:#fff;border:1px solid var(--w-stroke);display:flex;align-items:center;gap:8px;padding:0 10px;color:#8a8f98;font-size:12.5px;margin-bottom:14px;max-width:220px}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:12px}
+.wfile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px;border-radius:8px;cursor:pointer;font-size:12px;text-align:center}
+.wfile:hover{background:rgba(0,0,0,.05)}.wfile.sel{background:#e4f0ff;outline:1px solid var(--w-accent)}
+.wfile .fi{width:34px;height:34px}
+.aboutcard{border:1px solid var(--w-stroke);border-radius:8px;background:#fff;padding:4px 16px;margin-bottom:14px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}.arow.on .k::after{content:" ✓";color:var(--good);font-weight:700}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ .wbody{flex-direction:column}
+ .wnav{width:100%;border-right:none;border-bottom:1px solid var(--w-stroke)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 4 · 4.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 13</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 5 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 5 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 5 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M4={ht:["Ki Sa Yon Fichye Ye?","Ki Sa Yon Dosye Ye?","File Explorer sou Windows","Desktop, Documents, Downloads, ak Lòt Kote Komen","Non Fichye Ki Ede Ou Pita","Save, Save As, ak Export","Kreye, Chanje Non, Kopye, ak Deplase","Efase ak Restore","Chèche Yon Fichye Ou Pèdi","Ekstansyon Fichye ak Fòma Komen","Fichye ZIP ak Konpresyon","Kle USB ak Estokaj Ekstèn","Misyon: Òganize Yon Vrè Dosye"],
+ fr:["Qu'est-ce qu'un Fichier ?","Qu'est-ce qu'un Dossier ?","L'Explorateur de Fichiers Windows","Bureau, Documents, Téléchargements, et Autres Emplacements","Des Noms de Fichiers Qui Vous Aident Plus Tard","Enregistrer, Enregistrer Sous, et Exporter","Créer, Renommer, Copier, et Déplacer","Supprimer et Restaurer","Rechercher un Fichier Perdu","Extensions de Fichiers et Formats Courants","Fichiers ZIP et Compression","Clés USB et Stockage Externe","Mission : Organiser un Vrai Dossier"],
+ en:["What Is a File?","What Is a Folder?","File Explorer on Windows","Desktop, Documents, Downloads, and Other Common Locations","File Names That Help You Later","Save, Save As, and Export","Create, Rename, Copy, and Move","Delete and Restore","Search for a Lost File","File Extensions and Common Formats","ZIP Files and Compression","USB Drives and External Storage","Mission: Organize a Real Folder"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Yon fichye se enfòmasyon ki sove anba yon non — tankou yon dokiman, yon foto, oswa yon tablo. Klike sou chak egzanp pou wè detay li.",
+   objs:["Klike sou 3 egzanp fichye","Konprann chanje ekstansyon pa chanje kalite fichye a"],
+   files:[["📄","Rapò.docx","Dokiman Word — louvri ak Microsoft Word"],["🖼️","Foto.jpg","Imaj — louvri ak yon aplikasyon foto"],["📊","Bidjè.xlsx","Tablo Excel — louvri ak Microsoft Excel"]],
+   trapQ:"Si m chanje '.docx' pou '.pdf' nan non fichye a (pa egzanp 'Rapò.pdf'), èske li vin yon PDF vre?",
+   yes:"Wi, li vin yon PDF",no:"Non, chanje non an sèl pa ase",
+   yesFb:"Pa vre! Chanje ekstansyon nan NON an sèl pa konvèti kontni fichye a — li ka menm anpeche l louvri kòrèkteman. Ou bezwen yon zouti 'export' oswa 'konvèti' reyèl.",
+   noFb:"Egzat! Ekstansyon an di aplikasyon an kijan pou li fichye a — chanje l nan non an sèl pa chanje FÒMA reyèl kontni an.",
+   welcome:"Klike sou chak fichye pou wè non, ekstansyon, ak aplikasyon ki louvri l.",
+   done:"Ou konprann kounye a: yon fichye gen yon non, yon ekstansyon (kalite), ak yon aplikasyon ki louvri l — chanje non an sèl pa chanje fòma reyèl la."},
+ fr:{lead:"Un fichier est une information sauvegardée sous un nom — comme un document, une photo, ou un tableau. Cliquez sur chaque exemple pour voir ses détails.",
+   objs:["Cliquer sur 3 exemples de fichiers","Comprendre que changer l'extension ne change pas le type de fichier"],
+   files:[["📄","Rapport.docx","Document Word — s'ouvre avec Microsoft Word"],["🖼️","Photo.jpg","Image — s'ouvre avec une application photo"],["📊","Budget.xlsx","Tableau Excel — s'ouvre avec Microsoft Excel"]],
+   trapQ:"Si je change '.docx' en '.pdf' dans le nom du fichier (par exemple 'Rapport.pdf'), est-ce que ça devient vraiment un PDF ?",
+   yes:"Oui, ça devient un PDF",no:"Non, changer le nom seul ne suffit pas",
+   yesFb:"Pas vrai ! Changer l'extension dans le NOM seul ne convertit pas le contenu du fichier — ça peut même l'empêcher de s'ouvrir correctement. Il faut un outil « exporter » ou « convertir » réel.",
+   noFb:"Exact ! L'extension dit à l'application comment lire le fichier — la changer dans le nom seul ne change pas le VRAI format du contenu.",
+   welcome:"Cliquez sur chaque fichier pour voir son nom, son extension, et l'application qui l'ouvre.",
+   done:"Vous comprenez maintenant : un fichier a un nom, une extension (type), et une application qui l'ouvre — changer le nom seul ne change pas le vrai format."},
+ en:{lead:"A file is information saved under a name — like a document, a photo, or a spreadsheet. Click each example to see its details.",
+   objs:["Click 3 file examples","Understand that changing the extension doesn't change the file type"],
+   files:[["📄","Report.docx","Word document — opens with Microsoft Word"],["🖼️","Photo.jpg","Image — opens with a photo app"],["📊","Budget.xlsx","Excel spreadsheet — opens with Microsoft Excel"]],
+   trapQ:"If I change '.docx' to '.pdf' in the filename (e.g. 'Report.pdf'), does it really become a PDF?",
+   yes:"Yes, it becomes a PDF",no:"No, changing just the name isn't enough",
+   yesFb:"Not true! Changing the extension in the NAME alone doesn't convert the file's content — it can even stop it from opening correctly. You need a real \"export\" or \"convert\" tool.",
+   noFb:"Exactly! The extension tells the app how to read the file — changing it in the name alone doesn't change the content's real format.",
+   welcome:"Click each file to see its name, extension, and the app that opens it.",
+   done:"Now you understand: a file has a name, an extension (type), and an app that opens it — changing the name alone doesn't change the real format."}},
+2:{ht:{lead:"Yon dosye òganize fichye yo — tankou yon achivyè dijital. Dosye ka gen sou-dosye anndan yo. Eksplore yerachi a anba a.",
+   objs:["Eksplore yerachi dosye a","Konprann sa k rive lè ou efase yon dosye"],
+   levels:[["📁","Dosye Prensipal","Nivo pi wo a"],["📂","Sou-Dosye","Yon dosye anndan yon lòt dosye"],["📄","Fichye","Rive nan fon an — kontni reyèl la"]],
+   trapQ:"Si m efase yon dosye, fichye ki anndan l yo rete an sekirite yon lòt kote.",
+   yes:"Vre",no:"Fo",
+   yesFb:"Pa vre! Efase yon dosye efase TOUT sa ki anndan l tou — fichye yo pa 'sove' otomatikman yon lòt kote. Verifye kontni anvan ou efase yon dosye.",
+   noFb:"Egzat! Yon dosye se pa jis yon etikèt — efase l efase tout kontni anndan l tou. Se poutèt sa verifye anvan enpòtan.",
+   welcome:"Klike sou chak nivo pou konprann yerachi dosye a.",
+   done:"Ou konprann kounye a: dosye ka gen sou-dosye ak fichye anndan yo, epi efase yon dosye efase tout sa ki anndan l."},
+ fr:{lead:"Un dossier organise des fichiers — comme un classeur numérique. Les dossiers peuvent avoir des sous-dossiers à l'intérieur. Explorez la hiérarchie ci-dessous.",
+   objs:["Explorer la hiérarchie des dossiers","Comprendre ce qui arrive quand vous supprimez un dossier"],
+   levels:[["📁","Dossier Principal","Le niveau le plus haut"],["📂","Sous-Dossier","Un dossier à l'intérieur d'un autre"],["📄","Fichier","Le fond — le vrai contenu"]],
+   trapQ:"Si je supprime un dossier, les fichiers à l'intérieur restent en sécurité ailleurs.",
+   yes:"Vrai",no:"Faux",
+   yesFb:"Pas vrai ! Supprimer un dossier supprime TOUT ce qu'il contient aussi — les fichiers ne se « sauvegardent » pas automatiquement ailleurs. Vérifiez le contenu avant de supprimer un dossier.",
+   noFb:"Exact ! Un dossier n'est pas juste une étiquette — le supprimer supprime aussi tout son contenu. C'est pourquoi vérifier avant est important.",
+   welcome:"Cliquez sur chaque niveau pour comprendre la hiérarchie des dossiers.",
+   done:"Vous comprenez maintenant : les dossiers peuvent avoir des sous-dossiers et fichiers à l'intérieur, et supprimer un dossier supprime tout son contenu."},
+ en:{lead:"A folder organizes files — like a digital filing cabinet. Folders can have subfolders inside them. Explore the hierarchy below.",
+   objs:["Explore the folder hierarchy","Understand what happens when you delete a folder"],
+   levels:[["📁","Main Folder","The top level"],["📂","Subfolder","A folder inside another folder"],["📄","File","The bottom — the real content"]],
+   trapQ:"If I delete a folder, the files inside it stay safe somewhere else.",
+   yes:"True",no:"False",
+   yesFb:"Not true! Deleting a folder deletes EVERYTHING inside it too — files don't automatically \"save\" themselves elsewhere. Check the contents before deleting a folder.",
+   noFb:"Exactly! A folder isn't just a label — deleting it deletes all its contents too. That's why checking first matters.",
+   welcome:"Click each level to understand the folder hierarchy.",
+   done:"Now you understand: folders can have subfolders and files inside them, and deleting a folder deletes everything inside it."}},
+3:{ht:{lead:"File Explorer se zouti Windows pou navige nan fichye ou yo. Klike sou 3 kote nan panno navigasyon an.",
+   objs:["Navige nan 3 kote nan File Explorer","Rekonèt sa yon rechèch anndan yon dosye fè"],
+   nav:["This PC","Desktop","Documents","Downloads","Pictures"],
+   pathFor:{0:"This PC",1:"This PC › Desktop",2:"This PC › Documents",3:"This PC › Downloads",4:"This PC › Pictures"},
+   trapQ:"Lè m tape yon mo nan bwat rechèch File Explorer a pandan m nan dosye 'Documents', èske li chèche nan TOUT òdinatè a?",
+   yes:"Wi, li chèche tout òdinatè a",no:"Non, li chèche sitou nan dosye kouran an",
+   yesFb:"Pa toujou vre — pa default, rechèch la konsantre sou dosye kote ou ye a (ak sou-dosye li yo). Pou chèche tout òdinatè a, ale nan 'This PC' anvan.",
+   noFb:"Egzat! Rechèch la konsantre sou dosye kouran an. Si ou vle chèche pi lwen, kòmanse nan 'This PC' anvan ou tape.",
+   welcome:"Klike sou 3 kote nan panno navigasyon an agoch la.",
+   done:"Ou konnen kounye a kijan pou navige nan File Explorer, epi ou konprann rechèch la konsantre sou dosye kouran an."},
+ fr:{lead:"L'Explorateur de Fichiers est l'outil Windows pour naviguer dans vos fichiers. Cliquez sur 3 emplacements dans le volet de navigation.",
+   objs:["Naviguer vers 3 emplacements dans l'Explorateur","Reconnaître ce que fait une recherche dans un dossier"],
+   nav:["Ce PC","Bureau","Documents","Téléchargements","Images"],
+   pathFor:{0:"Ce PC",1:"Ce PC › Bureau",2:"Ce PC › Documents",3:"Ce PC › Téléchargements",4:"Ce PC › Images"},
+   trapQ:"Quand je tape un mot dans la boîte de recherche de l'Explorateur pendant que je suis dans « Documents », est-ce que ça cherche dans TOUT l'ordinateur ?",
+   yes:"Oui, ça cherche tout l'ordinateur",no:"Non, ça cherche surtout dans le dossier actuel",
+   yesFb:"Pas toujours vrai — par défaut, la recherche se concentre sur le dossier où vous êtes (et ses sous-dossiers). Pour chercher tout l'ordinateur, allez dans « Ce PC » d'abord.",
+   noFb:"Exact ! La recherche se concentre sur le dossier actuel. Pour chercher plus loin, commencez dans « Ce PC » avant de taper.",
+   welcome:"Cliquez sur 3 emplacements dans le volet de navigation à gauche.",
+   done:"Vous savez maintenant comment naviguer dans l'Explorateur de Fichiers, et vous comprenez que la recherche se concentre sur le dossier actuel."},
+ en:{lead:"File Explorer is the Windows tool for navigating your files. Click 3 locations in the navigation pane.",
+   objs:["Navigate to 3 locations in File Explorer","Recognize what a search inside a folder does"],
+   nav:["This PC","Desktop","Documents","Downloads","Pictures"],
+   pathFor:{0:"This PC",1:"This PC › Desktop",2:"This PC › Documents",3:"This PC › Downloads",4:"This PC › Pictures"},
+   trapQ:"When I type a word in File Explorer's search box while I'm in 'Documents', does it search the WHOLE computer?",
+   yes:"Yes, it searches the whole computer",no:"No, it mainly searches the current folder",
+   yesFb:"Not always true — by default, search focuses on the folder you're in (and its subfolders). To search the whole computer, go to \"This PC\" first.",
+   noFb:"Exactly! Search focuses on the current folder. To search further, start from \"This PC\" before typing.",
+   welcome:"Click 3 locations in the navigation pane on the left.",
+   done:"Now you know how to navigate File Explorer, and you understand that search focuses on the current folder."}},
+4:{ht:{lead:"Chak kote sou òdinatè a gen yon objektif. Klike sou chak kote pou aprann wòl li.",
+   objs:["Idantifye 4 kote komen yo","Konprann Downloads pa se yon òganizasyon pèmanan"],
+   spots:[["Desktop","Aksè rapid, men pa pou depo tout bagay — twòp ikòn fè l tounen dezòdone"],["Documents","Bon kote pou dokiman travay ou òganize pou tout tan"],["Downloads","Kote fichye ateri lè ou telechaje yo — TANPORÈ, pa yon òganizasyon final"],["Pictures","Kote foto ak imaj ou yo rete pou tout tan"]],
+   trapQ:"Kote yon fichye enpòtan ta dwe rete pou tout tan, apre ou fin telechaje l?",
+   trapWrong:"Rete nan Downloads",trapRight:"Deplase l nan Documents (oswa yon dosye òganize)",
+   trapWrongFb:"Pa pi bon chwa a! Downloads se yon kote TANPORÈ — fichye ka anpile la san rezon epi vin difisil pou jwenn. Deplase fichye enpòtan yo nan yon dosye òganize.",
+   trapRightFb:"Egzat! Downloads se jis kote fichye ateri — deplase fichye enpòtan yo nan Documents (oswa yon dosye ou kreye) pou yo rete òganize.",
+   welcome:"Klike sou chak kote pou aprann wòl li.",
+   done:"Ou konnen kounye a wòl Desktop, Documents, Downloads, ak Pictures — epi Downloads pa se yon kote pou depo tout bagay pou tout tan."},
+ fr:{lead:"Chaque emplacement sur l'ordinateur a un objectif. Cliquez sur chacun pour apprendre son rôle.",
+   objs:["Identifier les 4 emplacements communs","Comprendre que Téléchargements n'est pas une organisation permanente"],
+   spots:[["Bureau","Accès rapide, mais pas pour tout stocker — trop d'icônes le rend désordonné"],["Documents","Bon endroit pour vos documents de travail organisés durablement"],["Téléchargements","Où les fichiers atterrissent quand vous les téléchargez — TEMPORAIRE, pas une organisation finale"],["Images","Où vos photos et images restent durablement"]],
+   trapQ:"Où un fichier important devrait-il rester durablement, après l'avoir téléchargé ?",
+   trapWrong:"Rester dans Téléchargements",trapRight:"Le déplacer dans Documents (ou un dossier organisé)",
+   trapWrongFb:"Pas le meilleur choix ! Téléchargements est un endroit TEMPORAIRE — les fichiers peuvent s'y entasser sans raison et devenir difficiles à trouver. Déplacez les fichiers importants dans un dossier organisé.",
+   trapRightFb:"Exact ! Téléchargements est juste où les fichiers atterrissent — déplacez les fichiers importants dans Documents (ou un dossier que vous créez) pour qu'ils restent organisés.",
+   welcome:"Cliquez sur chaque emplacement pour apprendre son rôle.",
+   done:"Vous connaissez maintenant le rôle de Bureau, Documents, Téléchargements, et Images — et Téléchargements n'est pas fait pour tout stocker durablement."},
+ en:{lead:"Every location on the computer has a purpose. Click each one to learn its role.",
+   objs:["Identify the 4 common locations","Understand that Downloads isn't permanent organization"],
+   spots:[["Desktop","Quick access, but not for storing everything — too many icons makes it messy"],["Documents","A good place for work documents organized for the long term"],["Downloads","Where files land when you download them — TEMPORARY, not final organization"],["Pictures","Where your photos and images stay long-term"]],
+   trapQ:"Where should an important file stay long-term, after you download it?",
+   trapWrong:"Stay in Downloads",trapRight:"Move it to Documents (or an organized folder)",
+   trapWrongFb:"Not the best choice! Downloads is a TEMPORARY spot — files can pile up there for no reason and become hard to find. Move important files to an organized folder.",
+   trapRightFb:"Exactly! Downloads is just where files land — move important files to Documents (or a folder you create) so they stay organized.",
+   welcome:"Click each location to learn its role.",
+   done:"Now you know the role of Desktop, Documents, Downloads, and Pictures — and Downloads isn't meant for storing everything long-term."}},
+5:{ht:{lead:"Yon bon non fichye ede ou jwenn li fasil pita. Gade chenn non sa a — li montre yon pwoblèm komen.",
+   objs:["Gade chenn non fichye yo","Konprann poukisa non klè ak dat itil"],
+   chain:["Rapò.docx","Rapò-final.docx","Rapò-final-FINAL.docx","Rapò-final-FINAL-2.docx"],
+   trapQ:"Gade chenn non fichye anwo a. Ki youn ki VRÈMAN vèsyon final la?",
+   trapWrong:"Rapò-final-FINAL-2.docx (li gen 'FINAL' de fwa)",trapRight:"Enposib pou konnen san louvri chak fichye",
+   trapWrongFb:"Sa se yon deviniman, pa yon repons sèten! Se egzakteman pwoblèm 'final-final-2' a — non sa yo pa di ou anyen serye sou ki youn ki vrèman final la.",
+   trapRightFb:"Egzat! Se egzakteman poukisa non tankou 'final-FINAL-2' pa itil — yo pa gen dat ni nimewo vèsyon klè. Yon non tankou 'Rapò-2026-01-15-v2.docx' ta pi klè.",
+   welcome:"Gade chenn non fichye a, epi reponn kesyon an anba a.",
+   done:"Ou konprann kounye a: non fichye ki gen dat ak nimewo vèsyon klè (pa 'final-final-2') ede ou jwenn bon vèsyon an pita san konfizyon."},
+ fr:{lead:"Un bon nom de fichier vous aide à le retrouver facilement plus tard. Regardez cette chaîne de noms — elle montre un problème courant.",
+   objs:["Regarder la chaîne de noms de fichiers","Comprendre pourquoi des noms clairs et des dates sont utiles"],
+   chain:["Rapport.docx","Rapport-final.docx","Rapport-final-FINAL.docx","Rapport-final-FINAL-2.docx"],
+   trapQ:"Regardez la chaîne de noms ci-dessus. Lequel est VRAIMENT la version finale ?",
+   trapWrong:"Rapport-final-FINAL-2.docx (il a 'FINAL' deux fois)",trapRight:"Impossible à savoir sans ouvrir chaque fichier",
+   trapWrongFb:"C'est une supposition, pas une réponse certaine ! C'est exactement le problème « final-final-2 » — ces noms ne vous disent rien de sérieux sur lequel est vraiment final.",
+   trapRightFb:"Exact ! C'est exactement pourquoi des noms comme « final-FINAL-2 » ne servent à rien — pas de date ni de numéro de version clair. Un nom comme « Rapport-2026-01-15-v2.docx » serait plus clair.",
+   welcome:"Regardez la chaîne de noms de fichiers, puis répondez à la question ci-dessous.",
+   done:"Vous comprenez maintenant : des noms de fichiers avec des dates et numéros de version clairs (pas « final-final-2 ») vous aident à retrouver la bonne version plus tard sans confusion."},
+ en:{lead:"A good filename helps you find it easily later. Look at this name chain — it shows a common problem.",
+   objs:["Look at the filename chain","Understand why clear names and dates help"],
+   chain:["Report.docx","Report-final.docx","Report-final-FINAL.docx","Report-final-FINAL-2.docx"],
+   trapQ:"Look at the name chain above. Which one is REALLY the final version?",
+   trapWrong:"Report-final-FINAL-2.docx (it has 'FINAL' twice)",trapRight:"Impossible to know without opening each file",
+   trapWrongFb:"That's a guess, not a sure answer! That's exactly the \"final-final-2\" problem — these names don't tell you anything reliable about which is really final.",
+   trapRightFb:"Exactly! That's exactly why names like \"final-FINAL-2\" aren't useful — no date or clear version number. A name like \"Report-2026-01-15-v2.docx\" would be clearer.",
+   welcome:"Look at the filename chain, then answer the question below.",
+   done:"Now you understand: filenames with clear dates and version numbers (not \"final-final-2\") help you find the right version later without confusion."}},
+6:{ht:{lead:"Save, Save As, ak Export fè 3 bagay diferan. Eseye chak youn.",
+   objs:["Eseye Save, Save As, ak Export","Konprann diferans Save ak Save As"],
+   saveBtn:"Save",saveAsBtn:"Save As",exportBtn:"Export (PDF)",
+   saveFb:"Save ekri chanjman yo DIRÈKTEMAN nan MENM fichye a — orijinal la ranplase.",
+   saveAsFb:"Save As kreye yon NOUVO kopi ak yon lòt non — orijinal la rete jan l te ye.",
+   exportFb:"Export kreye yon kopi nan yon FÒMA diferan (tankou PDF) — bon pou pataje san moun modifye l.",
+   trapQ:"Ou fè gwo chanjman nan yon dokiman, men ou te vle GADE orijinal la tou. Ou klike 'Save' pa aksidan olye 'Save As'. Sa rive?",
+   trapWrong:"Anyen — Save toujou mande konfimasyon",trapRight:"Chanjman yo ranplase orijinal la, ou pèdi vèsyon anvan an",
+   trapWrongFb:"Pa vre — Save ekri san mande konfimasyon nan pifò ka. Si ou te vle gade orijinal la, ou te dwe klike 'Save As' AVAN ou fè chanjman yo.",
+   trapRightFb:"Egzat! Se poutèt sa: si ou vle gade orijinal la, itilize 'Save As' AVAN ou kòmanse modifye — pa apre.",
+   welcome:"Eseye chak bouton pou wè sa yo fè.",
+   done:"Ou konprann kounye a: Save ranplase orijinal la, Save As kreye yon kopi, epi Export chanje fòma a — chak gen yon rezilta diferan."},
+ fr:{lead:"Enregistrer, Enregistrer Sous, et Exporter font 3 choses différentes. Essayez chacun.",
+   objs:["Essayer Enregistrer, Enregistrer Sous, et Exporter","Comprendre la différence entre Enregistrer et Enregistrer Sous"],
+   saveBtn:"Enregistrer",saveAsBtn:"Enregistrer Sous",exportBtn:"Exporter (PDF)",
+   saveFb:"Enregistrer écrit les changements DIRECTEMENT dans le MÊME fichier — l'original est remplacé.",
+   saveAsFb:"Enregistrer Sous crée une NOUVELLE copie avec un autre nom — l'original reste tel quel.",
+   exportFb:"Exporter crée une copie dans un FORMAT différent (comme PDF) — bon pour partager sans que les gens le modifient.",
+   trapQ:"Vous faites de gros changements dans un document, mais vouliez GARDER l'original aussi. Vous cliquez « Enregistrer » par accident au lieu de « Enregistrer Sous ». Que se passe-t-il ?",
+   trapWrong:"Rien — Enregistrer demande toujours confirmation",trapRight:"Les changements remplacent l'original, vous perdez la version précédente",
+   trapWrongFb:"Pas vrai — Enregistrer écrit sans demander confirmation dans la plupart des cas. Si vous vouliez garder l'original, il fallait cliquer « Enregistrer Sous » AVANT de faire les changements.",
+   trapRightFb:"Exact ! C'est pourquoi : si vous voulez garder l'original, utilisez « Enregistrer Sous » AVANT de commencer à modifier — pas après.",
+   welcome:"Essayez chaque bouton pour voir ce qu'ils font.",
+   done:"Vous comprenez maintenant : Enregistrer remplace l'original, Enregistrer Sous crée une copie, et Exporter change le format — chacun a un résultat différent."},
+ en:{lead:"Save, Save As, and Export do 3 different things. Try each one.",
+   objs:["Try Save, Save As, and Export","Understand the difference between Save and Save As"],
+   saveBtn:"Save",saveAsBtn:"Save As",exportBtn:"Export (PDF)",
+   saveFb:"Save writes changes DIRECTLY into the SAME file — the original is replaced.",
+   saveAsFb:"Save As creates a NEW copy with a different name — the original stays as it was.",
+   exportFb:"Export creates a copy in a different FORMAT (like PDF) — good for sharing without people editing it.",
+   trapQ:"You make big changes to a document, but wanted to KEEP the original too. You click 'Save' by accident instead of 'Save As.' What happens?",
+   trapWrong:"Nothing — Save always asks for confirmation",trapRight:"The changes replace the original, you lose the previous version",
+   trapWrongFb:"Not true — Save writes without asking for confirmation in most cases. If you wanted to keep the original, you needed to click \"Save As\" BEFORE making the changes.",
+   trapRightFb:"Exactly! That's why: if you want to keep the original, use \"Save As\" BEFORE you start editing — not after.",
+   welcome:"Try each button to see what they do.",
+   done:"Now you understand: Save replaces the original, Save As creates a copy, and Export changes the format — each has a different result."}},
+7:{ht:{lead:"Kreye yon dosye, epi chanje non yon fichye. Fè atansyon ak yon danje komen.",
+   objs:["Kreye yon dosye epi chanje non yon fichye","Rekonèt danje efase ekstansyon pa aksidan"],
+   createBtn:"Kreye Nouvo Dosye",renameBtn:"Chanje Non 'Nòt.txt'",
+   createFb:"Ou kreye yon nouvo dosye — kounye a ou ka deplase fichye ladan l.",
+   renameLbl:"Non nouvo a:",
+   trapQ:"Ou chanje non 'Nòt.txt' pou 'Nòt' (san .txt la). Sa ka rive?",
+   trapWrong:"Anyen — se menm fichye a",trapRight:"Ou ka kase koneksyon ak aplikasyon ki louvri l la",
+   trapWrongFb:"Pa vre — efase ekstansyon an (.txt) pa aksidan ka fè Windows pa konnen ki aplikasyon pou louvri fichye a ankò.",
+   trapRightFb:"Egzat! Toujou kenbe ekstansyon an (.txt, .docx, elatriye) lè w ap chanje non yon fichye — chanje sèlman pati anvan an.",
+   welcome:"Klike 'Kreye Nouvo Dosye', epi eseye chanje non yon fichye.",
+   done:"Ou konnen kounye a kijan pou kreye yon dosye ak chanje non yon fichye san danje — toujou kenbe ekstansyon an."},
+ fr:{lead:"Créez un dossier, puis renommez un fichier. Attention à un danger courant.",
+   objs:["Créer un dossier et renommer un fichier","Reconnaître le danger de supprimer l'extension par accident"],
+   createBtn:"Créer un Nouveau Dossier",renameBtn:"Renommer 'Notes.txt'",
+   createFb:"Vous avez créé un nouveau dossier — vous pouvez maintenant y déplacer des fichiers.",
+   renameLbl:"Nouveau nom :",
+   trapQ:"Vous renommez 'Notes.txt' en 'Notes' (sans le .txt). Que peut-il se passer ?",
+   trapWrong:"Rien — c'est le même fichier",trapRight:"Vous pouvez casser le lien avec l'application qui l'ouvre",
+   trapWrongFb:"Pas vrai — supprimer l'extension (.txt) par accident peut faire que Windows ne sache plus quelle application utiliser pour ouvrir le fichier.",
+   trapRightFb:"Exact ! Gardez toujours l'extension (.txt, .docx, etc.) en renommant un fichier — changez seulement la partie avant.",
+   welcome:"Cliquez « Créer un Nouveau Dossier », puis essayez de renommer un fichier.",
+   done:"Vous savez maintenant comment créer un dossier et renommer un fichier sans danger — toujours garder l'extension."},
+ en:{lead:"Create a folder, then rename a file. Watch out for a common danger.",
+   objs:["Create a folder and rename a file","Recognize the danger of accidentally deleting the extension"],
+   createBtn:"Create New Folder",renameBtn:"Rename 'Notes.txt'",
+   createFb:"You created a new folder — now you can move files into it.",
+   renameLbl:"New name:",
+   trapQ:"You rename 'Notes.txt' to 'Notes' (without the .txt). What can happen?",
+   trapWrong:"Nothing — it's the same file",trapRight:"You can break the link to the app that opens it",
+   trapWrongFb:"Not true — accidentally deleting the extension (.txt) can make Windows no longer know which app to use to open the file.",
+   trapRightFb:"Exactly! Always keep the extension (.txt, .docx, etc.) when renaming a file — only change the part before it.",
+   welcome:"Click \"Create New Folder,\" then try renaming a file.",
+   done:"Now you know how to create a folder and rename a file safely — always keep the extension."}},
+8:{ht:{lead:"Efase yon fichye mete l nan Panye Fatra — ou ka toujou repran l. Men fè atansyon ak yon ka espesyal.",
+   objs:["Efase epi Restore yon fichye","Konprann kle USB/cloud pa toujou gen Panye Fatra"],
+   deleteBtn:"Efase 'Ansyen-Nòt.txt'",restoreBtn:"Restore",emptyBtn:"Vide Panye Fatra (Pèmanan)",
+   deleteFb:"Fichye a ale nan Panye Fatra — li PA disparèt toutafè, ou ka repran l.",
+   restoreFb:"Ou repran fichye a — li tounen kote l te ye.",
+   emptyFb:"ATANSYON: sa a PÈMANAN — ou pa ka repran anyen apre sa.",
+   trapQ:"Ou efase yon fichye ki sou yon kle USB (pa sou disk dosinatè a). Èske li toujou ale nan Panye Fatra Windows la?",
+   trapWrong:"Wi, toujou menm bagay la",trapRight:"Pa toujou — kèk aparèy ekstèn efase pèmanan imedyatman",
+   trapWrongFb:"Pa toujou vre! Kèk kle USB ak dispozitif ekstèn efase fichye PÈMANAN imedyatman, san pase pa Panye Fatra a. Fè de fwa plis atansyon ak estokaj ekstèn ak cloud.",
+   trapRightFb:"Egzat! Kle USB ak kèk sèvis cloud ka efase pèmanan san Panye Fatra. Toujou fè yon backup si fichye a enpòtan.",
+   welcome:"Klike 'Efase', apre eseye 'Restore'.",
+   done:"Ou konnen kounye a: Panye Fatra kite ou repran yon fichye, men kle USB ak cloud pa toujou ofri menm sekirite a."},
+ fr:{lead:"Supprimer un fichier le met dans la Corbeille — vous pouvez toujours le récupérer. Mais attention à un cas particulier.",
+   objs:["Supprimer et Restaurer un fichier","Comprendre que les clés USB/cloud n'ont pas toujours de Corbeille"],
+   deleteBtn:"Supprimer 'Ancienne-Note.txt'",restoreBtn:"Restaurer",emptyBtn:"Vider la Corbeille (Permanent)",
+   deleteFb:"Le fichier va dans la Corbeille — il ne disparaît PAS complètement, vous pouvez le récupérer.",
+   restoreFb:"Vous avez récupéré le fichier — il est revenu où il était.",
+   emptyFb:"ATTENTION : ceci est PERMANENT — vous ne pourrez plus rien récupérer après.",
+   trapQ:"Vous supprimez un fichier qui est sur une clé USB (pas sur le disque de l'ordinateur). Est-ce que ça va toujours dans la Corbeille Windows ?",
+   trapWrong:"Oui, toujours pareil",trapRight:"Pas toujours — certains appareils externes suppriment définitivement tout de suite",
+   trapWrongFb:"Pas toujours vrai ! Certaines clés USB et appareils externes suppriment les fichiers DÉFINITIVEMENT tout de suite, sans passer par la Corbeille. Faites deux fois plus attention avec le stockage externe et le cloud.",
+   trapRightFb:"Exact ! Les clés USB et certains services cloud peuvent supprimer définitivement sans Corbeille. Faites toujours une sauvegarde si le fichier est important.",
+   welcome:"Cliquez « Supprimer », puis essayez « Restaurer ».",
+   done:"Vous savez maintenant : la Corbeille vous permet de récupérer un fichier, mais les clés USB et le cloud n'offrent pas toujours la même sécurité."},
+ en:{lead:"Deleting a file puts it in the Recycle Bin — you can still get it back. But watch out for a special case.",
+   objs:["Delete and Restore a file","Understand that USB drives/cloud don't always have a Recycle Bin"],
+   deleteBtn:"Delete 'Old-Note.txt'",restoreBtn:"Restore",emptyBtn:"Empty Recycle Bin (Permanent)",
+   deleteFb:"The file goes to the Recycle Bin — it does NOT completely disappear, you can get it back.",
+   restoreFb:"You restored the file — it's back where it was.",
+   emptyFb:"WARNING: this is PERMANENT — you can't recover anything after this.",
+   trapQ:"You delete a file that's on a USB drive (not on the computer's disk). Does it always go to the Windows Recycle Bin?",
+   trapWrong:"Yes, always the same",trapRight:"Not always — some external devices delete permanently right away",
+   trapWrongFb:"Not always true! Some USB drives and external devices delete files PERMANENTLY right away, without going through the Recycle Bin. Be extra careful with external storage and cloud.",
+   trapRightFb:"Exactly! USB drives and some cloud services can delete permanently without a Recycle Bin. Always keep a backup if the file matters.",
+   welcome:"Click \"Delete,\" then try \"Restore.\"",
+   done:"Now you know: the Recycle Bin lets you get a file back, but USB drives and cloud don't always offer the same safety net."}},
+9:{ht:{lead:"Lè ou pèdi yon fichye, swiv yon sekans kalm olye panike. Klike sou chak etap.",
+   objs:["Swiv sekans rechèch la","Rete kalm olye panike"],
+   steps:[["Chèche pa Non","Tape yon pati nan non fichye a"],["Chèche pa Kalite","Filtre pa .docx, .jpg, elatriye"],["Chèche pa Dat","Gade lè ou te dènye modifye l"],["Gade Fichye Resan","Gade lis 'Fichye Resan' yo"]],
+   trapQ:"Ou pa jwenn yon fichye apre 5 segonn rechèch. Ki pi bon reyaksyon an?",
+   trapWrong:"Panike, li disparèt pou tout tan",trapRight:"Kontinye swiv sekans lan — chèche pa kalite, dat, elatriye",
+   trapWrongFb:"Pa nesesè! Yon fichye ki 'pa parèt' imedyatman pa vle di li disparèt — kontinye eseye lòt fason chèche anvan ou konkli sa.",
+   trapRightFb:"Egzat! Rete kalm epi eseye chak etap: non, kalite, dat, fichye resan — pifò fwa ou jwenn li.",
+   welcome:"Klike sou chak etap nan sekans rechèch la.",
+   done:"Ou konnen kounye a yon sekans kalm pou chèche yon fichye ki sanble pèdi: non, kalite, dat, ak fichye resan."},
+ fr:{lead:"Quand vous perdez un fichier, suivez une séquence calme au lieu de paniquer. Cliquez sur chaque étape.",
+   objs:["Suivre la séquence de recherche","Rester calme au lieu de paniquer"],
+   steps:[["Chercher par Nom","Tapez une partie du nom du fichier"],["Chercher par Type","Filtrez par .docx, .jpg, etc."],["Chercher par Date","Regardez la dernière modification"],["Voir les Fichiers Récents","Regardez la liste des « Fichiers Récents »"]],
+   trapQ:"Vous ne trouvez pas un fichier après 5 secondes de recherche. Quelle est la meilleure réaction ?",
+   trapWrong:"Paniquer, il a disparu pour toujours",trapRight:"Continuer la séquence — chercher par type, date, etc.",
+   trapWrongFb:"Pas nécessaire ! Un fichier qui « n'apparaît pas » tout de suite ne veut pas dire qu'il a disparu — continuez à essayer d'autres façons de chercher avant de conclure ça.",
+   trapRightFb:"Exact ! Restez calme et essayez chaque étape : nom, type, date, fichiers récents — la plupart du temps vous le trouvez.",
+   welcome:"Cliquez sur chaque étape de la séquence de recherche.",
+   done:"Vous connaissez maintenant une séquence calme pour chercher un fichier qui semble perdu : nom, type, date, et fichiers récents."},
+ en:{lead:"When you lose a file, follow a calm sequence instead of panicking. Click each step.",
+   objs:["Follow the search sequence","Stay calm instead of panicking"],
+   steps:[["Search by Name","Type part of the filename"],["Search by Type","Filter by .docx, .jpg, etc."],["Search by Date","Look at when you last edited it"],["Check Recent Files","Look at the \"Recent Files\" list"]],
+   trapQ:"You can't find a file after 5 seconds of searching. What's the best reaction?",
+   trapWrong:"Panic, it's gone forever",trapRight:"Keep following the sequence — search by type, date, etc.",
+   trapWrongFb:"Not necessary! A file that doesn't show up right away doesn't mean it's gone — keep trying other ways to search before concluding that.",
+   trapRightFb:"Exactly! Stay calm and try each step: name, type, date, recent files — most of the time you'll find it.",
+   welcome:"Click each step in the search sequence.",
+   done:"Now you know a calm sequence for finding a file that seems lost: name, type, date, and recent files."}},
+10:{ht:{lead:"Chak ekstansyon fichye di ou yon kalite kontni. Klase chak fichye nan kategori kòrèk la — men fè atansyon ak yon danje.",
+   objs:["Klase tout fichye yo","Rekonèt danje yon fichye .exe"],
+   cats:["Dokiman","Tablo","Imaj","Odyo","Videyo","Achiv"],
+   items:[{n:"Rapò.pdf",ans:0},{n:"Lèt.docx",ans:0},{n:"Bidjè.xlsx",ans:1},{n:"Foto.jpg",ans:2},{n:"Chan.mp3",ans:3},{n:"Videyo.mp4",ans:4},{n:"Achiv.zip",ans:5},{n:"Enstalè.exe",ans:-1}],
+   ok:"Kòrèk!",bad:"Pa sa a. Reflechi sou kalite kontni fichye a.",
+   trapFb:"Atansyon! Yon fichye .exe se yon PWOGRAM ki ka egzekite (kouri) — se PA yon dokiman, foto, oswa lòt kontni senp. Louvri yon .exe ki soti nan yon sous ou pa konnen ka enstale yon viris.",
+   welcome:"Klike sou yon fichye, apre chwazi kategori kòrèk la — men fè atansyon, gen yon fichye ki pa yon senp dokiman.",
+   done:"Ou klase tout fichye yo, epi ou konnen yon .exe se yon pwogram — pa yon dokiman senp, li ka danjere si li soti yon sous ou pa konnen."},
+ fr:{lead:"Chaque extension de fichier vous dit un type de contenu. Classez chaque fichier dans la bonne catégorie — mais attention à un danger.",
+   objs:["Classer tous les fichiers","Reconnaître le danger d'un fichier .exe"],
+   cats:["Document","Tableau","Image","Audio","Vidéo","Archive"],
+   items:[{n:"Rapport.pdf",ans:0},{n:"Lettre.docx",ans:0},{n:"Budget.xlsx",ans:1},{n:"Photo.jpg",ans:2},{n:"Chanson.mp3",ans:3},{n:"Vidéo.mp4",ans:4},{n:"Archive.zip",ans:5},{n:"Installateur.exe",ans:-1}],
+   ok:"Correct !",bad:"Pas ça. Réfléchissez au type de contenu du fichier.",
+   trapFb:"Attention ! Un fichier .exe est un PROGRAMME qui peut s'exécuter (tourner) — ce n'est PAS un document, une photo, ou un autre contenu simple. Ouvrir un .exe d'une source inconnue peut installer un virus.",
+   welcome:"Cliquez un fichier, puis choisissez la bonne catégorie — mais attention, un fichier n'est pas un simple document.",
+   done:"Vous avez classé tous les fichiers, et vous savez qu'un .exe est un programme — pas un simple document, il peut être dangereux s'il vient d'une source inconnue."},
+ en:{lead:"Every file extension tells you a type of content. Classify each file into the right category — but watch out for a danger.",
+   objs:["Classify all files","Recognize the danger of an .exe file"],
+   cats:["Document","Spreadsheet","Image","Audio","Video","Archive"],
+   items:[{n:"Report.pdf",ans:0},{n:"Letter.docx",ans:0},{n:"Budget.xlsx",ans:1},{n:"Photo.jpg",ans:2},{n:"Song.mp3",ans:3},{n:"Video.mp4",ans:4},{n:"Archive.zip",ans:5},{n:"Installer.exe",ans:-1}],
+   ok:"Correct!",bad:"Not that. Think about the file's type of content.",
+   trapFb:"Watch out! An .exe file is a PROGRAM that can run (execute) — it is NOT a document, photo, or other simple content. Opening an .exe from an unknown source can install a virus.",
+   welcome:"Click a file, then choose the right category — but watch out, one file isn't a simple document.",
+   done:"You classified all the files, and you know an .exe is a program — not a simple document, it can be dangerous if it's from an unknown source."}},
+11:{ht:{lead:"Konpresyon (ZIP) mete plizyè fichye ansanm nan yon sèl pi piti. Konprese kèk fichye, apre eseye ekstrè yon ZIP.",
+   objs:["Konprese ak Ekstrè yon ZIP","Rekonèt yon achiv sispèk"],
+   files:["Rapò.docx","Foto.jpg","Bidjè.xlsx"],
+   compressBtn:"Konprese nan ZIP",extractBtn:"Ekstrè 'Pwojè.zip'",
+   compressFb:"Ou konprese 3 fichye nan yon sèl fichye ZIP pi piti — pi fasil pou voye pa imèl.",
+   extractFb:"Ou ekstrè fichye yo soti nan ZIP la — kounye a ou ka itilize yo nòmalman.",
+   suspectItem:"⚠️ 'Ou-Genyen-yon-Kado.zip'",
+   trapFb:"PA louvri sa! Yon achiv ZIP ki soti nan yon sous sispèk (imèl ou pa t tann, non bizarè) ka gen yon viris. Toujou verifye sous yon fichye anvan ou ekstrè l.",
+   welcome:"Klike sou fichye yo epi konprese yo, apre eseye ekstrè.",
+   done:"Ou konnen kounye a kijan pou konprese ak ekstrè ZIP, epi ou rekonèt yon achiv sispèk ou pa ta dwe louvri."},
+ fr:{lead:"La compression (ZIP) regroupe plusieurs fichiers en un seul plus petit. Compressez quelques fichiers, puis essayez d'extraire un ZIP.",
+   objs:["Compresser et Extraire un ZIP","Reconnaître une archive suspecte"],
+   files:["Rapport.docx","Photo.jpg","Budget.xlsx"],
+   compressBtn:"Compresser en ZIP",extractBtn:"Extraire 'Projet.zip'",
+   compressFb:"Vous avez compressé 3 fichiers en un seul fichier ZIP plus petit — plus facile à envoyer par e-mail.",
+   extractFb:"Vous avez extrait les fichiers du ZIP — vous pouvez maintenant les utiliser normalement.",
+   suspectItem:"⚠️ 'Vous-Avez-Gagné-un-Cadeau.zip'",
+   trapFb:"N'ouvrez PAS ça ! Une archive ZIP d'une source suspecte (e-mail inattendu, nom bizarre) peut contenir un virus. Vérifiez toujours la source d'un fichier avant de l'extraire.",
+   welcome:"Cliquez sur les fichiers et compressez-les, puis essayez d'extraire.",
+   done:"Vous savez maintenant comment compresser et extraire des ZIP, et vous reconnaissez une archive suspecte que vous ne devriez pas ouvrir."},
+ en:{lead:"Compression (ZIP) bundles several files into one smaller one. Compress a few files, then try extracting a ZIP.",
+   objs:["Compress and Extract a ZIP","Recognize a suspicious archive"],
+   files:["Report.docx","Photo.jpg","Budget.xlsx"],
+   compressBtn:"Compress to ZIP",extractBtn:"Extract 'Project.zip'",
+   compressFb:"You compressed 3 files into one smaller ZIP file — easier to send by email.",
+   extractFb:"You extracted the files from the ZIP — now you can use them normally.",
+   suspectItem:"⚠️ 'You-Won-a-Prize.zip'",
+   trapFb:"Don't open that! A ZIP archive from a suspicious source (unexpected email, odd name) can contain a virus. Always check a file's source before extracting it.",
+   welcome:"Click the files and compress them, then try extracting.",
+   done:"Now you know how to compress and extract ZIPs, and you recognize a suspicious archive you shouldn't open."}},
+12:{ht:{lead:"Kle USB kite ou pote fichye ak ou. Konekte l, kopye yon fichye, apre ejekte l an sekirite.",
+   objs:["Konekte ak Ejekte kle USB an sekirite","Rekonèt danje yon kle USB ou pa konnen"],
+   photoCap:"Kle USB",
+   connectBtn:"Konekte Kle USB",copyBtn:"Kopye Fichye sou Kle a",ejectBtn:"Ejekte an Sekirite",
+   connectFb:"Kle USB a parèt kounye a nan File Explorer, anba 'This PC'.",
+   copyFb:"Ou kopye fichye a sou kle a.",
+   ejectFb:"Ou ejekte kle a an sekirite — kounye a ou ka retire l san danje pou done yo.",
+   trapQ:"Ou jwenn yon kle USB atè, san ou pa konnen ki moun li ye. Sa ou ta dwe fè?",
+   trapWrong:"Konekte l imedyatman pou wè sa ki ladan l",trapRight:"Fè atansyon anpil — li ka gen malveyan (malware)",
+   trapWrongFb:"Danjere! Kle USB ou pa konnen ka gen malveyan ki enstale otomatikman lè ou konekte l. Se yon teknik atak reyèl.",
+   trapRightFb:"Egzat! Pa janm konekte yon kle USB ou pa konnen orijin li san anpil prekosyon — sa ka enfekte òdinatè a.",
+   welcome:"Klike 'Konekte Kle USB', epi eseye kopye ak ejekte.",
+   done:"Ou konnen kounye a kijan pou konekte, kopye, ak ejekte yon kle USB an sekirite — epi poukisa yon kle ou pa konnen ka danjere."},
+ fr:{lead:"Une clé USB vous permet d'emporter des fichiers avec vous. Connectez-la, copiez un fichier, puis éjectez-la en toute sécurité.",
+   objs:["Connecter et Éjecter une clé USB en sécurité","Reconnaître le danger d'une clé USB inconnue"],
+   photoCap:"Clé USB",
+   connectBtn:"Connecter la Clé USB",copyBtn:"Copier un Fichier sur la Clé",ejectBtn:"Éjecter en Sécurité",
+   connectFb:"La clé USB apparaît maintenant dans l'Explorateur de Fichiers, sous « Ce PC ».",
+   copyFb:"Vous avez copié le fichier sur la clé.",
+   ejectFb:"Vous avez éjecté la clé en sécurité — vous pouvez maintenant la retirer sans risque pour les données.",
+   trapQ:"Vous trouvez une clé USB par terre, sans savoir à qui elle appartient. Que devriez-vous faire ?",
+   trapWrong:"La connecter tout de suite pour voir ce qu'il y a dedans",trapRight:"Faire très attention — elle peut contenir un logiciel malveillant",
+   trapWrongFb:"Dangereux ! Une clé USB inconnue peut contenir un logiciel malveillant qui s'installe automatiquement à la connexion. C'est une vraie technique d'attaque.",
+   trapRightFb:"Exact ! Ne connectez jamais une clé USB d'origine inconnue sans grande précaution — ça peut infecter l'ordinateur.",
+   welcome:"Cliquez « Connecter la Clé USB », puis essayez de copier et éjecter.",
+   done:"Vous savez maintenant comment connecter, copier, et éjecter une clé USB en sécurité — et pourquoi une clé inconnue peut être dangereuse."},
+ en:{lead:"A USB drive lets you carry files with you. Connect it, copy a file, then eject it safely.",
+   objs:["Connect and Eject a USB drive safely","Recognize the danger of an unknown USB drive"],
+   photoCap:"USB Drive",
+   connectBtn:"Connect USB Drive",copyBtn:"Copy File to Drive",ejectBtn:"Eject Safely",
+   connectFb:"The USB drive now appears in File Explorer, under \"This PC.\"",
+   copyFb:"You copied the file to the drive.",
+   ejectFb:"You ejected the drive safely — now you can remove it without risk to the data.",
+   trapQ:"You find a USB drive on the ground, without knowing whose it is. What should you do?",
+   trapWrong:"Plug it in right away to see what's on it",trapRight:"Be very careful — it could contain malware",
+   trapWrongFb:"Risky! An unknown USB drive can contain malware that installs automatically when connected. This is a real attack technique.",
+   trapRightFb:"Exactly! Never plug in a USB drive of unknown origin without great caution — it can infect the computer.",
+   welcome:"Click \"Connect USB Drive,\" then try copying and ejecting.",
+   done:"Now you know how to connect, copy to, and eject a USB drive safely — and why an unknown drive can be dangerous."}},
+13:{ht:{lead:"Dènye misyon an! Konplete tou lè 6 aksyon yo pou òganize yon vrè dosye.",
+   objs:["Ekstrè yon ZIP","Kreye sistèm dosye","Chanje non fichye","Deplase fichye nan bon kote","Restore yon fichye efase","Jwenn yon lòt fichye ak rechèch"],
+   steps:["Ekstrè fichye 'Pwojè.zip' la","Kreye dosye 'Dokiman', 'Foto', ak 'Final'","Chanje non omwen 3 fichye ak non ki klè","Deplase fichye yo nan bon dosye","Restore yon fichye ou te efase pa aksidan","Jwenn yon lòt fichye lè w chèche pa non"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 4 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 4 — ou konnen kounye a kijan pou òganize yon vrè sistèm dosye."},
+ fr:{lead:"Dernière mission ! Complétez les 6 actions pour organiser un vrai dossier.",
+   objs:["Extraire un ZIP","Créer un système de dossiers","Renommer des fichiers","Déplacer les fichiers au bon endroit","Restaurer un fichier supprimé","Trouver un autre fichier par recherche"],
+   steps:["Extraire le fichier 'Projet.zip'","Créer les dossiers 'Documents', 'Photos', et 'Final'","Renommer au moins 3 fichiers avec des noms clairs","Déplacer les fichiers dans les bons dossiers","Restaurer un fichier supprimé par accident","Trouver un autre fichier en cherchant par nom"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 4.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 4 — vous savez maintenant organiser un vrai système de dossiers."},
+ en:{lead:"Last mission! Complete all 6 actions to organize a real folder.",
+   objs:["Extract a ZIP","Create a folder system","Rename files","Move files to the right place","Restore a deleted file","Find another file through search"],
+   steps:["Extract the 'Project.zip' file","Create 'Documents', 'Photos', and 'Final' folders","Rename at least 3 files with clear names","Move the files to the right folders","Restore a file you accidentally deleted","Find another file by searching by name"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 4's final mission.",
+   done:"Congratulations! You completed Module 4's Mission — now you know how to organize a real folder system."}},
+};
+
+/* ============ shared SVG / icons ============ */
+const IMG_BASE='/academy/computer-internet-essentials/images/';
+function partPhoto(file,alt){return '<img src="'+IMG_BASE+file+'.webp" alt="'+alt+'" loading="lazy">';}
+/* real Lucide path data (ISC license) -- never hand-drawn, per academy-ui skill */
+const LI={
+ filetext:'<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
+ file:'<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/>',
+ image:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+ music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+ video:'<path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/>',
+ archive:'<rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/>',
+ folder:'<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" stroke-linejoin="round"/>',
+ triangle:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+ trash:'<path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>'};
+function liIcon(name,attrs){return '<svg viewBox="0 0 24 24" '+(attrs||'')+'>'+LI[name]+'</svg>';}
+function tileIcon(bg,name,mode){const inner=mode==="fill"?'<g fill="#fff">'+LI[name]+'</g>':'<g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+LI[name]+'</g>';
+ return '<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="'+bg+'"/><g transform="translate(4 4) scale(.667)">'+inner+'</g></svg>';}
+const ICON={
+ doc:tileIcon('#3a6fd8','filetext'),
+ sheet:tileIcon('#1f9d55','filetext'),
+ img:tileIcon('#b14bff','image'),
+ audio:tileIcon('#e8a13a','music'),
+ vid:tileIcon('#0e8f9a','video'),
+ zip:tileIcon('#7c5cff','archive'),
+ exe:tileIcon('#c42b1c','triangle','fill'),
+ folder:tileIcon('#f6c445','folder','fill')};
+
+/* ============ engine ============ */
+const NL=13;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+/* persistence + live-course wiring -- same-origin iframe shares localStorage with the parent app */
+const SIM_KEY="jamezzi:computer:essentials:module4-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD4_LESSON_SLUGS=["kisa-yon-fichye-ye","kisa-yon-dosye-ye","file-explorer-sou-windows","kote-komen-tankou-desktop-documents-ak-downloads","non-fichye-ki-ede-ou-pita","save-save-as-ak-export","kreye-chanje-non-kopye-ak-deplase","efase-ak-restore","cheche-yon-fichye-ou-pedi","ekstansyon-fichye-ak-foma-komen","fichye-zip-ak-konpresyon","kle-usb-ak-estokaj-eksten","misyon-oganize-yon-vre-dosye"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","","kisa-yon-aplikasyon-ye","konekte-sou-wifi-san-danje","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD4_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule5();
+}
+function injectContinueModule5(){
+ if($("continueModule5"))return;
+ const a=document.createElement("a");a.id="continueModule5";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[4];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===3;
+ let les="";if(active){les='<div class="les">'+M4[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">4.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 4 · 4."+(i+1);$("topTitle").textContent=M4[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 4 · 4.'+(i+1)+'</span><div class="labh2">'+M4[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,150px)">'+d.files.map((f,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart" style="font-size:40px">'+f[0]+'</div><div class="partn">'+f[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.files[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="flow">'+d.levels.map((l,k)=>'<div class="node" data-k="'+k+'"><div class="ni">'+l[0]+'</div><div class="nt">'+l[1]+'</div><div class="nd">'+l[2]+'</div></div>'+(k<2?'<span class="arrow">→</span>':'')).join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".node[data-k]").forEach(nd=>nd.addEventListener("click",()=>{const k=+nd.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;nd.classList.add("read");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.seen=st.seen||{};st.sel=0;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(2,d.lead)+
+   '<div class="winpanel"><div class="wtb">📁 File Explorer</div><div class="wbody"><div class="wnav">'+
+    d.nav.map((n,k)=>'<div class="wni'+(k===st.sel?" sel":"")+'" data-n="'+k+'">'+n+'</div>').join("")+
+   '</div><div class="wcontent"><div class="wpath">'+d.pathFor[st.sel]+'</div><div class="wsearch">🔎 Search</div></div></div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+  wireNext();
+  stage.querySelectorAll(".wni[data-n]").forEach(n=>n.addEventListener("click",()=>{st.sel=+n.dataset.n;
+   if(!st.seen[st.sel]){st.seen[st.sel]=true;}
+   if(Object.keys(st.seen).length>=3)setObj(0);render();}));
+  const qy=$("tqYes"),qn=$("tqNo");
+  qy.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);render();});
+  qn.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="partgrid">'+d.spots.map((s,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+s[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.spots[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;max-width:340px">'+
+   d.chain.map(n=>'<div class="chip" style="cursor:default;justify-content:flex-start">📄 '+n+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ setObj(0);
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="btn p" id="saveBtn">'+d.saveBtn+'</button><button class="btn g" id="saveAsBtn">'+d.saveAsBtn+'</button><button class="btn g" id="exportBtn">'+d.exportBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function seen(k,msg){if(!st.seen[k]){st.seen[k]=true;ai(msg,"neutral");}if(Object.keys(st.seen).length>=3)setObj(0);}
+ $("saveBtn").addEventListener("click",()=>seen("save",d.saveFb));
+ $("saveAsBtn").addEventListener("click",()=>seen("saveas",d.saveAsFb));
+ $("exportBtn").addEventListener("click",()=>seen("export",d.exportFb));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.created=false;st.renamed=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div style="display:flex;gap:10px;margin-top:16px"><button class="btn p" id="createBtn">'+d.createBtn+'</button><button class="btn g" id="renameBtn">'+d.renameBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.created&&st.renamed)setObj(0);}
+ $("createBtn").addEventListener("click",()=>{if(st.created)return;st.created=true;ai(d.createFb,"good");check();});
+ $("renameBtn").addEventListener("click",()=>{if(st.renamed)return;st.renamed=true;ai(d.createFb&&d.renameLbl,"neutral");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.deleted=false;st.restored=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(7,d.lead)+'<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">'+
+    (!st.deleted?'<button class="btn p" id="deleteBtn">'+d.deleteBtn+'</button>':'<button class="btn g" id="restoreBtn" '+(st.restored?"disabled":"")+'>'+d.restoreBtn+'</button><button class="btn g" id="emptyBtn">'+d.emptyBtn+'</button>')+
+   '</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const delBtn=$("deleteBtn");if(delBtn)delBtn.addEventListener("click",()=>{st.deleted=true;ai(d.deleteFb,"warn");render();});
+  const resBtn=$("restoreBtn");if(resBtn)resBtn.addEventListener("click",()=>{st.restored=true;ai(d.restoreFb,"good");setObj(0);render();});
+  const empBtn=$("emptyBtn");if(empBtn)empBtn.addEventListener("click",()=>ai(d.emptyFb,"warn"));
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="partgrid">'+d.steps.map((s,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+s[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.steps[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.sel=null;st.ok=st.ok||{};
+ const stage=$("stage");stage.className="stage lab";
+ const iconFor=["doc","sheet","img","audio","vid","zip"];
+ stage.innerHTML=labHead(9,d.lead)+'<div class="items" id="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.items.map((it,k)=>st.ok[k]?"":'<div class="chip" data-i="'+k+'">'+it.n+'</div>').join("")+'</div>'+
+  '<div class="cats" id="cats">'+d.cats.map((c,k)=>'<button class="cat" data-c="'+k+'">'+c+'</button>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{stage.querySelectorAll(".chip").forEach(x=>x.style.outline="");c.style.outline="2px solid var(--brand)";st.sel=+c.dataset.i;}));
+ stage.querySelectorAll(".cat").forEach(c=>c.addEventListener("click",()=>{if(st.sel===null){ai(d.welcome,"warn");return;}const it=d.items[st.sel];
+   if(it.ans===-1){ai(d.trapFb,"warn");setObj(1);return;}
+   if(+c.dataset.c===it.ans){st.ok[st.sel]=true;const chip=stage.querySelector('.chip[data-i="'+st.sel+'"]');if(chip)chip.remove();ai(d.ok,"good");st.sel=null;
+     if(Object.keys(st.ok).length>=d.items.filter(x=>x.ans!==-1).length){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}
+   else ai(d.bad,"warn");}));
+ ai(d.welcome,"neutral");}
+
+function L11(){const d=C[11][S.lang];const st=S.st[10];st.sel=st.sel||{};st.compressed=false;st.extracted=false;st.trapSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(10,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+
+    (!st.compressed?d.files.map((f,k)=>'<div class="chip'+(st.sel[k]?"":"")+'" data-f="'+k+'" style="'+(st.sel[k]?"outline:2px solid var(--brand)":"")+'">📄 '+f+'</div>').join(""):'<div class="chip" style="cursor:default">🗜️ Pwojè.zip</div>')+
+   '</div><div style="display:flex;gap:10px;margin-top:16px">'+
+    (!st.compressed?'<button class="btn p" id="compressBtn">'+d.compressBtn+'</button>':'<button class="btn g" id="extractBtn">'+d.extractBtn+'</button>')+
+   '</div>'+
+   '<div style="margin-top:22px"><div class="chip" id="suspectItem" style="cursor:pointer;max-width:260px">'+d.suspectItem+'</div></div>'+
+   nextBar();
+  wireNext();
+  stage.querySelectorAll(".chip[data-f]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.f;st.sel[k]=!st.sel[k];render();}));
+  const cb=$("compressBtn");if(cb)cb.addEventListener("click",()=>{if(Object.values(st.sel).filter(Boolean).length<2)return;st.compressed=true;ai(d.compressFb,"good");render();});
+  const eb=$("extractBtn");if(eb)eb.addEventListener("click",()=>{st.extracted=true;ai(d.extractFb,"good");setObj(0);render();});
+  $("suspectItem").addEventListener("click",()=>{st.trapSeen=true;ai(d.trapFb,"warn");setObj(1);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L12(){const d=C[12][S.lang];const st=S.st[11];st.connected=false;st.copied=false;st.ejected=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(11,d.lead)+'<div class="photohead">'+partPhoto('usb',d.photoCap)+'</div>'+
+   '<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">'+
+    (!st.connected?'<button class="btn p" id="connectBtn">'+d.connectBtn+'</button>':'<button class="btn g" id="copyBtn" '+(st.copied?"disabled":"")+'>'+d.copyBtn+'</button><button class="btn g" id="ejectBtn">'+d.ejectBtn+'</button>')+
+   '</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const conBtn=$("connectBtn");if(conBtn)conBtn.addEventListener("click",()=>{st.connected=true;ai(d.connectFb,"good");render();});
+  const cpBtn=$("copyBtn");if(cpBtn)cpBtn.addEventListener("click",()=>{st.copied=true;ai(d.copyFb,"good");render();});
+  const ejBtn=$("ejectBtn");if(ejBtn)ejBtn.addEventListener("click",()=>{if(st.ejected)return;st.ejected=true;ai(d.ejectFb,"good");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L13(){const d=C[13][S.lang];const st=S.st[12];st.done6=st.done6||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(12,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done6[k]?' style="opacity:.4"':"")+'>'+(st.done6[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done6[k])return;st.done6[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
