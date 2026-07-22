@@ -485,6 +485,34 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   digital copy deserves the same sharing caution; 10.8 the brief's explicit "stop before
   unsafe intervention" — opening a device's casing without technical knowledge instead of
   stopping and asking for help once the simple troubleshooting steps are exhausted.
+  Module 11's traps (module-11.html) are the course's security-focused capstone module,
+  and pull directly from the brief's own named points, several reused deliberately from
+  earlier modules now framed as security-specific rather than incidental: 11.1 assuming
+  "nothing to protect" without online banking, when identity/photos/contacts/reputation
+  all carry risk; 11.2 reusing 8.2's password-sharing danger from a different angle —
+  reusing the SAME password across critical accounts, so one breach compromises all of
+  them; 11.3 the module's central social-engineering trap: a caller claiming to be
+  "technical support" asking for a 2FA verification code — no legitimate support process
+  ever needs it; 11.4 a full-component fake-tech-support pop-up (reusing the `.dialog`/
+  `.dbtn.danger` components) — both the "Call" and "Close" choices complete the
+  objectives since the feedback teaches the lesson either way, matching the established
+  either-answer-completes pattern for trap Q&A across the whole series; 11.5 reuses
+  6.8's fake-domain-lookalike concept but pointed at the brief's explicit "HTTPS limits"
+  point — a padlock icon only proves the connection is encrypted, not that the site
+  itself is trustworthy; 11.6 the brief's explicit pirated/cracked-software risk —
+  "free" illegal copies often carry hidden malware; 11.7 reuses 7.9's shared-computer
+  sign-out discipline, now expanded into a 4-step privacy checklist (sign out, delete
+  downloads, close private browsing, check for onlookers) plus the specific trap of
+  saving a password on a public computer; 11.8 the brief's payment-safety core lesson —
+  never share a PIN or OTP, even with someone claiming to help complete a transaction
+  (MonCash/NatCash awareness, mirroring 11.3's verification-code discipline applied to
+  payments instead of sign-in); 11.9 panicking and deleting everything on a suspected-
+  compromised device instead of following the brief's calm response sequence (stay calm,
+  change password from another device, contact provider, record evidence); 11.10 the
+  capstone mission reviews a fake urgent email AND a fake package-delivery text side by
+  side (two channels, same phishing pattern), then requires an explicit "never share"
+  declaration (password/2FA/PIN/OTP) as its own gated objective — the only mission in the
+  series whose final objective is a declarative statement rather than a completed action.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
