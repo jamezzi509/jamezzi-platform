@@ -53,6 +53,15 @@ dependency, but it must still act like part of the real course:
   own simulator later — Module 1's "Continue to Module 2" link and sidebar row already
   pointed at Module 2's real lesson slug; once that slug started resolving to a simulator
   instead of a text lesson, the existing link just worked.
+- Verify a target module's "first lesson" slug against its lessons' actual `order` field in
+  `src/content/computer-rebuild/lessons.ts` before wiring `MODULE_FIRST_LESSON` — don't just
+  grep for the first `moduleId: "mN"` match, since lesson ids aren't always in visual/`order`
+  sequence (`m6-l0a`/`m6-l0b`/`m6-l1` are `order: 1/2/3`, i.e. `m6-l1` is the *third* lesson,
+  not the first). Modules 1-5 all shipped with Module 6's entry pointing at `m6-l1`
+  ("Connect to Wi-Fi Safely") instead of `m6-l0a` ("What Is the Internet?"), silently
+  skipping two lessons for any learner who jumped into Module 6 from an earlier module's
+  sidebar or continue button — caught only when actually building Module 6 and cross-
+  checking its lessons against the brief. Fixed retroactively across all five files when found.
 
 ## Order of work (always)
 1. Pick the lesson's real-world task and the OS surface it lives on.
@@ -366,6 +375,27 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   software); 5.8 a permission-mismatch trap: a Calculator app requesting Camera and
   Location access, which no calculator function could ever justify — reusing the toggle-
   row component from Module 3's settings lesson, now applied to a permissions panel.
+  Module 6's traps (module-6.html) again pull from the brief's own named points: 6.1
+  mistaking a company/app (Facebook, Google) for the internet itself, rather than a
+  service that merely uses it; 6.2 assuming modem and router are always two separate
+  physical boxes — the brief explicitly calls out combined modem/router awareness, so
+  the "trap" here is the overly-rigid assumption, not the combined-device fact itself;
+  6.3 a decoy open, password-less "Free_Public_WiFi" network planted next to two
+  password-protected ones (same fake-row-among-real-rows pattern as 2.9/3.11/4.11/5.2,
+  applied to a Wi-Fi network list); 6.4 leaving a phone hotspot on indefinitely after
+  finishing, instead of turning it off (battery + exposure reasons the brief names
+  directly); 6.5 the brief's own distinction between signal strength and actual speed —
+  full signal bars don't guarantee fast speed, since congestion and other factors matter
+  too; 6.6 reaching straight for restarting/unplugging the router instead of working
+  through the brief's own calm troubleshooting sequence (other sites, other devices,
+  reconnect, then escalate) — same discipline as 4.9's search sequence and the explicit
+  "ask permission before touching equipment that isn't yours" addition the brief implies;
+  6.7 uploading an ID photo to an unfamiliar site "verifying" an account — a phishing-
+  adjacent trap that previews the domain-spoofing awareness Module 6 also teaches in 6.8;
+  6.8 a fake-domain trap using a real component, not a decoy row: scanning a QR code
+  reveals its destination is `paypal-secure-login.xyz`, not `paypal.com` — deliberately
+  named to be readable as suspicious once printed out, teaching learners to always read
+  a QR/link's actual destination rather than trusting the code by default.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
