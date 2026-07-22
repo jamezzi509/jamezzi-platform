@@ -217,6 +217,21 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
 ## Pedagogy (non-negotiable)
 - Every lesson has >=1 trap: malware file, bloatware bundle, wrong-target app, or protected
   system component. Wrong moves are blocked with a specific corrective message, not just "wrong."
+  A trap doesn't need new engine mechanics — it's usually one extra content entry (a decoy icon,
+  an extra wrong-answer branch) wired to a *specific* message instead of the lesson's generic
+  "bad" fallback. Module 1's traps (module-1.html): 1.1 a scary-looking Recycle Bin icon that's
+  actually safe (fear-reduction fits this lesson's own goal better than a punished wrong answer);
+  1.2 the "Accounts" nav item (plausible wrong guess while hunting for device info); 1.3 a decoy
+  "Internet" node next to the real 4-step IPOS flow; 1.4 CPU-guessed-as-Storage and
+  SSD-guessed-as-Processing (per-part `trap:{catIndex:msg}` map checked before falling back to
+  the generic `bad` message); 1.5 "Windows is software" (pre-existing, the original template);
+  1.6 Tablet/Phone size confusion, reciprocal; 1.7 macOS/ChromeOS clicked before Windows is
+  identified, each with its *own* explanation of why it looks Windows-like, not one generic
+  "not this one"; 1.8 a decoy "Game" desktop icon reminding the learner to stay on-mission.
+  When wiring a decoy element into a loop that also counts real answers (e.g. 1.3's node-read
+  counter), explicitly exclude it from the selector/counter — don't rely on it lacking a data
+  attribute to silently no-op, since a shared `.forEach` over too-broad a selector will still
+  attach a handler and can corrupt state with a `NaN` key.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
