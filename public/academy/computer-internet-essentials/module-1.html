@@ -107,31 +107,6 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 .osmini{border:2px solid transparent;border-radius:14px;overflow:hidden;cursor:pointer;background:#0f1420;position:relative;aspect-ratio:16/10}
 .osmini:hover{border-color:var(--brand2)}.osmini.good{border-color:var(--good)}.osmini.bad{border-color:var(--danger)}
 .osmini .cap{position:absolute;bottom:0;left:0;right:0;background:rgba(11,15,23,.75);color:#fff;font-size:12px;font-weight:700;padding:6px;text-align:center}
-/* coded OS-signature thumbnails (real chrome, not abstract) */
-.mos{position:absolute;inset:0;overflow:hidden}
-.mos.mos-win{background:linear-gradient(160deg,#6fa8f5 0%,#3f6fd1 55%,#173a7a 100%)}
-.mos.mos-mac{background:linear-gradient(160deg,#8a6fe8 0%,#5a3fae 55%,#241a52 100%)}
-.mos.mos-cros{background:linear-gradient(160deg,#eef3f8 0%,#cfdcee 100%)}
-.mos-taskbar{position:absolute;left:0;right:0;bottom:0;height:26%;background:rgba(243,243,243,.82);display:flex;align-items:center;justify-content:center;gap:5px;padding:0 6px}
-.mos-start{width:22px;height:22px;border-radius:6px;background:rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;flex:none}
-.mos-start svg{width:12px;height:12px;fill:#1b1b1b}
-.mos-search{width:52px;height:18px;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
-.mos-search svg{width:9px;height:9px;stroke:#8a8f98;stroke-width:2;fill:none}
-.mos-app{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;position:relative;flex:none}
-.mos-app svg{width:12px;height:12px}
-.mos-app.running::after{content:"";position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:4px;height:2px;border-radius:1px;background:#005FB8}
-.mos-tray{display:flex;align-items:center;gap:5px;margin-left:4px;flex:none}
-.mos-tray svg{width:10px;height:10px;stroke:#1b1b1b;stroke-width:1.8;fill:none}
-.mos-clock{font-size:9px;color:#1b1b1b;white-space:nowrap}
-.mos-menubar{position:absolute;left:0;right:0;top:0;height:14%;background:rgba(246,246,248,.92);display:flex;align-items:center;padding:0 8px;gap:6px}
-.mos-traffic{display:flex;gap:4px}
-.mos-traffic span{width:6px;height:6px;border-radius:50%;display:block}
-.mos-menubar .mos-tray{margin-left:auto}
-.mos-dock{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);height:24px;border-radius:999px;background:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px;padding:0 6px;flex:none}
-.mos-dock .mos-app{border-radius:6px}
-.mos-shelf{position:absolute;left:0;right:0;bottom:0;height:20%;background:rgba(255,255,255,.92);display:flex;align-items:center;padding:0 6px;gap:5px}
-.mos-launcher{width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex:none}
-.mos-launcher svg{width:10px;height:10px}
 /* ===== Windows surface (1.2 & 1.8) ===== */
 .desk-ico{position:absolute;display:flex;flex-direction:column;gap:6px;align-items:center;width:92px;background:none;border:1px solid transparent;border-radius:6px;padding:8px 6px;cursor:pointer;color:#0b2a55}
 .desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:14.5px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
@@ -370,13 +345,6 @@ const DEV={
  desktop:partPhoto('tower','Desktop'),
  tablet:partPhoto('tablet','Tablèt'),
  phone:partPhoto('phone','Telefòn')};
-const ICON={
- monitor:'<svg viewBox="0 0 24 24" width="24" height="24"><rect x="3" y="4" width="18" height="12" rx="1.5" fill="#3a6fd8"/><rect x="4.5" y="5.5" width="15" height="9" rx=".8" fill="#7fa8e8"/><rect x="9" y="17" width="6" height="2" fill="#8b98a8"/><rect x="7" y="19" width="10" height="1.6" rx=".8" fill="#8b98a8"/></svg>',
- keyboard:'<svg viewBox="0 0 24 24" width="24" height="24"><rect x="2" y="7" width="20" height="11" rx="2" fill="#c3ccd8"/><rect x="4" y="9" width="3" height="2.4" rx="1" fill="#5a6472"/><rect x="8.5" y="9" width="3" height="2.4" rx="1" fill="#5a6472"/><rect x="13" y="9" width="3" height="2.4" rx="1" fill="#5a6472"/><rect x="17.5" y="9" width="2.5" height="2.4" rx="1" fill="#5a6472"/><rect x="7" y="13.5" width="10" height="2.4" rx="1" fill="#5a6472"/></svg>',
- cpu:'<svg viewBox="0 0 24 24" width="24" height="24"><rect x="6" y="6" width="12" height="12" rx="2" fill="#4a5768"/><rect x="9" y="9" width="6" height="6" fill="#2a3340"/><g fill="#e6c15a"><rect x="9" y="3" width="1.6" height="3"/><rect x="13.4" y="3" width="1.6" height="3"/><rect x="9" y="18" width="1.6" height="3"/><rect x="13.4" y="18" width="1.6" height="3"/><rect x="3" y="9" width="3" height="1.6"/><rect x="3" y="13.4" width="3" height="1.6"/><rect x="18" y="9" width="3" height="1.6"/><rect x="18" y="13.4" width="3" height="1.6"/></g></svg>',
- browser:'<svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9" fill="#0e8f9a"/><circle cx="12" cy="12" r="5.5" fill="none" stroke="#fff" stroke-width="1.3"/><path d="M4.5 12h15M12 3.5c2.6 2.6 2.6 14 0 17M12 3.5c-2.6 2.6-2.6 14 0 17" stroke="#fff" stroke-width=".9" fill="none"/></svg>',
- windows:'<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="5" fill="#3a3a3a"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#e6c15a" stroke-width="1.6"/><path d="M12 7.4v4.6l3.2 2" stroke="#e6c15a" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
- photo:'<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="5" fill="#b14bff"/><path d="M4 18l5-6 3.5 4 3-3.5L20 18z" fill="#fff"/><circle cx="8" cy="8" r="2" fill="#fff"/></svg>'};
 /* real Lucide path data (ISC license) -- never hand-drawn, per academy-ui skill */
 const LI={
  grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
@@ -387,33 +355,25 @@ const LI={
  wifi:'<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/>',
  battery:'<path d="M22 14L22 10"/><rect x="2" y="6" width="16" height="12" rx="2"/>',
  image:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
- music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>'};
+ music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+ keyboard:'<path d="M10 8h.01"/><path d="M12 12h.01"/><path d="M14 8h.01"/><path d="M16 12h.01"/><path d="M18 8h.01"/><path d="M6 8h.01"/><path d="M7 16h10"/><path d="M8 12h.01"/><rect width="20" height="16" x="2" y="4" rx="2"/>',
+ cpu:'<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M9 2v2"/><path d="M15 20v2"/><path d="M9 20v2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M2 15h2"/><path d="M2 9h2"/>',
+ globe:'<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+ gear:'<path d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4l1.9-1.5-1.9-3.3-2.3.6a7 7 0 00-1.4-.8l-.4-2.4h-3.8l-.4 2.4c-.5.2-1 .5-1.4.8l-2.3-.6L5.2 11 7 12.5v1.5L5.2 15.5l1.9 3.3 2.3-.6c.4.3.9.6 1.4.8l.4 2.4h3.8l.4-2.4c.5-.2 1-.5 1.4-.8l2.3.6 1.9-3.3L21 16z"/>'};
 function liIcon(name,attrs){return '<svg viewBox="0 0 24 24" '+(attrs||'')+'>'+LI[name]+'</svg>';}
+/* app-tile treatment per skill component kit: 32px(ish), rounded, colored bg + white glyph */
+function tileIcon(bg,name,mode){const inner=mode==="fill"?'<g fill="#fff">'+LI[name]+'</g>':'<g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+LI[name]+'</g>';
+ return '<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="'+bg+'"/><g transform="translate(4 4) scale(.667)">'+inner+'</g></svg>';}
+const ICON={
+ monitor:tileIcon('#3a6fd8','monitor'),
+ keyboard:tileIcon('#5c6570','keyboard'),
+ cpu:tileIcon('#4a5768','cpu'),
+ browser:tileIcon('#0e8f9a','globe'),
+ windows:tileIcon('#3a3a3a','grid','fill'),
+ photo:tileIcon('#b14bff','image')};
 function miniOS(k){
- if(k==="win")return '<div class="mos mos-win"><div class="mos-taskbar">'+
-   '<div class="mos-start">'+liIcon('grid','fill="#1b1b1b"')+'</div>'+
-   '<div class="mos-search">'+liIcon('search','stroke="#8a8f98" stroke-width="2" fill="none"')+'</div>'+
-   '<div class="mos-app running">'+liIcon('monitor','stroke="#005FB8" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app running">'+liIcon('mail','stroke="#2fb56a" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app">'+liIcon('folder','fill="#f8cb7d" stroke="#e5a445" stroke-width="1.4"')+'</div>'+
-   '<div class="mos-tray">'+liIcon('wifi','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+liIcon('battery','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+'<span class="mos-clock">10:24 AM</span></div>'+
-   '</div></div>';
- if(k==="mac")return '<div class="mos mos-mac">'+
-   '<div class="mos-menubar"><div class="mos-traffic"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>'+
-   '<div class="mos-tray">'+liIcon('wifi','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+liIcon('battery','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+'<span class="mos-clock">10:24 AM</span></div></div>'+
-   '<div class="mos-dock">'+
-   '<div class="mos-app" style="background:linear-gradient(135deg,#3a8ee6,#0057b8)">'+liIcon('monitor','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app" style="background:linear-gradient(135deg,#2fb56a,#0f7f45)">'+liIcon('mail','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app" style="background:linear-gradient(135deg,#b14bff,#7c3aed)">'+liIcon('image','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app" style="background:linear-gradient(135deg,#ff7a59,#e8503a)">'+liIcon('music','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
-   '</div></div>';
- return '<div class="mos mos-cros"><div class="mos-shelf">'+
-   '<div class="mos-launcher">'+liIcon('grid','fill="#3a3a3a"')+'</div>'+
-   '<div class="mos-app">'+liIcon('monitor','stroke="#3a8ee6" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app">'+liIcon('mail','stroke="#2fb56a" stroke-width="1.8" fill="none"')+'</div>'+
-   '<div class="mos-app">'+liIcon('folder','fill="#f8cb7d" stroke="#e5a445" stroke-width="1.4"')+'</div>'+
-   '<div class="mos-tray" style="margin-left:auto">'+liIcon('wifi','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+liIcon('battery','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+'<span class="mos-clock" style="color:#1b1b1b">10:24 AM</span></div>'+
-   '</div></div>';}
+ const f=k==="win"?"windows":k==="mac"?"macos":"chromeos";
+ return '<img src="'+IMG_BASE+'os-'+f+'.webp" alt="" style="width:100%;height:100%;object-fit:contain;display:block">';}
 
 /* ============ engine ============ */
 const NL=8;
@@ -459,7 +419,7 @@ function L2(){const d=C2[S.lang];const st=S.st[1];st.win=st.win||{};
  stage.innerHTML=bloom()+
   '<button class="desk-ico" data-icon="pc" style="top:14px;left:14px"><div style="width:50px;height:50px;border-radius:10px;background:#2f6fd6;display:grid;place-items:center;color:#fff;font-size:24px">🖥️</div><span>This PC</span></button>'+
   '<div class="taskbar"><button class="tbi" id="startBtn">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div><div class="tbi" id="tbSet">⚙️</div><div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
-  '<div class="startmenu" id="sm"><div class="ssearch">🔎 &nbsp;Type here to search</div><div class="sl">Pinned</div><div class="sgrid"><button class="sapp" id="ssSet"><svg viewBox="0 0 24 24"><path fill="#3a3a3a" d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4l1.9-1.5-1.9-3.3-2.3.6a7 7 0 00-1.4-.8l-.4-2.4h-3.8l-.4 2.4c-.5.2-1 .5-1.4.8l-2.3-.6L5.2 11 7 12.5v1.5L5.2 15.5l1.9 3.3 2.3-.6c.4.3.9.6 1.4.8l.4 2.4h3.8l.4-2.4c.5-.2 1-.5 1.4-.8l2.3.6 1.9-3.3L21 16z"/></svg>Settings</button><button class="sapp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#1e88e5"/></svg>Edge</button><button class="sapp"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="#2f6fd6"/></svg>Mail</button><button class="sapp"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="#3aa0ef"/></svg>Photos</button></div></div>'+
+  '<div class="startmenu" id="sm"><div class="ssearch">🔎 &nbsp;Type here to search</div><div class="sl">Pinned</div><div class="sgrid"><button class="sapp" id="ssSet">'+tileIcon('#3a3a3a','gear','fill')+'Settings</button><button class="sapp">'+tileIcon('#0f6cbd','globe')+'Edge</button><button class="sapp">'+tileIcon('#2f6fd6','mail')+'Mail</button><button class="sapp">'+tileIcon('#3aa0ef','image')+'Photos</button></div></div>'+
   '<div class="win" id="win"><div class="wtb">⚙️ Settings<div class="wc"><span>—</span><span>▢</span><span class="cl" id="winClose">✕</span></div></div><div class="wbody"><div class="wnav"><div class="acct"><div class="ava"></div><div><div class="nm">Student</div><div class="em">student@academy.local</div></div></div>'+
    ['System','Bluetooth & devices','Network & internet','Personalization','Accounts'].map((n,k)=>'<div class="wni'+(k===0?' sel':'')+'" data-nav="'+k+'"><span class="i">◻</span>'+n+'</div>').join("")+
    '</div><div class="wcontent" id="wcontent"></div></div></div>'+
