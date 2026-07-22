@@ -312,6 +312,37 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   and the trap UI meant to gate it was never rendered at all. After wiring a lesson, actually
   drive it to 100% via the objectives list, not just by triggering the interactions that feel
   central — if an objective's checkbox won't tick, the lesson can never be marked done.
+  Module 4's traps (module-4.html) again pull straight from the brief's own named
+  misconceptions: 4.1 assuming renaming a file's extension in its name (.docx -> .pdf)
+  actually converts its content (it doesn't — same underlying confusion as 1.4/2.5's
+  category traps, applied to file format this time); 4.2 assuming a deleted folder's
+  contents survive somewhere else (they don't — deleting a folder deletes everything
+  inside it); 4.3 assuming File Explorer's search box searches the whole computer from
+  inside a subfolder (it defaults to the current folder + subfolders only); 4.4 the
+  brief's own named "Downloads is not permanent organization" misconception, as a
+  binary trap-vs-correct choice; 4.5 the brief's "final-final-2" naming problem, shown
+  as an actual name chain (Rapò.docx -> ...-final-FINAL-2.docx) where the trap answer is
+  guessing which one is "really" final rather than recognizing the question is
+  unanswerable without clear dates/version numbers; 4.6 clicking Save (instead of Save
+  As) when the intent was to preserve the original — the risk is framed as a scenario
+  question, not a live overwrite, since this lesson's Save button doesn't hold separate
+  document state; 4.7 renaming a file and stripping its extension by accident, breaking
+  the file-to-app association; 4.8 the brief's "USB drives/cloud don't always have a
+  Recycle Bin" caution, as a true/false question distinct from the local-disk delete/
+  restore flow it follows; 4.9 panicking after a few seconds of fruitless searching
+  instead of working through the name/type/date/recent-files sequence; 4.10 a sort
+  exercise (same `item.ans` category-map pattern as 1.4/1.6/2.8) with one deliberately
+  uncategorizable item — an .exe installer — where choosing ANY category triggers the
+  same safety-awareness trap message instead of a correct/incorrect judgment, since the
+  point is recognizing "this needs caution," not sorting it correctly; 4.11 a decoy
+  "You-Won-a-Prize.zip" archive planted next to the real compress/extract exercise
+  (same fake-row-among-real-rows pattern as 2.9/3.11), teaching not to open unknown
+  archives; 4.12 the brief's USB malware-awareness caution — finding an unknown drive on
+  the ground and being tempted to plug it in immediately, as a binary trap-vs-correct
+  choice following the normal connect/copy/eject flow. Lesson 4.13 (module mission) has
+  no trap of its own — it's a 6-step checklist matching the brief's mission spec
+  verbatim (extract a ZIP, build a folder system, rename files, move them, restore one
+  deleted file, find another via search), each step wired to its own `setObj(i)` on click.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
