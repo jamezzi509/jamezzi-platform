@@ -396,6 +396,31 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   reveals its destination is `paypal-secure-login.xyz`, not `paypal.com` — deliberately
   named to be readable as suspicious once printed out, teaching learners to always read
   a QR/link's actual destination rather than trusting the code by default.
+  Module 7's traps (module-7.html) again pull from the brief's own named points: 7.1
+  mistaking Google (search engine) for a browser like Chrome/Edge; 7.2 a fake in-page
+  "Search here to save big..." box styled as a link, planted below the real address bar
+  (same fake-row-among-real-rows discipline as 2.9/3.11/4.11/5.2/6.3, applied to a
+  spoofed search box instead of a list row or button); 7.3 assuming the fix for "too many
+  tabs, can't find the one I want" is closing the browser entirely and starting over,
+  instead of scanning the tab list or closing only what's no longer needed — note this
+  lesson's trap Q is deliberately NOT gated by an objective (the 2 tracked objectives are
+  open/switch/close and reopen-a-closed-tab; the too-many-tabs trap is supplementary
+  pedagogy layered on top, still worth teaching even though the brief's own lesson
+  content doesn't name it as a checkable skill); 7.4 the brief's own explicit caution
+  against typing a full sensitive personal question (e.g. an ID number) directly into a
+  search engine, since search queries can be logged/visible to other device users; 7.5 a
+  "Sponsored" top result vs. an organically-ranked, well-sourced result below it — paid
+  placement isn't a trust signal, matching the brief's explicit "sponsored result"
+  callout; 7.6 the brief's own bookmarks-vs-history distinction: clearing browsing
+  history does NOT delete bookmarks, since they're two separate systems (automatic log
+  vs. intentionally-saved pages); 7.7 reusing the fake-download-button pattern from 5.2,
+  now in the browser's own download-manager context rather than an external download
+  page; 7.8 the brief's biggest named misconception for this lesson — private browsing
+  does NOT make you invisible online; it only skips saving history/cookies locally, while
+  websites, an employer (on a work computer), or the internet provider can still see
+  activity; 7.9 leaving an account signed in on a shared/public computer for
+  convenience instead of always signing out — the brief's explicit "saved passwords
+  caution" and shared-computer guidance.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
