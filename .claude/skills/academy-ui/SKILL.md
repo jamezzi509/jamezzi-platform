@@ -421,6 +421,29 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   activity; 7.9 leaving an account signed in on a shared/public computer for
   convenience instead of always signing out — the brief's explicit "saved passwords
   caution" and shared-computer guidance.
+  Module 8's traps (module-8.html) again pull from the brief's own named points: 8.1
+  mixing up the "To" and "From" fields (a beginner staple); 8.2 sharing an email
+  password with a friend "to help," even though the brief explicitly says avoid sharing
+  credentials — no exception carved out for trusted people; 8.3 assuming every email in
+  Spam is definitely a scam, when spam filters can misfire and misfile a legitimate
+  message; 8.4 a vague subject line ("Hello"/"Question") that tells the recipient
+  nothing, vs. a precise one; 8.5 the brief's own named "avoid Reply All mistakes" —
+  clicking Reply All when only the sender needed to see the response; 8.6 a genuinely
+  time-based trap (not just a wrong-answer button): clicking Send while the attachment's
+  upload progress bar is still under 100% is blocked from completing the objective, and
+  the AI assistant explains why, with the actual live percentage interpolated into the
+  message — verified by testing both paths (send while `pct<100` blocks completion with
+  no objectives set; send once `pct===100` completes both). This is the first lesson in
+  the whole series whose trap is gated by real async state (a `setInterval` progress
+  tick) rather than a pre-scripted branch choice; 8.7 clicking a "you won a prize" link
+  embedded in what looks like a legitimate marketing email instead of using the real
+  "Unsubscribe" button — the brief's explicit distinction between unsubscribing from
+  legitimate marketing (safe, expected) vs. clicking suspicious in-body links (risky) on
+  what might still be a spoofed sender; 8.8 the central lesson of the whole module: an
+  urgent-toned scam email (fake urgency, mismatched sender domain, a suspicious link) —
+  the correct response is verifying through another channel entirely (official phone
+  number, known site), never through a link the email itself provides; 8.9 joining a
+  video call without first checking background/mute state in a noisy or private setting.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
