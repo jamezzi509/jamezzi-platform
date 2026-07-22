@@ -343,6 +343,29 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   no trap of its own — it's a 6-step checklist matching the brief's mission spec
   verbatim (extract a ZIP, build a folder system, rename files, move them, restore one
   deleted file, find another via search), each step wired to its own `setObj(i)` on click.
+  Module 5's traps (module-5.html) again pull from the brief's own named points: 5.1
+  mistaking a website (Facebook.com) for an installed application — the same installed-
+  vs-not confusion the brief flags, as a binary trap; 5.2 a decoy giant green "DOWNLOAD
+  NOW!!!" ad button planted next to the real, smaller download link (same fake-row-among-
+  real-rows discipline as 2.9/3.11/4.11, applied to a full-width button instead of a list
+  row); 5.3 the skill's own "Bundle trap" component (pre-checked "Recommended" checkbox
+  in an install dialog) — first established in Module 3, reused verbatim here rather than
+  reinvented, this time gating an actual objective (`setObj` only fires once the box is
+  unchecked before continuing, not merely once the dialog is seen); 5.4 two related but
+  separate brief points wired as two different actions: updating (its own objective) vs.
+  deleting a Desktop shortcut icon mistaken for uninstalling (the trap — the app is still
+  installed and still using space) vs. the real Uninstall-in-Settings action (correct,
+  also notes that files created with an app survive its removal); 5.5 closing a document
+  without saving a *second* round of edits made after the last Save — deliberately tracked
+  with an `editedAgain` flag so the trap only fires when there's genuinely unsaved work,
+  not on every close; 5.6 assuming a PDF can be edited as freely as a Word document (it's
+  fixed-layout by design); 5.7 checking "Always use this app" in an Open With flow when
+  the intent was only a one-time open — the trap isn't a wrong click, it's an unexamined
+  checkbox silently changing the default for every file of that type going forward (same
+  danger shape as 5.3's bundle checkbox, applied to file associations instead of bundled
+  software); 5.8 a permission-mismatch trap: a Calculator app requesting Camera and
+  Location access, which no calculator function could ever justify — reusing the toggle-
+  row component from Module 3's settings lesson, now applied to a permissions panel.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
