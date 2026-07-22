@@ -58,6 +58,7 @@ const computerSimulatorModules: Record<
     title: "Modil 1 — Ou Gen Plas Ou nan Monn Dijital la",
   },
   m2: { moduleNumber: 2, title: "Modil 2 — Kijan Yon Òdinatè Mache" },
+  m3: { moduleNumber: 3, title: "Modil 3 — Kontwole Òdinatè Ou" },
 };
 
 export async function generateMetadata({

@@ -284,6 +284,34 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   Google or the internet itself); 2.9 a fake "Most Popular Color" row planted among real
   spec-sheet categories in an About-panel reused from 1.2's chrome — ported directly from the
   already-approved text-lesson's own trap rather than invented new.
+  Module 3's traps (module-3.html) follow the same discipline: 3.1 double-clicking a link
+  (single-click is enough; double-click is for opening files/apps); 3.2 Caps Lock vs. Shift
+  for a single capital letter; 3.3 Backspace vs. Delete direction; 3.4 assuming Kreyòl/French
+  accents need extra software (Windows keyboard settings already do it); 3.6 "closing a
+  window quits the application" (closing ≠ quitting, an important distinction the brief
+  names explicitly); 3.7 a pre-checked "Recommended" bloatware checkbox in an install dialog
+  — the skill's own documented "Bundle trap" component pattern, its first actual use in
+  built content; 3.8 Cut-then-navigate-away loses the content (why Cut is riskier than Copy
+  for beginners); 3.9 dropping a file in the wrong folder by "accident," recovered via Undo;
+  3.10 trying to search by screen position instead of purpose/name; 3.11 a fake "Computer
+  Voice" setting planted among real toggles (same fake-row-in-a-real-list pattern as 2.9);
+  3.12 sharing a screenshot without checking what's visible in it first; 3.13 "accessibility
+  features are only for people with disabilities" (they help everyone).
+  Two real bugs surfaced auditing Module 3 that are worth watching for in any future
+  `stage.desk`-style lesson: (1) `nextBar()`'s inline-flex "Next" button only works inside
+  `stage.lab`'s normal document flow — dropped into a `stage.desk` scene (where everything
+  else is absolutely positioned), it renders at the stage's top-left with nothing to push it
+  aside, overlapping whatever desktop icon sits there. Desk-style lessons must use
+  `injectNext()` (an absolutely-positioned floating button, `bottom` offset increased to
+  clear the taskbar when one is present) instead — this was already established for Module 1
+  but got missed when a later module's desk-style lessons were built from scratch rather than
+  copied from a working desk-style lesson. (2) A lesson's `objs` array is just display
+  strings — nothing enforces that every listed objective actually has a `setObj(i)` call
+  wired to it somewhere. One lesson shipped with 3 stated objectives where the 3rd
+  ("close a window") was never actually completable because no code path called `setObj(2)`
+  and the trap UI meant to gate it was never rendered at all. After wiring a lesson, actually
+  drive it to 100% via the objectives list, not just by triggering the interactions that feel
+  central — if an objective's checkbox won't tick, the lesson can never be marked done.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.

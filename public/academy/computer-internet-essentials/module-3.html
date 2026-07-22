@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 3 — Kontwole Òdinatè Ou</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.stage.desk{background:linear-gradient(160deg,#e6f0fa 0%,#cfe1f3 30%,#a9cdec 62%,#7fb0e4 100%)}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+/* lab common */
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.sel{outline:2px solid var(--brand);outline-offset:1px}
+.partcard.done{border-color:var(--good)}
+.partart{height:120px;display:grid;place-items:center;background:#fff;border-radius:12px}.partart svg{max-height:120px;max-width:100%}
+.partart img{max-height:100px;max-width:90%;object-fit:contain}
+.partn{font-weight:700;font-size:16px;margin-top:12px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}.cat.dis{opacity:.4}
+/* icon tiles */
+.tileicon{width:24px;height:24px;flex:none}
+.tileicon svg{width:24px;height:24px}
+/* photo header */
+.photohead{background:#fff;border-radius:12px;padding:10px;max-width:420px;margin-top:18px}.photohead img{width:100%;display:block;border-radius:8px}
+/* mouse mini-stage (3.1) */
+.mstage{position:relative;margin-top:20px;background:var(--ink-700);border:1px solid var(--edge2);border-radius:14px;padding:20px;min-height:220px}
+.mtarget{width:120px;height:70px;border-radius:10px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13.5px;cursor:pointer;text-align:center;padding:6px;user-select:none}
+.mtarget.done{background:var(--good)}
+.mscroll{margin-top:16px;height:90px;overflow-y:auto;background:var(--ink-600);border-radius:10px;padding:8px}
+.mscroll div{padding:6px 4px;font-size:13px;color:var(--dim);border-bottom:1px solid var(--edge2)}
+.ctxmenu{position:absolute;background:#fff;color:#1b1b1b;border-radius:8px;box-shadow:0 12px 30px rgba(0,0,0,.4);padding:6px;min-width:150px;z-index:20;display:none}
+.ctxmenu .ci{padding:9px 12px;font-size:13.5px;border-radius:6px;cursor:pointer}
+.ctxmenu .ci:hover{background:#f0f0f0}
+.dragrow{display:flex;gap:24px;margin-top:20px;flex-wrap:wrap}
+.dragitem{width:90px;height:90px;border-radius:12px;background:var(--ink-700);border:1px solid var(--edge2);display:grid;place-items:center;cursor:pointer;font-size:30px;transition:.15s}
+.dragitem.sel{outline:2px solid var(--brand)}.dragitem.moved{opacity:.3;pointer-events:none}
+.dragfolder{width:150px;height:110px;border-radius:12px;background:var(--ink-600);border:2px dashed var(--edge2);display:grid;place-items:center;font-size:34px;cursor:pointer}
+.dragfolder.over{border-color:var(--brand)}
+/* toggle switch (3.11) */
+.trow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee}
+.trow:last-child{border-bottom:none}.trow .tk{flex:1;font-size:14.5px}
+.toggle{width:42px;height:24px;border-radius:12px;background:#ccc;position:relative;cursor:pointer;flex:none}
+.toggle.on{background:var(--w-accent)}
+.toggle .knob{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.15s}
+.toggle.on .knob{left:20px}
+/* windows settings-style panel (inline, no full desktop) */
+.winpanel{position:relative;width:min(700px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.wtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.wcontent{background:var(--w-content);overflow:auto;padding:20px 26px;max-height:420px}
+.wh1{font-size:22px;font-weight:600;margin-bottom:12px}
+.aboutcard{border:1px solid var(--w-stroke);border-radius:8px;background:#fff;padding:4px 16px;margin-bottom:14px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}.arow.on .k::after{content:" ✓";color:var(--good);font-weight:700}
+/* dialog (3.7) */
+.dialog{background:var(--w-mica);border-radius:8px;border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);max-width:420px;margin-top:20px;color:var(--w-t1);font-family:var(--seg)}
+.dialog .dtb{padding:14px 16px;font-weight:600;font-size:14.5px;border-bottom:1px solid var(--w-stroke)}
+.dialog .dbody{padding:16px}
+.dialog .drow{display:flex;align-items:center;gap:10px;font-size:14px;margin-bottom:10px}
+.dialog .drow input{width:18px;height:18px}
+.dialog .dft{display:flex;justify-content:flex-end;gap:10px;padding:12px 16px;border-top:1px solid var(--w-stroke)}
+.dialog .db{padding:8px 16px;border-radius:6px;border:1px solid var(--w-stroke);background:#fff;font-size:13.5px;cursor:pointer;font-weight:600}
+.dialog .db.primary{background:var(--w-accent);color:#fff;border-color:var(--w-accent)}
+/* ===== windows desktop chrome (3.5 / 3.6) ===== */
+.desk-ico{position:absolute;display:flex;flex-direction:column;gap:6px;align-items:center;width:92px;background:none;border:1px solid transparent;border-radius:6px;padding:8px 6px;cursor:pointer;color:#0b2a55}
+.desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:14.5px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;background:rgba(240,243,247,.82);backdrop-filter:blur(30px);border-top:1px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:5px}
+.tbi{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;cursor:pointer;position:relative}.tbi:hover{background:rgba(0,0,0,.06)}.tbi svg{width:24px;height:24px}
+.tbi.openwin::after{content:"";position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--w-accent)}
+.tbclock{position:absolute;right:14px;font-size:12.5px;color:#1b1b1b;text-align:right;line-height:1.35}
+.hs{position:absolute;width:34px;height:34px;border-radius:50%;background:rgba(var(--brand-rgb),.9);color:#fff;border:2px solid #fff;font-weight:800;cursor:pointer;display:grid;place-items:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.hs.done{background:var(--good)}
+.wdesk{position:absolute;border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);font-family:var(--seg);color:var(--w-t1)}
+.wdesk .wtb2{height:34px;display:flex;align-items:center;padding-left:12px;background:rgba(255,255,255,.5);font-size:13px;font-weight:600}
+.wdesk .wtb2 .wc2{margin-left:auto;display:flex}.wdesk .wtb2 .wc2 span{width:38px;height:34px;display:grid;place-items:center;font-size:12px;color:#444;cursor:pointer}
+.wdesk .wtb2 .wc2 .cl:hover{background:#c42b1c;color:#fff}
+.wdesk .wbody2{padding:18px;font-size:13.5px;color:var(--w-t2)}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ===== Mobile / narrow-screen layout ===== */
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+ .dragrow{gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 3 · 3.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 14</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 4 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 4 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 4 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M3={ht:["Konfyans ak Sourit ak Trackpad","Kat Klavye a","Chwazi ak Modifye Teks","Tape Aksan Kreyòl ak Franse","Biwo Windows la","Louvri, Chanje, Minimize, Maximize, ak Fèmen","Meni, Bouton, Checkbox, ak Bwat Dyalòg","Kopye, Koupe, Kole, Anile, ak Refè","Rale ak Lage San Pèdi Anyen","Chèche Aplikasyon ak Paramèt","Paramèt Ou Dwe Konnen","Screenshot ak Anrejistreman Ekran","Aksesibilite ak Konfò","Misyon: Fè Òdinatè a Pou Ou"],
+ fr:["Confiance avec Souris et Trackpad","La Carte du Clavier","Sélectionner et Modifier du Texte","Taper les Accents Créoles et Français","Le Bureau Windows","Ouvrir, Changer, Réduire, Agrandir, et Fermer","Menus, Boutons, Cases à Cocher, et Boîtes de Dialogue","Copier, Couper, Coller, Annuler, et Rétablir","Glisser-Déposer Sans Rien Perdre","Rechercher des Applications et Paramètres","Paramètres à Connaître","Captures d'Écran et Enregistrement","Accessibilité et Confort","Mission : Rendre l'Ordinateur Vôtre"],
+ en:["Mouse and Trackpad Confidence","The Keyboard Map","Selecting and Editing Text","Typing Haitian Creole and French Accents","The Windows Desktop","Open, Switch, Minimize, Maximize, and Close","Menus, Buttons, Checkboxes, and Dialogs","Copy, Cut, Paste, Undo, and Redo","Drag and Drop Without Losing Things","Search for Applications and Settings","Settings You Should Know","Screenshots and Screen Recording","Accessibility and Comfort","Mission: Make the Computer Yours"]};
+
+/* ============ lesson content ============ */
+const C={
+/* ---- 3.1 Mouse/Trackpad ---- */
+1:{ht:{lead:"Chak jès sourit gen yon rezilta diferan. Eseye chak youn nan zòn ki anba a: klike yon fwa, doub-klike, klike dwat, fè skwòl, epi rale-lage.",
+   objs:["Eseye tou lè 5 jès yo","Rekonèt kilè pou pa doub-klike"],
+   single:"Klike Yon Fwa",dbl:"Doub-Klike",right:"Klike Dwat (bouton dwat)",
+   ctx1:"Ouvri",ctx2:"Chanje non",
+   scrollLbl:"Fè skwòl nan lis sa a ↓",scrollItems:["Eleman 1","Eleman 2","Eleman 3","Eleman 4","Eleman 5","Eleman 6","Eleman 7","Eleman 8"],
+   dragLbl:"Rale sa a nan bwat la →",dragItem:"📄",dragBox:"📥",
+   singleFb:"Byen! Yon sèl klik chwazi yon bagay oswa peze yon bouton.",
+   dblFb:"Byen! Doub-klik louvri yon fichye oswa yon aplikasyon.",
+   rightFb:"Byen! Klike dwat montre yon meni ak plis opsyon.",
+   scrollFb:"Byen! Ou fè skwòl pou wè plis kontni.",
+   dragFb:"Byen! Ou rale yon bagay pou deplase l.",
+   trapQ:"Èske ou ta dwe doub-klike sou yon lyen (link) sou yon sit wèb pou louvri l?",
+   trapWrong:"Wi, doub-klike pou m sèten",trapRight:"Non, yon sèl klik ase pou yon lyen",
+   trapWrongFb:"Pa vre — pou pifò lyen ak bouton, YON SÈL KLIK ase. Doub-klike sou yon lyen ka louvri l de fwa oswa fè paj la parèt bizawo.",
+   trapRightFb:"Egzat! Doub-klike se sitou pou LOUVRI FICHYE/APLIKASYON sou Desktop la — pou lyen ak bouton, yon sèl klik ase.",
+   welcome:"Eseye chak jès yo nan bwat gri anba a. Kòmanse ak yon sèl klik.",
+   done:"Ou konprann kounye a: yon sèl klik pou chwazi, doub-klik pou louvri, klike dwat pou plis opsyon, epi skwòl ak rale-lage pou deplase."},
+ fr:{lead:"Chaque geste de souris a un résultat différent. Essayez chacun dans les zones ci-dessous : cliquer une fois, double-cliquer, clic droit, faire défiler, et glisser-déposer.",
+   objs:["Essayer les 5 gestes","Reconnaître quand ne pas double-cliquer"],
+   single:"Cliquer Une Fois",dbl:"Double-Cliquer",right:"Clic Droit (bouton droit)",
+   ctx1:"Ouvrir",ctx2:"Renommer",
+   scrollLbl:"Faites défiler cette liste ↓",scrollItems:["Élément 1","Élément 2","Élément 3","Élément 4","Élément 5","Élément 6","Élément 7","Élément 8"],
+   dragLbl:"Glissez ceci dans la boîte →",dragItem:"📄",dragBox:"📥",
+   singleFb:"Bien ! Un seul clic sélectionne quelque chose ou appuie sur un bouton.",
+   dblFb:"Bien ! Le double-clic ouvre un fichier ou une application.",
+   rightFb:"Bien ! Le clic droit montre un menu avec plus d'options.",
+   scrollFb:"Bien ! Vous faites défiler pour voir plus de contenu.",
+   dragFb:"Bien ! Vous glissez quelque chose pour le déplacer.",
+   trapQ:"Devriez-vous double-cliquer sur un lien (link) d'un site web pour l'ouvrir ?",
+   trapWrong:"Oui, double-cliquer pour être sûr",trapRight:"Non, un seul clic suffit pour un lien",
+   trapWrongFb:"Pas vrai — pour la plupart des liens et boutons, UN SEUL CLIC suffit. Double-cliquer sur un lien peut l'ouvrir deux fois ou faire un comportement bizarre.",
+   trapRightFb:"Exact ! Le double-clic sert surtout à OUVRIR DES FICHIERS/APPLICATIONS sur le Bureau — pour les liens et boutons, un seul clic suffit.",
+   welcome:"Essayez chaque geste dans la boîte grise ci-dessous. Commencez par un seul clic.",
+   done:"Vous comprenez maintenant : un clic pour sélectionner, un double-clic pour ouvrir, un clic droit pour plus d'options, et le défilement et le glisser-déposer pour déplacer."},
+ en:{lead:"Every mouse gesture has a different result. Try each one in the boxes below: single-click, double-click, right-click, scroll, and drag-and-drop.",
+   objs:["Try all 5 gestures","Recognize when not to double-click"],
+   single:"Click Once",dbl:"Double-Click",right:"Right-Click (secondary button)",
+   ctx1:"Open",ctx2:"Rename",
+   scrollLbl:"Scroll this list ↓",scrollItems:["Item 1","Item 2","Item 3","Item 4","Item 5","Item 6","Item 7","Item 8"],
+   dragLbl:"Drag this into the box →",dragItem:"📄",dragBox:"📥",
+   singleFb:"Good! A single click selects something or presses a button.",
+   dblFb:"Good! Double-click opens a file or an application.",
+   rightFb:"Good! Right-click shows a menu with more options.",
+   scrollFb:"Good! You scroll to see more content.",
+   dragFb:"Good! You drag something to move it.",
+   trapQ:"Should you double-click a link on a website to open it?",
+   trapWrong:"Yes, double-click to be sure",trapRight:"No, a single click is enough for a link",
+   trapWrongFb:"Not true — for most links and buttons, A SINGLE CLICK is enough. Double-clicking a link can open it twice or cause odd behavior.",
+   trapRightFb:"Exactly! Double-click is mainly for OPENING FILES/APPS on the Desktop — for links and buttons, one click is enough.",
+   welcome:"Try each gesture in the gray box below. Start with a single click.",
+   done:"Now you understand: one click to select, double-click to open, right-click for more options, and scroll/drag to move things."}},
+/* ---- 3.2 Keyboard Map ---- */
+2:{ht:{lead:"Chak gwoup tòch sou klavye a gen yon wòl espesifik. Klike sou chak kat pou aprann sa yo fè.",
+   objs:["Klike sou tou lè 6 gwoup tòch yo","Rekonèt diferans Shift ak Caps Lock"],
+   keys:[["Lèt & Chif","Pou ekri mo ak nimewo"],["Espas","Mete yon espas ant mo"],["Antre (Enter)","Kòmanse yon nouvo liy oswa konfime"],["Efase (Backspace)","Efase karaktè agoch kurseur a"],["Shift","Kenbe pou fè yon SÈL lèt majiskil"],["Caps Lock","Aktive TOUT LÈT MAJISKIL jiskaske ou peze l ankò"]],
+   trapQ:"Ou vle ekri YON SÈL lèt majiskil nan mitan yon fraz. Ki bouton ou dwe itilize?",
+   trapWrong:"Caps Lock",trapRight:"Shift (kenbe l pandan ou peze lèt la)",
+   trapWrongFb:"Pa sa — Caps Lock rete AKTIVE jiskaske ou peze l ankò, li ap ekri TOUT LÈT an majiskil apre sa, pa sèlman yon sèl.",
+   trapRightFb:"Egzat! Shift fè yon SÈL lèt majiskil epi li retounen nòmal — se poutèt sa moun konfonn li ak Caps Lock pafwa.",
+   welcome:"Klike sou chak kat pou aprann wòl gwoup tòch la.",
+   done:"Ou konnen kounye a wòl chak gwoup tòch, epi ou pa p konfonn Shift ak Caps Lock ankò."},
+ fr:{lead:"Chaque groupe de touches du clavier a un rôle précis. Cliquez sur chaque carte pour apprendre ce qu'elles font.",
+   objs:["Cliquer sur les 6 groupes de touches","Reconnaître la différence entre Shift et Caps Lock"],
+   keys:[["Lettres & Chiffres","Pour écrire des mots et des nombres"],["Espace","Mettre un espace entre les mots"],["Entrée (Enter)","Commencer une nouvelle ligne ou confirmer"],["Effacer (Backspace)","Efface le caractère à gauche du curseur"],["Shift","Maintenir pour faire UNE SEULE lettre majuscule"],["Verr. Maj. (Caps Lock)","Active TOUTES LES MAJUSCULES jusqu'à ce que vous le repressiez"]],
+   trapQ:"Vous voulez écrire UNE SEULE lettre majuscule au milieu d'une phrase. Quel bouton utiliser ?",
+   trapWrong:"Caps Lock",trapRight:"Shift (maintenez pendant que vous appuyez sur la lettre)",
+   trapWrongFb:"Pas ça — Caps Lock reste ACTIVÉ jusqu'à ce que vous le repressiez, il écrira TOUT en majuscules après, pas juste une lettre.",
+   trapRightFb:"Exact ! Shift fait UNE SEULE lettre majuscule puis revient à la normale — c'est pourquoi on le confond parfois avec Caps Lock.",
+   welcome:"Cliquez sur chaque carte pour apprendre le rôle du groupe de touches.",
+   done:"Vous connaissez maintenant le rôle de chaque groupe de touches, et vous ne confondrez plus Shift et Caps Lock."},
+ en:{lead:"Every key group on the keyboard has a specific role. Click each card to learn what they do.",
+   objs:["Click all 6 key groups","Recognize the difference between Shift and Caps Lock"],
+   keys:[["Letters & Numbers","For writing words and numbers"],["Space","Puts a space between words"],["Enter/Return","Starts a new line or confirms"],["Backspace","Erases the character to the left of the cursor"],["Shift","Hold to make ONE letter capital"],["Caps Lock","Turns on ALL CAPS until you press it again"]],
+   trapQ:"You want to type just ONE capital letter in the middle of a sentence. Which key should you use?",
+   trapWrong:"Caps Lock",trapRight:"Shift (hold it while pressing the letter)",
+   trapWrongFb:"Not that — Caps Lock stays ON until you press it again, it'll type ALL CAPS after that, not just one letter.",
+   trapRightFb:"Exactly! Shift makes just ONE capital letter and then returns to normal — that's why people sometimes confuse it with Caps Lock.",
+   welcome:"Click each card to learn the key group's role.",
+   done:"Now you know each key group's role, and you won't confuse Shift with Caps Lock anymore."}},
+/* ---- 3.3 Select/Edit text ---- */
+3:{ht:{lead:"Aprann chwazi ak modifye tèks san estrès. Doub-klike sou yon mo pou chwazi l, epi eseye Efase ak Delete.",
+   objs:["Chwazi yon mo (doub-klike)","Konprann diferans Backspace ak Delete"],
+   paragraph:"Klike de fwa sou nenpòt mo nan fraz sa a pou chwazi li.",
+   selectFb:"Ou chwazi mo a! Kounye a li siliye an ble — ou ka tape sou li pou ranplase l, oswa efase l.",
+   trapQ:"Kurseur ou ant de lèt. Ki diferans ant Backspace ak Delete?",
+   trapWrong:"Yo fè menm bagay la",trapRight:"Backspace efase agoch, Delete efase adwat",
+   trapWrongFb:"Pa vre — yo fè bagay diferan! BACKSPACE efase karaktè AGOCH kurseur a. DELETE efase karaktè ADWAT kurseur a.",
+   trapRightFb:"Egzat! Backspace = agoch, Delete = adwat. Sa itil lè ou vle korije yon erè san deplase kurseur a twòp.",
+   undoBtn:"Anile (Undo)",undoFb:"Ou anile dènye chanjman an — tèks la retounen jan l te ye anvan.",
+   welcome:"Doub-klike sou yon mo nan paragraf la pou chwazi l.",
+   done:"Ou konnen kounye a: doub-klike pou chwazi yon mo, Backspace pou efase agoch, Delete pou efase adwat, epi Anile pou retounen an aryè."},
+ fr:{lead:"Apprenez à sélectionner et modifier du texte sans stress. Double-cliquez sur un mot pour le sélectionner, puis essayez Backspace et Delete.",
+   objs:["Sélectionner un mot (double-clic)","Comprendre la différence entre Backspace et Delete"],
+   paragraph:"Double-cliquez sur n'importe quel mot de cette phrase pour le sélectionner.",
+   selectFb:"Vous avez sélectionné le mot ! Il est maintenant surligné en bleu — vous pouvez taper pour le remplacer, ou l'effacer.",
+   trapQ:"Votre curseur est entre deux lettres. Quelle est la différence entre Backspace et Delete ?",
+   trapWrong:"Ils font la même chose",trapRight:"Backspace efface à gauche, Delete efface à droite",
+   trapWrongFb:"Pas vrai — ils font des choses différentes ! BACKSPACE efface le caractère à GAUCHE du curseur. DELETE efface le caractère à DROITE du curseur.",
+   trapRightFb:"Exact ! Backspace = gauche, Delete = droite. C'est utile pour corriger une erreur sans trop déplacer le curseur.",
+   undoBtn:"Annuler (Undo)",undoFb:"Vous avez annulé le dernier changement — le texte est revenu comme avant.",
+   welcome:"Double-cliquez sur un mot du paragraphe pour le sélectionner.",
+   done:"Vous savez maintenant : double-clic pour sélectionner un mot, Backspace pour effacer à gauche, Delete pour effacer à droite, et Annuler pour revenir en arrière."},
+ en:{lead:"Learn to select and edit text without stress. Double-click a word to select it, then try Backspace and Delete.",
+   objs:["Select a word (double-click)","Understand the difference between Backspace and Delete"],
+   paragraph:"Double-click any word in this sentence to select it.",
+   selectFb:"You selected the word! It's now highlighted in blue — you can type to replace it, or delete it.",
+   trapQ:"Your cursor is between two letters. What's the difference between Backspace and Delete?",
+   trapWrong:"They do the same thing",trapRight:"Backspace erases left, Delete erases right",
+   trapWrongFb:"Not true — they do different things! BACKSPACE erases the character to the LEFT of the cursor. DELETE erases the character to the RIGHT of the cursor.",
+   trapRightFb:"Exactly! Backspace = left, Delete = right. That's handy for fixing a mistake without moving the cursor too much.",
+   undoBtn:"Undo",undoFb:"You undid the last change — the text is back to how it was.",
+   welcome:"Double-click a word in the paragraph to select it.",
+   done:"Now you know: double-click to select a word, Backspace to erase left, Delete to erase right, and Undo to go back."}},
+/* ---- 3.4 Typing accents ---- */
+4:{ht:{lead:"Ou ka tape aksan Kreyòl ak Fransè dirèkteman sou klavye Windows la, san lojisyèl adisyonèl. Klike sou chak karaktè pou ajoute l nan tèks la.",
+   objs:["Ajoute omwen 4 karaktè aksan","Konprann ou pa bezwen lojisyèl espesyal"],
+   chars:["é","è","à","ò","ù","ç"],
+   textLbl:"Tèks ou:",
+   charFb:"Ou ajoute '{c}' — sou Windows, ou ka fè sa ak paramèt klavye lang oswa yon konbinezon tòch.",
+   trapQ:"Èske ou bezwen enstale yon lojisyèl espesyal pou tape aksan Kreyòl/Fransè sou Windows?",
+   trapWrong:"Wi, ou bezwen yon lojisyèl adisyonèl",trapRight:"Non, paramèt klavye Windows deja gen sa",
+   trapWrongFb:"Pa vre! Windows deja gen sipò pou aksan yo nan Paramèt Klavye/Lang — ou pa bezwen enstale anyen adisyonèl pou sa.",
+   trapRightFb:"Egzat! Ale nan Paramèt → Sistèm → Klavye pou ajoute lang Fransè oswa chanje disposisyon — pa gen lojisyèl adisyonèl ki nesesè.",
+   welcome:"Klike sou karaktè aksan yo pou ajoute yo nan tèks la anba a.",
+   done:"Ou konnen kounye a ou ka tape aksan Kreyòl ak Fransè dirèkteman ak paramèt klavye Windows — pa gen lojisyèl espesyal ki nesesè."},
+ fr:{lead:"Vous pouvez taper les accents créoles et français directement sur un clavier Windows, sans logiciel supplémentaire. Cliquez sur chaque caractère pour l'ajouter au texte.",
+   objs:["Ajouter au moins 4 caractères accentués","Comprendre qu'aucun logiciel spécial n'est nécessaire"],
+   chars:["é","è","à","ò","ù","ç"],
+   textLbl:"Votre texte :",
+   charFb:"Vous avez ajouté '{c}' — sur Windows, on fait ça avec les paramètres de langue du clavier ou une combinaison de touches.",
+   trapQ:"Avez-vous besoin d'installer un logiciel spécial pour taper les accents créoles/français sur Windows ?",
+   trapWrong:"Oui, il faut un logiciel supplémentaire",trapRight:"Non, les paramètres clavier de Windows le font déjà",
+   trapWrongFb:"Pas vrai ! Windows a déjà un support pour les accents dans les Paramètres Clavier/Langue — vous n'avez rien besoin d'installer en plus.",
+   trapRightFb:"Exact ! Allez dans Paramètres → Heure et langue → Clavier pour ajouter le français ou changer de disposition — aucun logiciel supplémentaire n'est nécessaire.",
+   welcome:"Cliquez sur les caractères accentués pour les ajouter au texte ci-dessous.",
+   done:"Vous savez maintenant que vous pouvez taper les accents créoles et français directement avec les paramètres clavier de Windows — aucun logiciel spécial n'est nécessaire."},
+ en:{lead:"You can type Haitian Creole and French accents directly on a Windows keyboard, no extra software needed. Click each character to add it to the text.",
+   objs:["Add at least 4 accented characters","Understand no special software is needed"],
+   chars:["é","è","à","ò","ù","ç"],
+   textLbl:"Your text:",
+   charFb:"You added '{c}' — on Windows, you do this with keyboard language settings or a key combination.",
+   trapQ:"Do you need to install special software to type Creole/French accents on Windows?",
+   trapWrong:"Yes, you need extra software",trapRight:"No, Windows keyboard settings already do this",
+   trapWrongFb:"Not true! Windows already supports accents in Keyboard/Language Settings — you don't need to install anything extra for it.",
+   trapRightFb:"Exactly! Go to Settings → Time & Language → Keyboard to add French or change layout — no extra software needed.",
+   welcome:"Click the accented characters to add them to the text below.",
+   done:"Now you know you can type Creole and French accents directly with Windows keyboard settings — no special software needed."}},
+/* ---- 3.5 Windows Desktop ---- */
+5:{ht:{lead:"Byenveni sou biwo Windows la. Klike sou chak pwen ble pou idantifye eleman prensipal yo.",
+   objs:["Idantifye tou lè 5 eleman yo"],
+   spots:["Desktop — kote ikòn yo chita","Bouton Start — pou louvri aplikasyon","Ba Tach (Taskbar) — montre aplikasyon k ap kouri","Tray Sistèm — ikòn Wi-Fi, batri, volim","Notifikasyon — mesaj ki parèt nan kwen an"],
+   welcome:"Klike sou chak pwen ble ki make yon eleman enpòtan sou biwo a.",
+   done:"Ou idantifye tou lè 5 eleman debaz biwo Windows la: Desktop, Start, Ba Tach, Tray Sistèm, ak Notifikasyon."},
+ fr:{lead:"Bienvenue sur le bureau Windows. Cliquez sur chaque point bleu pour identifier les éléments principaux.",
+   objs:["Identifier les 5 éléments"],
+   spots:["Bureau — où se trouvent les icônes","Bouton Démarrer — pour ouvrir des applications","Barre des tâches — montre les applications en cours","Zone de notification — icônes Wi-Fi, batterie, volume","Notifications — messages qui apparaissent dans le coin"],
+   welcome:"Cliquez sur chaque point bleu qui marque un élément important du bureau.",
+   done:"Vous avez identifié les 5 éléments de base du bureau Windows : Bureau, Démarrer, Barre des tâches, Zone de notification, et Notifications."},
+ en:{lead:"Welcome to the Windows desktop. Click each blue dot to identify the main elements.",
+   objs:["Identify all 5 elements"],
+   spots:["Desktop — where icons sit","Start button — to open applications","Taskbar — shows running applications","System tray — Wi-Fi, battery, volume icons","Notifications — messages that appear in the corner"],
+   welcome:"Click each blue dot marking an important desktop element.",
+   done:"You identified all 5 basic elements of the Windows desktop: Desktop, Start, Taskbar, System Tray, and Notifications."}},
+/* ---- 3.6 Open/Switch/Minimize/Maximize/Close ---- */
+6:{ht:{lead:"Louvri 2 fennèt, chanje ant yo nan ba tach la, epi eseye minimize/maximize/fèmen.",
+   objs:["Louvri 2 fennèt yo","Chanje ant yo nan ba tach la","Fèmen yon fennèt"],
+   app1:"Dokiman","app2:":"Kalkilatris",app2:"Kalkilatris",
+   winBody1:"Sa se yon dokiman tèks senp.",winBody2:"7 × 6 = 42",
+   min:"—",max:"▢",close:"✕",
+   minFb:"Ou minimize fennèt la — li kache men aplikasyon an ap toujou kouri (gade ba tach la).",
+   maxFb:"Ou maximize fennèt la pou l pran tout ekran an.",
+   trapQ:"Ou fèmen yon fennèt Word (✕). Èske Word konplètman fèmen/kite òdinatè a?",
+   trapWrong:"Wi, aplikasyon an konplètman fèmen",trapRight:"Pa fòseman — depann, men souvan ou ka relouvri l vit",
+   trapWrongFb:"Pa toujou vre — fèmen YON FENNÈT pa vle di ou 'kite' oswa dezenstale aplikasyon an. Aplikasyon an ka rete disponib pou louvri ankò.",
+   trapRightFb:"Byen wè! Fèmen yon fennèt diferan de 'kite' yon aplikasyon konplètman — se yon distenksyon enpòtan pou konprann.",
+   welcome:"Klike sou ikòn 'Dokiman' nan ba tach la pou louvri premye fennèt la.",
+   done:"Ou konnen kounye a: louvri, chanje ant fennèt yo nan ba tach la (oswa Alt+Tab), minimize kenbe aplikasyon an ap kouri, epi fèmen yon fennèt pa toujou vle di kite aplikasyon an."},
+ fr:{lead:"Ouvrez 2 fenêtres, changez entre elles dans la barre des tâches, puis essayez réduire/agrandir/fermer.",
+   objs:["Ouvrir les 2 fenêtres","Changer entre elles dans la barre des tâches","Fermer une fenêtre"],
+   app1:"Document",app2:"Calculatrice",
+   winBody1:"Ceci est un simple document texte.",winBody2:"7 × 6 = 42",
+   min:"—",max:"▢",close:"✕",
+   minFb:"Vous avez réduit la fenêtre — elle se cache mais l'application continue de tourner (regardez la barre des tâches).",
+   maxFb:"Vous avez agrandi la fenêtre pour qu'elle prenne tout l'écran.",
+   trapQ:"Vous fermez une fenêtre Word (✕). Est-ce que Word quitte complètement l'ordinateur ?",
+   trapWrong:"Oui, l'application quitte complètement",trapRight:"Pas forcément — ça dépend, mais souvent vous pouvez la rouvrir vite",
+   trapWrongFb:"Pas toujours vrai — fermer UNE FENÊTRE ne veut pas dire que vous « quittez » ou désinstallez l'application. Elle peut rester disponible pour être rouverte.",
+   trapRightFb:"Bien vu ! Fermer une fenêtre est différent de « quitter » complètement une application — une distinction importante à comprendre.",
+   welcome:"Cliquez sur l'icône « Document » dans la barre des tâches pour ouvrir la première fenêtre.",
+   done:"Vous savez maintenant : ouvrir, changer entre les fenêtres dans la barre des tâches (ou Alt+Tab), réduire garde l'application en cours, et fermer une fenêtre ne veut pas toujours dire quitter l'application."},
+ en:{lead:"Open 2 windows, switch between them in the taskbar, then try minimize/maximize/close.",
+   objs:["Open both windows","Switch between them in the taskbar","Close a window"],
+   app1:"Document",app2:"Calculator",
+   winBody1:"This is a simple text document.",winBody2:"7 × 6 = 42",
+   min:"—",max:"▢",close:"✕",
+   minFb:"You minimized the window — it hides but the app keeps running (look at the taskbar).",
+   maxFb:"You maximized the window so it fills the whole screen.",
+   trapQ:"You close a Word window (✕). Does Word completely quit/leave the computer?",
+   trapWrong:"Yes, the application completely quits",trapRight:"Not necessarily — depends, but often you can reopen it quickly",
+   trapWrongFb:"Not always true — closing ONE WINDOW doesn't mean you \"quit\" or uninstall the app. It can stay available to open again.",
+   trapRightFb:"Good eye! Closing a window is different from fully \"quitting\" an application — an important distinction to understand.",
+   welcome:"Click the \"Document\" icon in the taskbar to open the first window.",
+   done:"Now you know: opening, switching between windows in the taskbar (or Alt+Tab), minimizing keeps the app running, and closing a window doesn't always mean quitting the app."}},
+/* ---- 3.7 Menus/Dialogs ---- */
+7:{ht:{lead:"Bwat dyalòg, meni, ak checkbox parèt tout tan. Aprann rekonèt yo — epi fè atansyon ak yon pyèj komen.",
+   objs:["Louvri dyalòg la","Rekonèt pyèj checkbox ki deja koche a"],
+   openBtn:"Enstale Aplikasyon (senmize)",
+   dtitle:"Enstale Aplikasyon X",
+   dtext:"Ou prèt pou enstale Aplikasyon X.",
+   dcheck:"✓ Enstale tou 'Toolbar Bonus' ak 'Optimizer Pro' (Rekòmande)",
+   dcancel:"Anile",dinstall:"Enstale",
+   trapFb:"Fè atansyon! Checkbox sa a te DEJA koche pou ou — si ou pa dekoche l, ou ap enstale de lòt pwogram ou pa mande. 'Rekòmande' pa vle di 'nesesè'.",
+   okFb:"Byen fèt! Ou dekoche bwat la anvan ou enstale — se konsa ou evite lojisyèl ou pa mande.",
+   welcome:"Klike bouton 'Enstale Aplikasyon' pou wè bwat dyalòg la.",
+   done:"Ou konnen kounye a: toujou li sa yon checkbox deja koche ap fè anvan ou klike 'Enstale' oswa 'Kontinye'."},
+ fr:{lead:"Les boîtes de dialogue, menus, et cases à cocher apparaissent tout le temps. Apprenez à les reconnaître — et attention à un piège courant.",
+   objs:["Ouvrir la boîte de dialogue","Reconnaître le piège de la case déjà cochée"],
+   openBtn:"Installer l'Application (simulé)",
+   dtitle:"Installer l'Application X",
+   dtext:"Vous êtes prêt à installer l'Application X.",
+   dcheck:"✓ Installer aussi 'Toolbar Bonus' et 'Optimizer Pro' (Recommandé)",
+   dcancel:"Annuler",dinstall:"Installer",
+   trapFb:"Attention ! Cette case était DÉJÀ cochée pour vous — si vous ne la décochez pas, vous installerez deux programmes que vous n'avez pas demandés. « Recommandé » ne veut pas dire « nécessaire ».",
+   okFb:"Bien joué ! Vous avez décoché la case avant d'installer — c'est comme ça qu'on évite les logiciels non désirés.",
+   welcome:"Cliquez sur « Installer l'Application » pour voir la boîte de dialogue.",
+   done:"Vous savez maintenant : toujours lire ce qu'une case déjà cochée va faire avant de cliquer « Installer » ou « Continuer »."},
+ en:{lead:"Dialogs, menus, and checkboxes show up all the time. Learn to recognize them — and watch out for a common trap.",
+   objs:["Open the dialog","Recognize the pre-checked checkbox trap"],
+   openBtn:"Install Application (simulated)",
+   dtitle:"Install Application X",
+   dtext:"You're ready to install Application X.",
+   dcheck:"✓ Also install 'Toolbar Bonus' and 'Optimizer Pro' (Recommended)",
+   dcancel:"Cancel",dinstall:"Install",
+   trapFb:"Watch out! This checkbox was ALREADY checked for you — if you don't uncheck it, you'll install two extra programs you didn't ask for. \"Recommended\" doesn't mean \"required.\"",
+   okFb:"Well done! You unchecked the box before installing — that's how you avoid unwanted software.",
+   welcome:"Click \"Install Application\" to see the dialog.",
+   done:"Now you know: always read what a pre-checked checkbox will do before clicking \"Install\" or \"Continue.\""}},
+/* ---- 3.8 Copy/Cut/Paste/Undo/Redo ---- */
+8:{ht:{lead:"Clipboard la se yon 'tanpon' tanporè. Kopye tèks, kole l yon lòt kote, epi wè poukisa Koupe pi riskan pase Kopye.",
+   objs:["Kopye epi kole tèks","Konprann poukisa Koupe pi riskan"],
+   src:"Kopye fraz sa a",dst:"Kole isit la:",
+   copyBtn:"Kopye",cutBtn:"Koupe",pasteBtn:"Kole",
+   copyFb:"Ou kopye tèks la — orijinal la rete la, epi yon kopi ale nan Clipboard la.",
+   cutFb:"Ou koupe tèks la — li DISPARÈT kounye a e li ale nan Clipboard la sèlman. Si ou pa kole l, li pèdi!",
+   pasteFb:"Ou kole tèks la soti nan Clipboard la.",
+   trapQ:"Ou Koupe yon paragraf, epi ou fèmen dokiman an san ou pa kole l okenn kote. Sa rive?",
+   trapWrong:"Anyen — li rete an sekirite",trapRight:"Ou ka pèdi paragraf la",
+   trapWrongFb:"Pa vre — se poutèt sa Koupe pi riskan pase Kopye pou moun ki nouvo: si ou pa KOLE apre ou Koupe, ou riske pèdi sa ou te koupe a.",
+   trapRightFb:"Egzat! Se poutèt sa: Kopye DABÒ si ou pa sèten, epi sèlman Koupe lè ou pare pou Kole imedyatman.",
+   welcome:"Klike 'Kopye' sou fraz la, epi klike 'Kole' nan bwat anba a.",
+   done:"Ou konnen kounye a: Kopye kite orijinal la, Koupe retire l (riskan si ou pa kole), epi Kole mete l kote ou vle."},
+ fr:{lead:"Le presse-papiers est une « mémoire tampon » temporaire. Copiez du texte, collez-le ailleurs, et voyez pourquoi Couper est plus risqué que Copier.",
+   objs:["Copier et coller du texte","Comprendre pourquoi Couper est plus risqué"],
+   src:"Copiez cette phrase",dst:"Collez ici :",
+   copyBtn:"Copier",cutBtn:"Couper",pasteBtn:"Coller",
+   copyFb:"Vous avez copié le texte — l'original reste là, et une copie va dans le presse-papiers.",
+   cutFb:"Vous avez coupé le texte — il DISPARAÎT maintenant et va seulement dans le presse-papiers. Si vous ne le collez pas, il est perdu !",
+   pasteFb:"Vous avez collé le texte depuis le presse-papiers.",
+   trapQ:"Vous Coupez un paragraphe, puis fermez le document sans le coller nulle part. Que se passe-t-il ?",
+   trapWrong:"Rien — il reste en sécurité",trapRight:"Vous pourriez perdre le paragraphe",
+   trapWrongFb:"Pas vrai — c'est pourquoi Couper est plus risqué que Copier pour les débutants : si vous ne COLLEZ pas après avoir Coupé, vous risquez de perdre ce que vous avez coupé.",
+   trapRightFb:"Exact ! C'est pourquoi : Copiez D'ABORD si vous n'êtes pas sûr, et ne Coupez que lorsque vous êtes prêt à Coller immédiatement.",
+   welcome:"Cliquez « Copier » sur la phrase, puis cliquez « Coller » dans la boîte ci-dessous.",
+   done:"Vous savez maintenant : Copier garde l'original, Couper le retire (risqué si vous ne collez pas), et Coller le place où vous voulez."},
+ en:{lead:"The clipboard is a temporary \"holding space.\" Copy some text, paste it elsewhere, and see why Cut is riskier than Copy.",
+   objs:["Copy and paste text","Understand why Cut is riskier"],
+   src:"Copy this sentence",dst:"Paste here:",
+   copyBtn:"Copy",cutBtn:"Cut",pasteBtn:"Paste",
+   copyFb:"You copied the text — the original stays, and a copy goes to the clipboard.",
+   cutFb:"You cut the text — it DISAPPEARS now and only lives in the clipboard. If you don't paste it, it's lost!",
+   pasteFb:"You pasted the text from the clipboard.",
+   trapQ:"You Cut a paragraph, then close the document without pasting it anywhere. What happens?",
+   trapWrong:"Nothing — it stays safe",trapRight:"You could lose the paragraph",
+   trapWrongFb:"Not true — that's why Cut is riskier than Copy for beginners: if you don't PASTE after Cutting, you risk losing what you cut.",
+   trapRightFb:"Exactly! That's why: Copy FIRST if you're unsure, and only Cut when you're ready to Paste right away.",
+   welcome:"Click \"Copy\" on the sentence, then click \"Paste\" in the box below.",
+   done:"Now you know: Copy keeps the original, Cut removes it (risky if you don't paste), and Paste puts it where you want."}},
+/* ---- 3.9 Drag and Drop ---- */
+9:{ht:{lead:"Nan lavi reyèl, ou ta rale ak sourit la. Isit la, klike fichye a, apre klike dosye a pou 'deplase' l — menm konsèp la.",
+   objs:["Deplase fichye a nan dosye a","Konprann rekiperasyon ak Anile"],
+   file:"📄 Dokiman.docx",folder:"📁 Dosye Travay",wrongFolder:"📁 Panye Fatra",
+   moveFb:"Ou deplase fichye a nan Dosye Travay — se sa yon 'glise-lage' fè.",
+   wrongMoveFb:"Ou mete fichye a nan Panye Fatra pa aksidan! Men pa gen pwoblèm — peze Anile (Ctrl+Z) pou repran l.",
+   undoBtn:"Anile (Ctrl+Z)",undoFb:"Ou anile — fichye a tounen kote l te ye.",
+   welcome:"Klike sou fichye a, epi klike sou dosye ki kòrèk la pou deplase l.",
+   done:"Ou konprann kounye a: glise-lage deplase yon fichye (pa kopye l), epi Anile ka repran yon aksyon si ou fè yon erè."},
+ fr:{lead:"Dans la vraie vie, vous glisseriez avec la souris. Ici, cliquez le fichier, puis cliquez le dossier pour le « déplacer » — même concept.",
+   objs:["Déplacer le fichier dans le dossier","Comprendre la récupération avec Annuler"],
+   file:"📄 Document.docx",folder:"📁 Dossier Travail",wrongFolder:"📁 Corbeille",
+   moveFb:"Vous avez déplacé le fichier dans Dossier Travail — c'est ce que fait un « glisser-déposer ».",
+   wrongMoveFb:"Vous avez mis le fichier dans la Corbeille par accident ! Mais pas de problème — appuyez sur Annuler (Ctrl+Z) pour le récupérer.",
+   undoBtn:"Annuler (Ctrl+Z)",undoFb:"Vous avez annulé — le fichier est revenu où il était.",
+   welcome:"Cliquez sur le fichier, puis cliquez sur le bon dossier pour le déplacer.",
+   done:"Vous comprenez maintenant : glisser-déposer déplace un fichier (ne le copie pas), et Annuler peut récupérer une action si vous faites une erreur."},
+ en:{lead:"In real life, you'd drag with the mouse. Here, click the file, then click the folder to \"move\" it — same concept.",
+   objs:["Move the file into the folder","Understand recovery with Undo"],
+   file:"📄 Document.docx",folder:"📁 Work Folder",wrongFolder:"📁 Recycle Bin",
+   moveFb:"You moved the file into Work Folder — that's what a \"drag and drop\" does.",
+   wrongMoveFb:"You put the file in the Recycle Bin by accident! But no problem — press Undo (Ctrl+Z) to get it back.",
+   undoBtn:"Undo (Ctrl+Z)",undoFb:"You undid it — the file is back where it was.",
+   welcome:"Click the file, then click the correct folder to move it.",
+   done:"Now you understand: drag-and-drop moves a file (doesn't copy it), and Undo can recover an action if you make a mistake."}},
+/* ---- 3.10 Search ---- */
+10:{ht:{lead:"Rechèch Windows la travay pi byen lè ou chèche pa OBJEKTIF, pa pa pozisyon sou ekran an.",
+   objs:["Chèche yon bagay pa objektif li","Rekonèt rechèch pa pozisyon pa mache"],
+   searchLbl:"Chèche...",
+   examples:[["kalkil","Kalkilatris"],["ekri dokiman","Word"],["chanje volim","Paramèt Son"]],
+   foundFb:"Rechèch la jwenn '{app}' — menmsi ou pa t tape non aplikasyon an dirèkteman!",
+   trapQ:"Ou vle jwenn Kalkilatris. Ki pi bon fason pou chèche l?",
+   trapWrong:"Chèche 'bouton ki nan kwen anba goch la'",trapRight:"Tape 'kalkil' oswa 'kalkilatris'",
+   trapWrongFb:"Sa pa ka mache nan yon rechèch — rechèch la pa konprann 'pozisyon sou ekran'. Pozisyon ikòn yo ka chanje.",
+   trapRightFb:"Egzat! Tape sa OU VLE FÈ oswa non aplikasyon an — rechèch la travay pa objektif/non, pa pozisyon.",
+   welcome:"Tape yon mo nan bwat rechèch la pou wè sa li jwenn.",
+   done:"Ou konnen kounye a: chèche pa sa ou vle fè oswa non aplikasyon an — jan sa a ou toujou jwenn li, kèlkeswa kote ikòn li ye."},
+ fr:{lead:"La recherche Windows fonctionne mieux quand vous cherchez par OBJECTIF, pas par position à l'écran.",
+   objs:["Rechercher quelque chose par son objectif","Reconnaître que chercher par position ne marche pas"],
+   searchLbl:"Rechercher...",
+   examples:[["calcul","Calculatrice"],["écrire document","Word"],["changer volume","Paramètres Son"]],
+   foundFb:"La recherche a trouvé « {app} » — même si vous n'avez pas tapé le nom de l'application directement !",
+   trapQ:"Vous voulez trouver la Calculatrice. Quelle est la meilleure façon de la chercher ?",
+   trapWrong:"Chercher « le bouton dans le coin en bas à gauche »",trapRight:"Taper « calcul » ou « calculatrice »",
+   trapWrongFb:"Ça ne peut pas marcher dans une recherche — la recherche ne comprend pas « position à l'écran ». La position des icônes peut changer.",
+   trapRightFb:"Exact ! Tapez CE QUE VOUS VOULEZ FAIRE ou le nom de l'application — la recherche fonctionne par objectif/nom, pas par position.",
+   welcome:"Tapez un mot dans la boîte de recherche pour voir ce qu'elle trouve.",
+   done:"Vous savez maintenant : cherchez par ce que vous voulez faire ou le nom de l'application — ainsi vous la trouvez toujours, peu importe où se trouve son icône."},
+ en:{lead:"Windows Search works best when you search by PURPOSE, not by screen position.",
+   objs:["Search for something by its purpose","Recognize that searching by position doesn't work"],
+   searchLbl:"Search...",
+   examples:[["calculate","Calculator"],["write document","Word"],["change volume","Sound Settings"]],
+   foundFb:"The search found \"{app}\" — even though you didn't type the app's name directly!",
+   trapQ:"You want to find the Calculator. What's the best way to search for it?",
+   trapWrong:"Search for \"the button in the bottom-left corner\"",trapRight:"Type \"calculate\" or \"calculator\"",
+   trapWrongFb:"That can't work in a search — search doesn't understand \"screen position.\" Icon positions can change.",
+   trapRightFb:"Exactly! Type WHAT YOU WANT TO DO or the app's name — search works by purpose/name, not position.",
+   welcome:"Type a word in the search box to see what it finds.",
+   done:"Now you know: search by what you want to do or the app's name — that way you always find it, no matter where its icon is."}},
+/* ---- 3.11 Settings ---- */
+11:{ht:{lead:"Aprann kote pou jwenn paramèt debaz yo. Louvri Paramèt, epi eksplore.",
+   objs:["Louvri Paramèt","Chanje omwen 3 paramèt","Rekonèt fo paramèt la"],
+   openBtn:"Louvri Paramèt",
+   rows:["Klète Ekran","Volim","Wi-Fi","Bluetooth","Lang","Gwosè Tèks","Papye Poste (Wallpaper)","Tan Vewouye Ekran","Dat ak Lè"],
+   trapRow:"Vwa Òdinatè a (chanje aksan vwa a)",trapFb:"Sa se PA yon vrè paramèt Windows! Ou pa ka 'chanje vwa' òdinatè a konsa — se yon pyèj.",
+   toggleFb:"Ou chanje paramèt sa a.",
+   welcome:"Klike 'Louvri Paramèt', epi chanje omwen 3 paramèt — men fè atansyon ak yon fo paramèt.",
+   done:"Ou konnen kounye a kote pou jwenn paramèt debaz yo: klète, volim, Wi-Fi, Bluetooth, lang, gwosè tèks, papye poste, tan vewouye, ak dat/lè."},
+ fr:{lead:"Apprenez où trouver les paramètres de base. Ouvrez Paramètres, et explorez.",
+   objs:["Ouvrir Paramètres","Changer au moins 3 paramètres","Reconnaître le faux paramètre"],
+   openBtn:"Ouvrir Paramètres",
+   rows:["Luminosité de l'Écran","Volume","Wi-Fi","Bluetooth","Langue","Taille du Texte","Fond d'Écran (Wallpaper)","Délai de Verrouillage","Date et Heure"],
+   trapRow:"Voix de l'Ordinateur (changer l'accent de la voix)",trapFb:"Ce n'est PAS un vrai paramètre Windows ! Vous ne pouvez pas « changer la voix » de l'ordinateur comme ça — c'est un piège.",
+   toggleFb:"Vous avez changé ce paramètre.",
+   welcome:"Cliquez « Ouvrir Paramètres », puis changez au moins 3 paramètres — mais attention à un faux paramètre.",
+   done:"Vous savez maintenant où trouver les paramètres de base : luminosité, volume, Wi-Fi, Bluetooth, langue, taille du texte, fond d'écran, délai de verrouillage, et date/heure."},
+ en:{lead:"Learn where to find the basic settings. Open Settings, and explore.",
+   objs:["Open Settings","Change at least 3 settings","Recognize the fake setting"],
+   openBtn:"Open Settings",
+   rows:["Screen Brightness","Volume","Wi-Fi","Bluetooth","Language","Text Size","Wallpaper","Lock Timeout","Date and Time"],
+   trapRow:"Computer Voice (change the voice accent)",trapFb:"That is NOT a real Windows setting! You can't \"change the voice\" of the computer like that — it's a trap.",
+   toggleFb:"You changed this setting.",
+   welcome:"Click \"Open Settings,\" then change at least 3 settings — but watch out for a fake setting.",
+   done:"Now you know where to find the basic settings: brightness, volume, Wi-Fi, Bluetooth, language, text size, wallpaper, lock timeout, and date/time."}},
+/* ---- 3.12 Screenshots ---- */
+12:{ht:{lead:"Yon captur ekran (screenshot) sove sa ki sou ekran ou kounye a. Pran youn, epi reflechi anvan ou pataje l.",
+   objs:["Pran yon captur ekran","Konprann poukisa verifye anvan pataje"],
+   captureBtn:"Pran Captur Ekran",
+   capturedMsg:"Captur la sove nan Dosye 'Screenshots' → Foto.",
+   trapQ:"Ou pran yon captur ekran ki gen imèl pèsonèl ou vizib, epi ou prèt pou pataje l ak yon zanmi. Sa ou ta dwe fè?",
+   trapWrong:"Pataje l dirèkteman, li pa gwo bagay",trapRight:"Gade l byen dabò, kache enfòmasyon prive si nesesè",
+   trapWrongFb:"Danjere! Yon captur ekran ka gen enfòmasyon prive (imèl, non, kont) ou pa vle moun wè. Toujou verifye anvan pataje.",
+   trapRightFb:"Egzat! Toujou gade sa ki vizib nan yon captur ekran anvan ou pataje l — vi prive anvan tout bagay.",
+   welcome:"Klike 'Pran Captur Ekran' pou wè kijan sa mache.",
+   done:"Ou konnen kounye a: kijan pou pran yon captur ekran, kote li sove, ak poukisa fòk ou verifye vi prive anvan ou pataje l."},
+ fr:{lead:"Une capture d'écran sauvegarde ce qui est sur votre écran en ce moment. Prenez-en une, et réfléchissez avant de la partager.",
+   objs:["Prendre une capture d'écran","Comprendre pourquoi vérifier avant de partager"],
+   captureBtn:"Prendre une Capture d'Écran",
+   capturedMsg:"La capture est sauvegardée dans Dossier « Captures d'écran » → Photos.",
+   trapQ:"Vous prenez une capture d'écran avec votre e-mail personnel visible, et vous êtes prêt à la partager avec un ami. Que devriez-vous faire ?",
+   trapWrong:"La partager directement, ce n'est pas grave",trapRight:"La regarder d'abord, cacher les infos privées si nécessaire",
+   trapWrongFb:"Dangereux ! Une capture d'écran peut contenir des infos privées (e-mail, nom, compte) que vous ne voulez pas montrer. Toujours vérifier avant de partager.",
+   trapRightFb:"Exact ! Toujours regarder ce qui est visible dans une capture avant de la partager — la vie privée avant tout.",
+   welcome:"Cliquez « Prendre une Capture d'Écran » pour voir comment ça marche.",
+   done:"Vous savez maintenant : comment prendre une capture d'écran, où elle se sauvegarde, et pourquoi vérifier la vie privée avant de la partager."},
+ en:{lead:"A screenshot saves what's on your screen right now. Take one, and think before you share it.",
+   objs:["Take a screenshot","Understand why to check before sharing"],
+   captureBtn:"Take a Screenshot",
+   capturedMsg:"The capture is saved in the \"Screenshots\" folder → Pictures.",
+   trapQ:"You take a screenshot with your personal email visible, and you're about to share it with a friend. What should you do?",
+   trapWrong:"Share it directly, it's not a big deal",trapRight:"Look at it first, hide private info if needed",
+   trapWrongFb:"Risky! A screenshot can contain private info (email, name, account) you don't want others to see. Always check before sharing.",
+   trapRightFb:"Exactly! Always look at what's visible in a screenshot before sharing it — privacy first.",
+   welcome:"Click \"Take a Screenshot\" to see how it works.",
+   done:"Now you know: how to take a screenshot, where it saves, and why to check privacy before sharing it."}},
+/* ---- 3.13 Accessibility ---- */
+13:{ht:{lead:"Fonksyon aksesibilite ede TOUT MOUN, pa sèlman moun ki gen yon andikap. Eseye yo.",
+   objs:["Eseye omwen 2 fonksyon aksesibilite","Konprann yo se pou tout moun"],
+   toggles:["Gwosè Tèks Pi Gwo","Zoom","Kontras Segondè","Loup (Magnifier)"],
+   ergoLbl:"Rapèl èrgonomik: pran yon poz chak 30 minit, epi gade lwen ekran an pou repoze je ou.",
+   trapQ:"Fonksyon aksesibilite se sèlman pou moun ki gen yon andikap.",
+   trapWrong:"Vre",trapRight:"Fo",
+   trapWrongFb:"Pa vre! Nenpòt moun ka bezwen tèks pi gwo, plis kontras, oswa zoom — pa egzanp lè limyè fèb oswa je fatige.",
+   trapRightFb:"Egzat! Fonksyon aksesibilite itil pou TOUT MOUN nan sitiyasyon diferan, pa sèlman moun ki gen yon andikap.",
+   welcome:"Eseye chanje omwen 2 fonksyon aksesibilite yo.",
+   done:"Ou konnen kounye a: fonksyon aksesibilite (tèks pi gwo, zoom, kontras, loup) itil pou tout moun, epi pran poz regilyèman bon pou je ou."},
+ fr:{lead:"Les fonctions d'accessibilité aident TOUT LE MONDE, pas seulement les personnes en situation de handicap. Essayez-les.",
+   objs:["Essayer au moins 2 fonctions d'accessibilité","Comprendre qu'elles sont pour tout le monde"],
+   toggles:["Texte Plus Grand","Zoom","Contraste Élevé","Loupe (Magnifier)"],
+   ergoLbl:"Rappel ergonomique : prenez une pause toutes les 30 minutes, et regardez au loin pour reposer vos yeux.",
+   trapQ:"Les fonctions d'accessibilité sont seulement pour les personnes en situation de handicap.",
+   trapWrong:"Vrai",trapRight:"Faux",
+   trapWrongFb:"Pas vrai ! N'importe qui peut avoir besoin de texte plus grand, plus de contraste, ou de zoom — par exemple en faible luminosité ou les yeux fatigués.",
+   trapRightFb:"Exact ! Les fonctions d'accessibilité sont utiles pour TOUT LE MONDE dans différentes situations, pas seulement les personnes en situation de handicap.",
+   welcome:"Essayez de changer au moins 2 fonctions d'accessibilité.",
+   done:"Vous savez maintenant : les fonctions d'accessibilité (texte plus grand, zoom, contraste, loupe) sont utiles pour tout le monde, et prendre des pauses régulières est bon pour vos yeux."},
+ en:{lead:"Accessibility features help EVERYONE, not just people with a disability. Try them.",
+   objs:["Try at least 2 accessibility features","Understand they're for everyone"],
+   toggles:["Bigger Text","Zoom","High Contrast","Magnifier"],
+   ergoLbl:"Ergonomic reminder: take a break every 30 minutes, and look away from the screen to rest your eyes.",
+   trapQ:"Accessibility features are only for people with a disability.",
+   trapWrong:"True",trapRight:"False",
+   trapWrongFb:"Not true! Anyone can need bigger text, more contrast, or zoom — for example in low light or with tired eyes.",
+   trapRightFb:"Exactly! Accessibility features are useful for EVERYONE in different situations, not just people with a disability.",
+   welcome:"Try changing at least 2 accessibility features.",
+   done:"Now you know: accessibility features (bigger text, zoom, contrast, magnifier) are useful for everyone, and taking regular breaks is good for your eyes."}},
+/* ---- 3.14 Module Mission ---- */
+14:{ht:{lead:"Dènye misyon an! Konplete tout 5 aksyon yo pou fè òdinatè a santi l pou ou.",
+   objs:["Chanje yon paramèt san danje","Tape yon fraz Kreyòl ak aksan","Kopye epi kole tèks","Pran yon captur ekran","Chanje ant 2 aplikasyon"],
+   steps:["Chanje Papye Poste (Wallpaper)","Tape: 'Mwen kontan aprann sou òdinatè'","Kopye/Kole yon mo","Pran Captur Ekran","Chanje ant Dokiman ak Kalkilatris"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 3 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 3 — òdinatè a kounye a santi l pou ou."},
+ fr:{lead:"Dernière mission ! Complétez les 5 actions pour que l'ordinateur devienne vôtre.",
+   objs:["Changer un paramètre sans risque","Taper une phrase créole avec accents","Copier et coller du texte","Prendre une capture d'écran","Changer entre 2 applications"],
+   steps:["Changer le Fond d'Écran (Wallpaper)","Taper : « Je suis content d'apprendre sur l'ordinateur »","Copier/Coller un mot","Prendre une Capture d'Écran","Changer entre Document et Calculatrice"],
+   stepFb:"Bien joué ! Vous avez complété une action.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 3.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 3 — l'ordinateur est maintenant vôtre."},
+ en:{lead:"Last mission! Complete all 5 actions to make the computer feel like yours.",
+   objs:["Change one safe setting","Type a Creole sentence with accents","Copy and paste text","Take a screenshot","Switch between 2 apps"],
+   steps:["Change the Wallpaper","Type: 'I'm happy to learn about computers'","Copy/Paste a word","Take a Screenshot","Switch between Document and Calculator"],
+   stepFb:"Well done! You completed an action.",
+   welcome:"Click each action below to complete Module 3's final mission.",
+   done:"Congratulations! You completed Module 3's Mission — the computer is now yours."}},
+};
+
+/* ============ shared SVG / icons ============ */
+const IMG_BASE='/academy/computer-internet-essentials/images/';
+function partPhoto(file,alt){return '<img src="'+IMG_BASE+file+'.webp" alt="'+alt+'" loading="lazy">';}
+/* real Lucide path data (ISC license) -- never hand-drawn, per academy-ui skill */
+const LI={
+ search:'<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+ gear:'<path d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4l1.9-1.5-1.9-3.3-2.3.6a7 7 0 00-1.4-.8l-.4-2.4h-3.8l-.4 2.4c-.5.2-1 .5-1.4.8l-2.3-.6L5.2 11 7 12.5v1.5L5.2 15.5l1.9 3.3 2.3-.6c.4.3.9.6 1.4.8l.4 2.4h3.8l.4-2.4c.5-.2 1-.5 1.4-.8l2.3.6 1.9-3.3L21 16z"/>',
+ folder:'<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" stroke-linejoin="round"/>',
+ wifi:'<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/>',
+ bluetooth:'<path d="m7 7 10 10-5 5V2l5 5L7 17"/>',
+ monitor:'<rect x="3" y="4" width="18" height="14" rx="1"/><path d="M8 21h8"/><path d="M12 18v3"/>',
+ image:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+ clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+ calendar:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/>',
+ type:'<path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+ volume:'<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/>',
+ lock:'<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'};
+function liIcon(name,attrs){return '<svg viewBox="0 0 24 24" '+(attrs||'')+'>'+LI[name]+'</svg>';}
+function tileIcon(bg,name,mode){const inner=mode==="fill"?'<g fill="#fff">'+LI[name]+'</g>':'<g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+LI[name]+'</g>';
+ return '<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="'+bg+'"/><g transform="translate(4 4) scale(.667)">'+inner+'</g></svg>';}
+/* single-tile grid glyph -- NOT four separate same-color squares (too close to Windows flag mark) */
+const winLogo='<svg width="24" height="24" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#0f6cbd"/><g transform="translate(4 4) scale(.667)"><g fill="#fff"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></g></g></svg>';
+function bloom(){return '<div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:min(104%,720px);height:min(104%,720px);pointer-events:none"><div style="position:absolute;inset:0;background:radial-gradient(closest-side,rgba(255,255,255,.7),transparent 72%)"></div><svg viewBox="0 0 400 400" width="100%" height="100%" style="filter:blur(.6px)"><defs><linearGradient id="pf" x1="0" y1="1" x2="0.6" y2="0"><stop offset="0" stop-color="#2f6fd6"/><stop offset="0.5" stop-color="#5b98ea"/><stop offset="1" stop-color="#cfe8ff"/></linearGradient><linearGradient id="pf2" x1="0" y1="1" x2="0.6" y2="0"><stop offset="0" stop-color="#1f4fb5"/><stop offset="0.55" stop-color="#4b86e2"/><stop offset="1" stop-color="#a9d2ff"/></linearGradient><linearGradient id="pf3" x1="0" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#7db4f2"/><stop offset="1" stop-color="#eef7ff"/></linearGradient></defs><g fill="url(#pf2)" opacity=".9">'+pet(5,'150 66 200 30 250 66 250 150')+'</g><g fill="url(#pf)" opacity=".95" transform="rotate(36 200 200)">'+pet(5,'160 96 200 66 242 96 240 160')+'</g><g fill="url(#pf3)" opacity=".95" transform="rotate(18 200 200)">'+pet(5,'176 132 200 110 224 132 224 176')+'</g><circle cx="200" cy="200" r="28" fill="#eff8ff"/><circle cx="200" cy="200" r="14" fill="#cfe6ff"/></svg></div>';}
+function pet(n,c){const p=c.split(' ');let s="";for(let i=0;i<n;i++)s+='<path d="M200 200 C'+p[0]+' '+p[1]+' '+p[2]+' '+p[3]+' C'+p[4]+' '+p[5]+' '+p[6]+' '+p[7]+' 200 200 Z" transform="rotate('+(i*72)+' 200 200)"/>';return s;}
+
+/* ============ engine ============ */
+const NL=14;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+/* persistence + live-course wiring -- same-origin iframe shares localStorage with the parent app */
+const SIM_KEY="jamezzi:computer:essentials:module3-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD3_LESSON_SLUGS=["konfyans-souri-ak-trackpad","kat-klavye-a","chwazi-ak-modifye-teks","tape-aksan-kreyol-ak-franse","biwo-windows-la","louvri-chanje-feme-fennet","meni-bouton-ak-bwat-dyalog","kopye-koupe-kole-anile-refe","rale-lage-san-pedi-anyen","cheche-aplikasyon-ak-paramet","paramet-ou-dwe-konnen","screenshot-ak-anrejistreman-ekran","aksesibilite-ak-konfo","misyon-fe-odinate-a-pou-ou"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","konekte-sou-wifi-san-danje","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD3_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule4();
+}
+function injectContinueModule4(){
+ if($("continueModule4"))return;
+ const a=document.createElement("a");a.id="continueModule4";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[3];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===2;
+ let les="";if(active){les='<div class="les">'+M3[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">3.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+/* floating Next button for desktop-style (stage.desk) lessons, where everything else is absolutely positioned */
+function injectNext(){const done=S.done[S.cur];const b=document.createElement("button");b.className="btn p";b.id="nextBtn";b.textContent=UI[S.lang].next;b.disabled=!done;
+ const clearTaskbar=$("stage").querySelector(".taskbar")?64:12;
+ b.style.cssText="position:absolute;bottom:"+clearTaskbar+"px;right:14px;z-index:6";b.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));$("stage").appendChild(b);}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 3 · 3."+(i+1);$("topTitle").textContent=M3[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,L14][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 3 · 3.'+(i+1)+'</span><div class="labh2">'+M3[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.done5=st.done5||{};st.trapAnswered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+
+  '<div class="mstage">'+
+   '<div class="mtarget" id="tSingle">'+d.single+'</div>'+
+   '<div style="height:14px"></div><div class="mtarget" id="tDbl">'+d.dbl+'</div>'+
+   '<div style="height:14px"></div><div class="mtarget" id="tRight">'+d.right+'</div>'+
+   '<div class="ctxmenu" id="ctx"><div class="ci">'+d.ctx1+'</div><div class="ci">'+d.ctx2+'</div></div>'+
+   '<div style="margin-top:16px;font-size:13px;color:var(--dim)">'+d.scrollLbl+'</div>'+
+   '<div class="mscroll" id="mscroll">'+d.scrollItems.map(x=>'<div>'+x+'</div>').join("")+'</div>'+
+   '<div style="margin-top:16px;font-size:13px;color:var(--dim)">'+d.dragLbl+'</div>'+
+   '<div style="display:flex;align-items:center;gap:20px;margin-top:10px">'+
+    '<div class="dragitem" id="dItem" draggable="true" style="font-size:30px">'+d.dragItem+'</div>'+
+    '<div class="dragfolder" id="dBox">'+d.dragBox+'</div>'+
+   '</div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function mark(k,msg){if(st.done5[k])return;st.done5[k]=true;ai(msg,"good");if(Object.keys(st.done5).length>=5)setObj(0);}
+ $("tSingle").addEventListener("click",()=>{$("tSingle").classList.add("done");mark("single",d.singleFb);});
+ $("tDbl").addEventListener("dblclick",()=>{$("tDbl").classList.add("done");mark("dbl",d.dblFb);});
+ $("tRight").addEventListener("contextmenu",e=>{e.preventDefault();$("tRight").classList.add("done");const r=$("tRight").getBoundingClientRect();const s=stage.getBoundingClientRect();
+  const ctx=$("ctx");ctx.style.left=(r.left-s.left)+"px";ctx.style.top=(r.bottom-s.top+4)+"px";ctx.style.display="block";mark("right",d.rightFb);});
+ document.addEventListener("click",e=>{if(!e.target.closest("#ctx"))$("ctx").style.display="none";});
+ $("mscroll").addEventListener("scroll",()=>mark("scroll",d.scrollFb));
+ const dItem=$("dItem"),dBox=$("dBox");
+ dItem.addEventListener("dragstart",e=>e.dataTransfer.setData("text","file"));
+ dBox.addEventListener("dragover",e=>e.preventDefault());
+ dBox.addEventListener("drop",e=>{e.preventDefault();dItem.classList.add("moved");mark("drag",d.dragFb);});
+ $("tqWrong").addEventListener("click",()=>{if(st.trapAnswered)return;st.trapAnswered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.trapAnswered)return;st.trapAnswered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+
+  '<div class="photohead">'+partPhoto('keyboard','Klavye')+'</div>'+
+  '<div class="partgrid">'+d.keys.map((k,i)=>'<div class="partcard" data-k="'+i+'"><div class="partn">'+k[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.keys[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=6)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.selected=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ const words=d.paragraph.split(" ");
+ stage.innerHTML=labHead(2,d.lead)+
+  '<div style="margin-top:18px;font-size:17px;line-height:1.8;max-width:560px" id="para">'+words.map((w,i)=>'<span data-w="'+i+'" style="cursor:pointer;padding:2px 1px;border-radius:3px">'+w+'</span>').join(" ")+'</div>'+
+  '<button class="btn g" id="undoBtn" style="margin-top:16px">'+d.undoBtn+'</button>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll("#para span").forEach(sp=>sp.addEventListener("dblclick",()=>{
+  stage.querySelectorAll("#para span").forEach(x=>x.style.background="");
+  sp.style.background="rgba(79,70,229,.5)";
+  if(!st.selected){st.selected=true;setObj(0);ai(d.selectFb,"good");}}));
+ $("undoBtn").addEventListener("click",()=>ai(d.undoFb,"neutral"));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.text=st.text||"";st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(3,d.lead)+
+   '<div class="items">'+d.chars.map((c,i)=>'<div class="chip" data-c="'+i+'" style="font-size:20px">'+c+'</div>').join("")+'</div>'+
+   '<div style="margin-top:16px;font-size:13px;color:var(--dim)">'+d.textLbl+'</div>'+
+   '<div style="margin-top:6px;padding:12px 16px;background:var(--ink-700);border-radius:10px;min-height:24px;font-size:17px;max-width:400px">'+st.text+'</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  stage.querySelectorAll(".chip[data-c]").forEach(c=>c.addEventListener("click",()=>{const i=+c.dataset.c;st.text+=d.chars[i];
+   if(!st.seen[i]){st.seen[i]=true;ai(d.charFb.replace("{c}",d.chars[i]),"neutral");}
+   if(Object.keys(st.seen).length>=4)setObj(0);render();}));
+  const qw=$("tqWrong"),qr=$("tqRight");
+  qw.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  qr.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};
+ const stage=$("stage");stage.className="stage desk";
+ const positions=[["14%","18%"],["50%","calc(100% - 66px)"],["50%","calc(100% - 22px)"],["88%","calc(100% - 22px)"],["78%","14%"]];
+ stage.innerHTML=bloom()+
+  '<button class="desk-ico" style="top:14px;left:14px"><div style="width:52px;height:52px;border-radius:11px;background:#f6c445;display:grid;place-items:center;color:#fff;font-size:26px">📁</div><span>Dosye</span></button>'+
+  '<div class="taskbar"><button class="tbi">'+winLogo+'</button><div class="tbi">'+liIcon('search','stroke="#1b1b1b" stroke-width="2" fill="none"')+'</div><div class="tbi">'+tileIcon('#f6c445','folder','fill')+'</div>'+
+   '<div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
+  d.spots.map((s,k)=>'<div class="hs" data-s="'+k+'" style="left:'+positions[k][0]+';top:'+positions[k][1]+'">'+(k+1)+'</div>').join("");
+ stage.querySelectorAll(".hs").forEach(h=>h.addEventListener("click",()=>{const k=+h.dataset.s;
+  if(!st.seen[k]){st.seen[k]=true;h.classList.add("done");h.textContent="✓";ai(d.spots[k],"neutral");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ ai(d.welcome,"neutral");injectNext();}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.w1open=false;st.w2open=false;st.answered=false;
+ const stage=$("stage");stage.className="stage desk";
+ function render(){
+  stage.innerHTML=bloom()+
+   (st.w1open?'<div class="wdesk" id="win1" style="left:8%;top:12%;width:min(360px,60%);height:min(220px,50%)"><div class="wtb2">📄 '+d.app1+'<div class="wc2"><span id="w1min">'+d.min+'</span><span id="w1max">'+d.max+'</span><span class="cl" id="w1close">'+d.close+'</span></div></div><div class="wbody2">'+d.winBody1+'</div></div>':"")+
+   (st.w2open?'<div class="wdesk" id="win2" style="left:34%;top:24%;width:min(300px,55%);height:min(160px,42%)"><div class="wtb2">🔢 '+d.app2+'<div class="wc2"><span class="cl" id="w2close">'+d.close+'</span></div></div><div class="wbody2" style="font-size:22px;text-align:center;padding-top:24px">'+d.winBody2+'</div></div>':"")+
+   '<div class="taskbar"><button class="tbi">'+winLogo+'</button>'+
+    '<div class="tbi'+(st.w1open?" openwin":"")+'" id="tb1">📄</div><div class="tbi'+(st.w2open?" openwin":"")+'" id="tb2">🔢</div>'+
+    '<div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
+   '<div style="position:absolute;bottom:64px;left:14px;right:170px;color:#0b2a55;background:rgba(255,255,255,.72);border-radius:12px;padding:12px 16px;font-size:14px;max-width:420px">'+d.lead+'</div>'+
+   (st.closedOnce?'<div style="position:absolute;top:14px;right:14px;max-width:260px;background:rgba(255,255,255,.92);border-radius:12px;padding:14px;color:#0b2a55"><div style="font-weight:700;font-size:13.5px;margin-bottom:10px">'+d.trapQ+'</div><div style="display:flex;flex-direction:column;gap:8px"><button class="btn g" id="tqWrong" style="font-size:12.5px;padding:8px 10px">'+d.trapWrong+'</button><button class="btn g" id="tqRight" style="font-size:12.5px;padding:8px 10px">'+d.trapRight+'</button></div></div>':"");
+  $("tb1").addEventListener("click",()=>{st.w1open=!st.w1open;checkBothOpen();render();});
+  $("tb2").addEventListener("click",()=>{st.w2open=!st.w2open;checkBothOpen();render();});
+  const w1min=$("w1min");if(w1min)w1min.addEventListener("click",()=>{st.w1open=false;ai(d.minFb,"neutral");render();});
+  const w1max=$("w1max");if(w1max)w1max.addEventListener("click",()=>ai(d.maxFb,"neutral"));
+  const w1close=$("w1close");if(w1close)w1close.addEventListener("click",()=>{st.w1open=false;st.closedOnce=true;render();});
+  const w2close=$("w2close");if(w2close)w2close.addEventListener("click",()=>{st.w2open=false;st.closedOnce=true;render();});
+  const tqw=$("tqWrong");if(tqw)tqw.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(2);});
+  const tqr=$("tqRight");if(tqr)tqr.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(2);});
+  injectNext();
+ }
+ function checkBothOpen(){
+  if(st.w1open&&st.w2open&&!st.everBothOpen){st.everBothOpen=true;setObj(0);}
+  else if(st.everBothOpen&&!st.switched){st.switched=true;setObj(1);}
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.open=false;st.checked=false;st.installed=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(6,d.lead)+
+   (!st.open?'<div style="margin-top:18px"><button class="btn p" id="openBtn">'+d.openBtn+'</button></div>':
+   '<div class="dialog"><div class="dtb">'+d.dtitle+'</div><div class="dbody"><p style="margin-bottom:12px">'+d.dtext+'</p>'+
+    '<div class="drow"><input type="checkbox" id="bloatCheck" '+(st.checked?"checked":"")+'><label for="bloatCheck">'+d.dcheck+'</label></div>'+
+    '</div><div class="dft"><button class="db" id="dCancel">'+d.dcancel+'</button><button class="db primary" id="dInstall">'+d.dinstall+'</button></div></div>')+nextBar();
+  wireNext();
+  const ob=$("openBtn");if(ob)ob.addEventListener("click",()=>{st.open=true;st.checked=true;setObj(0);render();});
+  const bc=$("bloatCheck");if(bc)bc.addEventListener("change",()=>{st.checked=bc.checked;});
+  const di=$("dInstall");if(di)di.addEventListener("click",()=>{if(st.checked){ai(d.trapFb,"warn");}else{ai(d.okFb,"good");setObj(1);}});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.clip="";st.pasted="";st.cutDone=false;st.trapAnswered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(7,d.lead)+
+   '<div style="margin-top:18px;padding:14px;background:var(--ink-700);border-radius:10px;max-width:460px"><b>'+d.src+'</b></div>'+
+   '<div style="display:flex;gap:10px;margin-top:12px"><button class="btn g" id="copyBtn">'+d.copyBtn+'</button><button class="btn g" id="cutBtn">'+d.cutBtn+'</button></div>'+
+   '<div style="margin-top:18px;font-size:13px;color:var(--dim)">'+d.dst+'</div>'+
+   '<div style="margin-top:6px;padding:14px;background:var(--ink-700);border-radius:10px;min-height:24px;max-width:460px">'+st.pasted+'</div>'+
+   '<button class="btn p" id="pasteBtn" style="margin-top:12px" '+(st.clip?"":"disabled")+'>'+d.pasteBtn+'</button>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  $("copyBtn").addEventListener("click",()=>{st.clip=d.src;ai(d.copyFb,"good");render();});
+  $("cutBtn").addEventListener("click",()=>{st.clip=d.src;st.cutDone=true;ai(d.cutFb,"warn");render();});
+  const pb=$("pasteBtn");if(!pb.disabled)pb.addEventListener("click",()=>{st.pasted=st.clip;setObj(0);ai(d.pasteFb,"good");render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.trapAnswered)return;st.trapAnswered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+  $("tqRight").addEventListener("click",()=>{if(st.trapAnswered)return;st.trapAnswered=true;ai(d.trapRightFb,"good");setObj(1);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.sel=false;st.moved=false;st.wrongMoved=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(8,d.lead)+
+   '<div class="dragrow">'+
+    (!st.moved&&!st.wrongMoved?'<div class="dragitem'+(st.sel?" sel":"")+'" id="fileItem" style="font-size:34px">'+d.file.split(" ")[0]+'</div>':'<div class="dragitem moved" style="font-size:34px">'+d.file.split(" ")[0]+'</div>')+
+    '<div class="dragfolder" id="folderGood">'+d.folder+'</div>'+
+    '<div class="dragfolder" id="folderWrong">'+d.wrongFolder+'</div>'+
+   '</div>'+
+   (st.wrongMoved?'<button class="btn g" id="undoBtn" style="margin-top:16px">'+d.undoBtn+'</button>':"")+
+   nextBar();
+  wireNext();
+  const fi=$("fileItem");
+  if(fi)fi.addEventListener("click",()=>{st.sel=!st.sel;render();});
+  $("folderGood").addEventListener("click",()=>{if(!st.sel||st.moved)return;st.moved=true;st.sel=false;ai(d.moveFb,"good");setObj(0);render();});
+  $("folderWrong").addEventListener("click",()=>{if(!st.sel||st.moved||st.wrongMoved)return;st.wrongMoved=true;st.sel=false;ai(d.wrongMoveFb,"warn");render();});
+  const ub=$("undoBtn");if(ub)ub.addEventListener("click",()=>{st.wrongMoved=false;ai(d.undoFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.answered=false;st.found=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(9,d.lead)+
+  '<div style="margin-top:18px;max-width:420px"><input id="searchBox" placeholder="'+d.searchLbl+'" style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--text);font-size:15px"/></div>'+
+  '<div id="searchResult" style="margin-top:14px;font-size:14px;color:var(--dim)"></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ $("searchBox").addEventListener("input",e=>{const v=e.target.value.trim().toLowerCase();
+  const match=d.examples.find(ex=>v.length>1&&(ex[0].toLowerCase().includes(v)||v.includes(ex[0].toLowerCase())));
+  if(match){$("searchResult").textContent="🔎 "+match[1];if(!st.found){st.found=true;setObj(0);ai(d.foundFb.replace("{app}",match[1]),"good");}}
+  else{$("searchResult").textContent="";}});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L11(){const d=C[11][S.lang];const st=S.st[10];st.open=false;st.toggled=st.toggled||{};st.trapSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(10,d.lead)+
+   (!st.open?'<div style="margin-top:18px"><button class="btn p" id="openBtn">'+d.openBtn+'</button></div>':
+   '<div class="winpanel"><div class="wtb">⚙️ Paramèt</div><div class="wcontent">'+
+    d.rows.map((r,k)=>'<div class="trow"><span class="tk">'+r+'</span><div class="toggle'+(st.toggled[k]?" on":"")+'" data-t="'+k+'"><div class="knob"></div></div></div>').join("")+
+    '<div class="trow" style="border-top:2px dashed #ddd;margin-top:8px;padding-top:14px"><span class="tk">'+d.trapRow+'</span><div class="toggle'+(st.trapSeen?" on":"")+'" id="trapToggle"><div class="knob"></div></div></div>'+
+   '</div></div>')+nextBar();
+  wireNext();
+  const ob=$("openBtn");if(ob)ob.addEventListener("click",()=>{st.open=true;setObj(0);render();});
+  stage.querySelectorAll(".toggle[data-t]").forEach(t=>t.addEventListener("click",()=>{const k=+t.dataset.t;st.toggled[k]=!st.toggled[k];
+   if(Object.keys(st.toggled).filter(x=>st.toggled[x]).length===1)ai(d.toggleFb,"good");
+   if(Object.values(st.toggled).filter(Boolean).length>=3)setObj(1);render();}));
+  const tt=$("trapToggle");if(tt)tt.addEventListener("click",()=>{st.trapSeen=true;ai(d.trapFb,"warn");setObj(2);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L12(){const d=C[12][S.lang];const st=S.st[11];st.captured=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(11,d.lead)+
+  '<div style="margin-top:18px"><button class="btn p" id="capBtn">'+d.captureBtn+'</button></div>'+
+  '<div id="capResult" style="margin-top:16px;font-size:14px;color:var(--dim)"></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ $("capBtn").addEventListener("click",()=>{if(st.captured)return;st.captured=true;setObj(0);$("capResult").innerHTML="📸 "+d.capturedMsg;});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L13(){const d=C[13][S.lang];const st=S.st[12];st.on=st.on||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(12,d.lead)+
+   '<div class="items">'+d.toggles.map((t,k)=>'<div class="chip" data-t="'+k+'">'+t+' '+(st.on[k]?"✓":"")+'</div>').join("")+'</div>'+
+   '<div style="margin-top:16px;padding:12px 14px;background:var(--ink-700);border-radius:10px;font-size:13.5px;color:var(--dim);max-width:460px">'+d.ergoLbl+'</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  stage.querySelectorAll(".chip[data-t]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.t;st.on[k]=!st.on[k];
+   if(Object.values(st.on).filter(Boolean).length>=2)setObj(0);render();}));
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L14(){const d=C[14][S.lang];const st=S.st[13];st.done5=st.done5||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(13,d.lead)+'<div class="items">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done5[k]?' style="opacity:.4"':"")+'>'+(st.done5[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done5[k])return;st.done5[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
