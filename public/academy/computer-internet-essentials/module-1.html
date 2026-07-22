@@ -177,8 +177,8 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 <body>
 <div class="app">
   <aside class="side">
-    <div class="brand"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
-      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></div>
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
     <div class="mods" id="mods"></div>
   </aside>
   <main class="main">
@@ -198,9 +198,9 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 <script>
 /* ============ i18n: UI + titles ============ */
 const UI={
- ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Konplete leson an",completed:"Konplete ✓",next:"Pwochen →"},
- fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →"},
- en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →"}};
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Konplete leson an",completed:"Konplete ✓",next:"Pwochen →",nextModule:"Ale nan Modil 2 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",nextModule:"Aller au Module 2 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",nextModule:"Go to Module 2 →"}};
 const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Fonksyone","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
  fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
  en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
@@ -418,6 +418,46 @@ function miniOS(k){
 const NL=8;
 const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
 const $=id=>document.getElementById(id);
+/* ===== persistence + live-course wiring =====
+   Same-origin iframe shares localStorage with the parent app, so we can
+   read/write the site's own progress key directly -- no postMessage needed.
+   Events must go through window.parent though, since dispatchEvent only
+   reaches listeners on the window it's called on. */
+const SIM_KEY="jamezzi:computer:essentials:module1-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD1_LESSON_SLUGS=["byenveni-ou-pa-pral-kraze-anyen","kisa-yon-odinate-ye","antre-trete-soti-ak-estokaj","adwe-ak-lojisyel","odinate-gen-plizye-fom","windows-macos-android-ios","premye-misyon-dijital-ou"];
+/* first-lesson slug per module in the live text-course, for sidebar links to modules 2-14; index 0 unused (module 1 is this simulator) */
+const MODULE_FIRST_LESSON=["","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","konekte-sou-wifi-san-danje","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleOneComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD1_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule2();
+}
+function injectContinueModule2(){
+ if($("continueModule2"))return;
+ const a=document.createElement("a");a.id="continueModule2";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[1];a.target="_top";
+ const clearTaskbar=$("stage").querySelector(".taskbar")?64:12;
+ a.style.cssText="position:absolute;bottom:"+clearTaskbar+"px;right:14px;z-index:6;text-decoration:none;display:inline-block";
+ $("stage").appendChild(a);
+}
 let aiT=null;
 function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
  const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
@@ -425,20 +465,25 @@ function objsFor(i){const n=i+1; if(n===2)return C2[S.lang].objs; if(n===8)retur
 function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===0;
  let les="";if(active){les='<div class="les">'+M1[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">1.'+(li+1)+'</span></div>').join("")+'</div>';}
  const m=document.createElement("div");m.className="mod"+(active?" active":"");
- m.innerHTML='<div class="mh"><span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span></div>'+les;box.appendChild(m);});
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
  box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
 function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
  defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
 function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
  const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
-function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();}const b=$("nextBtn");if(b){b.disabled=false;}}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleOneComplete();}
 function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
 function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
 function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
 
 function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 1 · 1."+(i+1);$("topTitle").textContent=M1[S.lang][i];renderObj();
  const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
- const fn=[L1,L2,L3,L4,L5,L6,L7,L8][i];fn();}
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleOneComplete();}
 
 /* ---------- renderers ---------- */
 function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 1 · 1.'+(i+1)+'</span><div class="labh2">'+M1[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
@@ -576,10 +621,11 @@ function injectNext(){const done=S.done[S.cur];const b=document.createElement("b
 function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
  renderSidebar();syncProg();load(S.cur);}
 $("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
-$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};renderSidebar();syncProg();load(S.cur);});
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
 /* registered once (not per-lesson-load) so it doesn't accumulate duplicate listeners on repeat visits to 1.2 */
 document.addEventListener("click",e=>{if(!e.target.closest("#sm")&&!e.target.closest("#startBtn")){const m=$("sm");if(m)m.style.display="none";}});
 /* init */
+loadSim();
 applyLang();
 </script>
 </body>

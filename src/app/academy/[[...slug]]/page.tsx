@@ -15,6 +15,7 @@ import { ComputerCheckpointPlayer } from "@/components/academy/computer-checkpoi
 import { ComputerCoursePage } from "@/components/academy/computer-course-page";
 import { ComputerFinalExamPlayer } from "@/components/academy/computer-final-exam-player";
 import { ComputerGrowthSummaryPlayer } from "@/components/academy/computer-growth-summary-player";
+import { ComputerModuleOneSimulator } from "@/components/academy/computer-module-one-simulator";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
@@ -439,6 +440,9 @@ export default async function AcademyPage({
       return <ComputerGrowthSummaryPlayer />;
     }
     const lesson = getComputerRebuildLesson(slug[3]);
+    if (lesson?.moduleId === "m1") {
+      return <ComputerModuleOneSimulator />;
+    }
     if (lesson) {
       return (
         <ComputerBlockLessonPlayer
