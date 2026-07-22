@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 7 — Navigatè ak Konpetans Wèb</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+.tileicon{width:24px;height:24px;flex:none}
+/* browser chrome */
+.browser{width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.btabs{display:flex;background:#dcdcdc;padding:6px 6px 0}
+.btab{display:flex;align-items:center;gap:6px;padding:7px 12px;background:#f3f3f3;border-radius:8px 8px 0 0;font-size:12.5px;max-width:150px;cursor:pointer;color:#444}
+.btab.sel{background:#fff;color:#111;font-weight:600}
+.btoolbar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border-bottom:1px solid var(--w-stroke)}
+.btoolbar button{background:none;border:none;color:#555;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:15px}
+.btoolbar button:hover{background:#eee}
+.baddr{flex:1;background:#f1f1f1;border-radius:16px;padding:6px 12px;font-size:12.5px;color:#333;display:flex;align-items:center;gap:6px}
+.bbody{background:#fff;min-height:220px;padding:18px 20px;color:#222;font-size:13.5px;line-height:1.7}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .sub{font-size:12px;color:var(--w-t2)}.arow .ch{color:#8a8a8a;font-size:18px}
+.srow{padding:12px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.srow:hover{background:#f7f7f7}.srow .stitle{color:#1a0dab;font-size:15px;font-weight:600}
+.srow .surl{color:#006621;font-size:12px}.srow .smeta{color:#666;font-size:12px;margin-top:3px}
+.srow .sponsor{display:inline-block;font-size:10px;font-weight:700;color:#a67c00;background:#fff4d6;border-radius:4px;padding:1px 6px;margin-right:6px}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 7 · 7.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 10</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 8 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 8 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 8 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M7={ht:["Navigatè, Motè Rechèch, Sit Web, ak Paj Web","Ba Adrès, Lyen, Tounen, Avanse, Rafrechi, ak Akèy","Onglè ak Fennèt","Chèche Pi Byen","Èske Enfòmasyon Sa a Fyab?","Favori, Istorik, ak Li Pita","Telechajman nan Navigatè a","Cookies, Cache, ak Navigasyon Prive","Kont, Konekte, Dekonekte, ak Pwofil","Misyon: Chèche, Verifye, ak Sovgade Enfòmasyon"],
+ fr:["Navigateur, Moteur de Recherche, Site Web, et Page Web","Barre d'Adresse, Liens, Précédent, Suivant, Actualiser, et Accueil","Onglets et Fenêtres","Mieux Chercher","Cette Information Est-Elle Fiable ?","Favoris, Historique, et Lire Plus Tard","Téléchargements dans le Navigateur","Cookies, Cache, et Navigation Privée","Comptes, Connexion, Déconnexion, et Profils","Mission : Chercher, Vérifier, et Sauvegarder l'Information"],
+ en:["Browser, Search Engine, Website, and Web Page","Address Bar, Links, Back, Forward, Refresh, and Home","Tabs and Windows","Search Better","Is This Information Trustworthy?","Bookmarks, History, and Reading Later","Downloads in the Browser","Cookies, Cache, and Private Browsing","Accounts, Sign-In, Sign-Out, and Profiles","Module Mission: Find, Verify, and Save Information"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Navigatè, motè rechèch, sit web, ak paj web se 4 bagay diferan moun konfonn souvan. Klike sou chak egzanp.",
+   objs:["Klike sou 4 egzanp","Distenge Google (motè rechèch) de Chrome (navigatè)"],
+   items:[["🌐","Chrome / Edge","NAVIGATÈ — pwogram ou itilize pou vizite entènèt la"],["🔍","Google / Bing","MOTÈ RECHÈCH — yon sit ki ede ou jwenn lòt sit"],["🏠","Facebook.com","SIT WEB — yon adrès konplè sou entènèt"],["📄","facebook.com/pwofil-ou","PAJ WEB — yon paj espesifik anndan sit la"]],
+   trapQ:"Google se yon navigatè (browser), menm jan ak Chrome oswa Edge?",
+   yes:"Wi, se menm bagay la",no:"Non, Google se yon motè rechèch, pa yon navigatè",
+   yesFb:"Pa vre! Chrome ak Edge se NAVIGATÈ (pwogram ki louvri entènèt la). Google se yon MOTÈ RECHÈCH — yon SIT ou vizite ANNDAN yon navigatè pou chèche lòt sit.",
+   noFb:"Egzat! Ou ka itilize Google ANNDAN Chrome, Edge, oswa nenpòt lòt navigatè — yo se de bagay diferan ki travay ansanm.",
+   welcome:"Klike sou chak egzanp pou wè kategori li ye.",
+   done:"Ou konprann kounye a diferans ant navigatè, motè rechèch, sit web, ak paj web."},
+ fr:{lead:"Navigateur, moteur de recherche, site web, et page web sont 4 choses différentes que les gens confondent souvent. Cliquez sur chaque exemple.",
+   objs:["Cliquer sur 4 exemples","Distinguer Google (moteur de recherche) de Chrome (navigateur)"],
+   items:[["🌐","Chrome / Edge","NAVIGATEUR — le programme que vous utilisez pour visiter internet"],["🔍","Google / Bing","MOTEUR DE RECHERCHE — un site qui vous aide à trouver d'autres sites"],["🏠","Facebook.com","SITE WEB — une adresse complète sur internet"],["📄","facebook.com/votre-profil","PAGE WEB — une page spécifique à l'intérieur du site"]],
+   trapQ:"Google est-il un navigateur, comme Chrome ou Edge ?",
+   yes:"Oui, c'est pareil",no:"Non, Google est un moteur de recherche, pas un navigateur",
+   yesFb:"Pas vrai ! Chrome et Edge sont des NAVIGATEURS (programmes qui ouvrent internet). Google est un MOTEUR DE RECHERCHE — un site que vous visitez À L'INTÉRIEUR d'un navigateur pour chercher d'autres sites.",
+   noFb:"Exact ! Vous pouvez utiliser Google DANS Chrome, Edge, ou n'importe quel autre navigateur — ce sont deux choses différentes qui fonctionnent ensemble.",
+   welcome:"Cliquez sur chaque exemple pour voir sa catégorie.",
+   done:"Vous comprenez maintenant la différence entre navigateur, moteur de recherche, site web, et page web."},
+ en:{lead:"Browser, search engine, website, and web page are 4 different things people often confuse. Click each example.",
+   objs:["Click 4 examples","Distinguish Google (search engine) from Chrome (browser)"],
+   items:[["🌐","Chrome / Edge","BROWSER — the program you use to visit the internet"],["🔍","Google / Bing","SEARCH ENGINE — a site that helps you find other sites"],["🏠","Facebook.com","WEBSITE — a full address on the internet"],["📄","facebook.com/your-profile","WEB PAGE — a specific page inside the site"]],
+   trapQ:"Is Google a browser, just like Chrome or Edge?",
+   yes:"Yes, it's the same thing",no:"No, Google is a search engine, not a browser",
+   yesFb:"Not true! Chrome and Edge are BROWSERS (programs that open the internet). Google is a SEARCH ENGINE — a site you visit INSIDE a browser to search for other sites.",
+   noFb:"Exactly! You can use Google INSIDE Chrome, Edge, or any other browser — they're two different things that work together.",
+   welcome:"Click each example to see its category.",
+   done:"Now you understand the difference between browser, search engine, website, and web page."}},
+2:{ht:{lead:"Ba adrès la ak bouton navigasyon yo ede ou deplase nan wèb la. Klike sou chak youn nan navigatè mock anba a.",
+   objs:["Klike sou 4 bouton navigasyon","Rekonèt yon fo bwat rechèch anndan yon paj web"],
+   backBtn:"◀ Tounen",fwdBtn:"▶ Avanse",refBtn:"⟳ Rafrechi",homeBtn:"⌂ Akèy",
+   backFb:"Tounen mennen ou nan paj ou te vizite anvan an.",fwdFb:"Avanse mennen ou tounen kote ou te ye anvan ou klike Tounen.",refFb:"Rafrechi chaje paj la ankò.",homeFb:"Akèy mennen ou nan paj prensipal navigatè ou chwazi a.",
+   fakeSearch:"🔍 Chèche isit la pou gaye pri...",realBar:"🔒 www.vrè-sit-la.com",
+   fakeFb:"Sa se yon FO bwat rechèch ki fèt pou sanble ak yon rechèch — li se yon reklam anndan paj la. Se BA ADRÈS anlè navigatè a ki se vrè kote pou chèche oswa antre yon adrès.",
+   realFb:"Egzat! Se ba adrès reyèl navigatè a — toujou fè konfyans nan sa a, pa nan bwat rechèch ki parèt anndan yon paj web.",
+   welcome:"Klike sou 4 bouton navigasyon yo, apre eseye jwenn vrè ba adrès la.",
+   done:"Ou konnen kounye a 4 bouton navigasyon debaz yo, epi ou ka rekonèt yon fo bwat rechèch anndan yon paj web."},
+ fr:{lead:"La barre d'adresse et les boutons de navigation vous aident à vous déplacer sur le web. Cliquez sur chacun dans le navigateur simulé ci-dessous.",
+   objs:["Cliquer sur 4 boutons de navigation","Reconnaître une fausse boîte de recherche à l'intérieur d'une page web"],
+   backBtn:"◀ Précédent",fwdBtn:"▶ Suivant",refBtn:"⟳ Actualiser",homeBtn:"⌂ Accueil",
+   backFb:"Précédent vous ramène à la page que vous visitiez avant.",fwdFb:"Suivant vous ramène là où vous étiez avant de cliquer Précédent.",refFb:"Actualiser recharge la page.",homeFb:"Accueil vous mène à la page principale de votre navigateur.",
+   fakeSearch:"🔍 Cherchez ici pour économiser...",realBar:"🔒 www.vrai-site.com",
+   fakeFb:"C'est une FAUSSE boîte de recherche faite pour ressembler à une recherche — c'est une publicité à l'intérieur de la page. C'est la BARRE D'ADRESSE en haut du navigateur qui est le vrai endroit pour chercher ou entrer une adresse.",
+   realFb:"Exact ! C'est la vraie barre d'adresse du navigateur — faites toujours confiance à celle-ci, pas aux boîtes de recherche qui apparaissent dans une page web.",
+   welcome:"Cliquez sur les 4 boutons de navigation, puis essayez de trouver la vraie barre d'adresse.",
+   done:"Vous connaissez maintenant les 4 boutons de navigation de base, et vous savez reconnaître une fausse boîte de recherche à l'intérieur d'une page web."},
+ en:{lead:"The address bar and navigation buttons help you move around the web. Click each one in the mock browser below.",
+   objs:["Click 4 navigation buttons","Recognize a fake search box inside a web page"],
+   backBtn:"◀ Back",fwdBtn:"▶ Forward",refBtn:"⟳ Refresh",homeBtn:"⌂ Home",
+   backFb:"Back takes you to the page you visited before.",fwdFb:"Forward takes you back to where you were before clicking Back.",refFb:"Refresh reloads the page.",homeFb:"Home takes you to your browser's main page.",
+   fakeSearch:"🔍 Search here to save big...",realBar:"🔒 www.real-site.com",
+   fakeFb:"That's a FAKE search box made to look like a search — it's an ad inside the page. It's the ADDRESS BAR at the top of the browser that's the real place to search or type an address.",
+   realFb:"Exactly! That's the browser's real address bar — always trust this one, not search boxes that appear inside a web page.",
+   welcome:"Click the 4 navigation buttons, then try to find the real address bar.",
+   done:"Now you know the 4 basic navigation buttons, and you can recognize a fake search box inside a web page."}},
+3:{ht:{lead:"Ou ka louvri plizyè onglè (tabs) nan menm fennèt navigatè a. Eseye louvri, chanje, fèmen, epi re-louvri yon onglè.",
+   objs:["Louvri, chanje, ak fèmen yon onglè","Re-louvri yon onglè ou fèmen pa aksidan"],
+   newTabBtn:"+ Louvri Nouvo Onglè",reopenBtn:"↺ Re-louvri Dènye Onglè Fèmen",
+   tab1:"Akèy",tab2:"Nouvo Onglè",
+   openFb:"Ou louvri yon nouvo onglè.",switchFb:"Ou chanje ant de onglè yo.",closeFb:"Ou fèmen yon onglè.",reopenFb:"Byen fèt! Ou re-louvri onglè ou te fèmen pa aksidan an — sa mache menm si ou fèmen li pa erè.",
+   trapQ:"Ou gen 15 onglè louvri, ou pa jwenn sa w ap chèche a. Ki pi bon aksyon an?",
+   trapWrong:"Fèmen navigatè a nèt epi rekòmanse tout bagay",trapRight:"Gade nan lis onglè yo youn pa youn, oswa fèmen sa ou pa bezwen ankò",
+   trapWrongFb:"Pa nesesè! Fèmen tout bagay pèdi lòt onglè ou ka bezwen. Pi bon fason an se gade nan lis onglè yo pou jwenn sa w ap chèche a.",
+   trapRightFb:"Egzat! Gade nan lis onglè yo, oswa fèmen sa ou pa bezwen ankò, san pèdi tout lòt travay ou.",
+   welcome:"Klike '+ Louvri Nouvo Onglè', chanje ant onglè yo, apre fèmen youn epi re-louvri l.",
+   done:"Ou konnen kounye a kijan pou jere plizyè onglè san pèdi kontwòl."},
+ fr:{lead:"Vous pouvez ouvrir plusieurs onglets dans la même fenêtre de navigateur. Essayez d'ouvrir, changer, fermer, et rouvrir un onglet.",
+   objs:["Ouvrir, changer, et fermer un onglet","Rouvrir un onglet fermé par accident"],
+   newTabBtn:"+ Ouvrir un Nouvel Onglet",reopenBtn:"↺ Rouvrir le Dernier Onglet Fermé",
+   tab1:"Accueil",tab2:"Nouvel Onglet",
+   openFb:"Vous avez ouvert un nouvel onglet.",switchFb:"Vous avez changé entre les deux onglets.",closeFb:"Vous avez fermé un onglet.",reopenFb:"Bien joué ! Vous avez rouvert l'onglet que vous aviez fermé par accident — ça marche même si vous l'avez fermé par erreur.",
+   trapQ:"Vous avez 15 onglets ouverts, vous ne trouvez pas ce que vous cherchez. Quelle est la meilleure action ?",
+   trapWrong:"Fermer complètement le navigateur et tout recommencer",trapRight:"Regarder la liste des onglets un par un, ou fermer ceux dont vous n'avez plus besoin",
+   trapWrongFb:"Pas nécessaire ! Tout fermer vous fait perdre d'autres onglets dont vous pourriez avoir besoin. La meilleure façon est de regarder la liste des onglets pour trouver ce que vous cherchez.",
+   trapRightFb:"Exact ! Regardez la liste des onglets, ou fermez ceux dont vous n'avez plus besoin, sans perdre tout votre autre travail.",
+   welcome:"Cliquez « + Ouvrir un Nouvel Onglet », changez entre les onglets, puis fermez-en un et rouvrez-le.",
+   done:"Vous savez maintenant gérer plusieurs onglets sans perdre le contrôle."},
+ en:{lead:"You can open several tabs in the same browser window. Try opening, switching, closing, and reopening a tab.",
+   objs:["Open, switch, and close a tab","Reopen a tab closed by accident"],
+   newTabBtn:"+ Open New Tab",reopenBtn:"↺ Reopen Last Closed Tab",
+   tab1:"Home",tab2:"New Tab",
+   openFb:"You opened a new tab.",switchFb:"You switched between the two tabs.",closeFb:"You closed a tab.",reopenFb:"Well done! You reopened the tab you accidentally closed — this works even if you closed it by mistake.",
+   trapQ:"You have 15 tabs open, and can't find what you're looking for. What's the best action?",
+   trapWrong:"Close the browser completely and start everything over",trapRight:"Look through the tab list one by one, or close the ones you no longer need",
+   trapWrongFb:"Not necessary! Closing everything loses other tabs you might need. The best way is to look through the tab list to find what you're looking for.",
+   trapRightFb:"Exactly! Look through the tab list, or close the ones you no longer need, without losing all your other work.",
+   welcome:"Click '+ Open New Tab,' switch between tabs, then close one and reopen it.",
+   done:"Now you know how to manage several tabs without losing control."}},
+4:{ht:{lead:"Chèche pi byen mande mo espesifik, gizman, dat, ak konpare sous. Ajoute detay nan rechèch la anba a pou wè rezilta amelyore.",
+   objs:["Ajoute 2 detay nan yon rechèch","Rekonèt danje tape yon kesyon prive konplè nan yon motè rechèch"],
+   baseQuery:"restoran",refine1:'"restoran ayisyen" (fraz egzat)',refine2:"Boston 2026 (kote + dat)",
+   refine1Fb:"Mete gizman ('...') jwenn fraz EGZAT la, pa chak mo apa.",
+   refine2Fb:"Ajoute kote ak dat fè rezilta yo pi presi pou sitiyasyon ou.",
+   trapQ:"Ou ta dwe tape yon kesyon konplè ak nimewo Sekirite Sosyal ou nan Google pou 'verifye' si li kòrèk?",
+   trapWrong:"Wi, Google konfidansyèl, pa gen danje",trapRight:"Non, pa janm tape enfòmasyon prive konsa nan yon motè rechèch",
+   trapWrongFb:"Danjere! Rechèch ou tape yo ka sove nan istorik ou, kont ou, e pafwa vizib pou lòt moun ki itilize menm aparèy la. Pa janm tape enfòmasyon sansib tankou nimewo idantite.",
+   trapRightFb:"Egzat! Toujou evite tape enfòmasyon prive/sansib dirèkteman nan yon rechèch — sa ka rete nan istorik ou pou tout tan.",
+   welcome:"Klike sou 2 detay yo pou wè kijan yo amelyore yon rechèch.",
+   done:"Ou konnen kounye a kijan pou chèche pi byen, epi poukisa pa tape enfòmasyon sansib nan yon motè rechèch."},
+ fr:{lead:"Mieux chercher demande des mots spécifiques, des guillemets, une date, et de comparer les sources. Ajoutez des détails à la recherche ci-dessous pour voir des résultats améliorés.",
+   objs:["Ajouter 2 détails à une recherche","Reconnaître le danger de taper une question privée complète dans un moteur de recherche"],
+   baseQuery:"restaurant",refine1:'"restaurant haïtien" (phrase exacte)',refine2:"Boston 2026 (lieu + date)",
+   refine1Fb:"Mettre des guillemets ('...') trouve la phrase EXACTE, pas chaque mot séparément.",
+   refine2Fb:"Ajouter lieu et date rend les résultats plus précis pour votre situation.",
+   trapQ:"Devriez-vous taper une question complète avec votre numéro de sécurité sociale dans Google pour « vérifier » s'il est correct ?",
+   trapWrong:"Oui, Google est confidentiel, pas de danger",trapRight:"Non, ne tapez jamais d'informations privées comme ça dans un moteur de recherche",
+   trapWrongFb:"Dangereux ! Les recherches que vous tapez peuvent être sauvegardées dans votre historique, votre compte, et parfois visibles pour d'autres personnes utilisant le même appareil. Ne tapez jamais d'informations sensibles comme un numéro d'identité.",
+   trapRightFb:"Exact ! Évitez toujours de taper des informations privées/sensibles directement dans une recherche — cela peut rester dans votre historique pour toujours.",
+   welcome:"Cliquez sur les 2 détails pour voir comment ils améliorent une recherche.",
+   done:"Vous savez maintenant mieux chercher, et pourquoi ne pas taper d'informations sensibles dans un moteur de recherche."},
+ en:{lead:"Searching better means specific words, quotes, a date, and comparing sources. Add details to the search below to see improved results.",
+   objs:["Add 2 details to a search","Recognize the danger of typing a full private question into a search engine"],
+   baseQuery:"restaurant",refine1:'"Haitian restaurant" (exact phrase)',refine2:"Boston 2026 (location + date)",
+   refine1Fb:"Putting quotes ('...') finds the EXACT phrase, not each word separately.",
+   refine2Fb:"Adding location and date makes results more precise for your situation.",
+   trapQ:"Should you type a full question with your Social Security number into Google to 'check' if it's correct?",
+   trapWrong:"Yes, Google is private, no danger",trapRight:"No, never type private information like that into a search engine",
+   trapWrongFb:"Risky! Searches you type can be saved in your history, your account, and sometimes visible to others using the same device. Never type sensitive information like an ID number.",
+   trapRightFb:"Exactly! Always avoid typing private/sensitive information directly into a search — it can stay in your history forever.",
+   welcome:"Click the 2 details to see how they improve a search.",
+   done:"Now you know how to search better, and why not to type sensitive information into a search engine."}},
+5:{ht:{lead:"Pa tout rezilta rechèch fyab. Konpare 2 rezilta anba a — youn gen bon siy konfyans, lòt la pa genyen yo.",
+   objs:["Konpare 2 rezilta rechèch","Rekonèt yon rezilta 'Sponsored' pa toujou pi bon repons lan"],
+   sponsored:"Sponsorizè",
+   result1:["Sponsorizè","AchtePwodwi-Rapid.com","Achte kounye a — pi bon pri!!","Pa gen otè, pa gen dat, jis yon anons"],
+   result2:["","MayoClinic.org — Sante","Konsèy sou sentòm gwo... (2026)","Otè medikal, dat aktyèl, sous respekte"],
+   result1Fb:"Sa a se yon rezilta SPONSORIZE (yon anons peye) — li parèt an premye men se PA otomatikman pi bon repons lan.",
+   result2Fb:"Sa a gen bon siy konfyans: yon otè/òganizasyon konnen, yon dat, ak enfòmasyon ki verifyab.",
+   trapQ:"Yon rezilta ki make 'Sponsorizè' anwo lis la se toujou repons ki pi fyab la?",
+   trapWrong:"Wi, li anwo a paske li pi bon",trapRight:"Non, 'Sponsorizè' vle di se yon anons peye, pa yon garanti kalite",
+   trapWrongFb:"Pa vre! Yon rezilta 'Sponsorizè' peye pou parèt anwo a — pozisyon li pa gen anyen pou wè ak si enfòmasyon an vre oswa fyab.",
+   trapRightFb:"Egzat! Toujou gade otè, dat, ak sous anvan ou fè konfyans, kèlkeswa pozisyon rezilta a nan lis la.",
+   welcome:"Klike sou 2 rezilta yo pou konpare siy konfyans yo.",
+   done:"Ou konnen kounye a kijan pou konpare fyabilite 2 sous, epi 'Sponsorizè' pa vle di pi bon."},
+ fr:{lead:"Tous les résultats de recherche ne sont pas fiables. Comparez les 2 résultats ci-dessous — l'un a de bons signes de confiance, l'autre non.",
+   objs:["Comparer 2 résultats de recherche","Reconnaître qu'un résultat « Sponsorisé » n'est pas toujours la meilleure réponse"],
+   sponsored:"Sponsorisé",
+   result1:["Sponsorisé","AchèteRapide.com","Achetez maintenant — meilleur prix !!","Pas d'auteur, pas de date, juste une annonce"],
+   result2:["","MayoClinic.org — Santé","Conseils sur les symptômes de... (2026)","Auteur médical, date actuelle, source respectée"],
+   result1Fb:"Ceci est un résultat SPONSORISÉ (une publicité payante) — il apparaît en premier mais ce n'est PAS automatiquement la meilleure réponse.",
+   result2Fb:"Celui-ci a de bons signes de confiance : un auteur/organisation connu, une date, et des informations vérifiables.",
+   trapQ:"Un résultat marqué « Sponsorisé » en haut de la liste est-il toujours la réponse la plus fiable ?",
+   trapWrong:"Oui, il est en haut parce qu'il est meilleur",trapRight:"Non, « Sponsorisé » veut dire une publicité payante, pas une garantie de qualité",
+   trapWrongFb:"Pas vrai ! Un résultat « Sponsorisé » paie pour apparaître en haut — sa position n'a rien à voir avec si l'information est vraie ou fiable.",
+   trapRightFb:"Exact ! Regardez toujours l'auteur, la date, et la source avant de faire confiance, peu importe la position du résultat dans la liste.",
+   welcome:"Cliquez sur les 2 résultats pour comparer leurs signes de confiance.",
+   done:"Vous savez maintenant comparer la fiabilité de 2 sources, et que « Sponsorisé » ne veut pas dire meilleur."},
+ en:{lead:"Not all search results are trustworthy. Compare the 2 results below — one has good trust signals, the other doesn't.",
+   objs:["Compare 2 search results","Recognize that a 'Sponsored' result isn't always the best answer"],
+   sponsored:"Sponsored",
+   result1:["Sponsored","BuyItFast.com","Buy now — best price!!","No author, no date, just an ad"],
+   result2:["","MayoClinic.org — Health","Guidance on symptoms of... (2026)","Medical author, current date, respected source"],
+   result1Fb:"This is a SPONSORED result (a paid ad) — it appears first but it's NOT automatically the best answer.",
+   result2Fb:"This one has good trust signals: a known author/organization, a date, and verifiable information.",
+   trapQ:"Is a result marked 'Sponsored' at the top of the list always the most trustworthy answer?",
+   trapWrong:"Yes, it's at the top because it's better",trapRight:"No, 'Sponsored' means a paid ad, not a quality guarantee",
+   trapWrongFb:"Not true! A 'Sponsored' result pays to appear at the top — its position has nothing to do with whether the information is true or trustworthy.",
+   trapRightFb:"Exactly! Always check the author, date, and source before trusting, no matter the result's position in the list.",
+   welcome:"Click the 2 results to compare their trust signals.",
+   done:"Now you know how to compare the trustworthiness of 2 sources, and that 'Sponsored' doesn't mean better."}},
+6:{ht:{lead:"Favori sove paj ou renmen pou tout tan. Istorik se yon lis otomatik tout sa ou vizite. Eseye toude.",
+   objs:["Ajoute yon favori","Konprann efase istorik pa efase favori"],
+   pageTitle:"Resèt Diri Kole",bookmarkBtn:"☆ Ajoute nan Favori",
+   histItem:"Resèt Diri Kole — vizite jodi a",
+   bookmarkFb:"Paj la ajoute nan Favori ou — ou ka jwenn li ankò fasil pita.",
+   histFb:"Ou klike sou yon paj nan istorik ou pou re-louvri l.",
+   trapQ:"Si m efase istorik navigasyon an, èske sa efase Favori mwen yo tou?",
+   trapWrong:"Wi, efase istorik efase favori tou",trapRight:"Non, Favori ak Istorik se de bagay separe — efase youn pa touche lòt la",
+   trapWrongFb:"Pa vre! Istorik se yon anrejistreman OTOMATIK sa ou vizite. Favori se paj ou VOLONTÈMAN chwazi sove. Efase istorik pa retire favori ou yo.",
+   trapRightFb:"Egzat! Ou ka efase istorik ou san pèdi okenn nan favori ou te sove yo — yo de sistèm konplètman separe.",
+   welcome:"Klike '☆ Ajoute nan Favori', apre klike sou atik istorik la.",
+   done:"Ou konnen kounye a kijan pou itilize favori ak istorik, epi yo de bagay separe."},
+ fr:{lead:"Les favoris sauvegardent les pages que vous aimez pour toujours. L'historique est une liste automatique de tout ce que vous visitez. Essayez les deux.",
+   objs:["Ajouter un favori","Comprendre qu'effacer l'historique n'efface pas les favoris"],
+   pageTitle:"Recette de Riz Collé",bookmarkBtn:"☆ Ajouter aux Favoris",
+   histItem:"Recette de Riz Collé — visité aujourd'hui",
+   bookmarkFb:"La page est ajoutée à vos Favoris — vous pourrez la retrouver facilement plus tard.",
+   histFb:"Vous avez cliqué sur une page de votre historique pour la rouvrir.",
+   trapQ:"Si j'efface l'historique de navigation, est-ce que ça efface mes Favoris aussi ?",
+   trapWrong:"Oui, effacer l'historique efface aussi les favoris",trapRight:"Non, Favoris et Historique sont deux choses séparées — effacer l'un ne touche pas l'autre",
+   trapWrongFb:"Pas vrai ! L'historique est un enregistrement AUTOMATIQUE de ce que vous visitez. Les Favoris sont des pages que vous choisissez VOLONTAIREMENT de sauvegarder. Effacer l'historique ne retire pas vos favoris.",
+   trapRightFb:"Exact ! Vous pouvez effacer votre historique sans perdre aucun de vos favoris sauvegardés — ce sont deux systèmes complètement séparés.",
+   welcome:"Cliquez « ☆ Ajouter aux Favoris », puis cliquez sur l'article de l'historique.",
+   done:"Vous savez maintenant utiliser favoris et historique, et qu'ils sont deux choses séparées."},
+ en:{lead:"Bookmarks save pages you like forever. History is an automatic list of everything you visit. Try both.",
+   objs:["Add a bookmark","Understand clearing history doesn't clear bookmarks"],
+   pageTitle:"Rice and Beans Recipe",bookmarkBtn:"☆ Add to Bookmarks",
+   histItem:"Rice and Beans Recipe — visited today",
+   bookmarkFb:"The page is added to your Bookmarks — you can find it again easily later.",
+   histFb:"You clicked a page from your history to reopen it.",
+   trapQ:"If I clear my browsing history, does that also clear my Bookmarks?",
+   trapWrong:"Yes, clearing history also clears bookmarks",trapRight:"No, Bookmarks and History are two separate things — clearing one doesn't touch the other",
+   trapWrongFb:"Not true! History is an AUTOMATIC record of what you visit. Bookmarks are pages you INTENTIONALLY chose to save. Clearing history doesn't remove your bookmarks.",
+   trapRightFb:"Exactly! You can clear your history without losing any of your saved bookmarks — they're two completely separate systems.",
+   welcome:"Click '☆ Add to Bookmarks,' then click the history item.",
+   done:"Now you know how to use bookmarks and history, and that they're separate things."}},
+7:{ht:{lead:"Telechajman nan navigatè a parèt nan yon jesyonè telechajman. Fè atansyon ak fo bouton 'Download' sou sit ki plen reklam.",
+   objs:["Telechaje yon fichye epi jwenn li","Rekonèt yon fo bouton 'Download' nan navigatè a"],
+   fileTitle:"Fòm.pdf",downloadBtn:"Telechaje",
+   fakeBtn:"⬇️ TELECHAJE APLIKASYON GRATIS!!!",fakeSub:"(reklam)",
+   downloadFb:"Fichye a telechaje — ou ka jwenn li nan jesyonè telechajman an, oswa nan dosye Downloads.",
+   fakeFb:"Sa se yon REKLAM ki fèt pou sanble ak yon bouton telechajman. Toujou verifye ke bouton 'Download' a se vrèman pou fichye ou vle a anvan ou klike.",
+   welcome:"Klike 'Telechaje' pou fichye reyèl la, epi fè atansyon ak fo bouton anba a.",
+   done:"Ou konnen kounye a kijan telechajman navigatè a mache, epi kijan pou rekonèt yon fo bouton 'Download'."},
+ fr:{lead:"Les téléchargements dans le navigateur apparaissent dans un gestionnaire de téléchargements. Attention aux faux boutons « Download » sur les sites pleins de publicités.",
+   objs:["Télécharger un fichier et le retrouver","Reconnaître un faux bouton « Download » dans le navigateur"],
+   fileTitle:"Formulaire.pdf",downloadBtn:"Télécharger",
+   fakeBtn:"⬇️ TÉLÉCHARGER APPLICATION GRATUITE!!!",fakeSub:"(publicité)",
+   downloadFb:"Le fichier est téléchargé — vous pouvez le retrouver dans le gestionnaire de téléchargements, ou dans le dossier Téléchargements.",
+   fakeFb:"C'est une PUBLICITÉ faite pour ressembler à un bouton de téléchargement. Vérifiez toujours que le bouton « Download » est vraiment pour le fichier que vous voulez avant de cliquer.",
+   welcome:"Cliquez « Télécharger » pour le vrai fichier, puis faites attention au faux bouton ci-dessous.",
+   done:"Vous savez maintenant comment fonctionne le téléchargement du navigateur, et comment reconnaître un faux bouton « Download »."},
+ en:{lead:"Downloads in the browser appear in a download manager. Watch out for fake 'Download' buttons on ad-cluttered sites.",
+   objs:["Download a file and find it","Recognize a fake 'Download' button in the browser"],
+   fileTitle:"Form.pdf",downloadBtn:"Download",
+   fakeBtn:"⬇️ DOWNLOAD FREE APP NOW!!!",fakeSub:"(ad)",
+   downloadFb:"The file is downloaded — you can find it in the download manager, or in the Downloads folder.",
+   fakeFb:"That's an AD made to look like a download button. Always check that a 'Download' button is really for the file you want before clicking.",
+   welcome:"Click 'Download' for the real file, then watch out for the fake button below.",
+   done:"Now you know how browser downloads work, and how to recognize a fake 'Download' button."}},
+8:{ht:{lead:"Cookies ak cache ede sit yo mache pi vit ak sonje preferans ou. Navigasyon prive gen limit li — li pa fè ou envizib nèt.",
+   objs:["Aktive Navigasyon Prive","Konprann sa Navigasyon Prive PA fè"],
+   toggleBtn:"Aktive Navigasyon Prive",
+   toggleFb:"Navigasyon Prive aktive — istorik ak cookies pa sove SOU APARÈY LA apre ou fèmen fennèt la.",
+   trapQ:"Navigasyon Prive fè m ENVIZIB nèt sou entènèt — pèsonn pa ka wè sa m ap fè?",
+   trapWrong:"Wi, mwen envizib nèt",trapRight:"Non, li sèlman pa sove istorik/cookies LOKALMAN — sit yo, patwon travay, oswa founisè entènèt ka toujou wè aktivite w",
+   trapWrongFb:"Danjere pou panse konsa! Navigasyon Prive sèlman anpeche NAVIGATÈ A sove istorik/cookies sou aparèy la. Sit ou vizite yo, patwon travay ou (si se òdinatè travay), ak founisè entènèt ou ka toujou wè oswa anrejistre aktivite w.",
+   trapRightFb:"Egzat! Navigasyon Prive itil pou pa kite tras LOKAL (tankou sou yon òdinatè pataje), men li pa yon zouti pou vin envizib nèt sou entènèt.",
+   welcome:"Klike 'Aktive Navigasyon Prive' pou wè sa li fè.",
+   done:"Ou konnen kounye a sa cookies/cache fè, epi limit reyèl Navigasyon Prive."},
+ fr:{lead:"Les cookies et le cache aident les sites à fonctionner plus vite et à se souvenir de vos préférences. La navigation privée a ses limites — elle ne vous rend pas invisible.",
+   objs:["Activer la Navigation Privée","Comprendre ce que la Navigation Privée NE fait PAS"],
+   toggleBtn:"Activer la Navigation Privée",
+   toggleFb:"Navigation Privée activée — l'historique et les cookies ne sont pas sauvegardés SUR L'APPAREIL après avoir fermé la fenêtre.",
+   trapQ:"La Navigation Privée me rend-elle INVISIBLE sur internet — personne ne peut voir ce que je fais ?",
+   trapWrong:"Oui, je suis complètement invisible",trapRight:"Non, elle ne sauvegarde pas l'historique/cookies LOCALEMENT — les sites, l'employeur, ou le fournisseur internet peuvent toujours voir votre activité",
+   trapWrongFb:"Dangereux de penser ça ! La Navigation Privée empêche seulement le NAVIGATEUR de sauvegarder l'historique/cookies sur l'appareil. Les sites que vous visitez, votre employeur (si c'est un ordinateur de travail), et votre fournisseur internet peuvent toujours voir ou enregistrer votre activité.",
+   trapRightFb:"Exact ! La Navigation Privée est utile pour ne pas laisser de traces LOCALES (comme sur un ordinateur partagé), mais ce n'est pas un outil pour devenir invisible sur internet.",
+   welcome:"Cliquez « Activer la Navigation Privée » pour voir ce que ça fait.",
+   done:"Vous savez maintenant ce que font les cookies/cache, et les vraies limites de la Navigation Privée."},
+ en:{lead:"Cookies and cache help sites run faster and remember your preferences. Private browsing has its limits — it doesn't make you completely invisible.",
+   objs:["Turn on Private Browsing","Understand what Private Browsing does NOT do"],
+   toggleBtn:"Turn On Private Browsing",
+   toggleFb:"Private Browsing is on — history and cookies aren't saved ON THE DEVICE after you close the window.",
+   trapQ:"Does Private Browsing make me completely INVISIBLE on the internet — nobody can see what I'm doing?",
+   trapWrong:"Yes, I'm completely invisible",trapRight:"No, it only doesn't save history/cookies LOCALLY — sites, your employer, or your internet provider can still see your activity",
+   trapWrongFb:"Risky to think that! Private Browsing only stops the BROWSER from saving history/cookies on the device. Sites you visit, your employer (if it's a work computer), and your internet provider can still see or log your activity.",
+   trapRightFb:"Exactly! Private Browsing is useful for not leaving LOCAL traces (like on a shared computer), but it isn't a tool for becoming invisible on the internet.",
+   welcome:"Click 'Turn On Private Browsing' to see what it does.",
+   done:"Now you know what cookies/cache do, and the real limits of Private Browsing."}},
+9:{ht:{lead:"Yon kont sit web ak yon pwofil navigatè se pa menm bagay. Sou yon òdinatè pataje, toujou dekonekte lè ou fini.",
+   objs:["Konekte sou yon kont","Dekonekte anvan ou kite yon òdinatè pataje"],
+   accountName:"jan.pyè@imèl.com",signinBtn:"Konekte",signoutBtn:"Dekonekte",
+   signinFb:"Ou konekte sou kont ou.",
+   trapQ:"Ou fin itilize yon òdinatè PIBLIK (bibliyotèk). Ou ta dwe kite kont ou konekte pou pwochen fwa a pi rapid?",
+   trapWrong:"Wi, kite l konekte fè pwochen fwa a pi vit",trapRight:"Non, toujou dekonekte sou yon òdinatè pataje/piblik",
+   trapWrongFb:"Danjere! Si ou kite kont ou konekte sou yon òdinatè piblik, pwochen moun ki itilize l ka antre nan kont ou, li imèl ou, oswa chanje enfòmasyon ou.",
+   trapRightFb:"Egzat! Toujou dekonekte (Sign Out) sou nenpòt òdinatè pataje oswa piblik anvan ou kite l, menm si sa mande ou tape modpas la ankò pwochen fwa a.",
+   welcome:"Klike 'Konekte', apre reponn kesyon an anba a.",
+   done:"Ou konnen kounye a diferans ant yon kont sit web ak yon pwofil navigatè, epi poukisa toujou dekonekte sou yon òdinatè pataje."},
+ fr:{lead:"Un compte de site web et un profil de navigateur ne sont pas la même chose. Sur un ordinateur partagé, déconnectez-vous toujours en finissant.",
+   objs:["Se connecter à un compte","Se déconnecter avant de quitter un ordinateur partagé"],
+   accountName:"jean.pierre@email.com",signinBtn:"Se Connecter",signoutBtn:"Se Déconnecter",
+   signinFb:"Vous êtes connecté à votre compte.",
+   trapQ:"Vous avez fini d'utiliser un ordinateur PUBLIC (bibliothèque). Devriez-vous laisser votre compte connecté pour aller plus vite la prochaine fois ?",
+   trapWrong:"Oui, le laisser connecté rend la prochaine fois plus rapide",trapRight:"Non, toujours se déconnecter sur un ordinateur partagé/public",
+   trapWrongFb:"Dangereux ! Si vous laissez votre compte connecté sur un ordinateur public, la prochaine personne qui l'utilise peut entrer dans votre compte, lire vos e-mails, ou changer vos informations.",
+   trapRightFb:"Exact ! Déconnectez-vous toujours (Sign Out) sur n'importe quel ordinateur partagé ou public avant de partir, même si ça veut dire retaper le mot de passe la prochaine fois.",
+   welcome:"Cliquez « Se Connecter », puis répondez à la question ci-dessous.",
+   done:"Vous connaissez maintenant la différence entre un compte de site web et un profil de navigateur, et pourquoi toujours se déconnecter sur un ordinateur partagé."},
+ en:{lead:"A website account and a browser profile aren't the same thing. On a shared computer, always sign out when finished.",
+   objs:["Sign in to an account","Sign out before leaving a shared computer"],
+   accountName:"jean.pierre@email.com",signinBtn:"Sign In",signoutBtn:"Sign Out",
+   signinFb:"You're signed in to your account.",
+   trapQ:"You're done using a PUBLIC computer (library). Should you leave your account signed in so next time is faster?",
+   trapWrong:"Yes, leaving it signed in makes next time faster",trapRight:"No, always sign out on a shared/public computer",
+   trapWrongFb:"Risky! If you leave your account signed in on a public computer, the next person to use it can get into your account, read your email, or change your information.",
+   trapRightFb:"Exactly! Always sign out on any shared or public computer before leaving, even if it means typing the password again next time.",
+   welcome:"Click 'Sign In,' then answer the question below.",
+   done:"Now you know the difference between a website account and a browser profile, and why to always sign out on a shared computer."}},
+10:{ht:{lead:"Dènye misyon an! Konplete tou lè 6 aksyon yo pou chèche, verifye, epi sovgade enfòmasyon.",
+   objs:["Chèche yon enfòmasyon pratik","Konpare 2 sous","Note poukisa youn pi fyab","Ajoute nan Favori paj itil la","Telechaje yon fichye san danje","Jwenn fichye a"],
+   steps:["Chèche yon enfòmasyon pratik (egzanp: orè biwo lokal)","Konpare 2 sous diferan","Note poukisa youn nan yo pi fyab pase lòt la","Ajoute paj itil la nan Favori","Telechaje yon fichye san danje","Jwenn fichye telechaje a nan Downloads"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 7 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 7 — ou konnen kounye a kijan pou chèche, verifye, epi sovgade enfòmasyon."},
+ fr:{lead:"Dernière mission ! Complétez les 6 actions pour chercher, vérifier, et sauvegarder l'information.",
+   objs:["Chercher une information pratique","Comparer 2 sources","Noter pourquoi l'une est plus fiable","Ajouter la page utile aux Favoris","Télécharger un fichier sûr","Trouver le fichier"],
+   steps:["Chercher une information pratique (ex : horaires d'un bureau local)","Comparer 2 sources différentes","Noter pourquoi l'une est plus fiable que l'autre","Ajouter la page utile aux Favoris","Télécharger un fichier sûr","Trouver le fichier téléchargé dans Téléchargements"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 7.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 7 — vous savez maintenant chercher, vérifier, et sauvegarder l'information."},
+ en:{lead:"Last mission! Complete all 6 actions to find, verify, and save information.",
+   objs:["Search for practical information","Compare 2 sources","Note why one is more trustworthy","Bookmark the useful page","Download a safe file","Find the file"],
+   steps:["Search for practical information (e.g., a local office's hours)","Compare 2 different sources","Note why one of them is more trustworthy than the other","Bookmark the useful page","Download a safe file","Find the downloaded file in Downloads"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 7's final mission.",
+   done:"Congratulations! You completed Module 7's Mission — now you know how to find, verify, and save information."}},
+};
+
+/* ============ engine ============ */
+const NL=10;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module7-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD7_LESSON_SLUGS=["navigate-mote-rechech-sit-web-ak-paj-web","ba-adres-lyen-tounen-avanse-rafrechi-ak-akey","ongle-ak-fennet","cheche-pi-byen","eske-enfomasyon-sa-a-fyab","favori-istorik-ak-li-pita","telechajman-nan-navigate-a","cookies-cache-ak-navigasyon-prive","kont-konekte-dekonekte-ak-pwofil","misyon-cheche-verifye-ak-sovgade-enfomasyon"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD7_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule8();
+}
+function injectContinueModule8(){
+ if($("continueModule8"))return;
+ const a=document.createElement("a");a.id="continueModule8";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[7];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===6;
+ let les="";if(active){les='<div class="les">'+M7[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">7.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 7 · 7."+(i+1);$("topTitle").textContent=M7[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 7 · 7.'+(i+1)+'</span><div class="labh2">'+M7[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.seen=st.seen||{};st.trapSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="browser"><div class="btoolbar">'+
+   '<button data-b="back">◀</button><button data-b="fwd">▶</button><button data-b="ref">⟳</button><button data-b="home">⌂</button>'+
+   '<div class="baddr">'+d.realBar+'</div></div>'+
+   '<div class="bbody"><p style="cursor:pointer;color:#1a0dab;font-weight:600" id="fakeSearchBox">'+d.fakeSearch+'</p><p style="margin-top:60px;color:#888">'+d.realBar+'</p></div></div>'+
+  nextBar();
+ wireNext();
+ const fbMap={back:d.backFb,fwd:d.fwdFb,ref:d.refFb,home:d.homeFb};
+ stage.querySelectorAll(".btoolbar button[data-b]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.b;
+  if(!st.seen[k]){st.seen[k]=true;ai(fbMap[k],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("fakeSearchBox").addEventListener("click",()=>{if(st.trapSeen)return;st.trapSeen=true;ai(d.fakeFb,"warn");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.opened=false;st.switched=false;st.closed=false;st.reopened=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(2,d.lead)+'<div class="browser"><div class="btabs">'+
+    '<div class="btab sel" data-t="0">'+d.tab1+'</div>'+
+    (st.opened&&!st.closed?'<div class="btab" data-t="1">'+d.tab2+'</div>':"")+
+   '</div><div class="btoolbar">'+(!st.opened?'<button class="btn g" id="newTabBtn" style="width:auto;padding:4px 10px">'+d.newTabBtn+'</button>':
+     (st.closed?'<button class="btn g" id="reopenBtn" style="width:auto;padding:4px 10px">'+d.reopenBtn+'</button>':'<button class="btn g" id="closeTabBtn" style="width:auto;padding:4px 10px">✕ Close</button>'))+
+   '</div><div class="bbody">'+M7[S.lang][2]+'</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const nb=$("newTabBtn");if(nb)nb.addEventListener("click",()=>{st.opened=true;ai(d.openFb,"good");render();});
+  const tabs=stage.querySelectorAll(".btab[data-t]");
+  tabs.forEach(t=>t.addEventListener("click",()=>{if(!st.switched&&t.dataset.t==="1"){st.switched=true;ai(d.switchFb,"neutral");}}));
+  const cb=$("closeTabBtn");if(cb)cb.addEventListener("click",()=>{st.closed=true;ai(d.closeFb,"neutral");render();});
+  const rb=$("reopenBtn");if(rb)rb.addEventListener("click",()=>{st.reopened=true;ai(d.reopenFb,"good");setObj(0);setObj(1);render();});
+  $("tqWrong").addEventListener("click",()=>{ai(d.trapWrongFb,"warn");});
+  $("tqRight").addEventListener("click",()=>{ai(d.trapRightFb,"good");});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div style="margin-top:18px;font-family:var(--seg);background:#fff;color:#222;border-radius:24px;padding:12px 18px;max-width:400px;font-size:14px">🔎 '+d.baseQuery+'</div>'+
+  '<div class="cats"><button class="cat" data-r="1">'+d.refine1+'</button><button class="cat" data-r="2">'+d.refine2+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".cat[data-r]").forEach(c=>c.addEventListener("click",()=>{const k=c.dataset.r;
+  if(!st.seen[k]){st.seen[k]=true;ai(k==="1"?d.refine1Fb:d.refine2Fb,"neutral");}
+  if(Object.keys(st.seen).length>=2)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.r1=false;st.r2=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="browser"><div class="bbody">'+
+   '<div class="srow" id="r1"><span class="sponsor">'+d.result1[0]+'</span><div class="stitle">'+d.result1[1]+'</div><div class="surl">'+d.result1[1].toLowerCase()+'</div><div class="smeta">'+d.result1[2]+'</div></div>'+
+   '<div class="srow" id="r2"><div class="stitle">'+d.result2[1]+'</div><div class="surl">mayoclinic.org</div><div class="smeta">'+d.result2[2]+'</div></div>'+
+  '</div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.r1&&st.r2)setObj(0);}
+ $("r1").addEventListener("click",()=>{if(st.r1)return;st.r1=true;ai(d.result1Fb,"warn");check();});
+ $("r2").addEventListener("click",()=>{if(st.r2)return;st.r2=true;ai(d.result2Fb,"good");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.bookmarked=false;st.histClicked=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(5,d.lead)+'<div class="browser"><div class="bbody">'+
+    '<div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:700">'+d.pageTitle+'</span>'+
+    '<button class="btn g" id="bookmarkBtn">'+(st.bookmarked?"★":"☆")+' '+d.bookmarkBtn+'</button></div>'+
+    '<div class="arow" id="histItem" style="margin-top:18px"><span class="k">'+d.histItem+'</span><span class="ch">›</span></div>'+
+   '</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  $("bookmarkBtn").addEventListener("click",()=>{if(!st.bookmarked){st.bookmarked=true;ai(d.bookmarkFb,"good");setObj(0);}render();});
+  $("histItem").addEventListener("click",()=>{if(!st.histClicked){st.histClicked=true;ai(d.histFb,"neutral");}});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.downloaded=false;st.fakeSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(6,d.lead)+'<div class="browser"><div class="bbody">'+
+    '<div style="font-weight:700;margin-bottom:10px">'+d.fileTitle+'</div>'+
+    (!st.downloaded?'<button class="btn p" id="downloadBtn">'+d.downloadBtn+'</button>':'<div style="color:var(--good);font-weight:600">✓ '+d.downloadFb+'</div>')+
+   '</div></div>'+
+   '<div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;max-width:340px">'+
+    '<button class="chip" id="fakeBtn" style="background:#2a7d2a;color:#fff;border-color:#2a7d2a;font-size:15px;justify-content:center">'+d.fakeBtn+'<span style="font-size:11px;opacity:.8;margin-left:6px">'+d.fakeSub+'</span></button>'+
+   '</div>'+nextBar();
+  wireNext();
+  const db=$("downloadBtn");if(db)db.addEventListener("click",()=>{st.downloaded=true;ai(d.downloadFb,"good");setObj(0);render();});
+  $("fakeBtn").addEventListener("click",()=>{if(st.fakeSeen)return;st.fakeSeen=true;ai(d.fakeFb,"warn");setObj(1);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.on=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(7,d.lead)+'<div style="margin-top:18px">'+
+    (!st.on?'<button class="btn p" id="toggleBtn">'+d.toggleBtn+'</button>':'<div style="color:var(--good);font-weight:600">✓ '+d.toggleFb+'</div>')+
+   '</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const tb=$("toggleBtn");if(tb)tb.addEventListener("click",()=>{st.on=true;ai(d.toggleFb,"good");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.signedIn=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(8,d.lead)+'<div class="browser"><div class="bbody">'+
+    (!st.signedIn?'<button class="btn p" id="signinBtn">'+d.signinBtn+'</button>':'<div style="display:flex;align-items:center;gap:10px;justify-content:space-between"><span>👤 '+d.accountName+'</span><button class="btn g" id="signoutBtn">'+d.signoutBtn+'</button></div>')+
+   '</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const sib=$("signinBtn");if(sib)sib.addEventListener("click",()=>{st.signedIn=true;ai(d.signinFb,"good");setObj(0);render();});
+  const sob=$("signoutBtn");if(sob)sob.addEventListener("click",()=>{ai(d.trapRightFb,"good");});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.done6=st.done6||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(9,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done6[k]?' style="opacity:.4"':"")+'>'+(st.done6[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done6[k])return;st.done6[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
