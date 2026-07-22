@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 .desk-ico{position:absolute;display:flex;flex-direction:column;gap:6px;align-items:center;width:92px;background:none;border:1px solid transparent;border-radius:6px;padding:8px 6px;cursor:pointer;color:#0b2a55}
 .desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:14.5px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
 .taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;background:rgba(240,243,247,.82);backdrop-filter:blur(30px);border-top:1px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:5px}
-.tbi{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;cursor:pointer}.tbi:hover{background:rgba(0,0,0,.06)}
+.tbi{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;cursor:pointer}.tbi:hover{background:rgba(0,0,0,.06)}.tbi svg{width:24px;height:24px}
 .tbclock{position:absolute;right:14px;font-size:12.5px;color:#1b1b1b;text-align:right;line-height:1.35}
 .pulse{animation:pulse 1.6s infinite;border-radius:8px}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,95,184,.5)}70%{box-shadow:0 0 0 11px rgba(0,95,184,0)}100%{box-shadow:0 0 0 0 rgba(0,95,184,0)}}
 .startmenu{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);width:410px;max-width:92%;border-radius:10px;padding:16px;display:none;background:rgba(238,242,247,.9);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.55);box-shadow:0 26px 60px rgba(0,20,60,.4)}
@@ -447,7 +447,7 @@ function L2(){const d=C2[S.lang];const st=S.st[1];st.win=st.win||{};
  const stage=$("stage");stage.className="stage desk";
  stage.innerHTML=bloom()+
   '<button class="desk-ico" data-icon="pc" style="top:14px;left:14px"><div style="width:50px;height:50px;border-radius:10px;background:#2f6fd6;display:grid;place-items:center;color:#fff;font-size:24px">🖥️</div><span>This PC</span></button>'+
-  '<div class="taskbar"><button class="tbi" id="startBtn">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div><div class="tbi" id="tbSet">⚙️</div><div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
+  '<div class="taskbar"><button class="tbi" id="startBtn">'+winLogo+'</button><div class="tbi">'+liIcon('search','stroke="#1b1b1b" stroke-width="2" fill="none"')+'</div><div class="tbi">'+tileIcon('#f6c445','folder','fill')+'</div><div class="tbi" id="tbSet">'+tileIcon('#3a3a3a','gear','fill')+'</div><div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
   '<div class="startmenu" id="sm"><div class="ssearch">🔎 &nbsp;Type here to search</div><div class="sl">Pinned</div><div class="sgrid"><button class="sapp" id="ssSet">'+tileIcon('#3a3a3a','gear','fill')+'Settings</button><button class="sapp">'+tileIcon('#0f6cbd','globe')+'Edge</button><button class="sapp">'+tileIcon('#2f6fd6','mail')+'Mail</button><button class="sapp">'+tileIcon('#3aa0ef','image')+'Photos</button></div></div>'+
   '<div class="win" id="win"><div class="wtb">⚙️ Settings<div class="wc"><span>—</span><span>▢</span><span class="cl" id="winClose">✕</span></div></div><div class="wbody"><div class="wnav"><div class="acct"><div class="ava"></div><div><div class="nm">Student</div><div class="em">student@academy.local</div></div></div>'+
    ['System','Bluetooth & devices','Network & internet','Personalization','Accounts'].map((n,k)=>'<div class="wni'+(k===0?' sel':'')+'" data-nav="'+k+'"><span class="i">◻</span>'+n+'</div>').join("")+
@@ -537,7 +537,7 @@ function L8(){const d=C8[S.lang];const st=S.st[7];st.spots=st.spots||{};
  stage.innerHTML=bloom()+
   '<button class="desk-ico" id="courseIco" style="top:14px;left:14px"><div style="width:52px;height:52px;border-radius:11px;background:var(--brand);display:grid;place-items:center;color:#fff;font-size:26px">🎓</div><span>Kou a</span></button>'+
   '<div class="hsdesk" data-s="0" style="left:50%;top:40%;transform:translateX(-50%)">1</div>'+
-  '<div class="taskbar"><button class="tbi">'+winLogo+'</button><div class="tbi">🔎</div><div class="tbi">📁</div>'+
+  '<div class="taskbar"><button class="tbi">'+winLogo+'</button><div class="tbi">'+liIcon('search','stroke="#1b1b1b" stroke-width="2" fill="none"')+'</div><div class="tbi">'+tileIcon('#f6c445','folder','fill')+'</div>'+
     '<div class="hsdesk" data-s="1" style="position:relative">2</div>'+
     '<div class="hsdesk" data-s="2" style="position:relative">3</div>'+
     '<div class="tbclock"><div>4:12 PM</div><div>7/21/2026</div></div></div>'+
