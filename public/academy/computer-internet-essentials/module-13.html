@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 13 — Rezoud Pwoblèm</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:56px;display:grid;place-items:center;font-size:30px}
+.partn{font-weight:700;font-size:14.5px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+.checklist{display:flex;flex-direction:column;gap:8px;margin-top:18px;max-width:600px}
+.flow{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap}
+.node{flex:1;min-width:110px;border:1px solid var(--edge2);border-radius:14px;padding:16px;text-align:center;background:var(--ink-700);cursor:pointer;transition:.2s}
+.node.read{border-color:var(--good)}
+.node .ni{font-size:26px}.node .nt{font-weight:700;margin-top:8px;font-size:14px}.node .nd{font-size:12px;color:var(--mute);margin-top:4px}
+.arrow{color:var(--mute);font-size:24px}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 13 · 13.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 12</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 14 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 14 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 14 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M13={ht:["Panse Tankou Yon Moun Ki Rezoud Pwoblèm","Rekòmanse, Etenn, Dòmi, ak Fòse Fèmen","Yon Aplikasyon Bloke oswa Lan","Yon Òdinatè Lan","Pa Gen Entènèt","Pa Gen Son, Kamera, oswa Mikwofòn","Pwoblèm Enprimant","Estokaj Plen: Sa Pou Fè","Mizajou ak Woutin Antretyen Debaz","Mesaj Erè ak Jwenn Èd","Konnen Kilè Pou Sispann","Misyon: Dyagnostike Anvan Ou Klike"],
+ fr:["Penser Comme un Résolveur de Problèmes","Redémarrer, Éteindre, Veille, et Forcer à Quitter","Une Application Bloquée ou Lente","Un Ordinateur Lent","Pas d'Internet","Pas de Son, Caméra, ou Microphone","Problèmes d'Imprimante","Stockage Plein : Que Faire","Mises à Jour et Routine d'Entretien de Base","Messages d'Erreur et Obtenir de l'Aide","Savoir Quand S'arrêter","Mission : Diagnostiquer Avant de Cliquer"],
+ en:["Think Like a Problem Solver","Restart, Shut Down, Sleep, and Force Quit","A Frozen or Slow Application","A Slow Computer","No Internet","No Sound, Camera, or Microphone","Printer Problems","Storage Full: What to Do","Updates and Basic Maintenance Routine","Error Messages and Getting Help","Know When to Stop","Module Mission: Diagnose Before You Click"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Jamezzi gen yon sik rezoud pwoblèm 8 etap ou ka itilize pou nenpòt pwoblèm teknik. Klike sou chak etap.",
+   objs:["Klike sou 8 etap nan sik la","Rekonèt pa kouri nan yon gwo aksyon anvan ou swiv etap yo"],
+   steps:[["1","Sispann ak Li","Pa panike, li mesaj/ekran an byen"],["2","Dekri Sentòm Egzat","Ki egzakteman sa k ap rive?"],["3","Mande Sa Ki Chanje","Èske ou enstale/chanje yon bagay anvan pwoblèm nan?"],["4","Tcheke Kòz Senp","Kouran, kab, koneksyon debaz"],["5","Eseye Yon Sèl Aksyon San Danje","Pa fè plizyè bagay ansanm"],["6","Teste","Èske aksyon an rezoud pwoblèm nan?"],["7","Anrejistre Rezilta","Sa ki mache, sa ki pa mache"],["8","Eskalade Si Nesesè","Mande èd si ou bloke"]],
+   trapQ:"Ou gen yon ti pwoblèm lojisyèl. Pi bon premye reyaksyon an se rebati/reyenstale tout sistèm nan imedyatman?",
+   trapWrong:"Wi, rekòmanse tout bagay ranje pwoblèm pi vit",trapRight:"Non, swiv sik la — sispann, dekri sentòm, mande sa ki chanje anvan",
+   trapWrongFb:"Twòp vit! Yon aksyon dramatik tankou reyenstale tout sistèm ka pèdi done ou san rezoud vrè pwoblèm nan.",
+   trapRightFb:"Egzat! Swiv sik la etap pa etap — souvan yon aksyon senp rezoud pwoblèm nan san gwo risk.",
+   welcome:"Klike sou chak etap nan sik rezoud pwoblèm lan.",
+   done:"Ou konnen kounye a sik rezoud pwoblèm 8 etap Jamezzi a, epi pou pa kouri nan gwo aksyon anvan ou swiv li."},
+ fr:{lead:"Jamezzi a un cycle de résolution de problèmes en 8 étapes que vous pouvez utiliser pour tout problème technique. Cliquez sur chaque étape.",
+   objs:["Cliquer sur les 8 étapes du cycle","Reconnaître à ne pas se précipiter vers une grande action avant de suivre les étapes"],
+   steps:[["1","S'arrêter et Lire","Ne pas paniquer, bien lire le message/écran"],["2","Décrire le Symptôme Exact","Qu'est-ce qui se passe exactement ?"],["3","Demander Ce Qui a Changé","Avez-vous installé/changé quelque chose avant le problème ?"],["4","Vérifier les Causes Simples","Alimentation, câble, connexion de base"],["5","Essayer Une Seule Action Sûre","Ne pas faire plusieurs choses ensemble"],["6","Tester","Est-ce que l'action a résolu le problème ?"],["7","Enregistrer le Résultat","Ce qui marche, ce qui ne marche pas"],["8","Escalader Si Nécessaire","Demander de l'aide si vous êtes bloqué"]],
+   trapQ:"Vous avez un petit problème logiciel. La meilleure première réaction est-elle de reconstruire/réinstaller tout le système immédiatement ?",
+   trapWrong:"Oui, tout recommencer règle le problème plus vite",trapRight:"Non, suivre le cycle — s'arrêter, décrire le symptôme, demander ce qui a changé d'abord",
+   trapWrongFb:"Trop vite ! Une action dramatique comme réinstaller tout le système peut faire perdre vos données sans résoudre le vrai problème.",
+   trapRightFb:"Exact ! Suivez le cycle étape par étape — souvent une action simple résout le problème sans gros risque.",
+   welcome:"Cliquez sur chaque étape du cycle de résolution de problèmes.",
+   done:"Vous connaissez maintenant le cycle de résolution de problèmes en 8 étapes de Jamezzi, et à ne pas vous précipiter avant de le suivre."},
+ en:{lead:"Jamezzi has an 8-step troubleshooting loop you can use for any technical problem. Click each step.",
+   objs:["Click the 8 steps in the loop","Recognize not to rush into a big action before following the steps"],
+   steps:[["1","Stop and Read","Don't panic, read the message/screen carefully"],["2","Describe the Exact Symptom","What exactly is happening?"],["3","Ask What Changed","Did you install/change something before the problem?"],["4","Check Simple Causes","Power, cable, basic connection"],["5","Try One Safe Action","Don't do several things at once"],["6","Test","Did the action fix the problem?"],["7","Record the Result","What worked, what didn't"],["8","Escalate If Needed","Ask for help if you're stuck"]],
+   trapQ:"You have a small software problem. Is the best first reaction to rebuild/reinstall the whole system immediately?",
+   trapWrong:"Yes, starting over fixes it faster",trapRight:"No, follow the loop — stop, describe the symptom, ask what changed first",
+   trapWrongFb:"Too fast! A dramatic action like reinstalling the whole system can lose your data without solving the real problem.",
+   trapRightFb:"Exactly! Follow the loop step by step — often a simple action solves the problem without big risk.",
+   welcome:"Click each step in the troubleshooting loop.",
+   done:"Now you know Jamezzi's 8-step troubleshooting loop, and not to rush into a big action before following it."}},
+2:{ht:{lead:"Rekòmanse, Etenn, Dòmi, ak Fòse Fèmen se 4 aksyon diferan. Klike sou chak pou aprann kilè pou itilize l.",
+   objs:["Klike sou 4 aksyon yo","Rekonèt pa kenbe bouton pouvwa a sòf si nesesè"],
+   items:[["🔄","Rekòmanse","Etenn epi relimen — bon lè yon bagay pa mache byen"],["⏻","Etenn","Fèmen konplètman — bon lè ou pa pral itilize l pou yon bon bout tan"],["🌙","Dòmi","Ekonomize batri san fèmen aplikasyon yo — bon pou yon ti tan"],["🛑","Fòse Fèmen","Fèmen yon sèl aplikasyon ki bloke — pa tout sistèm nan"]],
+   trapQ:"Yon aplikasyon bloke. Ou ta dwe kenbe bouton pouvwa a pou etenn tout òdinatè a imedyatman?",
+   trapWrong:"Wi, kenbe bouton pouvwa a se pi rapid",trapRight:"Non, eseye Fòse Fèmen aplikasyon an sèlman anvan, evite kenbe bouton pouvwa a sòf si nesesè",
+   trapWrongFb:"Riske! Kenbe bouton pouvwa a etenn tout sistèm nan brital — sa ka domaje fichye ou pa t sovgade. Eseye Fòse Fèmen SÈLMAN aplikasyon ki bloke a anvan.",
+   trapRightFb:"Egzat! Fòse Fèmen yon sèl aplikasyon pi an sekirite pase etenn tout sistèm nan brital ak bouton pouvwa a.",
+   welcome:"Klike sou chak aksyon pou aprann kilè pou itilize l.",
+   done:"Ou konnen kounye a diferans ant rekòmanse, etenn, dòmi, ak fòse fèmen, epi pou evite kenbe bouton pouvwa a."},
+ fr:{lead:"Redémarrer, Éteindre, Veille, et Forcer à Quitter sont 4 actions différentes. Cliquez sur chacune pour apprendre quand l'utiliser.",
+   objs:["Cliquer sur les 4 actions","Reconnaître à ne pas tenir le bouton d'alimentation sauf si nécessaire"],
+   items:[["🔄","Redémarrer","Éteindre puis rallumer — bon quand quelque chose ne marche pas bien"],["⏻","Éteindre","Fermer complètement — bon quand vous n'allez pas l'utiliser pendant un bon moment"],["🌙","Veille","Économise la batterie sans fermer les applications — bon pour un court moment"],["🛑","Forcer à Quitter","Fermer une seule application bloquée — pas tout le système"]],
+   trapQ:"Une application est bloquée. Devriez-vous tenir le bouton d'alimentation pour éteindre tout l'ordinateur immédiatement ?",
+   trapWrong:"Oui, tenir le bouton d'alimentation est plus rapide",trapRight:"Non, essayez d'abord de Forcer à Quitter seulement cette application, évitez de tenir le bouton d'alimentation sauf si nécessaire",
+   trapWrongFb:"Risqué ! Tenir le bouton d'alimentation éteint tout le système brutalement — cela peut endommager des fichiers non sauvegardés. Essayez d'abord de Forcer à Quitter SEULEMENT l'application bloquée.",
+   trapRightFb:"Exact ! Forcer à Quitter une seule application est plus sûr qu'éteindre tout le système brutalement avec le bouton d'alimentation.",
+   welcome:"Cliquez sur chaque action pour apprendre quand l'utiliser.",
+   done:"Vous connaissez maintenant la différence entre redémarrer, éteindre, veille, et forcer à quitter, et à éviter de tenir le bouton d'alimentation."},
+ en:{lead:"Restart, Shut Down, Sleep, and Force Quit are 4 different actions. Click each to learn when to use it.",
+   objs:["Click the 4 actions","Recognize not to hold the power button unless necessary"],
+   items:[["🔄","Restart","Turn off then back on — good when something isn't working right"],["⏻","Shut Down","Close completely — good when you won't use it for a good while"],["🌙","Sleep","Saves battery without closing apps — good for a short time"],["🛑","Force Quit","Close a single stuck app — not the whole system"]],
+   trapQ:"An application is frozen. Should you hold the power button to shut down the whole computer immediately?",
+   trapWrong:"Yes, holding the power button is faster",trapRight:"No, try Force Quit on just that app first, avoid holding the power button unless necessary",
+   trapWrongFb:"Risky! Holding the power button shuts down the whole system abruptly — this can damage unsaved files. Try Force Quit on ONLY the stuck app first.",
+   trapRightFb:"Exactly! Force Quitting a single app is safer than shutting down the whole system abruptly with the power button.",
+   welcome:"Click each action to learn when to use it.",
+   done:"Now you know the difference between restart, shut down, sleep, and force quit, and to avoid holding the power button."}},
+3:{ht:{lead:"Yon aplikasyon bloke pa mande fèmen tout sistèm nan. Swiv yon sekans senp pou yon sèl aplikasyon.",
+   objs:["Swiv sekans lan pou yon sèl aplikasyon bloke","Rekonèt pa fèmen TOUT SISTÈM nan pou yon sèl aplikasyon bloke"],
+   steps:[["Tann","Ba l kèk segonn — li ka jis lan"],["Tcheke Yon Sèl Aplikasyon","Èske se sèlman youn ki bloke, oswa tout sistèm nan?"],["Fòse Fèmen","Fèmen sèlman aplikasyon ki bloke a"],["Re-louvri","Louvri aplikasyon an ankò"],["Mete Ajou","Verifye si gen yon mizajou disponib"]],
+   trapQ:"Yon SÈL aplikasyon bloke, tout lòt bagay mache byen. Ou ta dwe rekòmanse TOUT ÒDINATÈ a?",
+   trapWrong:"Wi, rekòmanse tout bagay pou asire l rezoud",trapRight:"Non, fòse fèmen SÈLMAN aplikasyon ki bloke a — pa gen rezon rekòmanse tout sistèm nan",
+   trapWrongFb:"Pa nesesè! Si se sèlman yon aplikasyon ki bloke, rekòmanse tout sistèm nan pèdi tan san rezon — fòse fèmen yon sèl aplikasyon ase.",
+   trapRightFb:"Egzat! Rezoud sèlman sa ki bloke a — pa gen rezon fèmen tout lòt bagay ki mache byen.",
+   welcome:"Klike sou chak etap nan sekans lan, apre reponn kesyon an.",
+   done:"Ou konnen kounye a yon sekans senp pou yon sèl aplikasyon bloke, san bezwen rekòmanse tout sistèm nan."},
+ fr:{lead:"Une application bloquée ne demande pas de fermer tout le système. Suivez une séquence simple pour une seule application.",
+   objs:["Suivre la séquence pour une seule application bloquée","Reconnaître à ne pas fermer TOUT LE SYSTÈME pour une seule application bloquée"],
+   steps:[["Attendre","Donnez-lui quelques secondes — elle est peut-être juste lente"],["Vérifier Une Seule Application","Est-ce seulement celle-là qui est bloquée, ou tout le système ?"],["Forcer à Quitter","Fermez seulement l'application bloquée"],["Rouvrir","Ouvrez l'application à nouveau"],["Mettre à Jour","Vérifiez si une mise à jour est disponible"]],
+   trapQ:"UNE SEULE application est bloquée, tout le reste fonctionne bien. Devriez-vous redémarrer TOUT L'ORDINATEUR ?",
+   trapWrong:"Oui, tout redémarrer pour être sûr que ça résout le problème",trapRight:"Non, forcez à quitter SEULEMENT l'application bloquée — pas de raison de redémarrer tout le système",
+   trapWrongFb:"Pas nécessaire ! Si une seule application est bloquée, redémarrer tout le système fait perdre du temps sans raison — forcer à quitter une seule application suffit.",
+   trapRightFb:"Exact ! Résolvez seulement ce qui est bloqué — pas de raison de fermer tout le reste qui fonctionne bien.",
+   welcome:"Cliquez sur chaque étape de la séquence, puis répondez à la question.",
+   done:"Vous connaissez maintenant une séquence simple pour une seule application bloquée, sans avoir besoin de redémarrer tout le système."},
+ en:{lead:"A frozen application doesn't require closing the whole system. Follow a simple sequence for one app.",
+   objs:["Follow the sequence for a single frozen app","Recognize not to close the WHOLE SYSTEM for one frozen app"],
+   steps:[["Wait","Give it a few seconds — it might just be slow"],["Check Just One App","Is it only this one that's stuck, or the whole system?"],["Force Quit","Close only the stuck application"],["Reopen","Open the application again"],["Update","Check if an update is available"]],
+   trapQ:"ONE app is frozen, everything else works fine. Should you restart the WHOLE COMPUTER?",
+   trapWrong:"Yes, restart everything to make sure it's fixed",trapRight:"No, force quit ONLY the frozen app — no reason to restart the whole system",
+   trapWrongFb:"Not necessary! If only one app is stuck, restarting the whole system wastes time for no reason — force quitting just one app is enough.",
+   trapRightFb:"Exactly! Only fix what's stuck — no reason to close everything else that's working fine.",
+   welcome:"Click each step in the sequence, then answer the question.",
+   done:"Now you know a simple sequence for a single frozen app, without needing to restart the whole system."}},
+4:{ht:{lead:"Yon òdinatè lan gen plizyè kòz posib. Egzamine chak youn.",
+   objs:["Egzamine 4 kòz yon òdinatè lan","Rekonèt yon app 'netwayaj mirak' pa yon solisyon reyèl"],
+   items:[["🚀","Twòp Aplikasyon nan Demaraj","Aplikasyon ki louvri otomatikman lè ou limen òdinatè a"],["📑","Twòp Onglè/App Louvri","Chak onglè/aplikasyon itilize memwa"],["💾","Estokaj Ba","Mwens pase 10-15% espas lib ka lan tout sistèm nan"],["🌡️","Twòp Chalè","Vantilatè ki bloke oswa anviwònman cho ka lan pwosesè a"]],
+   trapQ:"Yon app ki pwomèt 'netwaye òdinatè ou nèt epi fè l 10 fwa pi rapid' se yon bon solisyon pou yon òdinatè lan?",
+   trapWrong:"Wi, app 'netwayaj mirak' konsa toujou mache",trapRight:"Non, pwomès konsa pa reyalis — yo souvan enstale plis pwoblèm pase sa yo rezoud",
+   trapWrongFb:"Danjere! App ki fè pwomès egzajere ('10 fwa pi rapid') souvan se lojisyèl endezirab oswa malveyan kache kòm yon 'solisyon'.",
+   trapRightFb:"Egzat! Rele sou konsèy reyèl (fèmen app demaraj initil, efase fichye initil, mete ajou) olye app 'mirak' ki fè pwomès pa reyalis.",
+   welcome:"Klike sou chak kòz yon òdinatè lan, apre reponn kesyon an sou app netwayaj.",
+   done:"Ou konnen kounye a 4 kòz komen yon òdinatè lan, epi pou evite app 'netwayaj mirak' ki fè pwomès pa reyalis."},
+ fr:{lead:"Un ordinateur lent a plusieurs causes possibles. Examinez chacune.",
+   objs:["Examiner 4 causes d'un ordinateur lent","Reconnaître qu'une application « nettoyage miracle » n'est pas une vraie solution"],
+   items:[["🚀","Trop d'Applications au Démarrage","Applications qui s'ouvrent automatiquement quand vous allumez l'ordinateur"],["📑","Trop d'Onglets/Applications Ouverts","Chaque onglet/application utilise de la mémoire"],["💾","Stockage Faible","Moins de 10-15% d'espace libre peut ralentir tout le système"],["🌡️","Trop de Chaleur","Un ventilateur bloqué ou un environnement chaud peut ralentir le processeur"]],
+   trapQ:"Une application qui promet de « nettoyer complètement votre ordinateur et le rendre 10 fois plus rapide » est une bonne solution pour un ordinateur lent ?",
+   trapWrong:"Oui, ce genre d'app « nettoyage miracle » marche toujours",trapRight:"Non, ce genre de promesse n'est pas réaliste — elles installent souvent plus de problèmes qu'elles n'en résolvent",
+   trapWrongFb:"Dangereux ! Les applications qui font des promesses exagérées (« 10 fois plus rapide ») sont souvent des logiciels indésirables ou des logiciels malveillants cachés comme une « solution ».",
+   trapRightFb:"Exact ! Fiez-vous à de vrais conseils (fermer les apps de démarrage inutiles, supprimer les fichiers inutiles, mettre à jour) plutôt qu'à une app « miracle » qui fait des promesses irréalistes.",
+   welcome:"Cliquez sur chaque cause d'un ordinateur lent, puis répondez à la question sur l'app de nettoyage.",
+   done:"Vous connaissez maintenant 4 causes courantes d'un ordinateur lent, et à éviter les apps « nettoyage miracle » aux promesses irréalistes."},
+ en:{lead:"A slow computer has several possible causes. Examine each one.",
+   objs:["Examine 4 causes of a slow computer","Recognize a 'miracle cleaner' app isn't a real solution"],
+   items:[["🚀","Too Many Startup Apps","Apps that open automatically when you turn on the computer"],["📑","Too Many Tabs/Apps Open","Each tab/app uses memory"],["💾","Low Storage","Less than 10-15% free space can slow the whole system"],["🌡️","Too Much Heat","A blocked fan or hot environment can slow the processor"]],
+   trapQ:"An app that promises to 'completely clean your computer and make it 10x faster' is a good solution for a slow computer?",
+   trapWrong:"Yes, that kind of 'miracle cleaner' app always works",trapRight:"No, that kind of promise isn't realistic — they often install more problems than they solve",
+   trapWrongFb:"Risky! Apps that make exaggerated promises ('10x faster') are often unwanted software or malware hidden as a 'solution.'",
+   trapRightFb:"Exactly! Rely on real tips (closing unnecessary startup apps, deleting unnecessary files, updating) rather than a 'miracle' app making unrealistic promises.",
+   welcome:"Click each cause of a slow computer, then answer the question about the cleaner app.",
+   done:"Now you know 4 common causes of a slow computer, and to avoid 'miracle cleaner' apps with unrealistic promises."}},
+5:{ht:{lead:"Lè entènèt pa mache, tcheke chak nivo youn apre lòt: aparèy, routè, founisè, sit web.",
+   objs:["Swiv tès 4 nivo yo","Rekonèt ikòn Wi-Fi 'konekte' pa prèv entènèt ap mache"],
+   layers:[["📱","Aparèy Ou","Èske Wi-Fi aktive sou aparèy ou?"],["📡","Routè","Èske limyè routè a nòmal?"],["🏢","Founisè","Èske gen yon pàn sèvis lakay founisè a?"],["🌐","Sit Web","Èske se sit sa a sèlman ki pa reponn, oswa tout sit?"]],
+   trapQ:"Ikòn Wi-Fi ou montre 'konekte'. Sa se prèv antènèt ap mache vre?",
+   trapWrong:"Wi, ikòn 'konekte' vle di entènèt ap mache",trapRight:"Non, ikòn Wi-Fi 'konekte' sèlman vle di ou konekte ak routè a — pa garanti entènèt limenm ap mache",
+   trapWrongFb:"Pa vre! Ou ka 'konekte' ak routè a men routè a limenm ka pa gen aksè entènèt (pàn founisè, elatriye). Ikòn nan sèlman montre koneksyon lokal la.",
+   trapRightFb:"Egzat! Toujou teste yon sit web reyèl pou konfime entènèt ap mache, pa fè konfyans sèlman nan ikòn Wi-Fi a.",
+   welcome:"Klike sou chak nivo tès, apre reponn kesyon an sou ikòn Wi-Fi.",
+   done:"Ou konnen kounye a kijan pou tcheke chak nivo lè pa gen entènèt, epi ikòn Wi-Fi pa yon prèv total."},
+ fr:{lead:"Quand internet ne marche pas, vérifiez chaque niveau un par un : appareil, routeur, fournisseur, site web.",
+   objs:["Suivre le test à 4 niveaux","Reconnaître que l'icône Wi-Fi « connecté » n'est pas une preuve qu'internet fonctionne"],
+   layers:[["📱","Votre Appareil","Le Wi-Fi est-il activé sur votre appareil ?"],["📡","Routeur","Les voyants du routeur sont-ils normaux ?"],["🏢","Fournisseur","Y a-t-il une panne de service chez le fournisseur ?"],["🌐","Site Web","Est-ce seulement ce site qui ne répond pas, ou tous les sites ?"]],
+   trapQ:"Votre icône Wi-Fi montre « connecté ». Est-ce la preuve qu'internet fonctionne vraiment ?",
+   trapWrong:"Oui, l'icône « connecté » veut dire qu'internet fonctionne",trapRight:"Non, l'icône Wi-Fi « connecté » veut seulement dire que vous êtes connecté au routeur — ça ne garantit pas qu'internet lui-même fonctionne",
+   trapWrongFb:"Pas vrai ! Vous pouvez être « connecté » au routeur mais le routeur lui-même peut ne pas avoir accès à internet (panne du fournisseur, etc.). L'icône montre seulement la connexion locale.",
+   trapRightFb:"Exact ! Testez toujours un vrai site web pour confirmer qu'internet fonctionne, ne faites pas seulement confiance à l'icône Wi-Fi.",
+   welcome:"Cliquez sur chaque niveau de test, puis répondez à la question sur l'icône Wi-Fi.",
+   done:"Vous savez maintenant vérifier chaque niveau quand il n'y a pas d'internet, et que l'icône Wi-Fi n'est pas une preuve totale."},
+ en:{lead:"When the internet doesn't work, check each layer one by one: device, router, provider, website.",
+   objs:["Follow the 4-layer test","Recognize the Wi-Fi 'connected' icon isn't proof the internet is working"],
+   layers:[["📱","Your Device","Is Wi-Fi turned on on your device?"],["📡","Router","Are the router's lights normal?"],["🏢","Provider","Is there a service outage at the provider?"],["🌐","Website","Is it just this site not responding, or all sites?"]],
+   trapQ:"Your Wi-Fi icon shows 'connected.' Is that proof the internet is really working?",
+   trapWrong:"Yes, the 'connected' icon means the internet is working",trapRight:"No, the Wi-Fi 'connected' icon only means you're connected to the router — it doesn't guarantee the internet itself works",
+   trapWrongFb:"Not true! You can be 'connected' to the router but the router itself might not have internet access (provider outage, etc.). The icon only shows the local connection.",
+   trapRightFb:"Exactly! Always test a real website to confirm the internet is working, don't just trust the Wi-Fi icon.",
+   welcome:"Click each test layer, then answer the question about the Wi-Fi icon.",
+   done:"Now you know how to check each layer when there's no internet, and that the Wi-Fi icon isn't total proof."}},
+6:{ht:{lead:"Pa gen son, kamera, oswa mikwofòn gen anpil kòz senp anvan ou konkli materyèl la kraze. Tcheke yo youn pa youn.",
+   objs:["Tcheke 4 kòz senp yo","Rekonèt yon 'kamera kraze' ka jis yon vòlè fizik ki fèmen"],
+   items:[["🔇","An Silans (Mute)","Èske son/mikwofòn an silans?"],["🔊","Volim","Èske volim la ba twòp?"],["🎚️","Aparèy Chwazi","Èske bon kamera/mikwofòn/opalè chwazi nan paramèt yo?"],["🔒","Vòlè Fizik/Pèmisyon","Èske gen yon vòlè fizik fèmen sou kamera a, oswa yon pèmisyon refize?"]],
+   trapQ:"Kamera ou pa montre anyen. Sa vle di materyèl kamera a definitivman kraze?",
+   trapWrong:"Wi, si kamera a pa montre anyen, li kraze",trapRight:"Non, tcheke dabò si gen yon vòlè fizik fèmen oswa yon pèmisyon ki refize",
+   trapWrongFb:"Twòp vit! Anpil laptop gen yon vòlè fizik ki ka fèmen kamera a pou rezon vi prive — sa sanble ak yon kamera kraze men se pa sa.",
+   trapRightFb:"Egzat! Tcheke kòz senp yo (vòlè fizik, pèmisyon) anvan ou konkli materyèl la kraze.",
+   welcome:"Klike sou chak kòz senp, apre reponn kesyon an sou kamera a.",
+   done:"Ou konnen kounye a 4 kòz senp pou tcheke anvan ou konkli materyèl la kraze."},
+ fr:{lead:"Pas de son, caméra, ou microphone a beaucoup de causes simples avant de conclure que le matériel est cassé. Vérifiez-les une par une.",
+   objs:["Vérifier 4 causes simples","Reconnaître qu'une « caméra cassée » peut être juste un cache physique fermé"],
+   items:[["🔇","En Sourdine","Le son/microphone est-il en sourdine ?"],["🔊","Volume","Le volume est-il trop bas ?"],["🎚️","Appareil Sélectionné","Est-ce que la bonne caméra/microphone/haut-parleur est sélectionné dans les paramètres ?"],["🔒","Cache Physique/Permission","Y a-t-il un cache physique fermé sur la caméra, ou une permission refusée ?"]],
+   trapQ:"Votre caméra ne montre rien. Est-ce que ça veut dire que le matériel de la caméra est définitivement cassé ?",
+   trapWrong:"Oui, si la caméra ne montre rien, elle est cassée",trapRight:"Non, vérifiez d'abord s'il y a un cache physique fermé ou une permission refusée",
+   trapWrongFb:"Trop vite ! Beaucoup de portables ont un cache physique qui peut fermer la caméra pour des raisons de vie privée — ça ressemble à une caméra cassée mais ce n'en est pas une.",
+   trapRightFb:"Exact ! Vérifiez les causes simples (cache physique, permission) avant de conclure que le matériel est cassé.",
+   welcome:"Cliquez sur chaque cause simple, puis répondez à la question sur la caméra.",
+   done:"Vous connaissez maintenant 4 causes simples à vérifier avant de conclure que le matériel est cassé."},
+ en:{lead:"No sound, camera, or microphone has many simple causes before concluding the hardware is broken. Check them one by one.",
+   objs:["Check 4 simple causes","Recognize a 'broken camera' can just be a closed physical shutter"],
+   items:[["🔇","Muted","Is the sound/microphone muted?"],["🔊","Volume","Is the volume too low?"],["🎚️","Selected Device","Is the right camera/microphone/speaker selected in settings?"],["🔒","Physical Shutter/Permission","Is there a closed physical shutter on the camera, or a denied permission?"]],
+   trapQ:"Your camera shows nothing. Does that mean the camera hardware is definitely broken?",
+   trapWrong:"Yes, if the camera shows nothing, it's broken",trapRight:"No, check first whether there's a closed physical shutter or a denied permission",
+   trapWrongFb:"Too fast! Many laptops have a physical shutter that can close the camera for privacy reasons — it looks like a broken camera but isn't.",
+   trapRightFb:"Exactly! Check simple causes (physical shutter, permission) before concluding the hardware is broken.",
+   welcome:"Click each simple cause, then answer the question about the camera.",
+   done:"Now you know 4 simple causes to check before concluding the hardware is broken."}},
+7:{ht:{lead:"Pwoblèm enprimant gen yon lis kòz senp pou tcheke anvan ou fè yon gwo entèvansyon.",
+   objs:["Tcheke 4 kòz senp yon pwoblèm enprimant","Rekonèt pa retire/re-ajoute enprimant an san yon moun gide ou"],
+   items:[["🔌","Kouran ak Koneksyon","Èske enprimant an limen ak byen konekte?"],["🖨️","Bon Enprimant Chwazi","Si gen plizyè enprimant, èske bon youn chwazi?"],["📋","Fil Datant","Èske gen yon travay ki bloke fil la?"],["📄","Papye ak Lank","Èske gen ase papye ak lank/toner?"]],
+   trapQ:"Enprimant ou pa mache. Ou ta dwe retire epi re-ajoute enprimant an nan sistèm nan san gid pou eseye rezoud l pi vit?",
+   trapWrong:"Wi, retire/re-ajoute l touswit",trapRight:"Non, tcheke kòz senp yo dabò, retire/re-ajoute sèlman si yon moun gide ou fè sa",
+   trapWrongFb:"Riske! Retire/re-ajoute yon enprimant san gid ka konfonn dirvè yo epi kreye plis pwoblèm pase sa ou te genyen an.",
+   trapRightFb:"Egzat! Tcheke kouran, koneksyon, fil datant, ak papye/lank dabò — se pi souvan kòz reyèl la.",
+   welcome:"Klike sou chak kòz senp, apre reponn kesyon an sou retire/re-ajoute enprimant an.",
+   done:"Ou konnen kounye a 4 kòz senp pou tcheke pou yon pwoblèm enprimant, epi pou pa retire/re-ajoute san gid."},
+ fr:{lead:"Les problèmes d'imprimante ont une liste de causes simples à vérifier avant une grosse intervention.",
+   objs:["Vérifier 4 causes simples d'un problème d'imprimante","Reconnaître à ne pas retirer/rajouter l'imprimante sans qu'on vous guide"],
+   items:[["🔌","Alimentation et Connexion","L'imprimante est-elle allumée et bien connectée ?"],["🖨️","Bonne Imprimante Sélectionnée","S'il y a plusieurs imprimantes, la bonne est-elle sélectionnée ?"],["📋","File d'Attente","Y a-t-il un travail qui bloque la file ?"],["📄","Papier et Encre","Y a-t-il assez de papier et d'encre/toner ?"]],
+   trapQ:"Votre imprimante ne fonctionne pas. Devriez-vous retirer puis rajouter l'imprimante dans le système sans guide pour essayer de résoudre ça plus vite ?",
+   trapWrong:"Oui, retirer/rajouter tout de suite",trapRight:"Non, vérifiez d'abord les causes simples, retirez/rajoutez seulement si quelqu'un vous guide",
+   trapWrongFb:"Risqué ! Retirer/rajouter une imprimante sans guide peut embrouiller les pilotes et créer plus de problèmes que vous n'en aviez.",
+   trapRightFb:"Exact ! Vérifiez d'abord l'alimentation, la connexion, la file d'attente, et le papier/encre — c'est le plus souvent la vraie cause.",
+   welcome:"Cliquez sur chaque cause simple, puis répondez à la question sur retirer/rajouter l'imprimante.",
+   done:"Vous connaissez maintenant 4 causes simples à vérifier pour un problème d'imprimante, et à ne pas retirer/rajouter sans guide."},
+ en:{lead:"Printer problems have a list of simple causes to check before a big intervention.",
+   objs:["Check 4 simple causes of a printer problem","Recognize not to remove/re-add the printer without being guided"],
+   items:[["🔌","Power and Connection","Is the printer turned on and properly connected?"],["🖨️","Correct Printer Selected","If there are several printers, is the right one selected?"],["📋","Queue","Is there a job blocking the queue?"],["📄","Paper and Ink","Is there enough paper and ink/toner?"]],
+   trapQ:"Your printer isn't working. Should you remove then re-add the printer in the system without guidance to try to fix it faster?",
+   trapWrong:"Yes, remove/re-add it right away",trapRight:"No, check simple causes first, remove/re-add only if someone guides you to do so",
+   trapWrongFb:"Risky! Removing/re-adding a printer without guidance can confuse the drivers and create more problems than you had.",
+   trapRightFb:"Exactly! Check power, connection, queue, and paper/ink first — that's most often the real cause.",
+   welcome:"Click each simple cause, then answer the question about removing/re-adding the printer.",
+   done:"Now you know 4 simple causes to check for a printer problem, and not to remove/re-add without guidance."}},
+8:{ht:{lead:"Lè estokaj plen, gen yon sekans senp pou libere espas — men gen yon fichye ou PA janm dwe touche.",
+   objs:["Netwaye 3 kategori ki san danje","Rekonèt yon dosye sistèm ou PA janm dwe efase"],
+   safe:[["Downloads","2.1 GB — souvan gen fichye ou pa bezwen ankò"],["Doub Fichye","800 MB — kopi initil"],["Ansyen Enstalè","1.5 GB — fichye enstalasyon ou deja itilize"]],
+   dangerItem:"Windows (Dosye Sistèm)",
+   cleanFb:"Byen fèt! Yon kategori san danje pou netwaye.",
+   trapFb:"PA TOUCHE sa a! Dosye 'Windows' se yon dosye SISTÈM — efase l ka kraze òdinatè a nèt.",
+   welcome:"Klike sou kategori ou panse san danje pou netwaye — men fè atansyon, gen yon pyèj.",
+   done:"Ou netwaye 3 kategori san danje, epi ou rekonèt yon dosye sistèm ou pa janm dwe touche."},
+ fr:{lead:"Quand le stockage est plein, il y a une séquence simple pour libérer de l'espace — mais il y a un fichier que vous ne devez JAMAIS toucher.",
+   objs:["Nettoyer 3 catégories sûres","Reconnaître un dossier système que vous ne devez JAMAIS supprimer"],
+   safe:[["Téléchargements","2,1 Go — souvent des fichiers dont vous n'avez plus besoin"],["Fichiers en Double","800 Mo — copies inutiles"],["Anciens Installateurs","1,5 Go — fichiers d'installation déjà utilisés"]],
+   dangerItem:"Windows (Dossier Système)",
+   cleanFb:"Bien joué ! Une catégorie sûre à nettoyer.",
+   trapFb:"NE TOUCHEZ PAS à ça ! Le dossier « Windows » est un dossier SYSTÈME — le supprimer peut complètement casser l'ordinateur.",
+   welcome:"Cliquez sur les catégories que vous pensez sûres à nettoyer — mais attention, il y a un piège.",
+   done:"Vous avez nettoyé 3 catégories sûres, et vous reconnaissez un dossier système que vous ne devez jamais toucher."},
+ en:{lead:"When storage is full, there's a simple sequence to free up space — but there's one file you must NEVER touch.",
+   objs:["Clean up 3 safe categories","Recognize a system folder you must NEVER delete"],
+   safe:[["Downloads","2.1 GB — often files you no longer need"],["Duplicate Files","800 MB — unnecessary copies"],["Old Installers","1.5 GB — installation files already used"]],
+   dangerItem:"Windows (System Folder)",
+   cleanFb:"Good choice! A safe category to clean up.",
+   trapFb:"DON'T TOUCH that! The 'Windows' folder is a SYSTEM folder — deleting it can completely break the computer.",
+   welcome:"Click the categories you think are safe to clean up — but watch out, there's a trap.",
+   done:"You cleaned up 3 safe categories, and you recognize a system folder you must never touch."}},
+9:{ht:{lead:"Yon woutin antretyen senp kenbe òdinatè ou an bon sante. Sovgade AVAN yon gwo mizajou.",
+   objs:["Konplete woutin antretyen 3 etap yo","Rekonèt pou sovgade anvan yon gwo mizajou"],
+   steps:["Sovgade Fichye Enpòtan","Mete Ajou Sistèm ak Aplikasyon","Rekòmanse Òdinatè a"],
+   stepFb:"Byen fèt! Yon etap enpòtan nan woutin antretyen an.",
+   trapQ:"Ou pral fè yon GWO mizajou sistèm. Ou ka fè l san sovgade fichye ou anvan?",
+   trapWrong:"Wi, mizajou pa janm gen risk",trapRight:"Non, toujou sovgade fichye enpòtan yo anvan yon gwo mizajou",
+   trapWrongFb:"Riske! Gwo mizajou ka pafwa gen pwoblèm ki mennen nan pèt done — toujou sovgade anvan.",
+   trapRightFb:"Egzat! Sovgade anvan yon gwo mizajou se yon règ debaz enpòtan.",
+   welcome:"Klike sou chak etap nan woutin antretyen an, apre reponn kesyon an.",
+   done:"Ou konnen kounye a yon woutin antretyen debaz, epi pou sovgade anvan yon gwo mizajou."},
+ fr:{lead:"Une routine d'entretien simple garde votre ordinateur en bonne santé. Sauvegardez AVANT une grosse mise à jour.",
+   objs:["Compléter la routine d'entretien en 3 étapes","Reconnaître à sauvegarder avant une grosse mise à jour"],
+   steps:["Sauvegarder les Fichiers Importants","Mettre à Jour le Système et les Applications","Redémarrer l'Ordinateur"],
+   stepFb:"Bien joué ! Une étape importante de la routine d'entretien.",
+   trapQ:"Vous allez faire une GROSSE mise à jour système. Pouvez-vous le faire sans sauvegarder vos fichiers avant ?",
+   trapWrong:"Oui, les mises à jour n'ont jamais de risque",trapRight:"Non, sauvegardez toujours les fichiers importants avant une grosse mise à jour",
+   trapWrongFb:"Risqué ! Les grosses mises à jour peuvent parfois avoir des problèmes menant à une perte de données — sauvegardez toujours avant.",
+   trapRightFb:"Exact ! Sauvegarder avant une grosse mise à jour est une règle de base importante.",
+   welcome:"Cliquez sur chaque étape de la routine d'entretien, puis répondez à la question.",
+   done:"Vous connaissez maintenant une routine d'entretien de base, et à sauvegarder avant une grosse mise à jour."},
+ en:{lead:"A simple maintenance routine keeps your computer healthy. Back up BEFORE a major update.",
+   objs:["Complete the 3-step maintenance routine","Recognize to back up before a major update"],
+   steps:["Back Up Important Files","Update System and Applications","Restart the Computer"],
+   stepFb:"Well done! An important step in the maintenance routine.",
+   trapQ:"You're about to do a MAJOR system update. Can you do it without backing up your files first?",
+   trapWrong:"Yes, updates never have risk",trapRight:"No, always back up important files before a major update",
+   trapWrongFb:"Risky! Major updates can sometimes have issues that lead to data loss — always back up first.",
+   trapRightFb:"Exactly! Backing up before a major update is an important basic rule.",
+   welcome:"Click each step in the maintenance routine, then answer the question.",
+   done:"Now you know a basic maintenance routine, and to back up before a major update."}},
+10:{ht:{lead:"Yon mesaj erè ka ede ou jwenn èd si ou li l byen. Egzamine yon mesaj erè.",
+   objs:["Li mesaj erè a byen","Chèche erè egzat la ak kontèks aparèy ou"],
+   errorMsg:"Erè 0x8007045D: Aparèy la pa ka li done a",
+   readBtn:"Li Mesaj la Byen",searchBtn:"Chèche Erè Egzat la + Kontèks Aparèy",
+   readFb:"Ou li nimewo erè a egzakteman: '0x8007045D' — sa itil pou chèche.",
+   searchFb:"Ou chèche 'Erè 0x8007045D Windows 11' (kod la + kontèks aparèy) — sa bay rezilta pi presi pase yon deskripsyon vag.",
+   trapQ:"Yon mesaj erè parèt. Pi bon premye reyaksyon an se fèmen l touswit epi eseye ankò san li l?",
+   trapWrong:"Wi, fèmen l epi eseye ankò san li l",trapRight:"Non, li tèks egzat la anvan ou fè nenpòt lòt bagay",
+   trapWrongFb:"Pa itil! San li mesaj la, ou pèdi enfòmasyon presi ki ta ka ede ou jwenn solisyon an pi vit.",
+   trapRightFb:"Egzat! Toujou li tèks egzat mesaj erè a anvan ou fèmen l — sa gide chèch ou pou èd.",
+   welcome:"Klike 'Li Mesaj la Byen', apre 'Chèche Erè Egzat la', apre reponn kesyon an.",
+   done:"Ou konnen kounye a pou li mesaj erè egzat epi chèche l ak kontèks aparèy ou."},
+ fr:{lead:"Un message d'erreur peut vous aider à obtenir de l'aide si vous le lisez bien. Examinez un message d'erreur.",
+   objs:["Bien lire le message d'erreur","Chercher l'erreur exacte avec le contexte de votre appareil"],
+   errorMsg:"Erreur 0x8007045D : L'appareil ne peut pas lire les données",
+   readBtn:"Bien Lire le Message",searchBtn:"Chercher l'Erreur Exacte + Contexte de l'Appareil",
+   readFb:"Vous lisez le numéro d'erreur exact : « 0x8007045D » — c'est utile pour chercher.",
+   searchFb:"Vous cherchez « Erreur 0x8007045D Windows 11 » (le code + le contexte de l'appareil) — ça donne des résultats plus précis qu'une description vague.",
+   trapQ:"Un message d'erreur apparaît. La meilleure première réaction est-elle de le fermer tout de suite et réessayer sans le lire ?",
+   trapWrong:"Oui, le fermer et réessayer sans le lire",trapRight:"Non, lisez le texte exact avant de faire autre chose",
+   trapWrongFb:"Pas utile ! Sans lire le message, vous perdez des informations précises qui pourraient vous aider à trouver la solution plus vite.",
+   trapRightFb:"Exact ! Lisez toujours le texte exact du message d'erreur avant de le fermer — ça guide votre recherche d'aide.",
+   welcome:"Cliquez « Bien Lire le Message », puis « Chercher l'Erreur Exacte », puis répondez à la question.",
+   done:"Vous savez maintenant lire un message d'erreur exact et le chercher avec le contexte de votre appareil."},
+ en:{lead:"An error message can help you get help if you read it carefully. Examine an error message.",
+   objs:["Read the error message carefully","Search the exact error with your device's context"],
+   errorMsg:"Error 0x8007045D: The device cannot read the data",
+   readBtn:"Read the Message Carefully",searchBtn:"Search the Exact Error + Device Context",
+   readFb:"You read the exact error number: '0x8007045D' — that's useful for searching.",
+   searchFb:"You search 'Error 0x8007045D Windows 11' (the code + device context) — this gives more precise results than a vague description.",
+   trapQ:"An error message appears. Is the best first reaction to close it right away and try again without reading it?",
+   trapWrong:"Yes, close it and try again without reading it",trapRight:"No, read the exact text before doing anything else",
+   trapWrongFb:"Not useful! Without reading the message, you lose precise information that could help you find the solution faster.",
+   trapRightFb:"Exactly! Always read the error message's exact text before closing it — this guides your search for help.",
+   welcome:"Click 'Read the Message Carefully,' then 'Search the Exact Error,' then answer the question.",
+   done:"Now you know to read an exact error message and search it with your device's context."}},
+11:{ht:{lead:"Gen sitiyasyon kote ou dwe sispann epi mande èd pwofesyonèl imedyatman. Egzamine yo.",
+   objs:["Idantifye 4 siy 'sispann imedyatman'","Rekonèt kontinye itilize aparèy la apre siy sa yo se danjere"],
+   items:[["🔋","Batri Anfle","Pa janm kontinye itilize — danje eklate/dife"],["🔥","Odè Boule","Sispann itilize imedyatman"],["💧","Likid Anndan Aparèy la","Etenn epi sispann itilize"],["⚡","Chòk Elektrik Repete","Sispann epi mande èd pwofesyonèl"]],
+   trapQ:"Ou santi yon ti odè boule sou laptop ou men li toujou limen. Ou ka kontinye itilize l pandan ou fini travay ou?",
+   trapWrong:"Wi, fini travay ou anvan ou fè nenpòt bagay",trapRight:"Non, sispann itilize l imedyatman epi mande èd pwofesyonèl",
+   trapWrongFb:"Danjere! Yon odè boule se yon siy sekirite SERYE — kontinye itilize aparèy la ka mennen nan dife oswa domaj pi grav.",
+   trapRightFb:"Egzat! Sispann itilize imedyatman ak mande èd pwofesyonèl se sèl bon repons pou yon odè boule.",
+   welcome:"Klike sou chak siy 'sispann imedyatman', apre reponn kesyon an.",
+   done:"Ou konnen kounye a 4 siy ki mande ou sispann epi mande èd pwofesyonèl imedyatman."},
+ fr:{lead:"Il y a des situations où vous devez vous arrêter et demander de l'aide professionnelle immédiatement. Examinez-les.",
+   objs:["Identifier 4 signes « s'arrêter immédiatement »","Reconnaître que continuer à utiliser l'appareil après ces signes est dangereux"],
+   items:[["🔋","Batterie Gonflée","Ne jamais continuer à utiliser — danger d'éclatement/incendie"],["🔥","Odeur de Brûlé","Arrêter d'utiliser immédiatement"],["💧","Liquide à l'Intérieur de l'Appareil","Éteindre et arrêter d'utiliser"],["⚡","Chocs Électriques Répétés","Arrêter et demander de l'aide professionnelle"]],
+   trapQ:"Vous sentez une légère odeur de brûlé sur votre portable mais il s'allume toujours. Pouvez-vous continuer à l'utiliser pendant que vous finissez votre travail ?",
+   trapWrong:"Oui, finir votre travail avant de faire quoi que ce soit",trapRight:"Non, arrêter d'utiliser immédiatement et demander de l'aide professionnelle",
+   trapWrongFb:"Dangereux ! Une odeur de brûlé est un signe de sécurité SÉRIEUX — continuer à utiliser l'appareil peut mener à un incendie ou des dommages plus graves.",
+   trapRightFb:"Exact ! Arrêter d'utiliser immédiatement et demander de l'aide professionnelle est la seule bonne réponse à une odeur de brûlé.",
+   welcome:"Cliquez sur chaque signe « s'arrêter immédiatement », puis répondez à la question.",
+   done:"Vous connaissez maintenant 4 signes qui demandent de vous arrêter et de demander de l'aide professionnelle immédiatement."},
+ en:{lead:"There are situations where you must stop and seek professional help immediately. Examine them.",
+   objs:["Identify 4 'stop immediately' signs","Recognize that continuing to use the device after these signs is dangerous"],
+   items:[["🔋","Swollen Battery","Never keep using it — danger of bursting/fire"],["🔥","Burning Smell","Stop using it immediately"],["💧","Liquid Inside the Device","Turn off and stop using it"],["⚡","Repeated Electrical Shocks","Stop and seek professional help"]],
+   trapQ:"You smell a slight burning odor from your laptop but it still turns on. Can you keep using it while you finish your work?",
+   trapWrong:"Yes, finish your work before doing anything",trapRight:"No, stop using it immediately and seek professional help",
+   trapWrongFb:"Risky! A burning smell is a SERIOUS safety sign — continuing to use the device can lead to fire or worse damage.",
+   trapRightFb:"Exactly! Stopping use immediately and seeking professional help is the only good response to a burning smell.",
+   welcome:"Click each 'stop immediately' sign, then answer the question.",
+   done:"Now you know 4 signs that require you to stop and seek professional help immediately."}},
+12:{ht:{lead:"Dènye misyon an! Dyagnostike yon senaryo 'pa gen son' pa fè klik san reflechi.",
+   objs:["Anrejistre premye tès san danje","Anrejistre dezyèm tès san danje","Chwazi bon pwen eskalasyon","Konfime ou pa devine san teste"],
+   scenario:"Senaryo: Ou louvri yon apèl videyo, men pèsòn pa tande ou.",
+   test1Btn:"Tès 1: Verifye Si Mikwofòn An Silans",test2Btn:"Tès 2: Verifye Bon Aparèy Chwazi",
+   escalateBtn:"Chwazi Pwen Eskalasyon: Si toude tès yo pa rezoud, mande èd olye eseye plis solisyon o aza",
+   test1Fb:"Tès anrejistre: mikwofòn pa an silans.",
+   test2Fb:"Tès anrejistre: bon aparèy mikwofòn chwazi.",
+   escalateFb:"Egzat! Si tès senp yo pa rezoud pwoblèm nan, pi bon aksyon an se mande èd, pa kontinye eseye solisyon o aza san metòd.",
+   welcome:"Li senaryo a, fè 2 tès san danje, apre chwazi pwen eskalasyon kòrèk la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 13 — ou konnen kounye a kijan pou dyagnostike anvan ou klike san reflechi."},
+ fr:{lead:"Dernière mission ! Diagnostiquez un scénario « pas de son » sans cliquer sans réfléchir.",
+   objs:["Enregistrer le premier test sûr","Enregistrer le deuxième test sûr","Choisir le bon point d'escalade","Confirmer que vous ne devinez pas sans tester"],
+   scenario:"Scénario : Vous ouvrez un appel vidéo, mais personne ne vous entend.",
+   test1Btn:"Test 1 : Vérifier Si le Microphone Est en Sourdine",test2Btn:"Test 2 : Vérifier le Bon Appareil Sélectionné",
+   escalateBtn:"Choisir le Point d'Escalade : Si les deux tests ne résolvent rien, demander de l'aide plutôt que d'essayer plus de solutions au hasard",
+   test1Fb:"Test enregistré : le microphone n'est pas en sourdine.",
+   test2Fb:"Test enregistré : le bon appareil microphone est sélectionné.",
+   escalateFb:"Exact ! Si les tests simples ne résolvent pas le problème, la meilleure action est de demander de l'aide, pas de continuer à essayer des solutions au hasard sans méthode.",
+   welcome:"Lisez le scénario, faites 2 tests sûrs, puis choisissez le bon point d'escalade.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 13 — vous savez maintenant diagnostiquer avant de cliquer sans réfléchir."},
+ en:{lead:"Last mission! Diagnose a 'no sound' scenario without clicking without thinking.",
+   objs:["Record the first safe test","Record the second safe test","Choose the correct escalation point","Confirm you're not guessing without testing"],
+   scenario:"Scenario: You open a video call, but nobody can hear you.",
+   test1Btn:"Test 1: Check If the Microphone Is Muted",test2Btn:"Test 2: Check the Right Device Is Selected",
+   escalateBtn:"Choose the Escalation Point: If both tests don't fix it, ask for help instead of trying more random solutions",
+   test1Fb:"Test recorded: the microphone isn't muted.",
+   test2Fb:"Test recorded: the right microphone device is selected.",
+   escalateFb:"Exactly! If the simple tests don't solve the problem, the best action is to ask for help, not keep trying random solutions with no method.",
+   welcome:"Read the scenario, do 2 safe tests, then choose the correct escalation point.",
+   done:"Congratulations! You completed Module 13's Mission — now you know how to diagnose before clicking without thinking."}},
+};
+
+/* ============ engine ============ */
+const NL=12;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module13-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD13_LESSON_SLUGS=["panse-tankou-yon-moun-ki-rezoud-pwoblem","rekomanse-etenn-domi-ak-fose-femen","yon-aplikasyon-bloke-oswa-lan","yon-odinate-lan","pa-gen-entenet","pa-gen-son-kamera-oswa-mikwofon","pwoblem-enprimant","estokaj-plen-sa-pou-fe","mizajou-ak-woutin-antretyen-debaz","mesaj-ere-ak-jwenn-ed","konnen-kile-pou-sispann","misyon-dyagnostike-anvan-ou-klike"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD13_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule14();
+}
+function injectContinueModule14(){
+ if($("continueModule14"))return;
+ const a=document.createElement("a");a.id="continueModule14";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[13];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===12;
+ let les="";if(active){les='<div class="les">'+M13[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">13.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 13 · 13."+(i+1);$("topTitle").textContent=M13[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 13 · 13.'+(i+1)+'</span><div class="labh2">'+M13[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.steps.map((s,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart" style="font-size:22px;font-weight:800">'+s[0]+'</div><div class="partn">'+s[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.steps[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=8)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(2,d.lead)+'<div class="checklist">'+d.steps.map((s,k)=>'<div class="chip" data-k="'+k+'" style="justify-content:flex-start">'+s[0]+' — '+s[1]+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("sel");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="flow">'+d.layers.map((l,k)=>'<div class="node" data-k="'+k+'"><div class="ni">'+l[0]+'</div><div class="nt">'+l[1]+'</div><div class="nd">'+l[2]+'</div></div>'+(k<3?'<span class="arrow">→</span>':'')).join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".node[data-k]").forEach(n=>n.addEventListener("click",()=>{const k=+n.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;n.classList.add("read");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.cleaned=st.cleaned||{};st.trapSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="checklist">'+
+   d.safe.map((s,k)=>'<div class="chip" data-safe="'+k+'" style="justify-content:flex-start">'+s[0]+' — '+s[1]+'</div>').join("")+
+   '<div class="chip" data-danger="1" style="justify-content:flex-start;border-color:var(--danger)">⚠️ '+d.dangerItem+'</div>'+
+  '</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-safe]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.safe;
+  if(!st.cleaned[k]){st.cleaned[k]=true;c.classList.add("sel");ai(d.cleanFb,"good");if(Object.keys(st.cleaned).length>=3)setObj(0);}}));
+ stage.querySelector(".chip[data-danger]").addEventListener("click",()=>{if(!st.trapSeen){st.trapSeen=true;ai(d.trapFb,"warn");setObj(1);}});
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="checklist">'+d.steps.map((s,k)=>'<div class="chip" data-k="'+k+'" style="justify-content:flex-start">'+s+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("sel");ai(d.stepFb,"good");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.read=false;st.searched=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(9,d.lead)+'<div style="background:#2e2e2e;color:#ff6b6b;font-family:monospace;padding:16px;border-radius:8px;margin-top:16px;max-width:520px">'+d.errorMsg+'</div>'+
+  '<div style="display:flex;gap:10px;margin-top:16px"><button class="btn g" id="readBtn">'+d.readBtn+'</button><button class="btn g" id="searchBtn">'+d.searchBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.read&&st.searched)setObj(0);}
+ $("readBtn").addEventListener("click",()=>{if(!st.read){st.read=true;ai(d.readFb,"neutral");check();}});
+ $("searchBtn").addEventListener("click",()=>{if(!st.searched){st.searched=true;ai(d.searchFb,"good");check();}});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L11(){const d=C[11][S.lang];const st=S.st[10];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(10,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"warn");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L12(){const d=C[12][S.lang];const st=S.st[11];st.test1=false;st.test2=false;st.escalated=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(11,d.lead)+'<div style="font-weight:700;margin-top:14px;max-width:600px">'+d.scenario+'</div>'+
+  '<div style="display:flex;flex-direction:column;gap:10px;margin-top:18px;max-width:520px">'+
+   '<button class="btn g" id="test1Btn">'+d.test1Btn+'</button>'+
+   '<button class="btn g" id="test2Btn">'+d.test2Btn+'</button>'+
+   '<button class="btn p" id="escalateBtn">'+d.escalateBtn+'</button>'+
+  '</div>'+nextBar();
+ wireNext();
+ $("test1Btn").addEventListener("click",()=>{if(st.test1)return;st.test1=true;ai(d.test1Fb,"neutral");setObj(0);});
+ $("test2Btn").addEventListener("click",()=>{if(st.test2)return;st.test2=true;ai(d.test2Fb,"neutral");setObj(1);});
+ $("escalateBtn").addEventListener("click",()=>{if(st.escalated)return;st.escalated=true;ai(d.escalateFb,"good");setObj(2);setObj(3);});
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
