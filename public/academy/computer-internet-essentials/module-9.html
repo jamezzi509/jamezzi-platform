@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 9 — Cloud ak Backup</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+/* generic panel chrome (reused for cloud/backup/share UIs) */
+.panel{width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.ptb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.pbody{padding:16px 18px;background:var(--w-content);min-height:180px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .sub{font-size:12px;color:var(--w-t2)}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}
+.pbar{height:8px;background:#e5e5e5;border-radius:6px;overflow:hidden;margin-top:8px}
+.pbar>span{display:block;height:100%;background:var(--w-accent);transition:width .4s}
+.toggle{width:40px;height:22px;border-radius:12px;background:#c8c8c8;position:relative;cursor:pointer;flex:none;transition:.2s}
+.toggle.on{background:var(--w-accent)}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.toggle.on::after{left:20px}
+.barchart{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.barrow{display:flex;align-items:center;gap:10px;font-size:13px}
+.barrow .bl{width:150px;flex:none}
+.barrow .btrack{flex:1;height:16px;background:#e5e5e5;border-radius:6px;overflow:hidden}
+.barrow .bfill{height:100%;border-radius:6px}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+ .barrow .bl{width:100px;font-size:11.5px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 9 · 9.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 10 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 10 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 10 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M9={ht:["Estokaj Lokal ak Estokaj Cloud","Sync Pa Toujou Yon Backup","Telechaje, Voye, ak Sync","Pataje Yon Fichye oswa Dosye San Danje","Yon Plan Backup Senp","Deplase Fichye Ant Telefòn ak Òdinatè","Òganizasyon ak Backup Foto","Estokaj Plen: Sa Sa Vle Di","Misyon: Pwoteje Fichye Enpòtan Yo"],
+ fr:["Stockage Local et Stockage Cloud","Sync N'est Pas Toujours une Sauvegarde","Télécharger, Envoyer, et Synchroniser","Partager un Fichier ou Dossier en Sécurité","Un Plan de Sauvegarde Simple","Transférer des Fichiers Entre Téléphone et Ordinateur","Organisation et Sauvegarde des Photos","Stockage Plein : Ce Que Ça Veut Dire","Mission : Protéger des Fichiers Importants"],
+ en:["Local Storage and Cloud Storage","Sync Is Not Always Backup","Upload, Download, and Sync","Share a File or Folder Safely","A Simple Backup Plan","Transfer Files Between Phone and Computer","Photo Organization and Backup","Storage Full: What It Means","Module Mission: Protect Important Files"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Estokaj lokal se sou aparèy ou; estokaj cloud se sou entènèt, sou sèvè yon konpayi. Klike sou chak youn.",
+   objs:["Klike sou 2 kalite estokaj","Konprann cloud bezwen entènèt pou aksè"],
+   local:["💻","Estokaj Lokal","Sou disk òdinatè ou menm — aksesib san entènèt"],
+   cloud:["☁️","Estokaj Cloud","Sou sèvè yon konpayi sou entènèt — bezwen kont ak konsyon entènèt"],
+   trapQ:"Ou ka toujou jwenn fichye ki sou cloud menm si pa gen entènèt?",
+   yes:"Wi, cloud toujou aksesib",no:"Non, ou bezwen entènèt pou jwenn fichye cloud (sof si gen kopi lokal)",
+   yesFb:"Pa vre! San entènèt, aparèy ou pa ka rive nan sèvè cloud la — sof si yon kopi lokal/offline te deja telechaje anvan.",
+   noFb:"Egzat! Estokaj cloud mande yon koneksyon entènèt pou ou jwenn fichye yo, sòf si ou te fè yo disponib 'offline' anvan.",
+   welcome:"Klike sou 'Estokaj Lokal' ak 'Estokaj Cloud' pou aprann diferans lan.",
+   done:"Ou konnen kounye a diferans ant estokaj lokal ak cloud, epi cloud bezwen entènèt."},
+ fr:{lead:"Le stockage local est sur votre appareil ; le stockage cloud est sur internet, sur les serveurs d'une entreprise. Cliquez sur chacun.",
+   objs:["Cliquer sur 2 types de stockage","Comprendre que le cloud a besoin d'internet pour y accéder"],
+   local:["💻","Stockage Local","Sur le disque de votre ordinateur — accessible sans internet"],
+   cloud:["☁️","Stockage Cloud","Sur le serveur d'une entreprise sur internet — nécessite un compte et une connexion internet"],
+   trapQ:"Pouvez-vous toujours trouver un fichier sur le cloud même sans internet ?",
+   yes:"Oui, le cloud est toujours accessible",no:"Non, il faut internet pour accéder à un fichier cloud (sauf s'il y a une copie locale)",
+   yesFb:"Pas vrai ! Sans internet, votre appareil ne peut pas atteindre le serveur cloud — sauf si une copie locale/hors-ligne avait déjà été téléchargée avant.",
+   noFb:"Exact ! Le stockage cloud nécessite une connexion internet pour accéder aux fichiers, sauf si vous les avez rendus disponibles « hors ligne » avant.",
+   welcome:"Cliquez sur « Stockage Local » et « Stockage Cloud » pour apprendre la différence.",
+   done:"Vous connaissez maintenant la différence entre stockage local et cloud, et que le cloud a besoin d'internet."},
+ en:{lead:"Local storage is on your device; cloud storage is on the internet, on a company's servers. Click each one.",
+   objs:["Click 2 types of storage","Understand cloud needs internet to access"],
+   local:["💻","Local Storage","On your computer's own disk — accessible without internet"],
+   cloud:["☁️","Cloud Storage","On a company's server on the internet — needs an account and internet connection"],
+   trapQ:"Can you always find a file on the cloud even without internet?",
+   yes:"Yes, the cloud is always accessible",no:"No, you need internet to reach a cloud file (unless there's a local copy)",
+   yesFb:"Not true! Without internet, your device can't reach the cloud server — unless a local/offline copy was already downloaded before.",
+   noFb:"Exactly! Cloud storage needs an internet connection to access files, unless you made them available 'offline' beforehand.",
+   welcome:"Click 'Local Storage' and 'Cloud Storage' to learn the difference.",
+   done:"Now you understand the difference between local and cloud storage, and that cloud needs internet."}},
+2:{ht:{lead:"Sync repwodwi CHANJMAN yo — sa a pa menm bagay ak yon backup. Eseye efase yon fichye ki sync ak cloud pou wè sa k rive.",
+   objs:["Eseye efase yon fichye ki 'sync'","Konprann poukisa sync pa ranplase yon vrè backup"],
+   fileTitle:"Bidjè.xlsx",deleteBtn:"Efase Fichye a (Lokal)",
+   deleteFb:"Fichye a efase LOKALMAN — men paske li 'sync' ak cloud, chanjman sa a (efase a) REPWODWI nan cloud tou. Fichye a disparèt nan toude kote yo.",
+   trapQ:"Si m efase yon fichye ki 'sync' ak cloud, èske li rete an sekirite kanmenm nan cloud la?",
+   trapWrong:"Wi, li toujou la nan cloud",trapRight:"Non, sync repwodwi chanjman yo — efase l yon kote ka efase l tou lòt kote",
+   trapWrongFb:"Pa vre! Sync mache nan toude sans — si ou efase yon fichye lokal, li ka efase nan cloud la tou (sof si gen istorik vèsyon aktive).",
+   trapRightFb:"Egzat! Se pou sa 'Sync Pa Toujou Yon Backup' — yon vrè backup kenbe yon kopi SEPARE ki pa touche lè ou efase orijinal la.",
+   welcome:"Klike 'Efase Fichye a' pou wè sa sync fè.",
+   done:"Ou konprann kounye a: sync pa yon backup — li repwodwi chanjman ou fè, ansanm ak efase aksidan."},
+ fr:{lead:"La synchronisation reproduit les CHANGEMENTS — ce n'est pas la même chose qu'une sauvegarde. Essayez de supprimer un fichier synchronisé avec le cloud pour voir ce qui se passe.",
+   objs:["Essayer de supprimer un fichier synchronisé","Comprendre pourquoi la sync ne remplace pas une vraie sauvegarde"],
+   fileTitle:"Budget.xlsx",deleteBtn:"Supprimer le Fichier (Local)",
+   deleteFb:"Le fichier est supprimé LOCALEMENT — mais parce qu'il est synchronisé avec le cloud, ce changement (la suppression) se REPRODUIT dans le cloud aussi. Le fichier disparaît des deux côtés.",
+   trapQ:"Si je supprime un fichier synchronisé avec le cloud, reste-t-il en sécurité dans le cloud quand même ?",
+   trapWrong:"Oui, il reste toujours dans le cloud",trapRight:"Non, la sync reproduit les changements — le supprimer d'un côté peut le supprimer de l'autre aussi",
+   trapWrongFb:"Pas vrai ! La sync fonctionne dans les deux sens — si vous supprimez un fichier local, il peut être supprimé dans le cloud aussi (sauf si l'historique des versions est activé).",
+   trapRightFb:"Exact ! C'est pourquoi « Sync N'est Pas Toujours une Sauvegarde » — une vraie sauvegarde garde une copie SÉPARÉE qui n'est pas touchée quand vous supprimez l'original.",
+   welcome:"Cliquez « Supprimer le Fichier » pour voir ce que fait la sync.",
+   done:"Vous comprenez maintenant : la sync n'est pas une sauvegarde — elle reproduit vos changements, y compris les suppressions accidentelles."},
+ en:{lead:"Sync reproduces CHANGES — that isn't the same as a backup. Try deleting a file synced with the cloud to see what happens.",
+   objs:["Try deleting a synced file","Understand why sync doesn't replace a real backup"],
+   fileTitle:"Budget.xlsx",deleteBtn:"Delete File (Local)",
+   deleteFb:"The file is deleted LOCALLY — but because it's synced with the cloud, this change (the deletion) REPRODUCES in the cloud too. The file disappears in both places.",
+   trapQ:"If I delete a file synced with the cloud, does it stay safe in the cloud anyway?",
+   trapWrong:"Yes, it always stays in the cloud",trapRight:"No, sync reproduces changes — deleting it one place can delete it the other too",
+   trapWrongFb:"Not true! Sync works both ways — if you delete a local file, it can get deleted in the cloud too (unless version history is enabled).",
+   trapRightFb:"Exactly! That's why 'Sync Is Not Always Backup' — a real backup keeps a SEPARATE copy that isn't touched when you delete the original.",
+   welcome:"Click 'Delete File' to see what sync does.",
+   done:"Now you understand: sync isn't a backup — it reproduces your changes, including accidental deletions."}},
+3:{ht:{lead:"Telechaje, voye, ak sync mande entènèt. San koneksyon, ou pa ka jwenn yon fichye ki sèlman sou cloud.",
+   objs:["Voye epi telechaje yon fichye","Konprann limit aksè san entènèt"],
+   uploadBtn:"Voye Fichye sou Cloud",downloadBtn:"Telechaje Fichye a",
+   uploadFb:"Fichye a voye sou cloud — kounye a li disponib sou lòt aparèy ou konekte yo tou.",
+   downloadFb:"Fichye a telechaje sou aparèy ou a.",
+   trapQ:"Ou pa gen entènèt kounye a. Èske ou ka toujou louvri yon fichye ki sèlman sou cloud (pa gen kopi lokal)?",
+   trapWrong:"Wi, toujou posib san entènèt",trapRight:"Non, ou bezwen entènèt pou jwenn yon fichye ki sèlman sou cloud",
+   trapWrongFb:"Pa vre! San entènèt, aparèy ou pa ka kontakte sèvè cloud la pou jwenn fichye a, sof si li te deja telechaje kòm 'disponib offline'.",
+   trapRightFb:"Egzat! Sa se poukisa fichye ou itilize souvan ta dwe gen yon kopi lokal oswa make 'disponib offline'.",
+   welcome:"Klike 'Voye Fichye' ak 'Telechaje Fichye', apre reponn kesyon an.",
+   done:"Ou konnen kounye a kijan voye/telechaje mache, epi limit aksè san entènèt."},
+ fr:{lead:"Télécharger, envoyer, et synchroniser nécessitent internet. Sans connexion, vous ne pouvez pas accéder à un fichier qui est seulement sur le cloud.",
+   objs:["Envoyer et télécharger un fichier","Comprendre la limite d'accès sans internet"],
+   uploadBtn:"Envoyer le Fichier sur le Cloud",downloadBtn:"Télécharger le Fichier",
+   uploadFb:"Le fichier est envoyé sur le cloud — il est maintenant disponible sur vos autres appareils connectés aussi.",
+   downloadFb:"Le fichier est téléchargé sur votre appareil.",
+   trapQ:"Vous n'avez pas internet en ce moment. Pouvez-vous toujours ouvrir un fichier qui est seulement sur le cloud (pas de copie locale) ?",
+   trapWrong:"Oui, toujours possible sans internet",trapRight:"Non, il faut internet pour accéder à un fichier qui est seulement sur le cloud",
+   trapWrongFb:"Pas vrai ! Sans internet, votre appareil ne peut pas contacter le serveur cloud pour obtenir le fichier, sauf s'il a déjà été téléchargé comme « disponible hors ligne ».",
+   trapRightFb:"Exact ! C'est pourquoi les fichiers que vous utilisez souvent devraient avoir une copie locale ou être marqués « disponible hors ligne ».",
+   welcome:"Cliquez « Envoyer le Fichier » et « Télécharger le Fichier », puis répondez à la question.",
+   done:"Vous savez maintenant comment fonctionne l'envoi/téléchargement, et la limite d'accès sans internet."},
+ en:{lead:"Uploading, downloading, and syncing need internet. Without a connection, you can't reach a file that's only on the cloud.",
+   objs:["Upload and download a file","Understand the access limit without internet"],
+   uploadBtn:"Upload File to Cloud",downloadBtn:"Download File",
+   uploadFb:"The file is uploaded to the cloud — it's now available on your other connected devices too.",
+   downloadFb:"The file is downloaded to your device.",
+   trapQ:"You don't have internet right now. Can you still open a file that's only on the cloud (no local copy)?",
+   trapWrong:"Yes, always possible without internet",trapRight:"No, you need internet to reach a cloud-only file",
+   trapWrongFb:"Not true! Without internet, your device can't reach the cloud server to get the file, unless it was already downloaded as 'available offline.'",
+   trapRightFb:"Exactly! That's why files you use often should have a local copy or be marked 'available offline.'",
+   welcome:"Click 'Upload File' and 'Download File,' then answer the question.",
+   done:"Now you know how uploading/downloading works, and the access limit without internet."}},
+4:{ht:{lead:"Pataje yon fichye mande chwazi byen ki dwa aksè yo bay: Wè Sèlman (Viewer) oswa Modifye (Editor). Fè atansyon ak lyen piblik.",
+   objs:["Chwazi yon nivo aksè pou pataj la","Rekonèt danje yon lyen piblik ki kite tout moun modifye"],
+   viewerBtn:"Wè Sèlman (Viewer)",editorBtn:"Modifye (Editor)",publicToggle:"Lyen Piblik — Nenpòt moun ki gen lyen a",
+   viewerFb:"Moun ki gen aksè 'Wè Sèlman' ka gade fichye a men pa ka chanje anyen.",
+   editorFb:"Moun ki gen aksè 'Modifye' ka chanje kontni fichye a.",
+   trapQ:"Ou pataje yon dosye enpòtan ak yon lyen PIBLIK ki make 'Nenpòt moun ka Modifye'. Sa ka danjere?",
+   trapWrong:"Non, lyen piblik toujou san danje",trapRight:"Wi, nenpòt moun ki jwenn lyen an ta ka chanje oswa efase kontni an",
+   trapWrongFb:"Danjere pou panse konsa! Yon lyen piblik ak dwa 'Modifye' vle di NENPÒT moun ki gen lyen a — menm si li pa t dwe genyen l — ka chanje oswa efase fichye ou.",
+   trapRightFb:"Egzat! Pou fichye sansib, itilize 'Wè Sèlman' oswa pataje ak moun espesifik olye yon lyen piblik ki kite tout moun modifye.",
+   welcome:"Klike sou 'Wè Sèlman' ak 'Modifye', apre reponn kesyon an sou lyen piblik.",
+   done:"Ou konnen kounye a diferans ant Wè Sèlman ak Modifye, epi danje yon lyen piblik ki kite tout moun modifye."},
+ fr:{lead:"Partager un fichier demande de bien choisir les droits d'accès : Lecture Seule (Viewer) ou Modification (Editor). Attention aux liens publics.",
+   objs:["Choisir un niveau d'accès pour le partage","Reconnaître le danger d'un lien public qui laisse tout le monde modifier"],
+   viewerBtn:"Lecture Seule (Viewer)",editorBtn:"Modification (Editor)",publicToggle:"Lien Public — N'importe qui avec le lien",
+   viewerFb:"Les personnes avec l'accès « Lecture Seule » peuvent voir le fichier mais ne peuvent rien changer.",
+   editorFb:"Les personnes avec l'accès « Modification » peuvent changer le contenu du fichier.",
+   trapQ:"Vous partagez un dossier important avec un lien PUBLIC marqué « N'importe qui peut Modifier ». Est-ce dangereux ?",
+   trapWrong:"Non, un lien public est toujours sûr",trapRight:"Oui, n'importe qui trouvant le lien pourrait changer ou supprimer le contenu",
+   trapWrongFb:"Dangereux de penser ça ! Un lien public avec droit de « Modification » veut dire que N'IMPORTE QUI ayant le lien — même s'il ne devait pas l'avoir — peut changer ou supprimer votre fichier.",
+   trapRightFb:"Exact ! Pour les fichiers sensibles, utilisez « Lecture Seule » ou partagez avec des personnes spécifiques plutôt qu'un lien public qui laisse tout le monde modifier.",
+   welcome:"Cliquez sur « Lecture Seule » et « Modification », puis répondez à la question sur le lien public.",
+   done:"Vous connaissez maintenant la différence entre Lecture Seule et Modification, et le danger d'un lien public qui laisse tout le monde modifier."},
+ en:{lead:"Sharing a file means choosing access rights carefully: Viewer or Editor. Watch out for public links.",
+   objs:["Choose an access level for sharing","Recognize the danger of a public link that lets anyone edit"],
+   viewerBtn:"Viewer (View Only)",editorBtn:"Editor (Can Edit)",publicToggle:"Public Link — Anyone with the link",
+   viewerFb:"People with 'Viewer' access can look at the file but can't change anything.",
+   editorFb:"People with 'Editor' access can change the file's content.",
+   trapQ:"You share an important folder with a PUBLIC link marked 'Anyone can Edit.' Can this be dangerous?",
+   trapWrong:"No, a public link is always safe",trapRight:"Yes, anyone who finds the link could change or delete the content",
+   trapWrongFb:"Risky to think that! A public link with 'Edit' rights means ANYONE with the link — even if they weren't supposed to have it — can change or delete your file.",
+   trapRightFb:"Exactly! For sensitive files, use 'Viewer' or share with specific people rather than a public link that lets everyone edit.",
+   welcome:"Click 'Viewer' and 'Editor,' then answer the question about the public link.",
+   done:"Now you know the difference between Viewer and Editor, and the danger of a public link that lets everyone edit."}},
+5:{ht:{lead:"Yon bon plan backup gen fichye enpòtan yo nan OMWEN 2 kote. Konstwi yon plan backup senp.",
+   objs:["Chwazi 2 kote pou kenbe kopi","Teste yon 'restore' pou verifye backup a mache"],
+   loc1:"Kopi 1: Disk Òdinatè a",loc2:"Kopi 2: Disk Ekstèn OSWA Cloud",
+   testBtn:"Teste Restore",
+   loc1Fb:"Premye kopi a — orijinal la sou òdinatè ou.",loc2Fb:"Dezyèm kopi a — yon lòt kote ki separe (disk ekstèn oswa cloud).",
+   testFb:"Ou verifye kopi a louvri kòrèkteman — se etap ki souvan bliye men ki enpòtan anpil.",
+   trapQ:"Si m gen yon SÈL kopi yon fichye enpòtan (sou òdinatè sèlman), èske li 'an sekirite'?",
+   trapWrong:"Wi, yon sèl kopi ase",trapRight:"Non, ou bezwen OMWEN 2 kote — se 'règ kopi miltip' la",
+   trapWrongFb:"Danjere! Si sèl kopi a sou yon aparèy ki kraze, pèdi, oswa vòlè, fichye a disparèt nèt.",
+   trapRightFb:"Egzat! Règ la senp: OMWEN 2 kopi, nan 2 kote diferan, pou pwoteje kont pèt.",
+   welcome:"Klike sou 2 kote yo, apre teste yon restore.",
+   done:"Ou konnen kounye a yon plan backup senp: 2 kopi nan 2 kote, ak yon tès restore."},
+ fr:{lead:"Un bon plan de sauvegarde garde les fichiers importants dans AU MOINS 2 endroits. Construisez un plan de sauvegarde simple.",
+   objs:["Choisir 2 endroits pour garder une copie","Tester une restauration pour vérifier que la sauvegarde fonctionne"],
+   loc1:"Copie 1 : Disque de l'Ordinateur",loc2:"Copie 2 : Disque Externe OU Cloud",
+   testBtn:"Tester la Restauration",
+   loc1Fb:"La première copie — l'original sur votre ordinateur.",loc2Fb:"La deuxième copie — un autre endroit séparé (disque externe ou cloud).",
+   testFb:"Vous vérifiez que la copie s'ouvre correctement — c'est une étape souvent oubliée mais très importante.",
+   trapQ:"Si j'ai UNE SEULE copie d'un fichier important (sur l'ordinateur seulement), est-elle « en sécurité » ?",
+   trapWrong:"Oui, une seule copie suffit",trapRight:"Non, il faut AU MOINS 2 endroits — c'est la « règle des copies multiples »",
+   trapWrongFb:"Dangereux ! Si la seule copie est sur un appareil qui casse, se perd, ou est volé, le fichier disparaît complètement.",
+   trapRightFb:"Exact ! La règle est simple : AU MOINS 2 copies, dans 2 endroits différents, pour se protéger de la perte.",
+   welcome:"Cliquez sur les 2 endroits, puis testez une restauration.",
+   done:"Vous connaissez maintenant un plan de sauvegarde simple : 2 copies dans 2 endroits, avec un test de restauration."},
+ en:{lead:"A good backup plan keeps important files in AT LEAST 2 places. Build a simple backup plan.",
+   objs:["Choose 2 places to keep a copy","Test a restore to verify the backup works"],
+   loc1:"Copy 1: Computer's Disk",loc2:"Copy 2: External Drive OR Cloud",
+   testBtn:"Test Restore",
+   loc1Fb:"The first copy — the original on your computer.",loc2Fb:"The second copy — a separate place (external drive or cloud).",
+   testFb:"You verify the copy opens correctly — an often-forgotten but very important step.",
+   trapQ:"If I have just ONE copy of an important file (on the computer only), is it 'safe'?",
+   trapWrong:"Yes, one copy is enough",trapRight:"No, you need AT LEAST 2 places — the 'multiple-copy rule'",
+   trapWrongFb:"Risky! If the only copy is on a device that breaks, gets lost, or is stolen, the file disappears completely.",
+   trapRightFb:"Exactly! The rule is simple: AT LEAST 2 copies, in 2 different places, to protect against loss.",
+   welcome:"Click the 2 places, then test a restore.",
+   done:"Now you know a simple backup plan: 2 copies in 2 places, with a restore test."}},
+6:{ht:{lead:"Gen plizyè fason pou deplase fichye ant telefòn ak òdinatè. Klike sou chak metòd pou aprann ki lè pou itilize l.",
+   objs:["Klike sou 3 metòd transfè","Rekonèt imèl/WhatsApp pa bon pou gwo oswa fichye sansib"],
+   methods:[["🔌","Kab USB","Fyab pou gwo fichye, pa bezwen entènèt"],["☁️","Cloud","Bon pou aksè nenpòt kote, mande entènèt"],["📤","Imèl/WhatsApp","Sèlman pou TI fichye ki PA sansib"]],
+   trapQ:"Ou vle voye yon gwo videyo (2GB) oswa yon dokiman sansib bay tèt ou. Imèl/WhatsApp se pi bon fason an?",
+   trapWrong:"Wi, toujou fasil ak rapid",trapRight:"Non, itilize kab USB oswa cloud pou gwo/sansib fichye",
+   trapWrongFb:"Pa pi bon chwa a! Imèl ak WhatsApp gen limit gwosè fichye, epi yo pa toujou pi bon kote pou enfòmasyon sansib.",
+   trapRightFb:"Egzat! Kab USB oswa cloud pi fyab pou gwo fichye oswa done sansib — imèl/WhatsApp rete sèlman pou ti fichye ki pa sansib.",
+   welcome:"Klike sou chak metòd transfè, apre reponn kesyon an.",
+   done:"Ou konnen kounye a 3 fason pou deplase fichye, epi ki lè imèl/WhatsApp PA bon chwa."},
+ fr:{lead:"Il y a plusieurs façons de transférer des fichiers entre téléphone et ordinateur. Cliquez sur chaque méthode pour apprendre quand l'utiliser.",
+   objs:["Cliquer sur 3 méthodes de transfert","Reconnaître qu'e-mail/WhatsApp ne conviennent pas aux gros fichiers ou fichiers sensibles"],
+   methods:[["🔌","Câble USB","Fiable pour les gros fichiers, pas besoin d'internet"],["☁️","Cloud","Bon pour l'accès de partout, nécessite internet"],["📤","E-mail/WhatsApp","Seulement pour de PETITS fichiers PAS sensibles"]],
+   trapQ:"Vous voulez envoyer une grosse vidéo (2 Go) ou un document sensible à vous-même. E-mail/WhatsApp est-il la meilleure façon ?",
+   trapWrong:"Oui, toujours facile et rapide",trapRight:"Non, utilisez un câble USB ou le cloud pour les gros fichiers/sensibles",
+   trapWrongFb:"Pas le meilleur choix ! E-mail et WhatsApp ont des limites de taille de fichier, et ne sont pas toujours le meilleur endroit pour des informations sensibles.",
+   trapRightFb:"Exact ! Câble USB ou cloud sont plus fiables pour les gros fichiers ou données sensibles — e-mail/WhatsApp restent seulement pour de petits fichiers non sensibles.",
+   welcome:"Cliquez sur chaque méthode de transfert, puis répondez à la question.",
+   done:"Vous connaissez maintenant 3 façons de transférer des fichiers, et quand e-mail/WhatsApp NE sont PAS le bon choix."},
+ en:{lead:"There are several ways to move files between phone and computer. Click each method to learn when to use it.",
+   objs:["Click 3 transfer methods","Recognize email/WhatsApp aren't good for large or sensitive files"],
+   methods:[["🔌","USB Cable","Reliable for large files, no internet needed"],["☁️","Cloud","Good for access anywhere, needs internet"],["📤","Email/WhatsApp","Only for SMALL files that AREN'T sensitive"]],
+   trapQ:"You want to send a large video (2GB) or a sensitive document to yourself. Is Email/WhatsApp the best way?",
+   trapWrong:"Yes, always easy and fast",trapRight:"No, use a USB cable or cloud for large/sensitive files",
+   trapWrongFb:"Not the best choice! Email and WhatsApp have file size limits, and aren't always the best place for sensitive information.",
+   trapRightFb:"Exactly! USB cable or cloud are more reliable for large files or sensitive data — email/WhatsApp remain only for small, non-sensitive files.",
+   welcome:"Click each transfer method, then answer the question.",
+   done:"Now you know 3 ways to move files, and when email/WhatsApp AREN'T the right choice."}},
+7:{ht:{lead:"Enpòte foto ou yo, òganize yo nan albòm, epi toujou kenbe orijinal la lè ou modifye yon foto.",
+   objs:["Enpòte epi òganize foto nan yon albòm","Konprann poukisa kenbe orijinal la lè ou modifye"],
+   importBtn:"Enpòte Foto yo",albumBtn:"Kreye Albòm 'Vakans 2026'",editBtn:"Modifye yon Foto",
+   importFb:"Foto yo enpòte nan bibliyotèk la.",albumFb:"Yon albòm se yon gwoup vityèl — menm foto a ka nan plizyè albòm san repwodwi fichye a.",
+   trapQ:"Lè ou modifye yon foto (koupe, filtè), pi bon pratik la se...",
+   trapWrong:"Ranplase orijinal la nèt san kenbe l",trapRight:"Kenbe yon kopi orijinal la separe anvan ou modifye",
+   trapWrongFb:"Riske! Si ou ranplase orijinal la san kenbe l, ou pa ka tounen annye si modifikasyon an pa bon oswa si ou chanje lide.",
+   trapRightFb:"Egzat! Toujou kenbe orijinal la separe — konsa ou ka toujou tounen annyè si sa nesesè.",
+   welcome:"Klike 'Enpòte Foto', apre 'Kreye Albòm', apre 'Modifye yon Foto'.",
+   done:"Ou konnen kounye a kijan pou òganize foto nan albòm, epi poukisa kenbe orijinal yo enpòtan."},
+ fr:{lead:"Importez vos photos, organisez-les en albums, et gardez toujours l'original en modifiant une photo.",
+   objs:["Importer et organiser des photos dans un album","Comprendre pourquoi garder l'original en modifiant"],
+   importBtn:"Importer les Photos",albumBtn:"Créer l'Album 'Vacances 2026'",editBtn:"Modifier une Photo",
+   importFb:"Les photos sont importées dans la bibliothèque.",albumFb:"Un album est un groupe virtuel — la même photo peut être dans plusieurs albums sans dupliquer le fichier.",
+   trapQ:"Quand vous modifiez une photo (recadrer, filtre), la meilleure pratique est...",
+   trapWrong:"Remplacer complètement l'original sans le garder",trapRight:"Garder une copie de l'original séparée avant de modifier",
+   trapWrongFb:"Risqué ! Si vous remplacez l'original sans le garder, vous ne pouvez pas revenir en arrière si la modification n'est pas bonne ou si vous changez d'avis.",
+   trapRightFb:"Exact ! Gardez toujours l'original séparé — ainsi vous pouvez toujours revenir en arrière si nécessaire.",
+   welcome:"Cliquez « Importer les Photos », puis « Créer l'Album », puis « Modifier une Photo ».",
+   done:"Vous savez maintenant organiser des photos en albums, et pourquoi garder les originaux est important."},
+ en:{lead:"Import your photos, organize them into albums, and always keep the original when editing a photo.",
+   objs:["Import and organize photos into an album","Understand why to keep the original when editing"],
+   importBtn:"Import Photos",albumBtn:"Create 'Vacation 2026' Album",editBtn:"Edit a Photo",
+   importFb:"The photos are imported into the library.",albumFb:"An album is a virtual group — the same photo can be in several albums without duplicating the file.",
+   trapQ:"When you edit a photo (crop, filter), the best practice is...",
+   trapWrong:"Completely replace the original without keeping it",trapRight:"Keep a separate copy of the original before editing",
+   trapWrongFb:"Risky! If you replace the original without keeping it, you can't go back if the edit isn't good or you change your mind.",
+   trapRightFb:"Exactly! Always keep the original separate — that way you can always go back if needed.",
+   welcome:"Click 'Import Photos,' then 'Create Album,' then 'Edit a Photo.'",
+   done:"Now you know how to organize photos into albums, and why keeping originals matters."}},
+8:{ht:{lead:"Estokaj plen souvan gen kategori komen: Downloads, doub fichye, ansyen enstalè. PA efase fichye sistèm ou pa rekonèt.",
+   objs:["Idantifye 3 kategori ki san danje pou netwaye","Rekonèt danje efase fichye sistèm ou pa konnen"],
+   cats:[["Downloads","2.1 GB","#e8a13a"],["Doub Fichye","800 MB","#e8a13a"],["Ansyen Enstalè","1.5 GB","#e8a13a"],["Fichye Sistèm Windows","45 GB","#c42b1c"]],
+   cleanFb:"Bon chwa! Sa a se yon kategori san danje pou netwaye.",
+   trapFb:"PA TOUCHE sa a! Fichye Sistèm yo bezwen pou Windows fonksyone kòrèkteman. Efase yo ka kraze òdinatè a.",
+   welcome:"Klike sou kategori ou panse ki san danje pou netwaye — men fè atansyon, gen yon pyèj.",
+   done:"Ou konnen kounye a ki kategori san danje pou netwaye lè estokaj plen, epi pou pa janm touche fichye sistèm ou pa rekonèt."},
+ fr:{lead:"Le stockage plein a souvent des catégories communes : Téléchargements, fichiers en double, anciens installateurs. NE supprimez PAS des fichiers système que vous ne reconnaissez pas.",
+   objs:["Identifier 3 catégories sûres à nettoyer","Reconnaître le danger de supprimer des fichiers système inconnus"],
+   cats:[["Téléchargements","2.1 Go","#e8a13a"],["Fichiers en Double","800 Mo","#e8a13a"],["Anciens Installateurs","1.5 Go","#e8a13a"],["Fichiers Système Windows","45 Go","#c42b1c"]],
+   cleanFb:"Bon choix ! C'est une catégorie sûre à nettoyer.",
+   trapFb:"NE TOUCHEZ PAS à ça ! Les Fichiers Système sont nécessaires pour que Windows fonctionne correctement. Les supprimer peut casser l'ordinateur.",
+   welcome:"Cliquez sur les catégories que vous pensez sûres à nettoyer — mais attention, il y a un piège.",
+   done:"Vous savez maintenant quelles catégories sont sûres à nettoyer quand le stockage est plein, et à ne jamais toucher des fichiers système inconnus."},
+ en:{lead:"Full storage often has common categories: Downloads, duplicate files, old installers. Do NOT delete system files you don't recognize.",
+   objs:["Identify 3 safe categories to clean up","Recognize the danger of deleting unknown system files"],
+   cats:[["Downloads","2.1 GB","#e8a13a"],["Duplicate Files","800 MB","#e8a13a"],["Old Installers","1.5 GB","#e8a13a"],["Windows System Files","45 GB","#c42b1c"]],
+   cleanFb:"Good choice! This is a safe category to clean up.",
+   trapFb:"DON'T TOUCH that! System Files are needed for Windows to work correctly. Deleting them can break the computer.",
+   welcome:"Click the categories you think are safe to clean up — but watch out, there's a trap.",
+   done:"Now you know which categories are safe to clean up when storage is full, and to never touch unknown system files."}},
+9:{ht:{lead:"Dènye misyon an! Konplete tou lè 4 aksyon yo pou pwoteje fichye enpòtan yo.",
+   objs:["Chwazi 3 fichye pratik enpòtan","Kreye yon dosye klè","Fè yon dezyèm kopi nan yon kote apwouve","Verifye kopi a louvri"],
+   steps:["Chwazi 3 fichye pratik enpòtan","Kreye yon dosye klè pou yo","Fè yon dezyèm kopi nan yon kote apwouve (disk ekstèn oswa cloud)","Verifye kopi a louvri kòrèkteman"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 9 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 9 — ou konnen kounye a kijan pou pwoteje fichye enpòtan yo."},
+ fr:{lead:"Dernière mission ! Complétez les 4 actions pour protéger des fichiers importants.",
+   objs:["Choisir 3 fichiers pratiques importants","Créer un dossier clair","Faire une deuxième copie dans un endroit approuvé","Vérifier que la copie s'ouvre"],
+   steps:["Choisir 3 fichiers pratiques importants","Créer un dossier clair pour eux","Faire une deuxième copie dans un endroit approuvé (disque externe ou cloud)","Vérifier que la copie s'ouvre correctement"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 9.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 9 — vous savez maintenant protéger des fichiers importants."},
+ en:{lead:"Last mission! Complete all 4 actions to protect important files.",
+   objs:["Choose 3 important practice files","Create a clear folder","Make a second copy in an approved location","Verify the copy opens"],
+   steps:["Choose 3 important practice files","Create a clear folder for them","Make a second copy in an approved location (external drive or cloud)","Verify the copy opens correctly"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 9's final mission.",
+   done:"Congratulations! You completed Module 9's Mission — now you know how to protect important files."}},
+};
+
+/* ============ engine ============ */
+const NL=9;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module9-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD9_LESSON_SLUGS=["estokaj-lokal-ak-estokaj-cloud","sync-pa-toujou-yon-backup","telechaje-voye-ak-sync","pataje-yon-fichye-oswa-dosye-san-danje","yon-plan-backup-senp","deplase-fichye-ant-telefon-ak-odinate","oganizasyon-ak-backup-foto","estokaj-plen-sa-sa-vle-di","misyon-pwoteje-fichye-enpotan-yo"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD9_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule10();
+}
+function injectContinueModule10(){
+ if($("continueModule10"))return;
+ const a=document.createElement("a");a.id="continueModule10";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[9];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===8;
+ let les="";if(active){les='<div class="les">'+M9[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">9.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 9 · 9."+(i+1);$("topTitle").textContent=M9[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 9 · 9.'+(i+1)+'</span><div class="labh2">'+M9[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.local=false;st.cloud=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,200px)">'+
+   '<div class="partcard" id="localCard"><div class="partart">'+d.local[0]+'</div><div class="partn">'+d.local[1]+'</div></div>'+
+   '<div class="partcard" id="cloudCard"><div class="partart">'+d.cloud[0]+'</div><div class="partn">'+d.cloud[1]+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.local&&st.cloud)setObj(0);}
+ $("localCard").addEventListener("click",()=>{if(st.local)return;st.local=true;$("localCard").classList.add("done");ai(d.local[2],"neutral");check();});
+ $("cloudCard").addEventListener("click",()=>{if(st.cloud)return;st.cloud=true;$("cloudCard").classList.add("done");ai(d.cloud[2],"neutral");check();});
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.deleted=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(1,d.lead)+'<div class="panel"><div class="ptb">☁️ Sync</div><div class="pbody">'+
+    (!st.deleted?'<div style="font-weight:600;margin-bottom:10px">📄 '+d.fileTitle+' <span style="color:var(--w-t2);font-weight:400;font-size:12px">(lokal + cloud)</span></div><button class="btn p" id="deleteBtn">'+d.deleteBtn+'</button>':
+     '<div style="color:var(--danger);font-weight:600">✗ '+d.fileTitle+' — efase lokal EPI nan cloud</div>')+
+   '</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const db=$("deleteBtn");if(db)db.addEventListener("click",()=>{st.deleted=true;ai(d.deleteFb,"warn");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.uploaded=false;st.downloaded=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(2,d.lead)+'<div style="display:flex;gap:10px;margin-top:18px"><button class="btn g" id="uploadBtn">'+d.uploadBtn+'</button><button class="btn g" id="downloadBtn">'+d.downloadBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.uploaded&&st.downloaded)setObj(0);}
+ $("uploadBtn").addEventListener("click",()=>{if(!st.uploaded){st.uploaded=true;ai(d.uploadFb,"good");check();}});
+ $("downloadBtn").addEventListener("click",()=>{if(!st.downloaded){st.downloaded=true;ai(d.downloadFb,"good");check();}});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.viewer=false;st.editor=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div style="display:flex;gap:10px;margin-top:18px"><button class="btn g" id="viewerBtn">'+d.viewerBtn+'</button><button class="btn g" id="editorBtn">'+d.editorBtn+'</button></div>'+
+  '<div class="panel" style="margin-top:16px"><div class="pbody" style="display:flex;align-items:center;justify-content:space-between"><span>'+d.publicToggle+'</span><div class="toggle" id="pubToggle"></div></div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.viewer&&st.editor)setObj(0);}
+ $("viewerBtn").addEventListener("click",()=>{if(!st.viewer){st.viewer=true;ai(d.viewerFb,"neutral");check();}});
+ $("editorBtn").addEventListener("click",()=>{if(!st.editor){st.editor=true;ai(d.editorFb,"neutral");check();}});
+ $("pubToggle").addEventListener("click",()=>{$("pubToggle").classList.toggle("on");});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.loc1=false;st.loc2=false;st.tested=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,220px)">'+
+   '<div class="partcard" id="loc1Card"><div class="partart">💻</div><div class="partn">'+d.loc1+'</div></div>'+
+   '<div class="partcard" id="loc2Card"><div class="partart">💾</div><div class="partn">'+d.loc2+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:18px"><button class="btn g" id="testBtn">'+d.testBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.loc1&&st.loc2)setObj(0);}
+ $("loc1Card").addEventListener("click",()=>{if(st.loc1)return;st.loc1=true;$("loc1Card").classList.add("done");ai(d.loc1Fb,"neutral");check();});
+ $("loc2Card").addEventListener("click",()=>{if(st.loc2)return;st.loc2=true;$("loc2Card").classList.add("done");ai(d.loc2Fb,"neutral");check();});
+ $("testBtn").addEventListener("click",()=>{if(st.tested)return;st.tested=true;ai(d.testFb,"good");setObj(1);});
+ $("tqWrong").addEventListener("click",()=>{ai(d.trapWrongFb,"warn");});
+ $("tqRight").addEventListener("click",()=>{ai(d.trapRightFb,"good");});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,180px)">'+d.methods.map((m,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+m[0]+'</div><div class="partn">'+m[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.methods[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.imported=false;st.albumed=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap"><button class="btn g" id="importBtn">'+d.importBtn+'</button><button class="btn g" id="albumBtn">'+d.albumBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.imported&&st.albumed)setObj(0);}
+ $("importBtn").addEventListener("click",()=>{if(!st.imported){st.imported=true;ai(d.importFb,"neutral");check();}});
+ $("albumBtn").addEventListener("click",()=>{if(!st.albumed){st.albumed=true;ai(d.albumFb,"neutral");check();}});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.cleaned=st.cleaned||{};st.trapSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="barchart">'+d.cats.map((c,k)=>'<div class="barrow" data-k="'+k+'"><span class="bl">'+c[0]+'</span><div class="btrack"><div class="bfill" style="width:'+(k===3?90:60)+'%;background:'+c[2]+'"></div></div><span>'+c[1]+'</span></div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".barrow[data-k]").forEach(r=>r.addEventListener("click",()=>{const k=+r.dataset.k;
+  if(k===3){if(!st.trapSeen){st.trapSeen=true;ai(d.trapFb,"warn");setObj(1);}return;}
+  if(!st.cleaned[k]){st.cleaned[k]=true;ai(d.cleanFb,"good");if(Object.keys(st.cleaned).length>=3)setObj(0);}
+ }));
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.done4=st.done4||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done4[k]?' style="opacity:.4"':"")+'>'+(st.done4[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done4[k])return;st.done4[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
