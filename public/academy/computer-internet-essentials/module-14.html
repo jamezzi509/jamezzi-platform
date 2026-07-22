@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 14 — Endepandans Dijital</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:56px;display:grid;place-items:center;font-size:30px}
+.partn{font-weight:700;font-size:14.5px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+.checklist{display:flex;flex-direction:column;gap:8px;margin-top:18px;max-width:600px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.col{border:1px solid var(--edge2);border-radius:14px;padding:14px;background:var(--ink-700)}
+.col h4{font-size:13.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+.finale{text-align:center;margin-top:30px}
+.finale .big{font-size:48px}
+.msgcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:12px;padding:14px 16px;cursor:pointer;margin-top:10px;max-width:520px}
+.msgcard:hover{border-color:var(--brand)}.msgcard.done{border-color:var(--good)}
+.msgcard.sus.done{border-color:var(--danger)}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ .cols{grid-template-columns:1fr}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 14 · 14.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",courseDone:"Retounen nan Kou a →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",courseDone:"Retourner au Cours →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",courseDone:"Return to Course →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M14={ht:["Bati Yon Sistèm Òganizasyon Dijital Senp","Kreye Woutin Dijital Semenn ak Chak Mwa Ou","Itilize AI Kòm Yon Titè Òdinatè","Aprann nan Paj Èd ak Tutoryèl","Byennèt Dijital ak Atansyon","Prepare Pou Kapstòn Nan","Kapstòn: Yon Travay Dijital Konplè","Revize Kwasans Ou","Chwazi Pwochen Chemen Ou"],
+ fr:["Construire un Système d'Organisation Numérique Simple","Créer Votre Routine Numérique Hebdomadaire et Mensuelle","Utiliser l'IA Comme Tuteur Informatique","Apprendre des Pages d'Aide et Tutoriels","Bien-être Numérique et Attention","Se Préparer pour le Capstone","Capstone : Une Tâche Numérique Complète","Revoir Votre Croissance","Choisir Votre Prochain Chemin"],
+ en:["Build a Simple Digital Organization System","Create Your Weekly and Monthly Digital Routine","Use AI as a Computer Tutor","Learn From Help Pages and Tutorials","Digital Wellbeing and Attention","Prepare for the Capstone","Capstone: A Complete Digital Task","Review Your Growth","Choose Your Next Path"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Yon sistèm òganizasyon dijital senp separe lavi ou an kategori klè. Bati sistèm dosye prensipal ou.",
+   objs:["Kreye 5 kategori dosye prensipal","Rekonèt yon sèl dosye 'Divès' pa yon bon sistèm"],
+   items:[["👤","Pèsonèl","Dokiman ak fichye pèsonèl ou"],["💼","Travay/Lekòl","Tout sa ki gen rapò ak travay oswa lekòl"],["💰","Finans","Resi, bòdwo, dokiman finansye"],["📄","Dokiman","Dokiman jeneral ou bezwen jwenn fasil"],["📸","Foto","Tout imaj ak foto ou"]],
+   trapQ:"Pi fasil pou mete TOUT bagay nan yon sèl dosye rele 'Divès' olye kategori separe?",
+   trapWrong:"Wi, yon sèl dosye pi senp",trapRight:"Non, yon sèl dosye 'Divès' vin yon dezòd — kategori klè ede ou jwenn bagay pi vit",
+   trapWrongFb:"Pa itil alontèm! Yon dosye 'Divès' vin plen ak dezòd — pi difisil pou jwenn nenpòt bagay apre kèk mwa.",
+   trapRightFb:"Egzat! Kategori klè (Pèsonèl, Travay, Finans, Dokiman, Foto) ede ou jwenn fichye pi vit pase yon sèl gwo dosye melanje.",
+   welcome:"Klike sou chak kategori pou ajoute l nan sistèm dosye ou.",
+   done:"Ou kreye kounye a yon sistèm dosye prensipal ak 5 kategori klè, epi ou konprann poukisa yon sèl dosye 'Divès' pa bon."},
+ fr:{lead:"Un système d'organisation numérique simple sépare votre vie en catégories claires. Construisez votre système de dossiers principal.",
+   objs:["Créer 5 catégories de dossiers principaux","Reconnaître qu'un seul dossier « Divers » n'est pas un bon système"],
+   items:[["👤","Personnel","Vos documents et fichiers personnels"],["💼","Travail/École","Tout ce qui concerne le travail ou l'école"],["💰","Finances","Reçus, factures, documents financiers"],["📄","Documents","Documents généraux à retrouver facilement"],["📸","Photos","Toutes vos images et photos"]],
+   trapQ:"Est-il plus facile de mettre TOUT dans un seul dossier appelé « Divers » plutôt que des catégories séparées ?",
+   trapWrong:"Oui, un seul dossier est plus simple",trapRight:"Non, un seul dossier « Divers » devient un désordre — des catégories claires aident à retrouver les choses plus vite",
+   trapWrongFb:"Pas utile à long terme ! Un dossier « Divers » devient plein de désordre — plus difficile de retrouver quoi que ce soit après quelques mois.",
+   trapRightFb:"Exact ! Des catégories claires (Personnel, Travail, Finances, Documents, Photos) aident à retrouver les fichiers plus vite qu'un seul gros dossier mélangé.",
+   welcome:"Cliquez sur chaque catégorie pour l'ajouter à votre système de dossiers.",
+   done:"Vous avez créé un système de dossiers principal avec 5 catégories claires, et vous comprenez pourquoi un seul dossier « Divers » n'est pas bon."},
+ en:{lead:"A simple digital organization system separates your life into clear categories. Build your main folder system.",
+   objs:["Create 5 main folder categories","Recognize a single 'Misc' folder isn't a good system"],
+   items:[["👤","Personal","Your personal documents and files"],["💼","Work/School","Everything related to work or school"],["💰","Finances","Receipts, bills, financial documents"],["📄","Documents","General documents you need to find easily"],["📸","Photos","All your images and photos"]],
+   trapQ:"Is it easier to put EVERYTHING in one folder called 'Misc' instead of separate categories?",
+   trapWrong:"Yes, one folder is simpler",trapRight:"No, a single 'Misc' folder becomes a mess — clear categories help you find things faster",
+   trapWrongFb:"Not useful long-term! A 'Misc' folder becomes full of clutter — harder to find anything after a few months.",
+   trapRightFb:"Exactly! Clear categories (Personal, Work, Finances, Documents, Photos) help you find files faster than one big mixed folder.",
+   welcome:"Click each category to add it to your folder system.",
+   done:"You created a main folder system with 5 clear categories, and you understand why a single 'Misc' folder isn't good."}},
+2:{ht:{lead:"Kèk tach fè chak semenn, gen lòt ki fè chak mwa. Klase chak tach nan bon kolòn nan.",
+   objs:["Klase 3 tach chak semenn ak 3 tach chak mwa","Rekonèt backup bezwen VERIFYE, pa sèlman kreye yon fwa"],
+   weeklyLbl:"Chak Semenn",monthlyLbl:"Chak Mwa",
+   weekly:["Òganize Downloads","Revize Mesaj Enpòtan","Sovgade Travay Kouran"],
+   monthly:["Mizajou Sistèm/App","Verifye Estokaj","Revize Sekirite Kont"],
+   trapQ:"Yon backup ou fè yon sèl fwa ase pou tout tan, san bezwen verifye l ankò?",
+   trapWrong:"Wi, yon fwa ase pou tout tan",trapRight:"Non, verifye backup a regilyèman (chak mwa) pou asire l toujou mache",
+   trapWrongFb:"Danjere! Yon backup ka domaje oswa pa fonksyone san ou pa konnen — verifye l regilyèman asire l toujou itilizab.",
+   trapRightFb:"Egzat! Verifikasyon backup chak mwa se yon pati esansyèl nan woutin antretyen ou.",
+   welcome:"Klike sou chak tach pou klase l nan 'Chak Semenn' oswa 'Chak Mwa', apre reponn kesyon an.",
+   done:"Ou konnen kounye a woutin dijital chak semenn ak chak mwa, epi backup bezwen verifikasyon regilye."},
+ fr:{lead:"Certaines tâches se font chaque semaine, d'autres chaque mois. Classez chaque tâche dans la bonne colonne.",
+   objs:["Classer 3 tâches hebdomadaires et 3 tâches mensuelles","Reconnaître qu'une sauvegarde a besoin d'être VÉRIFIÉE, pas seulement créée une fois"],
+   weeklyLbl:"Chaque Semaine",monthlyLbl:"Chaque Mois",
+   weekly:["Organiser les Téléchargements","Revoir les Messages Importants","Sauvegarder le Travail en Cours"],
+   monthly:["Mettre à Jour Système/Apps","Vérifier le Stockage","Revoir la Sécurité du Compte"],
+   trapQ:"Une sauvegarde faite une seule fois suffit-elle pour toujours, sans besoin de la revérifier ?",
+   trapWrong:"Oui, une fois suffit pour toujours",trapRight:"Non, vérifiez la sauvegarde régulièrement (chaque mois) pour vous assurer qu'elle fonctionne toujours",
+   trapWrongFb:"Dangereux ! Une sauvegarde peut être endommagée ou ne plus fonctionner sans que vous le sachiez — la vérifier régulièrement assure qu'elle reste utilisable.",
+   trapRightFb:"Exact ! Vérifier la sauvegarde chaque mois est une partie essentielle de votre routine d'entretien.",
+   welcome:"Cliquez sur chaque tâche pour la classer en « Chaque Semaine » ou « Chaque Mois », puis répondez à la question.",
+   done:"Vous connaissez maintenant la routine numérique hebdomadaire et mensuelle, et qu'une sauvegarde a besoin d'une vérification régulière."},
+ en:{lead:"Some tasks happen every week, others every month. Sort each task into the right column.",
+   objs:["Sort 3 weekly tasks and 3 monthly tasks","Recognize a backup needs to be VERIFIED, not just created once"],
+   weeklyLbl:"Weekly",monthlyLbl:"Monthly",
+   weekly:["Organize Downloads","Review Important Messages","Back Up Current Work"],
+   monthly:["Update System/Apps","Check Storage","Review Account Security"],
+   trapQ:"Is a backup made just once enough forever, with no need to check it again?",
+   trapWrong:"Yes, once is enough forever",trapRight:"No, check the backup regularly (monthly) to make sure it still works",
+   trapWrongFb:"Risky! A backup can become damaged or stop working without you knowing — checking it regularly ensures it stays usable.",
+   trapRightFb:"Exactly! Verifying the backup monthly is an essential part of your maintenance routine.",
+   welcome:"Click each task to sort it into 'Weekly' or 'Monthly,' then answer the question.",
+   done:"Now you know the weekly and monthly digital routine, and that a backup needs regular verification."}},
+3:{ht:{lead:"AI ka ede ou aprann òdinatè — men gen limit klè. Klike sou bon itilizasyon yo, epi fè atansyon ak yon limit.",
+   objs:["Klike sou 3 bon itilizasyon AI","Rekonèt pa janm pataje modpas oswa sekrè ak yon AI"],
+   items:[["💡","Eksplike Yon Tèm","Mande AI eksplike yon mo teknik ou pa konprann"],["📝","Senplifye Yon Erè","Mande AI tradwi yon mesaj erè nan lang senp"],["✉️","Pratike Fòmilasyon Imèl","Mande AI ede ou fòmile yon imèl pwofesyonèl"]],
+   trapQ:"Ou ka pataje modpas oswa nimewo kont bankè ou ak yon AI pou li ka 'ede ou pi vit'?",
+   trapWrong:"Wi, si se pou ede m pi vit ok",trapRight:"Non, pa janm pataje modpas, sekrè, oswa enfòmasyon labank ak yon AI",
+   trapWrongFb:"Danjere! Yon AI pa yon kote san danje pou modpas ak sekrè — trete l menm jan ak nenpòt lòt sèvis ou pa konnen ki fè ak done ou.",
+   trapRightFb:"Egzat! Pa janm pataje modpas, kòd verifikasyon, oswa enfòmasyon labank ak yon AI, menm si li sanble itil.",
+   welcome:"Klike sou 3 bon itilizasyon AI, apre reponn kesyon an sou sekrè.",
+   done:"Ou konnen kounye a bon fason pou itilize AI kòm yon titè, epi pa janm pataje sekrè avè l."},
+ fr:{lead:"L'IA peut vous aider à apprendre l'informatique — mais il y a des limites claires. Cliquez sur les bonnes utilisations, puis attention à une limite.",
+   objs:["Cliquer sur 3 bonnes utilisations de l'IA","Reconnaître à ne jamais partager un mot de passe ou secret avec une IA"],
+   items:[["💡","Expliquer un Terme","Demandez à l'IA d'expliquer un mot technique que vous ne comprenez pas"],["📝","Simplifier une Erreur","Demandez à l'IA de traduire un message d'erreur en langage simple"],["✉️","Pratiquer la Formulation d'E-mail","Demandez à l'IA de vous aider à formuler un e-mail professionnel"]],
+   trapQ:"Pouvez-vous partager votre mot de passe ou numéro de compte bancaire avec une IA pour qu'elle « vous aide plus vite » ?",
+   trapWrong:"Oui, si c'est pour m'aider plus vite ça va",trapRight:"Non, ne jamais partager mot de passe, secrets, ou informations bancaires avec une IA",
+   trapWrongFb:"Dangereux ! Une IA n'est pas un endroit sûr pour les mots de passe et secrets — traitez-la comme n'importe quel autre service dont vous ne connaissez pas l'utilisation de vos données.",
+   trapRightFb:"Exact ! Ne partagez jamais de mot de passe, code de vérification, ou information bancaire avec une IA, même si ça semble utile.",
+   welcome:"Cliquez sur 3 bonnes utilisations de l'IA, puis répondez à la question sur les secrets.",
+   done:"Vous connaissez maintenant les bonnes façons d'utiliser l'IA comme tuteur, et à ne jamais partager de secrets avec elle."},
+ en:{lead:"AI can help you learn about computers — but there are clear limits. Click the good uses, then watch out for one limit.",
+   objs:["Click 3 good uses of AI","Recognize to never share a password or secret with an AI"],
+   items:[["💡","Explain a Term","Ask AI to explain a technical word you don't understand"],["📝","Simplify an Error","Ask AI to translate an error message into simple language"],["✉️","Practice Email Wording","Ask AI to help you word a professional email"]],
+   trapQ:"Can you share your password or bank account number with an AI so it can 'help you faster'?",
+   trapWrong:"Yes, if it's to help me faster it's fine",trapRight:"No, never share a password, secrets, or bank information with an AI",
+   trapWrongFb:"Risky! An AI isn't a safe place for passwords and secrets — treat it like any other service you don't know the data practices of.",
+   trapRightFb:"Exactly! Never share a password, verification code, or bank information with an AI, even if it seems helpful.",
+   welcome:"Click 3 good uses of AI, then answer the question about secrets.",
+   done:"Now you know good ways to use AI as a tutor, and to never share secrets with it."}},
+4:{ht:{lead:"Konpare 2 sous tutoryèl pou aprann rezoud yon pwoblèm. Youn ofisyèl e byen dat, lòt la pa gen okenn detay.",
+   objs:["Konpare 2 sous tutoryèl","Rekonèt yon tutoryèl san dat/aparèy egzat se yon siy avètisman"],
+   goodSource:["✅","Sipò Ofisyèl Microsoft","Date 2026, koresponn ak vèsyon Windows ou, etap klè"],
+   vagueSource:["⚠️","Videyo San Dat","Pa gen dat, pa presize ki vèsyon Windows, plen ak reklam"],
+   goodFb:"Sa a gen tout bon siy: sous ofisyèl, dat aktyèl, ak vèsyon ki koresponn ak aparèy ou.",
+   vagueFb:"Sa a manke enfòmasyon esansyèl — san dat, ou pa konnen si etap yo toujou aplikab pou vèsyon ou.",
+   trapQ:"Yon tutoryèl san dat epi ki pa presize ki aparèy/vèsyon li konsène ka toujou fyab?",
+   trapWrong:"Wi, kontni an ka toujou bon menm san dat",trapRight:"Non, toujou tcheke dat piblikasyon ak si li koresponn ak aparèy/vèsyon ou egzakteman",
+   trapWrongFb:"Riske! Etap ki te bon ane pase yo ka pa aplikab ankò si Windows chanje — san dat/vèsyon, ou pa ka konfime sa.",
+   trapRightFb:"Egzat! Toujou tcheke dat ak si tutoryèl la koresponn ak vèsyon/aparèy egzat ou anvan ou swiv li.",
+   welcome:"Klike sou 2 sous yo pou konpare, apre reponn kesyon an.",
+   done:"Ou konnen kounye a pou konpare sous tutoryèl, epi rekonèt yon siy avètisman lè pa gen dat/vèsyon."},
+ fr:{lead:"Comparez 2 sources de tutoriel pour apprendre à résoudre un problème. L'une officielle et bien datée, l'autre sans aucun détail.",
+   objs:["Comparer 2 sources de tutoriel","Reconnaître qu'un tutoriel sans date/appareil exact est un signe d'avertissement"],
+   goodSource:["✅","Support Officiel Microsoft","Daté 2026, correspond à votre version de Windows, étapes claires"],
+   vagueSource:["⚠️","Vidéo Sans Date","Pas de date, ne précise pas quelle version de Windows, pleine de publicités"],
+   goodFb:"Celui-ci a tous les bons signes : source officielle, date actuelle, et version qui correspond à votre appareil.",
+   vagueFb:"Celui-ci manque d'informations essentielles — sans date, vous ne savez pas si les étapes sont toujours applicables à votre version.",
+   trapQ:"Un tutoriel sans date qui ne précise pas quel appareil/version il concerne peut-il quand même être fiable ?",
+   trapWrong:"Oui, le contenu peut toujours être bon même sans date",trapRight:"Non, vérifiez toujours la date de publication et si ça correspond exactement à votre appareil/version",
+   trapWrongFb:"Risqué ! Les étapes qui étaient bonnes l'année dernière peuvent ne plus s'appliquer si Windows a changé — sans date/version, vous ne pouvez pas le confirmer.",
+   trapRightFb:"Exact ! Vérifiez toujours la date et si le tutoriel correspond à votre version/appareil exact avant de le suivre.",
+   welcome:"Cliquez sur les 2 sources pour comparer, puis répondez à la question.",
+   done:"Vous savez maintenant comparer des sources de tutoriel, et reconnaître un signe d'avertissement sans date/version."},
+ en:{lead:"Compare 2 tutorial sources for learning to solve a problem. One official and well-dated, the other with no details at all.",
+   objs:["Compare 2 tutorial sources","Recognize a tutorial with no date/exact device is a warning sign"],
+   goodSource:["✅","Official Microsoft Support","Dated 2026, matches your Windows version, clear steps"],
+   vagueSource:["⚠️","Video With No Date","No date, doesn't specify which Windows version, full of ads"],
+   goodFb:"This one has all the good signs: official source, current date, and a version that matches your device.",
+   vagueFb:"This one is missing essential information — without a date, you don't know if the steps still apply to your version.",
+   trapQ:"Can a tutorial with no date that doesn't specify which device/version it's for still be trustworthy?",
+   trapWrong:"Yes, the content can still be good even without a date",trapRight:"No, always check the publication date and whether it exactly matches your device/version",
+   trapWrongFb:"Risky! Steps that were good last year might not apply anymore if Windows changed — without a date/version, you can't confirm that.",
+   trapRightFb:"Exactly! Always check the date and whether the tutorial matches your exact version/device before following it.",
+   welcome:"Click the 2 sources to compare, then answer the question.",
+   done:"Now you know how to compare tutorial sources, and to recognize a warning sign when there's no date/version."}},
+5:{ht:{lead:"Byennèt dijital gen ladan notifikasyon, poz, ak konnen sitiyasyon ki fè ijans emosyonèl la se yon siy manipilasyon.",
+   objs:["Klike sou 4 konsèy byennèt dijital","Rekonèt ijans emosyonèl se yon siy manipilasyon, pa sèlman nan eskrokri"],
+   items:[["🔕","Jere Notifikasyon","Dezaktive notifikasyon ki pa esansyèl"],["⏸️","Pran Poz Regilye","Repoze je ak kò ou detanzantan"],["🧘","Konsantre San Distraksyon","Fèmen onglè/app ou pa bezwen pou fokis"],["🛠️","Teknoloji Se Yon Zouti","Itilize l pou objektif ou, pa kite l kontwole ou"]],
+   trapQ:"Yon mesaj ki fè ou santi ijans/laperèz emosyonèl fò se toujou yon siy ou ta dwe reyaji imedyatman?",
+   trapWrong:"Wi, ijans emosyonèl vle di ijans reyèl",trapRight:"Non, ijans emosyonèl fò se souvan yon siy manipilasyon — sispann epi reflechi anvan ou reyaji",
+   trapWrongFb:"Danjere! Ijans emosyonèl fò se yon teknik komen nan eskrokri AK nan aplikasyon ki vle kenbe atansyon ou pi lontan — pa yon siy ijans reyèl.",
+   trapRightFb:"Egzat! Lè yon mesaj eseye fè ou santi ijans/laperèz fò, sispann epi reflechi — se souvan yon teknik manipilasyon.",
+   welcome:"Klike sou chak konsèy byennèt dijital, apre reponn kesyon an.",
+   done:"Ou konnen kounye a 4 konsèy byennèt dijital, epi rekonèt ijans emosyonèl kòm yon siy manipilasyon."},
+ fr:{lead:"Le bien-être numérique inclut les notifications, les pauses, et savoir que l'urgence émotionnelle est un signe de manipulation.",
+   objs:["Cliquer sur 4 conseils de bien-être numérique","Reconnaître que l'urgence émotionnelle est un signe de manipulation, pas seulement dans les arnaques"],
+   items:[["🔕","Gérer les Notifications","Désactiver les notifications non essentielles"],["⏸️","Prendre des Pauses Régulières","Reposer vos yeux et votre corps de temps en temps"],["🧘","Se Concentrer Sans Distraction","Fermer les onglets/apps dont vous n'avez pas besoin pour vous concentrer"],["🛠️","La Technologie Est un Outil","Utilisez-la pour votre objectif, ne la laissez pas vous contrôler"]],
+   trapQ:"Un message qui vous fait ressentir une urgence/peur émotionnelle forte est-il toujours un signe que vous devriez réagir immédiatement ?",
+   trapWrong:"Oui, l'urgence émotionnelle veut dire urgence réelle",trapRight:"Non, une forte urgence émotionnelle est souvent un signe de manipulation — arrêtez-vous et réfléchissez avant de réagir",
+   trapWrongFb:"Dangereux ! Une forte urgence émotionnelle est une technique courante dans les arnaques ET dans les applications qui veulent retenir votre attention plus longtemps — pas un signe d'urgence réelle.",
+   trapRightFb:"Exact ! Quand un message essaie de vous faire ressentir une forte urgence/peur, arrêtez-vous et réfléchissez — c'est souvent une technique de manipulation.",
+   welcome:"Cliquez sur chaque conseil de bien-être numérique, puis répondez à la question.",
+   done:"Vous connaissez maintenant 4 conseils de bien-être numérique, et à reconnaître l'urgence émotionnelle comme un signe de manipulation."},
+ en:{lead:"Digital wellbeing includes notifications, breaks, and knowing emotional urgency is a manipulation sign.",
+   objs:["Click 4 digital wellbeing tips","Recognize emotional urgency is a manipulation sign, not just in scams"],
+   items:[["🔕","Manage Notifications","Turn off non-essential notifications"],["⏸️","Take Regular Breaks","Rest your eyes and body from time to time"],["🧘","Focus Without Distraction","Close tabs/apps you don't need to stay focused"],["🛠️","Technology Is a Tool","Use it for your purpose, don't let it control you"]],
+   trapQ:"Is a message that makes you feel strong emotional urgency/fear always a sign you should react immediately?",
+   trapWrong:"Yes, emotional urgency means real urgency",trapRight:"No, strong emotional urgency is often a manipulation sign — stop and think before reacting",
+   trapWrongFb:"Risky! Strong emotional urgency is a common technique in scams AND in apps that want to hold your attention longer — not a sign of real urgency.",
+   trapRightFb:"Exactly! When a message tries to make you feel strong urgency/fear, stop and think — it's often a manipulation technique.",
+   welcome:"Click each digital wellbeing tip, then answer the question.",
+   done:"Now you know 4 digital wellbeing tips, and to recognize emotional urgency as a manipulation sign."}},
+6:{ht:{lead:"Anvan ou kòmanse kapstòn nan, prepare byen. Konplete chèklis preparasyon an.",
+   objs:["Konplete chèklis preparasyon 4 etap yo","Rekonèt li règ siksè a anvan ou kòmanse"],
+   steps:["Verifye Zouti Ou Bezwen Yo Pare","Telechaje Fichye Kapstòn Yo","Li Règ Siksè a (Rubric)","Sovgade Dosye Travay Ou"],
+   stepFb:"Byen fèt! Yon etap enpòtan pou byen prepare pou kapstòn nan.",
+   trapQ:"Ou ka kòmanse kapstòn nan san li règ siksè a (rubric) anvan?",
+   trapWrong:"Wi, ou ka kòmanse epi gade rubric la pita",trapRight:"Non, li rubric la anvan pou konnen egzakteman sa ki mande",
+   trapWrongFb:"Pa pi bon lide a! San li rubric la anvan, ou ka pase tan sou bagay ki pa esansyèl epi rate bagay ki konte pou anpil pwen.",
+   trapRightFb:"Egzat! Li rubric la anvan ede ou konsantre efò ou sou sa ki vrèman konte.",
+   welcome:"Klike sou chak etap nan chèklis preparasyon an, apre reponn kesyon an.",
+   done:"Ou pare kounye a pou kapstòn nan — ou konplete chèklis preparasyon an epi li règ siksè a."},
+ fr:{lead:"Avant de commencer le capstone, préparez-vous bien. Complétez la liste de préparation.",
+   objs:["Compléter la liste de préparation en 4 étapes","Reconnaître à lire la grille de réussite avant de commencer"],
+   steps:["Vérifier que Vos Outils Sont Prêts","Télécharger les Fichiers du Capstone","Lire la Grille de Réussite (Rubric)","Sauvegarder Votre Dossier de Travail"],
+   stepFb:"Bien joué ! Une étape importante pour bien se préparer au capstone.",
+   trapQ:"Pouvez-vous commencer le capstone sans lire la grille de réussite (rubric) avant ?",
+   trapWrong:"Oui, vous pouvez commencer et regarder la grille plus tard",trapRight:"Non, lisez la grille avant pour savoir exactement ce qui est demandé",
+   trapWrongFb:"Pas la meilleure idée ! Sans lire la grille avant, vous pourriez passer du temps sur des choses non essentielles et manquer des choses qui comptent pour beaucoup de points.",
+   trapRightFb:"Exact ! Lire la grille avant vous aide à concentrer vos efforts sur ce qui compte vraiment.",
+   welcome:"Cliquez sur chaque étape de la liste de préparation, puis répondez à la question.",
+   done:"Vous êtes maintenant prêt pour le capstone — vous avez complété la liste de préparation et lu la grille de réussite."},
+ en:{lead:"Before starting the capstone, prepare well. Complete the preparation checklist.",
+   objs:["Complete the 4-step preparation checklist","Recognize to read the success rubric before starting"],
+   steps:["Check Your Tools Are Ready","Download the Capstone Files","Read the Success Rubric","Back Up Your Working Folder"],
+   stepFb:"Well done! An important step for preparing well for the capstone.",
+   trapQ:"Can you start the capstone without reading the success rubric first?",
+   trapWrong:"Yes, you can start and look at the rubric later",trapRight:"No, read the rubric first to know exactly what's required",
+   trapWrongFb:"Not the best idea! Without reading the rubric first, you might spend time on non-essential things and miss things worth a lot of points.",
+   trapRightFb:"Exactly! Reading the rubric first helps you focus your effort on what really matters.",
+   welcome:"Click each step in the preparation checklist, then answer the question.",
+   done:"You're ready for the capstone now — you completed the preparation checklist and read the success rubric."}},
+7:{ht:{lead:"Kapstòn nan: yon gwoup kominotè ap prepare yon ti evènman. Ou dwe òganize enfòmasyon epi voye yon pake dijital konplè.",
+   objs:["Kreye dosye pwojè ak sou-dosye (Dokiman/Foto/Final)","Chanje non fichye ak modifye/ekspòte an PDF","Chwazi bon imaj evènman an epi kreye yon backup","Ekri yon imèl konplè ak PDF tache","Idantifye mesaj sispèk la epi eksplike poukisa","Reponn yon senaryo depanaj"],
+   folderBtn:"Kreye Dosye Pwojè (Dokiman/Foto/Final)",renameBtn:"Chanje Non 3 Fichye Klèman",editBtn:"Modifye Dokiman, Sovgade Kopi, Ekspòte an PDF",
+   imageBtn:"Chwazi Bon Imaj Evènman an",backupBtn:"Kreye Backup Dosye Final la",
+   emailBtn:"Ekri Imèl Konplè (Sijè/Salitasyon/Eksplikasyon/Tache/Fen)",
+   folderFb:"Dosye pwojè a kreye ak 3 sou-dosye: Dokiman, Foto, Final.",
+   renameFb:"3 fichye chanje non ak non ki klè.",
+   editFb:"Dokiman an modifye, sovgade kòm yon nouvo kopi, epi ekspòte an PDF.",
+   imageFb:"Bon imaj evènman an chwazi.",
+   backupFb:"Yon kopi backup dosye final la kreye nan yon dezyèm kote.",
+   emailFb:"Imèl la konplè ak tout pati li yo, ak PDF tache.",
+   msgReal:["📧","Konfimasyon Vrè: Lokal Evènman an Konfime pou Samdi","Soti nan òganizatè evènman an, adrès konnen, pa gen presyon"],
+   msgFake:["⚠️","Ijan: Konfime Peman Ou KOUNYE A oswa Pèdi Plas Ou","Adrès enkoni, presyon ijan, mande enfòmasyon kat bankè"],
+   msgRealFb:"Sa a se yon mesaj lejitim — soti nan yon adrès ou rekonèt, san presyon ijan.",
+   msgFakeFb:"Sa a se mesaj SISPÈK la! Presyon ijan + demann enfòmasyon bankè + adrès enkoni = siy eskrokri klasik.",
+   troubleQ:"Senaryo depanaj: Wi-Fi ou di 'konekte' men okenn sit pa louvri. Premye etap ou ta dwe fè?",
+   troubleWrong:"Rekòmanse routè a imedyatman san tcheke lòt bagay",troubleRight:"Tcheke yon lòt sit ak yon lòt aparèy anvan ou touche ekipman an",
+   troubleWrongFb:"Twòp vit! Tcheke dabò si se sit la ki gen pwoblèm oswa si yon lòt aparèy gen menm pwoblèm nan.",
+   troubleRightFb:"Egzat! Sekans kalm lan (lòt sit, lòt aparèy) anvan ou touche ekipman an se pi bon premye etap la.",
+   welcome:"Konplete chak pati kapstòn nan youn pa youn — sa a se dènye misyon konplè kou a!",
+   done:"Felisitasyon! Ou konplete Kapstòn nan — Yon Travay Dijital Konplè Nan Lavi Reyèl. Ou itilize prèske tout konpetans ou aprann nan kou sa a!"},
+ fr:{lead:"Le capstone : un groupe communautaire prépare un petit événement. Vous devez organiser l'information et envoyer un paquet numérique complet.",
+   objs:["Créer un dossier projet avec sous-dossiers (Documents/Photos/Final)","Renommer des fichiers et modifier/exporter en PDF","Choisir la bonne image de l'événement et créer une sauvegarde","Écrire un e-mail complet avec PDF joint","Identifier le message suspect et expliquer pourquoi","Répondre à un scénario de dépannage"],
+   folderBtn:"Créer un Dossier Projet (Documents/Photos/Final)",renameBtn:"Renommer 3 Fichiers Clairement",editBtn:"Modifier le Document, Enregistrer une Copie, Exporter en PDF",
+   imageBtn:"Choisir la Bonne Image de l'Événement",backupBtn:"Créer une Sauvegarde du Dossier Final",
+   emailBtn:"Écrire un E-mail Complet (Sujet/Salutation/Explication/Pièce Jointe/Conclusion)",
+   folderFb:"Le dossier projet est créé avec 3 sous-dossiers : Documents, Photos, Final.",
+   renameFb:"3 fichiers renommés avec des noms clairs.",
+   editFb:"Le document est modifié, enregistré comme une nouvelle copie, et exporté en PDF.",
+   imageFb:"La bonne image de l'événement est choisie.",
+   backupFb:"Une copie de sauvegarde du dossier final est créée dans un deuxième endroit.",
+   emailFb:"L'e-mail est complet avec toutes ses parties, et le PDF est joint.",
+   msgReal:["📧","Vraie Confirmation : Lieu de l'Événement Confirmé pour Samedi","De l'organisateur de l'événement, adresse connue, pas de pression"],
+   msgFake:["⚠️","Urgent : Confirmez Votre Paiement MAINTENANT ou Perdez Votre Place","Adresse inconnue, pression urgente, demande d'informations de carte bancaire"],
+   msgRealFb:"Ceci est un message légitime — d'une adresse que vous reconnaissez, sans pression urgente.",
+   msgFakeFb:"Ceci est le message SUSPECT ! Pression urgente + demande d'informations bancaires + adresse inconnue = signe classique d'arnaque.",
+   troubleQ:"Scénario de dépannage : Votre Wi-Fi dit « connecté » mais aucun site ne s'ouvre. Quelle devrait être votre première étape ?",
+   troubleWrong:"Redémarrer le routeur immédiatement sans vérifier autre chose",troubleRight:"Vérifier un autre site et un autre appareil avant de toucher à l'équipement",
+   troubleWrongFb:"Trop vite ! Vérifiez d'abord si c'est le site qui a un problème ou si un autre appareil a le même problème.",
+   troubleRightFb:"Exact ! La séquence calme (autre site, autre appareil) avant de toucher à l'équipement est la meilleure première étape.",
+   welcome:"Complétez chaque partie du capstone une par une — c'est la mission finale complète du cours !",
+   done:"Félicitations ! Vous avez complété le Capstone — Une Tâche Numérique Complète Dans la Vie Réelle. Vous avez utilisé presque toutes les compétences apprises dans ce cours !"},
+ en:{lead:"The capstone: a community group is preparing a small event. You must organize information and send a complete digital package.",
+   objs:["Create a project folder with subfolders (Documents/Photos/Final)","Rename files and edit/export to PDF","Select the correct event image and create a backup","Write a complete email with PDF attached","Identify the suspicious message and explain why","Answer a troubleshooting scenario"],
+   folderBtn:"Create Project Folder (Documents/Photos/Final)",renameBtn:"Rename 3 Files Clearly",editBtn:"Edit Document, Save a Copy, Export to PDF",
+   imageBtn:"Select the Correct Event Image",backupBtn:"Create a Backup of the Final Folder",
+   emailBtn:"Write a Complete Email (Subject/Greeting/Explanation/Attachment/Closing)",
+   folderFb:"The project folder is created with 3 subfolders: Documents, Photos, Final.",
+   renameFb:"3 files renamed with clear names.",
+   editFb:"The document is edited, saved as a new copy, and exported to PDF.",
+   imageFb:"The correct event image is selected.",
+   backupFb:"A backup copy of the final folder is created in a second location.",
+   emailFb:"The email is complete with all its parts, and the PDF is attached.",
+   msgReal:["📧","Real Confirmation: Event Venue Confirmed for Saturday","From the event organizer, known address, no pressure"],
+   msgFake:["⚠️","Urgent: Confirm Your Payment NOW or Lose Your Spot","Unknown address, urgent pressure, asks for bank card information"],
+   msgRealFb:"This is a legitimate message — from an address you recognize, with no urgent pressure.",
+   msgFakeFb:"This is the SUSPICIOUS message! Urgent pressure + request for bank information + unknown address = classic scam sign.",
+   troubleQ:"Troubleshooting scenario: Your Wi-Fi says 'connected' but no site opens. What should your first step be?",
+   troubleWrong:"Restart the router immediately without checking anything else",troubleRight:"Check another site and another device before touching the equipment",
+   troubleWrongFb:"Too fast! Check first whether it's the site that has a problem or whether another device has the same issue.",
+   troubleRightFb:"Exactly! The calm sequence (other site, other device) before touching the equipment is the best first step.",
+   welcome:"Complete each part of the capstone one by one — this is the course's complete final mission!",
+   done:"Congratulations! You completed the Capstone — A Complete Real-Life Digital Task. You used almost every skill you learned in this course!"}},
+8:{ht:{lead:"Konpare konfyans ou kounye a ak lè ou te kòmanse. Idantifye konpetans ki pi fò ou yo.",
+   objs:["Konpare 3 domèn konfyans","Rekonèt yon evalyasyon onèt pi itil pase yon repons pafè san reflechi"],
+   areas:[["📁","Fichye ak Dosye","Kijan ou santi w kounye a konpare ak kòmansman?"],["🌐","Entènèt ak Sekirite","Kijan ou santi w kounye a konpare ak kòmansman?"],["🛠️","Rezoud Pwoblèm","Kijan ou santi w kounye a konpare ak kòmansman?"]],
+   trapQ:"Ou reponn 'Mwen ka fè tout bagay pafètman' pou tout kesyon san reflechi. Sa itil pou pwogrè ou?",
+   trapWrong:"Wi, konfyans total toujou pi bon repons lan",trapRight:"Non, yon evalyasyon onèt ede ou konsantre sou sa ou bezwen pratike ankò",
+   trapWrongFb:"Pa itil! Si ou reponn 'pafè' pou tout bagay san reflechi, ou pa idantifye domèn ou ta ka pratike plis.",
+   trapRightFb:"Egzat! Yon evalyasyon onèt (menm si li montre fèblès) ede ou bati yon plan pratik ki vrèman itil.",
+   welcome:"Klike sou chak domèn pou konpare konfyans ou, apre reponn kesyon an.",
+   done:"Ou revize kwasans ou nan 3 domèn, epi ou konprann valè yon evalyasyon onèt."},
+ fr:{lead:"Comparez votre confiance actuelle avec celle du début. Identifiez vos compétences les plus fortes.",
+   objs:["Comparer 3 domaines de confiance","Reconnaître qu'une évaluation honnête est plus utile qu'une réponse parfaite sans réflexion"],
+   areas:[["📁","Fichiers et Dossiers","Comment vous sentez-vous maintenant comparé au début ?"],["🌐","Internet et Sécurité","Comment vous sentez-vous maintenant comparé au début ?"],["🛠️","Résolution de Problèmes","Comment vous sentez-vous maintenant comparé au début ?"]],
+   trapQ:"Vous répondez « Je peux tout faire parfaitement » à toutes les questions sans réfléchir. Est-ce utile pour votre progrès ?",
+   trapWrong:"Oui, la confiance totale est toujours la meilleure réponse",trapRight:"Non, une évaluation honnête vous aide à vous concentrer sur ce que vous devez pratiquer encore",
+   trapWrongFb:"Pas utile ! Si vous répondez « parfait » à tout sans réfléchir, vous n'identifiez pas les domaines que vous pourriez pratiquer davantage.",
+   trapRightFb:"Exact ! Une évaluation honnête (même si elle montre des faiblesses) vous aide à construire un plan de pratique vraiment utile.",
+   welcome:"Cliquez sur chaque domaine pour comparer votre confiance, puis répondez à la question.",
+   done:"Vous avez revu votre croissance dans 3 domaines, et vous comprenez la valeur d'une évaluation honnête."},
+ en:{lead:"Compare your confidence now to when you started. Identify your strongest skills.",
+   objs:["Compare 3 confidence areas","Recognize an honest self-assessment is more useful than a perfect, unthinking answer"],
+   areas:[["📁","Files and Folders","How do you feel now compared to the start?"],["🌐","Internet and Security","How do you feel now compared to the start?"],["🛠️","Troubleshooting","How do you feel now compared to the start?"]],
+   trapQ:"You answer 'I can do everything perfectly' to every question without thinking. Is that useful for your progress?",
+   trapWrong:"Yes, total confidence is always the best answer",trapRight:"No, an honest self-assessment helps you focus on what you still need to practice",
+   trapWrongFb:"Not useful! If you answer 'perfect' to everything without thinking, you don't identify areas you could practice more.",
+   trapRightFb:"Exactly! An honest self-assessment (even if it shows weaknesses) helps you build a practice plan that's actually useful.",
+   welcome:"Click each area to compare your confidence, then answer the question.",
+   done:"You reviewed your growth in 3 areas, and you understand the value of an honest self-assessment."}},
+9:{ht:{lead:"Ou fini kou sa a! Gade sou 3 chemen posib pou kontinye aprann — san okenn presyon pou chwazi kounye a.",
+   objs:["Egzamine 3 pwochen chemen posib","Konfime ou pa gen presyon pou enskri touswit"],
+   paths:[["📊","Microsoft Office pou Travay","Word, Excel, PowerPoint pou biwo/travay"],["🔧","Teknisyen ak Reparasyon Òdinatè","Pou moun ki enterese nan konnen materyèl la pi fon"],["📄","Preparasyon CV ak Travay","Konpetans pou chèche travay ak antrevi"]],
+   trapQ:"Ou dwe enskri nan pwochen kou a KOUNYE A anvan ou fè nenpòt lòt bagay?",
+   trapWrong:"Wi, enskri touswit anvan ou reflechi",trapRight:"Non, chwazi pwochen chemen ou lè OU pare, san presyon",
+   trapWrongFb:"Pa vre! Pa gen okenn presyon pou enskri imedyatman — pran tan ou pou chwazi sa ki vrèman koresponn ak objektif ou.",
+   trapRightFb:"Egzat! Chwazi pwochen chemen ou se yon desizyon ou fè lè OU pare, san okenn presyon.",
+   welcome:"Klike sou chak chemen posib, apre reponn kesyon an sou presyon enskripsyon.",
+   done:"Felisitasyon! Ou fini kou Òdinatè & Entènèt Esansyèl la nèt — 14 modil, san presyon, nan pwòp rit ou."},
+ fr:{lead:"Vous avez fini ce cours ! Regardez 3 chemins possibles pour continuer à apprendre — sans aucune pression pour choisir maintenant.",
+   objs:["Examiner 3 prochains chemins possibles","Confirmer qu'il n'y a pas de pression pour s'inscrire tout de suite"],
+   paths:[["📊","Microsoft Office pour le Travail","Word, Excel, PowerPoint pour le bureau/travail"],["🔧","Technicien et Réparation d'Ordinateurs","Pour ceux intéressés à connaître le matériel plus en profondeur"],["📄","Préparation CV et Emploi","Compétences pour chercher un emploi et les entretiens"]],
+   trapQ:"Devez-vous vous inscrire au prochain cours MAINTENANT avant de faire autre chose ?",
+   trapWrong:"Oui, inscrivez-vous tout de suite avant de réfléchir",trapRight:"Non, choisissez votre prochain chemin quand VOUS êtes prêt, sans pression",
+   trapWrongFb:"Pas vrai ! Il n'y a aucune pression pour s'inscrire immédiatement — prenez votre temps pour choisir ce qui correspond vraiment à vos objectifs.",
+   trapRightFb:"Exact ! Choisir votre prochain chemin est une décision que vous prenez quand VOUS êtes prêt, sans aucune pression.",
+   welcome:"Cliquez sur chaque chemin possible, puis répondez à la question sur la pression d'inscription.",
+   done:"Félicitations ! Vous avez complètement terminé le cours Ordinateur & Internet Essentiels — 14 modules, sans pression, à votre propre rythme."},
+ en:{lead:"You finished this course! Look at 3 possible paths to keep learning — with no pressure to choose right now.",
+   objs:["Examine 3 possible next paths","Confirm there's no pressure to enroll right away"],
+   paths:[["📊","Microsoft Office for Work","Word, Excel, PowerPoint for office/work"],["🔧","Computer Technician & Repair","For those interested in knowing the hardware more deeply"],["📄","CV and Job Readiness","Skills for job searching and interviews"]],
+   trapQ:"Must you enroll in the next course NOW before doing anything else?",
+   trapWrong:"Yes, enroll right away before thinking",trapRight:"No, choose your next path when YOU are ready, with no pressure",
+   trapWrongFb:"Not true! There's no pressure to enroll immediately — take your time to choose what really matches your goals.",
+   trapRightFb:"Exactly! Choosing your next path is a decision you make when YOU are ready, with no pressure at all.",
+   welcome:"Click each possible path, then answer the question about enrollment pressure.",
+   done:"Congratulations! You completely finished the Computer & Internet Essentials course — 14 modules, no pressure, at your own pace."}},
+};
+
+/* ============ engine ============ */
+const NL=9;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module14-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD14_LESSON_SLUGS=["bati-yon-sistem-oganizasyon-dijital-senp","kreye-woutin-dijital-semenn-ak-chak-mwa-ou","itilize-ai-kom-yon-tite-odinate","aprann-nan-paj-ed-ak-tutoryel","byennet-dijital-ak-atansyon","prepare-pou-kapston-nan","kapston-yon-travay-dijital-konple-nan-lavi-reyel","revize-kwasans-ou","chwazi-pwochen-chemen-ou"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem",""];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD14_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectCourseComplete();
+}
+function injectCourseComplete(){
+ if($("courseCompleteLink"))return;
+ const wrap=document.createElement("div");wrap.className="finale";
+ wrap.innerHTML='<div class="big">🎓</div>';
+ const a=document.createElement("a");a.id="courseCompleteLink";a.className="btn p";a.textContent=UI[S.lang].courseDone;
+ a.href="/academy/courses/computer-internet-essentials";a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ wrap.appendChild(document.createElement("br"));
+ wrap.appendChild(a);
+ $("stage").appendChild(wrap);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===13;
+ let les="";if(active){les='<div class="les">'+M14[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">14.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 14 · 14."+(i+1);$("topTitle").textContent=M14[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 14 · 14.'+(i+1)+'</span><div class="labh2">'+M14[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.sorted=st.sorted||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(1,d.lead)+'<div class="cols">'+
+    '<div class="col"><h4>'+d.weeklyLbl+'</h4>'+d.weekly.map((t,k)=>'<div class="chip" data-w="'+k+'"'+(st.sorted["w"+k]?' style="opacity:.4"':"")+'>'+(st.sorted["w"+k]?"✓ ":"")+t+'</div>').join("")+'</div>'+
+    '<div class="col"><h4>'+d.monthlyLbl+'</h4>'+d.monthly.map((t,k)=>'<div class="chip" data-m="'+k+'"'+(st.sorted["m"+k]?' style="opacity:.4"':"")+'>'+(st.sorted["m"+k]?"✓ ":"")+t+'</div>').join("")+'</div>'+
+   '</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  function check(){if(Object.keys(st.sorted).length>=6)setObj(0);}
+  stage.querySelectorAll(".chip[data-w]").forEach(c=>c.addEventListener("click",()=>{const k="w"+c.dataset.w;if(!st.sorted[k]){st.sorted[k]=true;check();render();}}));
+  stage.querySelectorAll(".chip[data-m]").forEach(c=>c.addEventListener("click",()=>{const k="m"+c.dataset.m;if(!st.sorted[k]){st.sorted[k]=true;check();render();}}));
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(2,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,190px)">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.good=false;st.vague=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,220px)">'+
+   '<div class="partcard" id="goodCard"><div class="partart">'+d.goodSource[0]+'</div><div class="partn">'+d.goodSource[1]+'</div><div style="font-size:11.5px;color:var(--mute);margin-top:4px">'+d.goodSource[2]+'</div></div>'+
+   '<div class="partcard" id="vagueCard"><div class="partart">'+d.vagueSource[0]+'</div><div class="partn">'+d.vagueSource[1]+'</div><div style="font-size:11.5px;color:var(--mute);margin-top:4px">'+d.vagueSource[2]+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.good&&st.vague)setObj(0);}
+ $("goodCard").addEventListener("click",()=>{if(st.good)return;st.good=true;$("goodCard").classList.add("done");ai(d.goodFb,"good");check();});
+ $("vagueCard").addEventListener("click",()=>{if(st.vague)return;st.vague=true;$("vagueCard").classList.add("done");ai(d.vagueFb,"warn");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="checklist">'+d.steps.map((s,k)=>'<div class="chip" data-k="'+k+'" style="justify-content:flex-start">'+s+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("sel");ai(d.stepFb,"good");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.folder=false;st.rename=false;st.edit=false;st.image=false;st.backup=false;st.email=false;st.msgReal=false;st.msgFake=false;st.trouble=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(6,d.lead)+
+   '<div class="checklist">'+
+    '<div class="chip" id="folderBtn"'+(st.folder?' style="opacity:.4"':"")+'>'+(st.folder?"✓ ":"")+d.folderBtn+'</div>'+
+    '<div class="chip" id="renameBtn"'+(st.rename?' style="opacity:.4"':"")+'>'+(st.rename?"✓ ":"")+d.renameBtn+'</div>'+
+    '<div class="chip" id="editBtn"'+(st.edit?' style="opacity:.4"':"")+'>'+(st.edit?"✓ ":"")+d.editBtn+'</div>'+
+    '<div class="chip" id="imageBtn"'+(st.image?' style="opacity:.4"':"")+'>'+(st.image?"✓ ":"")+d.imageBtn+'</div>'+
+    '<div class="chip" id="backupBtn"'+(st.backup?' style="opacity:.4"':"")+'>'+(st.backup?"✓ ":"")+d.backupBtn+'</div>'+
+    '<div class="chip" id="emailBtn"'+(st.email?' style="opacity:.4"':"")+'>'+(st.email?"✓ ":"")+d.emailBtn+'</div>'+
+   '</div>'+
+   '<div style="font-weight:700;margin-top:22px">'+M14[S.lang][6]+' — '+(S.lang==="ht"?"Ki mesaj ki sispèk?":S.lang==="fr"?"Quel message est suspect ?":"Which message is suspicious?")+'</div>'+
+   '<div class="msgcard" id="msgRealCard"'+(st.msgReal?' class="msgcard done"':"")+'><b>'+d.msgReal[0]+' '+d.msgReal[1]+'</b><div style="font-size:12px;color:var(--mute);margin-top:4px">'+d.msgReal[2]+'</div></div>'+
+   '<div class="msgcard sus" id="msgFakeCard"><b>'+d.msgFake[0]+' '+d.msgFake[1]+'</b><div style="font-size:12px;color:var(--mute);margin-top:4px">'+d.msgFake[2]+'</div></div>'+
+   '<div style="font-weight:700;margin-top:22px">'+d.troubleQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.troubleWrong+'</button><button class="cat" id="tqRight">'+d.troubleRight+'</button></div>'+
+   nextBar();
+  wireNext();
+  $("folderBtn").addEventListener("click",()=>{if(!st.folder){st.folder=true;ai(d.folderFb,"good");render();}});
+  $("renameBtn").addEventListener("click",()=>{if(!st.rename){st.rename=true;ai(d.renameFb,"good");render();}});
+  $("editBtn").addEventListener("click",()=>{if(!st.edit){st.edit=true;ai(d.editFb,"good");render();}});
+  $("imageBtn").addEventListener("click",()=>{if(!st.image){st.image=true;ai(d.imageFb,"good");render();}});
+  $("backupBtn").addEventListener("click",()=>{if(!st.backup){st.backup=true;ai(d.backupFb,"good");render();}});
+  $("emailBtn").addEventListener("click",()=>{if(!st.email){st.email=true;ai(d.emailFb,"good");checkStep1();render();}});
+  $("msgRealCard").addEventListener("click",()=>{if(!st.msgReal){st.msgReal=true;ai(d.msgRealFb,"neutral");}});
+  $("msgFakeCard").addEventListener("click",()=>{if(!st.msgFake){st.msgFake=true;ai(d.msgFakeFb,"warn");checkStep1();render();}});
+  $("tqWrong").addEventListener("click",()=>{if(st.trouble)return;st.trouble=true;ai(d.troubleWrongFb,"warn");checkStep1();});
+  $("tqRight").addEventListener("click",()=>{if(st.trouble)return;st.trouble=true;ai(d.troubleRightFb,"good");checkStep1();});
+  function checkStep1(){
+   if(st.folder&&st.rename)setObj(0);
+   if(st.edit)setObj(1);
+   if(st.image&&st.backup)setObj(2);
+   if(st.email)setObj(3);
+   if(st.msgFake)setObj(4);
+   if(st.trouble)setObj(5);
+  }
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,190px)">'+d.areas.map((a,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+a[0]+'</div><div class="partn">'+a[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.areas[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,190px)">'+d.paths.map((p,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+p[0]+'</div><div class="partn">'+p[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.paths[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
