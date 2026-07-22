@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 5 — Aplikasyon ak Dokiman</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+.tileicon{width:24px;height:24px;flex:none}
+/* windows chrome */
+.winpanel{position:relative;width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.wtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.wbody{padding:18px 20px;background:var(--w-content);min-height:180px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}
+/* dialog / overlay (install bundle trap, save-close warning) */
+.ovl{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9}
+.dialog{width:min(420px,90%);background:var(--w-mica);border-radius:8px;box-shadow:0 30px 70px -10px rgba(0,0,0,.6);overflow:hidden;font-family:var(--seg);color:var(--w-t1)}
+.dialog .dtb{padding:16px 18px 6px;font-size:16px;font-weight:700}
+.dialog .dbody{padding:6px 18px 16px;font-size:13.5px;color:var(--w-t2);line-height:1.5}
+.dialog .dchk{display:flex;align-items:flex-start;gap:9px;margin-top:12px;padding:10px;background:#fff8e1;border:1px solid #f0d98a;border-radius:6px;font-size:13px;cursor:pointer}
+.dialog .dchk input{margin-top:2px}
+.dialog .dactions{display:flex;justify-content:flex-end;gap:10px;padding:12px 18px;background:#f3f3f3;border-top:1px solid var(--w-stroke)}
+.dbtn{border:none;border-radius:5px;padding:8px 18px;font-weight:600;font-size:13.5px;cursor:pointer}
+.dbtn.pri{background:var(--w-accent);color:#fff}.dbtn.sec{background:#e5e5e5;color:#1b1b1b}
+/* toggle rows (permissions) */
+.trow{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid #eee}
+.trow:last-child{border-bottom:none}.trow .ti{width:20px;height:20px;flex:none}
+.trow .tn{flex:1;font-size:14px;font-weight:600;color:var(--w-t1)}
+.toggle{width:40px;height:22px;border-radius:12px;background:#c8c8c8;position:relative;cursor:pointer;flex:none;transition:.2s}
+.toggle.on{background:var(--w-accent)}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.toggle.on::after{left:20px}
+/* pdf viewer mock */
+.pdfshell{width:min(500px,100%);border-radius:8px;overflow:hidden;background:#4a4a4a;margin-top:20px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.pdftb{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#2e2e2e}
+.pdftb button{background:#525252;border:none;color:#fff;width:32px;height:32px;border-radius:6px;cursor:pointer;display:grid;place-items:center}
+.pdftb button:hover{background:#666}.pdftb .pg{color:#ddd;font-size:12.5px;margin:0 6px}
+.pdfpage{background:#fff;color:#222;min-height:220px;margin:16px 24px;padding:20px;border-radius:3px;font-size:12.5px;line-height:1.7}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 5 · 5.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 6 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 6 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 6 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M5={ht:["Ki Sa Yon Aplikasyon Ye?","Kote San Danje Pou Jwenn Aplikasyon","Enstale Yon Aplikasyon","Mete Ajou ak Retire Yon Aplikasyon","Louvri, Modifye, Sovgade, ak Fèmen Yon Dokiman Debaz","Sa Ou Dwe Konnen Sou PDF","Aplikasyon Pa Defo","Pèmisyon Aplikasyon","Misyon: Prepare Yon Dokiman"],
+ fr:["Qu'est-ce qu'une Application ?","Endroits Sûrs pour Obtenir des Applications","Installer une Application","Mettre à Jour et Retirer une Application","Ouvrir, Modifier, Enregistrer, et Fermer un Document de Base","Ce Qu'il Faut Savoir sur les PDF","Applications par Défaut","Permissions des Applications","Mission : Préparer un Document"],
+ en:["What Is an Application?","Safe Places to Get Applications","Install an Application","Update and Remove an Application","Open, Edit, Save, and Close a Basic Document","PDF Essentials","Default Applications","Application Permissions","Module Mission: Prepare a Document"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Yon aplikasyon se yon pwogram ou itilize sou òdinatè a. Gen aplikasyon ki deja enstale (sistèm), gen lòt ou enstale apa (twazyèm pati), epi gen sit entènèt ki PA aplikasyon ditou. Klike sou chak egzanp.",
+   objs:["Klike sou 3 egzanp","Distenge yon aplikasyon enstale de yon sit entènèt"],
+   items:[["🧮","Kalkilatris","Aplikasyon SISTÈM — deja enstale nan Windows, ou pa bezwen telechaje l"],["📝","Word","Aplikasyon TWAZYÈM PATI — ou enstale l apa, li ka gratis oswa peye"],["🌐","Facebook.com","Sit ENTÈNÈT — ou louvri l nan navigatè a, li PA yon aplikasyon enstale sou òdinatè a"]],
+   trapQ:"Facebook se yon aplikasyon ki enstale sou òdinatè a, menm jan ak Kalkilatris oswa Word?",
+   yes:"Wi, se menm bagay la",no:"Non, Facebook se yon sit ou louvri nan navigatè a",
+   yesFb:"Pa vre! Facebook se yon SIT ENTÈNÈT — ou louvri l nan navigatè a (tankou Chrome oswa Edge), li pa enstale sou òdinatè a jan Kalkilatris ak Word enstale.",
+   noFb:"Egzat! Sit entènèt yo viv nan navigatè a — yo pa okipe espas sou disk òdinatè a jan yon aplikasyon enstale fè.",
+   welcome:"Klike sou chak egzanp pou wè kalite li ye.",
+   done:"Ou konprann kounye a: gen aplikasyon sistèm, aplikasyon twazyèm pati, ak sit entènèt — twa bagay diferan."},
+ fr:{lead:"Une application est un programme que vous utilisez sur l'ordinateur. Certaines sont déjà installées (système), d'autres vous les installez séparément (tiers), et certains sites web ne sont PAS des applications du tout. Cliquez sur chaque exemple.",
+   objs:["Cliquer sur 3 exemples","Distinguer une application installée d'un site web"],
+   items:[["🧮","Calculatrice","Application SYSTÈME — déjà installée dans Windows, pas besoin de la télécharger"],["📝","Word","Application TIERCE — vous l'installez séparément, gratuite ou payante"],["🌐","Facebook.com","Site WEB — vous l'ouvrez dans le navigateur, ce n'est PAS une application installée sur l'ordinateur"]],
+   trapQ:"Facebook est une application installée sur l'ordinateur, comme Calculatrice ou Word ?",
+   yes:"Oui, c'est pareil",no:"Non, Facebook est un site que vous ouvrez dans le navigateur",
+   yesFb:"Pas vrai ! Facebook est un SITE WEB — vous l'ouvrez dans le navigateur (comme Chrome ou Edge), il n'est pas installé sur l'ordinateur comme le sont Calculatrice et Word.",
+   noFb:"Exact ! Les sites web vivent dans le navigateur — ils n'occupent pas d'espace sur le disque de l'ordinateur comme le fait une application installée.",
+   welcome:"Cliquez sur chaque exemple pour voir de quel type il s'agit.",
+   done:"Vous comprenez maintenant : il y a les applications système, les applications tierces, et les sites web — trois choses différentes."},
+ en:{lead:"An application is a program you use on the computer. Some are already installed (system), others you install separately (third-party), and some websites are NOT applications at all. Click each example.",
+   objs:["Click 3 examples","Distinguish an installed application from a website"],
+   items:[["🧮","Calculator","SYSTEM application — already installed in Windows, no need to download it"],["📝","Word","THIRD-PARTY application — you install it separately, free or paid"],["🌐","Facebook.com","WEBSITE — you open it in the browser, it is NOT an application installed on the computer"]],
+   trapQ:"Is Facebook an application installed on the computer, just like Calculator or Word?",
+   yes:"Yes, it's the same thing",no:"No, Facebook is a site you open in the browser",
+   yesFb:"Not true! Facebook is a WEBSITE — you open it in the browser (like Chrome or Edge), it isn't installed on the computer the way Calculator and Word are.",
+   noFb:"Exactly! Websites live in the browser — they don't take up space on the computer's disk the way an installed application does.",
+   welcome:"Click each example to see what type it is.",
+   done:"Now you understand: there are system applications, third-party applications, and websites — three different things."}},
+2:{ht:{lead:"Kèk kote se san danje pou jwenn aplikasyon, gen lòt ki gen siy avètisman. Eksplore paj telechajman an anba a.",
+   objs:["Idantifye 2 sous ki san danje","Rekonèt yon fo bouton 'Download' sou yon sit ki plen reklam"],
+   store:["🏪","Microsoft Store","San danje — aplikasyon verifye pa Microsoft"],
+   official:["🌐","Sit ofisyèl devlopè a","San danje — telechaje dirèkteman nan konpayi ki fè aplikasyon an"],
+   fakeBtn:"⬇️ DOWNLOAD NOW!!! ⬇️",fakeSub:"(reklam)",
+   realBtn:"Download Aplikasyon X",realSub:"lyen reyèl la",
+   fakeFb:"Sa se yon REKLAM, pa lyen telechajman reyèl la! Sit ki plen anpil reklam souvan gen plizyè fo bouton 'Download' ki gwo ak klere pou pyeje ou.",
+   realFb:"Egzat! Se lyen telechajman reyèl la — pi piti, mwens flashy, men se sa ki vrèman mennen ou nan aplikasyon an.",
+   storeFb:"San danje! Microsoft Store verifye aplikasyon anvan yo parèt la.",
+   officialFb:"San danje! Sit ofisyèl konpayi ki fè aplikasyon an se yon bon sous.",
+   welcome:"Klike sou Microsoft Store ak sit ofisyèl la, apre eseye jwenn vrè bouton download la anba.",
+   done:"Ou konnen kounye a 2 sous san danje, epi ou ka rekonèt yon fo bouton 'Download' sou yon sit ki plen reklam."},
+ fr:{lead:"Certains endroits sont sûrs pour obtenir des applications, d'autres ont des signes d'avertissement. Explorez la page de téléchargement ci-dessous.",
+   objs:["Identifier 2 sources sûres","Reconnaître un faux bouton « Download » sur un site plein de publicités"],
+   store:["🏪","Microsoft Store","Sûr — applications vérifiées par Microsoft"],
+   official:["🌐","Site officiel du développeur","Sûr — téléchargez directement depuis l'entreprise qui fait l'application"],
+   fakeBtn:"⬇️ DOWNLOAD NOW!!! ⬇️",fakeSub:"(publicité)",
+   realBtn:"Télécharger Application X",realSub:"le vrai lien",
+   fakeFb:"C'est une PUBLICITÉ, pas le vrai lien de téléchargement ! Les sites pleins de publicités ont souvent plusieurs faux boutons « Download » gros et voyants pour vous piéger.",
+   realFb:"Exact ! C'est le vrai lien de téléchargement — plus petit, moins voyant, mais c'est celui qui mène vraiment à l'application.",
+   storeFb:"Sûr ! Microsoft Store vérifie les applications avant qu'elles n'y apparaissent.",
+   officialFb:"Sûr ! Le site officiel de l'entreprise qui fait l'application est une bonne source.",
+   welcome:"Cliquez sur Microsoft Store et le site officiel, puis essayez de trouver le vrai bouton download ci-dessous.",
+   done:"Vous connaissez maintenant 2 sources sûres, et vous savez reconnaître un faux bouton « Download » sur un site plein de publicités."},
+ en:{lead:"Some places are safe for getting applications, others have warning signs. Explore the download page below.",
+   objs:["Identify 2 safe sources","Recognize a fake 'Download' button on an ad-cluttered site"],
+   store:["🏪","Microsoft Store","Safe — applications verified by Microsoft"],
+   official:["🌐","Official developer website","Safe — download directly from the company that makes the app"],
+   fakeBtn:"⬇️ DOWNLOAD NOW!!! ⬇️",fakeSub:"(ad)",
+   realBtn:"Download App X",realSub:"the real link",
+   fakeFb:"That's an AD, not the real download link! Sites cluttered with ads often have several big, flashy fake 'Download' buttons to trap you.",
+   realFb:"Exactly! That's the real download link — smaller, less flashy, but it's the one that actually leads to the app.",
+   storeFb:"Safe! Microsoft Store verifies apps before they appear there.",
+   officialFb:"Safe! The official website of the company that makes the app is a good source.",
+   welcome:"Click on Microsoft Store and the official site, then try to find the real download button below.",
+   done:"Now you know 2 safe sources, and you can recognize a fake 'Download' button on an ad-cluttered site."}},
+3:{ht:{lead:"Enstale yon aplikasyon mande pèmisyon ak akò lisans. Klike 'Enstale' pou wè yon dialog reyèl.",
+   objs:["Louvri dialog enstalasyon an","Dekoche lojisyèl adisyonèl ou pa mande a anvan ou kontinye"],
+   installBtn:"Enstale Aplikasyon",
+   dTitle:"Enstale Foto Editè Pro",dBody:"Aplikasyon sa a bezwen pèmisyon pou li ak ekri fichye. Li dakò ak Kondisyon Sèvis la.",
+   dChk:"Enstale tou: SuperToolbar pou Navigatè (Rekòmande)",
+   dCancel:"Anile",dContinue:"Kontinye",
+   bundleFb:"Fè atansyon! Kaz sa a te DEJA koche pou ou — li ta enstale yon lojisyèl siplemantè (SuperToolbar) ou pa t mande. Toujou li tout kaz enstalasyon anvan ou kontinye.",
+   goodFb:"Byen fèt! Ou dekoche lojisyèl adisyonèl la anvan ou kontinye — se egzakteman sa pou fè.",
+   installedFb:"Aplikasyon an enstale, san lojisyèl siplemantè.",
+   welcome:"Klike 'Enstale Aplikasyon' pou wè dialog enstalasyon an.",
+   done:"Ou konnen kounye a pou li dialog enstalasyon yo byen, epi dekoche lojisyèl adisyonèl ou pa mande."},
+ fr:{lead:"Installer une application demande des permissions et un accord de licence. Cliquez « Installer » pour voir un vrai dialogue.",
+   objs:["Ouvrir le dialogue d'installation","Décocher un logiciel supplémentaire non demandé avant de continuer"],
+   installBtn:"Installer l'Application",
+   dTitle:"Installer Photo Éditeur Pro",dBody:"Cette application a besoin de permissions pour lire et écrire des fichiers. Elle accepte les Conditions de Service.",
+   dChk:"Installer aussi : SuperToolbar pour Navigateur (Recommandé)",
+   dCancel:"Annuler",dContinue:"Continuer",
+   bundleFb:"Attention ! Cette case était DÉJÀ cochée pour vous — elle installerait un logiciel supplémentaire (SuperToolbar) que vous n'avez pas demandé. Lisez toujours toutes les cases d'installation avant de continuer.",
+   goodFb:"Bien joué ! Vous avez décoché le logiciel supplémentaire avant de continuer — c'est exactement ce qu'il faut faire.",
+   installedFb:"L'application est installée, sans logiciel supplémentaire.",
+   welcome:"Cliquez « Installer l'Application » pour voir le dialogue d'installation.",
+   done:"Vous savez maintenant bien lire les dialogues d'installation, et décocher un logiciel supplémentaire non demandé."},
+ en:{lead:"Installing an application asks for permissions and a license agreement. Click 'Install' to see a real dialog.",
+   objs:["Open the install dialog","Uncheck unrequested bundled software before continuing"],
+   installBtn:"Install Application",
+   dTitle:"Install Photo Editor Pro",dBody:"This application needs permission to read and write files. It agrees to the Terms of Service.",
+   dChk:"Also install: Browser SuperToolbar (Recommended)",
+   dCancel:"Cancel",dContinue:"Continue",
+   bundleFb:"Watch out! This box was ALREADY checked for you — it would install extra software (SuperToolbar) you didn't ask for. Always read every install checkbox before continuing.",
+   goodFb:"Well done! You unchecked the extra software before continuing — that's exactly what to do.",
+   installedFb:"The application is installed, with no extra software.",
+   welcome:"Click 'Install Application' to see the install dialog.",
+   done:"Now you know how to read install dialogs carefully, and to uncheck unrequested bundled software."}},
+4:{ht:{lead:"Aplikasyon bezwen mizajou pou rezon sekirite ak nouvo fonksyon. Retire yon aplikasyon pa menm bagay ak efase yon ikòn.",
+   objs:["Mete ajou aplikasyon an","Rekonèt efase yon ikòn Desktop pa menm bagay ak dezenstale"],
+   appName:"Foto Editè Pro",updateBtn:"Mete Ajou",updatedFb:"Byen fèt! Aplikasyon an ajou kounye a ak dènye koreksyon sekirite yo.",
+   iconBtn:"Efase Ikòn nan Desktop",uninstallBtn:"Dezenstale nan Paramèt",
+   iconFb:"Sa retire ikòn nan sèlman — APLIKASYON AN TOUJOU ENSTALE, li toujou pran espas sou disk la. Ikòn nan se yon rakousi, pa aplikasyon an menm.",
+   uninstallFb:"Egzat! Dezenstale nan Paramèt retire aplikasyon an vre. Epi: dokiman ou te kreye AK aplikasyon an rete menm si ou retire l.",
+   welcome:"Klike 'Mete Ajou', apre eseye retire aplikasyon an.",
+   done:"Ou konnen kounye a poukisa mizajou enpòtan, epi diferans ant efase yon ikòn ak dezenstale yon aplikasyon vre."},
+ fr:{lead:"Les applications ont besoin de mises à jour pour la sécurité et de nouvelles fonctions. Retirer une application n'est pas pareil que supprimer une icône.",
+   objs:["Mettre à jour l'application","Reconnaître que supprimer une icône du Bureau n'est pas désinstaller"],
+   appName:"Photo Éditeur Pro",updateBtn:"Mettre à Jour",updatedFb:"Bien joué ! L'application est maintenant à jour avec les derniers correctifs de sécurité.",
+   iconBtn:"Supprimer l'Icône du Bureau",uninstallBtn:"Désinstaller dans les Paramètres",
+   iconFb:"Cela retire seulement l'icône — L'APPLICATION EST TOUJOURS INSTALLÉE, elle prend toujours de l'espace sur le disque. L'icône est un raccourci, pas l'application elle-même.",
+   uninstallFb:"Exact ! Désinstaller dans les Paramètres retire vraiment l'application. Et : les documents que vous avez créés AVEC l'application restent même si vous la retirez.",
+   welcome:"Cliquez « Mettre à Jour », puis essayez de retirer l'application.",
+   done:"Vous savez maintenant pourquoi les mises à jour sont importantes, et la différence entre supprimer une icône et vraiment désinstaller une application."},
+ en:{lead:"Applications need updates for security and new features. Removing an application isn't the same as deleting an icon.",
+   objs:["Update the application","Recognize that deleting a Desktop icon isn't the same as uninstalling"],
+   appName:"Photo Editor Pro",updateBtn:"Update",updatedFb:"Well done! The application is now up to date with the latest security fixes.",
+   iconBtn:"Delete Desktop Icon",uninstallBtn:"Uninstall in Settings",
+   iconFb:"That only removes the icon — the APPLICATION IS STILL INSTALLED, it's still taking up disk space. The icon is a shortcut, not the app itself.",
+   uninstallFb:"Exactly! Uninstalling in Settings really removes the app. And: documents you created WITH the app stay even if you remove it.",
+   welcome:"Click 'Update,' then try removing the application.",
+   done:"Now you know why updates matter, and the difference between deleting an icon and truly uninstalling an app."}},
+5:{ht:{lead:"Louvri yon dokiman, fè yon chanjman, sovgade l. Men fè atansyon si ou fèmen san sovgade dènye chanjman ou.",
+   objs:["Modifye epi Sovgade dokiman an","Rekonèt danje fèmen san sovgade dènye chanjman yo"],
+   docTitle:"Dokiman.docx",editBtn:"Modifye Tèks la",saveBtn:"Sovgade",closeBtn:"Fèmen",
+   editedText:"Sa se dokiman ki modifye a...",
+   editFb:"Ou fè yon chanjman nan dokiman an.",
+   saveFb:"Chanjman ou yo sovgade.",
+   closeSafeFb:"Byen fèt! Ou sovgade anvan ou fèmen — pa gen anyen ki pèdi.",
+   closeTrapFb:"Atansyon! Ou fè yon LÒT chanjman apre dènye Sovgade a, epi ou fèmen san sovgade ankò — chanjman sa a PÈDI. Toujou sovgade anvan ou fèmen.",
+   welcome:"Klike 'Modifye Tèks la', apre 'Sovgade', apre eseye fèmen dokiman an.",
+   done:"Ou konnen kounye a sik la: louvri, modifye, sovgade, fèmen — epi danje fèmen san sovgade dènye chanjman."},
+ fr:{lead:"Ouvrez un document, faites un changement, enregistrez-le. Mais attention si vous fermez sans enregistrer votre dernier changement.",
+   objs:["Modifier et Enregistrer le document","Reconnaître le danger de fermer sans enregistrer le dernier changement"],
+   docTitle:"Document.docx",editBtn:"Modifier le Texte",saveBtn:"Enregistrer",closeBtn:"Fermer",
+   editedText:"Ceci est le document modifié...",
+   editFb:"Vous avez fait un changement dans le document.",
+   saveFb:"Vos changements sont enregistrés.",
+   closeSafeFb:"Bien joué ! Vous avez enregistré avant de fermer — rien n'est perdu.",
+   closeTrapFb:"Attention ! Vous avez fait un AUTRE changement après le dernier Enregistrer, puis fermé sans enregistrer à nouveau — ce changement est PERDU. Enregistrez toujours avant de fermer.",
+   welcome:"Cliquez « Modifier le Texte », puis « Enregistrer », puis essayez de fermer le document.",
+   done:"Vous connaissez maintenant le cycle : ouvrir, modifier, enregistrer, fermer — et le danger de fermer sans enregistrer le dernier changement."},
+ en:{lead:"Open a document, make a change, save it. But watch out if you close without saving your last change.",
+   objs:["Edit and Save the document","Recognize the danger of closing without saving the last change"],
+   docTitle:"Document.docx",editBtn:"Edit Text",saveBtn:"Save",closeBtn:"Close",
+   editedText:"This is the edited document...",
+   editFb:"You made a change to the document.",
+   saveFb:"Your changes are saved.",
+   closeSafeFb:"Well done! You saved before closing — nothing is lost.",
+   closeTrapFb:"Watch out! You made ANOTHER change after the last Save, then closed without saving again — that change is LOST. Always save before closing.",
+   welcome:"Click 'Edit Text,' then 'Save,' then try closing the document.",
+   done:"Now you know the cycle: open, edit, save, close — and the danger of closing without saving the last change."}},
+6:{ht:{lead:"Yon PDF fèt pou rete menm jan an sou tout aparèy — li pa fèt pou modifye fasil tankou Word. Eksplore vizyonè PDF la.",
+   objs:["Navige, zoom, ak chèche nan yon PDF","Konprann yon PDF pa fèt pou modifye tankou Word"],
+   pageText:"Rapò Anyèl 2026 — Paj 1 nan 3. Sa a se yon dokiman PDF estanda...",
+   navBtn:"Paj Swivan",zoomBtn:"Zoom",searchBtn:"Chèche",downloadBtn:"Telechaje",printBtn:"Enprime",
+   navFb:"Ou navige nan paj 2.",zoomFb:"Ou zoom pou wè tèks la pi gwo.",searchFb:"Ou chèche yon mo nan dokiman an.",downloadFb:"Ou telechaje kopi PDF la.",printFb:"Ou voye PDF la pou enprime.",
+   trapQ:"Èske ou ka fasil modifye tèks yon PDF dirèkteman, menm jan ou fè nan Word?",
+   yes:"Wi, se menm jan an",no:"Non, PDF pa fèt pou sa",
+   yesFb:"Pa vre! Yon PDF fèt pou rete FIKS ak menm aparans lan tout aparèy — se pa yon zouti pou modifye tèks fasil. Ou bezwen yon lojisyèl espesyal pou vrèman modifye kontni yon PDF.",
+   noFb:"Egzat! PDF fèt pou li, siyen, ak enprime — pa pou modifye tankou yon dokiman Word.",
+   welcome:"Klike sou chak bouton pou eksplore vizyonè PDF la.",
+   done:"Ou konnen kounye a kijan pou navige, zoom, ak chèche nan yon PDF — epi PDF pa fèt pou modifye tankou Word."},
+ fr:{lead:"Un PDF est fait pour rester identique sur tous les appareils — il n'est pas fait pour être modifié facilement comme Word. Explorez la visionneuse PDF.",
+   objs:["Naviguer, zoomer, et chercher dans un PDF","Comprendre qu'un PDF n'est pas fait pour être modifié comme Word"],
+   pageText:"Rapport Annuel 2026 — Page 1 sur 3. Ceci est un document PDF standard...",
+   navBtn:"Page Suivante",zoomBtn:"Zoom",searchBtn:"Chercher",downloadBtn:"Télécharger",printBtn:"Imprimer",
+   navFb:"Vous naviguez vers la page 2.",zoomFb:"Vous zoomez pour voir le texte plus grand.",searchFb:"Vous cherchez un mot dans le document.",downloadFb:"Vous téléchargez une copie du PDF.",printFb:"Vous envoyez le PDF à imprimer.",
+   trapQ:"Pouvez-vous facilement modifier le texte d'un PDF directement, comme vous le faites dans Word ?",
+   yes:"Oui, c'est pareil",no:"Non, un PDF n'est pas fait pour ça",
+   yesFb:"Pas vrai ! Un PDF est fait pour rester FIXE avec la même apparence sur tous les appareils — ce n'est pas un outil pour modifier le texte facilement. Il faut un logiciel spécial pour vraiment modifier le contenu d'un PDF.",
+   noFb:"Exact ! Le PDF est fait pour être lu, signé, et imprimé — pas pour être modifié comme un document Word.",
+   welcome:"Cliquez sur chaque bouton pour explorer la visionneuse PDF.",
+   done:"Vous savez maintenant naviguer, zoomer, et chercher dans un PDF — et qu'un PDF n'est pas fait pour être modifié comme Word."},
+ en:{lead:"A PDF is designed to look the same on every device — it isn't meant to be edited easily like Word. Explore the PDF viewer.",
+   objs:["Navigate, zoom, and search in a PDF","Understand a PDF isn't meant to be edited like Word"],
+   pageText:"Annual Report 2026 — Page 1 of 3. This is a standard PDF document...",
+   navBtn:"Next Page",zoomBtn:"Zoom",searchBtn:"Search",downloadBtn:"Download",printBtn:"Print",
+   navFb:"You navigate to page 2.",zoomFb:"You zoom in to see the text bigger.",searchFb:"You search for a word in the document.",downloadFb:"You download a copy of the PDF.",printFb:"You send the PDF to print.",
+   trapQ:"Can you easily edit a PDF's text directly, the same way you do in Word?",
+   yes:"Yes, it's the same",no:"No, a PDF isn't meant for that",
+   yesFb:"Not true! A PDF is designed to stay FIXED with the same look on every device — it isn't a tool for editing text easily. You need special software to truly edit a PDF's content.",
+   noFb:"Exactly! PDFs are meant for reading, signing, and printing — not for editing like a Word document.",
+   welcome:"Click each button to explore the PDF viewer.",
+   done:"Now you know how to navigate, zoom, and search in a PDF — and that PDFs aren't meant to be edited like Word."}},
+7:{ht:{lead:"Lè ou louvri yon fichye, Windows chwazi yon aplikasyon pa defo pou li. Klik dwat pou wè opsyon 'Louvri Ak' yo.",
+   objs:["Louvri yon fichye ak 'Open With'","Konprann sa 'Toujou itilize aplikasyon sa a' fè anvan ou koche l"],
+   fileTitle:"Foto-Vakans.jpg",openWithBtn:"Klik Dwat → Louvri Ak",
+   app1:"Vizyonè Foto",app2:"Foto Editè Pro",
+   alwaysChk:"Toujou itilize aplikasyon sa a pou fichye .jpg",
+   openOnceFb:"Ou louvri fichye a yon sèl fwa ak aplikasyon sa a — aplikasyon pa defo a pa chanje pou lòt fichye .jpg.",
+   alwaysFb:"Atansyon! Si ou koche 'Toujou itilize', TOUT fichye .jpg w ap louvri ak aplikasyon sa a apati kounye a — pa sèlman fichye sa a. Sèlman koche l si ou VRÈMAN vle chanje aplikasyon pa defo a pou tout tan.",
+   welcome:"Klike 'Klik Dwat → Louvri Ak', apre chwazi yon aplikasyon.",
+   done:"Ou konnen kounye a kijan pou itilize 'Open With', epi sa kaz 'Toujou itilize' fè anvan ou koche l san reflechi."},
+ fr:{lead:"Quand vous ouvrez un fichier, Windows choisit une application par défaut pour l'ouvrir. Cliquez droit pour voir les options « Ouvrir avec ».",
+   objs:["Ouvrir un fichier avec « Ouvrir avec »","Comprendre ce que fait « Toujours utiliser cette application » avant de la cocher"],
+   fileTitle:"Photo-Vacances.jpg",openWithBtn:"Clic Droit → Ouvrir Avec",
+   app1:"Visionneuse Photos",app2:"Photo Éditeur Pro",
+   alwaysChk:"Toujours utiliser cette application pour les fichiers .jpg",
+   openOnceFb:"Vous ouvrez le fichier une seule fois avec cette application — l'application par défaut ne change pas pour les autres fichiers .jpg.",
+   alwaysFb:"Attention ! Si vous cochez « Toujours utiliser », TOUS vos fichiers .jpg s'ouvriront avec cette application à partir de maintenant — pas seulement ce fichier. Ne cochez cela que si vous voulez VRAIMENT changer l'application par défaut de façon permanente.",
+   welcome:"Cliquez « Clic Droit → Ouvrir Avec », puis choisissez une application.",
+   done:"Vous savez maintenant utiliser « Ouvrir avec », et ce que fait la case « Toujours utiliser » avant de la cocher sans réfléchir."},
+ en:{lead:"When you open a file, Windows picks a default application to open it. Right-click to see the 'Open With' options.",
+   objs:["Open a file with 'Open With'","Understand what 'Always use this app' does before checking it"],
+   fileTitle:"Vacation-Photo.jpg",openWithBtn:"Right-Click → Open With",
+   app1:"Photo Viewer",app2:"Photo Editor Pro",
+   alwaysChk:"Always use this app for .jpg files",
+   openOnceFb:"You open the file just once with this app — the default app doesn't change for other .jpg files.",
+   alwaysFb:"Watch out! If you check 'Always use this,' ALL your .jpg files will open with this app from now on — not just this one. Only check it if you REALLY want to change the default app permanently.",
+   welcome:"Click 'Right-Click → Open With,' then choose an application.",
+   done:"Now you know how to use 'Open With,' and what the 'Always use this' box does before checking it without thinking."}},
+8:{ht:{lead:"Aplikasyon mande pèmisyon pou itilize kamera, mikwofòn, lokalizasyon, fichye, ak notifikasyon. Deside chak pèmisyon selon rezon aplikasyon an.",
+   objs:["Deside sou 5 pèmisyon pou yon aplikasyon Meteo","Rekonèt yon demann pèmisyon ki pa fè sans pou yon Kalkilatris"],
+   appName:"Aplikasyon Meteo",
+   perms:[["cam","Kamera","yon aplikasyon Meteo pa bezwen sa"],["mic","Mikwofòn","yon aplikasyon Meteo pa bezwen sa"],["loc","Lokalizasyon","itil pou bay meteo zòn ou"],["files","Fichye","pa nesesè pou yon Meteo senp"],["notif","Notifikasyon","itil pou avèti ou lè gen tanpèt"]],
+   trapQ:"Yon aplikasyon KALKILATRIS mande pou aksè Kamera AK Lokalizasyon ou. Èske sa nòmal?",
+   trapWrong:"Wi, aplikasyon toujou bezwen tout pèmisyon yo mande",trapRight:"Non, yon Kalkilatris pa gen rezon pou mande Kamera ak Lokalizasyon",
+   trapWrongFb:"Danjere pou panse konsa! Yon aplikasyon ka mande yon pèmisyon li pa vrèman bezwen. Toujou mande tèt ou: 'Poukisa aplikasyon sa a bezwen sa a?'",
+   trapRightFb:"Egzat! Yon Kalkilatris fè kalkil senp — li pa gen okenn rezon pou wè ak kamera ou oswa konnen kote ou ye. Refize demann konsa.",
+   welcome:"Klike sou chak pèmisyon pou deside si Aplikasyon Meteo a ta dwe genyen l.",
+   done:"Ou konnen kounye a deside pèmisyon selon itilite reyèl yon aplikasyon, epi rekonèt yon demann ki pa fè sans."},
+ fr:{lead:"Les applications demandent des permissions pour utiliser la caméra, le microphone, la localisation, les fichiers, et les notifications. Décidez chaque permission selon la raison d'être de l'application.",
+   objs:["Décider de 5 permissions pour une application Météo","Reconnaître une demande de permission qui n'a pas de sens pour une Calculatrice"],
+   appName:"Application Météo",
+   perms:[["cam","Caméra","une application Météo n'a pas besoin de ça"],["mic","Microphone","une application Météo n'a pas besoin de ça"],["loc","Localisation","utile pour donner la météo de votre zone"],["files","Fichiers","pas nécessaire pour une Météo simple"],["notif","Notifications","utile pour vous avertir en cas de tempête"]],
+   trapQ:"Une application CALCULATRICE demande l'accès à votre Caméra ET votre Localisation. Est-ce normal ?",
+   trapWrong:"Oui, les applications ont toujours besoin de toutes les permissions qu'elles demandent",trapRight:"Non, une Calculatrice n'a aucune raison de demander Caméra et Localisation",
+   trapWrongFb:"Dangereux de penser ça ! Une application peut demander une permission dont elle n'a pas vraiment besoin. Demandez-vous toujours : « Pourquoi cette application a-t-elle besoin de ça ? »",
+   trapRightFb:"Exact ! Une Calculatrice fait des calculs simples — elle n'a aucune raison de voir votre caméra ou de savoir où vous êtes. Refusez ce genre de demande.",
+   welcome:"Cliquez sur chaque permission pour décider si l'application Météo devrait l'avoir.",
+   done:"Vous savez maintenant décider des permissions selon l'utilité réelle d'une application, et reconnaître une demande qui n'a pas de sens."},
+ en:{lead:"Applications ask for permission to use the camera, microphone, location, files, and notifications. Decide each permission based on the app's purpose.",
+   objs:["Decide on 5 permissions for a Weather app","Recognize a permission request that doesn't make sense for a Calculator"],
+   appName:"Weather App",
+   perms:[["cam","Camera","a Weather app doesn't need this"],["mic","Microphone","a Weather app doesn't need this"],["loc","Location","useful for giving weather for your area"],["files","Files","not necessary for a simple Weather app"],["notif","Notifications","useful for warning you about storms"]],
+   trapQ:"A CALCULATOR app asks for access to your Camera AND your Location. Is that normal?",
+   trapWrong:"Yes, apps always need every permission they ask for",trapRight:"No, a Calculator has no reason to ask for Camera and Location",
+   trapWrongFb:"Dangerous to think that! An app can ask for a permission it doesn't really need. Always ask yourself: 'Why does this app need that?'",
+   trapRightFb:"Exactly! A Calculator does simple math — it has no reason to see your camera or know where you are. Deny requests like that.",
+   welcome:"Click each permission to decide if the Weather App should have it.",
+   done:"Now you know how to decide permissions based on an app's real purpose, and to recognize a request that doesn't make sense."}},
+9:{ht:{lead:"Dènye misyon an! Konplete tou lè 5 aksyon yo pou prepare yon dokiman.",
+   objs:["Louvri dokiman an bay la","Fè yon ti chanjman","Sovgade yon nouvo kopi ak yon bon non","Ekspòte oswa enprime an PDF","Jwenn fichye final la"],
+   steps:["Louvri dokiman 'Ti-Rapò.docx' la","Fè yon ti chanjman nan tèks la","Sovgade yon nouvo kopi ak non 'Ti-Rapò-2026-01-15.docx'","Ekspòte oswa enprime dokiman an an PDF","Jwenn fichye final la nan Documents"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 5 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 5 — ou konnen kounye a kijan pou prepare yon dokiman soti nan louvri rive nan jwenn fichye final la."},
+ fr:{lead:"Dernière mission ! Complétez les 5 actions pour préparer un document.",
+   objs:["Ouvrir le document fourni","Faire un petit changement","Enregistrer une nouvelle copie avec un bon nom","Exporter ou imprimer en PDF","Trouver le fichier final"],
+   steps:["Ouvrir le document 'Petit-Rapport.docx'","Faire un petit changement dans le texte","Enregistrer une nouvelle copie sous 'Petit-Rapport-2026-01-15.docx'","Exporter ou imprimer le document en PDF","Trouver le fichier final dans Documents"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 5.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 5 — vous savez maintenant préparer un document, de l'ouverture jusqu'à trouver le fichier final."},
+ en:{lead:"Last mission! Complete all 5 actions to prepare a document.",
+   objs:["Open the provided document","Make a small edit","Save a new copy with a useful name","Export or print to PDF","Locate the final file"],
+   steps:["Open the 'Short-Report.docx' document","Make a small edit to the text","Save a new copy as 'Short-Report-2026-01-15.docx'","Export or print the document to PDF","Find the final file in Documents"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 5's final mission.",
+   done:"Congratulations! You completed Module 5's Mission — now you know how to prepare a document from opening it to finding the final file."}},
+};
+
+/* ============ shared icons ============ */
+const LI={
+ cam:'<path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/>',
+ mic:'<path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/>',
+ mappin:'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+ files:'<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/>',
+ bell:'<path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>'};
+function liIcon(name){return '<svg class="ti" viewBox="0 0 24 24" fill="none" stroke="#5c5c5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+LI[name]+'</svg>';}
+
+/* ============ engine ============ */
+const NL=9;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module5-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD5_LESSON_SLUGS=["kisa-yon-aplikasyon-ye","kote-san-danje-pou-jwenn-aplikasyon","enstale-yon-aplikasyon","mete-ajou-ak-retire-yon-aplikasyon","louvri-modifye-sovgade-ak-feme-yon-dokiman","sa-ou-dwe-konnen-sou-pdf","aplikasyon-pa-defo","pemisyon-aplikasyon","misyon-prepare-yon-dokiman"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","","konekte-sou-wifi-san-danje","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD5_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule6();
+}
+function injectContinueModule6(){
+ if($("continueModule6"))return;
+ const a=document.createElement("a");a.id="continueModule6";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[5];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===4;
+ let les="";if(active){les='<div class="les">'+M5[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">5.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 5 · 5."+(i+1);$("topTitle").textContent=M5[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 5 · 5.'+(i+1)+'</span><div class="labh2">'+M5[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,160px)">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.store=false;st.official=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,180px)">'+
+   '<div class="partcard" id="storeCard"><div class="partart">'+d.store[0]+'</div><div class="partn">'+d.store[1]+'</div></div>'+
+   '<div class="partcard" id="officialCard"><div class="partart">'+d.official[0]+'</div><div class="partn">'+d.official[1]+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:26px;display:flex;flex-direction:column;gap:10px;max-width:340px">'+
+   '<button class="chip" id="fakeBtn" style="background:#2a7d2a;color:#fff;border-color:#2a7d2a;font-size:16px;justify-content:center">'+d.fakeBtn+'<span style="font-size:11px;opacity:.8;margin-left:6px">'+d.fakeSub+'</span></button>'+
+   '<button class="chip" id="realBtn" style="justify-content:center">'+d.realBtn+'<span style="font-size:11px;color:var(--mute);margin-left:6px">'+d.realSub+'</span></button>'+
+  '</div>'+nextBar();
+ wireNext();
+ function check(){if(st.store&&st.official)setObj(0);}
+ $("storeCard").addEventListener("click",()=>{if(st.store)return;st.store=true;$("storeCard").classList.add("done");ai(d.storeFb,"good");check();});
+ $("officialCard").addEventListener("click",()=>{if(st.official)return;st.official=true;$("officialCard").classList.add("done");ai(d.officialFb,"good");check();});
+ $("fakeBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.fakeFb,"warn");setObj(1);});
+ $("realBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.realFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.open=false;st.unchecked=false;st.done1=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(2,d.lead)+(!st.open?'<div style="margin-top:20px"><button class="btn p" id="installBtn">'+d.installBtn+'</button></div>':'')+
+   (st.open&&!st.done1?'<div class="ovl"><div class="dialog"><div class="dtb">'+d.dTitle+'</div><div class="dbody">'+d.dBody+
+     '<label class="dchk"><input type="checkbox" id="bundleChk" checked/> '+d.dChk+'</label></div>'+
+     '<div class="dactions"><button class="dbtn sec" id="dCancel">'+d.dCancel+'</button><button class="dbtn pri" id="dContinue">'+d.dContinue+'</button></div></div></div>':"")+
+   (st.done1?'<div style="margin-top:20px;font-weight:600;color:var(--good)">✓ '+d.installedFb+'</div>':"")+
+   nextBar();
+  wireNext();
+  const ib=$("installBtn");if(ib)ib.addEventListener("click",()=>{st.open=true;render();});
+  const dc=$("dContinue");if(dc)dc.addEventListener("click",()=>{
+   const chk=$("bundleChk");
+   if(chk.checked){ai(d.bundleFb,"warn");}
+   else{st.unchecked=true;ai(d.goodFb,"good");setObj(1);st.done1=true;setObj(0);render();return;}
+  });
+  const dcancel=$("dCancel");if(dcancel)dcancel.addEventListener("click",()=>{st.open=false;render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.updated=false;st.iconSeen=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(3,d.lead)+'<div class="winpanel"><div class="wtb">'+d.appName+(st.updated?' — ✓':' — mizajou disponib')+'</div><div class="wbody">'+
+    (!st.updated?'<button class="btn p" id="updateBtn">'+d.updateBtn+'</button>':'<div style="display:flex;gap:10px"><button class="btn g" id="iconBtn">'+d.iconBtn+'</button><button class="btn g" id="uninstallBtn">'+d.uninstallBtn+'</button></div>')+
+   '</div></div>'+nextBar();
+  wireNext();
+  const ub=$("updateBtn");if(ub)ub.addEventListener("click",()=>{st.updated=true;ai(d.updatedFb,"good");setObj(0);render();});
+  const icb=$("iconBtn");if(icb)icb.addEventListener("click",()=>{st.iconSeen=true;ai(d.iconFb,"warn");setObj(1);});
+  const unb=$("uninstallBtn");if(unb)unb.addEventListener("click",()=>{ai(d.uninstallFb,"good");setObj(1);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.edited=false;st.saved=false;st.editedAgain=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(4,d.lead)+'<div class="winpanel"><div class="wtb">'+d.docTitle+(st.saved&&!st.editedAgain?"":"*")+'</div><div class="wbody" style="font-family:Georgia,serif;font-size:14px;color:#333">'+
+    (st.edited?d.editedText:"Lorem ipsum dolor sit amet...")+'</div></div>'+
+   '<div style="display:flex;gap:10px;margin-top:16px">'+
+    '<button class="btn g" id="editBtn">'+d.editBtn+'</button>'+
+    '<button class="btn g" id="saveBtn">'+d.saveBtn+'</button>'+
+    '<button class="btn p" id="closeBtn">'+d.closeBtn+'</button>'+
+   '</div>'+nextBar();
+  wireNext();
+  $("editBtn").addEventListener("click",()=>{if(st.saved&&!st.edited){st.editedAgain=true;}st.edited=true;ai(d.editFb,"neutral");render();});
+  $("saveBtn").addEventListener("click",()=>{if(!st.edited)return;st.saved=true;st.editedAgain=false;ai(d.saveFb,"good");setObj(0);render();});
+  $("closeBtn").addEventListener("click",()=>{
+   if(st.saved&&!st.editedAgain){ai(d.closeSafeFb,"good");setObj(1);}
+   else{ai(d.closeTrapFb,"warn");setObj(1);}
+  });
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.page=1;st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(5,d.lead)+'<div class="pdfshell"><div class="pdftb"><button id="navBtn" title="'+d.navBtn+'">▶</button><span class="pg">'+st.page+' / 3</span><button id="zoomBtn" title="'+d.zoomBtn+'">🔍</button><button id="searchBtn" title="'+d.searchBtn+'">🔎</button><button id="downloadBtn" title="'+d.downloadBtn+'">⬇</button><button id="printBtn" title="'+d.printBtn+'">🖨</button></div><div class="pdfpage">'+d.pageText+'</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+  wireNext();
+  function seen(k,msg){if(!st.seen[k]){st.seen[k]=true;ai(msg,"neutral");}if(Object.keys(st.seen).length>=3)setObj(0);}
+  $("navBtn").addEventListener("click",()=>{st.page=Math.min(3,st.page+1);seen("nav",d.navFb);render();});
+  $("zoomBtn").addEventListener("click",()=>seen("zoom",d.zoomFb));
+  $("searchBtn").addEventListener("click",()=>seen("search",d.searchFb));
+  $("downloadBtn").addEventListener("click",()=>seen("dl",d.downloadFb));
+  $("printBtn").addEventListener("click",()=>seen("pr",d.printFb));
+  $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+  $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.open=false;st.opened=false;st.alwaysWarned=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(6,d.lead)+'<div class="winpanel"><div class="wtb">'+d.fileTitle+'</div><div class="wbody">'+
+    (!st.open?'<button class="btn p" id="owBtn">'+d.openWithBtn+'</button>':
+     '<div class="arow" data-a="1"><span class="k">'+d.app1+'</span><span class="ch">›</span></div>'+
+     '<div class="arow" data-a="2"><span class="k">'+d.app2+'</span><span class="ch">›</span></div>'+
+     '<label class="dchk" style="margin-top:14px"><input type="checkbox" id="alwaysChk"/> '+d.alwaysChk+'</label>')+
+   '</div></div>'+nextBar();
+  wireNext();
+  const owb=$("owBtn");if(owb)owb.addEventListener("click",()=>{st.open=true;render();});
+  stage.querySelectorAll(".arow[data-a]").forEach(r=>r.addEventListener("click",()=>{
+   const chk=$("alwaysChk");
+   if(chk&&chk.checked){if(!st.alwaysWarned){st.alwaysWarned=true;ai(d.alwaysFb,"warn");setObj(1);}}
+   else{st.opened=true;ai(d.openOnceFb,"good");setObj(0);}
+  }));
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.perm=st.perm||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(7,d.lead)+'<div class="winpanel"><div class="wtb">'+d.appName+'</div><div class="wbody">'+
+    d.perms.map(p=>'<div class="trow">'+liIcon(p[0])+'<span class="tn">'+p[1]+'</span><div class="toggle'+(st.perm[p[0]]?" on":"")+'" data-p="'+p[0]+'"></div></div>').join("")+
+   '</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  stage.querySelectorAll(".toggle[data-p]").forEach(t=>t.addEventListener("click",()=>{const p=t.dataset.p;st.perm[p]=!st.perm[p];
+   if(Object.keys(st.perm).filter(k=>st.perm[k]!==undefined).length>=5)setObj(0);
+   render();}));
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.done5=st.done5||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done5[k]?' style="opacity:.4"':"")+'>'+(st.done5[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done5[k])return;st.done5[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
