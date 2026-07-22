@@ -71,11 +71,33 @@ treatment, NOT a single-stroke line icon in a white card — see `full-desktop-r
 No card/badge background behind desktop icons; the icon sits directly on the wallpaper with
 `filter: drop-shadow(0 2px 3px rgba(0,0,0,.35))` for legibility.
 
-This supersedes AI-generated icons/screenshots for **OS chrome and UI glyphs** — coded Lucide-based
-markup gives exact, reliable, trademark-safe control that a generated image can't. It does not
-replace generated photos for **physical objects** (see "Generating real device photos" below) —
-those are a different problem (a keyboard needs to look like a real keyboard) with a different
-right answer (a real photo, not a vector icon).
+**Plain colored shapes (a circle, a rect) are not icons** and read as cheap/unfinished even when
+color-coded consistently — every icon-shaped thing in a lesson (Start-menu pinned apps, sort/quiz
+chips, anything the learner needs to recognize as "an app") needs a real Lucide glyph, not a
+solid-fill placeholder. A reusable pattern: keep raw Lucide path data in one `LI{}` object, then a
+`tileIcon(bg, name, mode)` helper that wraps a glyph in a colored rounded-rect tile (`mode:"fill"`
+for filled icons like `grid`/`folder`, default stroke mode for outline icons like `monitor`/`mail`).
+Define `LI`/`liIcon`/`tileIcon` (functions and the `const LI` object they read) *before* any
+`const` object that calls `tileIcon()` at definition time — function declarations are hoisted, but
+`const` bindings are not initialized until their own line executes, so calling `tileIcon()` from an
+object literal that textually precedes `const LI` throws at load.
+
+This is the rule for **small UI glyphs** — Start-menu app icons, sort/quiz chips, anything under
+~40px where a real Lucide icon reads cleanly: coded markup, not a generated image, both because
+it's trademark-safe by construction and because a photo is noise at that size.
+
+**Whole-desktop OS-comparison thumbnails are a different case, decided the opposite way.** A first
+attempt at building Windows/macOS/ChromeOS mini-desktops as coded HTML/CSS (taskbar div + Lucide
+icons + CSS gradient wallpaper) was trademark-safe but AJ's verdict was that it "does not look like
+them in reality" — coded chrome at this larger scale reads as flat/schematic, not like an actual
+screenshot, and the whole point of the exercise is teaching visual recognition of the real thing.
+Whole-desktop shots are now AI-generated (see "Generating real device photos" below), with the
+same trademark discipline applied to the prompt. Re-litigate this only if photoreal generated
+screenshots stop being achievable without trademark leakage — don't silently revert to coded
+chrome because it's easier.
+
+Physical objects (keyboard, monitor, laptop, phone) were never in scope for Lucide icons — those
+need a real photo (see below), a different problem than either of the above.
 
 **Trademark check on any Start-button/logo-shaped glyph**: a plain 2x2 grid of squares (Lucide
 `grid-2x2`/`layout-grid`) is a generic, widely-used UI motif (macOS Launchpad, Android app
@@ -168,9 +190,21 @@ Every lesson must hold together at phone width (~390px), tablet (~768px), and de
 - Any lesson with a Windows taskbar (`.taskbar`, ~46px tall, pinned to the bottom) must clear it
   with every other absolutely-positioned floating control (a "Next" button, a hint button) —
   check for `.taskbar` in the stage before choosing a `bottom` offset, and never let two floating
-  controls share the same corner.
-Add a `@media (max-width: 640px)` block addressing the applicable failure points for every new
-lesson; don't assume desktop layout scales down (or up) cleanly on its own.
+  controls share the same corner. The same collision can appear only on mobile: a bottom-anchored
+  instruction panel that's one line on desktop can wrap to 3-4 lines at 390px, growing tall enough
+  to sit under a button that shares its bottom offset. If a floating button's position is set via
+  inline style (`el.style.cssText=...`), a plain class-based media-query rule can't override it —
+  use `!important` in the media query, which does beat inline style specificity.
+- **Check for zero responsive handling at all, not just imperfect handling.** A file can look
+  fine at whatever width you built it at and have literally no `@media` query anywhere — a 3-column
+  flex layout (sidebar + stage + rail) doesn't collapse on its own just because the viewport
+  shrank; it will overflow horizontally with the sidebar alone wider than a phone screen. Grep the
+  file for `@media` before assuming a responsive pass has ever happened, and actually resize to
+  ~390px and look — don't infer it from the desktop layout being flexbox.
+Add a `@media (max-width: 860px)` block (with a `max-width: 480px` block for finer adjustments if
+needed) addressing the applicable failure points for every new lesson; don't assume desktop layout
+scales down (or up) cleanly on its own. At minimum: stack the shell vertically, cap the sidebar to
+a scrollable strip instead of full height, let the header wrap, and reduce grid column counts.
 
 ## Verification — mandatory before calling any visual work done
 Use the actual browser tools available in this environment (`mcp__Claude_Browser__*`) — navigate
