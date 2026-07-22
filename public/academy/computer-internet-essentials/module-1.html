@@ -107,6 +107,31 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 .osmini{border:2px solid transparent;border-radius:14px;overflow:hidden;cursor:pointer;background:#0f1420;position:relative;aspect-ratio:16/10}
 .osmini:hover{border-color:var(--brand2)}.osmini.good{border-color:var(--good)}.osmini.bad{border-color:var(--danger)}
 .osmini .cap{position:absolute;bottom:0;left:0;right:0;background:rgba(11,15,23,.75);color:#fff;font-size:12px;font-weight:700;padding:6px;text-align:center}
+/* coded OS-signature thumbnails (real chrome, not abstract) */
+.mos{position:absolute;inset:0;overflow:hidden}
+.mos.mos-win{background:linear-gradient(160deg,#6fa8f5 0%,#3f6fd1 55%,#173a7a 100%)}
+.mos.mos-mac{background:linear-gradient(160deg,#8a6fe8 0%,#5a3fae 55%,#241a52 100%)}
+.mos.mos-cros{background:linear-gradient(160deg,#eef3f8 0%,#cfdcee 100%)}
+.mos-taskbar{position:absolute;left:0;right:0;bottom:0;height:26%;background:rgba(243,243,243,.82);display:flex;align-items:center;justify-content:center;gap:5px;padding:0 6px}
+.mos-start{width:22px;height:22px;border-radius:6px;background:rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;flex:none}
+.mos-start svg{width:12px;height:12px;fill:#1b1b1b}
+.mos-search{width:52px;height:18px;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.mos-search svg{width:9px;height:9px;stroke:#8a8f98;stroke-width:2;fill:none}
+.mos-app{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;position:relative;flex:none}
+.mos-app svg{width:12px;height:12px}
+.mos-app.running::after{content:"";position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:4px;height:2px;border-radius:1px;background:#005FB8}
+.mos-tray{display:flex;align-items:center;gap:5px;margin-left:4px;flex:none}
+.mos-tray svg{width:10px;height:10px;stroke:#1b1b1b;stroke-width:1.8;fill:none}
+.mos-clock{font-size:9px;color:#1b1b1b;white-space:nowrap}
+.mos-menubar{position:absolute;left:0;right:0;top:0;height:14%;background:rgba(246,246,248,.92);display:flex;align-items:center;padding:0 8px;gap:6px}
+.mos-traffic{display:flex;gap:4px}
+.mos-traffic span{width:6px;height:6px;border-radius:50%;display:block}
+.mos-menubar .mos-tray{margin-left:auto}
+.mos-dock{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);height:24px;border-radius:999px;background:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px;padding:0 6px;flex:none}
+.mos-dock .mos-app{border-radius:6px}
+.mos-shelf{position:absolute;left:0;right:0;bottom:0;height:20%;background:rgba(255,255,255,.92);display:flex;align-items:center;padding:0 6px;gap:5px}
+.mos-launcher{width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex:none}
+.mos-launcher svg{width:10px;height:10px}
 /* ===== Windows surface (1.2 & 1.8) ===== */
 .desk-ico{position:absolute;display:flex;flex-direction:column;gap:6px;align-items:center;width:92px;background:none;border:1px solid transparent;border-radius:6px;padding:8px 6px;cursor:pointer;color:#0b2a55}
 .desk-ico:hover{background:rgba(255,255,255,.25)}.desk-ico span{font-size:14.5px;text-align:center;text-shadow:0 1px 2px rgba(255,255,255,.5)}
@@ -352,9 +377,43 @@ const ICON={
  browser:'<svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9" fill="#0e8f9a"/><circle cx="12" cy="12" r="5.5" fill="none" stroke="#fff" stroke-width="1.3"/><path d="M4.5 12h15M12 3.5c2.6 2.6 2.6 14 0 17M12 3.5c-2.6 2.6-2.6 14 0 17" stroke="#fff" stroke-width=".9" fill="none"/></svg>',
  windows:'<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="5" fill="#3a3a3a"/><circle cx="12" cy="12" r="6.2" fill="none" stroke="#e6c15a" stroke-width="1.6"/><path d="M12 7.4v4.6l3.2 2" stroke="#e6c15a" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  photo:'<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="5" fill="#b14bff"/><path d="M4 18l5-6 3.5 4 3-3.5L20 18z" fill="#fff"/><circle cx="8" cy="8" r="2" fill="#fff"/></svg>'};
+/* real Lucide path data (ISC license) -- never hand-drawn, per academy-ui skill */
+const LI={
+ grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+ search:'<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+ monitor:'<rect x="3" y="4" width="18" height="14" rx="1"/><path d="M8 21h8"/><path d="M12 18v3"/>',
+ mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+ folder:'<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" stroke-linejoin="round"/>',
+ wifi:'<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/>',
+ battery:'<path d="M22 14L22 10"/><rect x="2" y="6" width="16" height="12" rx="2"/>',
+ image:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+ music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>'};
+function liIcon(name,attrs){return '<svg viewBox="0 0 24 24" '+(attrs||'')+'>'+LI[name]+'</svg>';}
 function miniOS(k){
- const f=k==="win"?"windows":k==="mac"?"macos":"chromeos";
- return '<img src="'+IMG_BASE+'os-'+f+'.webp" alt="" style="width:100%;height:100%;object-fit:contain;display:block">';}
+ if(k==="win")return '<div class="mos mos-win"><div class="mos-taskbar">'+
+   '<div class="mos-start">'+liIcon('grid','fill="#1b1b1b"')+'</div>'+
+   '<div class="mos-search">'+liIcon('search','stroke="#8a8f98" stroke-width="2" fill="none"')+'</div>'+
+   '<div class="mos-app running">'+liIcon('monitor','stroke="#005FB8" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app running">'+liIcon('mail','stroke="#2fb56a" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app">'+liIcon('folder','fill="#f8cb7d" stroke="#e5a445" stroke-width="1.4"')+'</div>'+
+   '<div class="mos-tray">'+liIcon('wifi','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+liIcon('battery','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+'<span class="mos-clock">10:24 AM</span></div>'+
+   '</div></div>';
+ if(k==="mac")return '<div class="mos mos-mac">'+
+   '<div class="mos-menubar"><div class="mos-traffic"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>'+
+   '<div class="mos-tray">'+liIcon('wifi','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+liIcon('battery','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+'<span class="mos-clock">10:24 AM</span></div></div>'+
+   '<div class="mos-dock">'+
+   '<div class="mos-app" style="background:linear-gradient(135deg,#3a8ee6,#0057b8)">'+liIcon('monitor','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app" style="background:linear-gradient(135deg,#2fb56a,#0f7f45)">'+liIcon('mail','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app" style="background:linear-gradient(135deg,#b14bff,#7c3aed)">'+liIcon('image','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app" style="background:linear-gradient(135deg,#ff7a59,#e8503a)">'+liIcon('music','stroke="#fff" stroke-width="1.8" fill="none"')+'</div>'+
+   '</div></div>';
+ return '<div class="mos mos-cros"><div class="mos-shelf">'+
+   '<div class="mos-launcher">'+liIcon('grid','fill="#3a3a3a"')+'</div>'+
+   '<div class="mos-app">'+liIcon('monitor','stroke="#3a8ee6" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app">'+liIcon('mail','stroke="#2fb56a" stroke-width="1.8" fill="none"')+'</div>'+
+   '<div class="mos-app">'+liIcon('folder','fill="#f8cb7d" stroke="#e5a445" stroke-width="1.4"')+'</div>'+
+   '<div class="mos-tray" style="margin-left:auto">'+liIcon('wifi','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+liIcon('battery','stroke="#1b1b1b" stroke-width="1.8" fill="none"')+'<span class="mos-clock" style="color:#1b1b1b">10:24 AM</span></div>'+
+   '</div></div>';}
 
 /* ============ engine ============ */
 const NL=8;
