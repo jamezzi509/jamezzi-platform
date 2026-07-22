@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 11 — Sekirite ak Vi Prive</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+/* generic panel chrome */
+.panel{width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.ptb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.pbody{padding:16px 18px;background:var(--w-content);min-height:180px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .sub{font-size:12px;color:var(--w-t2)}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}
+.toggle{width:40px;height:22px;border-radius:12px;background:#c8c8c8;position:relative;cursor:pointer;flex:none;transition:.2s}
+.toggle.on{background:var(--w-accent)}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.toggle.on::after{left:20px}
+/* pop-up / scam overlay */
+.ovl{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9}
+.dialog{width:min(420px,90%);background:var(--w-mica);border-radius:8px;box-shadow:0 30px 70px -10px rgba(0,0,0,.6);overflow:hidden;font-family:var(--seg);color:var(--w-t1)}
+.dialog .dtb{padding:16px 18px 6px;font-size:16px;font-weight:700}
+.dialog .dbody{padding:6px 18px 16px;font-size:13.5px;color:var(--w-t2);line-height:1.5}
+.dialog .dactions{display:flex;justify-content:flex-end;gap:10px;padding:12px 18px;background:#f3f3f3;border-top:1px solid var(--w-stroke)}
+.dbtn{border:none;border-radius:5px;padding:8px 18px;font-weight:600;font-size:13.5px;cursor:pointer}
+.dbtn.pri{background:var(--w-accent);color:#fff}.dbtn.sec{background:#e5e5e5;color:#1b1b1b}.dbtn.danger{background:var(--danger);color:#fff}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 11 · 11.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 10</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 12 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 12 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 12 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M11={ht:["Ki Sa Ki Bezwen Pwoteje?","Modpas Fò ak Jerans Modpas","2FA ak Kòd Verifikasyon","Phishing, Fo Sipò, ak Ijans","Fo Sit Web, Lyen, ak Telechajman","Viris, Malveyan, ak Mizajou","Vi Prive sou Òdinatè Pataje ak Piblik","Sekirite Acha ak Peman Dijital","Sa Pou Fè Si Yon Bagay Mal Rive","Misyon: Rete Eskrokri a"],
+ fr:["Qu'est-ce qui a Besoin de Protection ?","Mots de Passe Forts et Gestionnaires de Mots de Passe","2FA et Codes de Vérification","Phishing, Faux Support, et Urgence","Faux Sites Web, Liens, et Téléchargements","Virus, Logiciels Malveillants, et Mises à Jour","Vie Privée sur les Ordinateurs Partagés et Publics","Sécurité des Achats et Paiements Numériques","Que Faire Si Quelque Chose Ne Va Pas","Mission : Arrêter l'Arnaque"],
+ en:["What Needs Protection?","Strong Passwords and Password Managers","Two-Factor Authentication and Verification Codes","Phishing, Fake Support, and Urgency","Fake Websites, Links, and Downloads","Viruses, Malware, and Updates","Privacy on Shared and Public Computers","Online Shopping and Digital Payment Safety","What to Do If Something Goes Wrong","Module Mission: Stop the Scam"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Anpil bagay ou genyen sou entènèt bezwen pwoteje — pa sèlman lajan. Klike sou chak kategori.",
+   objs:["Klike sou 5 kategori ki bezwen pwoteje","Konprann pwoteksyon pa sèlman pou lajan"],
+   items:[["🪪","Idantite","Non ou, dat nesans, nimewo ID — ka itilize pou vòlè idantite"],["🔑","Kont","Imèl, rezo sosyal — aksè ba yo bay kontwòl sou lavi dijital ou"],["📁","Fichye ak Foto","Souvni ak dokiman ou pa ta vle pèdi oswa gen lòt moun wè"],["📇","Kontak","Lis moun ou konnen — ka itilize pou eskrokri lòt moun nan non ou"],["⭐","Repitasyon","Sa moun wè sou ou anliy — ka domaje si yon kont ou pyeje"]],
+   trapQ:"Si ou pa gen kont bankè anliy, ou pa gen anyen ki bezwen pwoteje sou entènèt?",
+   yes:"Wi, san bank anliy pa gen risk",no:"Non, idantite, foto, kontak, ak repitasyon bezwen pwoteje tou",
+   yesFb:"Pa vre! Menm san lajan, idantite ou, foto ou, kontak ou, ak repitasyon ou tout ka pran domaj si yon kont oswa aparèy ou pyeje.",
+   noFb:"Egzat! Pwoteksyon konsène plis pase lajan — tout enfòmasyon pèsonèl ou merite atansyon.",
+   welcome:"Klike sou chak kategori pou aprann poukisa li bezwen pwoteje.",
+   done:"Ou konnen kounye a 5 kategori ki bezwen pwoteje, pa sèlman lajan."},
+ fr:{lead:"Beaucoup de choses que vous avez sur internet ont besoin de protection — pas seulement l'argent. Cliquez sur chaque catégorie.",
+   objs:["Cliquer sur 5 catégories qui ont besoin de protection","Comprendre que la protection n'est pas seulement pour l'argent"],
+   items:[["🪪","Identité","Votre nom, date de naissance, numéro d'ID — peut servir au vol d'identité"],["🔑","Comptes","E-mail, réseaux sociaux — l'accès leur donne le contrôle de votre vie numérique"],["📁","Fichiers et Photos","Souvenirs et documents que vous ne voudriez pas perdre ou voir vus par d'autres"],["📇","Contacts","Votre liste de connaissances — peut servir à arnaquer d'autres en votre nom"],["⭐","Réputation","Ce que les gens voient de vous en ligne — peut être endommagée si un compte est piraté"]],
+   trapQ:"Si vous n'avez pas de compte bancaire en ligne, vous n'avez rien à protéger sur internet ?",
+   yes:"Oui, sans banque en ligne pas de risque",no:"Non, identité, photos, contacts, et réputation ont aussi besoin de protection",
+   yesFb:"Pas vrai ! Même sans argent, votre identité, vos photos, vos contacts, et votre réputation peuvent tous subir des dommages si un compte ou appareil est piraté.",
+   noFb:"Exact ! La protection concerne plus que l'argent — toutes vos informations personnelles méritent de l'attention.",
+   welcome:"Cliquez sur chaque catégorie pour apprendre pourquoi elle a besoin de protection.",
+   done:"Vous connaissez maintenant 5 catégories qui ont besoin de protection, pas seulement l'argent."},
+ en:{lead:"Many things you have online need protection — not just money. Click each category.",
+   objs:["Click 5 categories that need protection","Understand protection isn't just about money"],
+   items:[["🪪","Identity","Your name, birth date, ID number — can be used for identity theft"],["🔑","Accounts","Email, social media — access gives control over your digital life"],["📁","Files and Photos","Memories and documents you wouldn't want to lose or have others see"],["📇","Contacts","Your list of people you know — can be used to scam others in your name"],["⭐","Reputation","What people see of you online — can be damaged if an account is hacked"]],
+   trapQ:"If you don't have an online bank account, you have nothing that needs protecting online?",
+   yes:"Yes, without online banking there's no risk",no:"No, identity, photos, contacts, and reputation also need protection",
+   yesFb:"Not true! Even without money, your identity, photos, contacts, and reputation can all suffer damage if an account or device is hacked.",
+   noFb:"Exactly! Protection is about more than money — all your personal information deserves attention.",
+   welcome:"Click each category to learn why it needs protection.",
+   done:"Now you know 5 categories that need protection, not just money."}},
+2:{ht:{lead:"Yon bon modpas se inik pou chak kont, long, ak difisil pou devine. Konpare 2 egzanp modpas.",
+   objs:["Konpare yon modpas fèb ak yon modpas fò","Rekonèt danje itilize menm modpas pou plizyè kont"],
+   weakPw:"123456",strongPw:"Chwal-Ble-Manje-42!",
+   weakLbl:"Modpas Fèb",strongLbl:"Modpas Fò (yon fraz)",
+   weakFb:"Fasil pou devine, kout, itilize souvan — danjere.",
+   strongFb:"Long, inik, tankou yon fraz ki fasil pou OU sonje men difisil pou lòt moun devine.",
+   managerNote:"Yon jerans modpas (password manager) ka sonje tout modpas inik ou yo pou ou.",
+   trapQ:"Ou itilize MENM modpas la pou imèl ou AK bank ou pou fasil sonje l. Sa se yon bon lide?",
+   trapWrong:"Wi, pi fasil konsa",trapRight:"Non, si yon sèl kont pyeje, tout lòt kont ki gen menm modpas la an danje tou",
+   trapWrongFb:"Danjere! Si yon sèl nan kont sa yo pyeje (menm si se pa fòt ou), moun ki gen aksè a modpas la ka antre nan TOUT lòt kont ou ki gen menm modpas la.",
+   trapRightFb:"Egzat! Chak kont enpòtan ta dwe gen yon modpas INIK — yon jerans modpas ka ede ou jere yo tout san bliye.",
+   welcome:"Klike sou 2 egzanp modpas yo pou konpare yo.",
+   done:"Ou konnen kounye a diferans ant yon modpas fèb ak yon modpas fò, epi poukisa pa reyitilize menm modpas la."},
+ fr:{lead:"Un bon mot de passe est unique pour chaque compte, long, et difficile à deviner. Comparez 2 exemples de mots de passe.",
+   objs:["Comparer un mot de passe faible et un fort","Reconnaître le danger d'utiliser le même mot de passe pour plusieurs comptes"],
+   weakPw:"123456",strongPw:"Cheval-Bleu-Mange-42!",
+   weakLbl:"Mot de Passe Faible",strongLbl:"Mot de Passe Fort (une phrase)",
+   weakFb:"Facile à deviner, court, utilisé souvent — dangereux.",
+   strongFb:"Long, unique, comme une phrase facile à retenir pour VOUS mais difficile à deviner pour les autres.",
+   managerNote:"Un gestionnaire de mots de passe peut se souvenir de tous vos mots de passe uniques pour vous.",
+   trapQ:"Vous utilisez le MÊME mot de passe pour votre e-mail ET votre banque pour vous en souvenir facilement. Est-ce une bonne idée ?",
+   trapWrong:"Oui, plus facile comme ça",trapRight:"Non, si un compte est piraté, tous les autres comptes avec le même mot de passe sont aussi en danger",
+   trapWrongFb:"Dangereux ! Si un seul de ces comptes est piraté (même si ce n'est pas votre faute), la personne ayant accès au mot de passe peut entrer dans TOUS vos autres comptes avec le même mot de passe.",
+   trapRightFb:"Exact ! Chaque compte important devrait avoir un mot de passe UNIQUE — un gestionnaire de mots de passe peut vous aider à tous les gérer sans oublier.",
+   welcome:"Cliquez sur les 2 exemples de mots de passe pour les comparer.",
+   done:"Vous connaissez maintenant la différence entre un mot de passe faible et fort, et pourquoi ne pas réutiliser le même mot de passe."},
+ en:{lead:"A good password is unique for each account, long, and hard to guess. Compare 2 password examples.",
+   objs:["Compare a weak password and a strong one","Recognize the danger of using the same password for several accounts"],
+   weakPw:"123456",strongPw:"Horse-Blue-Eats-42!",
+   weakLbl:"Weak Password",strongLbl:"Strong Password (a passphrase)",
+   weakFb:"Easy to guess, short, used often — risky.",
+   strongFb:"Long, unique, like a phrase easy for YOU to remember but hard for others to guess.",
+   managerNote:"A password manager can remember all your unique passwords for you.",
+   trapQ:"You use the SAME password for your email AND your bank to remember it easily. Is that a good idea?",
+   trapWrong:"Yes, easier that way",trapRight:"No, if one account is hacked, every other account with the same password is at risk too",
+   trapWrongFb:"Risky! If just one of those accounts is hacked (even if it's not your fault), whoever has access to the password can get into ALL your other accounts with the same password.",
+   trapRightFb:"Exactly! Every important account should have a UNIQUE password — a password manager can help you manage them all without forgetting.",
+   welcome:"Click the 2 password examples to compare them.",
+   done:"Now you know the difference between a weak and strong password, and why not to reuse the same password."}},
+3:{ht:{lead:"2FA (Verifikasyon 2 Etap) ajoute yon dezyèm kouch sekirite lè ou konekte. Aktive l epi antre yon kòd.",
+   objs:["Aktive 2FA epi antre kòd verifikasyon an","Rekonèt pa janm pataje yon kòd verifikasyon"],
+   toggleBtn:"Aktive 2FA",codeSent:"Kòd voye: 482 913",codeInput:"Antre Kòd la",
+   toggleFb:"2FA aktive — kounye a ou bezwen modpas la AK yon kòd pou konekte.",
+   codeFb:"Kòd la kòrèk — ou konekte an sekirite ak 2 kouch pwoteksyon.",
+   trapQ:"Yon moun rele di yo se 'sipò teknik' epi mande kòd verifikasyon SMS ou fèk resevwa a. Ou ta dwe bay li?",
+   trapWrong:"Wi, si yo di yo se sipò teknik",trapRight:"Non, pa janm pataje yon kòd verifikasyon ak pèsòn",
+   trapWrongFb:"Danjere! Okenn 'sipò teknik' lejitim pa bezwen kòd verifikasyon ou. Moun ki mande sa se prèske toujou yon eskrokri k ap eseye antre nan kont ou.",
+   trapRightFb:"Egzat! Yon kòd verifikasyon se sèlman pou OU — pa janm bay li bay pèsòn, menm si yo di yo se sipò ofisyèl.",
+   welcome:"Klike 'Aktive 2FA', apre antre kòd la.",
+   done:"Ou konnen kounye a kijan 2FA mache, epi pou pa janm pataje yon kòd verifikasyon ak pèsòn."},
+ fr:{lead:"2FA (Vérification en 2 Étapes) ajoute une deuxième couche de sécurité à la connexion. Activez-la et entrez un code.",
+   objs:["Activer 2FA et entrer le code de vérification","Reconnaître à ne jamais partager un code de vérification"],
+   toggleBtn:"Activer 2FA",codeSent:"Code envoyé : 482 913",codeInput:"Entrer le Code",
+   toggleFb:"2FA activé — vous avez maintenant besoin du mot de passe ET d'un code pour vous connecter.",
+   codeFb:"Le code est correct — vous êtes connecté en sécurité avec 2 couches de protection.",
+   trapQ:"Quelqu'un appelle en disant être du « support technique » et demande le code de vérification SMS que vous venez de recevoir. Devriez-vous le lui donner ?",
+   trapWrong:"Oui, s'ils disent être le support technique",trapRight:"Non, ne jamais partager un code de vérification avec personne",
+   trapWrongFb:"Dangereux ! Aucun « support technique » légitime n'a besoin de votre code de vérification. Quelqu'un qui demande ça est presque toujours une arnaque essayant d'entrer dans votre compte.",
+   trapRightFb:"Exact ! Un code de vérification est seulement pour VOUS — ne le donnez jamais à personne, même s'ils disent être un support officiel.",
+   welcome:"Cliquez « Activer 2FA », puis entrez le code.",
+   done:"Vous savez maintenant comment fonctionne 2FA, et à ne jamais partager un code de vérification avec personne."},
+ en:{lead:"2FA (Two-Factor Authentication) adds a second layer of security when signing in. Turn it on and enter a code.",
+   objs:["Turn on 2FA and enter the verification code","Recognize to never share a verification code"],
+   toggleBtn:"Turn On 2FA",codeSent:"Code sent: 482 913",codeInput:"Enter the Code",
+   toggleFb:"2FA is on — now you need the password AND a code to sign in.",
+   codeFb:"The code is correct — you're signed in safely with 2 layers of protection.",
+   trapQ:"Someone calls saying they're 'technical support' and asks for the SMS verification code you just received. Should you give it to them?",
+   trapWrong:"Yes, if they say they're technical support",trapRight:"No, never share a verification code with anyone",
+   trapWrongFb:"Risky! No legitimate 'technical support' needs your verification code. Someone asking for that is almost always a scam trying to get into your account.",
+   trapRightFb:"Exactly! A verification code is only for YOU — never give it to anyone, even if they claim to be official support.",
+   welcome:"Click 'Turn On 2FA,' then enter the code.",
+   done:"Now you know how 2FA works, and to never share a verification code with anyone."}},
+4:{ht:{lead:"Eskrokri ka rive pa imèl, tèks, WhatsApp, apèl telefòn, oswa yon pop-up. Egzamine yon pop-up eskrokri klasik.",
+   objs:["Egzamine yon pop-up eskrokri","Chwazi yon repons san danje olye kontakte nimewo a"],
+   popupTitle:"⚠️ AVÈTISMAN: Òdinatè Ou Enfekte!",
+   popupBody:"Nou detekte 5 viris sou òdinatè ou. Rele SIPÒ MICROSOFT KOUNYE A: 1-800-XXX-XXXX pou konekte ak yon teknisyen ki ka reyare pwoblèm nan a distans.",
+   callBtn:"Rele Nimewo a",closeBtn:"Fèmen Fenèt la epi Verifye Ou Menm",
+   trapQ:null,
+   callFb:"Danjere! Sa se yon eskrokri 'fo sipò' klasik — yo ap eseye fè ou pè pou ou rele epi bay yo aksè a distans sou òdinatè ou.",
+   closeFb:"Egzat! Fèmen pop-up la epi verifye ou menm (pa egzanp lè w louvri yon antivirus ou konnen) se pi bon aksyon an. Microsoft pa janm voye avètisman konsa.",
+   welcome:"Egzamine pop-up la, epi chwazi yon repons.",
+   done:"Ou konnen kounye a rekonèt yon pop-up 'fo sipò' epi chwazi yon repons san danje."},
+ fr:{lead:"Les arnaques peuvent arriver par e-mail, texte, WhatsApp, appel téléphonique, ou un pop-up. Examinez un pop-up d'arnaque classique.",
+   objs:["Examiner un pop-up d'arnaque","Choisir une réponse sûre plutôt que contacter le numéro"],
+   popupTitle:"⚠️ AVERTISSEMENT : Votre Ordinateur Est Infecté !",
+   popupBody:"Nous avons détecté 5 virus sur votre ordinateur. Appelez le SUPPORT MICROSOFT MAINTENANT : 1-800-XXX-XXXX pour vous connecter avec un technicien qui peut réparer le problème à distance.",
+   callBtn:"Appeler le Numéro",closeBtn:"Fermer la Fenêtre et Vérifier Vous-Même",
+   trapQ:null,
+   callFb:"Dangereux ! C'est une arnaque classique de « faux support » — ils essaient de vous faire peur pour que vous appeliez et leur donniez un accès à distance à votre ordinateur.",
+   closeFb:"Exact ! Fermer le pop-up et vérifier vous-même (par exemple en ouvrant un antivirus que vous connaissez) est la meilleure action. Microsoft n'envoie jamais ce genre d'avertissement.",
+   welcome:"Examinez le pop-up, puis choisissez une réponse.",
+   done:"Vous savez maintenant reconnaître un pop-up de « faux support » et choisir une réponse sûre."},
+ en:{lead:"Scams can arrive by email, text, WhatsApp, phone call, or a pop-up. Examine a classic scam pop-up.",
+   objs:["Examine a scam pop-up","Choose a safe response instead of contacting the number"],
+   popupTitle:"⚠️ WARNING: Your Computer Is Infected!",
+   popupBody:"We detected 5 viruses on your computer. Call MICROSOFT SUPPORT NOW: 1-800-XXX-XXXX to connect with a technician who can fix the problem remotely.",
+   callBtn:"Call the Number",closeBtn:"Close the Window and Check Yourself",
+   trapQ:null,
+   callFb:"Risky! That's a classic 'fake support' scam — they're trying to scare you into calling and giving them remote access to your computer.",
+   closeFb:"Exactly! Closing the pop-up and checking yourself (for example by opening an antivirus you know) is the best action. Microsoft never sends warnings like this.",
+   welcome:"Examine the pop-up, then choose a response.",
+   done:"Now you know how to recognize a 'fake support' pop-up and choose a safe response."}},
+5:{ht:{lead:"Yon lyen (kadna HTTPS ki ladan l tou) ka toujou mennen ou nan yon fo sit. Konpare 2 domèn.",
+   objs:["Konpare yon vrè domèn ak yon fo domèn","Konprann HTTPS/kadna pa vle di sit la san danje nèt"],
+   realDomain:"🔒 microsoft.com",fakeDomain:"🔒 micros0ft-update.xyz",
+   realFb:"Domèn ofisyèl la — vrè òtograf, vrè konpayi.",
+   fakeFb:"Domèn sa a itilize yon '0' olye 'o' epi ekstansyon '.xyz' ki bizarè — se yon fo sit, menm si li gen kadna HTTPS tou!",
+   trapQ:"Si yon sit gen kadna 🔒 (HTTPS), èske sa vle di li 100% fyab san danje?",
+   trapWrong:"Wi, kadna a vle di san danje nèt",trapRight:"Non, HTTPS sèlman vle di koneksyon an kripte — sit danjere ka gen HTTPS tou",
+   trapWrongFb:"Pa vre! Kadna a (HTTPS) sèlman montre koneksyon an kripte — li PA verifye si konpayi ki dèyè sit la onèt. Sit fo ka gen kadna a tou.",
+   trapRightFb:"Egzat! Toujou tcheke òtograf domèn nan ak ekstansyon an, pa sèlman kadna a.",
+   welcome:"Klike sou 2 domèn yo pou konpare yo, apre reponn kesyon an sou HTTPS.",
+   done:"Ou konnen kounye a kijan pou rekonèt yon fo domèn, epi HTTPS pa garanti yon sit san danje nèt."},
+ fr:{lead:"Un lien (même avec un cadenas HTTPS) peut toujours vous mener vers un faux site. Comparez 2 domaines.",
+   objs:["Comparer un vrai domaine et un faux domaine","Comprendre que HTTPS/le cadenas ne veut pas dire un site 100% sûr"],
+   realDomain:"🔒 microsoft.com",fakeDomain:"🔒 micros0ft-mise-a-jour.xyz",
+   realFb:"Le domaine officiel — bonne orthographe, vraie entreprise.",
+   fakeFb:"Ce domaine utilise un « 0 » au lieu de « o » et une extension « .xyz » bizarre — c'est un faux site, même s'il a aussi un cadenas HTTPS !",
+   trapQ:"Si un site a un cadenas 🔒 (HTTPS), est-ce que ça veut dire qu'il est 100% sûr ?",
+   trapWrong:"Oui, le cadenas veut dire complètement sûr",trapRight:"Non, HTTPS veut seulement dire que la connexion est cryptée — un site dangereux peut aussi avoir HTTPS",
+   trapWrongFb:"Pas vrai ! Le cadenas (HTTPS) montre seulement que la connexion est cryptée — il ne vérifie PAS si l'entreprise derrière le site est honnête. Un faux site peut aussi avoir le cadenas.",
+   trapRightFb:"Exact ! Vérifiez toujours l'orthographe du domaine et l'extension, pas seulement le cadenas.",
+   welcome:"Cliquez sur les 2 domaines pour les comparer, puis répondez à la question sur HTTPS.",
+   done:"Vous savez maintenant reconnaître un faux domaine, et que HTTPS ne garantit pas un site totalement sûr."},
+ en:{lead:"A link (even with an HTTPS padlock) can still lead you to a fake site. Compare 2 domains.",
+   objs:["Compare a real domain and a fake domain","Understand HTTPS/the padlock doesn't mean a site is 100% safe"],
+   realDomain:"🔒 microsoft.com",fakeDomain:"🔒 micros0ft-update.xyz",
+   realFb:"The official domain — correct spelling, real company.",
+   fakeFb:"This domain uses a '0' instead of 'o' and an odd '.xyz' extension — it's a fake site, even though it also has an HTTPS padlock!",
+   trapQ:"If a site has a padlock 🔒 (HTTPS), does that mean it's 100% safe?",
+   trapWrong:"Yes, the padlock means completely safe",trapRight:"No, HTTPS only means the connection is encrypted — a dangerous site can have HTTPS too",
+   trapWrongFb:"Not true! The padlock (HTTPS) only shows the connection is encrypted — it does NOT verify whether the company behind the site is honest. A fake site can have the padlock too.",
+   trapRightFb:"Exactly! Always check the domain's spelling and extension, not just the padlock.",
+   welcome:"Click the 2 domains to compare them, then answer the question about HTTPS.",
+   done:"Now you know how to recognize a fake domain, and that HTTPS doesn't guarantee a completely safe site."}},
+6:{ht:{lead:"Windows gen sekirite entegre epi mizajou regilye ede pwoteje ou. Klike sou chak konsèp.",
+   objs:["Klike sou 3 konsèp sekirite","Rekonèt danje lojisyèl pirate"],
+   items:[["🛡️","Sekirite Entegre","Windows gen antivirus entegre ki travay san ou fè anyen"],["🔄","Mizajou Regilye","Koreksyon sekirite ki fèmen twou ki ka itilize pou atake ou"],["💿","Lojisyèl Pirate/Crack","Kopi ilegal lojisyèl ki souvan gen malveyan kache ladan yo"]],
+   trapQ:"Telechaje yon vèsyon 'pirate' oswa 'crack' gratis yon lojisyèl peye se yon bon fason pou ekonomize lajan san danje?",
+   trapWrong:"Wi, se jis yon fason pou ekonomize lajan",trapRight:"Non, lojisyèl pirate souvan gen malveyan kache ladan l",
+   trapWrongFb:"Danjere! Lojisyèl pirate/crack souvan modifye pou kache malveyan — ou ka enstale yon viris ansanm ak 'gratis' la.",
+   trapRightFb:"Egzat! Se yon risk enpòtan brief la site espesyalman — toujou jwenn lojisyèl nan sous ofisyèl yo.",
+   welcome:"Klike sou chak konsèp pou aprann wòl li.",
+   done:"Ou konnen kounye a wòl sekirite entegre ak mizajou, epi danje lojisyèl pirate."},
+ fr:{lead:"Windows a une sécurité intégrée et des mises à jour régulières vous aident à vous protéger. Cliquez sur chaque concept.",
+   objs:["Cliquer sur 3 concepts de sécurité","Reconnaître le danger des logiciels piratés"],
+   items:[["🛡️","Sécurité Intégrée","Windows a un antivirus intégré qui travaille sans que vous fassiez rien"],["🔄","Mises à Jour Régulières","Correctifs de sécurité qui ferment des trous qui pourraient être utilisés pour vous attaquer"],["💿","Logiciel Piraté/Crack","Copie illégale de logiciel qui contient souvent des logiciels malveillants cachés"]],
+   trapQ:"Télécharger une version « piratée » ou « crackée » gratuite d'un logiciel payant est une bonne façon d'économiser de l'argent sans danger ?",
+   trapWrong:"Oui, c'est juste une façon d'économiser de l'argent",trapRight:"Non, les logiciels piratés contiennent souvent des logiciels malveillants cachés",
+   trapWrongFb:"Dangereux ! Les logiciels piratés/crackés sont souvent modifiés pour cacher des logiciels malveillants — vous pourriez installer un virus avec le « gratuit ».",
+   trapRightFb:"Exact ! C'est un risque important que le brief souligne spécifiquement — obtenez toujours les logiciels de sources officielles.",
+   welcome:"Cliquez sur chaque concept pour apprendre son rôle.",
+   done:"Vous connaissez maintenant le rôle de la sécurité intégrée et des mises à jour, et le danger des logiciels piratés."},
+ en:{lead:"Windows has built-in security and regular updates help protect you. Click each concept.",
+   objs:["Click 3 security concepts","Recognize the danger of pirated software"],
+   items:[["🛡️","Built-In Security","Windows has built-in antivirus that works without you doing anything"],["🔄","Regular Updates","Security fixes that close holes that could be used to attack you"],["💿","Pirated/Cracked Software","Illegal software copies that often have hidden malware inside"]],
+   trapQ:"Downloading a free 'pirated' or 'cracked' version of paid software is a good way to save money safely?",
+   trapWrong:"Yes, it's just a way to save money",trapRight:"No, pirated software often has hidden malware inside",
+   trapWrongFb:"Risky! Pirated/cracked software is often modified to hide malware — you could install a virus along with the 'free' one.",
+   trapRightFb:"Exactly! This is an important risk the brief specifically names — always get software from official sources.",
+   welcome:"Click each concept to learn its role.",
+   done:"Now you know the role of built-in security and updates, and the danger of pirated software."}},
+7:{ht:{lead:"Sou yon òdinatè pataje oswa piblik, fè atansyon ak sa ou kite dèyè ou. Fè chèklis anvan ou kite.",
+   objs:["Konplete chèklis 4 etap yo","Rekonèt danje sove modpas sou yon òdinatè piblik"],
+   steps:["Dekonekte tout kont","Efase telechajman prive","Fèmen navigasyon prive/istorik","Verifye ekran an prive (pèsòn dèyè ou)"],
+   stepFb:"Byen fèt! Yon etap enpòtan pou pwoteje vi prive w sou yon aparèy pataje.",
+   trapQ:"Ou nan yon bibliyotèk sou yon òdinatè piblik. Navigatè a mande si ou vle 'Sove Modpas la'. Ou ta dwe di wi pou pi vit pwochen fwa a?",
+   trapWrong:"Wi, sove l pou fasil pwochen fwa",trapRight:"Non, pa janm sove modpas sou yon òdinatè piblik/pataje",
+   trapWrongFb:"Danjere! Si ou sove modpas la sou yon aparèy piblik, pwochen moun ki sèvi avè l ka jwenn aksè a kont ou.",
+   trapRightFb:"Egzat! Toujou refize sove modpas sou yon aparèy ki pa pou ou sèlman.",
+   welcome:"Klike sou chak etap nan chèklis la, apre reponn kesyon an sou sove modpas.",
+   done:"Ou konnen kounye a yon chèklis vi prive pou yon òdinatè pataje/piblik, epi pou pa sove modpas la."},
+ fr:{lead:"Sur un ordinateur partagé ou public, faites attention à ce que vous laissez derrière vous. Faites une liste de vérification avant de partir.",
+   objs:["Compléter la liste de vérification en 4 étapes","Reconnaître le danger de sauvegarder un mot de passe sur un ordinateur public"],
+   steps:["Se déconnecter de tous les comptes","Effacer les téléchargements privés","Fermer la navigation privée/l'historique","Vérifier l'écran en privé (personne derrière vous)"],
+   stepFb:"Bien joué ! Une étape importante pour protéger votre vie privée sur un appareil partagé.",
+   trapQ:"Vous êtes dans une bibliothèque sur un ordinateur public. Le navigateur demande si vous voulez « Sauvegarder le Mot de Passe ». Devriez-vous dire oui pour aller plus vite la prochaine fois ?",
+   trapWrong:"Oui, le sauvegarder pour la prochaine fois",trapRight:"Non, ne jamais sauvegarder un mot de passe sur un ordinateur public/partagé",
+   trapWrongFb:"Dangereux ! Si vous sauvegardez le mot de passe sur un appareil public, la prochaine personne qui l'utilise peut accéder à votre compte.",
+   trapRightFb:"Exact ! Refusez toujours de sauvegarder un mot de passe sur un appareil qui n'est pas seulement à vous.",
+   welcome:"Cliquez sur chaque étape de la liste, puis répondez à la question sur la sauvegarde du mot de passe.",
+   done:"Vous connaissez maintenant une liste de vérification de vie privée pour un ordinateur partagé/public, et à ne pas sauvegarder le mot de passe."},
+ en:{lead:"On a shared or public computer, watch what you leave behind. Run through a checklist before leaving.",
+   objs:["Complete the 4-step checklist","Recognize the danger of saving a password on a public computer"],
+   steps:["Sign out of all accounts","Delete private downloads","Close private browsing/history","Check the screen for privacy (nobody behind you)"],
+   stepFb:"Well done! An important step for protecting your privacy on a shared device.",
+   trapQ:"You're in a library on a public computer. The browser asks if you want to 'Save the Password.' Should you say yes to be faster next time?",
+   trapWrong:"Yes, save it for next time",trapRight:"No, never save a password on a public/shared computer",
+   trapWrongFb:"Risky! If you save the password on a public device, the next person to use it can get into your account.",
+   trapRightFb:"Exactly! Always decline saving a password on a device that isn't only yours.",
+   welcome:"Click each step in the checklist, then answer the question about saving the password.",
+   done:"Now you know a privacy checklist for a shared/public computer, and not to save the password."}},
+8:{ht:{lead:"Anvan ou peye anliy, verifye machann lan, montan total la, ak jwenn resi/nimewo tranzaksyon. Pa janm pataje PIN oswa OTP ou.",
+   objs:["Verifye machann ak total anvan ou peye","Rekonèt pa janm pataje PIN oswa kòd OTP ou"],
+   merchantLbl:"Machann: Boutik ABC (verifye ✓)",totalLbl:"Total: 1,250 HTG",receiptBtn:"Jwenn Resi ak Nimewo Tranzaksyon",
+   receiptFb:"Ou gen yon resi ak nimewo tranzaksyon — enpòtan si gen yon pwoblèm pita.",
+   trapQ:"Yon moun ki di y ap ede ou konplete yon tranzaksyon MonCash/NatCash mande PIN ou. Ou ta dwe bay li?",
+   trapWrong:"Wi, si y ap ede m konplete tranzaksyon an",trapRight:"Non, pa janm pataje PIN oswa kòd OTP ou ak pèsòn",
+   trapWrongFb:"Danjere! Okenn moun lejitim pa bezwen PIN ou pou 'ede' ou — sa se yon fason komen pou eskrokri vòlè lajan dirèkteman nan kont ou.",
+   trapRightFb:"Egzat! PIN ak kòd OTP se sèlman pou OU — pa janm pataje yo, menm ak yon moun ki di y ap ede.",
+   welcome:"Klike sou machann lan, apre 'Jwenn Resi', apre reponn kesyon an sou PIN.",
+   done:"Ou konnen kounye a pou verifye machann ak total anvan peye, epi pa janm pataje PIN/OTP ou."},
+ fr:{lead:"Avant de payer en ligne, vérifiez le marchand, le montant total, et obtenez un reçu/numéro de transaction. Ne partagez jamais votre PIN ou OTP.",
+   objs:["Vérifier le marchand et le total avant de payer","Reconnaître à ne jamais partager votre PIN ou code OTP"],
+   merchantLbl:"Marchand : Boutique ABC (vérifié ✓)",totalLbl:"Total : 1 250 HTG",receiptBtn:"Obtenir le Reçu et le Numéro de Transaction",
+   receiptFb:"Vous avez un reçu et un numéro de transaction — important en cas de problème plus tard.",
+   trapQ:"Quelqu'un qui dit vous aider à compléter une transaction MonCash/NatCash demande votre PIN. Devriez-vous le lui donner ?",
+   trapWrong:"Oui, s'ils m'aident à compléter la transaction",trapRight:"Non, ne jamais partager votre PIN ou code OTP avec personne",
+   trapWrongFb:"Dangereux ! Personne de légitime n'a besoin de votre PIN pour vous « aider » — c'est une façon courante d'arnaquer et de voler de l'argent directement de votre compte.",
+   trapRightFb:"Exact ! Le PIN et le code OTP sont seulement pour VOUS — ne les partagez jamais, même avec quelqu'un qui dit vouloir aider.",
+   welcome:"Cliquez sur le marchand, puis « Obtenir le Reçu », puis répondez à la question sur le PIN.",
+   done:"Vous savez maintenant vérifier le marchand et le total avant de payer, et à ne jamais partager votre PIN/OTP."},
+ en:{lead:"Before paying online, verify the merchant, the total amount, and get a receipt/transaction number. Never share your PIN or OTP.",
+   objs:["Verify the merchant and total before paying","Recognize to never share your PIN or OTP code"],
+   merchantLbl:"Merchant: ABC Shop (verified ✓)",totalLbl:"Total: 1,250 HTG",receiptBtn:"Get Receipt and Transaction Number",
+   receiptFb:"You have a receipt and transaction number — important if there's a problem later.",
+   trapQ:"Someone who says they're helping you complete a MonCash/NatCash transaction asks for your PIN. Should you give it to them?",
+   trapWrong:"Yes, if they're helping me complete the transaction",trapRight:"No, never share your PIN or OTP code with anyone",
+   trapWrongFb:"Risky! No legitimate person needs your PIN to 'help' you — this is a common way scammers steal money directly from your account.",
+   trapRightFb:"Exactly! Your PIN and OTP code are only for YOU — never share them, even with someone who says they're helping.",
+   welcome:"Click the merchant, then 'Get Receipt,' then answer the question about the PIN.",
+   done:"Now you know to verify the merchant and total before paying, and to never share your PIN/OTP."}},
+9:{ht:{lead:"Si ou sispèk yon bagay mal rive (kont pyeje, eskrokri), swiv yon sekans kalm olye panike.",
+   objs:["Swiv sekans repons lan","Rete kalm olye fè yon aksyon rapid ki ka domaje"],
+   steps:[["Rete Kalm","Pa panike, pa efase anyen san reflechi"],["Chanje Modpas","Fè sa soti nan yon LÒT aparèy ki an sekirite"],["Kontakte Founisè","Rapòte pwoblèm nan bay sèvis konsène a"],["Anrejistre Prèv","Screenshot mesaj/detay ki gen rapò"]],
+   trapQ:"Ou sispèk kont ou pyeje. Premye reyaksyon ki pi bon an se...",
+   trapWrong:"Panike epi efase tout bagay sou aparèy la",trapRight:"Rete kalm, swiv sekans kalm lan (chanje modpas, kontakte founisè, elatriye)",
+   trapWrongFb:"Pa pi bon lide a! Efase tout bagay san reflechi ka pèdi enfòmasyon enpòtan ou bezwen pou rezoud pwoblèm nan, san rezoud danje reyèl la.",
+   trapRightFb:"Egzat! Yon sekans kalm ak metodik pwoteje ou pi byen pase panik ak aksyon rapid ki pa reflechi.",
+   welcome:"Klike sou chak etap nan sekans repons lan, apre reponn kesyon an.",
+   done:"Ou konnen kounye a yon sekans kalm pou reponn si ou sispèk yon bagay mal rive."},
+ fr:{lead:"Si vous soupçonnez que quelque chose ne va pas (compte piraté, arnaque), suivez une séquence calme au lieu de paniquer.",
+   objs:["Suivre la séquence de réponse","Rester calme au lieu de faire une action rapide qui pourrait nuire"],
+   steps:[["Rester Calme","Ne pas paniquer, ne rien supprimer sans réfléchir"],["Changer le Mot de Passe","Le faire depuis un AUTRE appareil sûr"],["Contacter le Fournisseur","Signaler le problème au service concerné"],["Enregistrer des Preuves","Capture d'écran des messages/détails pertinents"]],
+   trapQ:"Vous soupçonnez que votre compte est piraté. La meilleure première réaction est...",
+   trapWrong:"Paniquer et tout supprimer sur l'appareil",trapRight:"Rester calme, suivre la séquence calme (changer le mot de passe, contacter le fournisseur, etc.)",
+   trapWrongFb:"Pas la meilleure idée ! Tout supprimer sans réfléchir peut faire perdre des informations importantes dont vous avez besoin pour résoudre le problème, sans résoudre le vrai danger.",
+   trapRightFb:"Exact ! Une séquence calme et méthodique vous protège mieux que la panique et des actions rapides irréfléchies.",
+   welcome:"Cliquez sur chaque étape de la séquence de réponse, puis répondez à la question.",
+   done:"Vous connaissez maintenant une séquence calme pour répondre si vous soupçonnez que quelque chose ne va pas."},
+ en:{lead:"If you suspect something's gone wrong (hacked account, scam), follow a calm sequence instead of panicking.",
+   objs:["Follow the response sequence","Stay calm instead of taking a rash action that could cause harm"],
+   steps:[["Stay Calm","Don't panic, don't delete anything without thinking"],["Change Password","Do it from ANOTHER safe device"],["Contact Provider","Report the problem to the relevant service"],["Record Evidence","Screenshot relevant messages/details"]],
+   trapQ:"You suspect your account has been hacked. The best first reaction is...",
+   trapWrong:"Panic and delete everything on the device",trapRight:"Stay calm, follow the calm sequence (change password, contact provider, etc.)",
+   trapWrongFb:"Not the best idea! Deleting everything without thinking can lose important information you need to solve the problem, without solving the real danger.",
+   trapRightFb:"Exactly! A calm, methodical sequence protects you better than panic and rash, unthought actions.",
+   welcome:"Click each step in the response sequence, then answer the question.",
+   done:"Now you know a calm sequence for responding if you suspect something's gone wrong."}},
+10:{ht:{lead:"Dènye misyon an! Egzamine mesaj sispèk yo, idantifye siy danje yo, chwazi yon repons san danje, epi eksplike sa ou pa janm dwe pataje.",
+   objs:["Egzamine yon imèl sispèk","Egzamine yon tèks sispèk","Chwazi yon repons san danje pou toude","Deklare sa ou pa janm dwe pataje"],
+   emailSubj:"⚠️ Kont ou ap fèmen — aji KOUNYE A",
+   textMsg:"📱 Tèks: Ou genyen yon pake ki ap tann. Klike la pou konfime adrès ou ak nimewo kat ou.",
+   emailBtn:"Egzamine Imèl la",textBtn:"Egzamine Tèks la",responseBtn:"Chwazi: Pa Klike, Verifye Endepandaman",
+   neverShareBtn:"Deklare: Pa Janm Pataje Modpas, Kòd 2FA, PIN, oswa OTP",
+   emailFb:"Imèl la gen siy klasik: ijans ak mande aksyon imedya.",
+   textFb:"Tèks la mande enfòmasyon kat bankè — yon lòt siy eskrokri klasik.",
+   responseFb:"Pou toude, pi bon repons lan se pa klike, epi verifye endepandaman (kontakte konpayi a dirèkteman pa yon kanal ou konnen).",
+   neverShareFb:"Egzat! Pa janm pataje modpas, kòd 2FA, PIN, oswa OTP ou ak PÈSÒN, kèlkeswa rezon yo bay.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 11 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 11 — ou konnen kounye a kijan pou rekonèt eskrokri epi pwoteje enfòmasyon ki pa janm dwe pataje."},
+ fr:{lead:"Dernière mission ! Examinez les messages suspects, identifiez les signes de danger, choisissez une réponse sûre, et expliquez ce que vous ne devez jamais partager.",
+   objs:["Examiner un e-mail suspect","Examiner un texte suspect","Choisir une réponse sûre pour les deux","Déclarer ce qu'il ne faut jamais partager"],
+   emailSubj:"⚠️ Votre compte va fermer — agissez MAINTENANT",
+   textMsg:"📱 Texte : Vous avez un colis en attente. Cliquez ici pour confirmer votre adresse et numéro de carte.",
+   emailBtn:"Examiner l'E-mail",textBtn:"Examiner le Texte",responseBtn:"Choisir : Ne Pas Cliquer, Vérifier Indépendamment",
+   neverShareBtn:"Déclarer : Ne Jamais Partager Mot de Passe, Code 2FA, PIN, ou OTP",
+   emailFb:"L'e-mail a des signes classiques : urgence et demande d'action immédiate.",
+   textFb:"Le texte demande des informations de carte bancaire — un autre signe classique d'arnaque.",
+   responseFb:"Pour les deux, la meilleure réponse est de ne pas cliquer, et de vérifier indépendamment (contacter l'entreprise directement par un canal que vous connaissez).",
+   neverShareFb:"Exact ! Ne partagez jamais votre mot de passe, code 2FA, PIN, ou OTP avec PERSONNE, quelle que soit la raison donnée.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 11.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 11 — vous savez maintenant reconnaître les arnaques et protéger les informations qu'il ne faut jamais partager."},
+ en:{lead:"Last mission! Examine the suspicious messages, identify warning signs, choose a safe response, and explain what must never be shared.",
+   objs:["Examine a suspicious email","Examine a suspicious text","Choose a safe response for both","Declare what must never be shared"],
+   emailSubj:"⚠️ Your account is closing — act NOW",
+   textMsg:"📱 Text: You have a package waiting. Click here to confirm your address and card number.",
+   emailBtn:"Examine the Email",textBtn:"Examine the Text",responseBtn:"Choose: Don't Click, Verify Independently",
+   neverShareBtn:"Declare: Never Share Password, 2FA Code, PIN, or OTP",
+   emailFb:"The email has classic signs: urgency and a demand for immediate action.",
+   textFb:"The text asks for bank card information — another classic scam sign.",
+   responseFb:"For both, the best response is not to click, and to verify independently (contact the company directly through a channel you know).",
+   neverShareFb:"Exactly! Never share your password, 2FA code, PIN, or OTP with ANYONE, no matter the reason given.",
+   welcome:"Click each action below to complete Module 11's final mission.",
+   done:"Congratulations! You completed Module 11's Mission — now you know how to recognize scams and protect information that must never be shared."}},
+};
+
+/* ============ engine ============ */
+const NL=10;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module11-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD11_LESSON_SLUGS=["kisa-ki-bezwen-pwoteje","modpas-fo-ak-jerans-modpas","2fa-ak-kod-verifikasyon","phishing-fo-sipo-ak-ijans","fo-sit-web-lyen-ak-telechajman","viris-malveyan-ak-mizajou","vi-prive-sou-odinate-pataje-ak-piblik","sekirite-acha-ak-peman-dijital","sa-pou-fe-si-yon-bagay-mal-rive","misyon-rete-eskrokri-a"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD11_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule12();
+}
+function injectContinueModule12(){
+ if($("continueModule12"))return;
+ const a=document.createElement("a");a.id="continueModule12";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[11];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===10;
+ let les="";if(active){les='<div class="les">'+M11[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">11.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 11 · 11."+(i+1);$("topTitle").textContent=M11[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 11 · 11.'+(i+1)+'</span><div class="labh2">'+M11[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.weak=false;st.strong=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,220px)">'+
+   '<div class="partcard" id="weakCard"><div class="partart" style="font-size:20px;font-family:monospace">'+d.weakPw+'</div><div class="partn">'+d.weakLbl+'</div></div>'+
+   '<div class="partcard" id="strongCard"><div class="partart" style="font-size:16px;font-family:monospace">'+d.strongPw+'</div><div class="partn">'+d.strongLbl+'</div></div>'+
+  '</div>'+
+  '<p style="margin-top:16px;color:var(--mute);font-size:13.5px">'+d.managerNote+'</p>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.weak&&st.strong)setObj(0);}
+ $("weakCard").addEventListener("click",()=>{if(st.weak)return;st.weak=true;$("weakCard").classList.add("done");ai(d.weakFb,"warn");check();});
+ $("strongCard").addEventListener("click",()=>{if(st.strong)return;st.strong=true;$("strongCard").classList.add("done");ai(d.strongFb,"good");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.on=false;st.entered=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(2,d.lead)+'<div class="panel"><div class="pbody">'+
+    (!st.on?'<button class="btn p" id="toggleBtn">'+d.toggleBtn+'</button>':
+     (!st.entered?'<div style="margin-bottom:10px">'+d.codeSent+'</div><button class="btn g" id="codeBtn">'+d.codeInput+'</button>':
+      '<div style="color:var(--good);font-weight:600">✓ '+d.codeFb+'</div>'))+
+   '</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const tb=$("toggleBtn");if(tb)tb.addEventListener("click",()=>{st.on=true;ai(d.toggleFb,"good");render();});
+  const cb=$("codeBtn");if(cb)cb.addEventListener("click",()=>{st.entered=true;ai(d.codeFb,"good");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="ovl" style="position:relative;background:none;padding:0"><div class="dialog"><div class="dtb">'+d.popupTitle+'</div><div class="dbody">'+d.popupBody+'</div>'+
+   '<div class="dactions"><button class="dbtn sec" id="closeBtn">'+d.closeBtn+'</button><button class="dbtn danger" id="callBtn">'+d.callBtn+'</button></div></div></div>'+nextBar();
+ wireNext();
+ $("callBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.callFb,"warn");setObj(0);setObj(1);});
+ $("closeBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.closeFb,"good");setObj(0);setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.real=false;st.fake=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,220px)">'+
+   '<div class="partcard" id="realCard"><div class="partart" style="font-size:16px">'+d.realDomain+'</div></div>'+
+   '<div class="partcard" id="fakeCard"><div class="partart" style="font-size:16px">'+d.fakeDomain+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.real&&st.fake)setObj(0);}
+ $("realCard").addEventListener("click",()=>{if(st.real)return;st.real=true;$("realCard").classList.add("done");ai(d.realFb,"good");check();});
+ $("fakeCard").addEventListener("click",()=>{if(st.fake)return;st.fake=true;$("fakeCard").classList.add("done");ai(d.fakeFb,"warn");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,190px)">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.done4=st.done4||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done4[k]?' style="opacity:.4"':"")+'>'+(st.done4[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done4[k])return;st.done4[k]=true;
+  ai(d.stepFb,"good");if(Object.keys(st.done4).length>=4)setObj(0);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.merchant=false;st.receipt=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="panel"><div class="pbody">'+
+   '<div class="arow" id="merchantRow"><span class="k">'+d.merchantLbl+'</span></div>'+
+   '<div class="arow" style="cursor:default"><span class="k">'+d.totalLbl+'</span></div>'+
+  '</div></div>'+
+  '<div style="margin-top:16px"><button class="btn g" id="receiptBtn">'+d.receiptBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.merchant&&st.receipt)setObj(0);}
+ $("merchantRow").addEventListener("click",()=>{if(st.merchant)return;st.merchant=true;check();});
+ $("receiptBtn").addEventListener("click",()=>{if(st.receipt)return;st.receipt=true;ai(d.receiptFb,"good");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(4,160px)">'+d.steps.map((s,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+s[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.steps[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.email=false;st.text=false;st.responded=false;st.declared=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(9,d.lead)+'<div class="panel"><div class="pbody">'+
+   '<div class="arow" id="emailRow"><span class="k">📧 '+d.emailSubj+'</span></div>'+
+   '<div class="arow" id="textRow"><span class="k">'+d.textMsg+'</span></div>'+
+  '</div></div>'+
+  '<div style="display:flex;flex-direction:column;gap:10px;margin-top:18px;max-width:420px">'+
+   '<button class="btn g" id="responseBtn">'+d.responseBtn+'</button>'+
+   '<button class="btn p" id="neverShareBtn">'+d.neverShareBtn+'</button>'+
+  '</div>'+nextBar();
+ wireNext();
+ $("emailRow").addEventListener("click",()=>{if(st.email)return;st.email=true;ai(d.emailFb,"warn");setObj(0);});
+ $("textRow").addEventListener("click",()=>{if(st.text)return;st.text=true;ai(d.textFb,"warn");setObj(1);});
+ $("responseBtn").addEventListener("click",()=>{if(st.responded)return;st.responded=true;ai(d.responseFb,"good");setObj(2);});
+ $("neverShareBtn").addEventListener("click",()=>{if(st.declared)return;st.declared=true;ai(d.neverShareFb,"good");setObj(3);});
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
