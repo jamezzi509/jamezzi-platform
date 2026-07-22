@@ -434,7 +434,7 @@ const SIM_KEY="jamezzi:computer:essentials:module5-sim-state";
 const PROGRESS_KEY="jamezzi:computer:essentials:completed";
 const PROGRESS_EVENT="jamezzi:course-progress-changed";
 const MOD5_LESSON_SLUGS=["kisa-yon-aplikasyon-ye","kote-san-danje-pou-jwenn-aplikasyon","enstale-yon-aplikasyon","mete-ajou-ak-retire-yon-aplikasyon","louvri-modifye-sovgade-ak-feme-yon-dokiman","sa-ou-dwe-konnen-sou-pdf","aplikasyon-pa-defo","pemisyon-aplikasyon","misyon-prepare-yon-dokiman"];
-const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","","konekte-sou-wifi-san-danje","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
 function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
 function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
  if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;

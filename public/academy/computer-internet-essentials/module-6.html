@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 6 — Entènèt ak Wi-Fi</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+.tileicon{width:24px;height:24px;flex:none}
+.flow{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap}
+.node{flex:1;min-width:120px;border:1px solid var(--edge2);border-radius:14px;padding:16px;text-align:center;background:var(--ink-700);cursor:pointer;transition:.2s}
+.node.read{border-color:var(--good)}
+.node .ni{font-size:26px}.node .nt{font-weight:700;margin-top:8px;font-size:15px}.node .nd{font-size:12.5px;color:var(--mute);margin-top:4px}
+.arrow{color:var(--mute);font-size:24px}
+/* windows chrome */
+.winpanel{position:relative;width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.wtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.wbody{padding:14px 18px;background:var(--w-content);min-height:180px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .sub{font-size:12px;color:var(--w-t2)}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}
+/* signal/speed compare */
+.meter{display:flex;align-items:flex-end;gap:3px;height:36px}
+.meter i{width:8px;background:#c8c8c8;border-radius:2px;display:block}
+.meter i.on{background:var(--w-accent)}
+/* dialog */
+.ovl{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9}
+.dialog{width:min(420px,90%);background:var(--w-mica);border-radius:8px;box-shadow:0 30px 70px -10px rgba(0,0,0,.6);overflow:hidden;font-family:var(--seg);color:var(--w-t1)}
+.dialog .dtb{padding:16px 18px 6px;font-size:16px;font-weight:700}
+.dialog .dbody{padding:6px 18px 16px;font-size:13.5px;color:var(--w-t2);line-height:1.5}
+.dialog .dactions{display:flex;justify-content:flex-end;gap:10px;padding:12px 18px;background:#f3f3f3;border-top:1px solid var(--w-stroke)}
+.dbtn{border:none;border-radius:5px;padding:8px 18px;font-weight:600;font-size:13.5px;cursor:pointer}
+.dbtn.pri{background:var(--w-accent);color:#fff}.dbtn.sec{background:#e5e5e5;color:#1b1b1b}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 6 · 6.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 7 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 7 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 7 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M6={ht:["Ki Sa Ki Se Entènèt La?","Founisè Entènèt, Modèm, Routè, ak Wi-Fi","Konekte sou Wi-Fi San Danje","Wi-Fi, Done Selilè, ak Hotspot","Vitès Koneksyon, Siyal, ak Itilizasyon Done","Lè Wi-Fi Di Konekte Men Entènèt Pa Mache","Telechaje ak Voye (Download ak Upload)","Kòd QR, Lyen, ak Adrès Wèb","Misyon: Konekte epi Eksplike"],
+ fr:["Qu'est-ce que l'Internet ?","Fournisseur Internet, Modem, Routeur, et Wi-Fi","Se Connecter au Wi-Fi en Sécurité","Wi-Fi, Données Mobiles, et Points d'Accès","Vitesse de Connexion, Signal, et Utilisation des Données","Quand le Wi-Fi Dit Connecté mais Internet Ne Marche Pas","Télécharger et Envoyer (Download et Upload)","Codes QR, Liens, et Adresses Web","Mission : Se Connecter et Expliquer"],
+ en:["What Is the Internet?","Internet Provider, Modem, Router, and Wi-Fi","Connect to Wi-Fi Safely","Wi-Fi, Mobile Data, and Hotspots","Connection Speed, Signal, and Data Use","When Wi-Fi Says Connected but the Internet Does Not Work","Download and Upload","QR Codes, Links, and Web Addresses","Module Mission: Connect and Explain"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Entènèt la se yon rezo global ki gen anpil lòt rezo ladan l — li pa yon sèl konpayi ni yon sèl aplikasyon. Klike sou chak sèvis pou wè yo tout konekte nan menm rezo a.",
+   objs:["Klike sou 3 sèvis anliy","Konprann entènèt la pa se yon sèl konpayi oswa aplikasyon"],
+   items:[["📘","Facebook","Yon sèvis anliy — youn nan MILYON ki itilize entènèt la"],["🔍","Google","Yon lòt sèvis anliy — pa menm bagay ak entènèt la limenm"],["📧","Imèl","Yon lòt sèvis toujou — tout yo pase nan MENM rezo global la"]],
+   trapQ:"Entènèt la se Facebook, oswa Google, oswa yon sèl gwo konpayi ki kontwole tout bagay?",
+   yes:"Wi, se yon sèl konpayi",no:"Non, se yon rezo global anpil rezo ki konekte ansanm",
+   yesFb:"Pa vre! Facebook ak Google se de SÈVIS ki ITILIZE entènèt la — yo pa se entènèt la limenm. Pa gen yon sèl konpayi ki 'posede' entènèt la.",
+   noFb:"Egzat! Entènèt la se yon 'rezo de rezo' — anpil rezo diferan ki konekte ansanm atravè tout mond lan, san yon sèl pwopriyetè.",
+   welcome:"Klike sou chak sèvis pou wè kijan yo konekte nan menm rezo a.",
+   done:"Ou konprann kounye a: entènèt la se yon rezo global, pa yon sèl konpayi oswa aplikasyon."},
+ fr:{lead:"L'internet est un réseau global qui contient beaucoup d'autres réseaux — ce n'est pas une seule entreprise ni une seule application. Cliquez sur chaque service pour voir qu'ils sont tous connectés au même réseau.",
+   objs:["Cliquer sur 3 services en ligne","Comprendre qu'internet n'est pas une seule entreprise ou application"],
+   items:[["📘","Facebook","Un service en ligne — l'un des MILLIONS qui utilisent internet"],["🔍","Google","Un autre service en ligne — ce n'est pas la même chose qu'internet lui-même"],["📧","E-mail","Un autre service encore — tous passent par le MÊME réseau global"]],
+   trapQ:"Internet, est-ce que c'est Facebook, ou Google, ou une seule grande entreprise qui contrôle tout ?",
+   yes:"Oui, c'est une seule entreprise",no:"Non, c'est un réseau global de nombreux réseaux connectés ensemble",
+   yesFb:"Pas vrai ! Facebook et Google sont des SERVICES qui UTILISENT internet — ils ne sont pas internet lui-même. Aucune entreprise ne « possède » internet.",
+   noFb:"Exact ! Internet est un « réseau de réseaux » — de nombreux réseaux différents connectés ensemble à travers le monde, sans un seul propriétaire.",
+   welcome:"Cliquez sur chaque service pour voir comment ils se connectent au même réseau.",
+   done:"Vous comprenez maintenant : internet est un réseau global, pas une seule entreprise ou application."},
+ en:{lead:"The internet is a global network containing many other networks — it isn't one company or one application. Click each service to see they all connect to the same network.",
+   objs:["Click 3 online services","Understand the internet isn't one company or application"],
+   items:[["📘","Facebook","An online service — one of MILLIONS that use the internet"],["🔍","Google","Another online service — not the same thing as the internet itself"],["📧","Email","Yet another service — they all travel through the SAME global network"]],
+   trapQ:"Is the internet Facebook, or Google, or one big company that controls everything?",
+   yes:"Yes, it's one company",no:"No, it's a global network of many networks connected together",
+   yesFb:"Not true! Facebook and Google are SERVICES that USE the internet — they aren't the internet itself. No single company \"owns\" the internet.",
+   noFb:"Exactly! The internet is a \"network of networks\" — many different networks connected together across the world, with no single owner.",
+   welcome:"Click each service to see how they all connect to the same network.",
+   done:"Now you understand: the internet is a global network, not one company or application."}},
+2:{ht:{lead:"Pou konekte lakay ou, gen yon chèn senp: Founisè Entènèt la voye siyal la, Modèm/Routè a resevwa l epi pataje l, Wi-Fi voye l san fil rive nan aparèy ou. Klike sou chak etap.",
+   objs:["Klike sou 4 etap nan chèn koneksyon an","Konprann modèm ak routè ka se yon sèl aparèy kounye a"],
+   chain:[["🏢","Founisè Entènèt","Konpayi ki pote entènèt la lakay ou"],["📡","Modèm/Routè","Resevwa siyal la epi pataje l nan kay la"],["📶","Wi-Fi","Fason san fil pou voye siyal la nan chanm yo"],["💻","Aparèy Ou","Òdinatè, telefòn, oswa tablèt ou"]],
+   trapQ:"Modèm ak Routè toujou de aparèy separe, san eksepsyon?",
+   trapWrong:"Wi, yo toujou separe",trapRight:"Non, anpil kay kounye a gen YON sèl aparèy ki fè tou de travay yo",
+   trapWrongFb:"Pa toujou vre! Anpil founisè bay yon sèl aparèy konbine ki fè travay modèm AK routè ansanm — sa pa vle di se de zafè konplètman diferan toujou.",
+   trapRightFb:"Egzat! Anpil kay modèn gen yon sèl bwat ki fè tou de travay yo — men konprann wòl chak youn ede ou lè gen pwoblèm koneksyon.",
+   welcome:"Klike sou chak etap nan chèn koneksyon an.",
+   done:"Ou konnen kounye a chèn koneksyon an: Founisè → Modèm/Routè → Wi-Fi → Aparèy ou."},
+ fr:{lead:"Pour vous connecter chez vous, il y a une chaîne simple : le Fournisseur Internet envoie le signal, le Modem/Routeur le reçoit et le partage, le Wi-Fi l'envoie sans fil jusqu'à votre appareil. Cliquez sur chaque étape.",
+   objs:["Cliquer sur les 4 étapes de la chaîne de connexion","Comprendre que modem et routeur peuvent être un seul appareil aujourd'hui"],
+   chain:[["🏢","Fournisseur Internet","L'entreprise qui apporte internet chez vous"],["📡","Modem/Routeur","Reçoit le signal et le partage dans la maison"],["📶","Wi-Fi","La façon sans fil d'envoyer le signal dans les pièces"],["💻","Votre Appareil","Ordinateur, téléphone, ou tablette"]],
+   trapQ:"Le modem et le routeur sont-ils toujours deux appareils séparés, sans exception ?",
+   trapWrong:"Oui, ils sont toujours séparés",trapRight:"Non, beaucoup de maisons ont maintenant UN seul appareil qui fait les deux travaux",
+   trapWrongFb:"Pas toujours vrai ! Beaucoup de fournisseurs donnent un seul appareil combiné qui fait le travail du modem ET du routeur ensemble — cela ne veut pas dire que ce sont toujours deux choses complètement différentes.",
+   trapRightFb:"Exact ! Beaucoup de maisons modernes ont une seule boîte qui fait les deux travaux — mais comprendre le rôle de chacun aide quand il y a un problème de connexion.",
+   welcome:"Cliquez sur chaque étape de la chaîne de connexion.",
+   done:"Vous connaissez maintenant la chaîne de connexion : Fournisseur → Modem/Routeur → Wi-Fi → Votre appareil."},
+ en:{lead:"To connect at home, there's a simple chain: the Internet Provider sends the signal, the Modem/Router receives and shares it, Wi-Fi sends it wirelessly to your device. Click each step.",
+   objs:["Click the 4 steps in the connection chain","Understand modem and router can be one device today"],
+   chain:[["🏢","Internet Provider","The company that brings internet to your home"],["📡","Modem/Router","Receives the signal and shares it around the house"],["📶","Wi-Fi","The wireless way to send the signal to rooms"],["💻","Your Device","Computer, phone, or tablet"]],
+   trapQ:"Are the modem and router always two separate devices, no exceptions?",
+   trapWrong:"Yes, they're always separate",trapRight:"No, many homes now have ONE device that does both jobs",
+   trapWrongFb:"Not always true! Many providers give a single combined device that does the modem AND router job together — that doesn't mean they're always two completely different things.",
+   trapRightFb:"Exactly! Many modern homes have one box that does both jobs — but understanding each role still helps when there's a connection problem.",
+   welcome:"Click each step in the connection chain.",
+   done:"Now you know the connection chain: Provider → Modem/Router → Wi-Fi → Your device."}},
+3:{ht:{lead:"Konekte sou yon rezo Wi-Fi ou konnen ak fè konfyans. Gade lis rezo yo anba a — youn ladan yo pa gen modpas.",
+   objs:["Konekte sou yon rezo ki gen modpas","Rekonèt danje yon rezo Wi-Fi louvri san modpas"],
+   networks:[["Kay_Ou_5G","🔒 Gen modpas — rezo ou konnen"],["Vwazen_WiFi","🔒 Gen modpas — pa rezo ou"],["Free_Public_WiFi","🔓 San modpas — nenpòt moun ka konekte"]],
+   pwPrompt:"Antre modpas la:",connectBtn:"Konekte",
+   safeFb:"Byen fèt! Ou konekte sou yon rezo ki gen modpas — pi an sekirite.",
+   openFb:"Atansyon! 'Free_Public_WiFi' pa gen modpas — nenpòt moun ka konekte epi wè sa w ap fè. Evite rezo louvri pou bagay enpòtan (bank, modpas, elatriye), oswa itilize yo avèk anpil prekosyon.",
+   welcome:"Klike sou yon rezo ki gen modpas pou konekte an sekirite.",
+   done:"Ou konnen kounye a diferans ant yon rezo Wi-Fi ki gen modpas ak yon rezo louvri san danje."},
+ fr:{lead:"Connectez-vous à un réseau Wi-Fi que vous connaissez et en qui vous avez confiance. Regardez la liste des réseaux ci-dessous — l'un d'eux n'a pas de mot de passe.",
+   objs:["Se connecter à un réseau avec mot de passe","Reconnaître le danger d'un réseau Wi-Fi ouvert sans mot de passe"],
+   networks:[["Chez_Vous_5G","🔒 Avec mot de passe — réseau que vous connaissez"],["WiFi_Voisin","🔒 Avec mot de passe — pas votre réseau"],["Free_Public_WiFi","🔓 Sans mot de passe — n'importe qui peut se connecter"]],
+   pwPrompt:"Entrez le mot de passe :",connectBtn:"Se Connecter",
+   safeFb:"Bien joué ! Vous vous êtes connecté à un réseau avec mot de passe — plus sûr.",
+   openFb:"Attention ! « Free_Public_WiFi » n'a pas de mot de passe — n'importe qui peut s'y connecter et voir ce que vous faites. Évitez les réseaux ouverts pour des choses importantes (banque, mots de passe, etc.), ou utilisez-les avec grande prudence.",
+   welcome:"Cliquez sur un réseau avec mot de passe pour vous connecter en sécurité.",
+   done:"Vous connaissez maintenant la différence entre un réseau Wi-Fi avec mot de passe et un réseau ouvert dangereux."},
+ en:{lead:"Connect to a Wi-Fi network you know and trust. Look at the network list below — one of them has no password.",
+   objs:["Connect to a network with a password","Recognize the danger of an open Wi-Fi network without a password"],
+   networks:[["Home_5G","🔒 Has a password — network you know"],["Neighbor_WiFi","🔒 Has a password — not your network"],["Free_Public_WiFi","🔓 No password — anyone can connect"]],
+   pwPrompt:"Enter the password:",connectBtn:"Connect",
+   safeFb:"Well done! You connected to a network with a password — safer.",
+   openFb:"Watch out! 'Free_Public_WiFi' has no password — anyone can connect to it and see what you're doing. Avoid open networks for important things (banking, passwords, etc.), or use them with great caution.",
+   welcome:"Click a network with a password to connect safely.",
+   done:"Now you know the difference between a Wi-Fi network with a password and a dangerous open network."}},
+4:{ht:{lead:"Lè pa gen Wi-Fi, telefòn ou ka pataje entènèt li atravè yon 'hotspot'. Sa itilize done selilè telefòn nan.",
+   objs:["Aktive yon hotspot epi konekte òdinatè a","Rekonèt poukisa ou dwe fèmen hotspot lè ou fini"],
+   toggleLbl:"Hotspot Pèsonèl",connectBtn:"Konekte Òdinatè a sou Hotspot",
+   toggleFb:"Hotspot la aktive — telefòn ou kounye a ap pataje done selilè li.",
+   connectFb:"Òdinatè a konekte sou hotspot la.",
+   trapQ:"Ou fin itilize hotspot la. Èske ou ta dwe kite l aktive tout tan menm apre ou fini?",
+   trapWrong:"Wi, kite l aktive pa gen pwoblèm",trapRight:"Non, fèmen l — li vide batri a e ka ekspoze rezo a plis pase nesesè",
+   trapWrongFb:"Pa pi bon lide a! Kite yon hotspot aktive san rezon vide batri telefòn nan pi vit epi kite yon rezo louvri pi lontan pase sa ou bezwen.",
+   trapRightFb:"Egzat! Fèmen hotspot la lè ou fini pwoteje batri telefòn nan epi diminye tan yon rezo rete disponib san rezon.",
+   welcome:"Klike 'Hotspot Pèsonèl' pou aktive l, apre konekte òdinatè a.",
+   done:"Ou konnen kounye a kijan pou itilize yon hotspot, epi poukèt fèmen l lè ou fini enpòtan."},
+ fr:{lead:"Quand il n'y a pas de Wi-Fi, votre téléphone peut partager son internet via un « point d'accès » (hotspot). Cela utilise les données mobiles du téléphone.",
+   objs:["Activer un point d'accès et connecter l'ordinateur","Reconnaître pourquoi il faut le fermer une fois fini"],
+   toggleLbl:"Point d'Accès Personnel",connectBtn:"Connecter l'Ordinateur au Point d'Accès",
+   toggleFb:"Le point d'accès est activé — votre téléphone partage maintenant ses données mobiles.",
+   connectFb:"L'ordinateur est connecté au point d'accès.",
+   trapQ:"Vous avez fini d'utiliser le point d'accès. Devriez-vous le laisser activé tout le temps même après avoir fini ?",
+   trapWrong:"Oui, le laisser activé n'est pas un problème",trapRight:"Non, le fermer — il vide la batterie et peut exposer le réseau plus longtemps que nécessaire",
+   trapWrongFb:"Pas la meilleure idée ! Laisser un point d'accès activé sans raison vide la batterie du téléphone plus vite et laisse un réseau ouvert plus longtemps que nécessaire.",
+   trapRightFb:"Exact ! Fermer le point d'accès une fois fini protège la batterie du téléphone et réduit le temps où le réseau reste disponible sans raison.",
+   welcome:"Cliquez « Point d'Accès Personnel » pour l'activer, puis connectez l'ordinateur.",
+   done:"Vous savez maintenant utiliser un point d'accès, et pourquoi le fermer une fois fini est important."},
+ en:{lead:"When there's no Wi-Fi, your phone can share its internet through a 'hotspot.' This uses the phone's mobile data.",
+   objs:["Turn on a hotspot and connect the computer","Recognize why you should turn it off when finished"],
+   toggleLbl:"Personal Hotspot",connectBtn:"Connect Computer to Hotspot",
+   toggleFb:"The hotspot is on — your phone is now sharing its mobile data.",
+   connectFb:"The computer is connected to the hotspot.",
+   trapQ:"You're done using the hotspot. Should you leave it on all the time even after you're finished?",
+   trapWrong:"Yes, leaving it on is fine",trapRight:"No, turn it off — it drains the battery and can expose the network longer than needed",
+   trapWrongFb:"Not the best idea! Leaving a hotspot on for no reason drains the phone's battery faster and leaves a network open longer than necessary.",
+   trapRightFb:"Exactly! Turning off the hotspot when you're done protects the phone's battery and reduces how long the network stays available for no reason.",
+   welcome:"Click 'Personal Hotspot' to turn it on, then connect the computer.",
+   done:"Now you know how to use a hotspot, and why turning it off when finished matters."}},
+5:{ht:{lead:"Vitès ak siyal se pa menm bagay. Konpare yo anba a, epi wè ki aktivite itilize plis done.",
+   objs:["Konpare siyal ak vitès","Wè ki aktivite itilize plis done (videyo kont tèks)"],
+   signalLbl:"Siyal (fòs koneksyon an)",speedLbl:"Vitès (rapidite done yo vwayaje)",
+   textLbl:"Mesaj Tèks",videoLbl:"Apèl Videyo",
+   textFb:"Yon mesaj tèks itilize TRÈ PEU done.",videoFb:"Yon apèl videyo itilize BOKOU PLIS done pase yon mesaj tèks.",
+   trapQ:"Si ou wè tout ba siyal yo plen (5/5), èske sa vle di entènèt ou ap mache vit toujou?",
+   trapWrong:"Wi, siyal plen vle di vitès rapid toujou",trapRight:"Non, gen lòt faktè (anpil moun sou rezo a, elatriye) ki ka fè l pi lan menm ak bon siyal",
+   trapWrongFb:"Pa toujou vre! Siyal fò vle di ou PRE aparèy Wi-Fi a, men vitès reyèl la depann tou de konbyen moun k ap itilize rezo a, ak vitès entènèt founisè a bay.",
+   trapRightFb:"Egzat! Yon bon siyal pa garanti yon koneksyon rapid — anpil aparèy sou menm rezo a alafwa ka lan menm ak siyal plen.",
+   welcome:"Klike sou meteo siyal ak vitès yo, apre konpare de aktivite yo.",
+   done:"Ou konnen kounye a siyal ak vitès se de bagay diferan, epi videyo itilize plis done pase tèks."},
+ fr:{lead:"Vitesse et signal ne sont pas la même chose. Comparez-les ci-dessous, et voyez quelle activité utilise plus de données.",
+   objs:["Comparer signal et vitesse","Voir quelle activité utilise plus de données (vidéo contre texte)"],
+   signalLbl:"Signal (force de la connexion)",speedLbl:"Vitesse (rapidité des données)",
+   textLbl:"Message Texte",videoLbl:"Appel Vidéo",
+   textFb:"Un message texte utilise TRÈS PEU de données.",videoFb:"Un appel vidéo utilise BEAUCOUP PLUS de données qu'un message texte.",
+   trapQ:"Si vous voyez toutes les barres de signal pleines (5/5), est-ce que ça veut dire qu'internet est toujours rapide ?",
+   trapWrong:"Oui, signal plein veut toujours dire vitesse rapide",trapRight:"Non, d'autres facteurs (beaucoup de monde sur le réseau, etc.) peuvent le ralentir même avec un bon signal",
+   trapWrongFb:"Pas toujours vrai ! Un signal fort veut dire que vous êtes PRÈS de l'appareil Wi-Fi, mais la vitesse réelle dépend aussi du nombre de personnes utilisant le réseau, et de la vitesse fournie par le fournisseur.",
+   trapRightFb:"Exact ! Un bon signal ne garantit pas une connexion rapide — plusieurs appareils sur le même réseau en même temps peuvent la ralentir même avec un signal plein.",
+   welcome:"Cliquez sur les compteurs de signal et de vitesse, puis comparez les deux activités.",
+   done:"Vous savez maintenant que signal et vitesse sont deux choses différentes, et que la vidéo utilise plus de données que le texte."},
+ en:{lead:"Speed and signal aren't the same thing. Compare them below, and see which activity uses more data.",
+   objs:["Compare signal and speed","See which activity uses more data (video vs. text)"],
+   signalLbl:"Signal (connection strength)",speedLbl:"Speed (how fast data travels)",
+   textLbl:"Text Message",videoLbl:"Video Call",
+   textFb:"A text message uses VERY LITTLE data.",videoFb:"A video call uses MUCH MORE data than a text message.",
+   trapQ:"If you see all the signal bars full (5/5), does that mean the internet is always fast?",
+   trapWrong:"Yes, full signal always means fast speed",trapRight:"No, other factors (many people on the network, etc.) can slow it down even with good signal",
+   trapWrongFb:"Not always true! Strong signal means you're CLOSE to the Wi-Fi device, but real speed also depends on how many people are using the network, and the speed the provider gives.",
+   trapRightFb:"Exactly! A good signal doesn't guarantee a fast connection — several devices on the same network at once can slow it down even with full signal.",
+   welcome:"Click the signal and speed meters, then compare the two activities.",
+   done:"Now you know signal and speed are two different things, and that video uses more data than text."}},
+6:{ht:{lead:"Wi-Fi di 'konekte' men okenn sit pa louvri? Swiv yon sekans kalm olye panike.",
+   objs:["Swiv sekans depanaj la","Rete kalm olye panike"],
+   steps:[["Tcheke Lòt Sit",'Eseye yon lòt sit — si youn mache, se sit ou t ap eseye a ki gen pwoblèm'],["Tcheke Lòt Aparèy",'Eseye yon lòt telefòn/òdinatè sou menm rezo a'],["Rekonekte",'Dekonekte epi rekonekte sou Wi-Fi a'],["Kontakte Founisè",'Si anyen pa mache, ka gen yon pàn sèvis — kontakte founisè a']],
+   trapQ:"Premye bagay ou ta dwe fè si Wi-Fi di 'konekte' men pa gen entènèt: rale kab routè a soti san reflechi?",
+   trapWrong:"Wi, retire kab la imedyatman",trapRight:"Non, tcheke lòt sit ak lòt aparèy anvan, epi mande pèmisyon anvan ou touche routè a",
+   trapWrongFb:"Pa pi bon premye etap la! Toujou tcheke si se sit la ki gen pwoblèm anvan ou touche ekipman an — epi si routè a pa pou ou, mande pèmisyon anvan.",
+   trapRightFb:"Egzat! Kòmanse ak etap senp yo (lòt sit, lòt aparèy) anvan ou rive nan rekòmanse routè a — epi toujou mande pèmisyon si li pa pou ou.",
+   welcome:"Klike sou chak etap nan sekans depanaj la.",
+   done:"Ou konnen kounye a yon sekans kalm pou rezoud yon pwoblèm 'konekte men pa gen entènèt'."},
+ fr:{lead:"Le Wi-Fi dit « connecté » mais aucun site ne s'ouvre ? Suivez une séquence calme au lieu de paniquer.",
+   objs:["Suivre la séquence de dépannage","Rester calme au lieu de paniquer"],
+   steps:[["Vérifier d'Autres Sites",'Essayez un autre site — si un marche, c\'est le site que vous essayiez qui a un problème'],["Vérifier d'Autres Appareils",'Essayez un autre téléphone/ordinateur sur le même réseau'],["Se Reconnecter",'Déconnectez-vous puis reconnectez-vous au Wi-Fi'],["Contacter le Fournisseur",'Si rien ne marche, il peut y avoir une panne de service — contactez le fournisseur']],
+   trapQ:"Première chose à faire si le Wi-Fi dit « connecté » mais qu'il n'y a pas d'internet : débrancher le câble du routeur sans réfléchir ?",
+   trapWrong:"Oui, retirer le câble tout de suite",trapRight:"Non, vérifier d'autres sites et appareils d'abord, et demander la permission avant de toucher au routeur",
+   trapWrongFb:"Pas la meilleure première étape ! Vérifiez toujours si c'est le site qui a un problème avant de toucher à l'équipement — et si le routeur n'est pas à vous, demandez la permission d'abord.",
+   trapRightFb:"Exact ! Commencez par les étapes simples (autre site, autre appareil) avant d'en arriver à redémarrer le routeur — et demandez toujours la permission si ce n'est pas le vôtre.",
+   welcome:"Cliquez sur chaque étape de la séquence de dépannage.",
+   done:"Vous connaissez maintenant une séquence calme pour résoudre un problème « connecté mais pas d'internet »."},
+ en:{lead:"Wi-Fi says 'connected' but no site opens? Follow a calm sequence instead of panicking.",
+   objs:["Follow the troubleshooting sequence","Stay calm instead of panicking"],
+   steps:[["Check Other Sites",'Try another site — if one works, it\'s the site you were trying that has the problem'],["Check Other Devices",'Try another phone/computer on the same network'],["Reconnect",'Disconnect and reconnect to the Wi-Fi'],["Contact Provider",'If nothing works, there may be a service outage — contact the provider']],
+   trapQ:"First thing to do if Wi-Fi says 'connected' but there's no internet: unplug the router's cable without thinking?",
+   trapWrong:"Yes, pull the cable right away",trapRight:"No, check other sites and devices first, and ask permission before touching the router",
+   trapWrongFb:"Not the best first step! Always check whether it's the site that has the problem before touching the equipment — and if the router isn't yours, ask permission first.",
+   trapRightFb:"Exactly! Start with the simple steps (other site, other device) before getting to restarting the router — and always ask permission if it isn't yours.",
+   welcome:"Click each step in the troubleshooting sequence.",
+   done:"Now you know a calm sequence for solving a 'connected but no internet' problem."}},
+7:{ht:{lead:"Telechaje (download) fè yon fichye vwayaje soti nan entènèt la rive sou òdinatè ou. Voye (upload) fè kontrè a. Eseye toude.",
+   objs:["Telechaje yon fichye","Fè atansyon anvan ou voye enfòmasyon prive"],
+   fileTitle:"Rapò.pdf",downloadBtn:"Telechaje",uploadBtn:"Voye Foto ID Ou",
+   downloadFb:"Fichye a telechaje — li ale nan dosye Downloads ou.",
+   trapQ:"Yon sit ou pa konnen mande ou voye yon foto Kat Idantite (ID) ou pou 'verifye kont ou'. Ou ta dwe fè sa san reflechi?",
+   trapWrong:"Wi, si yo mande l dwe gen yon bon rezon",trapRight:"Non, reflechi de fwa anvan ou voye dokiman idantite bay yon sit ou pa konnen",
+   trapWrongFb:"Danjere! Anpil eskrokri mande dokiman idantifikasyon pou vòlè idantite moun. Pa janm voye ID ou san ou pa sèten sit la lejitim.",
+   trapRightFb:"Egzat! Toujou mande tèt ou 'poukisa sa a bezwen sa a?' anvan ou voye enfòmasyon prive tankou yon foto ID sou entènèt.",
+   welcome:"Klike 'Telechaje' pou wè fichye a ale nan Downloads.",
+   done:"Ou konnen kounye a kijan download mache, epi poukisa reflechi anvan ou upload enfòmasyon prive enpòtan."},
+ fr:{lead:"Télécharger (download) fait voyager un fichier d'internet vers votre ordinateur. Envoyer (upload) fait l'inverse. Essayez les deux.",
+   objs:["Télécharger un fichier","Faire attention avant d'envoyer des informations privées"],
+   fileTitle:"Rapport.pdf",downloadBtn:"Télécharger",uploadBtn:"Envoyer Votre Photo d'ID",
+   downloadFb:"Le fichier est téléchargé — il va dans votre dossier Téléchargements.",
+   trapQ:"Un site que vous ne connaissez pas vous demande d'envoyer une photo de votre carte d'identité pour « vérifier votre compte ». Devriez-vous le faire sans réfléchir ?",
+   trapWrong:"Oui, s'ils le demandent il doit y avoir une bonne raison",trapRight:"Non, réfléchissez deux fois avant d'envoyer un document d'identité à un site inconnu",
+   trapWrongFb:"Dangereux ! Beaucoup d'arnaques demandent des documents d'identification pour voler l'identité des gens. N'envoyez jamais votre ID sans être certain que le site est légitime.",
+   trapRightFb:"Exact ! Demandez-vous toujours « pourquoi ont-ils besoin de ça ? » avant d'envoyer des informations privées comme une photo d'ID sur internet.",
+   welcome:"Cliquez « Télécharger » pour voir le fichier aller dans Téléchargements.",
+   done:"Vous savez maintenant comment fonctionne le téléchargement, et pourquoi réfléchir avant d'envoyer des informations privées importantes."},
+ en:{lead:"Downloading makes a file travel from the internet to your computer. Uploading does the opposite. Try both.",
+   objs:["Download a file","Be careful before uploading private information"],
+   fileTitle:"Report.pdf",downloadBtn:"Download",uploadBtn:"Upload Your ID Photo",
+   downloadFb:"The file is downloaded — it goes to your Downloads folder.",
+   trapQ:"A site you don't know asks you to upload a photo of your ID card to 'verify your account.' Should you do it without thinking?",
+   trapWrong:"Yes, if they ask there must be a good reason",trapRight:"No, think twice before uploading an ID document to an unknown site",
+   trapWrongFb:"Risky! Many scams ask for identification documents to steal people's identity. Never upload your ID unless you're sure the site is legitimate.",
+   trapRightFb:"Exactly! Always ask yourself 'why do they need that?' before uploading private information like an ID photo online.",
+   welcome:"Click 'Download' to see the file go into Downloads.",
+   done:"Now you know how downloading works, and why to think before uploading important private information."}},
+8:{ht:{lead:"Yon kòd QR ka mennen ou nenpòt kote — li pa otomatikman san danje. Eskane kòd la epi gade destinasyon an anvan ou kontinye.",
+   objs:["Eskane yon kòd QR epi tcheke destinasyon an anvan ou kontinye","Rekonèt yon domèn ki sanble ak yon vrè men se pa li"],
+   qrBtn:"Eskane Kòd QR",qrDest:"Destinasyon: paypal-secure-login.xyz",
+   realDomain:"paypal.com",fakeDomain:"paypal-secure-login.xyz",
+   qrFb:"Ou eskane kòd la — men GADE byen: destinasyon an se 'paypal-secure-login.xyz', PA 'paypal.com'. Sa se yon domèn ki fèt pou sanble ak vrè a.",
+   trapQ:"Tout kòd QR san danje paske yo soti nan yon telefòn?",
+   trapWrong:"Wi, kòd QR toujou san danje",trapRight:"Non, yon kòd QR ka mennen nenpòt kote — tcheke lyen an anvan ou kontinye",
+   trapWrongFb:"Danjere pou panse konsa! Yon kòd QR se jis yon fason pou kache yon lyen — li ka mennen ou nan yon sit danjere menm jan ak nenpòt lyen.",
+   trapRightFb:"Egzat! Toujou gade destinasyon yon kòd QR (oswa nenpòt lyen) anvan ou kontinye, menm jan ou ta tcheke yon lyen nan yon imèl.",
+   welcome:"Klike 'Eskane Kòd QR' pou wè destinasyon li mennen ou.",
+   done:"Ou konnen kounye a pou tcheke destinasyon yon kòd QR anvan ou kontinye, epi rekonèt yon domèn fo ki sanble ak yon vrè."},
+ fr:{lead:"Un code QR peut vous mener n'importe où — il n'est pas automatiquement sûr. Scannez le code et regardez la destination avant de continuer.",
+   objs:["Scanner un code QR et vérifier la destination avant de continuer","Reconnaître un domaine qui ressemble à un vrai mais n'en est pas un"],
+   qrBtn:"Scanner le Code QR",qrDest:"Destination : paypal-secure-login.xyz",
+   realDomain:"paypal.com",fakeDomain:"paypal-secure-login.xyz",
+   qrFb:"Vous avez scanné le code — mais REGARDEZ bien : la destination est « paypal-secure-login.xyz », PAS « paypal.com ». C'est un domaine fait pour ressembler au vrai.",
+   trapQ:"Tous les codes QR sont-ils sûrs parce qu'ils viennent d'un téléphone ?",
+   trapWrong:"Oui, les codes QR sont toujours sûrs",trapRight:"Non, un code QR peut mener n'importe où — vérifiez le lien avant de continuer",
+   trapWrongFb:"Dangereux de penser ça ! Un code QR n'est qu'une façon de cacher un lien — il peut vous mener vers un site dangereux comme n'importe quel lien.",
+   trapRightFb:"Exact ! Regardez toujours la destination d'un code QR (ou de n'importe quel lien) avant de continuer, comme vous vérifieriez un lien dans un e-mail.",
+   welcome:"Cliquez « Scanner le Code QR » pour voir où il vous mène.",
+   done:"Vous savez maintenant vérifier la destination d'un code QR avant de continuer, et reconnaître un faux domaine qui ressemble à un vrai."},
+ en:{lead:"A QR code can lead you anywhere — it isn't automatically safe. Scan the code and look at the destination before continuing.",
+   objs:["Scan a QR code and check the destination before continuing","Recognize a domain that looks real but isn't"],
+   qrBtn:"Scan QR Code",qrDest:"Destination: paypal-secure-login.xyz",
+   realDomain:"paypal.com",fakeDomain:"paypal-secure-login.xyz",
+   qrFb:"You scanned the code — but LOOK closely: the destination is 'paypal-secure-login.xyz', NOT 'paypal.com'. That's a domain designed to look like the real one.",
+   trapQ:"Are all QR codes safe because they come from a phone?",
+   trapWrong:"Yes, QR codes are always safe",trapRight:"No, a QR code can lead anywhere — check the link before continuing",
+   trapWrongFb:"Risky to think that! A QR code is just a way to hide a link — it can lead you to a dangerous site just like any link.",
+   trapRightFb:"Exactly! Always look at the destination of a QR code (or any link) before continuing, the same way you'd check a link in an email.",
+   welcome:"Click 'Scan QR Code' to see where it leads.",
+   done:"Now you know to check a QR code's destination before continuing, and to recognize a fake domain that looks like a real one."}},
+9:{ht:{lead:"Dènye misyon an! Konplete tou lè 5 aksyon yo pou konekte epi eksplike.",
+   objs:["Konekte sou yon rezo ou fè konfyans","Idantifye si se Wi-Fi oswa hotspot","Telechaje yon fichye pratik","Jwenn fichye telechaje a","Eksplike diferans ant Wi-Fi ak entènèt"],
+   steps:["Konekte sou rezo 'Kay_Ou_5G' la","Idantifye si se Wi-Fi oswa Hotspot ou konekte a","Telechaje fichye pratik la","Jwenn fichye a nan dosye Downloads","Eksplike: Wi-Fi se fason san fil pou konekte, entènèt se rezo global la"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 6 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 6 — ou konnen kounye a kijan pou konekte ak eksplike diferans ant Wi-Fi ak entènèt."},
+ fr:{lead:"Dernière mission ! Complétez les 5 actions pour vous connecter et expliquer.",
+   objs:["Se connecter à un réseau de confiance","Identifier si c'est Wi-Fi ou point d'accès","Télécharger un fichier pratique","Trouver le fichier téléchargé","Expliquer la différence entre Wi-Fi et internet"],
+   steps:["Se connecter au réseau 'Chez_Vous_5G'","Identifier si vous êtes connecté en Wi-Fi ou en point d'accès","Télécharger le fichier pratique","Trouver le fichier dans le dossier Téléchargements","Expliquer : le Wi-Fi est une façon sans fil de se connecter, internet est le réseau global"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 6.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 6 — vous savez maintenant vous connecter et expliquer la différence entre Wi-Fi et internet."},
+ en:{lead:"Last mission! Complete all 5 actions to connect and explain.",
+   objs:["Connect to a trusted network","Identify whether it's Wi-Fi or hotspot","Download a practice file","Locate the downloaded file","Explain the difference between Wi-Fi and internet"],
+   steps:["Connect to the 'Home_5G' network","Identify whether you're connected via Wi-Fi or Hotspot","Download the practice file","Find the file in the Downloads folder","Explain: Wi-Fi is a wireless way to connect, internet is the global network"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 6's final mission.",
+   done:"Congratulations! You completed Module 6's Mission — now you know how to connect and explain the difference between Wi-Fi and internet."}},
+};
+
+/* ============ engine ============ */
+const NL=9;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module6-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD6_LESSON_SLUGS=["kisa-ki-se-entenet-la","founise-entenet-modem-route-ak-wifi","konekte-sou-wifi-san-danje","wifi-done-selile-ak-hotspot","vites-konesyon-siyal-ak-itilizasyon-done","le-wifi-di-konekte-men-entenet-pa-mache","telechaje-ak-voye","kod-qr-lyen-ak-adres-web","misyon-konekte-epi-eksplike"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD6_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule7();
+}
+function injectContinueModule7(){
+ if($("continueModule7"))return;
+ const a=document.createElement("a");a.id="continueModule7";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[6];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===5;
+ let les="";if(active){les='<div class="les">'+M6[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">6.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 6 · 6."+(i+1);$("topTitle").textContent=M6[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 6 · 6.'+(i+1)+'</span><div class="labh2">'+M6[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,160px)">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="flow">'+d.chain.map((c,k)=>'<div class="node" data-k="'+k+'"><div class="ni">'+c[0]+'</div><div class="nt">'+c[1]+'</div><div class="nd">'+c[2]+'</div></div>'+(k<3?'<span class="arrow">→</span>':'')).join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".node[data-k]").forEach(n=>n.addEventListener("click",()=>{const k=+n.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;n.classList.add("read");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.connected=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(2,d.lead)+'<div class="winpanel"><div class="wtb">📶 Wi-Fi</div><div class="wbody">'+
+   d.networks.map((n,k)=>'<div class="arow" data-n="'+k+'"><span class="k">'+n[0]+'<div class="sub">'+n[1]+'</div></span><span class="ch">›</span></div>').join("")+
+  '</div></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".arow[data-n]").forEach(r=>r.addEventListener("click",()=>{const k=+r.dataset.n;
+  if(k===2){ai(d.openFb,"warn");setObj(1);}
+  else{if(!st.connected){st.connected=true;ai(d.safeFb,"good");setObj(0);}}
+ }));
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.on=false;st.connected=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(3,d.lead)+'<div class="winpanel"><div class="wtb">📱 '+d.toggleLbl+'</div><div class="wbody">'+
+    (!st.on?'<button class="btn p" id="toggleBtn">'+d.toggleLbl+' — ON</button>':(!st.connected?'<button class="btn g" id="connectBtn">'+d.connectBtn+'</button>':'<div style="color:var(--good);font-weight:600">✓ '+d.connectFb+'</div>'))+
+   '</div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const tb=$("toggleBtn");if(tb)tb.addEventListener("click",()=>{st.on=true;ai(d.toggleFb,"good");render();});
+  const cb=$("connectBtn");if(cb)cb.addEventListener("click",()=>{st.connected=true;ai(d.connectFb,"good");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+
+  '<div style="display:flex;gap:40px;margin-top:20px;flex-wrap:wrap">'+
+   '<div><div style="font-size:12.5px;color:var(--mute);margin-bottom:8px">'+d.signalLbl+'</div><div class="meter" id="sigMeter">'+[1,2,3,4,5].map(n=>'<i style="height:'+(n*7)+'px" class="on"></i>').join("")+'</div></div>'+
+   '<div><div style="font-size:12.5px;color:var(--mute);margin-bottom:8px">'+d.speedLbl+'</div><div class="meter" id="spdMeter">'+[1,2,3].map(n=>'<i style="height:'+(n*7)+'px" class="on"></i>').join("")+[4,5].map(n=>'<i style="height:'+(n*7)+'px"></i>').join("")+'</div></div>'+
+  '</div>'+
+  '<div style="display:flex;gap:12px;margin-top:26px">'+
+   '<button class="chip" id="textBtn">💬 '+d.textLbl+'</button>'+
+   '<button class="chip" id="videoBtn">📹 '+d.videoLbl+'</button>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function seen(k,msg){if(!st.seen[k]){st.seen[k]=true;ai(msg,"neutral");}if(Object.keys(st.seen).length>=2)setObj(0);}
+ $("textBtn").addEventListener("click",()=>seen("text",d.textFb));
+ $("videoBtn").addEventListener("click",()=>seen("video",d.videoFb));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="partgrid">'+d.steps.map((s,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+s[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.steps[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.downloaded=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(6,d.lead)+'<div class="winpanel"><div class="wtb">'+d.fileTitle+'</div><div class="wbody">'+
+    (!st.downloaded?'<button class="btn p" id="downloadBtn">'+d.downloadBtn+'</button>':'<div style="color:var(--good);font-weight:600">✓ '+d.downloadFb+'</div>')+
+   '</div></div>'+
+   '<div style="margin-top:20px"><button class="btn g" id="uploadBtn">'+d.uploadBtn+'</button></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const db=$("downloadBtn");if(db)db.addEventListener("click",()=>{st.downloaded=true;ai(d.downloadFb,"good");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.scanned=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(7,d.lead)+
+   (!st.scanned?'<div style="margin-top:20px"><button class="btn p" id="qrBtn">▦ '+d.qrBtn+'</button></div>':
+    '<div class="winpanel"><div class="wtb">'+d.qrDest+'</div><div class="wbody" style="font-size:13px;line-height:1.7">'+
+     '<div style="color:var(--good);font-weight:600">✓ '+d.realDomain+'</div>'+
+     '<div style="color:var(--danger);font-weight:600;margin-top:6px">✗ '+d.fakeDomain+' ← '+(S.lang==="ht"?"sa se kote kòd la mennen an":S.lang==="fr"?"c'est là où le code mène":"this is where the code leads")+'</div>'+
+    '</div></div>')+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const qb=$("qrBtn");if(qb)qb.addEventListener("click",()=>{st.scanned=true;ai(d.qrFb,"warn");setObj(0);render();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.done5=st.done5||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done5[k]?' style="opacity:.4"':"")+'>'+(st.done5[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done5[k])return;st.done5[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
