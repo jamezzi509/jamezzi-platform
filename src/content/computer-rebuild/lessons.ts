@@ -12309,7 +12309,7 @@ export const computerRebuildLessons: CourseLesson[] = [
       {
         id: "b2",
         type: "explanation",
-        text: "**Intel** ak **AMD** se de konpayi ki fè pwosesè — mak pwosesè a sèl **PA detèmine kalite** yon òdinatè. Sa ki afekte pèfòmans reyèl la: **fanmi modèl**, **jenerasyon**, **tou (tier)**, refwadisman, limit pouvwa, kantite RAM, kalite SSD, ak konsepsyon jeneral laptop la. Intel gen fanmi 'Core' ak AMD gen fanmi 'Ryzen' — chak gen non ki mande yon **jenerasyon/modèl egzat** pou gen sans. Se poutèt sa **'Core i7' oswa 'Ryzen 7' san yon nimewo jenerasyon/modèl se yon enfòmasyon ENKOMPLE** — yon 'Core i7' ansyen ka pi LAN pase yon 'Core i5' PLIS RESAN. Fè atansyon tou a diferans ant pwosesè **pouvwa ba (U/low-power)** ak **pèfòmans (H/HS/HX)** — sa afekte batri ak chalè. **Pa deklare yon mak inivèsèlman siperyè** — konpare modèl egzat, pa non mak la sèlman.",
+        text: "**Intel** ak **AMD** se de konpayi ki fè pwosesè — mak pwosesè a sèl **PA detèmine kalite** yon òdinatè. Sa ki afekte pèfòmans reyèl la: **fanmi modèl**, **jenerasyon**, **tou (tier)**, refwadisman, limit pouvwa, kantite RAM, kalite SSD, ak konsepsyon jeneral laptop la. Intel gen fanmi 'Core' ak AMD gen fanmi 'Ryzen' — chak gen non ki mande yon **jenerasyon/modèl egzat** pou gen sans. Se poutèt sa **'Core i7' oswa 'Ryzen 7' san yon nimewo jenerasyon/modèl se yon enfòmasyon ENKOMPLE** — yon 'Core i7' ansyen ka pi LAN pase yon 'Core i5' PLIS RESAN. Fè atansyon tou a diferans ant pwosesè **pouvwa ba (U/low-power)** ak **pèfòmans (H/HS/HX)** — sa afekte batri ak chalè. **Pa deklare yon mak inivèsèlman siperyè** — konpare modèl egzat, pa non mak la sèlman.\n\nTou pwosesè yo tonbe nan twa gwo kategori: **antre (entry)** — pou navige ak travay debaz; **mitan (mainstream)** — pou lekòl, biwo, ak pifò travay chak jou; ak **pèfòmans (performance)** — pou travay lou tankou montaj videyo oswa jwèt. Yon lòt bagay pou konnen: **grafik entegre (integrated graphics)** — fèt anndan pwosesè a, ase pou travay debaz — kont **grafik dedye (dedicated graphics)** — yon kat separe ki bay plis pouvwa pou desen, videyo, oswa jwèt, men ki konsome plis batri ak fè plis chalè. Si w wè yon nimewo **benchmark** (tès vitès), sonje: se yon **prèv**, pa **sèl bagay** ki dwe deside yon acha — yon nimewo segondè pa vo anyen si laptop la pa gen ase RAM oswa si batri a fèb.",
       },
       {
         id: "b3",
@@ -12784,14 +12784,16 @@ export const computerRebuildLessons: CourseLesson[] = [
         id: "b7",
         type: "mission",
         mission: {
-          scenario: "Ou dwe chwazi yon konfigirasyon memwa/estokaj apwopriye pou diferan kalite travay.",
-          objective: "Chwazi yon konfigirasyon memwa/estokaj apwopriye pou lekòl/navige debaz, biwo/biznis, pwogramasyon, ak travay kreyatif lejè.",
+          scenario: "Ou dwe chwazi yon konfigirasyon memwa/estokaj apwopriye pou senk kalite travay diferan.",
+          objective: "Chwazi yon konfigirasyon memwa/estokaj apwopriye pou lekòl/navige debaz, biwo/biznis, pwogramasyon, travay kreyatif lejè, ak travay kreyatif pi lou.",
           requiredSteps: [
             "Chwazi yon konfigirasyon pou lekòl/navige debaz",
             "Chwazi yon konfigirasyon pou biwo/biznis",
-            "Chwazi yon konfigirasyon pou pwogramasyon ak travay kreyatif lejè",
+            "Chwazi yon konfigirasyon pou pwogramasyon",
+            "Chwazi yon konfigirasyon pou travay kreyatif lejè (foto, ti montaj)",
+            "Chwazi yon konfigirasyon pou travay kreyatif pi lou (montaj videyo, gwo pwojè desen)",
           ],
-          successCriteria: ["Chak chwa gen yon rezònman ki gen rapò ak kalite travay la"],
+          successCriteria: ["Chak nan senk chwa yo gen yon rezònman ki gen rapò ak kalite travay la"],
         },
       },
       {
