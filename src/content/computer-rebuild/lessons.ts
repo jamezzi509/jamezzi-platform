@@ -15782,3 +15782,26 @@ export const computerRebuildLessons: CourseLesson[] = [
 export function getComputerRebuildLesson(slug: string) {
   return computerRebuildLessons.find((lesson) => lesson.slug === slug);
 }
+
+/**
+ * Lessons that exist in this content model but are never shown to a learner
+ * because Computer & Internet Essentials is Windows-only -- Mac/Apple Silicon
+ * variant lessons in Modules 3, 4, and 12. Any UI that computes "is the
+ * course/a section of it complete" or "what's the next incomplete lesson"
+ * from `computerRebuildLessons` must use this filtered list instead: a
+ * Windows-only learner going through the module simulators can never mark
+ * these complete, since they were never presented in the first place. Using
+ * the raw list there makes that screen permanently stuck (e.g. a resume
+ * card that can never reach "course complete", or a checkpoint that can
+ * never unlock).
+ */
+export const computerRebuildLessonsForGating = computerRebuildLessons.filter(
+  (lesson) =>
+    ![
+      "biwo-mac-la",
+      "finder-sou-mac",
+      "mac-intel-kont-mac-apple-silicon",
+      "apple-m1-m2-m3-m4-m5-ak-chip-mseries-fiti",
+      "enspeksyon-konple-yon-mac-itilize",
+    ].includes(lesson.slug),
+);

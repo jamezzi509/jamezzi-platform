@@ -63,6 +63,51 @@ dependency, but it must still act like part of the real course:
   sidebar or continue button — caught only when actually building Module 6 and cross-
   checking its lessons against the brief. Fixed retroactively across all five files when found.
 
+## Confidence Checkpoints, Final Exam, and Certificate
+A separate, already-built assessment layer sits on top of the 14 module simulators:
+4 Confidence Checkpoints (`src/content/computer-rebuild/checkpoints.ts`, scored, 80% to
+pass, gated after Modules 3/6/11), a Checkpoint 4 "Digital Readiness Reflection"
+(`readiness-reflection.ts`, unscored self-assessment, gated after Module 14), a Final Exam
+(`final-exam.ts`, 70-question bank/50 per attempt/80% to pass, gated on all 14 modules +
+all 4 checkpoints), and a Certificate page (gated on the exam). Routes:
+`/academy/courses/computer-internet-essentials/learn/checkpoint-1` through `checkpoint-4`,
+`final-exam`, `certificate`, `growth-summary` — all real, working Next.js routing in
+`src/app/academy/[[...slug]]/page.tsx`, not scaffolding.
+
+**This layer has no link pointing to it from anywhere in the live UI by default.** When
+wiring a new module's completion screen, the "Continue" link must point at whichever
+of these gates comes next (if any) rather than jumping straight to the next module's
+first lesson — otherwise the checkpoint/reflection becomes reachable only by typing the
+exact URL. As of this writing: Module 3's completion links to `checkpoint-1`, Module 6's
+to `checkpoint-2`, Module 11's to `checkpoint-3`, Module 14's (the last module) to
+`checkpoint-4` instead of back to the course overview. Every other module's completion
+still points straight at the next module's first lesson — that's correct, since no gate
+sits between them.
+
+**Gating pitfall**: `ComputerCheckpointPlayer`, `ComputerReadinessReflectionPlayer`,
+`ComputerFinalExamPlayer`, and `ComputerCertificatePlayer` all take an `allLessons` prop
+and require every lesson in it to appear in the shared completed-slugs key before
+unlocking. If that prop is the raw `computerRebuildLessons` array, this is a trap:
+Modules 3, 4, and 12 each have 1-3 Mac/Apple-Silicon-only variant lessons
+(`biwo-mac-la`, `finder-sou-mac`, `mac-intel-kont-mac-apple-silicon`,
+`apple-m1-m2-m3-m4-m5-ak-chip-mseries-fiti`, `enspeksyon-konple-yon-mac-itilize`) that are
+*intentionally* never shown in the Windows-only simulators — so they can never be marked
+complete, and every checkpoint/exam/certificate becomes permanently unreachable no matter
+how perfectly a learner completes every simulator. Fix: pass a filtered lesson list
+(`computerRebuildLessonsForGating` in `page.tsx`, excluding those 5 slugs) to all four
+gated components instead of the raw list. Any *new* Windows-only-excluded lesson added to
+a future module must be added to that exclusion set too, or the same lockout recurs.
+
+**Verifying this end-to-end** can't be done by clicking through normally in a few minutes
+(it requires completing 14 modules for real). Instead: seed
+`localStorage["jamezzi:computer:essentials:completed"]` directly with every module's real
+`MOD<n>_LESSON_SLUGS` array concatenated together, then navigate straight to each gate's
+URL to confirm it reports unlocked — this proves the *lesson-completion* gate works
+without needing to also pass the checkpoints/exam (which is a separate, correctly-gated
+step: seed `jamezzi:computer:essentials:checkpoints` / `:readiness` with passed records
+only to test what's *downstream* of a real pass, e.g. that the Final Exam unlocks once
+Checkpoints 1-3 are marked passed and Checkpoint 4 is marked saved).
+
 ## Order of work (always)
 1. Pick the lesson's real-world task and the OS surface it lives on.
 2. Build from the component kit below — never draw chrome ad hoc, and match the reference

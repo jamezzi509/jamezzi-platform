@@ -5,7 +5,10 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
 import { CourseResumeCard } from "@/components/academy/course-resume-card";
 import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
-import { computerRebuildLessons } from "@/content/computer-rebuild/lessons";
+import {
+  computerRebuildLessons,
+  computerRebuildLessonsForGating,
+} from "@/content/computer-rebuild/lessons";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 
 export function ComputerCoursePage() {
@@ -53,7 +56,7 @@ export function ComputerCoursePage() {
 
       <Container>
         <CourseResumeCard
-          lessons={computerRebuildLessons.map((lesson) => ({
+          lessons={computerRebuildLessonsForGating.map((lesson) => ({
             slug: lesson.slug,
             title: lesson.titleHt,
           }))}
@@ -132,8 +135,8 @@ export function ComputerCoursePage() {
             />
             <ApproachRow
               number="02"
-              title="Windows and Mac, side by side"
-              copy="Steps split by platform only where they genuinely differ, with phone-specific notes for Android and iPhone tasks."
+              title="Windows, hands-on, step by step"
+              copy="Every lesson is a real simulator you click through yourself — the exact screens and menus of a Windows computer — with common mistakes built in so you learn to spot them before they cost you."
             />
             <ApproachRow
               number="03"
