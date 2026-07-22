@@ -444,6 +444,27 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   the correct response is verifying through another channel entirely (official phone
   number, known site), never through a link the email itself provides; 8.9 joining a
   video call without first checking background/mute state in a noisy or private setting.
+  Module 9's traps (module-9.html) pull directly from the brief's own core distinctions:
+  9.1 assuming a cloud file is reachable with no internet at all; 9.2 the module's
+  namesake misconception, made LIVE rather than just asked as a question — deleting a
+  file that's synced with the cloud is demonstrated to delete it in both places (sync
+  reproduces changes, including deletions), not just described in a trap-question
+  feedback string; 9.3 the same offline-access limit as 9.1, reinforced in the
+  upload/download context; 9.4 a public share link marked "anyone can edit" on a
+  sensitive folder — the brief's own viewer-vs-editor and public-link-risk points; 9.5
+  the brief's explicit "multiple-copy rule" — one copy on one device is NOT a backup,
+  no matter how important the file; 9.6 reaching for email/WhatsApp to move a large or
+  sensitive file just because it's convenient, when the brief explicitly limits those
+  channels to small, non-sensitive files; 9.7 replacing a photo's only copy when editing
+  it (crop/filter) instead of preserving the original — mirrors 9.5's multiple-copy
+  discipline applied to photos specifically; 9.8 the module's most consequential trap:
+  a "Windows System Files" storage category sized deceptively large (45GB, styled in
+  `--danger` red) planted among genuinely safe-to-clean categories (Downloads,
+  duplicates, old installers) — clicking it fires a hard warning instead of a "cleaned!"
+  confirmation, since the brief explicitly says never delete unknown system files. Unlike
+  earlier per-module sort exercises (1.4/1.6/2.8/4.10), this trap uses a single always-
+  present decoy row rather than one item embedded in a shuffled set — reachable by intent
+  (clicking the biggest number promising the most space back) rather than by chance.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
