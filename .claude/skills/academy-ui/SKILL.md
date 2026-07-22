@@ -564,6 +564,36 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   blocks, would surface it. Caught here only by manual proofreading before verification;
   worth an explicit key-parity check (e.g. `Object.keys(C[n].ht)` vs `.fr` vs `.en`) in
   future modules' verification passes rather than relying on the error sweep alone.
+  Module 13's traps (module-13.html) follow the brief's own repeatable troubleshooting
+  method: 13.1 jumping straight to a drastic fix (reinstalling the whole system) instead
+  of the 8-step Jamezzi loop (stop and read, describe the exact symptom, ask what
+  changed, check simple causes, try one safe action, test, record, escalate); 13.2
+  holding the power button as a first resort instead of Force Quit on just the stuck
+  app; 13.3 restarting the WHOLE computer for one frozen app instead of force-quitting
+  only that app — the same discipline as 13.2 but applied to a full lesson sequence;
+  13.4 the brief's explicitly named "unrealistic 'cleaner' apps" — software promising to
+  make a slow computer "10x faster" is itself often the malware/bloatware, not a fix;
+  13.5 reuses 6.6's Wi-Fi-icon-isn't-proof-of-internet concept, now framed as this
+  module's general layered-diagnosis method (device → router → provider → website)
+  rather than repeating the exact same scenario; 13.6 assuming a webcam showing nothing
+  means broken hardware, when a closed physical privacy shutter or a denied permission
+  are simple causes to check first — reuses 10.4's device-selection angle from a wider
+  multi-cause framing; 13.7 removing and re-adding a printer without being guided to,
+  which can confuse drivers and create new problems; 13.8 reuses the "never delete
+  unknown system files" trap from 9.8/12.8 a third time, now as a single always-present
+  decoy row (a literal "Windows (System Folder)" chip styled in `--danger` red) inside an
+  otherwise-safe cleanup checklist, rather than a separate trap Q&A; 13.9 the brief's
+  explicit "backup first for major updates" — skipping backup before a major OS update;
+  13.10 closing an error message and retrying blind instead of reading its exact text
+  first, which is what makes searching for help effective; 13.11 the module's safety
+  capstone — continuing to use a device after a burning smell, mirroring 9.8/12.6's
+  safety-over-performance framing but for burning smell specifically, one of the brief's
+  explicit "stop and seek professional help" triggers; 13.12 the capstone "Diagnose
+  Before You Click" mission runs a single representative branching scenario (no sound on
+  a video call) rather than presenting all three brief-mentioned scenario types (slow
+  computer/no sound/no internet) as separate paths, since the pedagogical point — record
+  safe tests, then choose the correct escalation point rather than guessing — is fully
+  captured by one well-chosen scenario without needing three parallel branches.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
