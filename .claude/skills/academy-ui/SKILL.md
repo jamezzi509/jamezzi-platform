@@ -21,6 +21,39 @@ Full worked reference builds (real markup, not excerpts) live in `references/`:
 `component-reference.html` (Windows Settings window chrome), `linux-file-manager-reference.html`
 (GNOME/GTK file manager). Open and match these — don't reinvent chrome ad hoc.
 
+## Wiring a simulator module into the live course
+Each simulator module (`module-<n>.html`) is a standalone static file with zero framework
+dependency, but it must still act like part of the real course:
+- Render it via `ComputerModuleSimulator({moduleNumber, title})`
+  (`src/components/academy/computer-module-simulator.tsx`) — a full-viewport iframe. The
+  `/academy/courses/<course>/learn/*` route already hides the site header/footer (see
+  `isLearningWorkspace` in `site-header.tsx`/`site-footer.tsx`), so it renders edge-to-edge
+  with no extra chrome, no layout changes needed.
+- In `src/app/academy/[[...slug]]/page.tsx`, add the module's `moduleId` to the
+  `computerSimulatorModules` map — one entry covers every lesson slug tagged with that
+  moduleId. Leave the underlying `computerRebuildLessons`/`computerRebuildModules` data
+  untouched; the course page, onboarding, and checkpoint/exam sequencing all key off that
+  array by `moduleId`/`order`, and intercepting at the dispatch layer means none of that
+  math needs to change.
+- Inside the simulator file itself: persist `S` (progress state) to a dedicated
+  `localStorage` key (`jamezzi:computer:essentials:module<n>-sim-state`) so reloading
+  resumes instead of resetting; once every lesson is done, write that module's real lesson
+  slugs into the site's shared completed-lessons key
+  (`jamezzi:computer:essentials:completed`, same array-of-slugs format
+  `src/lib/course-progress.ts` uses) and dispatch `jamezzi:course-progress-changed` on
+  `window.parent` (same-origin iframes share localStorage automatically, but a
+  `dispatchEvent` only reaches listeners on the window it's called on — cross-frame it must
+  go through `window.parent`) — this is what makes the course page/resume card correctly
+  show the module done. Make the brand-mark logo a real link back to the course, and inject
+  a "Continue to Module N+1" link on completion, both `target="_top"` so they escape the
+  iframe. Make every *other* module's sidebar row a real `target="_top"` link to that
+  module's first lesson slug in the live course (whichever system currently serves it) —
+  never leave it a dead click.
+- A module already wired this way needs **no changes** when a *different* module gets its
+  own simulator later — Module 1's "Continue to Module 2" link and sidebar row already
+  pointed at Module 2's real lesson slug; once that slug started resolving to a simulator
+  instead of a text lesson, the existing link just worked.
+
 ## Order of work (always)
 1. Pick the lesson's real-world task and the OS surface it lives on.
 2. Build from the component kit below — never draw chrome ad hoc, and match the reference
@@ -232,6 +265,25 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   counter), explicitly exclude it from the selector/counter — don't rely on it lacking a data
   attribute to silently no-op, since a shared `.forEach` over too-broad a selector will still
   attach a handler and can corrupt state with a `NaN` key.
+  Module 2's traps (module-2.html) all come straight from the approved brief's own named
+  misconceptions rather than being invented fresh: 2.1 mashing the power button mid-boot
+  (decoy node, same pattern as 1.3); 2.2 an "Open the Case" button that's always wrong,
+  no correct counterpart needed since the brief flatly prohibits it; 2.3 the "CPU is a brain"
+  oversimplification as a binary choice (both answers give a response, but only one is
+  praised — a trap doesn't require the wrong answer to look plausible-correct, just common);
+  2.4 two traps in one lesson: an experiential one (open browser tabs until a RAM meter caps
+  out red) and a follow-up quiz trap (closing an app to free RAM ≠ losing the saved file —
+  RAM vs. storage permanence, the same underlying confusion as 1.4's CPU/SSD trap but from
+  the opposite direction); 2.5 a unit-scale trap (1 TB mistaken for 100 GB) inside an
+  otherwise-normal multiple-choice check; 2.6 the camera privacy-light misconception, wired
+  as a toggle (click the camera tile to flip its light on/off) plus a binary-choice question
+  about what the light means; 2.7 the "always plugged in doesn't affect battery health" myth
+  as a true/false question; 2.8 two per-item traps in one sort exercise (`item.trap:{catIndex:msg}`,
+  same map pattern as 1.4/1.6): Windows sorted as an "Application" (it's the OS; Microsoft
+  Word is the separate application), and Chrome sorted as a "Website" (it's a browser, not
+  Google or the internet itself); 2.9 a fake "Most Popular Color" row planted among real
+  spec-sheet categories in an About-panel reused from 1.2's chrome — ported directly from the
+  already-approved text-lesson's own trap rather than invented new.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
