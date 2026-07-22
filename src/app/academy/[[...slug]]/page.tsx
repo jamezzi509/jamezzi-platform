@@ -423,7 +423,7 @@ export default async function AcademyPage({
     return (
       <ComputerPlatformOnboarding
         firstLessonSlug={computerRebuildLessons[0].slug}
-        lessons={computerRebuildLessons.map((lesson) => ({
+        lessons={computerRebuildLessonsForGating.map((lesson) => ({
           slug: lesson.slug,
           title: lesson.titleHt,
         }))}
