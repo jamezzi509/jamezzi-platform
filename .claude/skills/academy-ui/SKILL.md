@@ -465,6 +465,26 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   earlier per-module sort exercises (1.4/1.6/2.8/4.10), this trap uses a single always-
   present decoy row rather than one item embedded in a shuffled set — reachable by intent
   (clicking the biggest number promising the most space back) rather than by chance.
+  Module 10's traps (module-10.html) pull from the brief's own points: 10.1 assuming two
+  cables with the same connector shape (USB-C) do exactly the same thing — the brief's
+  explicit "connector shape is not the whole specification"; 10.2 pulling a USB drive out
+  immediately after copying instead of using Eject first; 10.3 a real bug caught during
+  verification, worth restating in full: the unknown-Bluetooth-device row originally only
+  showed a warning message on click and never called `setObj(1)`, so the lesson could
+  never reach 100% no matter what the learner did — driving every lesson to completion
+  (not just visually inspecting it) is what caught this, consistent with the Module 3
+  lesson about verifying every objective actually has a reachable completion path. Fixed
+  by having the click reveal a proper trap Q&A panel (matching every other lesson's
+  pattern) whose either answer completes the objective, rather than leaving the reveal
+  itself un-gated; 10.4 restarting the whole computer for a "can't be heard" call problem
+  instead of first checking that the correct microphone device is selected; 10.5
+  assuming a print job stuck in the queue means the printer is broken, instead of
+  checking the queue first; 10.6 printing several copies without checking the preview
+  first, risking wasted paper on an undetected error; 10.7 treating a scanned document
+  containing ID/identity information as less sensitive than the original paper, when a
+  digital copy deserves the same sharing caution; 10.8 the brief's explicit "stop before
+  unsafe intervention" — opening a device's casing without technical knowledge instead of
+  stopping and asking for help once the simple troubleshooting steps are exhausted.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
