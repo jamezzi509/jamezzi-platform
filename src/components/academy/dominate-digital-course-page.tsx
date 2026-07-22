@@ -69,7 +69,7 @@ export function DominateDigitalCoursePage() {
           language="ht"
           completeOverride={{
             href: "/contact",
-            eyebrow: "MODIL 1 FINI",
+            eyebrow: "TOUT LESON DISPONIB FINI",
             title: "Ou fini tout sa ki disponib kounye a.",
             action: "Jwenn nouvèl sou lòt modil",
           }}

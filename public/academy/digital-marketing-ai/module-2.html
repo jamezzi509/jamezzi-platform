@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 2 — Sikoloji Vant</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ci{font-size:19px;flex:none;width:26px;text-align:center}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 2 · 2.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 8</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + module/lesson titles ============ */
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 2!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou. Kontinye pou dekouvri lòt modil yo pandan n ap ajoute yo.",
+   stampBtn:"Retounen nan Kou a →",nextModuleBtn:"Ale nan Modil 3 →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 2 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage. Revenez bientôt pour les prochains modules.",
+   stampBtn:"Retour au cours →",nextModuleBtn:"Aller au Module 3 →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 2!",stampBody:"You just earned another stamp in your Learning Passport. Come back soon for the next modules as they're added.",
+   stampBtn:"Back to the course →",nextModuleBtn:"Go to Module 3 →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M2={
+ ht:["Poukisa Moun Achte Vrèman (Emosyon kont Lojik)","Bati Konfyans","Prèv Sosyal","Rarete","Otorite","Reprosite","Sikoloji Pri","Sikoloji Koulè"],
+ fr:["Pourquoi les Gens Achètent Vraiment (Émotion contre Logique)","Bâtir la Confiance","Preuve Sociale","Rareté","Autorité","Réciprocité","Psychologie des Prix","Psychologie des Couleurs"],
+ en:["Why People Really Buy (Emotion vs. Logic)","Building Trust","Social Proof","Scarcity","Authority","Reciprocity","Pricing Psychology","Color Psychology"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Moun pran desizyon achte ak emosyon anvan, apre yo itilize lojik pou jistifye chwa a — konprann sa chanje fason ou ekri ak vann.",
+   secs:[["Vrè lòd yon desizyon","Yon moun santi yon bagay anvan (eksite, pè rate yon opòtinite, rasire, kirye), APRE sèvo li bati yon rezon lojik pou apiye santiman sa a ('se yon bon dil', 'li gen karakteristik mwen bezwen yo'). Mesaj vant ki sèlman bay fè lojik, san okenn kwochè emosyonèl, souvan pa mache menm lè fè yo vre."],
+    ["Prensipal emosyon nan achte","Anvi sove tan/efò, pè rate yon bagay oswa fè yon erè, anvi gen estati/apatenans, anvi rezoud yon pwoblèm ki fristre, anvi santi w entèlijan/an kontwòl. Rekonèt ki emosyon ki reyèlman motive yon kliyan espesifik ede w pale dirèkteman ak li."],
+    ["Lojik toujou konte — men kòm sipò, pa kòm ouvèti","Yon fwa yo enterese emosyonèlman, moun vle fè pou santi yo an sekirite jistifye achte a (pou tèt yo, oswa pou lòt moun tankou yon konjwen). Bon maketing bay toude: yon rezon emosyonèl pou vle l, ak yon rezon lojik pou santi w byen achte l."]],
+   illus:"flow3",flowLabels:["Santiman","Desizyon","Jistifikasyon"],flowSub:["Anvi gen konfyans","Achte kou a","Li gen bon revi"],
+   ex:"Panse ak yon bagay ou pèsonèlman achte dènyèman ou pa t vrèman bezwen. Ki emosyon ki te mennen w achte l, epi ki rezon lojik ou te di tèt ou (oswa lòt moun) apre?",
+   quiz:[
+    {q:"Nan pifò desizyon achte, kisa ki tipikman vini anvan?",opts:["Yon konparezon lojik de karakteristik","Yon reyaksyon emosyonèl","Yon revizyon bidjè detaye","Yon konparezon ak konpetitè"],ans:1,fb:"Yon reyaksyon emosyonèl souvan vini anvan nenpòt analiz lojik."},
+    {q:"Ki wòl lojik jwe apre desizyon emosyonèl la?",opts:["Li vini anvan epi li deside tout bagay","Li bay moun nan yon rezon pou santi l byen sou yon desizyon li deja pran emosyonèlman","Li pa gen okenn wòl ditou","Li ranplase bezwen pou nenpòt apèl emosyonèl"],ans:1,fb:"Lojik la sèvi kòm jistifikasyon apre emosyon an deja fè travay la."},
+    {q:"Kilès nan sa yo se yon egzanp yon motè emosyonèl nan achte?",opts:["Espesifikasyon teknik egzat","Pè rate yon òf limite","Yon detay pri chak atik","Yon tablo konparezon"],ans:1,fb:"Pè rate yon opòtinite (FOMO) se yon motè emosyonèl klasik."},
+    {q:"Mesaj maketing ki pi efikas la anjeneral...",opts:["Sèlman bay fè ak karakteristik","Sèlman fè apèl a emosyon san okenn fè","Bay yon rezon emosyonèl pou vle l plis yon rezon lojik pou santi w byen achte l","Evite mansyone pri a nèt"],ans:2,fb:"Pi bon mesaj yo konbine toude: yon kwochè emosyonèl ak yon apiye lojik."}],
+   close:{learned:"Moun deside ak emosyon anvan, apre yo itilize lojik pou jistifye chwa a — bon maketing pale ak toude.",
+    mistake:"Ekri tèks maketing ki sèlman gen fè ak karakteristik san okenn kwochè emosyonèl, epi mande tèt ou poukisa li pa vann.",
+    tip:"Anvan w ekri anyen, non emosyon espesifik kliyan an santi sou pwoblèm sa a — ekri pou sa anvan.",
+    assign:"Pou pi gwo pwodwi/sèvis ou, ekri prensipal emosyon li satisfè ak yon fè lojik ki apiye l.",
+    dl:"Fèy Travay: Kat Emosyon + Lojik",
+    checklist:["Emosyon idantifye?","Fè lojik ki apiye idantifye?","Toude prezan nan mesaj maketing aktyèl ou?"],
+    ai:"Pwodwi/sèvis mwen se [dekri l]. Ki emosyon ki gen plis chans motive yon moun achte l, epi ki yon fè lojik mwen ka itilize pou apiye sa?"}},
+ fr:{lede:"Les gens prennent leurs décisions d'achat avec l'émotion d'abord, puis utilisent la logique pour justifier le choix après coup — comprendre cela change comment vous écrivez et vendez.",
+   secs:[["L'ordre réel d'une décision","Une personne ressent d'abord quelque chose (excitée, craignant de rater une occasion, rassurée, curieuse), PUIS son cerveau construit une raison logique pour appuyer ce sentiment (« c'est une bonne affaire », « ça a les caractéristiques dont j'ai besoin »). Un message de vente qui ne liste que des faits logiques, sans aucun accroche émotionnel, échoue souvent même quand les faits sont vrais."],
+    ["Les principaux moteurs émotionnels de l'achat","Le désir d'économiser du temps/effort, la peur de rater quelque chose ou de faire une erreur, le désir de statut/d'appartenance, le désir de résoudre un problème frustrant, le désir de se sentir intelligent/en contrôle. Reconnaître quelle émotion motive vraiment un client spécifique vous aide à lui parler directement."],
+    ["La logique compte toujours — mais comme appui, pas comme ouverture","Une fois intéressée émotionnellement, la personne veut des faits pour se sentir en sécurité en justifiant l'achat (pour elle-même, ou pour d'autres comme un conjoint). Un bon marketing donne les deux : une raison émotionnelle de le vouloir, et une raison logique de se sentir bien de l'acheter."]],
+   illus:"flow3",flowLabels:["Sentiment","Décision","Justification"],flowSub:["Envie d'avoir confiance","Achète le cours","Il a de bons avis"],
+   ex:"Pensez à quelque chose que vous avez personnellement acheté récemment sans en avoir vraiment besoin. Quelle émotion vous a poussé à l'acheter, et quelle raison logique vous êtes-vous dite (ou avez dite à d'autres) après ?",
+   quiz:[
+    {q:"Dans la plupart des décisions d'achat, qu'est-ce qui vient généralement en premier ?",opts:["Une comparaison logique des caractéristiques","Une réaction émotionnelle","Une révision détaillée du budget","Une comparaison avec un concurrent"],ans:1,fb:"Une réaction émotionnelle vient souvent avant toute analyse logique."},
+    {q:"Quel rôle joue la logique après la décision émotionnelle ?",opts:["Elle vient en premier et décide de tout","Elle donne à la personne une raison de se sentir bien à propos d'une décision déjà prise émotionnellement","Elle n'a aucun rôle du tout","Elle remplace le besoin de tout appel émotionnel"],ans:1,fb:"La logique sert de justification après que l'émotion ait déjà fait le travail."},
+    {q:"Lequel de ces éléments est un exemple de moteur émotionnel d'achat ?",opts:["Des spécifications techniques exactes","La peur de rater une offre limitée","Un détail de prix par article","Un tableau comparatif"],ans:1,fb:"La peur de rater une occasion (FOMO) est un moteur émotionnel classique."},
+    {q:"Le message marketing le plus efficace, en général...",opts:["Ne liste que des faits et caractéristiques","Ne fait appel qu'à l'émotion sans aucun fait","Donne une raison émotionnelle de le vouloir plus une raison logique de se sentir bien de l'acheter","Évite complètement de mentionner le prix"],ans:2,fb:"Les meilleurs messages combinent les deux : un accroche émotionnel et un appui logique."}],
+   close:{learned:"Les gens décident avec l'émotion d'abord, puis utilisent la logique pour justifier le choix — un bon marketing parle aux deux.",
+    mistake:"Écrire un texte marketing qui n'est que faits et caractéristiques sans aucun accroche émotionnel, puis se demander pourquoi ça ne convertit pas.",
+    tip:"Avant d'écrire quoi que ce soit, nommez l'émotion spécifique que votre client ressent face à ce problème — écrivez pour cela d'abord.",
+    assign:"Pour votre produit/service principal, écrivez l'émotion principale qu'il satisfait et un fait logique qui l'appuie.",
+    dl:"Fiche de travail : Carte Émotion + Logique",
+    checklist:["Émotion identifiée ?","Fait logique d'appui identifié ?","Les deux présents dans votre message marketing actuel ?"],
+    ai:"Mon produit/service est [décrire]. Quel est le moteur émotionnel le plus probable derrière son achat, et quel fait logique puis-je utiliser pour l'appuyer ?"}},
+ en:{lede:"People make buying decisions with emotion first, then use logic to justify the choice afterward — understanding this changes how you write and sell.",
+   secs:[["The real order of a decision","Someone feels something first (excited, afraid of missing out, reassured, curious), THEN their brain builds a logical reason to support that feeling ('it's a good deal,' 'it has the features I need'). Sales messaging that only lists logical facts, with no emotional hook, often falls flat even when the facts are true."],
+    ["Common emotional drivers in buying","Desire to save time/effort, fear of missing out or making a mistake, desire for status/belonging, desire to solve a frustrating problem, desire to feel smart/in control. Recognizing which emotion is really driving a specific customer helps you speak to it directly."],
+    ["Logic still matters — as backup, not the opener","Once emotionally interested, people want facts to feel safe justifying the purchase (to themselves, or to others like a spouse). Good marketing gives both: an emotional reason to want it, and a logical reason to feel OK buying it."]],
+   illus:"flow3",flowLabels:["Feeling","Decision","Justification"],flowSub:["Wants to feel confident","Buys the course","It has great reviews"],
+   ex:"Think of something you personally bought recently that you didn't strictly need. What emotion led you to buy it, and what logical reason did you tell yourself (or others) afterward?",
+   quiz:[
+    {q:"In most buying decisions, what typically comes first?",opts:["A logical comparison of features","An emotional reaction","A detailed budget review","A competitor comparison"],ans:1,fb:"An emotional reaction usually comes before any logical analysis."},
+    {q:"What role does logic usually play after the emotional decision?",opts:["It comes first and decides everything","It gives the person a reason to feel OK about a decision already made emotionally","It has no role at all","It replaces the need for any emotional appeal"],ans:1,fb:"Logic serves as justification after the emotion has already done the work."},
+    {q:"Which is an example of an emotional buying driver?",opts:["Exact technical specifications","Fear of missing out on a limited offer","An itemized price breakdown","A comparison chart"],ans:1,fb:"Fear of missing out (FOMO) is a classic emotional driver."},
+    {q:"The most effective marketing message usually:",opts:["Only lists facts and features","Only appeals to emotion with no facts","Gives an emotional reason to want it plus a logical reason to feel OK buying it","Avoids mentioning price entirely"],ans:2,fb:"The best messages combine both: an emotional hook and logical backup."}],
+   close:{learned:"People decide with emotion first, then use logic to justify the choice — effective marketing speaks to both.",
+    mistake:"Writing marketing copy that's all facts and features with no emotional hook, then wondering why it doesn't convert.",
+    tip:"Before writing anything, name the specific emotion your customer feels about this problem — write to that first.",
+    assign:"For your top product/service, write down the main emotion it satisfies and one logical fact that supports it.",
+    dl:"Worksheet: Emotion + Logic Mapping",
+    checklist:["Emotion identified?","Logical backup fact identified?","Both present in your current marketing message?"],
+    ai:"My product/service is [describe]. What's the most likely emotional driver behind someone buying it, and what's one logical fact I can use to back that up?"}}},
+
+2:{ht:{lede:"Yon kliyan ki pa fè w konfyans p ap achte, kèlkeswa jan òf ou a bon — konfyans se fondasyon tout rès maketing chita sou li.",
+   secs:[["Poukisa konfyans vini anvan","Moun riske lajan ak tan yo sou ou; san konfyans, menm yon bon pri oswa bon pwodwi jis pase inyore oswa moun doute. Konfyans dwe genyen anvan okenn lòt teknik pèswasyon ka menm fonksyone."],
+    ["Sa ki bati konfyans anliy","Enfòmasyon kontak reyèl ak klè; idantite mak konsistan atravè platfòm yo; revi/temwayaj reyèl vizib; pri ak politik transparan; reponn mesaj/kòmantè; montre vrè moun dèyè biznis la (pa jis yon logo)."],
+    ["Sa ki detwi konfyans vit","Enfòmasyon ki pa menm jan sou chak platfòm, frè kache oswa pri ki pa klè, okenn fason pou kontakte yon vrè moun, revi fo oswa achte, lyen ki kase/prezantasyon ki pa pwofesyonèl."]],
+   illus:"roles",roleCards:[["📞","Kontak Reyèl","Enfòmasyon klè ak vizib"],["🎨","Idantite Konsistan","Menm mak toupatou"],["⭐","Revi Otantik","Vrè temwayaj kliyan"],["💲","Pri Transparan","Klè, san sipriz"],["💬","Reponn Mesaj","Prezan ak aksesib"],["👤","Moun Reyèl","Montre kiyès ki dèyè biznis la"]],
+   ex:"Gade prezans anliy biznis ou kounye a. Site yon siyal konfyans ou deja genyen, ak youn ou manke.",
+   quiz:[
+    {q:"Poukisa konfyans enpòtan anvan lòt teknik pèsyasyon?",opts:["Li pa enpòtan, pri a konte plis","San konfyans, moun p ap aji sou òf ou a kèlkeswa jan li bon","Konfyans enpòtan sèlman pou gwo konpayi","Konfyans bati sèlman pa piblisite"],ans:1,fb:"San konfyans, menm pi bon òf la pa konvenki pèsonn."},
+    {q:"Kilès nan sa yo bati konfyans?",opts:["Kache enfòmasyon kontak ou","Montre vrè revi kliyan","Diferan enfòmasyon biznis sou chak platfòm","Pri ki vag e pa klè"],ans:1,fb:"Vrè revi kliyan se yon siyal konfyans solid."},
+    {q:"Kilès nan sa yo detwi konfyans vit?",opts:["Reponn mesaj kliyan","Idantite konsistan","Frè kache oswa pri ki pa klè","Montre vrè moun dèyè biznis la"],ans:2,fb:"Frè kache oswa pri vag detwi konfyans vit lè moun dekouvri yo."},
+    {q:"Yon kliyan ki pa fè yon biznis konfyans ap pwobableman...",opts:["Achte kanmenm si pri a ase ba","Ezite oswa evite achte, kèlkeswa òf la","Toujou bay benefis dout la","Konfyans konte sèlman pou magazen fizik"],ans:1,fb:"San konfyans, yon kliyan ap ezite oswa evite achte nèt."}],
+   close:{learned:"Konfyans se fondasyon maketing chita sou li — san li, okenn òf oswa pri pa konvèti byen.",
+    mistake:"Mete tout efò w sou òf/rabè a pandan w inyore siyal konfyans debaz tankou enfòmasyon konsistan ak vrè revi.",
+    tip:"Repare yon twou nan konfyans anvan w depanse lajan sou piblisite — yon paj moun pa fè konfyans gaspiye trafik peye.",
+    assign:"Fè yon lis 3 siyal konfyans ou ka ajoute oswa amelyore semèn sa a (egzanp: poste vrè revi, korije enfòmasyon kontak ki pa menm jan).",
+    dl:"Lis Verifikasyon: Odit Siyal Konfyans",
+    checklist:["Enfòmasyon kontak reyèl vizib?","Idantite konsistan atravè platfòm yo?","Vrè revi montre?","Pri/politik klè?"],
+    ai:"Men enfòmasyon biznis mwen: [dekri l]. Idantifye 3 siyal konfyans mwen manke ak kijan pou ajoute yo vit."}},
+ fr:{lede:"Un client qui ne vous fait pas confiance n'achètera pas, peu importe la qualité de votre offre — la confiance est la fondation sur laquelle tout le reste du marketing repose.",
+   secs:[["Pourquoi la confiance vient en premier","Les gens risquent leur argent et leur temps sur vous ; sans confiance, même un excellent prix ou produit est ignoré ou mis en doute. La confiance doit être gagnée avant que toute autre technique de persuasion puisse même fonctionner."],
+    ["Ce qui bâtit la confiance en ligne","Des informations de contact réelles et claires ; une image de marque cohérente sur toutes les plateformes ; des avis/témoignages réels visibles ; des prix et politiques transparents ; répondre aux messages/commentaires ; montrer les vraies personnes derrière l'entreprise (pas juste un logo)."],
+    ["Ce qui détruit la confiance rapidement","Des informations incohérentes selon la plateforme, des frais cachés ou des prix pas clairs, aucun moyen de contacter une vraie personne, de faux avis ou des avis achetés, des liens cassés/une présentation peu professionnelle."]],
+   illus:"roles",roleCards:[["📞","Contact Réel","Informations claires et visibles"],["🎨","Identité Cohérente","Même image partout"],["⭐","Avis Authentiques","Vrais témoignages clients"],["💲","Prix Transparents","Clairs, sans surprise"],["💬","Réponse aux Messages","Présent et accessible"],["👤","Vraies Personnes","Montrer qui est derrière l'entreprise"]],
+   ex:"Regardez la présence en ligne actuelle de votre entreprise. Nommez un signal de confiance que vous avez déjà, et un qui vous manque.",
+   quiz:[
+    {q:"Pourquoi la confiance compte-t-elle avant les autres techniques de persuasion ?",opts:["Ce n'est pas le cas, le prix compte plus","Sans confiance, les gens n'agiront pas sur votre offre peu importe sa qualité","La confiance ne compte que pour les grandes entreprises","La confiance se bâtit uniquement par la publicité"],ans:1,fb:"Sans confiance, même la meilleure offre ne convainc personne."},
+    {q:"Lequel de ces éléments bâtit la confiance ?",opts:["Cacher vos informations de contact","Montrer de vrais avis clients","Des informations d'entreprise différentes sur chaque plateforme","Des prix vagues et pas clairs"],ans:1,fb:"De vrais avis clients sont un signal de confiance solide."},
+    {q:"Lequel de ces éléments détruit la confiance rapidement ?",opts:["Répondre aux messages des clients","Une identité cohérente","Des frais cachés ou des prix pas clairs","Montrer les vraies personnes derrière l'entreprise"],ans:2,fb:"Des frais cachés ou des prix vagues détruisent la confiance rapidement une fois découverts."},
+    {q:"Un client qui ne fait pas confiance à une entreprise va probablement...",opts:["Acheter quand même si le prix est assez bas","Hésiter ou éviter d'acheter, peu importe l'offre","Toujours donner le bénéfice du doute","La confiance ne compte que pour les magasins physiques"],ans:1,fb:"Sans confiance, un client va hésiter ou éviter complètement d'acheter."}],
+   close:{learned:"La confiance est la fondation sur laquelle repose le marketing — sans elle, aucune offre ou prix ne convertit bien.",
+    mistake:"Concentrer tous vos efforts sur l'offre/la réduction tout en ignorant les signaux de confiance de base comme des informations cohérentes et de vrais avis.",
+    tip:"Corrigez une lacune de confiance avant de dépenser de l'argent en publicité — une page qui n'inspire pas confiance gaspille le trafic payant.",
+    assign:"Listez 3 signaux de confiance que vous pouvez ajouter ou améliorer cette semaine (ex : publier de vrais avis, corriger des informations de contact incohérentes).",
+    dl:"Liste de vérification : Audit des Signaux de Confiance",
+    checklist:["Informations de contact réelles visibles ?","Identité cohérente sur toutes les plateformes ?","Vrais avis montrés ?","Prix/politiques clairs ?"],
+    ai:"Voici les informations de mon entreprise : [décrire]. Identifie 3 signaux de confiance qu'il me manque et comment les ajouter rapidement."}},
+ en:{lede:"A customer who doesn't trust you won't buy, no matter how good your offer is — trust is the foundation everything else in marketing sits on.",
+   secs:[["Why trust comes first","People risk their money and time on you; without trust, even a great price or product gets ignored or doubted. Trust must be earned before persuasion techniques can work at all."],
+    ["What builds trust online","Clear, real contact information; consistent branding across platforms; visible real reviews/testimonials; transparent pricing and policies; responding to messages/comments; showing real people behind the business (not just a logo)."],
+    ["What erodes trust quickly","Inconsistent information across platforms, hidden fees or unclear pricing, no way to contact a real person, fake or clearly bought reviews, broken links/unprofessional presentation."]],
+   illus:"roles",roleCards:[["📞","Real Contact Info","Clear and visible"],["🎨","Consistent Branding","Same identity everywhere"],["⭐","Genuine Reviews","Real customer testimonials"],["💲","Transparent Pricing","Clear, no surprises"],["💬","Responsive to Messages","Present and reachable"],["👤","Real People Shown","Who's behind the business"]],
+   ex:"Look at your own business's online presence right now. Name one trust signal you already have, and one you're missing.",
+   quiz:[
+    {q:"Why does trust matter before other persuasion techniques?",opts:["It doesn't, price matters more","Without trust, people won't act on your offer no matter how good it is","Trust is only important for large companies","Trust is built entirely by advertising"],ans:1,fb:"Without trust, even the best offer won't convince anyone."},
+    {q:"Which of these builds trust?",opts:["Hiding your contact information","Showing genuine customer reviews","Different business info on every platform","Vague, unclear pricing"],ans:1,fb:"Genuine customer reviews are a strong trust signal."},
+    {q:"Which of these erodes trust quickly?",opts:["Responding to customer messages","Consistent branding","Hidden fees or unclear pricing","Showing real people behind the business"],ans:2,fb:"Hidden fees or vague pricing erode trust fast once discovered."},
+    {q:"A customer who doesn't trust a business will most likely:",opts:["Buy anyway if the price is low enough","Hesitate or avoid buying, regardless of the offer","Always give the benefit of the doubt","Trust matters only for physical stores"],ans:1,fb:"Without trust, a customer will hesitate or avoid buying altogether."}],
+   close:{learned:"Trust is the foundation marketing sits on — without it, no offer or price converts well.",
+    mistake:"Focusing all your effort on the offer/discount while ignoring basic trust signals like consistent info and real reviews.",
+    tip:"Fix one trust gap before spending money on ads — an untrustworthy page wastes paid traffic.",
+    assign:"List 3 trust signals you can add or improve this week (e.g., posting real reviews, fixing inconsistent contact info).",
+    dl:"Checklist: Trust Signals Audit",
+    checklist:["Real contact info visible?","Consistent branding across platforms?","Genuine reviews shown?","Clear pricing/policies?"],
+    ai:"Here's my business info: [describe]. Identify 3 trust signals I'm missing and how to add them quickly."}}},
+
+3:{ht:{lede:"Moun gade sa lòt moun fè anvan yo deside — montre lòt moun deja fè w konfyans e itilize sa w ofri a se youn nan bagay ki pi pèsyasif ou ka fè.",
+   secs:[["Poukisa prèv sosyal mache","Moun konstwi pou gade sa lòt moun fè kòm yon rakousi pou 'èske sa a an sekirite/bon/vo lajan an?', espesyalman lè yo pa sèten; sa vre doub anliy, kote yon achtè pa ka egzamine yon pwodwi fizikman oswa rankontre vandè a anvan."],
+    ["Kalite prèv sosyal","Revi ak temwayaj kliyan, kantite kliyan ('500+ kliyan satisfè'), etid ka ak vrè rezilta, egzanp anvan/apre, andòsman moun ki gen enfliyans oswa moun ki fè konfyans, angajman rezo sosyal vizib (kòmantè, pataje)."],
+    ["Itilize prèv sosyal onètman","Toujou itilize vrè revi/rezilta, pa janm fabrike yo (se toude yon pwoblèm etik ak yon risk legal nan pifò kote); mande kliyan satisfè yo dirèkteman pou yon revi olye w tann pasivman; mete aksan sou temwayaj espesifik, detaye olye vag ('li chanje fason m jere biznis mwen an' pi bon pase 'bon sèvis')."]],
+   illus:"roles",roleCards:[["⭐","Revi Kliyan","Temwayaj reyèl"],["👥","Kantite Kliyan","'500+ satisfè'"],["📊","Etid Ka","Rezilta detaye"],["🔄","Anvan/Apre","Chanjman vizib"],["🎤","Andòsman","Moun ki fè konfyans"],["💬","Angajman Sosyal","Kòmantè, pataje"]],
+   ex:"Fè yon lis 2 vrè kliyan ki ta pwobableman ba w yon revi pozitif si w mande yo dirèkteman semèn sa a.",
+   quiz:[
+    {q:"Poukisa prèv sosyal mache byen konsa?",opts:["Moun toujou inyore sa lòt moun fè","Moun itilize chwa lòt moun kòm yon rakousi pou 'èske sa a bon/an sekirite', espesyalman lè yo pa sèten","Li mache sèlman pou gwo konpayi","Li ranplase bezwen pou yon bon pwodwi"],ans:1,fb:"Prèv sosyal bay yon rakousi lè moun pa sèten."},
+    {q:"Kilès ki yon egzanp prèv sosyal?",opts:["Yon foto stock jenerik","'500+ kliyan satisfè' ak vrè revi","Yon rabè pri","Yon nouvo logo"],ans:1,fb:"Kantite kliyan ak vrè revi se bon egzanp prèv sosyal."},
+    {q:"Ki temwayaj ki pi pèsyasif?",opts:["Yon 'bon sèvis!' vag","Yon detay espesifik tankou 'redwi tan livrezon mwen de 3 jou a 1'"],ans:1,fb:"Detay espesifik pi konvenkan pase lwanj vag."},
+    {q:"Ki bon fason pou jwenn plis prèv sosyal?",opts:["Ekri fo revi ou menm","Mande kliyan satisfè dirèkteman pou yon vrè revi","Achte revi nan yon sèvis","Inyore sa paske li pa enpòtan"],ans:1,fb:"Mande dirèkteman se fason ki pi onèt ak efikas pou jwenn plis revi."}],
+   close:{learned:"Prèv sosyal (revi, temwayaj, etid ka, kantite) konvenki lè li montre vrè moun deja fè w konfyans ak itilize sa w ofri a.",
+    mistake:"Itilize temwayaj vag oswa fabrike olye de vrè detaye — lwanj vag pa konvenki pèsonn, e fo revi riske epi fasil pou dekouvri.",
+    tip:"Mande revi jis apre yon kliyan eksprime satisfaksyon — se moman sa a li pi vle di wi.",
+    assign:"Voye mesaj bay 2 vrè ansyen kliyan semèn sa a epi mande yo yon revi kout e espesifik.",
+    dl:"Modèl: Mesaj Demann Revi",
+    checklist:["Omwen 1 vrè revi vizib?","Temwayaj yo espesifik, pa vag?","Okenn fo revi itilize?"],
+    ai:"Ekri yon mesaj kout e zanmitay mwen ka voye bay yon kliyan satisfè ki mande yon revi espesifik sou [pwodwi/sèvis]."}},
+ fr:{lede:"Les gens regardent ce que font les autres avant de décider — montrer que d'autres personnes vous font déjà confiance et utilisent ce que vous offrez est l'une des choses les plus persuasives que vous puissiez faire.",
+   secs:[["Pourquoi la preuve sociale fonctionne","Les humains sont conçus pour regarder ce que font les autres comme un raccourci pour « est-ce sûr/bon/ça en vaut la peine ? », surtout dans l'incertitude ; c'est doublement vrai en ligne, où un acheteur ne peut pas inspecter physiquement un produit ou rencontrer le vendeur d'abord."],
+    ["Types de preuve sociale","Avis et témoignages clients, nombre de clients (« 500+ clients satisfaits »), études de cas avec de vrais résultats, exemples avant/après, recommandation d'une personne influente ou de confiance, engagement visible sur les réseaux sociaux (commentaires, partages)."],
+    ["Utiliser la preuve sociale honnêtement","Utilisez toujours de vrais avis/résultats, jamais fabriqués (c'est à la fois un problème éthique et un risque légal dans la plupart des endroits) ; demandez directement un avis aux clients satisfaits plutôt que d'attendre passivement ; privilégiez des témoignages spécifiques et détaillés plutôt que vagues (« ça a changé la façon dont je gère mon entreprise » vaut mieux que « excellent service »)."]],
+   illus:"roles",roleCards:[["⭐","Avis Clients","Vrais témoignages"],["👥","Nombre de Clients","« 500+ satisfaits »"],["📊","Études de Cas","Résultats détaillés"],["🔄","Avant/Après","Changement visible"],["🎤","Recommandations","Personnes de confiance"],["💬","Engagement Social","Commentaires, partages"]],
+   ex:"Listez 2 vrais clients qui vous donneraient probablement un avis positif ou un témoignage si vous le leur demandiez directement cette semaine.",
+   quiz:[
+    {q:"Pourquoi la preuve sociale fonctionne-t-elle si bien ?",opts:["Les gens ignorent toujours ce que font les autres","Les gens utilisent les choix des autres comme raccourci pour « est-ce bon/sûr », surtout dans l'incertitude","Ça ne fonctionne que pour les très grandes entreprises","Ça remplace le besoin d'un bon produit"],ans:1,fb:"La preuve sociale offre un raccourci utile face à l'incertitude."},
+    {q:"Lequel de ces éléments est un exemple de preuve sociale ?",opts:["Une photo générique de banque d'images","« 500+ clients satisfaits » avec de vrais avis","Une réduction de prix","Une refonte de logo"],ans:1,fb:"Le nombre de clients et de vrais avis sont de bons exemples de preuve sociale."},
+    {q:"Quel témoignage est le plus persuasif ?",opts:["Un vague « excellent service ! »","Un détail spécifique comme « a réduit mon délai de livraison de 3 jours à 1 »"],ans:1,fb:"Un détail spécifique est plus convaincant qu'un éloge vague."},
+    {q:"Quelle est la bonne façon d'obtenir plus de preuve sociale ?",opts:["Écrire de faux avis vous-même","Demander directement un vrai avis aux clients satisfaits","Acheter des avis à un service","Ignorer ça, ce n'est pas important"],ans:1,fb:"Demander directement est la façon la plus honnête et efficace d'obtenir plus d'avis."}],
+   close:{learned:"La preuve sociale (avis, témoignages, études de cas, chiffres) persuade en montrant que de vraies personnes vous font déjà confiance.",
+    mistake:"Utiliser des témoignages vagues ou fabriqués plutôt que des vrais et spécifiques — un éloge vague ne convainc personne, et de faux avis sont risqués et faciles à repérer.",
+    tip:"Demandez des avis juste après qu'un client exprime sa satisfaction — c'est le moment où il est le plus disposé à dire oui.",
+    assign:"Contactez 2 vrais anciens clients cette semaine et demandez-leur un avis court et spécifique.",
+    dl:"Modèle : Message de Demande d'Avis",
+    checklist:["Au moins 1 vrai avis visible ?","Témoignages spécifiques, pas vagues ?","Aucun faux avis utilisé ?"],
+    ai:"Écris un message court et amical que je peux envoyer à un client satisfait pour lui demander un avis spécifique sur [produit/service]."}},
+ en:{lede:"People look to others before deciding — showing that other people already trust and use what you offer is one of the most persuasive things you can do.",
+   secs:[["Why social proof works","Humans are wired to look at what others do as a shortcut for 'is this safe/good/worth it?', especially when uncertain; this is doubly true online, where a buyer can't physically inspect a product or meet the seller first."],
+    ["Types of social proof","Customer reviews and testimonials, user/customer counts ('500+ happy customers'), case studies with real results, before/after examples, influencer or trusted-person endorsement, visible social media engagement (comments, shares)."],
+    ["Using social proof honestly","Always use real reviews/results, never fabricated ones (both an ethics issue and a legal risk in most places); ask satisfied customers directly for a review rather than waiting passively; feature specific, detailed testimonials over vague ones ('changed how I run my business' beats 'great service')."]],
+   illus:"roles",roleCards:[["⭐","Customer Reviews","Real testimonials"],["👥","Customer Count","'500+ satisfied'"],["📊","Case Studies","Detailed results"],["🔄","Before/After","Visible change"],["🎤","Endorsements","Trusted people"],["💬","Social Engagement","Comments, shares"]],
+   ex:"List 2 real customers or clients who would likely give you a positive review or testimonial if you asked them directly this week.",
+   quiz:[
+    {q:"Why does social proof work so well?",opts:["People always ignore what others do","People use others' choices as a shortcut for 'is this good/safe,' especially when uncertain","It only works for very large companies","It replaces the need for a good product"],ans:1,fb:"Social proof gives a helpful shortcut when people are uncertain."},
+    {q:"Which is an example of social proof?",opts:["A generic stock photo","'500+ happy customers' with real reviews","A price discount","A logo redesign"],ans:1,fb:"Customer count and real reviews are good examples of social proof."},
+    {q:"Which testimonial is more persuasive?",opts:["A vague 'great service!'","A specific detail like 'cut my delivery time from 3 days to 1'"],ans:1,fb:"A specific detail is more convincing than vague praise."},
+    {q:"What's the right way to get more social proof?",opts:["Write fake reviews yourself","Directly ask satisfied customers for a real review","Buy reviews from a service","Ignore it since it doesn't matter"],ans:1,fb:"Asking directly is the most honest and effective way to get more reviews."}],
+   close:{learned:"Social proof (reviews, testimonials, case studies, counts) persuades by showing real people already trust and use what you offer.",
+    mistake:"Using vague or fabricated testimonials instead of specific, real ones — vague praise convinces no one, and fake reviews are risky and easy to spot.",
+    tip:"Ask for reviews right after a customer expresses satisfaction — that's the moment they're most willing to say yes.",
+    assign:"Message 2 real past customers this week and ask for a short, specific review.",
+    dl:"Template: Review Request Message",
+    checklist:["At least 1 real review visible?","Testimonials specific, not vague?","No fabricated reviews used?"],
+    ai:"Write a short, friendly message I can send a happy customer asking for a specific review of [product/service]."}}},
+
+4:{ht:{lede:"Moun vle bagay plis lè yo ka pèdi chans pou jwenn yo — itilize onètman, rarete se youn nan fason ki pi rapid pou tounen yon 'petèt pita' an yon 'wi, kounye a'.",
+   secs:[["Poukisa rarete mache","Evite pèt: pè rate yon bagay souvan yon motè pi fò pase anvi genyen yon bagay; lè yon dat limit oswa yon kantite limite reyèl, 'petèt pita' vin pi riske pase deside kounye a."],
+    ["Kalite rarete reyèl","Kantite limite (sèlman X ki rete an stòk), tan limite (òf la fini [dat]), aksè limite (premye X kliyan, yon lis datant, yon bonis pou moun ki achte bonè), disponiblite sezonye (yon pwodwi/sèvis ki ofri sèlman nan sèten peryòd)."],
+    ["Règ onètte a","Rarete dwe reyèl pou li dire: yon 'òf tan limite' ki rekòmanse chak semèn detwi konfyans yon fwa kliyan remake sa; ijans fo se yon teknik manipilasyon komen ki fasil pou remake e ki domaje kredibilite yon mak yon fwa yo dekouvri l."]],
+   illus:"bars",barLabels:["Vitès Desizyon","Aksyon Pran"],barTrad:[35,30],barDig:[80,75],barTradLbl:"San Ijans",barDigLbl:"Ak Ijans Reyèl",
+   ex:"Panse ak yon eleman rarete reyèl ak onèt ou ta ka ajoute nan yon pwochen òf (yon vrè dat limit, yon vrè lo limite, yon bonis pou premye moun ki achte).",
+   quiz:[
+    {q:"Poukisa rarete motive aksyon?",opts:["Moun renmen tann","Pè rate yon bagay souvan yon motè pi fò pase anvi genyen","Rarete pa gen okenn efè reyèl sou desizyon","Li mache sèlman nan magazen, pa anliy"],ans:1,fb:"Evite pèt se yon motè sikolojik pi fò pase anvi genyen souvan."},
+    {q:"Kilès ki yon egzanp rarete reyèl?",opts:["Yon òf 'tan limite' ki rekòmanse chak semèn","Yon vrè dat limit ki fini vrèman jou li di a","Reklame yon bagay limite san okenn vrè limit","Repete 'jodi a sèlman' pou tout tan"],ans:1,fb:"Yon vrè dat limit ki reyèlman fini se rarete reyèl."},
+    {q:"Kisa ki rive lè kliyan remake ijans fo?",opts:["Anyen, li mache menm jan kanmenm","Konfyans domaje yon fwa ijans fo a remake","Yo toujou achte imedyatman kanmenm","Sa fè mak la sanble pi premyòm"],ans:1,fb:"Konfyans domaje pou tout tan yon fwa moun remake se te manti."},
+    {q:"Kilès ki PA yon kalite rarete reyèl?",opts:["Kantite stòk limite","Yon vrè dat limit","Yon bannyè 'ap fini talè' pèmanan ki pa janm fini vre","Yon bonis pou premye moun ki achte"],ans:2,fb:"Yon bannyè pèmanan ki pa janm fini se fo ijans, pa rarete reyèl."}],
+   close:{learned:"Rarete motive lè li itilize evite pèt — pè rate yon bagay — men li dwe reyèlman reyèl pou li mache alontèm.",
+    mistake:"Itilize deklarasyon 'tan limite' fo oswa ki repete, ki kliyan finalman remake, e ki domaje konfyans nan mak la.",
+    tip:"Si w itilize yon dat limit, respekte l — kite òf la reyèlman fini, menm si sa koute kèk vant an reta; konsistans pwoteje kredibilite rarete nan lavni.",
+    assign:"Planifye yon vrè eleman rarete (yon vrè dat limit, limit kantite, oswa bonis premye moun) pou pwochen òf ou.",
+    dl:"Lis Verifikasyon: Planifye Rarete Onèt",
+    checklist:["Dat limit/limit la reyèlman reyèl?","Li ap reyèlman aplike?","Li kominike klèman e onètman?"],
+    ai:"M ap planifye vann [pwodwi/sèvis]. Sijere 2 fason onèt e reyalis pou ajoute vrè rarete nan òf sa a."}},
+ fr:{lede:"Les gens veulent les choses davantage quand ils risquent de perdre leur chance de les obtenir — utilisée honnêtement, la rareté est l'une des façons les plus rapides de transformer un « peut-être plus tard » en « oui, maintenant ».",
+   secs:[["Pourquoi la rareté fonctionne","Aversion à la perte : la peur de rater quelque chose est souvent un motivateur plus fort que le désir de gagner quelque chose ; quand une échéance ou une quantité limitée est réelle, « peut-être plus tard » devient plus risqué que de décider maintenant."],
+    ["Types de rareté réelle","Quantité limitée (seulement X en stock), temps limité (l'offre se termine le [date]), accès limité (les X premiers clients, une liste d'attente, un bonus pour les acheteurs précoces), disponibilité saisonnière (un produit/service offert seulement à certaines périodes)."],
+    ["La règle de l'honnêteté","La rareté doit être réelle pour être durable : une « offre à durée limitée » qui se réinitialise chaque semaine détruit la confiance une fois que les clients le remarquent ; la fausse urgence est une tactique de manipulation courante et facile à repérer qui endommage la crédibilité d'une marque une fois découverte."]],
+   illus:"bars",barLabels:["Vitesse de Décision","Action Prise"],barTrad:[35,30],barDig:[80,75],barTradLbl:"Sans Urgence",barDigLbl:"Avec Urgence Réelle",
+   ex:"Pensez à un élément de rareté réel et honnête que vous pourriez ajouter à une prochaine offre (une vraie échéance, un lot réellement limité, un bonus pour les premiers acheteurs).",
+   quiz:[
+    {q:"Pourquoi la rareté motive-t-elle l'action ?",opts:["Les gens aiment attendre","La peur de rater quelque chose est souvent un motivateur plus fort que le désir de gagner","La rareté n'a aucun effet réel sur les décisions","Ça ne marche qu'en magasin, pas en ligne"],ans:1,fb:"L'aversion à la perte est souvent un moteur psychologique plus fort que le désir de gain."},
+    {q:"Lequel de ces éléments est un exemple de rareté réelle ?",opts:["Une offre « durée limitée » qui se réinitialise chaque semaine","Une vraie échéance qui se termine réellement à la date indiquée","Prétendre que quelque chose est limité sans vraie limite","Répéter « aujourd'hui seulement » indéfiniment"],ans:1,fb:"Une vraie échéance qui se termine réellement est de la rareté réelle."},
+    {q:"Que se passe-t-il quand les clients remarquent une fausse rareté ?",opts:["Rien, ça marche pareil de toute façon","La confiance est endommagée une fois la fausse urgence remarquée","Ils achètent quand même toujours immédiatement","Ça rend la marque plus premium"],ans:1,fb:"La confiance est durablement endommagée une fois qu'on découvre que c'était un mensonge."},
+    {q:"Lequel n'est PAS un type de rareté réelle ?",opts:["Une quantité de stock limitée","Une vraie échéance","Une bannière « se termine bientôt » permanente qui ne se termine jamais vraiment","Un bonus pour les premiers acheteurs"],ans:2,fb:"Une bannière permanente qui ne se termine jamais est une fausse urgence, pas de la vraie rareté."}],
+   close:{learned:"La rareté motive en exploitant l'aversion à la perte — la peur de rater quelque chose — mais elle doit être véritablement réelle pour fonctionner à long terme.",
+    mistake:"Utiliser des affirmations « durée limitée » fausses ou répétées, que les clients finissent par remarquer, endommageant la confiance envers la marque.",
+    tip:"Si vous utilisez une échéance, respectez-la — laissez l'offre vraiment se terminer, même si ça coûte quelques ventes tardives ; la constance protège les futures affirmations de rareté.",
+    assign:"Planifiez un vrai élément de rareté (une vraie échéance, une limite de quantité, ou un bonus pour les premiers) pour votre prochaine offre.",
+    dl:"Liste de vérification : Planification de Rareté Honnête",
+    checklist:["L'échéance/limite est-elle véritablement réelle ?","Sera-t-elle réellement appliquée ?","Est-elle communiquée clairement et honnêtement ?"],
+    ai:"Je prévois de vendre [produit/service]. Suggère 2 façons honnêtes et réalistes d'ajouter de la vraie rareté à cette offre."}},
+ en:{lede:"People want things more when they might lose the chance to get them — used honestly, scarcity is one of the fastest ways to turn 'maybe later' into 'yes, now.'",
+   secs:[["Why scarcity works","Loss aversion: the fear of missing out is often a stronger motivator than the desire to gain something; when a deadline or limited quantity is real, 'maybe later' becomes riskier than deciding now."],
+    ["Types of real scarcity","Limited quantity (only X left in stock), limited time (offer ends [date]), limited access (first X customers, a waitlist, a bonus for early buyers), seasonal availability (a product/service only offered at certain times)."],
+    ["The honesty rule","Scarcity must be real to be sustainable: a 'limited time offer' that resets every week destroys trust once customers notice; fake urgency is a common and easily-spotted manipulation tactic that damages a brand's credibility once discovered."]],
+   illus:"bars",barLabels:["Decision Speed","Action Taken"],barTrad:[35,30],barDig:[80,75],barTradLbl:"No Urgency",barDigLbl:"With Real Urgency",
+   ex:"Think of a real, honest scarcity element you could add to an upcoming offer (a real deadline, a genuinely limited batch, a first-come bonus for early buyers).",
+   quiz:[
+    {q:"Why does scarcity motivate action?",opts:["People love waiting","Fear of missing out is often a stronger motivator than the desire to gain","Scarcity has no real effect on decisions","It only works in stores, not online"],ans:1,fb:"Loss aversion is often a stronger psychological driver than desire for gain."},
+    {q:"Which is an example of real scarcity?",opts:["A 'limited time' offer that resets every week","A genuine deadline that actually ends on the stated date","Claiming something is limited with no real limit","Constantly repeating 'today only' forever"],ans:1,fb:"A genuine deadline that actually ends is real scarcity."},
+    {q:"What happens when customers notice fake scarcity?",opts:["Nothing, it works the same either way","Trust is damaged once the fake urgency is noticed","They always still buy immediately","It makes the brand look more premium"],ans:1,fb:"Trust is lastingly damaged once people discover it was a lie."},
+    {q:"Which is NOT a type of real scarcity?",opts:["Limited stock quantity","A genuine deadline","A permanently 'ending soon' banner that never actually ends","A first-come bonus for early buyers"],ans:2,fb:"A permanent banner that never ends is fake urgency, not real scarcity."}],
+   close:{learned:"Scarcity motivates by tapping into loss aversion — the fear of missing out — but it must be genuinely real to work long-term.",
+    mistake:"Using fake or repeating 'limited time' claims that customers eventually notice, damaging trust in the brand.",
+    tip:"If you use a deadline, honor it — let the offer actually end, even if it costs you a few late sales; consistency protects future scarcity claims.",
+    assign:"Plan one real scarcity element (a genuine deadline, quantity limit, or early-bird bonus) for your next offer.",
+    dl:"Checklist: Honest Scarcity Planning",
+    checklist:["Is the deadline/limit genuinely real?","Will it actually be enforced?","Is it communicated clearly and honestly?"],
+    ai:"I'm planning to sell [product/service]. Suggest 2 honest, realistic ways to add real scarcity to this offer."}}},
+
+5:{ht:{lede:"Moun gen plis chans fè konfyans e achte nan men yon moun ki sanble reyèlman konnen sa l ap fè — montre vrè ekspètiz ak kredibilite retire dout anvan menm li fòme.",
+   secs:[["Poukisa otorite mache","Nan yon sitiyasyon ki pa familye, moun chèche siyal ki montre yon moun konnen plis pase yo epi ka fè konfyans pou gide desizyon an; rakousi sa a sove yo de bezwen evalye chak detay yo menm."],
+    ["Kalite siyal otorite","Kalifikasyon oswa fòmasyon ki pètinan, ane vrè eksperyans, mansyone nan medya oswa laprès, logo kliyan/anplwayè ou te travay avèk yo, ekspètiz vizib (anseye, ekri, reponn kesyon piblikman), sètifikasyon espesifik nan domèn ou."],
+    ["Bati otorite san manti","Pataje vrè konesans piblikman (reponn kesyon komen, eksplike kijan bagay yo mache); kite vrè eksperyans pale pou tèt li olye w egzajere; yon ti biznis ka bati otorite atravè konsistans ak vrè ekspètiz avèk tan, pa jis kalifikasyon."]],
+   illus:"roles",roleCards:[["🎓","Kalifikasyon","Fòmasyon pètinan"],["📅","Ane Eksperyans","Vrè tan nan domèn nan"],["📰","Mansyone Medya","Laprès, atikèl"],["🤝","Logo Kliyan","Moun ou te travay avèk yo"],["✍️","Ekspètiz Piblik","Anseye, ekri"],["✅","Sètifikasyon","Espesifik nan domèn"]],
+   ex:"Fè yon lis 1 vrè siyal otorite ou deja genyen (eksperyans, fòmasyon, ansyen kliyan) ou pa kounye a montre okenn kote.",
+   quiz:[
+    {q:"Poukisa otorite enfliyanse desizyon achte?",opts:["Li pa fè sa, sèlman pri konte","Moun chèche gidans ki fè konfyans lè yo manke ekspètiz pou evalye tout bagay yo menm","Otorite konte sèlman pou doktè ak avoka","Li ranplase bezwen pou vrè ekspètiz"],ans:1,fb:"Otorite bay yon rakousi gidans ki fè konfyans lè moun manke ekspètiz."},
+    {q:"Kilès ki yon siyal otorite?",opts:["Yon imaj jenerik san kontèks","Ane vrè eksperyans pètinan","Yon sitasyon enspirasyon o aza","Yon foto selebrite ki pa gen rapò"],ans:1,fb:"Ane vrè eksperyans se yon bon siyal otorite."},
+    {q:"Ki bon fason pou bati otorite kòm yon ti biznis?",opts:["Egzajere kalifikasyon ou pa genyen","Pataje vrè konesans e kite vrè eksperyans pale pou tèt li","Kopye ekspètiz yon konkirans reklame","Inyore otorite paske li pa enpòtan pou ti biznis"],ans:1,fb:"Vrè konesans bati otorite ki dire pou yon ti biznis."},
+    {q:"Kilès ki PA yon vrè siyal otorite?",opts:["Yon sètifikasyon pètinan","Vrè ane eksperyans nan domèn nan","Yon kalifikasyon fabrike","Ekri/anseye piblikman sou ekspètiz ou"],ans:2,fb:"Yon kalifikasyon fabrike se pa yon vrè siyal otorite."}],
+   close:{learned:"Otorite konvenki lè li montre vrè ekspètiz ak kredibilite, bay moun yon rakousi ki fè konfyans lè yo pa ka evalye chak detay yo menm.",
+    mistake:"Egzajere oswa fabrike kalifikasyon — li mache pou yon ti tan si pèsonn pa remake, men li detwi konfyans ak kredibilite si yo dekouvri l.",
+    tip:"Pataje vrè ekspètiz piblikman e konsistan (reponn kesyon, eksplike travay ou) — otorite bati avèk tan, pa nan yon sèl kou.",
+    assign:"Chwazi 1 vrè siyal otorite ou genyen epi ajoute l yon kote vizib nan maketing ou semèn sa a.",
+    dl:"Fèy Travay: Envantè Siyal Otorite",
+    checklist:["Kalifikasyon pètinan montre?","Vrè eksperyans mansyone?","Nenpòt mansyone medya oswa logo kliyan enkli?"],
+    ai:"Men background mwen: [dekri eksperyans/kalifikasyon]. Sijere 3 fason onèt pou montre otorite nan maketing mwen."}},
+ fr:{lede:"Les gens sont plus enclins à faire confiance et à acheter auprès d'une personne qui semble vraiment savoir ce qu'elle fait — montrer une vraie expertise et crédibilité élimine le doute avant même qu'il ne se forme.",
+   secs:[["Pourquoi l'autorité fonctionne","Dans une situation inconnue, les gens cherchent des signaux montrant qu'une personne en sait plus qu'eux et peut être suivie en confiance ; ce raccourci leur évite d'avoir à évaluer chaque détail eux-mêmes."],
+    ["Types de signaux d'autorité","Diplômes ou formations pertinents, années d'expérience réelle, mentions dans les médias ou la presse, logos de clients/employeurs avec qui vous avez travaillé, expertise visible (enseigner, écrire, répondre publiquement aux questions), certifications spécifiques à votre domaine."],
+    ["Bâtir l'autorité sans mentir","Partagez de vraies connaissances publiquement (répondez aux questions courantes, expliquez comment les choses fonctionnent) ; laissez la vraie expérience parler d'elle-même plutôt que d'exagérer ; une petite entreprise peut bâtir de l'autorité par la constance et une vraie expertise dans le temps, pas seulement par des diplômes."]],
+   illus:"roles",roleCards:[["🎓","Diplômes","Formation pertinente"],["📅","Années d'Expérience","Vrai temps dans le domaine"],["📰","Mentions Médias","Presse, articles"],["🤝","Logos Clients","Avec qui vous avez travaillé"],["✍️","Expertise Publique","Enseigner, écrire"],["✅","Certifications","Spécifiques au domaine"]],
+   ex:"Listez 1 vrai signal d'autorité que vous avez déjà (expérience, formation, anciens clients) que vous ne mettez actuellement en valeur nulle part.",
+   quiz:[
+    {q:"Pourquoi l'autorité influence-t-elle les décisions d'achat ?",opts:["Ce n'est pas le cas, seul le prix compte","Les gens cherchent des conseils fiables quand ils manquent d'expertise pour tout évaluer eux-mêmes","L'autorité ne compte que pour les médecins et avocats","Ça remplace le besoin d'une vraie expertise"],ans:1,fb:"L'autorité offre un raccourci de confiance quand les gens manquent d'expertise."},
+    {q:"Lequel de ces éléments est un signal d'autorité ?",opts:["Une image générique sans contexte","Des années de vraie expérience pertinente","Une citation inspirante aléatoire","Une photo de célébrité sans rapport"],ans:1,fb:"Des années de vraie expérience sont un bon signal d'autorité."},
+    {q:"Quelle est la meilleure façon de bâtir l'autorité en tant que petite entreprise ?",opts:["Exagérer des diplômes que vous n'avez pas","Partager de vraies connaissances et laisser la vraie expérience parler d'elle-même","Copier l'expertise revendiquée d'un concurrent","Ignorer l'autorité, ça ne compte pas pour les petites entreprises"],ans:1,fb:"De vraies connaissances bâtissent une autorité durable pour une petite entreprise."},
+    {q:"Lequel n'est PAS un vrai signal d'autorité ?",opts:["Une certification pertinente","De vraies années d'expérience dans le domaine","Un diplôme fabriqué","Écrire/enseigner publiquement sur votre expertise"],ans:2,fb:"Un diplôme fabriqué n'est pas un vrai signal d'autorité."}],
+   close:{learned:"L'autorité persuade en montrant une vraie expertise et crédibilité, donnant aux gens un raccourci fiable quand ils ne peuvent pas tout évaluer eux-mêmes.",
+    mistake:"Exagérer ou fabriquer des diplômes — ça fonctionne brièvement si ce n'est pas remarqué, mais détruit la confiance et la crédibilité si c'est découvert.",
+    tip:"Partagez une vraie expertise publiquement et régulièrement (répondre aux questions, expliquer votre travail) — l'autorité se bâtit dans le temps, pas du jour au lendemain.",
+    assign:"Choisissez 1 vrai signal d'autorité que vous avez et ajoutez-le quelque part de visible dans votre marketing cette semaine.",
+    dl:"Fiche de travail : Inventaire des Signaux d'Autorité",
+    checklist:["Diplômes pertinents montrés ?","Vraie expérience mentionnée ?","Mentions médias ou logos clients inclus ?"],
+    ai:"Voici mon parcours : [décrire expérience/diplômes]. Suggère 3 façons honnêtes de montrer l'autorité dans mon marketing."}},
+ en:{lede:"People are more likely to trust and buy from someone who seems to genuinely know what they're doing — showing real expertise and credibility removes doubt before it even forms.",
+   secs:[["Why authority works","In an unfamiliar situation, people look for signals that someone knows more than they do and can be trusted to guide the decision; this shortcut saves them from having to evaluate every detail themselves."],
+    ["Types of authority signals","Relevant credentials or training, years of real experience, media mentions or press features, client/employer logos you've worked with, visible expertise (teaching, writing, answering questions publicly), certifications specific to your field."],
+    ["Building authority without faking it","Share genuine knowledge publicly (answer common questions, explain how things work); let real experience speak for itself rather than exaggerating; a small business can build authority through consistency and real expertise over time, not just credentials."]],
+   illus:"roles",roleCards:[["🎓","Credentials","Relevant training"],["📅","Years of Experience","Real time in the field"],["📰","Media Mentions","Press, articles"],["🤝","Client Logos","Who you've worked with"],["✍️","Public Expertise","Teaching, writing"],["✅","Certifications","Field-specific"]],
+   ex:"List 1 real authority signal you already have (experience, training, past clients) that you're not currently showcasing anywhere.",
+   quiz:[
+    {q:"Why does authority influence buying decisions?",opts:["It doesn't, only price matters","People look for trustworthy guidance when they lack the expertise to evaluate everything themselves","Authority only matters for doctors and lawyers","It replaces the need for real expertise"],ans:1,fb:"Authority offers a trustworthy shortcut when people lack expertise."},
+    {q:"Which is an authority signal?",opts:["A generic image with no context","Years of real, relevant experience","A random inspirational quote","An unrelated celebrity photo"],ans:1,fb:"Years of real experience is a strong authority signal."},
+    {q:"What's the best way to build authority as a small business?",opts:["Exaggerate credentials you don't have","Share genuine knowledge and let real experience speak for itself","Copy a competitor's claimed expertise","Ignore authority since it doesn't matter for small businesses"],ans:1,fb:"Genuine knowledge builds authority that lasts for a small business."},
+    {q:"Which is NOT a real authority signal?",opts:["A relevant certification","Real years of experience in the field","A fabricated credential","Public writing/teaching about your expertise"],ans:2,fb:"A fabricated credential is not a real authority signal."}],
+   close:{learned:"Authority persuades by showing real expertise and credibility, giving people a trustworthy shortcut when they can't evaluate every detail themselves.",
+    mistake:"Exaggerating or fabricating credentials — it works briefly if unnoticed, but destroys trust and credibility if discovered.",
+    tip:"Share genuine expertise publicly and consistently (answering questions, explaining your work) — authority builds over time, not overnight.",
+    assign:"Pick 1 real authority signal you have and add it somewhere visible in your marketing this week.",
+    dl:"Worksheet: Authority Signals Inventory",
+    checklist:["Relevant credentials shown?","Real experience mentioned?","Any media mentions or client logos included?"],
+    ai:"Here's my background: [describe experience/credentials]. Suggest 3 honest ways to show authority in my marketing."}}},
+
+6:{ht:{lede:"Lè w bay yon bagay itil anvan, moun santi yo natirèlman enkline pou bay yon bagay tounen — se youn nan prensip pèsyasyon ki pi dou e ki bati konfyans plis.",
+   secs:[["Kijan reprosite mache","Moun santi yon atiran natirèl pou remèt yon favè, menm yon ti favè; sa se pa manipilasyon lè premye kado a reyèlman itil e bay san okenn pyèj kache."],
+    ["Fason pou itilize reprosite nan maketing","Yon gid, lis verifikasyon, oswa echantiyon gratis ki reyèlman itil; vrè konsèy gratis bay piblikman (reponn kesyon, kontni itil) san okenn atant atache; yon ti bonis oswa ekstra enkli san moun mande l."],
+    ["Règ onètte a","Valè a dwe reyèl, se pa yon pyèj; si 'kado gratis' la san valè oswa premye entèraksyon an se jis yon riz pou pran enfòmasyon, sa domaje konfyans olye l bati l, e sa detwi tout objektif teknik la."]],
+   illus:"fbmap",fbRows:[["Ba valè gratis reyèl","Kliyan santi enkline natirèlman pou remèt favè a"]],fbFeat:"Ba",fbBen:"Rezilta",
+   ex:"Panse ak yon bagay reyèlman itil, gratis, ou ta ka bay yon posib kliyan anvan menm w mande yo achte (yon konsèy, yon ti gid, yon echantiyon).",
+   quiz:[
+    {q:"Poukisa reprosite mache kòm yon prensip pèsyasyon?",opts:["Moun pa santi okenn obligasyon apre yo resevwa yon bagay","Moun santi yo natirèlman enkline pou remèt yon favè, menm yon ti favè","Li mache sèlman ak kado ki chè","Li pa gen okenn baz sikolojik reyèl"],ans:1,fb:"Moun santi yon obligasyon natirèl pou remèt yon favè."},
+    {q:"Pou reprosite mache etikman, premye bagay yo bay la dwe...",opts:["Fo oswa san valè, jis pou deklanche santiman an","Reyèlman itil e bay san okenn pyèj kache","Osi chè posib","Yon bagay kliyan an pa janm reyèlman resevwa"],ans:1,fb:"Premye kado a dwe reyèlman itil pou teknik la mache san manti."},
+    {q:"Kilès ki yon bon egzanp reprosite nan maketing?",opts:["Pwomèt yon kado gratis ki aktyèlman san valè","Bay yon gid gratis ki reyèlman itil san okenn kondisyon kache","Kache yon kondisyon achte anndan yon òf 'gratis'","Sèlman itilize sa si w se yon gwo konpayi"],ans:1,fb:"Yon gid gratis ki reyèlman itil, san kondisyon kache, se bon egzanp."},
+    {q:"Kisa ki rive si 'kado gratis' la se yon riz pou bay yon bagay epi pran yon lòt?",opts:["Anyen, kliyan p ap remake","Sa domaje konfyans e detwi tout avantaj teknik la","Li toujou mache kanmenm","Se yon pwoblèm sèlman pou sèvis, pa pwodwi"],ans:1,fb:"Yon pyèj kache domaje konfyans e ranvèse tout objektif reprosite a."}],
+   close:{learned:"Reprosite mache paske moun santi yo natirèlman enkline pou remèt yon vrè favè — bay vrè valè anvan, san okenn pyèj kache.",
+    mistake:"Ofri yon kado 'gratis' ki aktyèlman yon riz oswa ranpli san valè, ki domaje konfyans olye l bati l.",
+    tip:"Bay pi bon ti konsèy ou gratis — sa bati plis konfyans pase yon bagay gratis ki ba valè jenerik.",
+    assign:"Kreye yon vrè bagay gratis ki itil (yon konsèy, lis verifikasyon, oswa echantiyon) pou ofri posib kliyan mwa sa a.",
+    dl:"Modèl: Planifikasyon Òf Valè Gratis",
+    checklist:["Bagay gratis la reyèlman itil?","Li bay san okenn pyèj kache?","Ou ta fyè bay li pi bon efò w?"],
+    ai:"Mwen vann [pwodwi/sèvis]. Sijere 2 bagay gratis ki reyèlman itil mwen ta ka ofri pou bati reprosite ak posib kliyan yo."}},
+ fr:{lede:"Quand vous donnez quelque chose d'utile en premier, les gens se sentent naturellement enclins à donner quelque chose en retour — c'est l'un des principes de persuasion les plus doux qui bâtit le plus de confiance.",
+   secs:[["Comment fonctionne la réciprocité","Les gens ressentent une envie naturelle de rendre une faveur, même petite ; ce n'est pas de la manipulation quand le premier cadeau est réellement utile et donné sans piège caché."],
+    ["Façons d'utiliser la réciprocité en marketing","Un guide, une liste de vérification, ou un échantillon gratuit réellement utile ; de vrais conseils gratuits donnés publiquement (répondre aux questions, contenu utile) sans aucune attente attachée ; un petit bonus ou extra inclus sans qu'on le demande."],
+    ["La règle de l'honnêteté","La valeur doit être réelle, pas un piège ; si le « cadeau gratuit » est sans valeur ou la première interaction n'est qu'une astuce pour extraire des informations, ça endommage la confiance au lieu de la bâtir, annulant tout l'intérêt de la technique."]],
+   illus:"fbmap",fbRows:[["Donner une vraie valeur gratuite","Le client se sent naturellement enclin à rendre la faveur"]],fbFeat:"Donner",fbBen:"Résultat",
+   ex:"Pensez à quelque chose de réellement utile et gratuit que vous pourriez donner à un client potentiel avant même de lui demander d'acheter (un conseil, un petit guide, un échantillon).",
+   quiz:[
+    {q:"Pourquoi la réciprocité fonctionne-t-elle comme principe de persuasion ?",opts:["Les gens ne ressentent aucune obligation après avoir reçu quelque chose","Les gens se sentent naturellement enclins à rendre une faveur, même petite","Ça ne fonctionne qu'avec des cadeaux chers","Ça n'a aucune base psychologique réelle"],ans:1,fb:"Les gens ressentent une obligation naturelle de rendre une faveur."},
+    {q:"Pour que la réciprocité fonctionne éthiquement, la première chose donnée doit être :",opts:["Fausse ou sans valeur, juste pour déclencher le sentiment","Réellement utile et donnée sans piège caché","Aussi chère que possible","Quelque chose que le client ne reçoit jamais vraiment"],ans:1,fb:"Le premier cadeau doit être réellement utile pour que la technique fonctionne honnêtement."},
+    {q:"Lequel est un bon exemple de réciprocité en marketing ?",opts:["Promettre un cadeau gratuit qui est en fait sans valeur","Donner un guide gratuit réellement utile sans condition cachée","Cacher une condition d'achat dans une offre « gratuite »","N'utiliser ça que si vous êtes une grande entreprise"],ans:1,fb:"Un guide gratuit réellement utile, sans condition cachée, est un bon exemple."},
+    {q:"Que se passe-t-il si le « cadeau gratuit » s'avère être un piège pour donner puis reprendre ?",opts:["Rien, les clients ne le remarqueront pas","Ça endommage la confiance et annule tout l'avantage de la technique","Ça fonctionne quand même toujours","C'est seulement un problème pour les services, pas les produits"],ans:1,fb:"Un piège caché endommage la confiance et annule tout l'objectif de la réciprocité."}],
+   close:{learned:"La réciprocité fonctionne parce que les gens se sentent naturellement enclins à rendre une vraie faveur — donnez une vraie valeur d'abord, sans piège caché.",
+    mistake:"Offrir un cadeau « gratuit » qui est en fait un piège ou un remplissage sans valeur, ce qui endommage la confiance au lieu de la bâtir.",
+    tip:"Donnez gratuitement votre meilleur petit conseil — ça bâtit bien plus de confiance qu'un cadeau générique de faible valeur.",
+    assign:"Créez un vrai élément gratuit et utile (un conseil, une liste de vérification, ou un échantillon) à offrir aux clients potentiels ce mois-ci.",
+    dl:"Modèle : Planificateur d'Offre de Valeur Gratuite",
+    checklist:["L'élément gratuit est-il réellement utile ?","Est-il donné sans piège caché ?","Seriez-vous fier d'y avoir mis votre meilleur effort ?"],
+    ai:"Je vends [produit/service]. Suggère 2 éléments gratuits réellement utiles que je pourrais offrir pour bâtir la réciprocité avec des clients potentiels."}},
+ en:{lede:"When you give something useful first, people naturally feel more inclined to give something back — this is one of the gentlest, most trust-building persuasion principles there is.",
+   secs:[["How reciprocity works","People feel a natural pull to return a favor, even a small one; this isn't manipulation when the first gift is genuinely useful and given without a hidden trap."],
+    ["Ways to use reciprocity in marketing","A genuinely useful free guide, checklist, or sample; free, real advice given publicly (answering questions, helpful content) with no expectation attached; a small bonus or extra included without being asked."],
+    ["The honesty rule","The value must be real, not a bait-and-switch; if the 'free gift' is worthless or the first interaction is just a trick to extract information, it damages trust instead of building it, undoing the whole point of the technique."]],
+   illus:"fbmap",fbRows:[["Give real free value","Customer feels naturally inclined to return the favor"]],fbFeat:"Give",fbBen:"Result",
+   ex:"Think of one genuinely useful, free thing you could give a potential customer before ever asking them to buy (a tip, a small guide, a sample).",
+   quiz:[
+    {q:"Why does reciprocity work as a persuasion principle?",opts:["People feel no obligation after receiving something","People naturally feel inclined to return a favor, even a small one","It only works with expensive gifts","It has no real psychological basis"],ans:1,fb:"People feel a natural obligation to return a favor."},
+    {q:"For reciprocity to work ethically, the first thing given must be:",opts:["Fake or worthless, just to trigger the feeling","Genuinely useful and given without a hidden trap","As expensive as possible","Something the customer never actually receives"],ans:1,fb:"The first gift must be genuinely useful for the technique to work honestly."},
+    {q:"Which is a good example of reciprocity in marketing?",opts:["Promising a free gift that's actually worthless","Giving a genuinely useful free guide with no strings attached","Hiding a purchase requirement inside a 'free' offer","Only using this if you're a large company"],ans:1,fb:"A genuinely useful free guide with no hidden strings is a good example."},
+    {q:"What happens if the 'free gift' turns out to be a bait-and-switch trick?",opts:["Nothing, customers won't notice","It damages trust and undoes the entire benefit of the technique","It always still works","It's only a problem for services, not products"],ans:1,fb:"A hidden trap damages trust and undoes the whole point of reciprocity."}],
+   close:{learned:"Reciprocity works because people naturally feel inclined to return a genuine favor — give real value first, without a hidden catch.",
+    mistake:"Offering a 'free' gift that's actually a bait-and-switch or worthless filler, which damages trust instead of building it.",
+    tip:"Give away your best small piece of advice for free — it builds far more trust than a generic, low-value freebie.",
+    assign:"Create one genuinely useful free item (a tip, checklist, or sample) to offer potential customers this month.",
+    dl:"Template: Free Value Offer Planner",
+    checklist:["Is the free item genuinely useful?","Is it given with no hidden catch?","Would you be proud to give it your best effort?"],
+    ai:"I sell [product/service]. Suggest 2 genuinely useful free items I could offer to build reciprocity with potential customers."}}},
+
+7:{ht:{lede:"Menm pri a ka santi chè oswa tankou yon bon dil, selon sèlman fason li prezante — sikoloji pri se sou ankadre yon vrè pri onètman e pèsyasivman.",
+   secs:[["Pri chame","Pri ki fini ak .99 oswa .97 pèsèpsyon kòm anpil pi bon mache pase nimewo won ki jis anwo a, menm si vrè diferans lan se kèk santim; se youn nan rezilta ki pi teste nan rechèch sou pri."],
+    ["Ankraj ak relativite","Montre yon pi wo pri 'orijinal' akote yon pri rabè fè rabè a santi pi gwo e pi reyèl; yon opsyon mwayen souvan sanble pi rezonab lè li mete akote yon opsyon premyòm, menm si kliyan an pa janm konsidere opsyon premyòm nan."],
+    ["Ankadre menm pri a yon lòt fason","Kase yon pri an pi piti inite (chak jou/semèn olye chak mwa/ane) ka fè menm total la santi pi abòdab, paske moun evalye ti chif yo mwens kritikman pase gwo chif yo."]],
+   illus:"fbmap",fbRows:[["$50 chak mwa","Se sèlman $1.67 chak jou"]],fbFeat:"Anvan Ankadraj",fbBen:"Apre Ankadraj",
+   ex:"Pran pri pwòp pwodwi/sèvis ou epi eseye ankadre l an yon pi piti inite tan (chak jou oswa chak itilizasyon). Èske li santi diferan?",
+   quiz:[
+    {q:"Poukisa pri ki fini ak .99 santi pi bon mache?",opts:["Yo toujou yon pi gwo rabè","Valè pèsi a bese menm si vrè diferans lan se jis santim","Kliyan toujou kalkile egzat diferans lan","Li pa gen okenn efè mezirab"],ans:1,fb:"Valè pèsi a bese menm si vrè diferans lan piti."},
+    {q:"Kisa ki montre yon pi wo pri 'orijinal' akote yon pri rabè fè?",opts:["Fè rabè a santi pi gwo e pi reyèl","Toujou konfonn kliyan","Pa gen okenn efè sou valè pèsi","Mache sèlman pou pwodwi liks"],ans:0,fb:"Sa se efè ankraj — konpare avèk yon pi wo pri fè rabè a santi pi gwo."},
+    {q:"Poukisa ankadre yon pri chak jou olye chak mwa souvan santi pi abòdab?",opts:["Total pri a aktyèlman diminye","Moun evalye ti chif yo mwens kritikman pase gwo chif yo","Se teknikman yon lòt pri","Li mache sèlman pou pwodwi dijital"],ans:1,fb:"Ti chif yo santi mwens riske menm si total la menm jan an."},
+    {q:"Teknik sikoloji pri yo se...",opts:["Toujou manipilasyon malonèt","Fason pou ankadre yon vrè pri onèt pi pèsyasivman","Legal sèlman pou gwo konpayi","San pètinans pou ti biznis"],ans:1,fb:"Se fason onèt pou ankadre yon vrè pri, pa manti sou pri a."}],
+   close:{learned:"Menm vrè pri a ka santi plis oswa mwens chè selon fason li ankadre — pri chame, ankraj, ak ankadraj inite se teknik ki pwouve.",
+    mistake:"Prezante yon pri san okenn ankadraj (yon senp nimewo san eksplikasyon) lè yon ti ankadraj ta ka fè l santi pi rezonab.",
+    tip:"Teste ankadre pi gwo pri ou chak jou oswa chak itilizasyon — sa souvan chanje jan li santi abòdab san chanje vrè nimewo a.",
+    assign:"Reekri pi gwo pri ou lè l itilize yon teknik ankadraj (pri chame, yon konparezon ankraj, oswa yon dekoupaj chak jou).",
+    dl:"Fèy Travay: Pratike Ankadraj Pri",
+    checklist:["Pri fini apwopriye (egzanp: pri chame)?","Yon ankraj/konparezon montre si pètinan?","Yon ankadraj pi piti inite konsidere?"],
+    ai:"Pri mwen se [$X pou Y]. Sijere 3 fason onèt pou ankadre pri sa a pou li santi pi abòdab san chanje vrè kantite a."}},
+ fr:{lede:"Le même prix exact peut sembler cher ou comme une bonne affaire, selon seulement comment il est présenté — la psychologie des prix consiste à cadrer un vrai prix honnêtement et de façon persuasive.",
+   secs:[["Le prix de charme","Les prix se terminant par .99 ou .97 sont perçus comme significativement moins chers que le nombre rond juste au-dessus, même si la vraie différence est de quelques centimes ; c'est l'une des découvertes les plus testées en recherche sur les prix."],
+    ["Ancrage et relativité","Montrer un prix « original » plus élevé à côté d'un prix réduit fait paraître la réduction plus grande et plus réelle ; une option intermédiaire semble souvent plus raisonnable placée à côté d'une option premium, même si le client ne considère jamais l'option premium."],
+    ["Recadrer le même prix","Décomposer un prix en plus petites unités (par jour/semaine au lieu de par mois/an) peut faire sentir le même total beaucoup plus abordable, car les gens évaluent les petits nombres moins sévèrement que les grands."]],
+   illus:"fbmap",fbRows:[["50 $ par mois","Ce n'est que 1,67 $ par jour"]],fbFeat:"Avant Cadrage",fbBen:"Après Cadrage",
+   ex:"Prenez le prix de votre propre produit/service et essayez de le recadrer en une plus petite unité de temps (par jour ou par utilisation). Est-ce que ça semble différent ?",
+   quiz:[
+    {q:"Pourquoi les prix se terminant par .99 semblent-ils moins chers ?",opts:["C'est toujours une bien plus grosse réduction","La valeur perçue baisse même si la vraie différence n'est que quelques centimes","Les clients calculent toujours la différence exacte","Ça n'a aucun effet mesurable"],ans:1,fb:"La valeur perçue baisse même si la vraie différence est minime."},
+    {q:"Que fait le fait de montrer un prix « original » plus élevé à côté d'un prix de vente ?",opts:["Fait paraître la réduction plus grande et plus réelle","Confond toujours les clients","N'a aucun effet sur la valeur perçue","Ne fonctionne que pour les produits de luxe"],ans:0,fb:"C'est l'effet d'ancrage — comparer à un prix plus élevé fait paraître la réduction plus grande."},
+    {q:"Pourquoi recadrer un prix par jour plutôt que par mois semble-t-il souvent plus abordable ?",opts:["Le prix total diminue réellement","Les gens évaluent les petits nombres moins sévèrement que les grands","C'est techniquement un prix différent","Ça ne fonctionne que pour les produits numériques"],ans:1,fb:"Les petits nombres semblent moins risqués même si le total est identique."},
+    {q:"Les techniques de psychologie des prix sont :",opts:["Toujours de la manipulation malhonnête","Des façons de cadrer un vrai prix honnête plus efficacement","Légales seulement pour les grandes entreprises","Sans pertinence pour les petites entreprises"],ans:1,fb:"Ce sont des façons honnêtes de cadrer un vrai prix, pas de mentir sur le prix."}],
+   close:{learned:"Le même prix réel peut sembler plus ou moins cher selon comment il est cadré — le prix de charme, l'ancrage, et le recadrage par unité sont des techniques prouvées.",
+    mistake:"Présenter un prix sans aucun cadrage (un simple nombre sans explication) alors qu'un petit recadrage pourrait le faire paraître bien plus raisonnable.",
+    tip:"Testez de recadrer votre prix principal par jour ou par utilisation — ça change souvent à quel point il semble abordable sans changer le vrai montant.",
+    assign:"Réécrivez votre prix principal en utilisant une technique de cadrage (prix de charme, comparaison d'ancrage, ou décomposition par jour).",
+    dl:"Fiche de travail : Pratique de Cadrage de Prix",
+    checklist:["Le prix se termine-t-il de façon appropriée (ex : prix de charme) ?","Un ancrage/comparaison est-il montré si pertinent ?","Un recadrage en plus petite unité a-t-il été envisagé ?"],
+    ai:"Mon prix est [X$ pour Y]. Suggère 3 façons honnêtes de recadrer ce prix pour qu'il semble plus abordable sans changer le montant réel."}},
+ en:{lede:"The exact same price can feel expensive or like a bargain, depending only on how it's presented — pricing psychology is about framing a real price honestly and persuasively.",
+   secs:[["Charm pricing","Prices ending in .99 or .97 are perceived as meaningfully cheaper than the rounded number just above, even though the real difference is a few cents; this is one of the most tested findings in pricing research."],
+    ["Anchoring and relativity","Showing a higher 'original' price next to a discounted one makes the discount feel bigger and more real; a mid-tier option often looks more reasonable when placed next to a premium tier, even if the customer never considers the premium one."],
+    ["Reframing the same price","Breaking a price into smaller units (per day/week instead of per month/year) can make the same total feel much more affordable, since people evaluate small numbers less critically than large ones."]],
+   illus:"fbmap",fbRows:[["$50 per month","It's just $1.67 per day"]],fbFeat:"Before Framing",fbBen:"After Framing",
+   ex:"Take your own product/service's price and try reframing it into a smaller time unit (per day or per use). Does it feel different?",
+   quiz:[
+    {q:"Why do prices ending in .99 feel cheaper?",opts:["They're always a much bigger discount","The perceived value drops even though the real difference is just cents","Customers always calculate the exact difference","It has no measurable effect"],ans:1,fb:"The perceived value drops even though the real difference is tiny."},
+    {q:"What does showing a higher 'original' price next to a sale price do?",opts:["Makes the discount feel bigger and more real","Always confuses customers","Has no effect on perceived value","Only works for luxury products"],ans:0,fb:"This is the anchoring effect — comparing to a higher price makes the discount feel bigger."},
+    {q:"Why does reframing a price per day instead of per month often feel more affordable?",opts:["The total price actually decreases","People evaluate small numbers less critically than large ones","It's technically a different price","It only works for digital products"],ans:1,fb:"Small numbers feel less risky even though the total is the same."},
+    {q:"Pricing psychology techniques are:",opts:["Always dishonest manipulation","Ways of framing a real, honest price more persuasively","Only legal for large companies","Irrelevant to small businesses"],ans:1,fb:"These are honest ways to frame a real price, not lying about the price."}],
+   close:{learned:"The same real price can feel more or less expensive depending on how it's framed — charm pricing, anchoring, and unit reframing are proven techniques.",
+    mistake:"Presenting a price with no framing at all (a flat, unexplained number) when a small reframe could make it feel far more reasonable.",
+    tip:"Test reframing your main price per day or per use — it often changes how affordable it feels without changing the real number.",
+    assign:"Rewrite your top price using one framing technique (charm pricing, an anchor comparison, or a per-day breakdown).",
+    dl:"Worksheet: Price Framing Practice",
+    checklist:["Price ends appropriately (e.g., charm pricing)?","An anchor/comparison shown if relevant?","A smaller-unit reframe considered?"],
+    ai:"My price is [$X for Y]. Suggest 3 honest ways to reframe this price to feel more affordable without changing the real amount."}}},
+
+8:{ht:{lede:"Koulè kreye yon enpresyon emosyonèl anvan menm pèsonn li yon sèl mo — chwazi koulè espre, olye pa aksidan, fòme jan mak ou santi nan premye demi segond lan.",
+   secs:[["Asosyasyon koulè komen","Ble: konfyans, kalm, pwofesyonalis (komen nan finans/teknoloji); Wouj: ijans, apeti, ekstazyon (komen nan manje/vant); Vèt: kwasans, sante, lajan/respekte anviwònman; Jòn: optimis, atansyon, chalè; Mov: liks, kreyativite, sajès; Nwa: premyòm, sofistikasyon, otorite."],
+    ["Koulè se kiltirèl e kontèkstyèl","Siyifikasyon yo chanje selon kilti ak endistri, e efè yon koulè depann tou de kijan li itilize (yon ti aksan wouj li pa menm efè ak yon paj antye wouj); sa yo se tandans komen, pa lwa inivèsèl, konsa teste ak vrè odyans ou konte plis pase nenpòt règ sèl."],
+    ["Itilize koulè espre","Chwazi yon oswa de prensipal koulè ki matche santiman ou vle kliyan santi, epi rete konsistan atravè platfòm ou yo; konsistans limenm bati rekonesans ak konfyans, pafwa plis pase chwa koulè espesifik la."]],
+   illus:"colors",colorSwatches:[["#3B6FE0","Konfyans"],["#E24C4C","Ijans"],["#2FA05A","Kwasans"],["#E0B23B","Optimis"],["#8B5CF6","Liks"],["#1B1F27","Premyòm"]],
+   ex:"Ki prensipal koulè idantite mak ou kounye a, epi èske asosyasyon komen li aktyèlman matche santiman ou vle kliyan santi?",
+   quiz:[
+    {q:"Ki koulè ki pi souvan asosye ak konfyans ak pwofesyonalis?",opts:["Wouj","Ble","Jòn","Nwa"],ans:1,fb:"Ble komenman asosye ak konfyans ak pwofesyonalis."},
+    {q:"Ki koulè komenman asosye ak ijans ak apeti, souvan itilize nan manje ak vant?",opts:["Vèt","Mov","Wouj","Ble"],ans:2,fb:"Wouj komenman asosye ak ijans ak apeti."},
+    {q:"Siyifikasyon koulè pi byen konprann kòm...",opts:["Lwa inivèsèl ki pa janm chanje","Tandans komen ki chanje selon kilti ak kontèks, ki vo tès ak vrè odyans ou","San pètinans pou maketing","Enpòtan sèlman pou gwo mak"],ans:1,fb:"Se tandans komen ki vo teste, pa lwa fiks pou tout moun."},
+    {q:"Kisa ki pi enpòtan pou bati rekonesans atravè koulè?",opts:["Itilize otan koulè posib","Chanje prensipal koulè ou souvan pou rete fre","Rete konsistan ak yon oswa de prensipal koulè atravè platfòm yo","Koulè pa afekte rekonesans ditou"],ans:2,fb:"Konsistans se sa ki bati rekonesans, plis pase chwa koulè espesifik la."}],
+   close:{learned:"Koulè kreye yon enpresyon emosyonèl imedyatman — asosyasyon komen egziste (ble=konfyans, wouj=ijans, elatriye) men konsistans konte otan ke chwa espesifik la.",
+    mistake:"Chwazi koulè o aza oswa chanje yo souvan, ki anpeche kliyan bati okenn rekonesans mak ou.",
+    tip:"Chwazi yon oswa de prensipal koulè ki matche santiman ou vle, epi itilize yo toupatou — konsistans bati konfyans avèk tan.",
+    assign:"Verifye prensipal koulè idantite mak ou kont santiman ou aktyèlman vle kliyan santi, epi note si li bezwen chanje.",
+    dl:"Referans: Fèy Referans Sikoloji Koulè",
+    checklist:["Prensipal koulè chwazi espre?","Konsistan atravè tout platfòm?","Matche santiman ou vle kreye a?"],
+    ai:"Biznis mwen se [dekri l] e mwen vle kliyan santi [santiman vle]. Sijere 2 koulè ki komenman matche santiman sa a e eksplike poukisa."}},
+ fr:{lede:"La couleur crée une impression émotionnelle avant même qu'on lise un seul mot — choisir les couleurs exprès, plutôt que par accident, façonne comment votre marque se ressent dans la première demi-seconde.",
+   secs:[["Associations de couleurs courantes","Bleu : confiance, calme, professionnalisme (courant en finance/tech) ; Rouge : urgence, appétit, excitation (courant en alimentation/ventes) ; Vert : croissance, santé, argent/écologie ; Jaune : optimisme, attention, chaleur ; Violet : luxe, créativité, sagesse ; Noir : premium, sophistication, autorité."],
+    ["La couleur est culturelle et contextuelle","Les significations changent selon la culture et l'industrie, et l'effet d'une couleur dépend aussi de comment elle est utilisée (un petit accent rouge se ressent différemment d'une page entièrement rouge) ; ce sont des tendances courantes, pas des lois universelles, donc tester avec votre vrai public compte plus que n'importe quelle règle unique."],
+    ["Utiliser la couleur exprès","Choisissez une ou deux couleurs principales qui correspondent au sentiment que vous voulez que les clients ressentent, et restez cohérent sur toutes vos plateformes ; la cohérence elle-même bâtit la reconnaissance et la confiance, parfois plus que le choix de couleur spécifique."]],
+   illus:"colors",colorSwatches:[["#3B6FE0","Confiance"],["#E24C4C","Urgence"],["#2FA05A","Croissance"],["#E0B23B","Optimisme"],["#8B5CF6","Luxe"],["#1B1F27","Premium"]],
+   ex:"Quelle est la couleur principale de votre image de marque actuelle, et son association courante correspond-elle réellement au sentiment que vous voulez que les clients ressentent ?",
+   quiz:[
+    {q:"Quelle couleur est le plus souvent associée à la confiance et au professionnalisme ?",opts:["Rouge","Bleu","Jaune","Noir"],ans:1,fb:"Le bleu est couramment associé à la confiance et au professionnalisme."},
+    {q:"Quelle couleur est couramment associée à l'urgence et l'appétit, souvent utilisée en alimentation et ventes ?",opts:["Vert","Violet","Rouge","Bleu"],ans:2,fb:"Le rouge est couramment associé à l'urgence et l'appétit."},
+    {q:"Les significations des couleurs se comprennent mieux comme :",opts:["Des lois universelles qui ne changent jamais","Des tendances courantes qui changent selon la culture et le contexte, à tester avec votre vrai public","Sans pertinence pour le marketing","Importantes seulement pour les grandes marques"],ans:1,fb:"Ce sont des tendances courantes à tester, pas des lois fixes pour tout le monde."},
+    {q:"Qu'est-ce qui compte le plus pour bâtir la reconnaissance par la couleur ?",opts:["Utiliser autant de couleurs que possible","Changer souvent votre couleur principale pour rester frais","Rester cohérent avec une ou deux couleurs principales sur toutes les plateformes","La couleur n'affecte pas du tout la reconnaissance"],ans:2,fb:"La cohérence est ce qui bâtit la reconnaissance, plus que le choix de couleur spécifique."}],
+   close:{learned:"La couleur crée une impression émotionnelle instantanément — des associations courantes existent (bleu=confiance, rouge=urgence, etc.) mais la cohérence compte autant que le choix spécifique.",
+    mistake:"Choisir des couleurs au hasard ou les changer souvent, ce qui empêche les clients de bâtir une reconnaissance de votre marque.",
+    tip:"Choisissez une ou deux couleurs principales qui correspondent au sentiment voulu, puis utilisez-les partout — la cohérence bâtit la confiance dans le temps.",
+    assign:"Vérifiez la couleur principale de votre image de marque actuelle par rapport au sentiment que vous voulez vraiment que les clients ressentent, et notez si elle doit changer.",
+    dl:"Référence : Antisèche de Psychologie des Couleurs",
+    checklist:["Couleur(s) principale(s) choisie(s) exprès ?","Cohérente sur toutes les plateformes ?","Correspond au sentiment que vous voulez créer ?"],
+    ai:"Mon entreprise est [décrire] et je veux que les clients se sentent [sentiment voulu]. Suggère 2 couleurs qui correspondent couramment à ce sentiment et explique pourquoi."}},
+ en:{lede:"Color creates an emotional impression before anyone reads a single word — choosing colors on purpose, instead of by accident, shapes how your brand feels in the first half-second.",
+   secs:[["Common color associations","Blue: trust, calm, professionalism (common in finance/tech); Red: urgency, appetite, excitement (common in food/sales); Green: growth, health, money/eco-friendliness; Yellow: optimism, attention, warmth; Purple: luxury, creativity, wisdom; Black: premium, sophistication, authority."],
+    ["Color is cultural and contextual","Meanings shift by culture and industry, and a color's effect also depends on how it's used (a small red accent reads differently than an entire red page); these are common tendencies, not universal laws, so testing with your real audience matters more than any single rule."],
+    ["Using color on purpose","Pick one or two main colors that match the feeling you want customers to have, and stay consistent across your platforms; consistency itself builds recognition and trust, sometimes more than the specific color choice."]],
+   illus:"colors",colorSwatches:[["#3B6FE0","Trust"],["#E24C4C","Urgency"],["#2FA05A","Growth"],["#E0B23B","Optimism"],["#8B5CF6","Luxury"],["#1B1F27","Premium"]],
+   ex:"What's the main color of your current branding, and does its common association actually match the feeling you want customers to have?",
+   quiz:[
+    {q:"Which color is most commonly associated with trust and professionalism?",opts:["Red","Blue","Yellow","Black"],ans:1,fb:"Blue is commonly associated with trust and professionalism."},
+    {q:"Which color is commonly associated with urgency and appetite, often used in food and sales?",opts:["Green","Purple","Red","Blue"],ans:2,fb:"Red is commonly associated with urgency and appetite."},
+    {q:"Color meanings are best understood as:",opts:["Universal laws that never change","Common tendencies that shift by culture and context, worth testing with your real audience","Irrelevant to marketing","Only relevant for large brands"],ans:1,fb:"These are common tendencies worth testing, not fixed laws for everyone."},
+    {q:"What matters most for building recognition through color?",opts:["Using as many colors as possible","Changing your main color often to stay fresh","Staying consistent with one or two main colors across platforms","Color doesn't affect recognition at all"],ans:2,fb:"Consistency is what builds recognition, more than the specific color choice."}],
+   close:{learned:"Color creates an emotional impression instantly — common associations exist (blue=trust, red=urgency, etc.) but consistency matters as much as the specific choice.",
+    mistake:"Picking colors randomly or changing them often, which prevents customers from building any recognition of your brand.",
+    tip:"Choose one or two main colors that match your desired feeling, then use them everywhere — consistency builds trust over time.",
+    assign:"Check your current branding's main color against the feeling you actually want customers to have, and note if it needs to change.",
+    dl:"Reference: Color Psychology Cheat Sheet",
+    checklist:["Main color(s) chosen on purpose?","Consistent across all platforms?","Matches the feeling you want to create?"],
+    ai:"My business is [describe] and I want customers to feel [desired feeling]. Suggest 2 colors that commonly match that feeling and explain why."}}}
+};
+
+/* ============ state ============ */
+const NL=8,KEY="jamezzi:digital-marketing-ai:module2-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD2_LESSON_SLUGS=["why-people-really-buy","building-trust","social-proof","scarcity","authority","reciprocity","pricing-psychology","color-psychology"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD2_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===2;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(n===1){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/what-is-digital-marketing";});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M2[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="flow3"){
+  let svg='<svg viewBox="0 0 660 170" style="width:100%;height:auto;max-width:660px;display:block;margin:0 auto">';
+  const w=180,gap=30,x0=(660-(w*3+gap*2))/2,y=20,h=90;
+  d.flowLabels.forEach((lbl,i)=>{
+   const x=x0+i*(w+gap);
+   svg+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="12" fill="var(--ink-600)" stroke="var(--brand)" stroke-width="1.5"/>';
+   svg+='<text x="'+(x+w/2)+'" y="'+(y+34)+'" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">'+lbl+'</text>';
+   svg+='<text x="'+(x+w/2)+'" y="'+(y+58)+'" text-anchor="middle" fill="var(--dim)" font-size="11.5">'+d.flowSub[i]+'</text>';
+   if(i<d.flowLabels.length-1){
+    const ax=x+w+6;
+    svg+='<text x="'+(ax+9)+'" y="'+(y+h/2+7)+'" text-anchor="middle" fill="var(--brand)" font-size="22">→</text>';
+   }
+  });
+  svg+="</svg>";return svg;
+ }
+ if(d.illus==="bars"){
+  const w=140,gap=60,x0=140,base=210;
+  let svg='<svg viewBox="0 0 660 260" style="width:100%;height:auto;max-width:660px;display:block;margin:0 auto">';
+  d.barLabels.forEach((lbl,i)=>{
+   const gx=x0+i*(w+gap+54);
+   const th=d.barTrad[i]*1.8,dh=d.barDig[i]*1.8;
+   svg+='<rect x="'+gx+'" y="'+(base-th)+'" width="46" height="'+th+'" fill="var(--edge2)" rx="4"/>';
+   svg+='<rect x="'+(gx+54)+'" y="'+(base-dh)+'" width="46" height="'+dh+'" fill="var(--brand)" rx="4"/>';
+   svg+='<text x="'+(gx+50)+'" y="'+(base+22)+'" text-anchor="middle" fill="var(--dim)" font-size="12">'+lbl+'</text>';
+  });
+  svg+='<rect x="150" y="234" width="14" height="14" fill="var(--edge2)"/><text x="170" y="246" fill="var(--dim)" font-size="12">'+d.barTradLbl+'</text>';
+  svg+='<rect x="330" y="234" width="14" height="14" fill="var(--brand)"/><text x="350" y="246" fill="var(--dim)" font-size="12">'+d.barDigLbl+'</text>';
+  svg+="</svg>";return svg;
+ }
+ if(d.illus==="fbmap"){
+  let h='<div style="max-width:660px;margin:0 auto">';
+  d.fbRows.forEach(r=>{
+   h+='<div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">'+
+    '<div style="flex:1;background:var(--ink-600);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:var(--mute);font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.fbFeat+'</div>'+r[0]+'</div>'+
+    '<div style="color:var(--brand);font-size:20px">→</div>'+
+    '<div style="flex:1;background:rgba(var(--brand-rgb),.14);border:1px solid var(--brand);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:var(--brand);font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.fbBen+'</div>'+r[1]+'</div>'+
+   '</div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="colors"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px">';
+  d.colorSwatches.forEach(c=>{
+   h+='<div style="text-align:center">'+
+    '<div style="width:64px;height:64px;border-radius:50%;background:'+c[0]+';margin:0 auto 10px;border:3px solid var(--ink-900);box-shadow:0 0 0 2px var(--edge2)"></div>'+
+    '<div style="font-weight:700;font-size:13px">'+c[1]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 2 · 2."+n;
+ $("topTitle").textContent=M2[lang][n-1];
+ document.title="Academy · "+M2[lang][n-1];
+ renderRail();
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 2 · 2.'+n+'</span><h2 class="labh2">'+M2[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M2[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+}
+
+function updateFinishBtn(){
+ const st=S.st[S.cur];const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 2?":S.lang==="fr"?"Voulez-vous recommencer le Module 2 ?":"Restart Module 2?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
