@@ -56,7 +56,7 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 .btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
 /* chips / meter */
 .items{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:default;font-size:14px;font-weight:600}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
 .chip.gone{display:none}
 .meter{height:22px;border-radius:8px;background:var(--ink-700);border:1px solid var(--edge2);overflow:hidden;margin-top:14px;max-width:420px}
 .meter>span{display:block;height:100%;width:0;background:var(--good);transition:width .4s}
@@ -159,21 +159,21 @@ const C={
    objs:["Peze bouton pouvwa a (kouri sekans lan)","Li tou lè 3 etap yo"],press:"Peze Bouton Pouvwa a 🔘",
    nodes:[["🔌","Verifikasyon","Aparèy tcheke si klavye, ekran, elatriye mache byen"],["💾","Chaje Sistèm Operasyon","Windows oswa macOS chaje nan memwa — pi long etap la"],["🔐","Ekran Koneksyon","Ou antre modpas ou pou rive nan Desktop la"]],
    welcome:"Ann wè sa ki rive anndan yon òdinatè lè ou limen l. Peze bouton an.",runFb:"Bèl! Ou wè 3 etap yo pase yonn apre lòt. Kounye a klike sou chak pou konprann sa k ap pase.",
-   nodeFb:["VERIFIKASYON: yon tès rapid pou konfime pati fizik yo mache.","CHAJE SISTÈM OPERASYON: sa pran pifò tan an — pa gen anyen ki kraze pandan sa.","EKRAN KONEKSYON: dènye etap la, ou antre modpas ou pou rive nan Desktop la."],
+   nodeFb:["VERIFIKASYON: yon ti pwogram ki rele 'firmware' (oswa BIOS) fè yon tès rapid pou konfime pati fizik yo mache — anvan menm Windows kòmanse chaje.","CHAJE SISTÈM OPERASYON: sa pran pifò tan an — pa gen anyen ki kraze pandan sa.","EKRAN KONEKSYON: dènye etap la, ou antre modpas ou pou rive nan Desktop la."],
    decoy:["😤","Peze Ankò?","Ou enpasyan pandan chajman an"],decoyFb:"Pa fè sa! Peze bouton pouvwa a plizyè fwa PANDAN chajman an ka enterompi pwosesis la epi kreye yon pwoblèm reyèl. Tann — chajman nòmal pran 10-30 segonn.",
    done:"Ou konnen kounye a: Verifikasyon, Chaje Sistèm Operasyon, Ekran Koneksyon — se sa k rive chak fwa ou limen yon òdinatè."},
  fr:{lead:"Quand vous appuyez sur le bouton d'alimentation, l'ordinateur passe par 3 étapes avant que vous puissiez l'utiliser. Appuyez sur le bouton et suivez le chemin.",
    objs:["Appuyer sur le bouton (lancer la séquence)","Lire les 3 étapes"],press:"Appuyer sur le Bouton 🔘",
    nodes:[["🔌","Vérification","L'appareil vérifie que le clavier, l'écran, etc. fonctionnent"],["💾","Chargement du Système","Windows ou macOS se charge en mémoire — l'étape la plus longue"],["🔐","Écran de Connexion","Vous entrez votre mot de passe pour accéder au Bureau"]],
    welcome:"Voyons ce qui se passe à l'intérieur d'un ordinateur quand vous l'allumez. Appuyez sur le bouton.",runFb:"Bien ! Les 3 étapes se déroulent l'une après l'autre. Cliquez maintenant sur chacune.",
-   nodeFb:["VÉRIFICATION : un test rapide pour confirmer que les pièces physiques fonctionnent.","CHARGEMENT DU SYSTÈME : ça prend le plus de temps — rien ne casse pendant ce temps.","ÉCRAN DE CONNEXION : dernière étape, vous entrez votre mot de passe pour accéder au Bureau."],
+   nodeFb:["VÉRIFICATION : un petit programme appelé « firmware » (ou BIOS) fait un test rapide pour confirmer que les pièces physiques fonctionnent — avant même que Windows commence à se charger.","CHARGEMENT DU SYSTÈME : ça prend le plus de temps — rien ne casse pendant ce temps.","ÉCRAN DE CONNEXION : dernière étape, vous entrez votre mot de passe pour accéder au Bureau."],
    decoy:["😤","Appuyer Encore ?","Vous êtes impatient pendant le chargement"],decoyFb:"Ne faites pas ça ! Appuyer sur le bouton plusieurs fois PENDANT le chargement peut interrompre le processus et créer un vrai problème. Attendez — le chargement normal prend 10-30 secondes.",
    done:"Vous savez maintenant : Vérification, Chargement du Système, Écran de Connexion — voilà ce qui arrive à chaque démarrage."},
  en:{lead:"When you press the power button, the computer goes through 3 steps before you can use it. Press the button and follow the path.",
    objs:["Press the power button (run the sequence)","Read all 3 steps"],press:"Press the Power Button 🔘",
    nodes:[["🔌","Checks","The device checks that keyboard, screen, etc. work"],["💾","OS Loads","Windows or macOS loads into memory — the longest step"],["🔐","Login Screen","You enter your password to reach the Desktop"]],
    welcome:"Let's see what happens inside a computer when you turn it on. Press the button.",runFb:"Nice! The 3 steps happen one after another. Now click each one.",
-   nodeFb:["CHECKS: a quick test confirming the physical parts work.","OS LOADS: this takes the most time — nothing is broken while this happens.","LOGIN SCREEN: the last step, you enter your password to reach the Desktop."],
+   nodeFb:["CHECKS: a small program called \"firmware\" (or BIOS) runs a quick test confirming the physical parts work — before Windows even starts loading.","OS LOADS: this takes the most time — nothing is broken while this happens.","LOGIN SCREEN: the last step, you enter your password to reach the Desktop."],
    decoy:["😤","Press Again?","You're impatient during loading"],decoyFb:"Don't! Pressing the power button repeatedly WHILE it's loading can interrupt the process and create a real problem. Wait — normal loading takes 10-30 seconds.",
    done:"Now you know: Checks, OS Loads, Login Screen — that's what happens every time you turn on a computer."}},
 /* ---- 2.2 Motherboard ---- */
@@ -264,7 +264,7 @@ const C={
    welcome:"Click \"Open a Tab\" several times to watch your RAM fill up.",
    done:"Now you understand: RAM is the temporary space that fills up during work, Storage is where SAVED files stay forever."}},
 /* ---- 2.5 Storage ---- */
-5:{ht:{lead:"Estokaj se kote fichye ou yo rete menm lè òdinatè a etenn. Gade foto a, epi reponn kesyon inite a.",
+5:{ht:{lead:"Estokaj se kote fichye ou yo rete menm lè òdinatè a etenn. Si estokaj ou prèske plen, òdinatè a ka vin pi lan, ou ka pa kapab enstale oswa mizajou aplikasyon, e ou ka pa kapab anrejistre nouvo fichye ditou. Gade foto a, epi reponn kesyon inite a.",
    objs:["Gade foto estokaj la","Reponn kòrèkteman sou inite kapasite"],
    photoCap:"SSD (Estokaj)",
    q:"1 TB (Teraoktè) = konbyen GB (Gigaoktè), apeprè?",
@@ -274,7 +274,7 @@ const C={
    okFb:"Egzat! 1 TB ≈ 1000 GB. SSD pi rapid pase yon HDD tradisyonèl pou pifò itilizasyon chak jou.",
    welcome:"Gade foto SSD a, epi reponn kesyon inite kapasite a anba a.",
    done:"Ou konnen kounye a: SSD pi rapid pase HDD, epi 1 TB ≈ 1000 GB — enpòtan pou li yon lis espesifikasyon kòrèkteman."},
- fr:{lead:"Le stockage est là où vos fichiers restent même quand l'ordinateur est éteint. Regardez la photo, puis répondez à la question sur les unités.",
+ fr:{lead:"Le stockage est là où vos fichiers restent même quand l'ordinateur est éteint. Si votre stockage est presque plein, l'ordinateur peut ralentir, vous pourriez ne plus pouvoir installer ou mettre à jour des applications, et vous pourriez ne plus pouvoir enregistrer de nouveaux fichiers du tout. Regardez la photo, puis répondez à la question sur les unités.",
    objs:["Regarder la photo du stockage","Répondre correctement sur les unités de capacité"],
    photoCap:"SSD (Stockage)",
    q:"1 To (Téraoctet) = combien de Go (Gigaoctets), environ ?",
@@ -284,7 +284,7 @@ const C={
    okFb:"Exact ! 1 To ≈ 1000 Go. Le SSD est plus rapide qu'un HDD traditionnel pour la plupart des usages quotidiens.",
    welcome:"Regardez la photo du SSD, puis répondez à la question sur les unités de capacité ci-dessous.",
    done:"Vous savez maintenant : le SSD est plus rapide que le HDD, et 1 To ≈ 1000 Go — important pour bien lire une liste de spécifications."},
- en:{lead:"Storage is where your files stay even when the computer is off. Look at the photo, then answer the units question.",
+ en:{lead:"Storage is where your files stay even when the computer is off. If your storage is nearly full, the computer can slow down, you may not be able to install or update apps, and you may not be able to save new files at all. Look at the photo, then answer the units question.",
    objs:["Look at the storage photo","Answer the capacity units question correctly"],
    photoCap:"SSD (Storage)",
    q:"1 TB (Terabyte) = how many GB (Gigabytes), approximately?",
@@ -297,7 +297,7 @@ const C={
 /* ---- 2.6 Graphics/screen/sound/camera/mic ---- */
 6:{ht:{lead:"Sa yo se pati ki fè w wè, tande, ak kominike ak òdinatè a. Klike sou chak pou idantifye yo.",
    objs:["Idantifye 4 konpozan yo","Konprann sa limyè kamera a vle di"],
-   parts:[["Ekran","Kote ou wè tout bagay — grafik la fè imaj la parèt"],["Ba Fò","Pou tande son — mizik, videyo, notifikasyon"],["Kamera","Pou apèl videyo ak foto — gen yon limyè ki montre l ap itilize"],["Mikwofòn","Pou lòt moun tande vwa ou pandan yon apèl"]],
+   parts:[["Ekran","Kote ou wè tout bagay — grafik la fè imaj la parèt. Pifò òdinatè gen 'grafik entegre' (ase pou travay debaz); kèk gen yon 'kat grafik separe' an plis pou jwèt oswa desen ki mande plis pouvwa."],["Ba Fò","Pou tande son — mizik, videyo, notifikasyon"],["Kamera","Pou apèl videyo ak foto — gen yon limyè ki montre l ap itilize"],["Mikwofòn","Pou lòt moun tande vwa ou pandan yon apèl"]],
    camOff:"Limyè a etenn — kamera a PA ap itilize kounye a.",camOn:"Limyè a limen — kamera a AP itilize/anrejistre kounye a. Klike ankò pou etenn.",
    camQ:"Ki sa limyè vèt kamera a vle di lè li limen?",
    camWrong:"Limyè vèt la pa vle di anyen enpòtan",camRight:"Li vle di kamera a ap itilize/anrejistre kounye a",
@@ -307,7 +307,7 @@ const C={
    done:"Ou idantifye tout 4 konpozan yo, epi ou konnen limyè kamera a se yon endikatè vi prive enpòtan."},
  fr:{lead:"Ce sont les pièces qui vous font voir, entendre, et communiquer avec l'ordinateur. Cliquez sur chacune pour l'identifier.",
    objs:["Identifier les 4 composants","Comprendre ce que signifie la lumière de la caméra"],
-   parts:[["Écran","Où vous voyez tout — les graphiques font apparaître l'image"],["Haut-parleur","Pour entendre le son — musique, vidéo, notifications"],["Caméra","Pour les appels vidéo et photos — une lumière montre qu'elle est utilisée"],["Microphone","Pour que les autres entendent votre voix pendant un appel"]],
+   parts:[["Écran","Où vous voyez tout — les graphiques font apparaître l'image. La plupart des ordinateurs ont des « graphiques intégrés » (suffisants pour un usage de base) ; certains ont une « carte graphique séparée » en plus pour les jeux ou le dessin qui demandent plus de puissance."],["Haut-parleur","Pour entendre le son — musique, vidéo, notifications"],["Caméra","Pour les appels vidéo et photos — une lumière montre qu'elle est utilisée"],["Microphone","Pour que les autres entendent votre voix pendant un appel"]],
    camOff:"La lumière est éteinte — la caméra N'est PAS utilisée en ce moment.",camOn:"La lumière est allumée — la caméra EST utilisée/enregistre en ce moment. Cliquez encore pour éteindre.",
    camQ:"Que signifie la lumière verte de la caméra quand elle est allumée ?",
    camWrong:"La lumière verte ne veut rien dire d'important",camRight:"Elle veut dire que la caméra est utilisée/enregistre en ce moment",
@@ -317,7 +317,7 @@ const C={
    done:"Vous avez identifié les 4 composants, et vous savez que la lumière de la caméra est un indicateur de vie privée important."},
  en:{lead:"These are the parts that let you see, hear, and communicate with the computer. Click each one to identify it.",
    objs:["Identify the 4 components","Understand what the camera light means"],
-   parts:[["Screen","Where you see everything — graphics make the image appear"],["Speaker","For hearing sound — music, video, notifications"],["Camera","For video calls and photos — a light shows it's in use"],["Microphone","So others hear your voice during a call"]],
+   parts:[["Screen","Where you see everything — graphics make the image appear. Most computers have 'integrated graphics' (enough for basic use); some have a separate 'graphics card' as well for gaming or design work that needs more power."],["Speaker","For hearing sound — music, video, notifications"],["Camera","For video calls and photos — a light shows it's in use"],["Microphone","So others hear your voice during a call"]],
    camOff:"The light is off — the camera is NOT in use right now.",camOn:"The light is on — the camera IS in use/recording right now. Click again to turn off.",
    camQ:"What does the camera's green light mean when it's on?",
    camWrong:"The green light doesn't mean anything important",camRight:"It means the camera is in use/recording right now",
@@ -389,7 +389,7 @@ const C={
    trapRow:"Koulè ki pi Popilè",trapFb:"Sa se PA yon kategori espesifikasyon reyèl! Koulè pa gen rapò ak pèfòmans oswa kapasite yon òdinatè — se yon pyèj. Kategori reyèl yo se bagay tankou pwosesè, RAM, estokaj, elatriye.",
    rowFb:"Byen — se yon kategori espesifikasyon reyèl.",
    welcome:"Klike 'Ouvri Info Sistèm', epi idantifye omwen 4 kategori — men fè atansyon, gen yon fo kategori ki tache nan lis la.",
-   done:"Misyon Modil 2 konplete! Ou konnen kounye a kijan pou li yon lis espesifikasyon debaz san bezwen yon analiz konplèks."},
+   done:"Misyon Modil 2 konplete! Ou konnen kounye a kijan pou li yon lis espesifikasyon debaz san bezwen yon analiz konplèks. Pou fini, panse: pou ki bagay ou itilize òdinatè ou pi plis — lekòl, biznis, oswa lwazi?"},
  fr:{lead:"Dernière leçon ! Ouvrez « Info Système » pour identifier les catégories de base d'un ordinateur, et complétez la mission du module.",
    objs:["Ouvrir Info Système","Identifier au moins 4 catégories de spécifications","Reconnaître la fausse catégorie"],
    openBtn:"Ouvrir Info Système",
@@ -397,7 +397,7 @@ const C={
    trapRow:"Couleur la Plus Populaire",trapFb:"Ce n'est PAS une vraie catégorie de spécification ! La couleur n'a aucun rapport avec la performance ou la capacité d'un ordinateur — c'est un piège. Les vraies catégories sont des choses comme le processeur, la RAM, le stockage, etc.",
    rowFb:"Bien — c'est une vraie catégorie de spécification.",
    welcome:"Cliquez « Ouvrir Info Système », puis identifiez au moins 4 catégories — mais attention, une fausse catégorie s'est glissée dans la liste.",
-   done:"Mission du Module 2 terminée ! Vous savez maintenant lire une liste de spécifications de base sans analyse complexe."},
+   done:"Mission du Module 2 terminée ! Vous savez maintenant lire une liste de spécifications de base sans analyse complexe. Pour finir, pensez : pour quoi utilisez-vous le plus votre ordinateur — l'école, le travail, ou les loisirs ?"},
  en:{lead:"Last lesson! Open \"System Info\" to identify a computer's basic categories, and complete the module mission.",
    objs:["Open System Info","Identify at least 4 spec categories","Recognize the fake category"],
    openBtn:"Open System Info",
@@ -405,7 +405,7 @@ const C={
    trapRow:"Most Popular Color",trapFb:"That is NOT a real spec category! Color has nothing to do with a computer's performance or capacity — it's a trap. Real categories are things like processor, RAM, storage, etc.",
    rowFb:"Good — that's a real spec category.",
    welcome:"Click \"Open System Info,\" then identify at least 4 categories — but watch out, a fake category snuck into the list.",
-   done:"Module 2 mission complete! Now you know how to read a basic specs list without needing complex analysis."}},
+   done:"Module 2 mission complete! Now you know how to read a basic specs list without needing complex analysis. To finish, think: what do you use your computer for most — school, work, or hobbies?"}},
 };
 
 /* ============ shared SVG / icons ============ */
