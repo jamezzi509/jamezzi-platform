@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 10 — Aparèy ak Enprime</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+.flow{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap}
+.node{flex:1;min-width:110px;border:1px solid var(--edge2);border-radius:14px;padding:16px;text-align:center;background:var(--ink-700);cursor:pointer;transition:.2s}
+.node.read{border-color:var(--good)}
+.node .ni{font-size:26px}.node .nt{font-weight:700;margin-top:8px;font-size:14px}.node .nd{font-size:12px;color:var(--mute);margin-top:4px}
+.arrow{color:var(--mute);font-size:24px}
+/* generic panel chrome */
+.panel{width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.ptb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.pbody{padding:16px 18px;background:var(--w-content);min-height:180px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .sub{font-size:12px;color:var(--w-t2)}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}
+.toggle{width:40px;height:22px;border-radius:12px;background:#c8c8c8;position:relative;cursor:pointer;flex:none;transition:.2s}
+.toggle.on{background:var(--w-accent)}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.toggle.on::after{left:20px}
+.selectbox{background:#fff;border:1px solid var(--w-stroke);border-radius:6px;padding:9px 12px;font-size:13.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 10 · 10.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 11 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 11 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 11 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M10={ht:["Pò ak Konektè","Kle USB ak Disk Ekstèn — Revizyon","Bluetooth","Kamera Wèb, Mikwofòn, ak Opalè","Enprimant: Sa Ki Rive Lè Ou Enprime","Enprime Yon Dokiman","Eskane Yon Dokiman","Lè Yon Aparèy Konekte Pa Mache","Misyon: Konplete Yon Travay Papye-a-Dijital"],
+ fr:["Ports et Connecteurs","Clés USB et Disques Externes — Révision","Bluetooth","Webcam, Microphone, et Haut-Parleurs","Imprimantes : Ce Qui Se Passe Quand Vous Imprimez","Imprimer un Document","Scanner un Document","Quand un Appareil Connecté Ne Fonctionne Pas","Mission : Compléter une Tâche Papier-vers-Numérique"],
+ en:["Ports and Connectors","USB Drives and External Drives Revisited","Bluetooth","Webcam, Microphone, and Speakers","Printers: What Happens When You Print","Print a Document","Scan a Document","When a Connected Device Does Not Work","Module Mission: Complete a Paper-to-Digital Task"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Chak pò gen yon fòm ak yon travay. Klike sou chak konektè pou aprann non li.",
+   objs:["Klike sou 5 kalite pò/konektè","Konprann menm fòm pa vle di menm fonksyon"],
+   ports:[["🔌","USB-A","Fòm rektangilè klasik — kle USB, souri, klavye"],["🔲","USB-C","Fòm ovalè revèsib — chaje, done, videyo selon kab la"],["🖥️","HDMI","Videyo ak son pou ekran/televizyon"],["🎧","Odyo (3.5mm)","Kònen/mikwofòn"],["💳","Kat SD","Estokaj pou aparèy foto"]],
+   trapQ:"Si de kab gen menm fòm (USB-C pa egzanp), èske yo fè EGZAKTMAN menm bagay?",
+   yes:"Wi, menm fòm vle di menm fonksyon",no:"Non, menm fòm ka gen fonksyon diferan",
+   yesFb:"Pa vre! Fòm USB-C la se yon fòm ki SEVI pou anpil travay diferan — kèk kab chaje sèlman, gen lòt ki transfè done, gen lòt ki fè videyo tou. Fòm nan pa di ou tout kapasite kab la.",
+   noFb:"Egzat! Fòm konektè a se PA tout espesifikasyon an — de kab USB-C ka fè bagay konplètman diferan.",
+   welcome:"Klike sou chak pò pou aprann non li.",
+   done:"Ou konnen kounye a 5 kalite pò debaz, epi menm fòm pa vle di menm fonksyon."},
+ fr:{lead:"Chaque port a une forme et un travail. Cliquez sur chaque connecteur pour apprendre son nom.",
+   objs:["Cliquer sur 5 types de ports/connecteurs","Comprendre que même forme ne veut pas dire même fonction"],
+   ports:[["🔌","USB-A","Forme rectangulaire classique — clé USB, souris, clavier"],["🔲","USB-C","Forme ovale réversible — charge, données, vidéo selon le câble"],["🖥️","HDMI","Vidéo et son pour écran/téléviseur"],["🎧","Audio (3.5mm)","Écouteurs/microphone"],["💳","Carte SD","Stockage pour appareils photo"]],
+   trapQ:"Si deux câbles ont la même forme (USB-C par exemple), font-ils EXACTEMENT la même chose ?",
+   yes:"Oui, même forme veut dire même fonction",no:"Non, même forme peut avoir des fonctions différentes",
+   yesFb:"Pas vrai ! La forme USB-C est une forme UTILISÉE pour beaucoup de travaux différents — certains câbles chargent seulement, d'autres transfèrent des données, d'autres font aussi de la vidéo. La forme ne vous dit pas toute la capacité du câble.",
+   noFb:"Exact ! La forme du connecteur n'est PAS toute la spécification — deux câbles USB-C peuvent faire des choses complètement différentes.",
+   welcome:"Cliquez sur chaque port pour apprendre son nom.",
+   done:"Vous connaissez maintenant 5 types de ports de base, et que même forme ne veut pas dire même fonction."},
+ en:{lead:"Every port has a shape and a job. Click each connector to learn its name.",
+   objs:["Click 5 types of ports/connectors","Understand same shape doesn't mean same function"],
+   ports:[["🔌","USB-A","Classic rectangular shape — USB drive, mouse, keyboard"],["🔲","USB-C","Reversible oval shape — charging, data, or video depending on the cable"],["🖥️","HDMI","Video and audio for a screen/TV"],["🎧","Audio (3.5mm)","Headphones/microphone"],["💳","SD Card","Storage for camera devices"]],
+   trapQ:"If two cables have the same shape (USB-C for example), do they do EXACTLY the same thing?",
+   yes:"Yes, same shape means same function",no:"No, same shape can have different functions",
+   yesFb:"Not true! The USB-C shape is used for many different jobs — some cables only charge, others transfer data, others also do video. The shape doesn't tell you the cable's full capability.",
+   noFb:"Exactly! The connector's shape is NOT the whole specification — two USB-C cables can do completely different things.",
+   welcome:"Click each port to learn its name.",
+   done:"Now you know 5 basic port types, and that same shape doesn't mean same function."}},
+2:{ht:{lead:"Kle USB ak disk ekstèn itil pou estokaj, backup, ak transfè. Toujou 'Ejekte' anvan ou retire l.",
+   objs:["Konekte epi kopye yon fichye sou kle a","Rekonèt danje retire kle a san ejekte"],
+   connectBtn:"Konekte Kle USB",copyBtn:"Kopye Fichye sou Kle a",ejectBtn:"Ejekte",pullBtn:"Rale Kle a Soti (San Ejekte)",
+   connectFb:"Kle a parèt kounye a nan File Explorer.",copyFb:"Fichye a kopye sou kle a.",
+   trapQ:"Ou fin kopye yon fichye sou kle USB. Ou ka rale l soti nan pò a imedyatman san 'Ejekte'?",
+   trapWrong:"Wi, pa gen pwoblèm",trapRight:"Non, toujou 'Ejekte' anvan ou retire l pou evite domaje done",
+   trapWrongFb:"Danjere! Si done toujou ap ekri sou kle a lè ou rale l, fichye ka domaje oswa pèdi. Toujou tann 'Ejekte' fini anvan.",
+   trapRightFb:"Egzat! 'Ejekte' asire tout ekriti fini anvan ou retire kle a — sa evite domaje done.",
+   welcome:"Klike 'Konekte Kle USB', apre 'Kopye Fichye', apre reponn kesyon an sou ejekte.",
+   done:"Ou konnen kounye a kijan pou konekte ak kopye sou yon kle USB, epi poukisa toujou ejekte anvan retire."},
+ fr:{lead:"Les clés USB et disques externes servent au stockage, à la sauvegarde, et au transfert. Éjectez toujours avant de retirer.",
+   objs:["Connecter et copier un fichier sur la clé","Reconnaître le danger de retirer la clé sans éjecter"],
+   connectBtn:"Connecter la Clé USB",copyBtn:"Copier un Fichier sur la Clé",ejectBtn:"Éjecter",pullBtn:"Retirer la Clé (Sans Éjecter)",
+   connectFb:"La clé apparaît maintenant dans l'Explorateur de Fichiers.",copyFb:"Le fichier est copié sur la clé.",
+   trapQ:"Vous venez de copier un fichier sur une clé USB. Pouvez-vous la retirer du port immédiatement sans « Éjecter » ?",
+   trapWrong:"Oui, pas de problème",trapRight:"Non, toujours « Éjecter » avant de la retirer pour éviter d'endommager les données",
+   trapWrongFb:"Dangereux ! Si des données sont encore en train de s'écrire sur la clé quand vous la retirez, les fichiers peuvent être endommagés ou perdus. Attendez toujours que « Éjecter » soit terminé avant.",
+   trapRightFb:"Exact ! « Éjecter » assure que toute écriture est terminée avant de retirer la clé — cela évite d'endommager les données.",
+   welcome:"Cliquez « Connecter la Clé USB », puis « Copier un Fichier », puis répondez à la question sur l'éjection.",
+   done:"Vous savez maintenant connecter et copier sur une clé USB, et pourquoi toujours éjecter avant de retirer."},
+ en:{lead:"USB drives and external drives are useful for storage, backup, and transfer. Always 'Eject' before removing.",
+   objs:["Connect and copy a file to the drive","Recognize the danger of removing the drive without ejecting"],
+   connectBtn:"Connect USB Drive",copyBtn:"Copy File to Drive",ejectBtn:"Eject",pullBtn:"Pull Drive Out (Without Ejecting)",
+   connectFb:"The drive now appears in File Explorer.",copyFb:"The file is copied to the drive.",
+   trapQ:"You just copied a file to a USB drive. Can you pull it out of the port right away without 'Eject'?",
+   trapWrong:"Yes, no problem",trapRight:"No, always 'Eject' before removing it to avoid damaging data",
+   trapWrongFb:"Risky! If data is still being written to the drive when you pull it out, files can be damaged or lost. Always wait for 'Eject' to finish first.",
+   trapRightFb:"Exactly! 'Eject' makes sure all writing is finished before you remove the drive — this avoids data damage.",
+   welcome:"Click 'Connect USB Drive,' then 'Copy File,' then answer the question about ejecting.",
+   done:"Now you know how to connect and copy to a USB drive, and why to always eject before removing."}},
+3:{ht:{lead:"Bluetooth konekte aparèy san fil — kònen, souri, elatriye. Fè atansyon ak aparèy ou pa rekonèt.",
+   objs:["Dekouvri epi konekte yon aparèy Bluetooth","Rekonèt danje konekte ak yon aparèy ou pa rekonèt"],
+   discoverBtn:"Dekouvri Aparèy",devices:["Kònen JBL","???-Aparèy-Enkoni-4F2A"],
+   discoverFb:"Rechèch la jwenn 2 aparèy toupre.",
+   pairGoodFb:"Ou konekte ak 'Kònen JBL' — yon aparèy ou rekonèt.",
+   trapQ:"Ou wè yon aparèy Bluetooth ki rele '???-Aparèy-Enkoni-4F2A' toupre. Ou ta dwe konekte avè l?",
+   trapWrong:"Wi, eseye l pou wè sa li ye",trapRight:"Non, pa konekte ak yon aparèy ou pa rekonèt",
+   trapWrongFb:"Danjere! Konekte ak yon aparèy ou pa rekonèt ka ekspoze ou a risk sekirite. Sèlman konekte ak aparèy ou konnen ki genyen l.",
+   trapRightFb:"Egzat! Toujou verifye non aparèy la ak si ou rekonèt li anvan ou konekte pa Bluetooth.",
+   welcome:"Klike 'Dekouvri Aparèy', apre chwazi 'Kònen JBL' pou konekte.",
+   done:"Ou konnen kounye a kijan pou konekte yon aparèy Bluetooth, epi pou pa konekte ak aparèy ou pa rekonèt."},
+ fr:{lead:"Le Bluetooth connecte des appareils sans fil — écouteurs, souris, etc. Attention aux appareils que vous ne reconnaissez pas.",
+   objs:["Découvrir et connecter un appareil Bluetooth","Reconnaître le danger de se connecter à un appareil inconnu"],
+   discoverBtn:"Découvrir des Appareils",devices:["Écouteurs JBL","???-Appareil-Inconnu-4F2A"],
+   discoverFb:"La recherche trouve 2 appareils à proximité.",
+   pairGoodFb:"Vous êtes connecté à « Écouteurs JBL » — un appareil que vous reconnaissez.",
+   trapQ:"Vous voyez un appareil Bluetooth nommé « ???-Appareil-Inconnu-4F2A » à proximité. Devriez-vous vous y connecter ?",
+   trapWrong:"Oui, essayez pour voir ce que c'est",trapRight:"Non, ne vous connectez pas à un appareil que vous ne reconnaissez pas",
+   trapWrongFb:"Dangereux ! Se connecter à un appareil inconnu peut vous exposer à des risques de sécurité. Connectez-vous seulement aux appareils que vous connaissez.",
+   trapRightFb:"Exact ! Vérifiez toujours le nom de l'appareil et si vous le reconnaissez avant de vous connecter par Bluetooth.",
+   welcome:"Cliquez « Découvrir des Appareils », puis choisissez « Écouteurs JBL » pour vous connecter.",
+   done:"Vous savez maintenant comment connecter un appareil Bluetooth, et à ne pas vous connecter à des appareils inconnus."},
+ en:{lead:"Bluetooth connects devices wirelessly — headphones, mouse, etc. Watch out for devices you don't recognize.",
+   objs:["Discover and connect a Bluetooth device","Recognize the danger of connecting to an unrecognized device"],
+   discoverBtn:"Discover Devices",devices:["JBL Headphones","???-Unknown-Device-4F2A"],
+   discoverFb:"The search finds 2 nearby devices.",
+   pairGoodFb:"You're connected to 'JBL Headphones' — a device you recognize.",
+   trapQ:"You see a Bluetooth device named '???-Unknown-Device-4F2A' nearby. Should you connect to it?",
+   trapWrong:"Yes, try it to see what it is",trapRight:"No, don't connect to a device you don't recognize",
+   trapWrongFb:"Risky! Connecting to an unknown device can expose you to security risks. Only connect to devices you know.",
+   trapRightFb:"Exactly! Always check the device's name and whether you recognize it before connecting via Bluetooth.",
+   welcome:"Click 'Discover Devices,' then choose 'JBL Headphones' to connect.",
+   done:"Now you know how to connect a Bluetooth device, and not to connect to devices you don't recognize."}},
+4:{ht:{lead:"Chwazi bon aparèy kamera/mikwofòn/opalè enpòtan pou lòt moun tande/wè ou byen. Teste anvan yon apèl.",
+   objs:["Teste kamera ak mikwofòn ou","Rekonèt lè yon move aparèy chwazi se pwoblèm nan"],
+   camSel:"Kamera: Kamera Entegre",micSel:"Mikwofòn: Kònen Bluetooth",testBtn:"Teste",
+   testFb:"Ou teste kamera ak mikwofòn ou — toude mache byen.",
+   trapQ:"Moun nan apèl la pa tande ou byen. Ki premye bagay ou ta dwe tcheke?",
+   trapWrong:"Rekòmanse tout òdinatè a imedyatman",trapRight:"Verifye ke bon mikwofòn nan chwazi (pa yon lòt aparèy pa aksidan)",
+   trapWrongFb:"Pa premye etap la! Rekòmanse tout òdinatè a se yon gwo etap — tcheke abò si se pa senpleman move mikwofòn ki chwazi.",
+   trapRightFb:"Egzat! Souvan pwoblèm son se paske yon lòt aparèy (tankou mikwofòn entegre olye kònen Bluetooth) ki chwazi pa aksidan.",
+   welcome:"Klike 'Teste' pou verifye kamera ak mikwofòn ou.",
+   done:"Ou konnen kounye a pou teste aparèy ou anvan yon apèl, epi tcheke bon aparèy chwazi anvan lòt solisyon."},
+ fr:{lead:"Choisir le bon appareil caméra/microphone/haut-parleurs est important pour que les autres vous entendent/voient bien. Testez avant un appel.",
+   objs:["Tester votre caméra et microphone","Reconnaître qu'un mauvais appareil sélectionné peut être le problème"],
+   camSel:"Caméra : Caméra Intégrée",micSel:"Microphone : Écouteurs Bluetooth",testBtn:"Tester",
+   testFb:"Vous testez votre caméra et microphone — les deux fonctionnent bien.",
+   trapQ:"La personne dans l'appel ne vous entend pas bien. Quelle est la première chose à vérifier ?",
+   trapWrong:"Redémarrer tout l'ordinateur immédiatement",trapRight:"Vérifier que le bon microphone est sélectionné (pas un autre appareil par accident)",
+   trapWrongFb:"Pas la première étape ! Redémarrer tout l'ordinateur est une grosse étape — vérifiez d'abord si ce n'est pas simplement le mauvais microphone qui est sélectionné.",
+   trapRightFb:"Exact ! Souvent un problème de son vient du fait qu'un autre appareil (comme le microphone intégré au lieu des écouteurs Bluetooth) est sélectionné par accident.",
+   welcome:"Cliquez « Tester » pour vérifier votre caméra et microphone.",
+   done:"Vous savez maintenant tester vos appareils avant un appel, et vérifier le bon appareil sélectionné avant d'autres solutions."},
+ en:{lead:"Choosing the right camera/microphone/speaker device matters so others hear/see you well. Test before a call.",
+   objs:["Test your camera and microphone","Recognize a wrong device selection can be the problem"],
+   camSel:"Camera: Built-in Camera",micSel:"Microphone: Bluetooth Headphones",testBtn:"Test",
+   testFb:"You test your camera and microphone — both work well.",
+   trapQ:"The person on the call can't hear you well. What's the first thing to check?",
+   trapWrong:"Restart the whole computer right away",trapRight:"Check that the right microphone is selected (not another device by accident)",
+   trapWrongFb:"Not the first step! Restarting the whole computer is a big step — check first whether it's simply the wrong microphone selected.",
+   trapRightFb:"Exactly! Often a sound problem happens because a different device (like the built-in mic instead of Bluetooth headphones) is selected by accident.",
+   welcome:"Click 'Test' to check your camera and microphone.",
+   done:"Now you know to test your devices before a call, and to check the right device is selected before other fixes."}},
+5:{ht:{lead:"Lè ou enprime, plizyè etap rive youn apre lòt: Òdinatè → Driver → Enprimant → Papye/Lank → Fil Datant. Klike sou chak etap.",
+   objs:["Klike sou 5 etap nan pwosesis enprime a","Rekonèt yon travay 'blocked' nan fil la pa vle di enprimant kraze"],
+   steps:[["💻","Òdinatè","Ou klike 'Enprime'"],["⚙️","Driver/Sèvis","Lojisyèl ki tradwi kòmand lan pou enprimant an"],["🖨️","Enprimant","Resevwa done a"],["📄","Papye/Lank","Resous fizik ki bezwen"],["📋","Fil Datant","Lis travay k ap tann si gen plizyè"]],
+   trapQ:"Yon travay enprime rete 'ap tann' nan fil la pou 2 minit. Sa vle di enprimant an kraze definitivman?",
+   trapWrong:"Wi, li kraze, chanje l",trapRight:"Non, tcheke fil datant lan dabò — ka gen yon lòt travay ki bloke l",
+   trapWrongFb:"Twòp vit! Yon travay ki tann nan fil la pa vle di enprimant an kraze — tcheke fil la dabò pou wè si gen yon lòt travay ki bloke.",
+   trapRightFb:"Egzat! Fil datant lan (queue) ka bloke pou anpil rezon senp — tcheke la anvan ou konkli enprimant an kraze.",
+   welcome:"Klike sou chak etap nan pwosesis enprime a.",
+   done:"Ou konnen kounye a etap yo lè ou enprime, epi pou tcheke fil datant anvan ou panse enprimant an kraze."},
+ fr:{lead:"Quand vous imprimez, plusieurs étapes se suivent : Ordinateur → Pilote → Imprimante → Papier/Encre → File d'Attente. Cliquez sur chaque étape.",
+   objs:["Cliquer sur les 5 étapes du processus d'impression","Reconnaître qu'un travail bloqué dans la file n'est pas forcément une imprimante cassée"],
+   steps:[["💻","Ordinateur","Vous cliquez « Imprimer »"],["⚙️","Pilote/Service","Logiciel qui traduit la commande pour l'imprimante"],["🖨️","Imprimante","Reçoit les données"],["📄","Papier/Encre","Ressource physique nécessaire"],["📋","File d'Attente","Liste des travaux en attente s'il y en a plusieurs"]],
+   trapQ:"Un travail d'impression reste « en attente » dans la file pendant 2 minutes. Cela veut-il dire que l'imprimante est définitivement cassée ?",
+   trapWrong:"Oui, elle est cassée, remplacez-la",trapRight:"Non, vérifiez d'abord la file d'attente — un autre travail pourrait la bloquer",
+   trapWrongFb:"Trop vite ! Un travail qui attend dans la file ne veut pas dire que l'imprimante est cassée — vérifiez d'abord la file pour voir si un autre travail la bloque.",
+   trapRightFb:"Exact ! La file d'attente peut se bloquer pour beaucoup de raisons simples — vérifiez-la avant de conclure que l'imprimante est cassée.",
+   welcome:"Cliquez sur chaque étape du processus d'impression.",
+   done:"Vous connaissez maintenant les étapes de l'impression, et à vérifier la file d'attente avant de penser que l'imprimante est cassée."},
+ en:{lead:"When you print, several steps happen one after another: Computer → Driver → Printer → Paper/Ink → Queue. Click each step.",
+   objs:["Click 5 steps in the printing process","Recognize a stuck queue job doesn't mean the printer is broken"],
+   steps:[["💻","Computer","You click 'Print'"],["⚙️","Driver/Service","Software that translates the command for the printer"],["🖨️","Printer","Receives the data"],["📄","Paper/Ink","Physical resource needed"],["📋","Queue","List of waiting jobs if there are several"]],
+   trapQ:"A print job stays 'waiting' in the queue for 2 minutes. Does that mean the printer is definitely broken?",
+   trapWrong:"Yes, it's broken, replace it",trapRight:"No, check the queue first — another job might be blocking it",
+   trapWrongFb:"Too fast! A job waiting in the queue doesn't mean the printer is broken — check the queue first to see if another job is blocking it.",
+   trapRightFb:"Exactly! The queue can get stuck for many simple reasons — check it before concluding the printer is broken.",
+   welcome:"Click each step in the printing process.",
+   done:"Now you know the steps when printing, and to check the queue before assuming the printer is broken."}},
+6:{ht:{lead:"Anvan ou enprime, gade apèsi a, chwazi enprimant, paj, kopi, koulè, ak oryantasyon. Konfigire yon travay enprime.",
+   objs:["Konfigire 4 paramèt enprime","Rekonèt danje enprime anpil kopi san apèsi"],
+   printerLbl:"Enprimant: HP LaserJet",pagesLbl:"Paj: Tout",copiesLbl:"Kopi: 1",colorLbl:"Koulè: Nwa ak Blan",
+   previewBtn:"Gade Apèsi",printBtn:"Enprime 10 Kopi San Apèsi",
+   previewFb:"Ou gade apèsi a — tout parèt kòrèk anvan ou enprime.",
+   trapQ:"Ou vle enprime 10 kopi yon dokiman san gade apèsi anvan. Sa ka danjere?",
+   trapWrong:"Non, pa gen risk",trapRight:"Wi, si gen yon erè nan dokiman an, ou ka gaspiye 10 fèy papye",
+   trapWrongFb:"Pa vre! San apèsi, si gen yon erè (paj vid, tèks mal fòmate), ou ka enprime 10 kopi move — gaspiye papye ak lank.",
+   trapRightFb:"Egzat! Toujou gade apèsi a anvan ou enprime plizyè kopi pou evite gaspiyay.",
+   welcome:"Klike sou 4 paramèt yo, apre 'Gade Apèsi' anvan ou reponn kesyon an.",
+   done:"Ou konnen kounye a kijan pou konfigire yon travay enprime, epi poukisa toujou gade apèsi anvan plizyè kopi."},
+ fr:{lead:"Avant d'imprimer, regardez l'aperçu, choisissez l'imprimante, les pages, les copies, la couleur, et l'orientation. Configurez un travail d'impression.",
+   objs:["Configurer 4 paramètres d'impression","Reconnaître le danger d'imprimer plusieurs copies sans aperçu"],
+   printerLbl:"Imprimante : HP LaserJet",pagesLbl:"Pages : Toutes",copiesLbl:"Copies : 1",colorLbl:"Couleur : Noir et Blanc",
+   previewBtn:"Voir l'Aperçu",printBtn:"Imprimer 10 Copies Sans Aperçu",
+   previewFb:"Vous regardez l'aperçu — tout semble correct avant d'imprimer.",
+   trapQ:"Vous voulez imprimer 10 copies d'un document sans regarder l'aperçu avant. Cela peut-il être dangereux ?",
+   trapWrong:"Non, aucun risque",trapRight:"Oui, s'il y a une erreur dans le document, vous pourriez gaspiller 10 feuilles de papier",
+   trapWrongFb:"Pas vrai ! Sans aperçu, s'il y a une erreur (page vide, texte mal formaté), vous pourriez imprimer 10 mauvaises copies — gaspillant papier et encre.",
+   trapRightFb:"Exact ! Regardez toujours l'aperçu avant d'imprimer plusieurs copies pour éviter le gaspillage.",
+   welcome:"Cliquez sur les 4 paramètres, puis « Voir l'Aperçu » avant de répondre à la question.",
+   done:"Vous savez maintenant configurer un travail d'impression, et pourquoi toujours regarder l'aperçu avant plusieurs copies."},
+ en:{lead:"Before printing, check the preview, choose printer, pages, copies, color, and orientation. Set up a print job.",
+   objs:["Set up 4 print settings","Recognize the danger of printing many copies without previewing"],
+   printerLbl:"Printer: HP LaserJet",pagesLbl:"Pages: All",copiesLbl:"Copies: 1",colorLbl:"Color: Black & White",
+   previewBtn:"View Preview",printBtn:"Print 10 Copies Without Preview",
+   previewFb:"You check the preview — everything looks correct before printing.",
+   trapQ:"You want to print 10 copies of a document without checking the preview first. Can this be risky?",
+   trapWrong:"No, no risk",trapRight:"Yes, if there's an error in the document, you could waste 10 sheets of paper",
+   trapWrongFb:"Not true! Without a preview, if there's an error (blank page, badly formatted text), you could print 10 bad copies — wasting paper and ink.",
+   trapRightFb:"Exactly! Always check the preview before printing multiple copies to avoid waste.",
+   welcome:"Click the 4 settings, then 'View Preview' before answering the question.",
+   done:"Now you know how to set up a print job, and why to always check the preview before multiple copies."}},
+7:{ht:{lead:"Eskane fè yon dokiman papye tounen yon fichye dijital. Chwazi bon fòma epi fè atansyon ak enfòmasyon sansib.",
+   objs:["Eskane yon dokiman kòm PDF","Rekonèt limit privasi lè ou eskane dokiman sansib"],
+   formatLbl:"Fòma: PDF (bon pou dokiman)",scanBtn:"Eskane Dokiman an",
+   scanFb:"Dokiman an eskane kòm yon fichye PDF ki klè epi li fasil.",
+   trapQ:"Ou eskane yon dokiman ki gen nimewo Kat Idantite (ID) ou sou li. Ki sa ou ta dwe fè apre?",
+   trapWrong:"Pataje l ak nenpòt moun san reflechi",trapRight:"Rete atantif ki moun ou pataje l ak li, menm jan ak nenpòt dokiman sansib",
+   trapWrongFb:"Riske! Yon fichye eskane ki gen enfòmasyon idantite se menm jan sansib ak dokiman papye orijinal la — pataje l san prekosyon ka mennen nan vòl idantite.",
+   trapRightFb:"Egzat! Yon fichye dijital ki gen enfòmasyon sansib merite menm prekosyon ak dokiman papye a.",
+   welcome:"Klike 'Eskane Dokiman an', apre reponn kesyon an sou privasi.",
+   done:"Ou konnen kounye a kijan pou eskane yon dokiman kòm PDF, epi rete atantif ak dokiman sansib."},
+ fr:{lead:"Scanner transforme un document papier en fichier numérique. Choisissez le bon format et faites attention aux informations sensibles.",
+   objs:["Scanner un document en PDF","Reconnaître la limite de confidentialité en scannant un document sensible"],
+   formatLbl:"Format : PDF (bon pour les documents)",scanBtn:"Scanner le Document",
+   scanFb:"Le document est scanné en un fichier PDF clair et lisible.",
+   trapQ:"Vous scannez un document qui contient votre numéro de carte d'identité. Que devriez-vous faire ensuite ?",
+   trapWrong:"Le partager avec n'importe qui sans réfléchir",trapRight:"Rester attentif à qui vous le partagez, comme n'importe quel document sensible",
+   trapWrongFb:"Risqué ! Un fichier scanné contenant des informations d'identité est tout aussi sensible que le document papier original — le partager sans précaution peut mener au vol d'identité.",
+   trapRightFb:"Exact ! Un fichier numérique contenant des informations sensibles mérite la même précaution que le document papier.",
+   welcome:"Cliquez « Scanner le Document », puis répondez à la question sur la confidentialité.",
+   done:"Vous savez maintenant scanner un document en PDF, et rester attentif avec les documents sensibles."},
+ en:{lead:"Scanning turns a paper document into a digital file. Choose the right format and watch out for sensitive information.",
+   objs:["Scan a document as PDF","Recognize the privacy limit when scanning a sensitive document"],
+   formatLbl:"Format: PDF (good for documents)",scanBtn:"Scan the Document",
+   scanFb:"The document is scanned into a clear, readable PDF file.",
+   trapQ:"You scan a document that has your ID card number on it. What should you do afterward?",
+   trapWrong:"Share it with anyone without thinking",trapRight:"Stay careful about who you share it with, same as any sensitive document",
+   trapWrongFb:"Risky! A scanned file with identity information is just as sensitive as the original paper document — sharing it carelessly can lead to identity theft.",
+   trapRightFb:"Exactly! A digital file with sensitive information deserves the same caution as the paper document.",
+   welcome:"Click 'Scan the Document,' then answer the question about privacy.",
+   done:"Now you know how to scan a document as PDF, and to stay careful with sensitive documents."}},
+8:{ht:{lead:"Lè yon aparèy konekte pa mache, swiv yon sekans kalm: kouran, kab, pò, aparèy chwazi, rekonekte, rekòmanse.",
+   objs:["Swiv sekans depanaj la","Rekonèt lè pou sispann olye fè yon entèvansyon danjere"],
+   steps:[["Kouran","Verifye aparèy la limen"],["Kab","Verifye kab la byen branche"],["Pò","Eseye yon lòt pò"],["Aparèy Chwazi","Verifye bon aparèy chwazi nan Paramèt"],["Rekonekte","Dekonekte epi rekonekte"],["Rekòmanse","Rekòmanse òdinatè a si lòt etap yo pa mache"]],
+   trapQ:"Okenn nan etap senp yo pa mache. Pwochen etap ou ta dwe fè se...",
+   trapWrong:"Ouvri aparèy la pou wè anndan l",trapRight:"Sispann epi mande èd yon moun ki gen konesans teknik",
+   trapWrongFb:"Danjere! Ouvri yon aparèy san konesans teknik ka domaje l plis, epi ka anile garanti a.",
+   trapRightFb:"Egzat! Lè etap senp yo pa mache, pi bon aksyon an se sispann ak mande èd olye fè yon entèvansyon ki ka danjere.",
+   welcome:"Klike sou chak etap nan sekans depanaj la.",
+   done:"Ou konnen kounye a yon sekans kalm pou rezoud yon aparèy konekte ki pa mache, epi pou sispann anvan yon entèvansyon danjere."},
+ fr:{lead:"Quand un appareil connecté ne fonctionne pas, suivez une séquence calme : alimentation, câble, port, appareil sélectionné, reconnexion, redémarrage.",
+   objs:["Suivre la séquence de dépannage","Reconnaître quand s'arrêter plutôt que faire une intervention dangereuse"],
+   steps:[["Alimentation","Vérifier que l'appareil est allumé"],["Câble","Vérifier que le câble est bien branché"],["Port","Essayer un autre port"],["Appareil Sélectionné","Vérifier le bon appareil dans les Paramètres"],["Reconnexion","Déconnecter et reconnecter"],["Redémarrage","Redémarrer l'ordinateur si les autres étapes ne marchent pas"]],
+   trapQ:"Aucune des étapes simples ne fonctionne. La prochaine étape devrait être...",
+   trapWrong:"Ouvrir l'appareil pour voir à l'intérieur",trapRight:"S'arrêter et demander l'aide de quelqu'un avec des connaissances techniques",
+   trapWrongFb:"Dangereux ! Ouvrir un appareil sans connaissances techniques peut l'endommager davantage, et peut annuler la garantie.",
+   trapRightFb:"Exact ! Quand les étapes simples ne fonctionnent pas, la meilleure action est de s'arrêter et demander de l'aide plutôt que de faire une intervention risquée.",
+   welcome:"Cliquez sur chaque étape de la séquence de dépannage.",
+   done:"Vous connaissez maintenant une séquence calme pour résoudre un appareil connecté qui ne fonctionne pas, et à vous arrêter avant une intervention dangereuse."},
+ en:{lead:"When a connected device doesn't work, follow a calm sequence: power, cable, port, selected device, reconnect, restart.",
+   objs:["Follow the troubleshooting sequence","Recognize when to stop instead of attempting an unsafe intervention"],
+   steps:[["Power","Check the device is turned on"],["Cable","Check the cable is properly plugged in"],["Port","Try another port"],["Selected Device","Check the right device is selected in Settings"],["Reconnect","Disconnect and reconnect"],["Restart","Restart the computer if other steps don't work"]],
+   trapQ:"None of the simple steps work. The next step should be...",
+   trapWrong:"Open the device to see inside",trapRight:"Stop and ask for help from someone with technical knowledge",
+   trapWrongFb:"Risky! Opening a device without technical knowledge can damage it further, and can void the warranty.",
+   trapRightFb:"Exactly! When simple steps don't work, the best action is to stop and ask for help rather than attempt a risky intervention.",
+   welcome:"Click each step in the troubleshooting sequence.",
+   done:"Now you know a calm sequence for solving a connected device that doesn't work, and to stop before a risky intervention."}},
+9:{ht:{lead:"Dènye misyon an! Konplete tou lè 4 aksyon yo pou konplete yon travay papye-a-dijital.",
+   objs:["Sovgade/enprime yon dokiman an PDF","Eskane yon papye pratik klèman","Bay rezilta a yon non","Estoke l nan bon dosye"],
+   steps:["Sovgade oswa enprime yon dokiman bay la an PDF","Eskane oswa foto yon papye pratik klèman","Bay rezilta a yon non klè","Estoke l nan bon dosye"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 10 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 10 — ou konnen kounye a kijan pou konplete yon travay papye-a-dijital."},
+ fr:{lead:"Dernière mission ! Complétez les 4 actions pour compléter une tâche papier-vers-numérique.",
+   objs:["Enregistrer/imprimer un document en PDF","Scanner un papier pratique clairement","Donner un nom au résultat","Le stocker dans le bon dossier"],
+   steps:["Enregistrer ou imprimer un document fourni en PDF","Scanner ou photographier un papier pratique clairement","Donner un nom clair au résultat","Le stocker dans le bon dossier"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 10.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 10 — vous savez maintenant compléter une tâche papier-vers-numérique."},
+ en:{lead:"Last mission! Complete all 4 actions to complete a paper-to-digital task.",
+   objs:["Save/print a document to PDF","Scan a practice paper clearly","Give the result a name","Store it in the right folder"],
+   steps:["Save or print a provided document to PDF","Scan or photograph a practice paper clearly","Give the result a clear name","Store it in the right folder"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 10's final mission.",
+   done:"Congratulations! You completed Module 10's Mission — now you know how to complete a paper-to-digital task."}},
+};
+
+/* ============ engine ============ */
+const NL=9;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module10-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD10_LESSON_SLUGS=["po-ak-konekte","kle-usb-ak-disk-eksten-revizyon","bluetooth","kamera-web-mikwofon-ak-opale","enprimant-sa-ki-rive-le-ou-enprime","enprime-yon-dokiman","eskane-yon-dokiman","le-yon-apare-konekte-pa-mache","misyon-konplete-yon-travay-papye-a-dijital"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD10_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule11();
+}
+function injectContinueModule11(){
+ if($("continueModule11"))return;
+ const a=document.createElement("a");a.id="continueModule11";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[10];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===9;
+ let les="";if(active){les='<div class="les">'+M10[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">10.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 10 · 10."+(i+1);$("topTitle").textContent=M10[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 10 · 10.'+(i+1)+'</span><div class="labh2">'+M10[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.ports.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.ports[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.connected=false;st.copied=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(1,d.lead)+'<div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">'+
+    (!st.connected?'<button class="btn p" id="connectBtn">'+d.connectBtn+'</button>':(!st.copied?'<button class="btn g" id="copyBtn">'+d.copyBtn+'</button>':'<button class="btn g" id="ejectBtn">'+d.ejectBtn+'</button>'))+
+   '</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  const cb=$("connectBtn");if(cb)cb.addEventListener("click",()=>{st.connected=true;ai(d.connectFb,"good");setObj(0);render();});
+  const cpb=$("copyBtn");if(cpb)cpb.addEventListener("click",()=>{st.copied=true;ai(d.copyFb,"good");render();});
+  const ejb=$("ejectBtn");if(ejb)ejb.addEventListener("click",()=>{ai(d.trapRightFb,"good");});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.discovered=false;st.answered=false;st.paired=false;st.asking=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(2,d.lead)+
+   (!st.discovered?'<div style="margin-top:18px"><button class="btn p" id="discoverBtn">'+d.discoverBtn+'</button></div>':
+    '<div class="panel"><div class="ptb">📶 Bluetooth</div><div class="pbody">'+
+     d.devices.map((dev,k)=>'<div class="arow" data-d="'+k+'"><span class="k">'+dev+'</span><span class="ch">›</span></div>').join("")+
+    '</div></div>')+
+   (st.asking?'<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div><div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>':"")+
+   nextBar();
+  wireNext();
+  const db=$("discoverBtn");if(db)db.addEventListener("click",()=>{st.discovered=true;ai(d.discoverFb,"neutral");render();});
+  stage.querySelectorAll(".arow[data-d]").forEach(r=>r.addEventListener("click",()=>{const k=+r.dataset.d;
+   if(k===0){if(!st.paired){st.paired=true;ai(d.pairGoodFb,"good");setObj(0);render();}}
+   else{st.asking=true;render();}
+  }));
+  const tqw=$("tqWrong");if(tqw)tqw.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+  const tqr=$("tqRight");if(tqr)tqr.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.tested=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="panel"><div class="pbody">'+
+   '<div class="selectbox"><span>'+d.camSel+'</span></div>'+
+   '<div class="selectbox"><span>'+d.micSel+'</span></div>'+
+   '<button class="btn g" id="testBtn">'+d.testBtn+'</button>'+
+  '</div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ $("testBtn").addEventListener("click",()=>{if(st.tested)return;st.tested=true;ai(d.testFb,"good");setObj(0);});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="flow">'+d.steps.map((s,k)=>'<div class="node" data-k="'+k+'"><div class="ni">'+s[0]+'</div><div class="nt">'+s[1]+'</div><div class="nd">'+s[2]+'</div></div>'+(k<4?'<span class="arrow">→</span>':'')).join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".node[data-k]").forEach(n=>n.addEventListener("click",()=>{const k=+n.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;n.classList.add("read");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.previewed=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="panel"><div class="pbody">'+
+   '<div class="selectbox"><span>'+d.printerLbl+'</span></div>'+
+   '<div class="selectbox"><span>'+d.pagesLbl+'</span></div>'+
+   '<div class="selectbox"><span>'+d.copiesLbl+'</span></div>'+
+   '<div class="selectbox"><span>'+d.colorLbl+'</span></div>'+
+  '</div></div>'+
+  '<div style="margin-top:18px"><button class="btn g" id="previewBtn">'+d.previewBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".selectbox").forEach((box,k)=>box.addEventListener("click",()=>{
+  if(!st.seen[k]){st.seen[k]=true;}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("previewBtn").addEventListener("click",()=>{if(st.previewed)return;st.previewed=true;ai(d.previewFb,"good");});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.scanned=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div class="panel"><div class="pbody">'+
+   '<div class="selectbox"><span>'+d.formatLbl+'</span></div>'+
+   '<button class="btn p" id="scanBtn">'+d.scanBtn+'</button>'+
+  '</div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ $("scanBtn").addEventListener("click",()=>{if(st.scanned)return;st.scanned=true;ai(d.scanFb,"good");setObj(0);});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,170px)">'+d.steps.map((s,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+s[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.steps[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=6)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.done4=st.done4||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(8,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done4[k]?' style="opacity:.4"':"")+'>'+(st.done4[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done4[k])return;st.done4[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
