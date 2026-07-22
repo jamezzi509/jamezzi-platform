@@ -519,7 +519,9 @@ function L6(){const d=C[6][S.lang];const st=S.st[5];st.ok=st.ok||{};
      if(Object.keys(st.ok).length>=d.devs.length){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}
    else{btn.classList.add("bad");ai(d.bad,"warn");}}));});
  ai(d.welcome,"neutral");}
-function shuffleOpts(opts,ans){return opts.map((o,i)=>[o,i]);} // keep stable (deterministic)
+function shuffleOpts(opts){const arr=opts.map((o,i)=>[o,i]);
+ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+ return arr;}
 
 function L7(){const d=C[7][S.lang];const st=S.st[6];st.seen=st.seen||{};
  const stage=$("stage");stage.className="stage lab";
