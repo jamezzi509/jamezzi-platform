@@ -188,7 +188,7 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
     <div class="wsp">
       <div class="stagewrap"><div class="stage" id="stage"></div></div>
       <div class="rail">
-        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 8</div></div>
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
         <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
         <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
       </div>
@@ -204,9 +204,9 @@ const UI={
 const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Fonksyone","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
  fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
  en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
-const M1={ht:["Byenveni: Ou P ap Kraze Anyen","Idantifye Òdinatè ki Devan Ou","Kisa yon Òdinatè Ye?","Antre, Trètman, Sòti, Depo","Materyèl ak Lojisyèl","Òdinatè an Plizyè Fòm","Windows ak Lòt Sistèm","Premye Misyon Dijital Ou"],
- fr:["Bienvenue : Vous Ne Casserez Rien","Identifiez l’Ordinateur","Qu’est-ce qu’un Ordinateur ?","Entrée, Traitement, Sortie, Stockage","Matériel et Logiciel","Ordinateurs de Différentes Formes","Windows et Autres Systèmes","Première Mission Numérique"],
- en:["Welcome: You Won’t Break Anything","Identify the Computer","What Is a Computer?","Input, Processing, Output, Storage","Hardware and Software","Computers in Different Forms","Windows and Other Systems","Your First Digital Mission"]};
+const M1={ht:["Byenveni: Ou P ap Kraze Anyen","Idantifye Òdinatè ki Devan Ou","Kisa yon Òdinatè Ye?","Antre, Trètman, Sòti, Depo","Materyèl ak Lojisyèl","Òdinatè an Plizyè Fòm","Windows ak Lòt Sistèm","Premye Misyon Dijital Ou","Misyon: Fè Konesans ak Òdinatè Ou"],
+ fr:["Bienvenue : Vous Ne Casserez Rien","Identifiez l’Ordinateur","Qu’est-ce qu’un Ordinateur ?","Entrée, Traitement, Sortie, Stockage","Matériel et Logiciel","Ordinateurs de Différentes Formes","Windows et Autres Systèmes","Première Mission Numérique","Mission : Faire Connaissance avec Votre Ordinateur"],
+ en:["Welcome: You Won’t Break Anything","Identify the Computer","What Is a Computer?","Input, Processing, Output, Storage","Hardware and Software","Computers in Different Forms","Windows and Other Systems","Your First Digital Mission","Module Mission: Meet Your Computer"]};
 
 /* ============ lesson content ============ */
 const C={
@@ -339,6 +339,37 @@ const C={
    macFb:"That’s macOS (Apple): a menu bar on top and a “Dock” below. Instructions differ a little.",
    crosFb:"That’s ChromeOS (Chromebook): a circle and icons at the bottom-left. Very internet-dependent.",
    done:"See: same task, different look. This course uses Windows."}},
+/* ---- 1.9 Module Mission: Meet Your Computer ---- */
+9:{ht:{lead:"Sa se misyon final Modil 1 la. Konbine tout sa ou aprann pou dekri pwòp òdinatè ou, epi anrejistre yon rezon pèsonèl pou vle konfyans dijital.",
+   objs:["Mete 4 aksyon òdinatè a nan bon lòd (Antre, Trètman, Sòti, Depo)","Chwazi yon rezon pèsonèl pou vle konfyans dijital"],
+   steps:["Antre","Trètman","Sòti","Depo"],
+   stepHint:"Klike sou etap yo nan lòd kòrèk la — kòmanse ak sa ki fè enfòmasyon antre nan òdinatè a.",
+   stepOkFb:"Kòrèk! Se sa yo ye nan lòd: enfòmasyon antre, li trete, li bay yon sòti, epi li ka depoze.",
+   stepBadFb:"Pa nan bon lòd la. Reflechi: kisa ki rive an premye lè ou tape yon lèt sou klavye?",
+   reasons:["Pou m ka kominike ak fanmi mwen ki byen lwen","Pou m ka jwenn oswa amelyore yon travay","Pou m ka ede pitit/fanmi mwen ak devwa lekòl","Pou m santi m alèz ak teknoloji nan lavi chak jou"],
+   reasonFb:"Bèl rezon! Kenbe l nan tèt ou pandan w ap kontinye kou a — se sa k ap ba w motivasyon an.",
+   welcome:"Byenveni nan misyon final Modil 1 la! Mete kat aksyon yo nan bon lòd.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 1 — ou ka kounye a dekri pwòp òdinatè ou ak vokabilè klè, epi ou gen yon rezon pèsonèl pou konfyans dijital ou."},
+ fr:{lead:"C'est la mission finale du Module 1. Combinez tout ce que vous avez appris pour décrire votre propre ordinateur, et enregistrez une raison personnelle de vouloir la confiance numérique.",
+   objs:["Mettre les 4 actions de l'ordinateur dans le bon ordre (Entrée, Traitement, Sortie, Stockage)","Choisir une raison personnelle de vouloir la confiance numérique"],
+   steps:["Entrée","Traitement","Sortie","Stockage"],
+   stepHint:"Cliquez sur les étapes dans le bon ordre — commencez par ce qui fait entrer l'information dans l'ordinateur.",
+   stepOkFb:"Correct ! Voici l'ordre : l'information entre, elle est traitée, elle produit une sortie, et elle peut être stockée.",
+   stepBadFb:"Pas dans le bon ordre. Réfléchissez : que se passe-t-il en premier quand vous tapez une lettre au clavier ?",
+   reasons:["Pour communiquer avec ma famille qui est loin","Pour trouver ou améliorer un emploi","Pour aider mes enfants/ma famille avec les devoirs","Pour me sentir à l'aise avec la technologie au quotidien"],
+   reasonFb:"Belle raison ! Gardez-la en tête en continuant le cours — c'est ce qui vous motivera.",
+   welcome:"Bienvenue dans la mission finale du Module 1 ! Mettez les 4 actions dans le bon ordre.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 1 — vous pouvez maintenant décrire votre propre ordinateur avec un vocabulaire clair, et vous avez une raison personnelle pour votre confiance numérique."},
+ en:{lead:"This is Module 1's final mission. Combine everything you've learned to describe your own computer, and record a personal reason for wanting digital confidence.",
+   objs:["Put the computer's 4 actions in the right order (Input, Processing, Output, Storage)","Choose a personal reason for wanting digital confidence"],
+   steps:["Input","Processing","Output","Storage"],
+   stepHint:"Click the steps in the correct order — start with whatever makes information enter the computer.",
+   stepOkFb:"Correct! Here's the order: information comes in, it's processed, it produces an output, and it can be stored.",
+   stepBadFb:"Not in the right order. Think: what happens first when you type a letter on the keyboard?",
+   reasons:["To communicate with family who are far away","To find or improve a job","To help my kids/family with schoolwork","To feel comfortable with technology in everyday life"],
+   reasonFb:"Great reason! Keep it in mind as you continue the course — that's what will motivate you.",
+   welcome:"Welcome to Module 1's final mission! Put the 4 actions in the right order.",
+   done:"Congratulations! You completed Module 1's Mission — you can now describe your own computer with clear vocabulary, and you have a personal reason for your digital confidence."}},
 };
 /* ---- 1.2 & 1.8 use the Windows desktop; content: ---- */
 const C2={ /* 1.2 identify windows (compact port) */
@@ -415,7 +446,7 @@ function miniOS(k){
  return '<img src="'+IMG_BASE+'os-'+f+'.webp" alt="" style="width:100%;height:100%;object-fit:contain;display:block">';}
 
 /* ============ engine ============ */
-const NL=8;
+const NL=9;
 const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
 const $=id=>document.getElementById(id);
 /* ===== persistence + live-course wiring =====
@@ -426,7 +457,7 @@ const $=id=>document.getElementById(id);
 const SIM_KEY="jamezzi:computer:essentials:module1-sim-state";
 const PROGRESS_KEY="jamezzi:computer:essentials:completed";
 const PROGRESS_EVENT="jamezzi:course-progress-changed";
-const MOD1_LESSON_SLUGS=["byenveni-ou-pa-pral-kraze-anyen","kisa-yon-odinate-ye","antre-trete-soti-ak-estokaj","adwe-ak-lojisyel","odinate-gen-plizye-fom","windows-macos-android-ios","premye-misyon-dijital-ou"];
+const MOD1_LESSON_SLUGS=["byenveni-ou-pa-pral-kraze-anyen","kisa-yon-odinate-ye","antre-trete-soti-ak-estokaj","adwe-ak-lojisyel","odinate-gen-plizye-fom","windows-macos-android-ios","premye-misyon-dijital-ou","misyon-fe-konesans-ak-odinate-ou"];
 /* first-lesson slug per module in the live text-course, for sidebar links to modules 2-14; index 0 unused (module 1 is this simulator) */
 const MODULE_FIRST_LESSON=["","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
 function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
@@ -481,7 +512,7 @@ function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>loa
 
 function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 1 · 1."+(i+1);$("topTitle").textContent=M1[S.lang][i];renderObj();
  const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
- const fn=[L1,L2,L3,L4,L5,L6,L7,L8][i];fn();
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
  persistSim();
  if(i===NL-1&&S.done[NL-1])markModuleOneComplete();}
 
@@ -612,6 +643,25 @@ function L8(){const d=C8[S.lang];const st=S.st[7];st.spots=st.spots||{};
  $("gameIco").addEventListener("click",()=>ai(d.trapGame,"warn"));
  $("cwClose").addEventListener("click",()=>{$("courseWin").style.display="none";if((S.st[7].obj||[])[2]&&!(S.st[7].obj||[])[3]){setObj(3);ai(d.done,"good");}});
 }
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.expect=st.expect===undefined?0:st.expect;st.chosen=st.chosen||false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(8,d.lead)+'<p style="margin-top:14px;color:var(--dim);font-size:13.5px">'+d.stepHint+'</p>'+
+   '<div class="items" id="steps">'+st.order.map(k=>'<div class="chip" data-k="'+k+'"'+(k<st.expect?' style="opacity:.4"':"")+'>'+(k<st.expect?"✓ ":"")+d.steps[k]+'</div>').join("")+'</div>'+
+   (st.expect>=4?'<div style="margin-top:26px;font-weight:700;font-size:15.5px">'+d.objs[1]+'</div><div class="cats" id="reasons">'+d.reasons.map((r,k)=>'<button class="cat" data-r="'+k+'">'+r+'</button>').join("")+'</div>':"")+
+   nextBar();
+  wireNext();
+  stage.querySelectorAll(".chip[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+   if(k<st.expect)return;
+   if(k===st.expect){st.expect++;ai(d.stepOkFb,"good");if(st.expect>=4)setObj(0);render();}
+   else{ai(d.stepBadFb,"warn");}}));
+  const reasons=$("reasons");if(reasons)reasons.querySelectorAll(".cat[data-r]").forEach(b=>b.addEventListener("click",()=>{
+   if(st.chosen)return;st.chosen=true;ai(d.reasonFb,"good");setObj(1);}));
+ }
+ if(!st.order)st.order=shuffleOpts(d.steps.map((_,k)=>k)).map(([,idx])=>idx);
+ render();
+ ai(d.welcome,"neutral");}
 /* inject a floating Next button on desktop lessons */
 function injectNext(){const done=S.done[S.cur];const b=document.createElement("button");b.className="btn p";b.id="nextBtn";b.textContent=UI[S.lang].next;b.disabled=!done;
  const clearTaskbar=$("stage").querySelector(".taskbar")?64:12;
