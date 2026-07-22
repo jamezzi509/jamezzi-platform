@@ -67,6 +67,7 @@ const computerSimulatorModules: Record<
   m9: { moduleNumber: 9, title: "Modil 9 — Cloud ak Backup" },
   m10: { moduleNumber: 10, title: "Modil 10 — Aparèy ak Enprime" },
   m11: { moduleNumber: 11, title: "Modil 11 — Sekirite ak Vi Prive" },
+  m12: { moduleNumber: 12, title: "Modil 12 — Achte yon Òdinatè" },
 };
 
 export async function generateMetadata({

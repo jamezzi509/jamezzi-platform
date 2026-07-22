@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 12 — Achte yon Òdinatè</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.chip.sel{outline:2px solid var(--brand)}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:56px;display:grid;place-items:center;font-size:30px}
+.partn{font-weight:700;font-size:14.5px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+/* listing / comparison cards */
+.listing{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px;cursor:pointer;transition:.15s}
+.listing:hover{border-color:var(--brand)}.listing.done{border-color:var(--good)}
+.listing h4{font-size:15px;margin-bottom:6px}.listing .meta{font-size:12.5px;color:var(--mute);line-height:1.6}
+.listing2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.checklist{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ .listing2{grid-template-columns:1fr}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 12 · 12.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 12</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 13 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 13 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 13 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M12={ht:["Anvan Ou Achte: Kòmanse ak Travay La","Laptop, Desktop, All-in-One, oswa Chromebook?","Intel kont AMD sou Windows","Konprann Non Pwosesè ak Jenerasyon","RAM, Memwa, ak Estokaj Anvan Acha","Ekran, Batri, Klavye, Pò, ak Kalite Konstriksyon","Nèf, Itilize, Bwat Ouvè, ak 'Renouvle'","Enspeksyon Konplè Yon Òdinatè Itilize","Siy Danje ak Eskrokri Acha Komen","Swen, Chalè, Batri, ak Kouran an Ayiti","Fè Yon Desizyon Acha Pèsonèl","Misyon: Evalye Yon Anons Òdinatè"],
+ fr:["Avant d'Acheter : Commencer par le Travail","Portable, Bureau, Tout-en-Un, ou Chromebook ?","Intel contre AMD sur Windows","Comprendre les Noms de Processeurs et Générations","RAM, Mémoire, et Stockage Avant l'Achat","Écran, Batterie, Clavier, Ports, et Qualité de Construction","Neuf, Occasion, Boîte Ouverte, et « Renouvelé »","Inspection Complète d'un Ordinateur d'Occasion","Signes de Danger et Arnaques d'Achat Courantes","Entretien, Chaleur, Batterie, et Électricité en Haïti","Faire une Décision d'Achat Personnelle","Mission : Évaluer une Annonce d'Ordinateur"],
+ en:["Before You Buy: Start With the Work","Laptop, Desktop, All-in-One, or Chromebook?","Intel vs. AMD on Windows","Understanding Processor Names and Generations","RAM, Memory, and Storage Before Purchase","Screen, Battery, Keyboard, Ports, and Build Quality","New, Used, Open-Box, and \"Renewed\"","Complete Used Computer Inspection","Red Flags and Common Buying Scams","Care, Heat, Battery, and Power in Haiti","Build a Personal Buying Decision","Module Mission: Evaluate a Computer Listing"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Anvan ou gade mak oswa pwosesè, defini travay reyèl ou pral fè ak òdinatè a. Bati yon Pwofil Bezwen Pèsonèl.",
+   objs:["Ajoute 4 eleman nan Pwofil Bezwen ou","Rekonèt 'pi bon' pa vle di 'pi chè'"],
+   items:[["📚","Travay Prensipal","Lekòl, biwo, navige, apèl videyo, biznis, kòd, desen, oswa jwèt?"],["💻","Aplikasyon Obligatwa","Ki lojisyèl espesifik ou dwe kapab fè mache?"],["🎒","Pòtabilite","Ou bezwen pote l toupatou, oswa li ka rete yon sèl kote?"],["💰","Bidjè Total","Chaje, sak, souri, estokaj ekstèn, lojisyèl, livrezon, ak repasyon posib — pa sèlman pri machin lan"]],
+   trapQ:"Òdinatè ki pi chè a se toujou pi bon chwa a?",
+   yes:"Wi, plis chè ekipman pi bon",no:"Non, pi bon chwa a se sa ki fè travay ou byen nan bidjè total ou",
+   yesFb:"Pa vre! Yon òdinatè chè ki pa fè travay ou bezwen an, oswa ki depase bidjè total ou, se PA yon bon chwa.",
+   noFb:"Egzat! 'Pi bon òdinatè a' se sa ki fè travay reyèl ou fyab, nan bidjè total ou — pa machin ki pi chè a.",
+   welcome:"Klike sou chak eleman pou ajoute l nan Pwofil Bezwen ou.",
+   done:"Ou kreye kounye a kòmansman yon Pwofil Bezwen Pèsonèl, epi ou konprann 'pi bon' pa vle di 'pi chè'."},
+ fr:{lead:"Avant de regarder les marques ou processeurs, définissez le travail réel que vous ferez avec l'ordinateur. Construisez un Profil de Besoins Personnel.",
+   objs:["Ajouter 4 éléments à votre Profil de Besoins","Reconnaître que « meilleur » ne veut pas dire « plus cher »"],
+   items:[["📚","Travail Principal","École, bureau, navigation, appels vidéo, affaires, code, design, ou jeux ?"],["💻","Applications Obligatoires","Quel logiciel spécifique devez-vous pouvoir faire fonctionner ?"],["🎒","Portabilité","Vous devez le transporter partout, ou il peut rester à un endroit ?"],["💰","Budget Total","Chargeur, sac, souris, stockage externe, logiciel, livraison, et réparation possible — pas seulement le prix de la machine"]],
+   trapQ:"L'ordinateur le plus cher est-il toujours le meilleur choix ?",
+   yes:"Oui, plus cher équipement meilleur",no:"Non, le meilleur choix est celui qui fait bien votre travail dans votre budget total",
+   yesFb:"Pas vrai ! Un ordinateur cher qui ne fait pas le travail dont vous avez besoin, ou qui dépasse votre budget total, n'est PAS un bon choix.",
+   noFb:"Exact ! « Le meilleur ordinateur » est celui qui fait fiablement votre travail réel, dans votre budget total — pas la machine la plus chère.",
+   welcome:"Cliquez sur chaque élément pour l'ajouter à votre Profil de Besoins.",
+   done:"Vous avez créé le début d'un Profil de Besoins Personnel, et vous comprenez que « meilleur » ne veut pas dire « plus cher »."},
+ en:{lead:"Before looking at brands or processors, define the real work you'll do with the computer. Build a Computer Needs Profile.",
+   objs:["Add 4 items to your Needs Profile","Recognize 'best' doesn't mean 'most expensive'"],
+   items:[["📚","Main Work","School, office, browsing, video calls, business, coding, design, or gaming?"],["💻","Required Applications","What specific software must you be able to run?"],["🎒","Portability","You need to carry it everywhere, or can it stay in one place?"],["💰","Total Budget","Charger, bag, mouse, external storage, software, shipping, and possible repair — not just the machine's price"]],
+   trapQ:"Is the most expensive computer always the best choice?",
+   yes:"Yes, more expensive equipment is better",no:"No, the best choice is whatever reliably does your work within your total budget",
+   yesFb:"Not true! An expensive computer that doesn't do the work you need, or that exceeds your total budget, is NOT a good choice.",
+   noFb:"Exactly! 'The best computer' is the one that reliably performs your real work, within your full budget — not the most expensive machine.",
+   welcome:"Click each item to add it to your Needs Profile.",
+   done:"You created the start of a Personal Needs Profile, and you understand 'best' doesn't mean 'most expensive.'"}},
+2:{ht:{lead:"Chak kalite òdinatè gen fòs ak limit. Chwazi yon kalite pou 3 moun ipotetik.",
+   objs:["Chwazi yon kalite òdinatè pou 3 moun","Konprann pa gen yon sèl 'pi bon' kalite pou tout moun"],
+   people:[["👩‍🎓","Etidyan ki vwayaje anpil","Bezwen pòtabilite ak batri long"],["👨‍💼","Anplwaye biwo fiks","Travay nan menm biwo a — pa bezwen pòte l toupatou"],["🎨","Moun k ap fè desen grafik","Bezwen ekran bon kalite ak pwosesè pi fò"]],
+   types:{"0":"Laptop lejè","1":"Desktop","2":"Laptop pèfòmans oswa Desktop"},
+   trapQ:"Yon laptop toujou yon pi bon chwa pase yon desktop, kèlkeswa sitiyasyon an?",
+   trapWrong:"Wi, laptop toujou pi bon",trapRight:"Non, sa depann de bezwen moun nan — desktop ka pi bon valè pou yon moun ki pa deplase",
+   trapWrongFb:"Pa vre! Yon desktop ka bay plis pouvwa pou menm pri a, e li dire pi lontan pou yon moun ki travay nan menm kote a tout tan.",
+   trapRightFb:"Egzat! Chwa a depann de bezwen moun nan — pa gen yon sèl kalite ki 'pi bon' pou tout moun.",
+   welcome:"Klike sou chak moun, apre chwazi kalite òdinatè ki koresponn.",
+   done:"Ou chwazi kalite òdinatè apwopriye pou 3 moun diferan, epi ou konprann chwa a depann de bezwen, pa yon règ jeneral."},
+ fr:{lead:"Chaque type d'ordinateur a des forces et des limites. Choisissez un type pour 3 personnes hypothétiques.",
+   objs:["Choisir un type d'ordinateur pour 3 personnes","Comprendre qu'il n'y a pas un seul « meilleur » type pour tout le monde"],
+   people:[["👩‍🎓","Étudiante qui voyage beaucoup","A besoin de portabilité et longue autonomie"],["👨‍💼","Employé de bureau fixe","Travaille au même bureau — pas besoin de le transporter"],["🎨","Personne qui fait du design graphique","A besoin d'un bon écran et d'un processeur plus puissant"]],
+   types:{"0":"Portable léger","1":"Ordinateur de bureau","2":"Portable performant ou Bureau"},
+   trapQ:"Un ordinateur portable est-il toujours un meilleur choix qu'un bureau, peu importe la situation ?",
+   trapWrong:"Oui, le portable est toujours meilleur",trapRight:"Non, ça dépend des besoins de la personne — un bureau peut être un meilleur rapport qualité-prix pour quelqu'un qui ne se déplace pas",
+   trapWrongFb:"Pas vrai ! Un ordinateur de bureau peut offrir plus de puissance pour le même prix, et dure plus longtemps pour quelqu'un qui travaille toujours au même endroit.",
+   trapRightFb:"Exact ! Le choix dépend des besoins de la personne — il n'y a pas un seul type « meilleur » pour tout le monde.",
+   welcome:"Cliquez sur chaque personne, puis choisissez le type d'ordinateur approprié.",
+   done:"Vous avez choisi le type d'ordinateur approprié pour 3 personnes différentes, et vous comprenez que le choix dépend des besoins, pas d'une règle générale."},
+ en:{lead:"Every computer type has strengths and limits. Choose a type for 3 hypothetical people.",
+   objs:["Choose a computer type for 3 people","Understand there's no single 'best' type for everyone"],
+   people:[["👩‍🎓","A student who travels a lot","Needs portability and long battery life"],["👨‍💼","An office worker at a fixed desk","Works at the same office — doesn't need to carry it around"],["🎨","Someone doing graphic design","Needs a good screen and a stronger processor"]],
+   types:{"0":"Lightweight laptop","1":"Desktop","2":"Performance laptop or Desktop"},
+   trapQ:"Is a laptop always a better choice than a desktop, no matter the situation?",
+   trapWrong:"Yes, laptops are always better",trapRight:"No, it depends on the person's needs — a desktop can be better value for someone who doesn't move around",
+   trapWrongFb:"Not true! A desktop can offer more power for the same price, and lasts longer for someone who always works in the same place.",
+   trapRightFb:"Exactly! The choice depends on the person's needs — there's no single 'best' type for everyone.",
+   welcome:"Click each person, then choose the matching computer type.",
+   done:"You chose the appropriate computer type for 3 different people, and you understand the choice depends on need, not a blanket rule."}},
+3:{ht:{lead:"Intel ak AMD se de konpayi ki fè pwosesè — mak la sèl PA detèmine kalite yon òdinatè. Konpare 2 senaryo.",
+   objs:["Konpare yon 'Core i7' ansyen ak yon 'Core i5' resan","Rekonèt yon anons sispèk ki manke jenerasyon/modèl egzat"],
+   oldI7:"Core i7 (Jenerasyon 6, 2015)",newI5:"Core i5 (Jenerasyon 13, 2026)",
+   oldI7Fb:"Yon pwosesè ansyen, menm si li 'i7', ka pi LAN pase yon pwosesè resan pi ba tou — jenerasyon konte plis pase nimewo a.",
+   newI5Fb:"Yon 'i5' RESAN ka pi rapid, pi efikas, ak batri pi long pase yon 'i7' ki gen plizyè jenerasyon anvan l.",
+   trapQ:"Yon anons di sèlman 'Laptop ak pwosesè Core i7, bon eta' san jenerasyon. Sa ase enfòmasyon pou fè yon bon desizyon?",
+   trapWrong:"Wi, 'Core i7' sèl ase enfòmasyon",trapRight:"Non, san jenerasyon/modèl egzat ('Core i7-13700H' pa egzanp), se yon anons enkomplè",
+   trapWrongFb:"Pa vre! 'Core i7' san jenerasyon se yon SIY AVÈTISMAN — mande vandè a jenerasyon/modèl egzat anvan ou konsidere acha a.",
+   trapRightFb:"Egzat! Toujou mande non konplè pwosesè a (tankou 'Core i7-13700H') — sa ba ou jenerasyon, tou, ak plis enfòmasyon reyèl.",
+   welcome:"Klike sou 2 senaryo yo pou konpare, apre reponn kesyon an sou anons enkomplè.",
+   done:"Ou konprann kounye a poukisa jenerasyon konte plis pase mak/nimewo a, epi rekonèt yon anons enkomplè."},
+ fr:{lead:"Intel et AMD sont deux entreprises qui font des processeurs — la marque seule ne détermine PAS la qualité d'un ordinateur. Comparez 2 scénarios.",
+   objs:["Comparer un « Core i7 » ancien et un « Core i5 » récent","Reconnaître une annonce suspecte qui manque de génération/modèle exact"],
+   oldI7:"Core i7 (Génération 6, 2015)",newI5:"Core i5 (Génération 13, 2026)",
+   oldI7Fb:"Un processeur ancien, même « i7 », peut être plus LENT qu'un processeur récent même inférieur — la génération compte plus que le numéro.",
+   newI5Fb:"Un « i5 » RÉCENT peut être plus rapide, plus efficace, et avoir une meilleure autonomie qu'un « i7 » de plusieurs générations antérieures.",
+   trapQ:"Une annonce dit seulement « Ordinateur portable avec processeur Core i7, bon état » sans génération. Est-ce assez d'information pour une bonne décision ?",
+   trapWrong:"Oui, « Core i7 » seul est assez d'information",trapRight:"Non, sans génération/modèle exact (« Core i7-13700H » par exemple), c'est une annonce incomplète",
+   trapWrongFb:"Pas vrai ! « Core i7 » sans génération est un SIGNE D'AVERTISSEMENT — demandez au vendeur la génération/modèle exact avant de considérer l'achat.",
+   trapRightFb:"Exact ! Demandez toujours le nom complet du processeur (comme « Core i7-13700H ») — cela vous donne la génération, le niveau, et plus d'informations réelles.",
+   welcome:"Cliquez sur les 2 scénarios pour comparer, puis répondez à la question sur l'annonce incomplète.",
+   done:"Vous comprenez maintenant pourquoi la génération compte plus que la marque/le numéro, et à reconnaître une annonce incomplète."},
+ en:{lead:"Intel and AMD are two companies that make processors — the brand alone does NOT determine a computer's quality. Compare 2 scenarios.",
+   objs:["Compare an old 'Core i7' and a newer 'Core i5'","Recognize a suspicious listing missing an exact generation/model"],
+   oldI7:"Core i7 (Generation 6, 2015)",newI5:"Core i5 (Generation 13, 2026)",
+   oldI7Fb:"An old processor, even an 'i7', can be SLOWER than a newer, even lower-tier processor — generation matters more than the number.",
+   newI5Fb:"A RECENT 'i5' can be faster, more efficient, and have better battery life than an 'i7' from several generations earlier.",
+   trapQ:"A listing says only 'Laptop with Core i7 processor, good condition' with no generation. Is that enough information for a good decision?",
+   trapWrong:"Yes, 'Core i7' alone is enough information",trapRight:"No, without an exact generation/model ('Core i7-13700H' for example), it's an incomplete listing",
+   trapWrongFb:"Not true! 'Core i7' with no generation is a WARNING SIGN — ask the seller for the exact generation/model before considering the purchase.",
+   trapRightFb:"Exactly! Always ask for the processor's full name (like 'Core i7-13700H') — that gives you the generation, tier, and more real information.",
+   welcome:"Click the 2 scenarios to compare, then answer the question about the incomplete listing.",
+   done:"Now you understand why generation matters more than the brand/number, and how to recognize an incomplete listing."}},
+4:{ht:{lead:"Yon fich travay pwosesè ede ou analize non konplè yon pwosesè anvan ou achte. Reponn 4 kesyon sou yon egzanp.",
+   objs:["Reponn 4 kesyon nan fich travay la","Rekonèt yon nimewo modèl ki manke enfòmasyon esansyèl"],
+   sample:"Egzanp: 'Intel Core i5-1335U'",
+   q1:"Ki non konplè a?",q1a:"Intel Core i5-1335U — mak, fanmi, nimewo modèl, ak sifiks tout prezan.",
+   q2:"Konbyen tan li genyen?",q2a:"Nimewo '13' nan '1335U' endike jenerasyon 13 — ou ka konpare ak dat aktyèl la.",
+   q3:"Pou pouvwa ba, mitan, oswa pèfòmans?",q3a:"Sifiks 'U' vle di pouvwa ba (batri long, mwens chalè) — 'H'/'HX' ta vle di pi plis pèfòmans.",
+   q4:"Rès òdinatè a ekilibre?",q4a:"Yon bon pwosesè avèk twò piti RAM oswa yon HDD lan ka toujou bay move pèfòmans jeneral.",
+   trapQ:"Yon anons montre sèlman 'AMD' san lòt detay. Sa se yon bon siy?",
+   trapWrong:"Wi, AMD sèl ase",trapRight:"Non, san fanmi/jenerasyon/modèl egzat (tankou 'Ryzen 5 5500U'), se yon siy avètisman",
+   trapWrongFb:"Pa vre! San fanmi ak jenerasyon/modèl egzat, ou pa ka evalye pèfòmans reyèl pwosesè a ditou.",
+   trapRightFb:"Egzat! Toujou mande non konplè — 'AMD' pou kont li pa ba ou ase enfòmasyon.",
+   welcome:"Klike sou chak kesyon nan fich travay la pou analize egzanp lan.",
+   done:"Ou konnen kounye a kijan pou itilize yon fich travay pwosesè, epi rekonèt yon anons ki manke enfòmasyon esansyèl."},
+ fr:{lead:"Une fiche de travail processeur vous aide à analyser le nom complet d'un processeur avant d'acheter. Répondez à 4 questions sur un exemple.",
+   objs:["Répondre à 4 questions dans la fiche de travail","Reconnaître un numéro de modèle qui manque d'informations essentielles"],
+   sample:"Exemple : « Intel Core i5-1335U »",
+   q1:"Quel est le nom complet ?",q1a:"Intel Core i5-1335U — marque, famille, numéro de modèle, et suffixe tous présents.",
+   q2:"Depuis combien de temps existe-t-il ?",q2a:"Le numéro « 13 » dans « 1335U » indique la génération 13 — vous pouvez comparer avec la date actuelle.",
+   q3:"Pour puissance basse, moyenne, ou performance ?",q3a:"Le suffixe « U » veut dire puissance basse (longue autonomie, moins de chaleur) — « H »/« HX » voudrait dire plus de performance.",
+   q4:"Le reste de l'ordinateur est-il équilibré ?",q4a:"Un bon processeur avec trop peu de RAM ou un disque dur (HDD) peut quand même donner de mauvaises performances globales.",
+   trapQ:"Une annonce montre seulement « AMD » sans autre détail. Est-ce un bon signe ?",
+   trapWrong:"Oui, AMD seul suffit",trapRight:"Non, sans famille/génération/modèle exact (comme « Ryzen 5 5500U »), c'est un signe d'avertissement",
+   trapWrongFb:"Pas vrai ! Sans famille et génération/modèle exact, vous ne pouvez pas du tout évaluer la performance réelle du processeur.",
+   trapRightFb:"Exact ! Demandez toujours le nom complet — « AMD » seul ne vous donne pas assez d'information.",
+   welcome:"Cliquez sur chaque question de la fiche de travail pour analyser l'exemple.",
+   done:"Vous savez maintenant utiliser une fiche de travail processeur, et reconnaître une annonce qui manque d'informations essentielles."},
+ en:{lead:"A processor-name worksheet helps you analyze a processor's full name before buying. Answer 4 questions about an example.",
+   objs:["Answer 4 questions in the worksheet","Recognize a model number missing essential information"],
+   sample:"Example: 'Intel Core i5-1335U'",
+   q1:"What's the complete name?",q1a:"Intel Core i5-1335U — brand, family, model number, and suffix all present.",
+   q2:"How old is it approximately?",q2a:"The '13' in '1335U' indicates generation 13 — you can compare it against the current date.",
+   q3:"Low power, mainstream, or performance?",q3a:"The 'U' suffix means low power (long battery, less heat) — 'H'/'HX' would mean more performance.",
+   q4:"Is the rest of the computer balanced?",q4a:"A good processor with too little RAM or an HDD can still give poor overall performance.",
+   trapQ:"A listing shows only 'AMD' with no other detail. Is that a good sign?",
+   trapWrong:"Yes, 'AMD' alone is enough",trapRight:"No, without an exact family/generation/model (like 'Ryzen 5 5500U'), it's a warning sign",
+   trapWrongFb:"Not true! Without an exact family and generation/model, you can't evaluate the processor's real performance at all.",
+   trapRightFb:"Exactly! Always ask for the full name — 'AMD' alone doesn't give you enough information.",
+   welcome:"Click each question in the worksheet to analyze the example.",
+   done:"Now you know how to use a processor-name worksheet, and to recognize a listing missing essential information."}},
+5:{ht:{lead:"Chak travay bezwen yon kantite RAM/estokaj diferan. Antinye estokaj itilizab toujou pi piti pase sa make a.",
+   objs:["Match 3 travay ak konfigirasyon RAM/estokaj apwopriye","Konprann estokaj 'anonse' pa vle di estokaj 'itilizab'"],
+   workloads:[["Lekòl/Web Debaz","8GB RAM, 256GB SSD"],["Kòd/Pwogramasyon","16GB RAM, 512GB SSD"],["Desen/Kreyasyon Lou","32GB RAM, 1TB SSD"]],
+   trapQ:"Yon òdinatè make '256GB' vle di ou gen 256GB TOUT disponib pou fichye pèsonèl ou?",
+   trapWrong:"Wi, 256GB total disponib pou mwen",trapRight:"Non, Windows ak aplikasyon deja itilize yon pati — estokaj itilizab pi piti",
+   trapWrongFb:"Pa vre! Windows limenm ak aplikasyon prensipal yo deja pran plizyè dizèn GB — sa ki rete pou fichye pèsonèl ou pi piti pase 256GB.",
+   trapRightFb:"Egzat! Toujou konte sou mwens estokaj itilizab pase sa ki anonse a — ak sonje estokaj ekstèn/cloud pa ranplase estokaj entèn ase.",
+   welcome:"Klike sou chak travay pou wè konfigirasyon apwopriye a, apre reponn kesyon an sou estokaj.",
+   done:"Ou konnen kounye a kijan pou match RAM/estokaj ak yon travay, epi estokaj itilizab toujou pi piti pase sa anonse."},
+ fr:{lead:"Chaque travail a besoin d'une quantité différente de RAM/stockage. Le stockage utilisable annoncé est toujours plus petit que celui annoncé.",
+   objs:["Associer 3 travaux à une configuration RAM/stockage appropriée","Comprendre que le stockage « annoncé » ne veut pas dire stockage « utilisable »"],
+   workloads:[["École/Web de Base","8 Go RAM, 256 Go SSD"],["Code/Programmation","16 Go RAM, 512 Go SSD"],["Design/Création Lourde","32 Go RAM, 1 To SSD"]],
+   trapQ:"Un ordinateur marqué « 256 Go » veut dire que vous avez 256 Go TOTALEMENT disponibles pour vos fichiers personnels ?",
+   trapWrong:"Oui, 256 Go total disponible pour moi",trapRight:"Non, Windows et les applications utilisent déjà une partie — le stockage utilisable est plus petit",
+   trapWrongFb:"Pas vrai ! Windows lui-même et les applications principales prennent déjà plusieurs dizaines de Go — ce qui reste pour vos fichiers personnels est plus petit que 256 Go.",
+   trapRightFb:"Exact ! Comptez toujours sur moins de stockage utilisable que celui annoncé — et rappelez-vous que le stockage externe/cloud ne remplace pas un stockage interne suffisant.",
+   welcome:"Cliquez sur chaque travail pour voir la configuration appropriée, puis répondez à la question sur le stockage.",
+   done:"Vous savez maintenant associer RAM/stockage à un travail, et que le stockage utilisable est toujours plus petit que celui annoncé."},
+ en:{lead:"Every workload needs a different amount of RAM/storage. Usable storage is always smaller than the advertised amount.",
+   objs:["Match 3 workloads to an appropriate RAM/storage configuration","Understand advertised storage doesn't mean usable storage"],
+   workloads:[["Basic School/Web","8GB RAM, 256GB SSD"],["Coding/Programming","16GB RAM, 512GB SSD"],["Heavy Design/Creative Work","32GB RAM, 1TB SSD"]],
+   trapQ:"A computer marked '256GB' means you have 256GB FULLY available for your personal files?",
+   trapWrong:"Yes, 256GB total available to me",trapRight:"No, Windows and applications already use part of it — usable storage is smaller",
+   trapWrongFb:"Not true! Windows itself and the main applications already take up several dozen GB — what's left for your personal files is smaller than 256GB.",
+   trapRightFb:"Exactly! Always plan for less usable storage than what's advertised — and remember external/cloud storage doesn't fully replace adequate internal storage.",
+   welcome:"Click each workload to see the appropriate configuration, then answer the question about storage.",
+   done:"Now you know how to match RAM/storage to a workload, and that usable storage is always smaller than advertised."}},
+6:{ht:{lead:"Espesifikasyon pa sèlman pwosesè, RAM, ak estokaj. Egzamine kalite konstriksyon yon òdinatè.",
+   objs:["Egzamine 4 eleman kalite konstriksyon","Rekonèt batri anfle se yon danje sekirite, pa jis pèfòmans"],
+   items:[["🖥️","Ekran","Rezolisyon, klète, piksèl mouri, liy, dekolorasyon, jwenti"],["⌨️","Klavye ak Trackpad","Kondisyon touch, konfò"],["🔌","Pò","USB-A, USB-C, HDMI, kat SD, Ethernet"],["🔋","Batri","Sante, tan itilizasyon, ak siy anfle"]],
+   trapQ:"Yon batri ki 'anfle' (gonfle) men òdinatè a toujou limen nòmalman — sa vle di pa gen danje?",
+   trapWrong:"Wi, si li toujou limen, pa gen danje",trapRight:"Non, yon batri anfle se yon danje sekirite serye, pa jis yon pwoblèm pèfòmans",
+   trapWrongFb:"Danjere! Yon batri anfle ka eklate oswa pran dife — se yon danje SEKIRITE, pa sèlman yon siy batri a fèb.",
+   trapRightFb:"Egzat! Rejte oswa fè ranplase imedyatman nenpòt aparèy ak yon batri anfle, menm si li toujou 'limen nòmal'.",
+   welcome:"Klike sou chak eleman kalite konstriksyon pou egzamine l.",
+   done:"Ou konnen kounye a egzamine kalite konstriksyon apa de spec debaz yo, epi batri anfle se yon danje sekirite."},
+ fr:{lead:"Les spécifications ne sont pas seulement processeur, RAM, et stockage. Examinez la qualité de construction d'un ordinateur.",
+   objs:["Examiner 4 éléments de qualité de construction","Reconnaître qu'une batterie gonflée est un danger de sécurité, pas juste de performance"],
+   items:[["🖥️","Écran","Résolution, luminosité, pixels morts, lignes, décoloration, charnières"],["⌨️","Clavier et Trackpad","État des touches, confort"],["🔌","Ports","USB-A, USB-C, HDMI, carte SD, Ethernet"],["🔋","Batterie","Santé, autonomie, et signes de gonflement"]],
+   trapQ:"Une batterie « gonflée » mais l'ordinateur s'allume toujours normalement — cela veut dire qu'il n'y a pas de danger ?",
+   trapWrong:"Oui, s'il s'allume toujours, pas de danger",trapRight:"Non, une batterie gonflée est un danger de sécurité sérieux, pas juste un problème de performance",
+   trapWrongFb:"Dangereux ! Une batterie gonflée peut éclater ou prendre feu — c'est un danger de SÉCURITÉ, pas seulement un signe de batterie faible.",
+   trapRightFb:"Exact ! Rejetez ou faites remplacer immédiatement tout appareil avec une batterie gonflée, même s'il « s'allume normalement ».",
+   welcome:"Cliquez sur chaque élément de qualité de construction pour l'examiner.",
+   done:"Vous savez maintenant examiner la qualité de construction au-delà des spécifications de base, et qu'une batterie gonflée est un danger de sécurité."},
+ en:{lead:"Specifications aren't just processor, RAM, and storage. Examine a computer's build quality.",
+   objs:["Examine 4 build-quality elements","Recognize a swollen battery is a safety danger, not just a performance issue"],
+   items:[["🖥️","Screen","Resolution, brightness, dead pixels, lines, discoloration, hinges"],["⌨️","Keyboard and Trackpad","Key condition, comfort"],["🔌","Ports","USB-A, USB-C, HDMI, SD card, Ethernet"],["🔋","Battery","Health, run time, and swelling signs"]],
+   trapQ:"A battery is 'swollen' but the computer still turns on normally — does that mean there's no danger?",
+   trapWrong:"Yes, if it still turns on, no danger",trapRight:"No, a swollen battery is a serious safety danger, not just a performance issue",
+   trapWrongFb:"Risky! A swollen battery can burst or catch fire — it's a SAFETY danger, not just a sign of a weak battery.",
+   trapRightFb:"Exactly! Reject or have replaced immediately any device with a swollen battery, even if it still 'turns on normally.'",
+   welcome:"Click each build-quality element to examine it.",
+   done:"Now you know to examine build quality beyond basic specs, and that a swollen battery is a safety danger."}},
+7:{ht:{lead:"'Nèf', 'Itilize', 'Bwat Ouvè', 'Refèt', ak 'Renouvle' pa vle di menm bagay pou tout vandè. Konpare 2 anons 'refèt'.",
+   objs:["Konpare 2 anons 'refèt'","Rekonèt 'refèt' pa otomatikman pi bon oswa 'itilize' pa otomatikman pi mal"],
+   goodListing:["✅","Refèt Ofisyèl","Garanti 1 lane, teste pa konpayi rekonèt, batri ranplase, dokimante"],
+   vagueListing:["⚠️","'Refèt' San Detay","Pa gen garanti, pa gen enfòmasyon sou ki moun ki refè l, pa gen dokiman"],
+   goodFb:"Sa a gen tout bon siy: garanti klè, konpayi rekonèt, ak dokimantasyon.",
+   vagueFb:"Sa a manke enfòmasyon esansyèl — ou pa konnen ki jan li te 'refèt' ni ki garanti ou genyen.",
+   trapQ:"Yon òdinatè ki make 'Refurbished/Refèt' toujou pi bon ak pi san danje pase yon òdinatè 'Itilize' senp?",
+   trapWrong:"Wi, refurbished toujou pi bon",trapRight:"Non, sa depann de ki moun ki refè l, ki garanti gen, ak repitasyon vandè a",
+   trapWrongFb:"Pa vre! Etikèt 'Refurbished' pa garanti menm bagay la de chak vandè — mande KI MOUN ki refè l ak KI TÈS yo fè.",
+   trapRightFb:"Egzat! Ni 'refèt' ni 'itilize' pa otomatikman bon oswa move — verifye garanti, tès, ak repitasyon vandè a chak fwa.",
+   welcome:"Klike sou 2 anons yo pou konpare yo, apre reponn kesyon an.",
+   done:"Ou konnen kounye a pou konpare anons 'refèt'/'itilize' pa etikèt yo sèlman, men pa detay reyèl yo."},
+ fr:{lead:"« Neuf », « Occasion », « Boîte Ouverte », « Refait », et « Renouvelé » ne veulent pas dire la même chose pour tous les vendeurs. Comparez 2 annonces « refaites ».",
+   objs:["Comparer 2 annonces « refaites »","Reconnaître que « refait » n'est pas automatiquement meilleur ni « occasion » automatiquement mauvais"],
+   goodListing:["✅","Refait Officiellement","Garantie 1 an, testé par une entreprise reconnue, batterie remplacée, documenté"],
+   vagueListing:["⚠️","« Refait » Sans Détails","Pas de garantie, pas d'information sur qui l'a refait, pas de documents"],
+   goodFb:"Celui-ci a tous les bons signes : garantie claire, entreprise reconnue, et documentation.",
+   vagueFb:"Celui-ci manque d'informations essentielles — vous ne savez pas comment il a été « refait » ni quelle garantie vous avez.",
+   trapQ:"Un ordinateur marqué « Refurbished/Refait » est-il toujours meilleur et plus sûr qu'un ordinateur « Occasion » simple ?",
+   trapWrong:"Oui, refurbished est toujours meilleur",trapRight:"Non, ça dépend de qui l'a refait, quelle garantie existe, et de la réputation du vendeur",
+   trapWrongFb:"Pas vrai ! L'étiquette « Refurbished » ne garantit pas la même chose de chaque vendeur — demandez QUI l'a refait et QUELS tests ont été faits.",
+   trapRightFb:"Exact ! Ni « refait » ni « occasion » n'est automatiquement bon ou mauvais — vérifiez la garantie, les tests, et la réputation du vendeur à chaque fois.",
+   welcome:"Cliquez sur les 2 annonces pour les comparer, puis répondez à la question.",
+   done:"Vous savez maintenant comparer des annonces « refaites »/« occasion » par leurs vrais détails, pas seulement leur étiquette."},
+ en:{lead:"'New,' 'Used,' 'Open-Box,' 'Refurbished,' and 'Renewed' don't mean the same thing from every seller. Compare 2 'refurbished' listings.",
+   objs:["Compare 2 'refurbished' listings","Recognize 'refurbished' isn't automatically better nor 'used' automatically worse"],
+   goodListing:["✅","Officially Refurbished","1-year warranty, tested by a recognized company, battery replaced, documented"],
+   vagueListing:["⚠️","'Refurbished' With No Details","No warranty, no information on who refurbished it, no documentation"],
+   goodFb:"This one has all the good signs: clear warranty, recognized company, and documentation.",
+   vagueFb:"This one is missing essential information — you don't know how it was 'refurbished' or what warranty you have.",
+   trapQ:"Is a computer marked 'Refurbished' always better and safer than a simple 'Used' computer?",
+   trapWrong:"Yes, refurbished is always better",trapRight:"No, it depends on who refurbished it, what warranty exists, and the seller's reputation",
+   trapWrongFb:"Not true! The 'Refurbished' label doesn't guarantee the same thing from every seller — ask WHO refurbished it and WHAT tests were done.",
+   trapRightFb:"Exactly! Neither 'refurbished' nor 'used' is automatically good or bad — check the warranty, testing, and seller reputation every time.",
+   welcome:"Click the 2 listings to compare them, then answer the question.",
+   done:"Now you know to compare 'refurbished'/'used' listings by their real details, not just their label."}},
+8:{ht:{lead:"Enspeksyon yon òdinatè Windows itilize mande yon lis konplè — san bezwen demonte machin nan.",
+   objs:["Konplete chèklis enspeksyon 8 pati yo","Rekonèt danje yon modpas BIOS ki poko retire"],
+   steps:["Modèl ak Pwosesè Egzat","Vèsyon ak Aktivasyon Windows","RAM, Estokaj, ak Sante SSD","Batri ak Chajè (wattaj/konektè)","Ekran, Klavye, ak Trackpad","Wi-Fi, Bluetooth, Kamera, ak Mikwofòn","Tès Pò/USB ak Ekran Ekstèn","Dòmi, Rekòmanse, ak Etenn"],
+   stepFb:"Byen fèt! Yon pati enpòtan nan enspeksyon konplè a.",
+   trapQ:"Yon òdinatè itilize gen yon modpas BIOS/firmware ansyen pwopriyetè a pa t retire. Ou ta dwe achte l kanmenm si tout lòt bagay sanble bon?",
+   trapWrong:"Wi, si tout lòt bagay bon, pa gen pwoblèm",trapRight:"Non, rejte yon machin ak modpas BIOS ki poko retire — li ka pa itilizab ditou",
+   trapWrongFb:"Danjere! Yon modpas BIOS/firmware se yon nivo materyèl, separe de Windows — machin nan ka rete BLOKE NÈT si ansyen pwopriyetè a pa retire l.",
+   trapRightFb:"Egzat! Toujou rejte oswa mande retire yon modpas BIOS/firmware anvan ou konsidere yon acha.",
+   welcome:"Klike sou chak pati nan chèklis enspeksyon an, apre reponn kesyon an sou BIOS.",
+   done:"Ou konnen kounye a yon chèklis enspeksyon konplè pou yon òdinatè Windows itilize, epi danje yon modpas BIOS ki poko retire."},
+ fr:{lead:"Inspecter un ordinateur Windows d'occasion demande une liste complète — sans avoir besoin de démonter la machine.",
+   objs:["Compléter la liste de vérification en 8 parties","Reconnaître le danger d'un mot de passe BIOS non retiré"],
+   steps:["Modèle et Processeur Exact","Version et Activation Windows","RAM, Stockage, et Santé du SSD","Batterie et Chargeur (wattage/connecteur)","Écran, Clavier, et Trackpad","Wi-Fi, Bluetooth, Caméra, et Microphone","Test des Ports/USB et Écran Externe","Veille, Redémarrage, et Extinction"],
+   stepFb:"Bien joué ! Une partie importante de l'inspection complète.",
+   trapQ:"Un ordinateur d'occasion a un mot de passe BIOS/firmware que l'ancien propriétaire n'a pas retiré. Devriez-vous l'acheter quand même si tout le reste semble bon ?",
+   trapWrong:"Oui, si tout le reste est bon, pas de problème",trapRight:"Non, rejetez une machine avec un mot de passe BIOS non retiré — elle peut être complètement inutilisable",
+   trapWrongFb:"Dangereux ! Un mot de passe BIOS/firmware est un niveau matériel, séparé de Windows — la machine peut rester COMPLÈTEMENT BLOQUÉE si l'ancien propriétaire ne le retire pas.",
+   trapRightFb:"Exact ! Rejetez toujours ou demandez le retrait d'un mot de passe BIOS/firmware avant de considérer un achat.",
+   welcome:"Cliquez sur chaque partie de la liste de vérification, puis répondez à la question sur le BIOS.",
+   done:"Vous connaissez maintenant une liste de vérification complète pour un ordinateur Windows d'occasion, et le danger d'un mot de passe BIOS non retiré."},
+ en:{lead:"Inspecting a used Windows computer needs a complete checklist — without needing to disassemble the machine.",
+   objs:["Complete the 8-part inspection checklist","Recognize the danger of an un-removed BIOS password"],
+   steps:["Exact Model and Processor","Windows Version and Activation","RAM, Storage, and SSD Health","Battery and Charger (wattage/connector)","Screen, Keyboard, and Trackpad","Wi-Fi, Bluetooth, Camera, and Microphone","Port/USB Test and External Display","Sleep, Restart, and Shutdown"],
+   stepFb:"Well done! An important part of the complete inspection.",
+   trapQ:"A used computer has a BIOS/firmware password the previous owner didn't remove. Should you buy it anyway if everything else seems fine?",
+   trapWrong:"Yes, if everything else is fine, no problem",trapRight:"No, reject a machine with an un-removed BIOS password — it might be completely unusable",
+   trapWrongFb:"Risky! A BIOS/firmware password is a hardware-level lock, separate from Windows — the machine can stay COMPLETELY LOCKED if the previous owner doesn't remove it.",
+   trapRightFb:"Exactly! Always reject or ask for removal of a BIOS/firmware password before considering a purchase.",
+   welcome:"Click each part of the inspection checklist, then answer the question about BIOS.",
+   done:"Now you know a complete inspection checklist for a used Windows computer, and the danger of an un-removed BIOS password."}},
+9:{ht:{lead:"Plis siy danje ki prezan nan yon anons, plis rezon pou w refize l. Egzamine yon anons ki gen plizyè siy danje.",
+   objs:["Idantifye 4 siy danje nan yon anons","Refize yon acha lè gen presyon pou peye imedyatman"],
+   flag1:["Presyon Ijan","'Ou dwe peye KOUNYE A, yon lòt moun ap pran l'"],
+   flag2:["Pri Twò Ba","Pri byen anba valè mache reyèl la, san rezon"],
+   flag3:["Vandè Refize Videyo/Tès","Pa vle montre aparèy la anliv oswa kite ou teste l anvan"],
+   flag4:["Pa Gen Modèl/Pwosesè Egzat","Anons vag san detay esansyèl"],
+   trapQ:"Yon vandè di 'ou dwe peye KOUNYE A, gen yon lòt moun enterese'. Ki pi bon repons lan?",
+   trapWrong:"Peye touswit pou pa pèdi okazyon an",trapRight:"Refize presyon an — yon bon vandè kite ou tan pou enspekte ak reflechi",
+   trapWrongFb:"Danjere! Presyon pou peye imedyatman se youn nan pi gwo siy danje nan yon eskrokri acha.",
+   trapRightFb:"Egzat! Yon vandè lejitim pa ta mete presyon konsa — plis siy danje ki prezan, plis rezon pou w chèche yon lòt machin.",
+   welcome:"Klike sou chak siy danje nan anons lan, apre reponn kesyon an sou presyon peman.",
+   done:"Ou konnen kounye a rekonèt siy danje komen nan yon acha, epi refize lè gen presyon pou peye imedyatman."},
+ fr:{lead:"Plus il y a de signes de danger dans une annonce, plus vous avez de raisons de la refuser. Examinez une annonce avec plusieurs signes de danger.",
+   objs:["Identifier 4 signes de danger dans une annonce","Refuser un achat quand il y a pression pour payer immédiatement"],
+   flag1:["Pression Urgente","« Vous devez payer MAINTENANT, quelqu'un d'autre va le prendre »"],
+   flag2:["Prix Trop Bas","Prix bien en dessous de la valeur marchande réelle, sans raison"],
+   flag3:["Vendeur Refuse Vidéo/Test","Ne veut pas montrer l'appareil en direct ou vous laisser le tester avant"],
+   flag4:["Pas de Modèle/Processeur Exact","Annonce vague sans détails essentiels"],
+   trapQ:"Un vendeur dit « vous devez payer MAINTENANT, quelqu'un d'autre est intéressé ». Quelle est la meilleure réponse ?",
+   trapWrong:"Payer tout de suite pour ne pas rater l'occasion",trapRight:"Refuser la pression — un bon vendeur vous laisse le temps d'inspecter et de réfléchir",
+   trapWrongFb:"Dangereux ! La pression pour payer immédiatement est l'un des plus grands signes de danger dans une arnaque d'achat.",
+   trapRightFb:"Exact ! Un vendeur légitime ne mettrait pas ce genre de pression — plus il y a de signes de danger, plus vous avez de raisons de chercher une autre machine.",
+   welcome:"Cliquez sur chaque signe de danger dans l'annonce, puis répondez à la question sur la pression de paiement.",
+   done:"Vous savez maintenant reconnaître les signes de danger courants dans un achat, et refuser quand il y a pression pour payer immédiatement."},
+ en:{lead:"The more warning signs present in a listing, the more reason to refuse it. Examine a listing with several warning signs.",
+   objs:["Identify 4 warning signs in a listing","Refuse a purchase when there's pressure to pay immediately"],
+   flag1:["Urgency Pressure","'You must pay NOW, someone else wants it'"],
+   flag2:["Price Too Low","Price well below real market value, for no reason"],
+   flag3:["Seller Refuses Video/Test","Won't show the device live or let you test it first"],
+   flag4:["No Exact Model/Processor","Vague listing with no essential details"],
+   trapQ:"A seller says 'you must pay NOW, someone else is interested.' What's the best response?",
+   trapWrong:"Pay right away so you don't miss the opportunity",trapRight:"Refuse the pressure — a good seller gives you time to inspect and think",
+   trapWrongFb:"Risky! Pressure to pay immediately is one of the biggest warning signs in a buying scam.",
+   trapRightFb:"Exactly! A legitimate seller wouldn't apply this kind of pressure — the more warning signs present, the more reason to look for another machine.",
+   welcome:"Click each warning sign in the listing, then answer the question about payment pressure.",
+   done:"Now you know how to recognize common warning signs in a purchase, and to refuse when there's pressure to pay immediately."}},
+10:{ht:{lead:"Byen swen òdinatè ou pwolonje lavi l. Fè atansyon espesyal ak chalè ak kouran ann Ayiti.",
+   objs:["Klike sou 4 konsèy swen","Rekonèt danje itilize laptop sou kabann/dra"],
+   items:[["🧴","Netwayaj San Danje","Itilize tisi mou, sèch — evite likid dirèkteman sou aparèy la"],["💨","Vantilasyon","Kite lè pase anba/kote laptop la pou l pa twò cho"],["🔌","Chajè Kòrèk ak Pwoteksyon Kouran","Itilize chajè orijinal/kòrèk ak yon 'surge protector' pou fliktyasyon kouran"],["💾","Sovgade Anvan Kouman Koupe","Sovgade travay ou souvan, sitou lè gen enstabilite kouran/envèsè/jeneratè"]],
+   trapQ:"Itilize laptop ou sou yon kabann oswa anba yon dra pandan lontan pa gen okenn danje?",
+   trapWrong:"Non, pa gen pwoblèm, se jis konfòtab",trapRight:"Wi, sa bloke vantilasyon epi ka fè aparèy la twò cho",
+   trapWrongFb:"Danjere! Kabann ak dra bloke twou vantilasyon anba laptop la, fè l akimile chalè ki ka domaje pyès enteryè yo.",
+   trapRightFb:"Egzat! Toujou itilize laptop ou sou yon sifas di ki kite lè pase pou evite twòp chalè.",
+   welcome:"Klike sou chak konsèy swen, apre reponn kesyon an sou kabann/dra.",
+   done:"Ou konnen kounye a konsèy debaz pou swen òdinatè ou, ki gen ladan konsyans espesyal pou kouran ann Ayiti."},
+ fr:{lead:"Bien entretenir votre ordinateur prolonge sa vie. Faites particulièrement attention à la chaleur et à l'électricité en Haïti.",
+   objs:["Cliquer sur 4 conseils d'entretien","Reconnaître le danger d'utiliser un portable sur un lit/couverture"],
+   items:[["🧴","Nettoyage Sûr","Utilisez un tissu doux et sec — évitez le liquide directement sur l'appareil"],["💨","Ventilation","Laissez l'air circuler sous/autour du portable pour qu'il ne surchauffe pas"],["🔌","Chargeur Correct et Protection Électrique","Utilisez le chargeur original/correct et un parasurtenseur pour les fluctuations électriques"],["💾","Sauvegarder Avant les Coupures","Sauvegardez votre travail souvent, surtout avec l'instabilité électrique/onduleur/générateur"]],
+   trapQ:"Utiliser votre portable sur un lit ou sous une couverture pendant longtemps ne présente aucun danger ?",
+   trapWrong:"Non, pas de problème, c'est juste confortable",trapRight:"Oui, ça bloque la ventilation et peut faire surchauffer l'appareil",
+   trapWrongFb:"Dangereux ! Le lit et la couverture bloquent les trous de ventilation sous le portable, le faisant accumuler de la chaleur qui peut endommager les pièces internes.",
+   trapRightFb:"Exact ! Utilisez toujours votre portable sur une surface dure qui laisse l'air circuler pour éviter la surchauffe.",
+   welcome:"Cliquez sur chaque conseil d'entretien, puis répondez à la question sur le lit/couverture.",
+   done:"Vous connaissez maintenant les conseils de base pour l'entretien de votre ordinateur, incluant une conscience spéciale pour l'électricité en Haïti."},
+ en:{lead:"Taking good care of your computer extends its life. Pay special attention to heat and power in Haiti.",
+   objs:["Click 4 care tips","Recognize the danger of using a laptop on a bed/blanket"],
+   items:[["🧴","Safe Cleaning","Use a soft, dry cloth — avoid liquid directly on the device"],["💨","Ventilation","Let air pass under/around the laptop so it doesn't overheat"],["🔌","Correct Charger and Power Protection","Use the original/correct charger and a surge protector for power fluctuations"],["💾","Save Before Power Cuts","Save your work often, especially with unstable power/inverter/generator"]],
+   trapQ:"Using your laptop on a bed or under a blanket for a long time presents no danger?",
+   trapWrong:"No problem, it's just comfortable",trapRight:"Yes, it blocks ventilation and can overheat the device",
+   trapWrongFb:"Risky! Beds and blankets block the ventilation holes under the laptop, causing it to build up heat that can damage internal parts.",
+   trapRightFb:"Exactly! Always use your laptop on a hard surface that lets air pass through to avoid overheating.",
+   welcome:"Click each care tip, then answer the question about the bed/blanket.",
+   done:"Now you know basic tips for caring for your computer, including special awareness for power in Haiti."}},
+11:{ht:{lead:"Konbine tout sa ou aprann nan yon sèl Fich Desizyon Acha. Konplete chak seksyon.",
+   objs:["Konplete 5 seksyon nan Fich Desizyon an","Rekonèt danje achte san poze kesyon vandè a"],
+   sections:["Sa Ki Obligatwa","Sa Ki Bon Pou Genyen","Rezon Pou Refize (Deal Breakers)","Konfigirasyon Minimòm Akseptab","Bidjè Total Maksimòm"],
+   stepFb:"Byen fèt! Yon seksyon enpòtan nan Fich Desizyon Acha ou.",
+   trapQ:"Ou jwenn yon anons ki sanble bon. Ou ka achte imedyatman san poze okenn kesyon bay vandè a?",
+   trapWrong:"Wi, si li sanble bon, achte touswit",trapRight:"Non, toujou prepare kesyon pou vandè a anvan ou konfime acha a",
+   trapWrongFb:"Riske! Menm yon anons ki sanble bon ka gen enfòmasyon ki manke — toujou poze kesyon sou jenerasyon, garanti, ak kondisyon anvan ou konfime.",
+   trapRightFb:"Egzat! Yon lis kesyon pou vandè a se yon pati esansyèl nan Fich Desizyon Acha ou.",
+   welcome:"Klike sou chak seksyon pou konplete Fich Desizyon Acha ou, apre reponn kesyon an.",
+   done:"Ou konplete kounye a yon Fich Desizyon Acha Pèsonèl, epi ou konnen poze kesyon vandè a enpòtan."},
+ fr:{lead:"Combinez tout ce que vous avez appris dans une seule Fiche de Décision d'Achat. Complétez chaque section.",
+   objs:["Compléter 5 sections de la Fiche de Décision","Reconnaître le danger d'acheter sans poser de questions au vendeur"],
+   sections:["Ce Qui Est Obligatoire","Ce Qui Serait Bien d'Avoir","Raisons de Refuser (Deal Breakers)","Configuration Minimale Acceptable","Budget Total Maximum"],
+   stepFb:"Bien joué ! Une section importante de votre Fiche de Décision d'Achat.",
+   trapQ:"Vous trouvez une annonce qui semble bonne. Pouvez-vous acheter immédiatement sans poser aucune question au vendeur ?",
+   trapWrong:"Oui, si ça semble bon, achetez tout de suite",trapRight:"Non, préparez toujours des questions pour le vendeur avant de confirmer l'achat",
+   trapWrongFb:"Risqué ! Même une annonce qui semble bonne peut manquer d'informations — posez toujours des questions sur la génération, la garantie, et l'état avant de confirmer.",
+   trapRightFb:"Exact ! Une liste de questions pour le vendeur est une partie essentielle de votre Fiche de Décision d'Achat.",
+   welcome:"Cliquez sur chaque section pour compléter votre Fiche de Décision d'Achat, puis répondez à la question.",
+   done:"Vous avez maintenant complété une Fiche de Décision d'Achat Personnelle, et vous savez que poser des questions au vendeur est important."},
+ en:{lead:"Combine everything you've learned into one Buying Decision Sheet. Complete each section.",
+   objs:["Complete 5 sections of the Decision Sheet","Recognize the danger of buying without asking the seller questions"],
+   sections:["Must-Haves","Nice-to-Haves","Deal Breakers","Minimum Acceptable Configuration","Maximum Total Budget"],
+   stepFb:"Well done! An important section of your Buying Decision Sheet.",
+   trapQ:"You find a listing that seems good. Can you buy immediately without asking the seller any questions?",
+   trapWrong:"Yes, if it seems good, buy right away",trapRight:"No, always prepare questions for the seller before confirming the purchase",
+   trapWrongFb:"Risky! Even a listing that seems good can be missing information — always ask about generation, warranty, and condition before confirming.",
+   trapRightFb:"Exactly! A list of questions for the seller is an essential part of your Buying Decision Sheet.",
+   welcome:"Click each section to complete your Buying Decision Sheet, then answer the question.",
+   done:"You've now completed a Personal Buying Decision Sheet, and you know asking the seller questions matters."}},
+12:{ht:{lead:"Dènye misyon an! Konpare 2 anons, idantifye enfòmasyon ki manke ak siy danje, epi chwazi pi bon chwa a.",
+   objs:["Egzamine Anons A","Egzamine Anons B","Chwazi pi bon anons lan pou yon bezwen lekòl senp","Eksplike desizyon an"],
+   listingA:["Anons A","'Laptop Core i7, bon eta, $150, peye kounye a swa 100% ranbouse'","Manke: jenerasyon, garanti, foto reyèl — gen presyon peman"],
+   listingB:["Anons B","'HP Core i5-1235U, 8GB RAM, 256GB SSD, batri 85%, garanti 3 mwa, videyo disponib'","Konplè: modèl, jenerasyon, spec, kondisyon, garanti"],
+   chooseBtn:"Chwazi Anons B (pi bon pou yon bezwen lekòl senp)",
+   listingAFb:"Anons A gen plizyè siy danje: pa gen jenerasyon, gen presyon peman ijan, epi pa gen garanti.",
+   listingBFb:"Anons B konplè epi klè — gen tout enfòmasyon ou bezwen pou fè yon bon desizyon.",
+   chooseFb:"Egzat! Pou yon bezwen lekòl senp, Anons B se pi bon chwa a paske li konplè, gen garanti, epi pa gen presyon ijan.",
+   welcome:"Egzamine 2 anons yo, apre chwazi pi bon an pou yon bezwen lekòl senp.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 12 — ou konnen kounye a kijan pou evalye yon anons òdinatè ak konpare de chwa."},
+ fr:{lead:"Dernière mission ! Comparez 2 annonces, identifiez les informations manquantes et les signes de danger, puis choisissez le meilleur choix.",
+   objs:["Examiner l'Annonce A","Examiner l'Annonce B","Choisir la meilleure annonce pour un besoin scolaire simple","Expliquer la décision"],
+   listingA:["Annonce A","« Portable Core i7, bon état, 150$, payez maintenant sinon remboursé 100% »","Manque : génération, garantie, vraies photos — pression de paiement"],
+   listingB:["Annonce B","« HP Core i5-1235U, 8 Go RAM, 256 Go SSD, batterie 85%, garantie 3 mois, vidéo disponible »","Complet : modèle, génération, spécifications, état, garantie"],
+   chooseBtn:"Choisir l'Annonce B (meilleure pour un besoin scolaire simple)",
+   listingAFb:"L'Annonce A a plusieurs signes de danger : pas de génération, pression de paiement urgente, et pas de garantie.",
+   listingBFb:"L'Annonce B est complète et claire — elle a toutes les informations nécessaires pour une bonne décision.",
+   chooseFb:"Exact ! Pour un besoin scolaire simple, l'Annonce B est le meilleur choix car elle est complète, a une garantie, et pas de pression urgente.",
+   welcome:"Examinez les 2 annonces, puis choisissez la meilleure pour un besoin scolaire simple.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 12 — vous savez maintenant évaluer une annonce d'ordinateur et comparer deux choix."},
+ en:{lead:"Last mission! Compare 2 listings, identify missing information and warning signs, then choose the better fit.",
+   objs:["Examine Listing A","Examine Listing B","Choose the better listing for a simple school need","Explain the decision"],
+   listingA:["Listing A","'Core i7 laptop, good condition, $150, pay now or 100% refunded'","Missing: generation, warranty, real photos — payment pressure"],
+   listingB:["Listing B","'HP Core i5-1235U, 8GB RAM, 256GB SSD, 85% battery, 3-month warranty, video available'","Complete: model, generation, specs, condition, warranty"],
+   chooseBtn:"Choose Listing B (better for a simple school need)",
+   listingAFb:"Listing A has several warning signs: no generation, urgent payment pressure, and no warranty.",
+   listingBFb:"Listing B is complete and clear — it has all the information needed for a good decision.",
+   chooseFb:"Exactly! For a simple school need, Listing B is the better choice because it's complete, has a warranty, and no urgent pressure.",
+   welcome:"Examine the 2 listings, then choose the better one for a simple school need.",
+   done:"Congratulations! You completed Module 12's Mission — now you know how to evaluate a computer listing and compare two choices."}},
+};
+
+/* ============ engine ============ */
+const NL=12;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module12-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD12_LESSON_SLUGS=["anvan-ou-achte-kominse-ak-travay-la","laptop-desktop-all-in-one-chromebook-oswa-mac","intel-kont-amd-sou-odinate-windows","konprann-non-pwosese-ak-jenerasyon","ram-memwa-estokaj-ak-kapasite-mizajou-anvan-acha","ekran-batri-klavye-po-chaje-kamera-ak-kalite-konstriksyon","nef-itilize-bwat-ouve-refet-ak-renouvle","enspeksyon-konple-yon-odinate-windows-itilize","siy-danje-ak-eskrokri-acha-komen","swen-netwayaj-chale-batri-kouran-ak-kou-posesyon-ayisyen","fe-yon-desizyon-acha-pesonel","misyon-evalye-yon-anons-odinate"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD12_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule13();
+}
+function injectContinueModule13(){
+ if($("continueModule13"))return;
+ const a=document.createElement("a");a.id="continueModule13";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[12];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===11;
+ let les="";if(active){les='<div class="les">'+M12[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">12.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 12 · 12."+(i+1);$("topTitle").textContent=M12[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 12 · 12.'+(i+1)+'</span><div class="labh2">'+M12[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.picked={};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(1,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,190px)">'+d.people.map((p,k)=>'<div class="partcard'+(st.picked[k]?" done":"")+'" data-k="'+k+'"><div class="partart">'+p[0]+'</div><div class="partn">'+p[1]+'</div><div style="font-size:11.5px;color:var(--mute);margin-top:4px">'+p[2]+'</div>'+(st.picked[k]?'<div style="margin-top:6px;font-weight:700;color:var(--good);font-size:12.5px">→ '+d.types[k]+'</div>':"")+'</div>').join("")+'</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=c.dataset.k;
+   if(!st.picked[k]){st.picked[k]=true;if(Object.keys(st.picked).length>=3)setObj(0);render();}}));
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.old=false;st.newer=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(2,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(2,220px)">'+
+   '<div class="partcard" id="oldCard"><div class="partart">💻</div><div class="partn">'+d.oldI7+'</div></div>'+
+   '<div class="partcard" id="newCard"><div class="partart">💻</div><div class="partn">'+d.newI5+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.old&&st.newer)setObj(0);}
+ $("oldCard").addEventListener("click",()=>{if(st.old)return;st.old=true;$("oldCard").classList.add("done");ai(d.oldI7Fb,"warn");check();});
+ $("newCard").addEventListener("click",()=>{if(st.newer)return;st.newer=true;$("newCard").classList.add("done");ai(d.newI5Fb,"good");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div style="font-weight:700;margin-top:14px;font-family:monospace;font-size:15px">'+d.sample+'</div>'+
+  '<div class="checklist" style="max-width:600px">'+
+   '<div class="chip" data-q="1" style="justify-content:flex-start">'+d.q1+'</div>'+
+   '<div class="chip" data-q="2" style="justify-content:flex-start">'+d.q2+'</div>'+
+   '<div class="chip" data-q="3" style="justify-content:flex-start">'+d.q3+'</div>'+
+   '<div class="chip" data-q="4" style="justify-content:flex-start">'+d.q4+'</div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ const ansMap={"1":d.q1a,"2":d.q2a,"3":d.q3a,"4":d.q4a};
+ stage.querySelectorAll(".chip[data-q]").forEach(c=>c.addEventListener("click",()=>{const k=c.dataset.q;
+  if(!st.seen[k]){st.seen[k]=true;ai(ansMap[k],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,200px)">'+d.workloads.map((w,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+w[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.workloads[k][1],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(5,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.good=false;st.vague=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div class="listing2">'+
+   '<div class="listing" id="goodListing"><h4>'+d.goodListing[0]+' '+d.goodListing[1]+'</h4><div class="meta">'+d.goodListing[2]+'</div></div>'+
+   '<div class="listing" id="vagueListing"><h4>'+d.vagueListing[0]+' '+d.vagueListing[1]+'</h4><div class="meta">'+d.vagueListing[2]+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function check(){if(st.good&&st.vague)setObj(0);}
+ $("goodListing").addEventListener("click",()=>{if(st.good)return;st.good=true;$("goodListing").classList.add("done");ai(d.goodFb,"good");check();});
+ $("vagueListing").addEventListener("click",()=>{if(st.vague)return;st.vague=true;$("vagueListing").classList.add("done");ai(d.vagueFb,"warn");check();});
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="checklist" style="max-width:600px">'+d.steps.map((s,k)=>'<div class="chip" data-k="'+k+'" style="justify-content:flex-start">'+s+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("sel");ai(d.stepFb,"good");}
+  if(Object.keys(st.seen).length>=8)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ const flags=[d.flag1,d.flag2,d.flag3,d.flag4];
+ stage.innerHTML=labHead(8,d.lead)+'<div class="partgrid">'+flags.map((f,k)=>'<div class="partcard" data-k="'+k+'"><div class="partn">'+f[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(flags[k][1],"warn");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(9,d.lead)+'<div class="partgrid">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L11(){const d=C[11][S.lang];const st=S.st[10];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(10,d.lead)+'<div class="checklist" style="max-width:600px">'+d.sections.map((s,k)=>'<div class="chip" data-k="'+k+'" style="justify-content:flex-start">'+s+'</div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("sel");ai(d.stepFb,"good");}
+  if(Object.keys(st.seen).length>=5)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L12(){const d=C[12][S.lang];const st=S.st[11];st.a=false;st.b=false;st.chosen=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(11,d.lead)+'<div class="listing2">'+
+   '<div class="listing" id="listingA"><h4>'+d.listingA[0]+'</h4><div class="meta">'+d.listingA[1]+'</div><div class="meta" style="color:var(--danger);margin-top:6px">'+d.listingA[2]+'</div></div>'+
+   '<div class="listing" id="listingB"><h4>'+d.listingB[0]+'</h4><div class="meta">'+d.listingB[1]+'</div><div class="meta" style="color:var(--good);margin-top:6px">'+d.listingB[2]+'</div></div>'+
+  '</div>'+
+  '<div style="margin-top:18px"><button class="btn p" id="chooseBtn">'+d.chooseBtn+'</button></div>'+nextBar();
+ wireNext();
+ $("listingA").addEventListener("click",()=>{if(st.a)return;st.a=true;$("listingA").classList.add("done");ai(d.listingAFb,"warn");setObj(0);});
+ $("listingB").addEventListener("click",()=>{if(st.b)return;st.b=true;$("listingB").classList.add("done");ai(d.listingBFb,"good");setObj(1);});
+ $("chooseBtn").addEventListener("click",()=>{if(st.chosen)return;st.chosen=true;ai(d.chooseFb,"good");setObj(2);setObj(3);});
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>
