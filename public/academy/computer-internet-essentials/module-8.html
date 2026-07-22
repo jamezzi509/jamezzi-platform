@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 8 — Imèl ak Kominikasyon</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:pointer;font-size:14px;font-weight:600}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.done{border-color:var(--good)}
+.partart{height:70px;display:grid;place-items:center;font-size:34px}
+.partn{font-weight:700;font-size:15px;margin-top:6px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}
+/* mail chrome */
+.mail{width:min(760px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.mtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.mbody{display:flex;min-height:220px}
+.mnav{width:150px;flex:none;background:#f3f3f3;padding:10px;border-right:1px solid var(--w-stroke)}
+.mni{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;font-size:13px;cursor:pointer}
+.mni:hover{background:rgba(0,0,0,.05)}.mni.sel{background:#e4f0ff;font-weight:600}
+.mcontent{flex:1;background:var(--w-content);overflow:auto;padding:14px 18px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .sub{font-size:12px;color:var(--w-t2)}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}
+.field{background:#fff;border:1px solid var(--w-stroke);border-radius:6px;padding:9px 12px;font-size:13.5px;margin-bottom:8px}
+.field .lbl2{font-size:10.5px;color:var(--w-t2);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
+.pbar{height:8px;background:#e5e5e5;border-radius:6px;overflow:hidden;margin-top:8px}
+.pbar>span{display:block;height:100%;background:var(--w-accent);transition:width .4s}
+.flagrow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;border-radius:6px}
+.flagrow:last-child{border-bottom:none}
+.flagrow .k{font-size:14.5px;flex:1}.flagrow .act{font-size:12px;color:var(--w-accent);cursor:pointer;font-weight:600}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ .mbody{flex-direction:column}
+ .mnav{width:100%;border-right:none;border-bottom:1px solid var(--w-stroke)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 8 · 8.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 10</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 9 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 9 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 9 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M8={ht:["Kijan Imèl Mache","Kreye oswa Sekirize Yon Kont Imèl","Bwat Resevwa, Voye, Bouyon, Spam, ak Poubèl","Ekri ak Voye Yon Imèl Klè","Reponn, Reponn Tout Moun, ak Transfere","Fichye Tache (Attachments)","Òganize ak Jwenn Imèl","Eskrokri Imèl ak Fichye Tache Danjere","Prepare Pou Yon Apèl Videyo","Misyon: Voye Yon Mesaj Konplè"],
+ fr:["Comment Fonctionne l'E-mail","Créer ou Sécuriser un Compte E-mail","Boîte de Réception, Envoyés, Brouillons, Spam, et Corbeille","Rédiger et Envoyer un E-mail Clair","Répondre, Répondre à Tous, et Transférer","Pièces Jointes","Organiser et Trouver des E-mails","Arnaques par E-mail et Pièces Jointes Dangereuses","Préparation de Base pour un Appel Vidéo","Mission : Envoyer un Message Complet"],
+ en:["How Email Works","Create or Secure an Email Account","Inbox, Sent, Drafts, Spam, and Trash","Compose and Send a Clear Email","Reply, Reply All, and Forward","Attachments","Organize and Find Email","Email Scams and Dangerous Attachments","Basic Video-Call Readiness","Module Mission: Send a Complete Message"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lead:"Yon imèl gen plizyè pati: chan 'A' (destinatè), chan 'De' (moun ki voye), sijè, ak kò mesaj la. Klike sou chak pati.",
+   objs:["Klike sou 4 pati yon imèl","Distenge chan 'A' (To) de chan 'De' (From)"],
+   parts:[["📥","A (To)","Moun ki ap RESEVWA imèl la"],["📤","De (From)","Moun ki ap VOYE imèl la"],["✏️","Sijè","Rezime kout sa imèl la konsène"],["📝","Kò Mesaj","Kontni konplè mesaj la"]],
+   trapQ:"Chan 'A' (To) montre ki moun ki VOYE imèl la?",
+   yes:"Wi, 'A' se moun ki voye a",no:"Non, 'A' se moun ki resevwa a, 'De' se moun ki voye a",
+   yesFb:"Pa vre! Chan 'A' (To) se moun ki RESEVWA imèl la. Se chan 'De' (From) ki montre ki moun ki voye l.",
+   noFb:"Egzat! 'A' (To) = destinatè, 'De' (From) = moun ki voye — fasil pou konfonn men enpòtan pou konnen diferans lan.",
+   welcome:"Klike sou chak pati yon imèl pou aprann wòl li.",
+   done:"Ou konnen kounye a 4 pati prensipal yon imèl, epi diferans ant 'A' ak 'De'."},
+ fr:{lead:"Un e-mail a plusieurs parties : le champ « À » (destinataire), le champ « De » (l'expéditeur), le sujet, et le corps du message. Cliquez sur chaque partie.",
+   objs:["Cliquer sur 4 parties d'un e-mail","Distinguer le champ « À » du champ « De »"],
+   parts:[["📥","À (To)","La personne qui REÇOIT l'e-mail"],["📤","De (From)","La personne qui ENVOIE l'e-mail"],["✏️","Sujet","Résumé court de quoi parle l'e-mail"],["📝","Corps du Message","Le contenu complet du message"]],
+   trapQ:"Le champ « À » (To) montre-t-il qui ENVOIE l'e-mail ?",
+   yes:"Oui, « À » est celui qui envoie",no:"Non, « À » est celui qui reçoit, « De » est celui qui envoie",
+   yesFb:"Pas vrai ! Le champ « À » (To) est la personne qui REÇOIT l'e-mail. C'est le champ « De » (From) qui montre qui l'envoie.",
+   noFb:"Exact ! « À » (To) = destinataire, « De » (From) = expéditeur — facile à confondre mais important de connaître la différence.",
+   welcome:"Cliquez sur chaque partie d'un e-mail pour apprendre son rôle.",
+   done:"Vous connaissez maintenant les 4 parties principales d'un e-mail, et la différence entre « À » et « De »."},
+ en:{lead:"An email has several parts: the 'To' field (recipient), the 'From' field (sender), the subject, and the body. Click each part.",
+   objs:["Click 4 parts of an email","Distinguish the 'To' field from the 'From' field"],
+   parts:[["📥","To","The person RECEIVING the email"],["📤","From","The person SENDING the email"],["✏️","Subject","A short summary of what the email is about"],["📝","Body","The full content of the message"]],
+   trapQ:"Does the 'To' field show who SENT the email?",
+   yes:"Yes, 'To' is who sent it",no:"No, 'To' is who receives it, 'From' is who sent it",
+   yesFb:"Not true! The 'To' field is the person RECEIVING the email. It's the 'From' field that shows who sent it.",
+   noFb:"Exactly! 'To' = recipient, 'From' = sender — easy to mix up but important to know the difference.",
+   welcome:"Click each part of an email to learn its role.",
+   done:"Now you know the 4 main parts of an email, and the difference between 'To' and 'From'."}},
+2:{ht:{lead:"Yon kont imèl an sekirite bezwen enfòmasyon rekiperasyon, yon modpas fò, ak 2FA si posib. Verifye chak konfigirasyon anba a.",
+   objs:["Verifye 3 konfigirasyon sekirite","Rekonèt danje pataje modpas ou"],
+   items:[["📧","Enfòmasyon Rekiperasyon","Yon imèl/telefòn segondè pou reprann kont ou si ou bloke"],["🔑","Modpas Fò","Long, inik, pa fasil pou devine"],["📱","2FA (Verifikasyon 2 Etap)","Yon kouch sekirite anplis lè ou konekte"]],
+   trapQ:"Yon zanmi mande modpas imèl ou pou li ka ede ou konfigire yon bagay. Ou ta dwe bay li modpas la?",
+   trapWrong:"Wi, si se yon zanmi mwen fè konfyans li ok",trapRight:"Non, pa janm pataje modpas ou, menm ak yon zanmi",
+   trapWrongFb:"Danjere! Pataje modpas ou bay nenpòt moun aksè total nan kont ou, menm si se yon zanmi. Si ou bezwen èd, rete la pandan y ap ede ou, pa bay modpas la.",
+   trapRightFb:"Egzat! Pa janm pataje modpas ou ak pèsòn, menm fanmi ak zanmi pwòch. Si w bezwen asistans, fè sa ansanm san bay kont ou.",
+   welcome:"Klike sou chak konfigirasyon sekirite pou aprann poukisa li enpòtan.",
+   done:"Ou konnen kounye a 3 eleman sekirite kont imèl enpòtan, epi poukisa pa janm pataje modpas ou."},
+ fr:{lead:"Un compte e-mail sécurisé a besoin d'informations de récupération, d'un mot de passe fort, et de 2FA si possible. Vérifiez chaque configuration ci-dessous.",
+   objs:["Vérifier 3 configurations de sécurité","Reconnaître le danger de partager votre mot de passe"],
+   items:[["📧","Informations de Récupération","Un e-mail/téléphone secondaire pour récupérer votre compte si bloqué"],["🔑","Mot de Passe Fort","Long, unique, difficile à deviner"],["📱","2FA (Vérification en 2 Étapes)","Une couche de sécurité supplémentaire à la connexion"]],
+   trapQ:"Un ami vous demande votre mot de passe e-mail pour vous aider à configurer quelque chose. Devriez-vous le lui donner ?",
+   trapWrong:"Oui, si c'est un ami en qui j'ai confiance ça va",trapRight:"Non, ne jamais partager votre mot de passe, même avec un ami",
+   trapWrongFb:"Dangereux ! Partager votre mot de passe donne à n'importe qui un accès total à votre compte, même un ami. Si vous avez besoin d'aide, restez présent pendant qu'on vous aide, ne donnez pas le mot de passe.",
+   trapRightFb:"Exact ! Ne partagez jamais votre mot de passe avec personne, même la famille et les amis proches. Si vous avez besoin d'assistance, faites-le ensemble sans donner votre compte.",
+   welcome:"Cliquez sur chaque configuration de sécurité pour apprendre pourquoi elle est importante.",
+   done:"Vous connaissez maintenant 3 éléments de sécurité importants pour un compte e-mail, et pourquoi ne jamais partager votre mot de passe."},
+ en:{lead:"A secure email account needs recovery information, a strong password, and 2FA if possible. Check each setting below.",
+   objs:["Check 3 security settings","Recognize the danger of sharing your password"],
+   items:[["📧","Recovery Information","A backup email/phone to recover your account if locked out"],["🔑","Strong Password","Long, unique, hard to guess"],["📱","2FA (Two-Step Verification)","An extra layer of security when signing in"]],
+   trapQ:"A friend asks for your email password to help you set something up. Should you give it to them?",
+   trapWrong:"Yes, if it's a friend I trust it's fine",trapRight:"No, never share your password, even with a friend",
+   trapWrongFb:"Risky! Sharing your password gives anyone full access to your account, even a friend. If you need help, stay present while they assist you — don't hand over the password.",
+   trapRightFb:"Exactly! Never share your password with anyone, even close family and friends. If you need assistance, do it together without giving away your account.",
+   welcome:"Click each security setting to learn why it matters.",
+   done:"Now you know 3 important email account security elements, and why never to share your password."}},
+3:{ht:{lead:"Chak katab imèl gen yon objektif. Klike sou chak youn nan lis navigasyon an.",
+   objs:["Eksplore 5 katab imèl yo","Rekonèt bon imèl ka ateri nan Spam pa erè"],
+   folders:[["Bwat Resevwa","Imèl ou resevwa yo"],["Voye","Imèl ou te deja voye"],["Bouyon","Imèl ou kòmanse ekri men poko voye"],["Spam","Imèl sispèk oswa endezirab, filtre otomatikman"],["Poubèl","Imèl ou efase yo"]],
+   trapQ:"Si yon imèl ateri nan Spam, li toujou yon eskrokri san eksepsyon?",
+   trapWrong:"Wi, tout imèl nan Spam se eskrokri",trapRight:"Non, pafwa bon imèl ka ateri la pa erè — verifye Spam detanzantan",
+   trapWrongFb:"Pa toujou vre! Filtè Spam yo ka fè erè pafwa e mete yon bon imèl (tankou yon repons ou t ap tann) nan Spam pa erè. Verifye katab la detanzantan.",
+   trapRightFb:"Egzat! Filtè Spam yo bon men pa pafè — detanzantan gade nan Spam pou asire ou pa manke yon bon mesaj.",
+   welcome:"Klike sou chak katab pou aprann wòl li.",
+   done:"Ou konnen kounye a wòl 5 katab prensipal yo, epi filtè Spam ka fè erè pafwa."},
+ fr:{lead:"Chaque dossier e-mail a un objectif. Cliquez sur chacun dans la liste de navigation.",
+   objs:["Explorer les 5 dossiers e-mail","Reconnaître qu'un bon e-mail peut atterrir dans Spam par erreur"],
+   folders:[["Boîte de Réception","Les e-mails que vous recevez"],["Envoyés","Les e-mails que vous avez déjà envoyés"],["Brouillons","Les e-mails que vous commencez à écrire mais n'avez pas encore envoyés"],["Spam","E-mails suspects ou indésirables, filtrés automatiquement"],["Corbeille","Les e-mails que vous avez supprimés"]],
+   trapQ:"Si un e-mail atterrit dans Spam, est-ce toujours une arnaque sans exception ?",
+   trapWrong:"Oui, tout ce qui est dans Spam est une arnaque",trapRight:"Non, parfois un bon e-mail peut y atterrir par erreur — vérifiez Spam de temps en temps",
+   trapWrongFb:"Pas toujours vrai ! Les filtres Spam peuvent parfois se tromper et mettre un bon e-mail (comme une réponse que vous attendiez) dans Spam par erreur. Vérifiez le dossier de temps en temps.",
+   trapRightFb:"Exact ! Les filtres Spam sont bons mais pas parfaits — vérifiez Spam de temps en temps pour vous assurer de ne pas manquer un bon message.",
+   welcome:"Cliquez sur chaque dossier pour apprendre son rôle.",
+   done:"Vous connaissez maintenant le rôle des 5 dossiers principaux, et que le filtre Spam peut parfois se tromper."},
+ en:{lead:"Every email folder has a purpose. Click each one in the navigation list.",
+   objs:["Explore the 5 email folders","Recognize a good email can land in Spam by mistake"],
+   folders:[["Inbox","Emails you receive"],["Sent","Emails you've already sent"],["Drafts","Emails you started writing but haven't sent yet"],["Spam","Suspicious or unwanted emails, filtered automatically"],["Trash","Emails you've deleted"]],
+   trapQ:"If an email lands in Spam, is it always a scam with no exceptions?",
+   trapWrong:"Yes, everything in Spam is a scam",trapRight:"No, sometimes a good email can land there by mistake — check Spam occasionally",
+   trapWrongFb:"Not always true! Spam filters can sometimes make mistakes and put a good email (like a reply you were waiting for) into Spam by error. Check the folder occasionally.",
+   trapRightFb:"Exactly! Spam filters are good but not perfect — check Spam occasionally to make sure you're not missing a good message.",
+   welcome:"Click each folder to learn its role.",
+   done:"Now you know the role of the 5 main folders, and that the Spam filter can sometimes make mistakes."}},
+4:{ht:{lead:"Yon imèl klè gen yon sijè presi, yon salitasyon, yon objektif, detay nesesè, ak yon fen. Konstwi yon imèl etap pa etap.",
+   objs:["Konstwi yon imèl ak 4 pati","Rekonèt yon sijè vag pa itil"],
+   subjectGood:"Sijè: Demann Randevou — Vandredi 15 Janvye",subjectBad:"Sijè: Bonjou",
+   greetLbl:"Salitasyon",purposeLbl:"Objektif",closeLbl:"Fen Poli",
+   subjectFb:"Yon sijè presi ede moun ki resevwa a konprann rapid sa imèl la konsène.",
+   greetFb:"Yon salitasyon senp montre respè.",purposeFb:"Di klèman poukisa w ap ekri a.",closeFb:"Yon fen poli (tankou 'Mèsi davans') fèmen imèl la byen.",
+   trapQ:"Yon sijè tankou 'Bonjou' oswa 'Kesyon' ase presi pou moun konprann sa imèl la konsène?",
+   trapWrong:"Wi, sa ase",trapRight:"Non, yon sijè vag pa di anyen sou kontni reyèl la",
+   trapWrongFb:"Pa toujou itil! Yon sijè tankou 'Bonjou' pa di moun ki resevwa a anyen sou sa imèl la konsène — li ka menm parèt tankou spam.",
+   trapRightFb:"Egzat! Yon sijè presi (tankou 'Demann Randevou — Vandredi 15 Janvye') ede moun konprann epi jwenn imèl la pi fasil pita.",
+   welcome:"Klike sou chak pati pou konstwi imèl la, apre reponn kesyon an.",
+   done:"Ou konnen kounye a 4 pati yon imèl klè, epi poukisa yon sijè presi enpòtan."},
+ fr:{lead:"Un e-mail clair a un sujet précis, une salutation, un objectif, les détails nécessaires, et une conclusion. Construisez un e-mail étape par étape.",
+   objs:["Construire un e-mail avec 4 parties","Reconnaître qu'un sujet vague n'est pas utile"],
+   subjectGood:"Sujet : Demande de Rendez-vous — Vendredi 15 Janvier",subjectBad:"Sujet : Bonjour",
+   greetLbl:"Salutation",purposeLbl:"Objectif",closeLbl:"Conclusion Polie",
+   subjectFb:"Un sujet précis aide le destinataire à comprendre rapidement de quoi parle l'e-mail.",
+   greetFb:"Une salutation simple montre du respect.",purposeFb:"Dites clairement pourquoi vous écrivez.",closeFb:"Une conclusion polie (comme « Merci d'avance ») ferme bien l'e-mail.",
+   trapQ:"Un sujet comme « Bonjour » ou « Question » est-il assez précis pour que la personne comprenne de quoi parle l'e-mail ?",
+   trapWrong:"Oui, c'est suffisant",trapRight:"Non, un sujet vague ne dit rien sur le vrai contenu",
+   trapWrongFb:"Pas toujours utile ! Un sujet comme « Bonjour » ne dit rien au destinataire sur le contenu de l'e-mail — ça peut même ressembler à du spam.",
+   trapRightFb:"Exact ! Un sujet précis (comme « Demande de Rendez-vous — Vendredi 15 Janvier ») aide à comprendre et retrouver l'e-mail plus facilement plus tard.",
+   welcome:"Cliquez sur chaque partie pour construire l'e-mail, puis répondez à la question.",
+   done:"Vous connaissez maintenant les 4 parties d'un e-mail clair, et pourquoi un sujet précis est important."},
+ en:{lead:"A clear email has a precise subject, a greeting, a purpose, necessary details, and a closing. Build an email step by step.",
+   objs:["Build an email with 4 parts","Recognize a vague subject isn't useful"],
+   subjectGood:"Subject: Appointment Request — Friday, January 15",subjectBad:"Subject: Hello",
+   greetLbl:"Greeting",purposeLbl:"Purpose",closeLbl:"Polite Closing",
+   subjectFb:"A precise subject helps the recipient quickly understand what the email is about.",
+   greetFb:"A simple greeting shows respect.",purposeFb:"Clearly say why you're writing.",closeFb:"A polite closing (like 'Thank you in advance') wraps up the email well.",
+   trapQ:"Is a subject like 'Hello' or 'Question' precise enough for someone to understand what the email is about?",
+   trapWrong:"Yes, that's enough",trapRight:"No, a vague subject says nothing about the real content",
+   trapWrongFb:"Not always useful! A subject like 'Hello' tells the recipient nothing about the email's content — it can even look like spam.",
+   trapRightFb:"Exactly! A precise subject (like 'Appointment Request — Friday, January 15') helps understand and find the email more easily later.",
+   welcome:"Click each part to build the email, then answer the question.",
+   done:"Now you know the 4 parts of a clear email, and why a precise subject matters."}},
+5:{ht:{lead:"Yon imèl ak 5 moun ladan l — chwazi byen ant Reponn, Reponn Tout Moun, ak Transfere.",
+   objs:["Eseye Reponn, Reponn Tout Moun, ak Transfere","Rekonèt lè Reponn Tout Moun se yon erè"],
+   replyBtn:"Reponn",replyAllBtn:"Reponn Tout Moun",forwardBtn:"Transfere",
+   replyFb:"Reponn voye mesaj la SÈLMAN bay moun ki te voye l la.",
+   replyAllFb:"Reponn Tout Moun voye bay TOUT moun ki te nan lis la — 5 moun total.",
+   forwardFb:"Transfere voye mesaj la bay yon NOUVO moun — ajoute yon ti kontèks toujou bon.",
+   trapQ:"Ou vle reponn SÈLMAN moun ki voye imèl la, men ou gen 5 lòt moun nan lis la. Ki bouton ou ta dwe klike?",
+   trapWrong:"Reponn Tout Moun",trapRight:"Reponn (sèlman)",
+   trapWrongFb:"Erè klasik! Reponn Tout Moun ta voye repons ou bay tout 5 moun yo, menm si se yon repons pèsonèl ou t ap vle bay yon sèl moun.",
+   trapRightFb:"Egzat! Reponn (san 'Tout Moun') voye sèlman bay moun ki te voye imèl la — evite anbarasman anvan li rive.",
+   welcome:"Eseye chak bouton pou wè kiyès ki resevwa.",
+   done:"Ou konnen kounye a diferans ant Reponn, Reponn Tout Moun, ak Transfere, epi poukisa fè atansyon ak Reponn Tout Moun."},
+ fr:{lead:"Un e-mail avec 5 personnes dedans — choisissez bien entre Répondre, Répondre à Tous, et Transférer.",
+   objs:["Essayer Répondre, Répondre à Tous, et Transférer","Reconnaître quand Répondre à Tous est une erreur"],
+   replyBtn:"Répondre",replyAllBtn:"Répondre à Tous",forwardBtn:"Transférer",
+   replyFb:"Répondre envoie le message SEULEMENT à la personne qui l'a envoyé.",
+   replyAllFb:"Répondre à Tous envoie à TOUTES les personnes de la liste — 5 personnes au total.",
+   forwardFb:"Transférer envoie le message à une NOUVELLE personne — ajouter un peu de contexte est toujours bien.",
+   trapQ:"Vous voulez répondre SEULEMENT à la personne qui a envoyé l'e-mail, mais il y a 5 autres personnes dans la liste. Quel bouton devriez-vous cliquer ?",
+   trapWrong:"Répondre à Tous",trapRight:"Répondre (seulement)",
+   trapWrongFb:"Erreur classique ! Répondre à Tous enverrait votre réponse aux 5 personnes, même si c'était une réponse personnelle destinée à une seule personne.",
+   trapRightFb:"Exact ! Répondre (sans « à Tous ») envoie seulement à la personne qui a envoyé l'e-mail — évite l'embarras avant qu'il n'arrive.",
+   welcome:"Essayez chaque bouton pour voir qui reçoit.",
+   done:"Vous connaissez maintenant la différence entre Répondre, Répondre à Tous, et Transférer, et pourquoi faire attention à Répondre à Tous."},
+ en:{lead:"An email with 5 people on it — choose wisely between Reply, Reply All, and Forward.",
+   objs:["Try Reply, Reply All, and Forward","Recognize when Reply All is a mistake"],
+   replyBtn:"Reply",replyAllBtn:"Reply All",forwardBtn:"Forward",
+   replyFb:"Reply sends the message ONLY to the person who sent it.",
+   replyAllFb:"Reply All sends to EVERYONE on the list — 5 people total.",
+   forwardFb:"Forward sends the message to a NEW person — adding a bit of context is always good.",
+   trapQ:"You want to reply ONLY to the person who sent the email, but there are 5 other people on the list. Which button should you click?",
+   trapWrong:"Reply All",trapRight:"Reply (only)",
+   trapWrongFb:"Classic mistake! Reply All would send your reply to all 5 people, even if it was a personal reply meant for just one person.",
+   trapRightFb:"Exactly! Reply (without 'All') sends only to the person who sent the email — avoiding embarrassment before it happens.",
+   welcome:"Try each button to see who receives it.",
+   done:"Now you know the difference between Reply, Reply All, and Forward, and why to be careful with Reply All."}},
+6:{ht:{lead:"Tache yon fichye, tann li fini telechaje, epi verifye anvan ou voye.",
+   objs:["Tache yon fichye epi tann telechajman fini","Rekonèt danje voye anvan telechajman fini"],
+   attachBtn:"Tache Fichye 'Rapò.pdf'",sendBtn:"Voye Imèl la",
+   attachFb:"Fichye a ap telechaje...",
+   trapQ:null,
+   uploadDoneFb:"Telechajman fini — kounye a ou ka voye san danje.",
+   sendEarlyFb:"Tann! Telechajman an poko fini (sèlman ",
+   sendEarlyFb2:"% fèt) — si ou voye kounye a, fichye a ka rive kase oswa enkonplè.",
+   welcome:"Klike 'Tache Fichye', apre eseye 'Voye Imèl la' anvan telechajman an fini.",
+   done:"Ou konnen kounye a pou tann telechajman yon fichye fini anvan ou voye yon imèl."},
+ fr:{lead:"Joignez un fichier, attendez qu'il finisse de se télécharger, puis vérifiez avant d'envoyer.",
+   objs:["Joindre un fichier et attendre la fin du téléchargement","Reconnaître le danger d'envoyer avant la fin du téléchargement"],
+   attachBtn:"Joindre le Fichier 'Rapport.pdf'",sendBtn:"Envoyer l'E-mail",
+   attachFb:"Le fichier se télécharge...",
+   trapQ:null,
+   uploadDoneFb:"Téléchargement terminé — vous pouvez maintenant envoyer en toute sécurité.",
+   sendEarlyFb:"Attendez ! Le téléchargement n'est pas fini (seulement ",
+   sendEarlyFb2:"% fait) — si vous envoyez maintenant, le fichier pourrait arriver cassé ou incomplet.",
+   welcome:"Cliquez « Joindre le Fichier », puis essayez « Envoyer l'E-mail » avant la fin du téléchargement.",
+   done:"Vous savez maintenant qu'il faut attendre la fin du téléchargement d'un fichier avant d'envoyer un e-mail."},
+ en:{lead:"Attach a file, wait for it to finish uploading, then check before sending.",
+   objs:["Attach a file and wait for the upload to finish","Recognize the danger of sending before the upload finishes"],
+   attachBtn:"Attach File 'Report.pdf'",sendBtn:"Send Email",
+   attachFb:"The file is uploading...",
+   trapQ:null,
+   uploadDoneFb:"Upload finished — now you can send safely.",
+   sendEarlyFb:"Wait! The upload isn't finished (only ",
+   sendEarlyFb2:"% done) — if you send now, the file might arrive broken or incomplete.",
+   welcome:"Click 'Attach File,' then try 'Send Email' before the upload finishes.",
+   done:"Now you know to wait for a file's upload to finish before sending an email."}},
+7:{ht:{lead:"Chèche, make ak zetwal, achive, ak dezabòne bay ou kontwòl sou bwat resevwa ou.",
+   objs:["Chèche, make ak zetwal, epi achive yon imèl","Rekonèt bon fason pou sispann yon bilten legal"],
+   emailTitle:"Bilten Magazen ABC — Pwomosyon semenn nan",
+   searchBtn:"🔎 Chèche",starBtn:"☆ Make ak Zetwal",archiveBtn:"🗄️ Achive",
+   searchFb:"Ou chèche yon imèl espesifik pa mo kle.",starFb:"Imèl la make ak zetwal — pi fasil pou jwenn pita.",archiveFb:"Imèl la achive — li soti nan Bwat Resevwa a men li pa efase.",
+   unsubLink:"Dezabòne",fakeLink:"⚠️ Ou genyen yon kado — klike la pou sispann tout imèl",
+   trapQ:"Ou resevwa anpil imèl pwomosyon ki VRÈMAN soti nan yon magazen ou konnen. Pi bon aksyon pou sispann yo se..?",
+   trapWrong:"Klike sou lyen '⚠️ ou genyen yon kado' pou sispann yo",trapRight:"Itilize bouton 'Dezabòne' ki anba imèl la",
+   trapWrongFb:"Danjere! Yon lyen tankou 'ou genyen yon kado' se souvan yon fo lyen, menm si imèl la sanble vini nan yon bon magazen. Sa ka mennen ou nan yon sit danjere.",
+   trapRightFb:"Egzat! Bouton 'Dezabòne' ofisyèl anba yon bilten legal se fason kòrèk pou sispann resevwa yo.",
+   welcome:"Klike sou Chèche, Zetwal, ak Achive, apre reponn kesyon an.",
+   done:"Ou konnen kounye a kijan pou òganize imèl ou, epi kijan pou dezabòne an sekirite."},
+ fr:{lead:"Chercher, marquer d'une étoile, archiver, et se désabonner vous donnent le contrôle sur votre boîte de réception.",
+   objs:["Chercher, marquer d'une étoile, et archiver un e-mail","Reconnaître la bonne façon d'arrêter une newsletter légitime"],
+   emailTitle:"Newsletter Magasin ABC — Promotions de la semaine",
+   searchBtn:"🔎 Chercher",starBtn:"☆ Marquer d'une Étoile",archiveBtn:"🗄️ Archiver",
+   searchFb:"Vous cherchez un e-mail spécifique par mot-clé.",starFb:"L'e-mail est marqué d'une étoile — plus facile à retrouver plus tard.",archiveFb:"L'e-mail est archivé — il sort de la Boîte de Réception mais n'est pas supprimé.",
+   unsubLink:"Se Désabonner",fakeLink:"⚠️ Vous avez gagné un cadeau — cliquez ici pour arrêter tous les e-mails",
+   trapQ:"Vous recevez beaucoup d'e-mails promotionnels qui viennent VRAIMENT d'un magasin que vous connaissez. La meilleure façon de les arrêter est... ?",
+   trapWrong:"Cliquer sur le lien « ⚠️ vous avez gagné un cadeau » pour les arrêter",trapRight:"Utiliser le bouton « Se Désabonner » en bas de l'e-mail",
+   trapWrongFb:"Dangereux ! Un lien comme « vous avez gagné un cadeau » est souvent un faux lien, même si l'e-mail semble venir d'un bon magasin. Cela peut vous mener vers un site dangereux.",
+   trapRightFb:"Exact ! Le bouton « Se Désabonner » officiel en bas d'une newsletter légitime est la bonne façon d'arrêter de les recevoir.",
+   welcome:"Cliquez sur Chercher, Étoile, et Archiver, puis répondez à la question.",
+   done:"Vous savez maintenant organiser vos e-mails, et comment vous désabonner en sécurité."},
+ en:{lead:"Searching, starring, archiving, and unsubscribing give you control over your inbox.",
+   objs:["Search, star, and archive an email","Recognize the right way to stop a legitimate newsletter"],
+   emailTitle:"ABC Store Newsletter — This week's promotions",
+   searchBtn:"🔎 Search",starBtn:"☆ Star It",archiveBtn:"🗄️ Archive",
+   searchFb:"You search for a specific email by keyword.",starFb:"The email is starred — easier to find later.",archiveFb:"The email is archived — it leaves the Inbox but isn't deleted.",
+   unsubLink:"Unsubscribe",fakeLink:"⚠️ You won a prize — click here to stop all emails",
+   trapQ:"You get a lot of promotional emails that REALLY come from a store you know. The best way to stop them is...?",
+   trapWrong:"Click the '⚠️ you won a prize' link to stop them",trapRight:"Use the 'Unsubscribe' button at the bottom of the email",
+   trapWrongFb:"Risky! A link like 'you won a prize' is often a fake link, even if the email seems to come from a good store. It can lead you to a dangerous site.",
+   trapRightFb:"Exactly! The official 'Unsubscribe' button at the bottom of a legitimate newsletter is the correct way to stop receiving them.",
+   welcome:"Click Search, Star, and Archive, then answer the question.",
+   done:"Now you know how to organize your email, and how to unsubscribe safely."}},
+8:{ht:{lead:"Eskrokri imèl souvan itilize ijans, yon moun ki voye ki pa matche, oswa fichye danjere. Egzamine imèl sispèk sa a.",
+   objs:["Idantifye 3 siy danje nan yon imèl","Verifye atravè yon lòt kanal anvan ou aji"],
+   subj:"⚠️ IJAN: Kont Bank Ou Ap Fèmen Si Ou Pa Aji KOUNYE A",
+   from:"soutyen@bank-security-verify.xyz",
+   body:"Klike lyen sa a KOUNYE A pou konfime kont ou anvan li fèmen pou tout tan. Ou gen 2 èdtan sèlman.",
+   flag1:["Ijans Fo","'KOUNYE A', 'sèlman 2 èdtan' — presyon pou fè ou aji san reflechi"],
+   flag2:["Moun ki Voye Pa Matche","'bank-security-verify.xyz' se PA menm domèn ak vrè bank ou"],
+   flag3:["Lyen/Fichye Danjere","Yon lyen oswa fichye tache ou pa t tann"],
+   trapQ:"Ou resevwa imèl ijan sa a. Ki pi bon aksyon an?",
+   trapWrong:"Klike lyen an imedyatman anvan li twò ta",trapRight:"Verifye dirèkteman ak bank lan pa yon lòt kanal (telefòn, sit ofisyèl), pa atravè lyen nan imèl la",
+   trapWrongFb:"Danjere! Se egzakteman sa eskrokri yo vle ou fè — aji vit san reflechi. Bank ou pa janm ta mande sa konsa ak yon delè presyon.",
+   trapRightFb:"Egzat! Toujou verifye ak enstitisyon an dirèkteman (nimewo telefòn ofisyèl, sit ou konnen) anvan ou klike nenpòt lyen nan yon imèl ijan.",
+   welcome:"Klike sou 3 siy danje nan imèl la, apre reponn kesyon an.",
+   done:"Ou konnen kounye a rekonèt siy danje nan yon imèl eskrokri, epi toujou verifye pa yon lòt kanal."},
+ fr:{lead:"Les arnaques par e-mail utilisent souvent l'urgence, un expéditeur qui ne correspond pas, ou des fichiers dangereux. Examinez cet e-mail suspect.",
+   objs:["Identifier 3 signes de danger dans un e-mail","Vérifier par un autre canal avant d'agir"],
+   subj:"⚠️ URGENT : Votre Compte Bancaire Va Fermer Si Vous N'agissez Pas MAINTENANT",
+   from:"support@banque-securite-verif.xyz",
+   body:"Cliquez sur ce lien MAINTENANT pour confirmer votre compte avant qu'il ne ferme définitivement. Vous avez seulement 2 heures.",
+   flag1:["Fausse Urgence","« MAINTENANT », « seulement 2 heures » — pression pour agir sans réfléchir"],
+   flag2:["Expéditeur qui Ne Correspond Pas","« banque-securite-verif.xyz » n'est PAS le même domaine que votre vraie banque"],
+   flag3:["Lien/Fichier Dangereux","Un lien ou une pièce jointe que vous n'attendiez pas"],
+   trapQ:"Vous recevez cet e-mail urgent. Quelle est la meilleure action ?",
+   trapWrong:"Cliquer sur le lien immédiatement avant qu'il ne soit trop tard",trapRight:"Vérifier directement avec la banque par un autre canal (téléphone, site officiel), pas via le lien de l'e-mail",
+   trapWrongFb:"Dangereux ! C'est exactement ce que les arnaqueurs veulent que vous fassiez — agir vite sans réfléchir. Votre banque ne demanderait jamais ça avec ce genre de pression temporelle.",
+   trapRightFb:"Exact ! Vérifiez toujours directement avec l'institution (numéro de téléphone officiel, site que vous connaissez) avant de cliquer sur un lien dans un e-mail urgent.",
+   welcome:"Cliquez sur les 3 signes de danger dans l'e-mail, puis répondez à la question.",
+   done:"Vous savez maintenant reconnaître les signes de danger dans un e-mail d'arnaque, et toujours vérifier par un autre canal."},
+ en:{lead:"Email scams often use urgency, a mismatched sender, or dangerous files. Examine this suspicious email.",
+   objs:["Identify 3 danger signs in an email","Verify through another channel before acting"],
+   subj:"⚠️ URGENT: Your Bank Account Will Close If You Don't Act NOW",
+   from:"support@bank-security-verify.xyz",
+   body:"Click this link NOW to confirm your account before it closes permanently. You only have 2 hours.",
+   flag1:["Fake Urgency","'NOW', 'only 2 hours' — pressure to act without thinking"],
+   flag2:["Sender Mismatch","'bank-security-verify.xyz' is NOT the same domain as your real bank"],
+   flag3:["Dangerous Link/File","A link or attachment you weren't expecting"],
+   trapQ:"You receive this urgent email. What's the best action?",
+   trapWrong:"Click the link immediately before it's too late",trapRight:"Verify directly with the bank through another channel (phone, official site), not through the email's link",
+   trapWrongFb:"Risky! That's exactly what scammers want you to do — act fast without thinking. Your bank would never ask this way with this kind of time pressure.",
+   trapRightFb:"Exactly! Always verify directly with the institution (official phone number, site you know) before clicking any link in an urgent email.",
+   welcome:"Click the 3 danger signs in the email, then answer the question.",
+   done:"Now you know how to recognize danger signs in a scam email, and to always verify through another channel."}},
+9:{ht:{lead:"Anvan yon apèl videyo, tcheke kamera, mikwofòn, ak background ou. Antre nan apèl la sèlman lè ou pare.",
+   objs:["Tcheke kamera ak mikwofòn ou","Konprann poukisa verifye background/silans anvan ou antre"],
+   camBtn:"Aktive Kamera",micBtn:"Aktive Mikwofòn",joinBtn:"Antre nan Apèl la",
+   camFb:"Kamera a aktive — ou ka wè tèt ou.",micFb:"Mikwofòn an aktive.",
+   trapQ:"Anvan ou antre nan apèl la, ou ta dwe tcheke background ou ak si mikwofòn ou an silans (mute) si ou nan yon kote brwiyan?",
+   trapWrong:"Non, ou ka antre san tcheke anyen",trapRight:"Wi, tcheke background ak eta mikwofòn ou anvan ou antre",
+   trapWrongFb:"Pa pi bon lide a! San tcheke, ou ka antre nan apèl la ak yon background ki pa apwopriye oswa fè bri fon ki deranje lòt moun yo.",
+   trapRightFb:"Egzat! Yon ti tan pou tcheke background ak silans mikwofòn anvan ou antre montre respè pou lòt moun nan apèl la.",
+   welcome:"Klike 'Aktive Kamera' ak 'Aktive Mikwofòn', apre reponn kesyon an anvan ou antre.",
+   done:"Ou konnen kounye a etap debaz pou prepare pou yon apèl videyo."},
+ fr:{lead:"Avant un appel vidéo, vérifiez votre caméra, microphone, et votre arrière-plan. N'entrez dans l'appel que lorsque vous êtes prêt.",
+   objs:["Vérifier votre caméra et microphone","Comprendre pourquoi vérifier l'arrière-plan/silence avant d'entrer"],
+   camBtn:"Activer la Caméra",micBtn:"Activer le Microphone",joinBtn:"Entrer dans l'Appel",
+   camFb:"La caméra est activée — vous pouvez vous voir.",micFb:"Le microphone est activé.",
+   trapQ:"Avant d'entrer dans l'appel, devriez-vous vérifier votre arrière-plan et mettre votre microphone en sourdine si vous êtes dans un endroit bruyant ?",
+   trapWrong:"Non, vous pouvez entrer sans rien vérifier",trapRight:"Oui, vérifier l'arrière-plan et l'état du microphone avant d'entrer",
+   trapWrongFb:"Pas la meilleure idée ! Sans vérifier, vous pourriez entrer dans l'appel avec un arrière-plan inapproprié ou du bruit de fond qui dérange les autres.",
+   trapRightFb:"Exact ! Prendre un moment pour vérifier l'arrière-plan et le silence du microphone avant d'entrer montre du respect pour les autres participants.",
+   welcome:"Cliquez « Activer la Caméra » et « Activer le Microphone », puis répondez à la question avant d'entrer.",
+   done:"Vous connaissez maintenant les étapes de base pour vous préparer à un appel vidéo."},
+ en:{lead:"Before a video call, check your camera, microphone, and background. Only join the call when you're ready.",
+   objs:["Check your camera and microphone","Understand why to check background/silence before joining"],
+   camBtn:"Turn On Camera",micBtn:"Turn On Microphone",joinBtn:"Join the Call",
+   camFb:"The camera is on — you can see yourself.",micFb:"The microphone is on.",
+   trapQ:"Before joining the call, should you check your background and mute your microphone if you're in a noisy place?",
+   trapWrong:"No, you can join without checking anything",trapRight:"Yes, check your background and microphone state before joining",
+   trapWrongFb:"Not the best idea! Without checking, you might join the call with an inappropriate background or background noise that bothers others.",
+   trapRightFb:"Exactly! Taking a moment to check the background and mute the microphone before joining shows respect for the other participants.",
+   welcome:"Click 'Turn On Camera' and 'Turn On Microphone,' then answer the question before joining.",
+   done:"Now you know the basic steps for getting ready for a video call."}},
+10:{ht:{lead:"Dènye misyon an! Konplete tou lè 5 aksyon yo pou voye yon mesaj konplè.",
+   objs:["Ekri yon imèl pratik pwofesyonèl","Tache PDF kòrèk la","Verifye destinatè ak sijè","Voye imèl la","Jwenn mesaj voye a"],
+   steps:["Ekri yon imèl pratik pwofesyonèl","Tache fichye 'Rapò.pdf' kòrèk la","Verifye destinatè ak sijè yo kòrèk","Voye imèl la bay yon adrès pratik san danje","Jwenn mesaj la nan katab Voye a"],
+   stepFb:"Byen fèt! Ou konplete yon aksyon nan misyon final la.",
+   welcome:"Klike sou chak aksyon anba a pou konplete misyon final Modil 8 la.",
+   done:"Felisitasyon! Ou konplete Misyon Modil 8 — ou konnen kounye a kijan pou voye yon mesaj konplè ak pwofesyonèl."},
+ fr:{lead:"Dernière mission ! Complétez les 5 actions pour envoyer un message complet.",
+   objs:["Rédiger un e-mail pratique professionnel","Joindre le bon PDF","Vérifier destinataire et sujet","Envoyer l'e-mail","Trouver le message envoyé"],
+   steps:["Rédiger un e-mail pratique professionnel","Joindre le bon fichier 'Rapport.pdf'","Vérifier que le destinataire et le sujet sont corrects","Envoyer l'e-mail à une adresse pratique sûre","Trouver le message dans le dossier Envoyés"],
+   stepFb:"Bien joué ! Vous avez complété une action de la mission finale.",
+   welcome:"Cliquez sur chaque action ci-dessous pour compléter la mission finale du Module 8.",
+   done:"Félicitations ! Vous avez complété la Mission du Module 8 — vous savez maintenant envoyer un message complet et professionnel."},
+ en:{lead:"Last mission! Complete all 5 actions to send a complete message.",
+   objs:["Write a professional practice email","Attach the correct PDF","Check recipient and subject","Send the email","Find the sent message"],
+   steps:["Write a professional practice email","Attach the correct 'Report.pdf' file","Check that the recipient and subject are correct","Send the email to a safe practice address","Find the message in the Sent folder"],
+   stepFb:"Well done! You completed an action in the final mission.",
+   welcome:"Click each action below to complete Module 8's final mission.",
+   done:"Congratulations! You completed Module 8's Mission — now you know how to send a complete, professional message."}},
+};
+
+/* ============ engine ============ */
+const NL=10;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+const SIM_KEY="jamezzi:computer:essentials:module8-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD8_LESSON_SLUGS=["kijan-imel-mache","kreye-oswa-sekirize-yon-kont-imel","bwat-resevwa-voye-bouyon-spam-ak-poubel","ekri-ak-voye-yon-imel-kle","reponn-reponn-tout-moun-ak-transfere","fichye-tache","oganize-ak-jwenn-imel","eskrokri-imel-ak-fichye-tache-danjere","prepare-pou-yon-apel-videyo","misyon-voye-yon-mesaj-konple"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","sa-ki-rive-le-ou-peze-bouton-pouvwa-a","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","kisa-ki-se-entenet-la","navigate-mote-rechech-sit-web-ak-paj-web","","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD8_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule9();
+}
+function injectContinueModule9(){
+ if($("continueModule9"))return;
+ const a=document.createElement("a");a.id="continueModule9";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[8];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===7;
+ let les="";if(active){les='<div class="les">'+M8[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">8.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 8 · 8."+(i+1);$("topTitle").textContent=M8[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9,L10][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 8 · 8.'+(i+1)+'</span><div class="labh2">'+M8[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div class="partgrid">'+d.parts.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqYes">'+d.yes+'</button><button class="cat" id="tqNo">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.parts[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("tqYes").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("tqNo").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="partgrid" style="grid-template-columns:repeat(3,200px)">'+d.items.map((it,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+it[0]+'</div><div class="partn">'+it[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.k;
+  if(!st.seen[k]){st.seen[k]=true;c.classList.add("done");ai(d.items[k][2],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];st.sel=0;st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(2,d.lead)+'<div class="mail"><div class="mtb">📧 Imèl</div><div class="mbody"><div class="mnav">'+
+    d.folders.map((f,k)=>'<div class="mni'+(k===st.sel?" sel":"")+'" data-n="'+k+'">'+f[0]+'</div>').join("")+
+   '</div><div class="mcontent"><div style="font-weight:600;margin-bottom:8px">'+d.folders[st.sel][0]+'</div><div style="color:var(--w-t2);font-size:13px">'+d.folders[st.sel][1]+'</div></div></div></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  stage.querySelectorAll(".mni[data-n]").forEach(n=>n.addEventListener("click",()=>{st.sel=+n.dataset.n;
+   if(!st.seen[st.sel]){st.seen[st.sel]=true;}
+   if(Object.keys(st.seen).length>=5)setObj(0);render();}));
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(3,d.lead)+'<div class="mail"><div class="mtb">✏️ '+d.subjectGood+'</div><div class="mbody" style="flex-direction:column;padding:16px 18px">'+
+   '<div class="field"><div class="lbl2">'+d.greetLbl+'</div>Bonjou,</div>'+
+   '<div class="field"><div class="lbl2">'+d.purposeLbl+'</div>M ta renmen pran yon randevou...</div>'+
+   '<div class="field"><div class="lbl2">'+d.closeLbl+'</div>Mèsi davans, [Non ou]</div>'+
+  '</div></div>'+
+  '<div class="cats"><button class="cat" data-p="greet">'+d.greetLbl+'</button><button class="cat" data-p="purpose">'+d.purposeLbl+'</button><button class="cat" data-p="close">'+d.closeLbl+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ const fbMap={greet:d.greetFb,purpose:d.purposeFb,close:d.closeFb};
+ stage.querySelectorAll(".cat[data-p]").forEach(c=>c.addEventListener("click",()=>{const k=c.dataset.p;
+  if(!st.seen[k]){st.seen[k]=true;ai(fbMap[k],"neutral");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap"><button class="btn g" id="replyBtn">'+d.replyBtn+'</button><button class="btn g" id="replyAllBtn">'+d.replyAllBtn+'</button><button class="btn g" id="forwardBtn">'+d.forwardBtn+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ function seen(k,msg){if(!st.seen[k]){st.seen[k]=true;ai(msg,"neutral");}if(Object.keys(st.seen).length>=3)setObj(0);}
+ $("replyBtn").addEventListener("click",()=>seen("reply",d.replyFb));
+ $("replyAllBtn").addEventListener("click",()=>seen("replyall",d.replyAllFb));
+ $("forwardBtn").addEventListener("click",()=>seen("forward",d.forwardFb));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.pct=0;st.attaching=false;
+ const stage=$("stage");stage.className="stage lab";
+ let timer=null;
+ function render(){
+  stage.innerHTML=labHead(5,d.lead)+
+   (!st.attaching?'<div style="margin-top:18px"><button class="btn p" id="attachBtn">'+d.attachBtn+'</button></div>':
+    '<div class="mail"><div class="mbody" style="flex-direction:column;padding:16px 18px">'+
+     '<div style="font-weight:600">📎 Rapò.pdf</div><div class="pbar"><span style="width:'+st.pct+'%"></span></div><div style="font-size:12px;color:var(--w-t2);margin-top:4px">'+st.pct+'%</div>'+
+    '</div></div>')+
+   '<div style="margin-top:20px"><button class="btn g" id="sendBtn">'+d.sendBtn+'</button></div>'+nextBar();
+  wireNext();
+  const ab=$("attachBtn");if(ab)ab.addEventListener("click",()=>{st.attaching=true;ai(d.attachFb,"neutral");render();
+   timer=setInterval(()=>{st.pct=Math.min(100,st.pct+20);if(st.pct>=100){clearInterval(timer);}render();},350);});
+  $("sendBtn").addEventListener("click",()=>{
+   if(!st.attaching){return;}
+   if(st.pct<100){ai(d.sendEarlyFb+st.pct+d.sendEarlyFb2,"warn");}
+   else{ai(d.uploadDoneFb,"good");setObj(0);setObj(1);}
+  });
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];st.searched=false;st.starred=false;st.archived=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(6,d.lead)+'<div class="mail"><div class="mbody" style="flex-direction:column;padding:16px 18px">'+
+    '<div class="flagrow"><span class="k">'+d.emailTitle+'</span>'+
+     '<span class="act" id="starAct">'+(st.starred?"★":d.starBtn)+'</span>'+
+     '<span class="act" id="archiveAct">'+(st.archived?"✓":d.archiveBtn)+'</span></div>'+
+    '<div style="margin-top:10px"><a href="#" id="unsubLink" style="font-size:12px;color:var(--w-accent)">'+d.unsubLink+'</a></div>'+
+    '<div style="margin-top:14px;padding:10px;background:#fff8e1;border:1px solid #f0d98a;border-radius:6px"><a href="#" id="fakeLink" style="font-size:13px;color:#a00;font-weight:600">'+d.fakeLink+'</a></div>'+
+   '</div></div>'+
+   '<div style="margin-top:18px"><button class="btn g" id="searchBtnEl">'+d.searchBtn+'</button></div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  function check(){if(st.searched&&st.starred&&st.archived)setObj(0);}
+  $("searchBtnEl").addEventListener("click",()=>{if(!st.searched){st.searched=true;ai(d.searchFb,"neutral");check();}});
+  $("starAct").addEventListener("click",()=>{if(!st.starred){st.starred=true;ai(d.starFb,"good");check();render();}});
+  $("archiveAct").addEventListener("click",()=>{if(!st.archived){st.archived=true;ai(d.archiveFb,"good");check();render();}});
+  $("unsubLink").addEventListener("click",e=>{e.preventDefault();});
+  $("fakeLink").addEventListener("click",e=>{e.preventDefault();});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.seen=st.seen||{};st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="mail"><div class="mbody" style="flex-direction:column;padding:16px 18px;font-size:13px">'+
+   '<div class="flagrow" data-f="0"><span class="k" style="font-weight:700;color:#a00">'+d.subj+'</span></div>'+
+   '<div class="flagrow" data-f="1"><span class="k">De: '+d.from+'</span></div>'+
+   '<div style="margin-top:10px;color:var(--w-t2)" data-f="2">'+d.body+'</div>'+
+  '</div></div>'+
+  '<div class="cats"><button class="cat" data-flag="0">'+d.flag1[0]+'</button><button class="cat" data-flag="1">'+d.flag2[0]+'</button><button class="cat" data-flag="2">'+d.flag3[0]+'</button></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+  '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+ wireNext();
+ const flagMap=[d.flag1[1],d.flag2[1],d.flag3[1]];
+ stage.querySelectorAll(".cat[data-flag]").forEach(c=>c.addEventListener("click",()=>{const k=c.dataset.flag;
+  if(!st.seen[k]){st.seen[k]=true;ai(flagMap[k],"warn");}
+  if(Object.keys(st.seen).length>=3)setObj(0);}));
+ $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);});
+ $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.cam=false;st.mic=false;st.answered=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(8,d.lead)+'<div style="display:flex;gap:10px;margin-top:18px">'+
+    '<button class="btn '+(st.cam?"g":"p")+'" id="camBtn">'+(st.cam?"✓ ":"")+d.camBtn+'</button>'+
+    '<button class="btn '+(st.mic?"g":"p")+'" id="micBtn">'+(st.mic?"✓ ":"")+d.micBtn+'</button>'+
+   '</div>'+
+   '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.trapQ+'</div>'+
+   '<div class="cats"><button class="cat" id="tqWrong">'+d.trapWrong+'</button><button class="cat" id="tqRight">'+d.trapRight+'</button></div>'+nextBar();
+  wireNext();
+  $("camBtn").addEventListener("click",()=>{if(!st.cam){st.cam=true;ai(d.camFb,"good");if(st.cam&&st.mic)setObj(0);render();}});
+  $("micBtn").addEventListener("click",()=>{if(!st.mic){st.mic=true;ai(d.micFb,"good");if(st.cam&&st.mic)setObj(0);render();}});
+  $("tqWrong").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapWrongFb,"warn");setObj(1);render();});
+  $("tqRight").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.trapRightFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L10(){const d=C[10][S.lang];const st=S.st[9];st.done5=st.done5||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(9,d.lead)+'<div class="items" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">'+d.steps.map((s,k)=>'<div class="chip" data-s="'+k+'"'+(st.done5[k]?' style="opacity:.4"':"")+'>'+(st.done5[k]?"✓ ":"")+s+'</div>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip[data-s]").forEach(c=>c.addEventListener("click",()=>{const k=+c.dataset.s;if(st.done5[k])return;st.done5[k]=true;
+  ai(d.stepFb,"good");setObj(k);c.style.opacity=".4";c.innerHTML="✓ "+d.steps[k];}));
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>

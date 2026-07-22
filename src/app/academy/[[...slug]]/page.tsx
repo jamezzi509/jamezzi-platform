@@ -63,6 +63,7 @@ const computerSimulatorModules: Record<
   m5: { moduleNumber: 5, title: "Modil 5 — Aplikasyon ak Dokiman" },
   m6: { moduleNumber: 6, title: "Modil 6 — Entènèt ak Wi-Fi" },
   m7: { moduleNumber: 7, title: "Modil 7 — Navigatè ak Konpetans Wèb" },
+  m8: { moduleNumber: 8, title: "Modil 8 — Imèl ak Kominikasyon" },
 };
 
 export async function generateMetadata({
