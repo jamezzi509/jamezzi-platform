@@ -513,6 +513,57 @@ reporting done — don't make AJ catch a rendering problem a screenshot would ha
   side (two channels, same phishing pattern), then requires an explicit "never share"
   declaration (password/2FA/PIN/OTP) as its own gated objective — the only mission in the
   series whose final objective is a declarative statement rather than a completed action.
+  Module 12's traps (module-12.html) depart from the pattern of the first 11 modules in
+  one important way: this module's brief (`computer-internet-essentials-complete-
+  curriculum.md`, lines 1050-1338) is a dense buying-guide with explicit "durability
+  rules" against hard-coding time-sensitive chip rankings, so content was **ported from
+  the existing approved text lessons** (`src/content/computer-rebuild/lessons.ts`,
+  `m12-l1` through `m12-l15`) rather than invented fresh — the Intel-vs-AMD lesson's
+  explanation text, vocabulary terms, and scam-red-flag list are close paraphrases of the
+  already-reviewed `reviewStatus: "approved"` block content, not new claims. The three
+  Mac-specific lessons (`m12-l5` Intel-Mac-vs-Apple-Silicon, `m12-l6` M-series chips,
+  `m12-l11` used-Mac inspection) are excluded, matching the established Windows-only
+  simulator scope (same exclusion pattern as Module 3's Mac-desktop lesson and Module 4's
+  Finder-on-Mac lesson) — this yields 12 simulator lessons from the brief's 15 text-lesson
+  entries. Traps: 12.1 assuming the most expensive computer is automatically the best
+  choice, against the brief's explicit non-negotiable rule ("best" = reliably does the
+  real work within the full budget, not the priciest machine); 12.2 assuming one device
+  type (laptop) is a blanket-better choice than another (desktop) regardless of the
+  person's actual situation — the brief explicitly forbids a blanket-superiority
+  conclusion; 12.3 the module's central "generation over brand" lesson, ported near-
+  verbatim from the approved text lesson: an old "Core i7" can be slower than a newer
+  "Core i5", and a listing showing only "Core i7" with no generation/model is an
+  incomplete-listing red flag; 12.4 the processor-name worksheet's implicit trap — a
+  listing with only "AMD" and no family/generation/model gives no usable information;
+  12.5 advertised storage capacity isn't the same as usable storage, since the OS and
+  apps already consume part of it; 12.6 treating a swollen battery as merely a
+  performance quirk instead of a safety hazard requiring immediate replacement; 12.7 the
+  brief's explicit "do not treat refurbished as automatically safe or used as
+  automatically bad" — comparing a documented, warrantied refurbished listing against a
+  vague one with the same "refurbished" label; 12.8 the brief's BIOS/firmware-password
+  warning — a used computer with a lock the previous owner never removed can be
+  completely unusable, a hardware-level lock distinct from Windows' own password; 12.9
+  urgency pressure to pay immediately, one of the brief's named common-scam red flags;
+  12.10 using a laptop on a bed or blanket, blocking ventilation and building up
+  damaging heat — paired with the brief's explicit Haiti-aware power-fluctuation/backup
+  guidance; 12.11 buying a listing that "seems good" without preparing questions for the
+  seller first; 12.12 the capstone mission's two-listing comparison (vague/pressured vs.
+  complete/documented) mirrors 12.7's structure but is deliberately the final synthesis
+  exercise, requiring an explicit "explain the decision" objective as its last gated step
+  — the third mission in the series (after 8.6, 11.10) whose final objective is a
+  reasoning/declaration action rather than a physical interaction.
+  A third bug class surfaced building Module 12, worth checking for in any new module:
+  a per-language `C[n]` content block missing one or more keys present in its siblings
+  (here, `fr` was missing `welcome`/`done` while `ht`/`en` had them) fails silently at
+  write-time — no lint or typecheck catches it, since the object is just JS data — and
+  only breaks at runtime when `ai(d.welcome, ...)` or `ai(d.done, ...)` reads `undefined`
+  from the missing key. The cross-language error sweep (`load(i)` in a loop across
+  `ht`/`fr`/`en`) does NOT catch this either, since accessing a missing object key
+  returns `undefined` rather than throwing — only calling `ai(undefined, ...)` and
+  inspecting the assistant text, or a dedicated key-shape diff across the three language
+  blocks, would surface it. Caught here only by manual proofreading before verification;
+  worth an explicit key-parity check (e.g. `Object.keys(C[n].ht)` vs `.fr` vs `.en`) in
+  future modules' verification passes rather than relying on the error sweep alone.
 - Every learner action is a graded objective; progress is always visible.
 - Assistant gives contextual, teachable feedback per action (why, not just pass/fail).
 - Include a reset control.
