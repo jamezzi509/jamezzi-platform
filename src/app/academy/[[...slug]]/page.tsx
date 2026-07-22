@@ -72,6 +72,26 @@ const computerSimulatorModules: Record<
   m14: { moduleNumber: 14, title: "Modil 14 — Endepandans Dijital" },
 };
 
+/**
+ * Lessons that exist in the computer-rebuild content model but are never
+ * shown to a learner because this course is Windows-only -- Mac/Apple
+ * Silicon variant lessons in Modules 3, 4, and 12. Progress-gated screens
+ * (checkpoints, the readiness reflection, the final exam, the certificate)
+ * must exclude these from their "every lesson complete" requirement, since
+ * a Windows-only learner going through the module simulators can never mark
+ * them complete -- they were never presented in the first place.
+ */
+const windowsOnlyExcludedLessonSlugs = new Set([
+  "biwo-mac-la",
+  "finder-sou-mac",
+  "mac-intel-kont-mac-apple-silicon",
+  "apple-m1-m2-m3-m4-m5-ak-chip-mseries-fiti",
+  "enspeksyon-konple-yon-mac-itilize",
+]);
+const computerRebuildLessonsForGating = computerRebuildLessons.filter(
+  (lesson) => !windowsOnlyExcludedLessonSlugs.has(lesson.slug),
+);
+
 export async function generateMetadata({
   params,
 }: {
@@ -441,7 +461,7 @@ export default async function AcademyPage({
       return (
         <ComputerCheckpointPlayer
           checkpoint={checkpoint}
-          allLessons={computerRebuildLessons}
+          allLessons={computerRebuildLessonsForGating}
         />
       );
     }
@@ -450,7 +470,7 @@ export default async function AcademyPage({
       return (
         <ComputerReadinessReflectionPlayer
           reflection={readinessReflection}
-          allLessons={computerRebuildLessons}
+          allLessons={computerRebuildLessonsForGating}
         />
       );
     }
@@ -458,12 +478,16 @@ export default async function AcademyPage({
       return (
         <ComputerFinalExamPlayer
           exam={computerRebuildFinalExam}
-          allLessons={computerRebuildLessons}
+          allLessons={computerRebuildLessonsForGating}
         />
       );
     }
     if (slug[3] === "certificate") {
-      return <ComputerCertificatePlayer allLessons={computerRebuildLessons} />;
+      return (
+        <ComputerCertificatePlayer
+          allLessons={computerRebuildLessonsForGating}
+        />
+      );
     }
     if (slug[3] === "growth-summary") {
       return <ComputerGrowthSummaryPlayer />;

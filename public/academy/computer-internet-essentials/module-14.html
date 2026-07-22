@@ -119,9 +119,9 @@ body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoo
 <script>
 /* ============ i18n: UI + titles ============ */
 const UI={
- ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",courseDone:"Retounen nan Kou a →"},
- fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",courseDone:"Retourner au Cours →"},
- en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",courseDone:"Return to Course →"}};
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",courseDone:"Ale nan Confidence Checkpoint 4 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",courseDone:"Aller au Confidence Checkpoint 4 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",courseDone:"Go to Confidence Checkpoint 4 →"}};
 const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
  fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
  en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
@@ -465,11 +465,11 @@ function markModuleComplete(){
  injectCourseComplete();
 }
 function injectCourseComplete(){
- if($("courseCompleteLink"))return;
+ if($("continueCheckpoint4"))return;
  const wrap=document.createElement("div");wrap.className="finale";
  wrap.innerHTML='<div class="big">🎓</div>';
- const a=document.createElement("a");a.id="courseCompleteLink";a.className="btn p";a.textContent=UI[S.lang].courseDone;
- a.href="/academy/courses/computer-internet-essentials";a.target="_top";
+ const a=document.createElement("a");a.id="continueCheckpoint4";a.className="btn p";a.textContent=UI[S.lang].courseDone;
+ a.href="/academy/courses/computer-internet-essentials/learn/checkpoint-4";a.target="_top";
  a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
  wrap.appendChild(document.createElement("br"));
  wrap.appendChild(a);
