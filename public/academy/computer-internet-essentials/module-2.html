@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 2 — Kijan Yon Òdinatè Mache</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#3f37c9;--brand-rgb:79,70,229;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --w-accent:#005FB8;--w-mica:#f3f3f3;--w-content:#fbfbfb;--w-stroke:#e5e5e5;--w-t1:#1b1b1b;--w-t2:#5c5c5c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;--seg:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#12203a 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.12);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(0,0,0,.5)}
+.stage.lab{background:var(--ink-800);border:1px solid var(--edge);overflow:auto;padding:26px 30px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.h1r{font-weight:700;font-size:16.5px}.instr{font-size:14px;color:var(--dim);line-height:1.6;margin-top:8px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+/* lab common */
+.labhead{max-width:680px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.1);border-radius:999px;padding:5px 12px}
+.labh2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15px;line-height:1.6;max-width:640px}
+.nextwrap{margin-top:22px;display:flex;gap:12px;align-items:center}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+/* chips / meter */
+.items{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);cursor:default;font-size:14px;font-weight:600}
+.chip.gone{display:none}
+.meter{height:22px;border-radius:8px;background:var(--ink-700);border:1px solid var(--edge2);overflow:hidden;margin-top:14px;max-width:420px}
+.meter>span{display:block;height:100%;width:0;background:var(--good);transition:width .4s}
+.meter.full>span{background:var(--danger)}
+.meterlbl{font-size:12.5px;color:var(--mute);margin-top:8px}
+/* flow */
+.flow{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap}
+.node{flex:1;min-width:120px;border:1px solid var(--edge2);border-radius:14px;padding:16px;text-align:center;background:var(--ink-700);cursor:pointer;transition:.2s}
+.node.lit{border-color:var(--brand);box-shadow:0 0 0 3px rgba(var(--brand-rgb),.25)}
+.node.read{border-color:var(--good)}
+.node.decoy{border-style:dashed;opacity:.8;flex:none;width:150px;margin-top:14px}
+.node .ni{font-size:26px}.node .nt{font-weight:700;margin-top:8px;font-size:16px}.node .nd{font-size:13px;color:var(--mute);margin-top:4px}
+.arrow{color:var(--mute);font-size:24px}
+.node .ni svg{height:50px;width:auto;display:block;margin:0 auto}
+.node .ni img{height:62px;width:auto;max-width:88%;display:block;margin:0 auto;object-fit:contain}
+.node .ni.photo{background:#fff;border-radius:12px;height:72px;width:96px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.partgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.partcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:.15s}
+.partcard:hover{border-color:var(--brand)}.partcard.sel{outline:2px solid var(--brand);outline-offset:1px}
+.partcard.done{border-color:var(--good)}
+.partart{height:170px;display:grid;place-items:center;background:#fff;border-radius:12px}.partart svg{max-height:170px;max-width:100%}
+.partart img{max-height:148px;max-width:90%;object-fit:contain}
+.partn{font-weight:700;font-size:18px;margin-top:14px}.partcard.done .partn::after{content:" ✓";color:var(--good)}
+.cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cat{padding:13px 20px;border-radius:12px;border:1px solid var(--edge2);background:var(--ink-700);font-weight:700;font-size:16px;cursor:pointer}
+.cat:hover{border-color:var(--brand)}.cat.dis{opacity:.4}
+/* windows settings-style panel (reused chrome, no full desktop) */
+.win{position:relative;width:min(700px,100%);border-radius:8px;overflow:hidden;background:var(--w-mica);border:1px solid rgba(0,0,0,.28);box-shadow:0 24px 60px -12px rgba(0,0,0,.5);margin-top:20px;font-family:var(--seg);color:var(--w-t1)}
+.wtb{height:36px;display:flex;align-items:center;padding-left:14px;background:rgba(255,255,255,.4);font-size:13.5px;font-weight:600}
+.wcontent{background:var(--w-content);overflow:auto;padding:20px 26px;max-height:420px}
+.wh1{font-size:22px;font-weight:600;margin-bottom:12px}
+.aboutcard{border:1px solid var(--w-stroke);border-radius:8px;background:#fff;padding:4px 16px;margin-bottom:14px}
+.arow{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #eee;cursor:pointer;border-radius:6px}
+.arow:last-child{border-bottom:none}.arow:hover{background:#f3f3f3}
+.arow .k{font-size:14.5px;flex:1}.arow .ch{color:#8a8a8a;font-size:18px}
+.arow.on{background:#e4f0ff}.arow.on .k::after{content:" ✓";color:var(--good);font-weight:700}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ===== Mobile / narrow-screen layout ===== */
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,620px)}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+ .partgrid{grid-template-columns:repeat(2,1fr)}
+ #nextBtn{top:14px!important;bottom:auto!important;right:14px!important}
+}
+@media (max-width:480px){
+ .partgrid{grid-template-columns:1fr 1fr;gap:12px}
+ .partart{height:130px}
+ .cats{gap:8px}.cat{padding:11px 14px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/computer-internet-essentials" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Òdinatè & Entènèt Esansyèl</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 2 · 2.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 9</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + titles ============ */
+const UI={
+ ht:{cs:"Òdinatè & Entènèt Esansyèl",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",next:"Pwochen →",nextModule:"Ale nan Modil 3 →"},
+ fr:{cs:"Ordinateur & Internet Essentiels",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",next:"Suivant →",nextModule:"Aller au Module 3 →"},
+ en:{cs:"Computer & Internet Essentials",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",next:"Next →",nextModule:"Go to Module 3 →"}};
+const MODULES={ht:["Ou Gen Plas Ou nan Monn Dijital la","Kijan yon Òdinatè Mache","Kontwole Òdinatè Ou","Fichye ak Dosye","Aplikasyon ak Dokiman","Entènèt ak Wi-Fi","Navigatè ak Konpetans Wèb","Imèl ak Kominikasyon","Cloud ak Backup","Aparèy ak Enprime","Sekirite ak Vi Prive","Achte yon Òdinatè","Rezoud Pwoblèm","Endepandans Dijital"],
+ fr:["Vous Avez Votre Place","Comment Fonctionne un Ordinateur","Contrôlez Votre Ordinateur","Fichiers et Dossiers","Applications et Documents","Internet et Wi-Fi","Navigateur et Web","E-mail et Communication","Cloud et Sauvegarde","Appareils et Impression","Sécurité et Vie Privée","Acheter un Ordinateur","Dépannage","Indépendance Numérique"],
+ en:["You Belong in the Digital World","How a Computer Works","Control Your Computer","Files and Folders","Applications & Documents","Internet and Wi-Fi","Browser & Web Skills","Email & Communication","Cloud & Backup","Devices & Printing","Safety & Privacy","Buying a Computer","Troubleshooting","Digital Independence"]};
+const M2={ht:["Sa Ki Rive Lè Ou Peze Bouton Pouvwa a?","Motherboard: Kote Pati Yo Konekte","CPU: Travayè Òdinatè a","RAM: Espas Travay Tanporè a","Estokaj: Kote Fichye Rete","Grafik, Ekran, Son, Kamera, ak Mikwofòn","Batri, Chajè, ak Kouran","Sistèm Operasyon, Aplikasyon, Navigatè, Sit, ak Fichye","Li Espesifikasyon Debaz Yon Òdinatè"],
+ fr:["Que Se Passe-t-il Quand Vous Appuyez sur Le Bouton d'Alimentation ?","La Carte Mère : Où les Pièces se Connectent","Le CPU : Le Travailleur de l'Ordinateur","La RAM : L'Espace de Travail Temporaire","Le Stockage : Où Vivent les Fichiers","Graphiques, Écran, Son, Caméra, et Microphone","Batterie, Chargeur, et Alimentation","Système d'Exploitation, Application, Navigateur, Site, et Fichier","Lire les Spécifications de Base d'un Ordinateur"],
+ en:["What Happens When You Press the Power Button?","The Motherboard: Where Parts Connect","CPU: The Computer's Worker","RAM: The Working Space","Storage: Where Files Stay","Graphics, Screen, Sound, Camera, and Microphone","Battery, Charger, and Power","Operating System, Application, Browser, Website, and File","Reading Basic Computer Specifications"]};
+
+/* ============ lesson content ============ */
+const C={
+/* ---- 2.1 Boot sequence ---- */
+1:{ht:{lead:"Lè ou peze bouton pouvwa a, òdinatè a pase nan 3 etap anvan ou ka itilize l. Peze bouton an, epi swiv chemen an.",
+   objs:["Peze bouton pouvwa a (kouri sekans lan)","Li tou lè 3 etap yo"],press:"Peze Bouton Pouvwa a 🔘",
+   nodes:[["🔌","Verifikasyon","Aparèy tcheke si klavye, ekran, elatriye mache byen"],["💾","Chaje Sistèm Operasyon","Windows oswa macOS chaje nan memwa — pi long etap la"],["🔐","Ekran Koneksyon","Ou antre modpas ou pou rive nan Desktop la"]],
+   welcome:"Ann wè sa ki rive anndan yon òdinatè lè ou limen l. Peze bouton an.",runFb:"Bèl! Ou wè 3 etap yo pase yonn apre lòt. Kounye a klike sou chak pou konprann sa k ap pase.",
+   nodeFb:["VERIFIKASYON: yon tès rapid pou konfime pati fizik yo mache.","CHAJE SISTÈM OPERASYON: sa pran pifò tan an — pa gen anyen ki kraze pandan sa.","EKRAN KONEKSYON: dènye etap la, ou antre modpas ou pou rive nan Desktop la."],
+   decoy:["😤","Peze Ankò?","Ou enpasyan pandan chajman an"],decoyFb:"Pa fè sa! Peze bouton pouvwa a plizyè fwa PANDAN chajman an ka enterompi pwosesis la epi kreye yon pwoblèm reyèl. Tann — chajman nòmal pran 10-30 segonn.",
+   done:"Ou konnen kounye a: Verifikasyon, Chaje Sistèm Operasyon, Ekran Koneksyon — se sa k rive chak fwa ou limen yon òdinatè."},
+ fr:{lead:"Quand vous appuyez sur le bouton d'alimentation, l'ordinateur passe par 3 étapes avant que vous puissiez l'utiliser. Appuyez sur le bouton et suivez le chemin.",
+   objs:["Appuyer sur le bouton (lancer la séquence)","Lire les 3 étapes"],press:"Appuyer sur le Bouton 🔘",
+   nodes:[["🔌","Vérification","L'appareil vérifie que le clavier, l'écran, etc. fonctionnent"],["💾","Chargement du Système","Windows ou macOS se charge en mémoire — l'étape la plus longue"],["🔐","Écran de Connexion","Vous entrez votre mot de passe pour accéder au Bureau"]],
+   welcome:"Voyons ce qui se passe à l'intérieur d'un ordinateur quand vous l'allumez. Appuyez sur le bouton.",runFb:"Bien ! Les 3 étapes se déroulent l'une après l'autre. Cliquez maintenant sur chacune.",
+   nodeFb:["VÉRIFICATION : un test rapide pour confirmer que les pièces physiques fonctionnent.","CHARGEMENT DU SYSTÈME : ça prend le plus de temps — rien ne casse pendant ce temps.","ÉCRAN DE CONNEXION : dernière étape, vous entrez votre mot de passe pour accéder au Bureau."],
+   decoy:["😤","Appuyer Encore ?","Vous êtes impatient pendant le chargement"],decoyFb:"Ne faites pas ça ! Appuyer sur le bouton plusieurs fois PENDANT le chargement peut interrompre le processus et créer un vrai problème. Attendez — le chargement normal prend 10-30 secondes.",
+   done:"Vous savez maintenant : Vérification, Chargement du Système, Écran de Connexion — voilà ce qui arrive à chaque démarrage."},
+ en:{lead:"When you press the power button, the computer goes through 3 steps before you can use it. Press the button and follow the path.",
+   objs:["Press the power button (run the sequence)","Read all 3 steps"],press:"Press the Power Button 🔘",
+   nodes:[["🔌","Checks","The device checks that keyboard, screen, etc. work"],["💾","OS Loads","Windows or macOS loads into memory — the longest step"],["🔐","Login Screen","You enter your password to reach the Desktop"]],
+   welcome:"Let's see what happens inside a computer when you turn it on. Press the button.",runFb:"Nice! The 3 steps happen one after another. Now click each one.",
+   nodeFb:["CHECKS: a quick test confirming the physical parts work.","OS LOADS: this takes the most time — nothing is broken while this happens.","LOGIN SCREEN: the last step, you enter your password to reach the Desktop."],
+   decoy:["😤","Press Again?","You're impatient during loading"],decoyFb:"Don't! Pressing the power button repeatedly WHILE it's loading can interrupt the process and create a real problem. Wait — normal loading takes 10-30 seconds.",
+   done:"Now you know: Checks, OS Loads, Login Screen — that's what happens every time you turn on a computer."}},
+/* ---- 2.2 Motherboard ---- */
+2:{ht:{lead:"Motherboard la se gwo plak elektwonik ki konekte tout lòt pati yo ansanm. Klike sou chak pati pou wè kijan li konekte pase pa li.",
+   objs:["Klike sou 3 pati ki konekte nan motherboard la","Konprann ou pa bezwen louvri kaz la"],
+   parts:[["CPU","Kalkil ak trètman"],["RAM","Memwa tanporè"],["Estokaj","Kote fichye rete"]],
+   partFb:["CPU a konekte dirèkteman sou motherboard la nan yon sipò espesyal.","RAM konekte nan ti fant (slot) sou motherboard la.","Estokaj (SSD/HDD) konekte pa yon kab oswa dirèkteman sou motherboard la."],
+   openCase:"Louvri Kaz la 🔧",openTrap:"Pa fè sa san konesans teknik! Louvri yon òdinatè san fòmasyon ka domaje pyès yo oswa anile garanti a — se travay pou yon teknisyen fòme.",
+   welcome:"Motherboard la se sant nève òdinatè a. Klike sou chak pati ki konekte pou li a.",
+   done:"Ou konprann kounye a: motherboard la se sa k fè tout pati yo kominike — ou pa janm bezwen louvri l pou konprann sa."},
+ fr:{lead:"La carte mère est la grande plaque électronique qui connecte toutes les autres pièces ensemble. Cliquez sur chaque pièce pour voir comment elle s'y connecte.",
+   objs:["Cliquer sur 3 pièces connectées à la carte mère","Comprendre qu'il ne faut pas ouvrir le boîtier"],
+   parts:[["CPU","Calcul et traitement"],["RAM","Mémoire temporaire"],["Stockage","Où vivent les fichiers"]],
+   partFb:["Le CPU se connecte directement sur la carte mère dans un support spécial.","La RAM se connecte dans de petites fentes (slots) sur la carte mère.","Le stockage (SSD/HDD) se connecte par un câble ou directement sur la carte mère."],
+   openCase:"Ouvrir le Boîtier 🔧",openTrap:"Ne faites pas ça sans connaissance technique ! Ouvrir un ordinateur sans formation peut endommager les pièces ou annuler la garantie — c'est le travail d'un technicien formé.",
+   welcome:"La carte mère est le système nerveux de l'ordinateur. Cliquez sur chaque pièce qui s'y connecte.",
+   done:"Vous comprenez maintenant : la carte mère fait communiquer toutes les pièces — vous n'avez jamais besoin de l'ouvrir pour comprendre ça."},
+ en:{lead:"The motherboard is the big electronic board that connects all the other parts together. Click each part to see how it connects through it.",
+   objs:["Click 3 parts that connect to the motherboard","Understand you don't need to open the case"],
+   parts:[["CPU","Calculation and processing"],["RAM","Temporary memory"],["Storage","Where files stay"]],
+   partFb:["The CPU connects directly to the motherboard in a special socket.","RAM connects into small slots on the motherboard.","Storage (SSD/HDD) connects by a cable or directly onto the motherboard."],
+   openCase:"Open the Case 🔧",openTrap:"Don't do that without technical knowledge! Opening a computer without training can damage the parts or void the warranty — that's a trained technician's job.",
+   welcome:"The motherboard is the computer's nervous system. Click each part that connects to it.",
+   done:"Now you understand: the motherboard is what lets every part communicate — you never need to open it to understand that."}},
+/* ---- 2.3 CPU ---- */
+3:{ht:{lead:"CPU a se travayè ki fè tout kalkil yo. Gade foto a, epi reponn kesyon an.",
+   objs:["Gade CPU a","Rekonèt limit metafò 'sèvo a'"],
+   photoCap:"CPU (Processeur)",
+   q:"Èske deskripsyon sa a konplètman kòrèk: « CPU a se sèvo òdinatè a »?",
+   yes:"Wi, li se sèvo a",no:"Se yon bon konparezon, men li pa 100% egzat",
+   yesFb:"Se yon konparezon itil, men pa konplètman egzat: CPU a fè kalkil vit, men li pa 'panse' oswa sonje bagay tankou yon sèvo — li jis swiv enstriksyon. Vitès li depann tou de jenerasyon/modèl li, pa non li sèl.",
+   noFb:"Egzat! 'Sèvo a' se yon bon fason senp pou konprann wòl CPU a, men fè atansyon: CPU a jis fè kalkil vit dapre enstriksyon — vitès reyèl li depann de plis pase non li sèl.",
+   welcome:"Gade foto CPU a, epi reponn kesyon ki anba a.",
+   done:"Ou konprann kounye a: CPU a fè kalkil yo, epi 'sèvo a' se yon bon imaj — men pa yon deskripsyon 100% egzat."},
+ fr:{lead:"Le CPU est le travailleur qui fait tous les calculs. Regardez la photo, puis répondez à la question.",
+   objs:["Regarder le CPU","Reconnaître la limite de la métaphore du 'cerveau'"],
+   photoCap:"CPU (Processeur)",
+   q:"Cette description est-elle complètement exacte : « Le CPU est le cerveau de l'ordinateur » ?",
+   yes:"Oui, c'est le cerveau",no:"C'est une bonne comparaison, mais pas 100% exacte",
+   yesFb:"C'est une comparaison utile, mais pas tout à fait exacte : le CPU calcule vite, mais il ne « pense » ni ne se souvient comme un cerveau — il suit des instructions. Sa vitesse dépend aussi de sa génération/modèle, pas seulement de son nom.",
+   noFb:"Exact ! « Le cerveau » est une bonne image simple pour comprendre le rôle du CPU, mais attention : il fait juste des calculs rapides selon des instructions — sa vraie vitesse dépend de plus que son nom seul.",
+   welcome:"Regardez la photo du CPU, puis répondez à la question ci-dessous.",
+   done:"Vous comprenez maintenant : le CPU fait les calculs, et « le cerveau » est une bonne image — mais pas une description 100% exacte."},
+ en:{lead:"The CPU is the worker that does all the calculations. Look at the photo, then answer the question.",
+   objs:["Look at the CPU","Recognize the limit of the 'brain' metaphor"],
+   photoCap:"CPU (Processor)",
+   q:"Is this description completely accurate: \"The CPU is the computer's brain\"?",
+   yes:"Yes, it's the brain",no:"It's a good comparison, but not 100% accurate",
+   yesFb:"It's a useful comparison, but not fully accurate: the CPU calculates fast, but it doesn't \"think\" or remember things like a brain — it just follows instructions. Its real speed also depends on its generation/model, not just its name.",
+   noFb:"Exactly! \"The brain\" is a good simple way to understand the CPU's role, but be careful: it just does fast calculations following instructions — its real speed depends on more than its name alone.",
+   welcome:"Look at the CPU photo, then answer the question below.",
+   done:"Now you understand: the CPU does the calculations, and \"the brain\" is a good image — but not a 100% accurate description."}},
+/* ---- 2.4 RAM ---- */
+4:{ht:{lead:"RAM se espas travay tanporè òdinatè a itilize pandan li limen. Louvri onglè youn pa youn pou wè sa k rive.",
+   objs:["Louvri ase onglè pou wè RAM plen","Aprann diferans ant RAM ak Estokaj"],
+   openTab:"Louvri yon Onglè Navigatè +",closeTab:"Fèmen yon Onglè −",
+   fullMsg:"RAM ou plen! Ou ka santi òdinatè a vin pi lan kounye a — twòp travay ouvri anmenm tan.",
+   tabFb:"Onglè {n} louvri. Chak onglè itilize yon ti pòsyon RAM pandan l ap louvri.",
+   closeFb:"Ou fèmen yon onglè — RAM sa a lib kounye a pou lòt travay.",
+   qTrap:"Èske dokiman mwen te ekri a disparèt tou lè m fèmen onglè a?",
+   yesWrong:"Wi, li disparèt",noRight:"Non, si m te anrejistre l",
+   yesFb:"Non se pa vre! Fèmen yon onglè oswa yon aplikasyon jis efase l nan RAM (memwa tanporè). Yon fichye ou te ANREJISTRE rete an sekirite nan Estokaj — se de bagay ki diferan.",
+   noFb:"Egzat! RAM se tanporè — li efase lè ou fèmen yon bagay. Estokaj se pèmanan — yon fichye anrejistre rete la menm si ou fèmen tout bagay oswa etenn òdinatè a.",
+   welcome:"Klike 'Louvri yon Onglè' plizyè fwa pou wè RAM ou ranpli.",
+   done:"Ou konprann kounye a: RAM se espas tanporè k ap ranpli pandan travay, Estokaj se kote fichye ANREJISTRE rete pou tout tan."},
+ fr:{lead:"La RAM est l'espace de travail temporaire que l'ordinateur utilise pendant qu'il fonctionne. Ouvrez des onglets un par un pour voir ce qui se passe.",
+   objs:["Ouvrir assez d'onglets pour voir la RAM pleine","Apprendre la différence entre RAM et Stockage"],
+   openTab:"Ouvrir un Onglet +",closeTab:"Fermer un Onglet −",
+   fullMsg:"Votre RAM est pleine ! Vous pouvez sentir l'ordinateur ralentir maintenant — trop de travail ouvert en même temps.",
+   tabFb:"Onglet {n} ouvert. Chaque onglet utilise une petite portion de RAM pendant qu'il est ouvert.",
+   closeFb:"Vous avez fermé un onglet — cette RAM est libre maintenant pour autre chose.",
+   qTrap:"Est-ce que le document que j'ai écrit disparaît aussi quand je ferme l'onglet ?",
+   yesWrong:"Oui, il disparaît",noRight:"Non, si je l'ai enregistré",
+   yesFb:"Ce n'est pas vrai ! Fermer un onglet ou une application efface juste ce qui était en RAM (mémoire temporaire). Un fichier que vous avez ENREGISTRÉ reste en sécurité dans le Stockage — ce sont deux choses différentes.",
+   noFb:"Exact ! La RAM est temporaire — elle s'efface quand vous fermez quelque chose. Le Stockage est permanent — un fichier enregistré reste là même si vous fermez tout ou éteignez l'ordinateur.",
+   welcome:"Cliquez « Ouvrir un Onglet » plusieurs fois pour voir votre RAM se remplir.",
+   done:"Vous comprenez maintenant : la RAM est l'espace temporaire qui se remplit pendant le travail, le Stockage est où les fichiers ENREGISTRÉS restent pour toujours."},
+ en:{lead:"RAM is the temporary working space a computer uses while it runs. Open tabs one by one to see what happens.",
+   objs:["Open enough tabs to see RAM fill up","Learn the difference between RAM and Storage"],
+   openTab:"Open a Browser Tab +",closeTab:"Close a Tab −",
+   fullMsg:"Your RAM is full! You can feel the computer slow down now — too much work open at once.",
+   tabFb:"Tab {n} opened. Each tab uses a small portion of RAM while it's open.",
+   closeFb:"You closed a tab — that RAM is now free for other work.",
+   qTrap:"Does the document I wrote also disappear when I close the tab?",
+   yesWrong:"Yes, it disappears",noRight:"No, if I saved it",
+   yesFb:"Not true! Closing a tab or app just clears it from RAM (temporary memory). A file you SAVED stays safe in Storage — those are two different things.",
+   noFb:"Exactly! RAM is temporary — it clears when you close something. Storage is permanent — a saved file stays there even if you close everything or shut down the computer.",
+   welcome:"Click \"Open a Tab\" several times to watch your RAM fill up.",
+   done:"Now you understand: RAM is the temporary space that fills up during work, Storage is where SAVED files stay forever."}},
+/* ---- 2.5 Storage ---- */
+5:{ht:{lead:"Estokaj se kote fichye ou yo rete menm lè òdinatè a etenn. Gade foto a, epi reponn kesyon inite a.",
+   objs:["Gade foto estokaj la","Reponn kòrèkteman sou inite kapasite"],
+   photoCap:"SSD (Estokaj)",
+   q:"1 TB (Teraoktè) = konbyen GB (Gigaoktè), apeprè?",
+   opts:["100 GB","~1000 GB","10 GB"],ansIdx:1,
+   trapFb:"Pa egzat — ou konfonn eskal la. 1 TB se apeprè 1000 GB, se pa 100 GB. Sa enpòtan pou konprann konbyen espas ou reyèlman genyen.",
+   badFb:"Pa sa. Reflechi ankò sou eskal la ant Gigaoktè ak Teraoktè.",
+   okFb:"Egzat! 1 TB ≈ 1000 GB. SSD pi rapid pase yon HDD tradisyonèl pou pifò itilizasyon chak jou.",
+   welcome:"Gade foto SSD a, epi reponn kesyon inite kapasite a anba a.",
+   done:"Ou konnen kounye a: SSD pi rapid pase HDD, epi 1 TB ≈ 1000 GB — enpòtan pou li yon lis espesifikasyon kòrèkteman."},
+ fr:{lead:"Le stockage est là où vos fichiers restent même quand l'ordinateur est éteint. Regardez la photo, puis répondez à la question sur les unités.",
+   objs:["Regarder la photo du stockage","Répondre correctement sur les unités de capacité"],
+   photoCap:"SSD (Stockage)",
+   q:"1 To (Téraoctet) = combien de Go (Gigaoctets), environ ?",
+   opts:["100 Go","~1000 Go","10 Go"],ansIdx:1,
+   trapFb:"Pas exact — vous confondez l'échelle. 1 To fait environ 1000 Go, pas 100 Go. C'est important pour comprendre combien d'espace vous avez réellement.",
+   badFb:"Pas ça. Réfléchissez encore à l'échelle entre Gigaoctet et Téraoctet.",
+   okFb:"Exact ! 1 To ≈ 1000 Go. Le SSD est plus rapide qu'un HDD traditionnel pour la plupart des usages quotidiens.",
+   welcome:"Regardez la photo du SSD, puis répondez à la question sur les unités de capacité ci-dessous.",
+   done:"Vous savez maintenant : le SSD est plus rapide que le HDD, et 1 To ≈ 1000 Go — important pour bien lire une liste de spécifications."},
+ en:{lead:"Storage is where your files stay even when the computer is off. Look at the photo, then answer the units question.",
+   objs:["Look at the storage photo","Answer the capacity units question correctly"],
+   photoCap:"SSD (Storage)",
+   q:"1 TB (Terabyte) = how many GB (Gigabytes), approximately?",
+   opts:["100 GB","~1000 GB","10 GB"],ansIdx:1,
+   trapFb:"Not quite — you're mixing up the scale. 1 TB is about 1000 GB, not 100 GB. That matters for understanding how much space you actually have.",
+   badFb:"Not that. Think again about the scale between Gigabyte and Terabyte.",
+   okFb:"Exactly! 1 TB ≈ 1000 GB. SSD is faster than a traditional HDD for most everyday use.",
+   welcome:"Look at the SSD photo, then answer the capacity units question below.",
+   done:"Now you know: SSD is faster than HDD, and 1 TB ≈ 1000 GB — important for reading a specs list correctly."}},
+/* ---- 2.6 Graphics/screen/sound/camera/mic ---- */
+6:{ht:{lead:"Sa yo se pati ki fè w wè, tande, ak kominike ak òdinatè a. Klike sou chak pou idantifye yo.",
+   objs:["Idantifye 4 konpozan yo","Konprann sa limyè kamera a vle di"],
+   parts:[["Ekran","Kote ou wè tout bagay — grafik la fè imaj la parèt"],["Ba Fò","Pou tande son — mizik, videyo, notifikasyon"],["Kamera","Pou apèl videyo ak foto — gen yon limyè ki montre l ap itilize"],["Mikwofòn","Pou lòt moun tande vwa ou pandan yon apèl"]],
+   camOff:"Limyè a etenn — kamera a PA ap itilize kounye a.",camOn:"Limyè a limen — kamera a AP itilize/anrejistre kounye a. Klike ankò pou etenn.",
+   camQ:"Ki sa limyè vèt kamera a vle di lè li limen?",
+   camWrong:"Limyè vèt la pa vle di anyen enpòtan",camRight:"Li vle di kamera a ap itilize/anrejistre kounye a",
+   camWrongFb:"Pa vre — se enpòtan! Si limyè kamera a limen san ou pa t louvri okenn aplikasyon videyo, sa ka vle di yon aplikasyon ap itilize kamera a san ou konnen. Toujou verifye.",
+   camRightFb:"Egzat! Se yon endikatè vi prive enpòtan — toujou fè atansyon si limyè a limen san rezon ou konnen.",
+   welcome:"Klike sou chak pati pou idantifye l, epi eseye kamera a.",
+   done:"Ou idantifye tout 4 konpozan yo, epi ou konnen limyè kamera a se yon endikatè vi prive enpòtan."},
+ fr:{lead:"Ce sont les pièces qui vous font voir, entendre, et communiquer avec l'ordinateur. Cliquez sur chacune pour l'identifier.",
+   objs:["Identifier les 4 composants","Comprendre ce que signifie la lumière de la caméra"],
+   parts:[["Écran","Où vous voyez tout — les graphiques font apparaître l'image"],["Haut-parleur","Pour entendre le son — musique, vidéo, notifications"],["Caméra","Pour les appels vidéo et photos — une lumière montre qu'elle est utilisée"],["Microphone","Pour que les autres entendent votre voix pendant un appel"]],
+   camOff:"La lumière est éteinte — la caméra N'est PAS utilisée en ce moment.",camOn:"La lumière est allumée — la caméra EST utilisée/enregistre en ce moment. Cliquez encore pour éteindre.",
+   camQ:"Que signifie la lumière verte de la caméra quand elle est allumée ?",
+   camWrong:"La lumière verte ne veut rien dire d'important",camRight:"Elle veut dire que la caméra est utilisée/enregistre en ce moment",
+   camWrongFb:"Pas vrai — c'est important ! Si la lumière de la caméra s'allume sans que vous ayez ouvert d'application vidéo, cela peut vouloir dire qu'une application utilise la caméra à votre insu. Vérifiez toujours.",
+   camRightFb:"Exact ! C'est un indicateur de vie privée important — faites toujours attention si la lumière s'allume sans raison connue.",
+   welcome:"Cliquez sur chaque pièce pour l'identifier, puis essayez la caméra.",
+   done:"Vous avez identifié les 4 composants, et vous savez que la lumière de la caméra est un indicateur de vie privée important."},
+ en:{lead:"These are the parts that let you see, hear, and communicate with the computer. Click each one to identify it.",
+   objs:["Identify the 4 components","Understand what the camera light means"],
+   parts:[["Screen","Where you see everything — graphics make the image appear"],["Speaker","For hearing sound — music, video, notifications"],["Camera","For video calls and photos — a light shows it's in use"],["Microphone","So others hear your voice during a call"]],
+   camOff:"The light is off — the camera is NOT in use right now.",camOn:"The light is on — the camera IS in use/recording right now. Click again to turn off.",
+   camQ:"What does the camera's green light mean when it's on?",
+   camWrong:"The green light doesn't mean anything important",camRight:"It means the camera is in use/recording right now",
+   camWrongFb:"Not true — it's important! If the camera light turns on without you opening any video app, it could mean an app is using the camera without your knowledge. Always check.",
+   camRightFb:"Exactly! It's an important privacy indicator — always pay attention if the light turns on for no reason you know of.",
+   welcome:"Click each part to identify it, then try the camera.",
+   done:"You identified all 4 components, and you know the camera light is an important privacy indicator."}},
+/* ---- 2.7 Battery/charger/power ---- */
+7:{ht:{lead:"Pran swen batri ak chajè ou byen pwolonje lavi aparèy la. Gade chajè a, epi reponn kesyon an.",
+   objs:["Gade chajè a","Konprann kondisyon batri"],
+   photoCap:"Chajè",
+   q:"Kite aparèy la branche nan kouran 24/24 (menm apre li 100%) pa gen okenn pwoblèm pou batri a.",
+   yes:"Vre",no:"Fo",
+   yesFb:"Sa se yon mit komen. An reyalite, kite yon aparèy branche tout tan ka fè batri a vyeyi pi vit. Pi bon pratik: debranch li lè li rive 100%, itilize chajè ki kòrèk pou aparèy la, epi pwoteje kont fliktyasyon kouran (Ayiti) ak yon pwotèktè sij oswa yon UPS si posib.",
+   noFb:"Egzat! Kite yon aparèy branche 24/24 ka fè batri a vyeyi pi vit. Debranch li apre 100%, itilize bon chajè a, epi pwoteje kont fliktyasyon kouran ak yon pwotèktè sij si posib.",
+   welcome:"Gade foto chajè a, epi reponn kesyon Vre/Fo anba a.",
+   done:"Ou konnen kounye a: itilize bon chajè a, pa kite l branche tout tan san rezon, epi pwoteje kont fliktyasyon kouran."},
+ fr:{lead:"Prenez bien soin de votre batterie et chargeur pour prolonger la vie de l'appareil. Regardez le chargeur, puis répondez à la question.",
+   objs:["Regarder le chargeur","Comprendre l'état de la batterie"],
+   photoCap:"Chargeur",
+   q:"Laisser l'appareil branché en permanence (même après 100%) n'a aucun effet sur la batterie.",
+   yes:"Vrai",no:"Faux",
+   yesFb:"C'est un mythe courant. En réalité, laisser un appareil branché tout le temps peut faire vieillir la batterie plus vite. Meilleure pratique : débranchez-le à 100%, utilisez le bon chargeur, et protégez contre les fluctuations de courant (Haïti) avec un protecteur de surtension ou un onduleur si possible.",
+   noFb:"Exact ! Laisser un appareil branché 24/24 peut faire vieillir la batterie plus vite. Débranchez-le après 100%, utilisez le bon chargeur, et protégez contre les fluctuations de courant avec un protecteur de surtension si possible.",
+   welcome:"Regardez la photo du chargeur, puis répondez à la question Vrai/Faux ci-dessous.",
+   done:"Vous savez maintenant : utilisez le bon chargeur, ne le laissez pas branché tout le temps sans raison, et protégez contre les fluctuations de courant."},
+ en:{lead:"Take good care of your battery and charger to extend the device's life. Look at the charger, then answer the question.",
+   objs:["Look at the charger","Understand battery condition"],
+   photoCap:"Charger",
+   q:"Leaving the device plugged in all the time (even after 100%) has no effect on the battery.",
+   yes:"True",no:"False",
+   yesFb:"That's a common myth. In reality, leaving a device plugged in all the time can age the battery faster. Best practice: unplug at 100%, use the correct charger for the device, and protect against power fluctuations (Haiti) with a surge protector or UPS if possible.",
+   noFb:"Exactly! Leaving a device plugged in 24/7 can age the battery faster. Unplug after 100%, use the right charger, and protect against power fluctuations with a surge protector if possible.",
+   welcome:"Look at the charger photo, then answer the True/False question below.",
+   done:"Now you know: use the correct charger, don't leave it plugged in all the time without reason, and protect against power fluctuations."}},
+/* ---- 2.8 OS/App/Browser/Website/File ---- */
+8:{ht:{lead:"Senk bagay diferan ou itilize chak fwa sou òdinatè: Sistèm Operasyon, Aplikasyon, Navigatè, Sit Entènèt, ak Fichye. Klike sou yon egzanp, apre klike sou kategori kòrèk la.",
+   objs:["Klase tout 5 egzanp yo kòrèkteman"],cats:["Sistèm Operasyon","Aplikasyon","Navigatè","Sit Entènèt","Fichye"],
+   items:[{n:"Windows",ans:0,trap:{1:"Pa sa — Windows se SISTÈM OPERASYON an (fondasyon an), pa yon aplikasyon endividyèl. Microsoft Word, pa egzanp, se yon APLIKASYON SEPARE ki mache SOU Windows."}},
+    {n:"Kalkilatris",ans:1},
+    {n:"Chrome",ans:2,trap:{3:"Pa sa — Chrome se yon NAVIGATÈ (yon zouti pou wè sit wèb), li PA menm bagay ak Google oswa 'entènèt la' menm. Ou ka itilize Chrome pou ale sou anpil sit diferan, pa sèlman Google."}},
+    {n:"google.com",ans:3},
+    {n:"rezime.docx",ans:4}],
+   welcome:"Klike sou yon egzanp, apre chwazi kategori kòrèk la. Fè atansyon ak 2 pyèj!",ok:"Kòrèk!",bad:"Pa sa a. Reflechi: èske se sistèm lan, yon pwogram, zouti pou navige, yon adrès sou entènèt, oswa yon dokiman?",
+   done:"Byen fèt! Ou konnen senk bagay yo kounye a: Sistèm Operasyon (Windows), Aplikasyon (Kalkilatris), Navigatè (Chrome), Sit Entènèt (google.com), ak Fichye (rezime.docx)."},
+ fr:{lead:"Cinq choses différentes que vous utilisez à chaque fois sur un ordinateur : Système d'Exploitation, Application, Navigateur, Site Internet, et Fichier. Cliquez un exemple, puis la bonne catégorie.",
+   objs:["Classer les 5 exemples correctement"],cats:["Système d'Exploitation","Application","Navigateur","Site Internet","Fichier"],
+   items:[{n:"Windows",ans:0,trap:{1:"Pas ça — Windows est le SYSTÈME D'EXPLOITATION (la fondation), pas une application individuelle. Microsoft Word, par exemple, est une APPLICATION SÉPARÉE qui fonctionne SUR Windows."}},
+    {n:"Calculatrice",ans:1},
+    {n:"Chrome",ans:2,trap:{3:"Pas ça — Chrome est un NAVIGATEUR (un outil pour voir des sites web), ce n'est PAS la même chose que Google ou « l'internet » lui-même. Vous pouvez utiliser Chrome pour aller sur plein de sites différents, pas seulement Google."}},
+    {n:"google.com",ans:3},
+    {n:"cv.docx",ans:4}],
+   welcome:"Cliquez un exemple, puis choisissez la bonne catégorie. Attention à 2 pièges !",ok:"Correct !",bad:"Pas celui-ci. Réfléchissez : est-ce le système, un programme, un outil de navigation, une adresse internet, ou un document ?",
+   done:"Bien joué ! Vous connaissez les cinq choses maintenant : Système d'Exploitation (Windows), Application (Calculatrice), Navigateur (Chrome), Site Internet (google.com), et Fichier (cv.docx)."},
+ en:{lead:"Five different things you use every time on a computer: Operating System, Application, Browser, Website, and File. Click an example, then the correct category.",
+   objs:["Classify all 5 examples correctly"],cats:["Operating System","Application","Browser","Website","File"],
+   items:[{n:"Windows",ans:0,trap:{1:"Not that — Windows IS the operating system (the foundation), not an individual application. Microsoft Word, for example, is a SEPARATE application that runs ON Windows."}},
+    {n:"Calculator",ans:1},
+    {n:"Chrome",ans:2,trap:{3:"Not that — Chrome is a BROWSER (a tool for viewing websites), it is NOT the same thing as Google or \"the internet\" itself. You can use Chrome to go to many different sites, not just Google."}},
+    {n:"google.com",ans:3},
+    {n:"resume.docx",ans:4}],
+   welcome:"Click an example, then choose the correct category. Watch out for 2 traps!",ok:"Correct!",bad:"Not this one. Think: is it the system, a program, a browsing tool, an internet address, or a document?",
+   done:"Well done! You know the five things now: Operating System (Windows), Application (Calculator), Browser (Chrome), Website (google.com), and File (resume.docx)."}},
+/* ---- 2.9 Reading specs (final lesson + module mission) ---- */
+9:{ht:{lead:"Dènye leson an! Louvri 'Info Sistèm' pou idantifye kategori debaz yon òdinatè, epi konplete misyon modil la.",
+   objs:["Louvri Info Sistèm","Idantifye omwen 4 kategori espesifikasyon","Rekonèt fo kategori a"],
+   openBtn:"Ouvri Info Sistèm",
+   rows:["Pwosesè (Processeur)","RAM","Estokaj","Gwosè Ekran","Sistèm Operasyon","Pò (USB, HDMI)","Kondisyon Batri"],
+   trapRow:"Koulè ki pi Popilè",trapFb:"Sa se PA yon kategori espesifikasyon reyèl! Koulè pa gen rapò ak pèfòmans oswa kapasite yon òdinatè — se yon pyèj. Kategori reyèl yo se bagay tankou pwosesè, RAM, estokaj, elatriye.",
+   rowFb:"Byen — se yon kategori espesifikasyon reyèl.",
+   welcome:"Klike 'Ouvri Info Sistèm', epi idantifye omwen 4 kategori — men fè atansyon, gen yon fo kategori ki tache nan lis la.",
+   done:"Misyon Modil 2 konplete! Ou konnen kounye a kijan pou li yon lis espesifikasyon debaz san bezwen yon analiz konplèks."},
+ fr:{lead:"Dernière leçon ! Ouvrez « Info Système » pour identifier les catégories de base d'un ordinateur, et complétez la mission du module.",
+   objs:["Ouvrir Info Système","Identifier au moins 4 catégories de spécifications","Reconnaître la fausse catégorie"],
+   openBtn:"Ouvrir Info Système",
+   rows:["Processeur","RAM","Stockage","Taille d'Écran","Système d'Exploitation","Ports (USB, HDMI)","État de la Batterie"],
+   trapRow:"Couleur la Plus Populaire",trapFb:"Ce n'est PAS une vraie catégorie de spécification ! La couleur n'a aucun rapport avec la performance ou la capacité d'un ordinateur — c'est un piège. Les vraies catégories sont des choses comme le processeur, la RAM, le stockage, etc.",
+   rowFb:"Bien — c'est une vraie catégorie de spécification.",
+   welcome:"Cliquez « Ouvrir Info Système », puis identifiez au moins 4 catégories — mais attention, une fausse catégorie s'est glissée dans la liste.",
+   done:"Mission du Module 2 terminée ! Vous savez maintenant lire une liste de spécifications de base sans analyse complexe."},
+ en:{lead:"Last lesson! Open \"System Info\" to identify a computer's basic categories, and complete the module mission.",
+   objs:["Open System Info","Identify at least 4 spec categories","Recognize the fake category"],
+   openBtn:"Open System Info",
+   rows:["Processor","RAM","Storage","Screen Size","Operating System","Ports (USB, HDMI)","Battery Condition"],
+   trapRow:"Most Popular Color",trapFb:"That is NOT a real spec category! Color has nothing to do with a computer's performance or capacity — it's a trap. Real categories are things like processor, RAM, storage, etc.",
+   rowFb:"Good — that's a real spec category.",
+   welcome:"Click \"Open System Info,\" then identify at least 4 categories — but watch out, a fake category snuck into the list.",
+   done:"Module 2 mission complete! Now you know how to read a basic specs list without needing complex analysis."}},
+};
+
+/* ============ shared SVG / icons ============ */
+const IMG_BASE='/academy/computer-internet-essentials/images/';
+function partPhoto(file,alt){return '<img src="'+IMG_BASE+file+'.webp" alt="'+alt+'" loading="lazy">';}
+/* real Lucide path data (ISC license) -- never hand-drawn, per academy-ui skill */
+const LI={
+ camera:'<path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/>',
+ mic:'<path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/>',
+ volume:'<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/>',
+ monitor:'<rect x="3" y="4" width="18" height="14" rx="1"/><path d="M8 21h8"/><path d="M12 18v3"/>'};
+function liIcon(name,attrs){return '<svg viewBox="0 0 24 24" '+(attrs||'')+'>'+LI[name]+'</svg>';}
+function tileIcon(bg,name,mode){const inner=mode==="fill"?'<g fill="#fff">'+LI[name]+'</g>':'<g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+LI[name]+'</g>';
+ return '<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="'+bg+'"/><g transform="translate(4 4) scale(.667)">'+inner+'</g></svg>';}
+const ICON={
+ screen:tileIcon('#3a6fd8','monitor'),
+ speaker:tileIcon('#0e8f9a','volume'),
+ camera:tileIcon('#7c5cff','camera'),
+ mic:tileIcon('#b14bff','mic')};
+
+/* ============ engine ============ */
+const NL=9;
+const S={lang:"ht",cur:0,done:Array(NL).fill(false),st:{}};
+const $=id=>document.getElementById(id);
+let aiT=null;
+function ai(msg,mood){if(aiT){clearInterval(aiT);aiT=null;}$("aiAva").textContent=mood==="good"?"😄":mood==="bad"?"😬":mood==="warn"?"⚠️":"🤖";
+ const b=$("aiMsg");b.textContent="";let i=0;aiT=setInterval(()=>{i+=2;b.textContent=msg.slice(0,i);if(i>=msg.length){b.textContent=msg;clearInterval(aiT);aiT=null;}},13);}
+function objsFor(i){return (C[i+1]&&C[i+1][S.lang].objs)||[];}
+/* persistence + live-course wiring -- same-origin iframe shares localStorage with the parent app */
+const SIM_KEY="jamezzi:computer:essentials:module2-sim-state";
+const PROGRESS_KEY="jamezzi:computer:essentials:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD2_LESSON_SLUGS=["sa-ki-rive-le-ou-peze-bouton-pouvwa-a","motherboard-kote-pati-yo-konekte","cpu-travaye-odinate-a","ram-espas-travay-tanpore-a","estokaj-kote-fichye-rete","grafik-ekran-son-kamera-ak-mikwofon","batri-chaje-ak-kouran","sistem-operasyon-aplikasyon-navigate-sit-ak-fichye","li-espesifikasyon-debaz-yon-odinate","misyon-eksplike-odinate-ou"];
+const MODULE_FIRST_LESSON=["byenveni-ou-pa-pral-kraze-anyen","","konfyans-souri-ak-trackpad","kisa-yon-fichye-ye","kisa-yon-aplikasyon-ye","konekte-sou-wifi-san-danje","navigate-mote-rechech-sit-web-ak-paj-web","kijan-imel-mache","estokaj-lokal-ak-estokaj-cloud","po-ak-konekte","kisa-ki-bezwen-pwoteje","anvan-ou-achte-kominse-ak-travay-la","panse-tankou-yon-moun-ki-rezoud-pwoblem","bati-yon-sistem-oganizasyon-dijital-senp"];
+function persistSim(){try{window.localStorage.setItem(SIM_KEY,JSON.stringify({done:S.done,cur:S.cur,st:S.st}));}catch(e){}}
+function loadSim(){try{const raw=window.localStorage.getItem(SIM_KEY);if(!raw)return;const saved=JSON.parse(raw);
+ if(Array.isArray(saved.done)&&saved.done.length===NL)S.done=saved.done;
+ if(typeof saved.cur==="number"&&saved.cur>=0&&saved.cur<NL)S.cur=saved.cur;
+ if(saved.st&&typeof saved.st==="object")S.st=saved.st;
+}catch(e){}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=window.localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD2_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   window.localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch(e){}
+ injectContinueModule3();
+}
+function injectContinueModule3(){
+ if($("continueModule3"))return;
+ const a=document.createElement("a");a.id="continueModule3";a.className="btn p";a.textContent=UI[S.lang].nextModule;
+ a.href="/academy/courses/computer-internet-essentials/learn/"+MODULE_FIRST_LESSON[2];a.target="_top";
+ a.style.cssText="display:inline-block;margin-top:18px;text-decoration:none";
+ $("stage").appendChild(a);
+}
+function renderSidebar(){const box=$("mods");box.innerHTML="";MODULES[S.lang].forEach((t,mi)=>{const active=mi===1;
+ let les="";if(active){les='<div class="les">'+M2[S.lang].map((lt,li)=>'<div class="li'+(S.done[li]?" done":"")+(li===S.cur?" cur":"")+'" data-les="'+li+'"><span class="dot">✓</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+lt+'</span><span class="lx">2.'+(li+1)+'</span></div>').join("")+'</div>';}
+ const m=document.createElement("div");m.className="mod"+(active?" active":"");
+ const label='<span class="num">'+(mi+1)+'</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t+'</span>';
+ const mh=active?'<div class="mh">'+label+'</div>':'<a class="mh" href="/academy/courses/computer-internet-essentials/learn/'+MODULE_FIRST_LESSON[mi]+'" target="_top" style="text-decoration:none;color:inherit">'+label+'</a>';
+ m.innerHTML=mh+les;box.appendChild(m);});
+ box.querySelectorAll("[data-les]").forEach(el=>el.addEventListener("click",()=>load(+el.dataset.les)));}
+function renderObj(){const defs=objsFor(S.cur),st=S.st[S.cur]||{};const box=$("objList");box.innerHTML="";
+ defs.forEach((d,i)=>{const done=(st.obj||[])[i];const el=document.createElement("div");el.className="obj"+(done?" d":"");el.innerHTML='<span class="bx">✓</span><span class="tx">'+d+'</span>';box.appendChild(el);});}
+function setObj(i){const st=S.st[S.cur]||(S.st[S.cur]={});st.obj=st.obj||[];if(st.obj[i])return;st.obj[i]=true;renderObj();
+ const defs=objsFor(S.cur);if(defs.length&&st.obj.filter(Boolean).length>=defs.length)finishLesson();}
+function finishLesson(){if(!S.done[S.cur]){S.done[S.cur]=true;renderSidebar();syncProg();persistSim();}const b=$("nextBtn");if(b){b.disabled=false;}
+ if(S.cur===NL-1)markModuleComplete();}
+function syncProg(){const n=S.done.filter(Boolean).length;$("prog").style.width=Math.round(n/NL*100)+"%";$("progText").textContent=n+" / "+NL;}
+function nextBar(){const done=S.done[S.cur];return '<div class="nextwrap"><button class="btn p" id="nextBtn" '+(done?"":"disabled")+'>'+UI[S.lang].next+'</button></div>';}
+function wireNext(){const n=$("nextBtn");if(n)n.addEventListener("click",()=>load(Math.min(NL-1,S.cur+1)));}
+
+function load(i){S.cur=i;renderSidebar();$("topTag").textContent="Modil 2 · 2."+(i+1);$("topTitle").textContent=M2[S.lang][i];renderObj();
+ const st=S.st[i]||(S.st[i]={});st.obj=st.obj||[];
+ const fn=[L1,L2,L3,L4,L5,L6,L7,L8,L9][i];fn();
+ persistSim();
+ if(i===NL-1&&S.done[NL-1])markModuleComplete();}
+
+/* ---------- renderers ---------- */
+function labHead(i,lead){return '<div class="labhead fade"><span class="labtag">Modil 2 · 2.'+(i+1)+'</span><div class="labh2">'+M2[S.lang][i]+'</div><p class="lablead">'+lead+'</p></div>';}
+
+function L1(){const d=C[1][S.lang];const st=S.st[0];st.read=st.read||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(0,d.lead)+'<div style="margin-top:16px"><button class="btn p" id="pressBtn">'+d.press+'</button></div>'+
+  '<div class="flow" id="flow">'+d.nodes.map((n,k)=>'<div class="node" data-n="'+k+'"><div class="ni">'+n[0]+'</div><div class="nt">'+n[1]+'</div><div class="nd">'+n[2]+'</div></div>'+(k<2?'<span class="arrow">→</span>':'')).join("")+'</div>'+
+  '<div class="node decoy" id="decoyNode"><div class="ni" style="font-size:26px">'+d.decoy[0]+'</div><div class="nt">'+d.decoy[1]+'</div><div class="nd">'+d.decoy[2]+'</div></div>'+nextBar();
+ wireNext();
+ $("pressBtn").addEventListener("click",()=>{if(st.ran)return;st.ran=true;const nodes=[...stage.querySelectorAll(".node[data-n]")];
+   nodes.forEach((nd,k)=>setTimeout(()=>{nd.classList.add("lit");if(k===2){setObj(0);ai(d.runFb,"good");}},k*500));});
+ $("decoyNode").addEventListener("click",()=>ai(d.decoyFb,"warn"));
+ stage.querySelectorAll(".node[data-n]").forEach(nd=>nd.addEventListener("click",()=>{const k=+nd.dataset.n;nd.classList.add("read");
+   if(!st.read[k]){st.read[k]=true;ai(d.nodeFb[k],"neutral");}
+   if(Object.keys(st.read).length>=3){setObj(1);setTimeout(()=>ai(d.done,"good"),400);}}));
+ ai(d.welcome,"neutral");}
+
+function L2(){const d=C[2][S.lang];const st=S.st[1];st.read=st.read||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(1,d.lead)+'<div class="flow">'+d.parts.map((p,k)=>'<div class="node" data-p="'+k+'"><div class="nt">'+p[0]+'</div><div class="nd">'+p[1]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:18px"><button class="btn g" id="openCase">'+d.openCase+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".node[data-p]").forEach(nd=>nd.addEventListener("click",()=>{const k=+nd.dataset.p;nd.classList.add("read");
+   if(!st.read[k]){st.read[k]=true;ai(d.partFb[k],"neutral");}
+   if(Object.keys(st.read).length>=3){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}));
+ $("openCase").addEventListener("click",()=>{ai(d.openTrap,"warn");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L3(){const d=C[3][S.lang];const st=S.st[2];
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(2,d.lead)+'<div class="partgrid" style="grid-template-columns:220px"><div class="partcard" id="cpuCard"><div class="partart">'+partPhoto('cpu',d.photoCap)+'</div><div class="partn">'+d.photoCap+'</div></div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.q+'</div>'+
+  '<div class="cats"><button class="cat" id="yesBtn">'+d.yes+'</button><button class="cat" id="noBtn">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ $("cpuCard").addEventListener("click",()=>{if(!st.seen){st.seen=true;$("cpuCard").classList.add("done");setObj(0);}});
+ $("yesBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("noBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L4(){const d=C[4][S.lang];const st=S.st[3];st.tabs=st.tabs||0;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  const pct=Math.min(100,Math.round(st.tabs/6*100));
+  stage.innerHTML=labHead(3,d.lead)+
+   '<div style="margin-top:16px;display:flex;gap:10px"><button class="btn p" id="openTab">'+d.openTab+'</button><button class="btn g" id="closeTab">'+d.closeTab+'</button></div>'+
+   '<div class="items" id="tabRow">'+Array(st.tabs).fill(0).map((_,k)=>'<div class="chip">🗂️ '+(k+1)+'</div>').join("")+'</div>'+
+   '<div class="meter'+(pct>=100?" full":"")+'"><span style="width:'+pct+'%"></span></div><div class="meterlbl">RAM: '+pct+'%</div>'+
+   (pct>=100?'<div style="margin-top:14px;color:var(--warn);font-weight:700">'+d.fullMsg+'</div>':'')+
+   (st.tabs>=2?'<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.qTrap+'</div><div class="cats"><button class="cat" id="qYes">'+d.yesWrong+'</button><button class="cat" id="qNo">'+d.noRight+'</button></div>':'')+
+   nextBar();
+  wireNext();
+  $("openTab").addEventListener("click",()=>{if(st.tabs>=6)return;st.tabs++;ai(d.tabFb.replace("{n}",st.tabs),"neutral");if(st.tabs>=6)setObj(0);render();});
+  $("closeTab").addEventListener("click",()=>{if(st.tabs<=0)return;st.tabs--;ai(d.closeFb,"neutral");render();});
+  const qy=$("qYes"),qn=$("qNo");
+  if(qy)qy.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);render();});
+  if(qn)qn.addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);render();});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+function L5(){const d=C[5][S.lang];const st=S.st[4];
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(4,d.lead)+'<div class="partgrid" style="grid-template-columns:220px"><div class="partcard" id="ssdCard"><div class="partart">'+partPhoto('storage',d.photoCap)+'</div><div class="partn">'+d.photoCap+'</div></div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.q+'</div>'+
+  '<div class="cats">'+d.opts.map((o,k)=>'<button class="cat" data-o="'+k+'">'+o+'</button>').join("")+'</div>'+nextBar();
+ wireNext();
+ $("ssdCard").addEventListener("click",()=>{if(!st.seen){st.seen=true;$("ssdCard").classList.add("done");setObj(0);}});
+ stage.querySelectorAll("[data-o]").forEach(b=>b.addEventListener("click",()=>{if(st.answered)return;const k=+b.dataset.o;
+   if(k===d.ansIdx){st.answered=true;b.classList.add("done");ai(d.okFb,"good");setObj(1);}
+   else if(k===0){ai(d.trapFb,"warn");}
+   else{ai(d.badFb,"warn");}}));
+ ai(d.welcome,"neutral");}
+
+function L6(){const d=C[6][S.lang];const st=S.st[5];st.seen=st.seen||{};st.camOn=false;
+ const stage=$("stage");stage.className="stage lab";
+ const tiles=[["screen","Ekran"],["speaker","Ba Fò"],["camera","Kamera"],["mic","Mikwofòn"]];
+ stage.innerHTML=labHead(5,d.lead)+'<div class="partgrid">'+d.parts.map((p,k)=>'<div class="partcard" data-k="'+k+'"><div class="partart">'+ICON[tiles[k][0]]+'</div><div class="partn">'+p[0]+'</div></div>').join("")+'</div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.camQ+'</div>'+
+  '<div class="cats"><button class="cat" id="camWrongBtn">'+d.camWrong+'</button><button class="cat" id="camRightBtn">'+d.camRight+'</button></div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".partcard[data-k]").forEach(card=>card.addEventListener("click",()=>{const k=+card.dataset.k;
+   if(k===2){st.camOn=!st.camOn;ai(st.camOn?d.camOn:d.camOff,"neutral");}
+   else if(!st.seen[k]){st.seen[k]=true;card.classList.add("done");ai(d.parts[k][1],"neutral");}
+   if(!st.seen[k]){st.seen[k]=true;card.classList.add("done");}
+   if(Object.keys(st.seen).length>=4)setObj(0);}));
+ $("camWrongBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.camWrongFb,"warn");setObj(1);});
+ $("camRightBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.camRightFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L7(){const d=C[7][S.lang];const st=S.st[6];
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(6,d.lead)+'<div class="partgrid" style="grid-template-columns:220px"><div class="partcard" id="chgCard"><div class="partart">'+partPhoto('charger',d.photoCap)+'</div><div class="partn">'+d.photoCap+'</div></div></div>'+
+  '<div style="margin-top:22px;font-weight:700;font-size:15.5px">'+d.q+'</div>'+
+  '<div class="cats"><button class="cat" id="tBtn">'+d.yes+'</button><button class="cat" id="fBtn">'+d.no+'</button></div>'+nextBar();
+ wireNext();
+ $("chgCard").addEventListener("click",()=>{if(!st.seen){st.seen=true;$("chgCard").classList.add("done");setObj(0);}});
+ $("tBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.yesFb,"warn");setObj(1);});
+ $("fBtn").addEventListener("click",()=>{if(st.answered)return;st.answered=true;ai(d.noFb,"good");setObj(1);});
+ ai(d.welcome,"neutral");}
+
+function L8(){const d=C[8][S.lang];const st=S.st[7];st.sel=null;st.ok=st.ok||{};
+ const stage=$("stage");stage.className="stage lab";
+ stage.innerHTML=labHead(7,d.lead)+'<div class="items" id="items">'+d.items.map((it,k)=>st.ok[k]?"":'<div class="chip" data-i="'+k+'">'+it.n+'</div>').join("")+'</div>'+
+  '<div class="cats" id="cats">'+d.cats.map((c,k)=>'<button class="cat" data-c="'+k+'">'+c+'</button>').join("")+'</div>'+nextBar();
+ wireNext();
+ stage.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{stage.querySelectorAll(".chip").forEach(x=>x.style.outline="");c.style.outline="2px solid var(--brand)";st.sel=+c.dataset.i;}));
+ stage.querySelectorAll(".cat").forEach(c=>c.addEventListener("click",()=>{if(st.sel===null){ai(d.welcome,"warn");return;}const it=d.items[st.sel];
+   if(+c.dataset.c===it.ans){st.ok[st.sel]=true;const chip=stage.querySelector('.chip[data-i="'+st.sel+'"]');if(chip)chip.remove();ai(d.ok,"good");st.sel=null;
+     if(Object.keys(st.ok).length>=d.items.length){setObj(0);setTimeout(()=>ai(d.done,"good"),400);}}
+   else{const trapMsg=it.trap&&it.trap[+c.dataset.c];ai(trapMsg||d.bad,"warn");}}));
+ ai(d.welcome,"neutral");}
+
+function L9(){const d=C[9][S.lang];const st=S.st[8];st.seen=st.seen||{};st.trapSeen=false;st.open=false;
+ const stage=$("stage");stage.className="stage lab";
+ function render(){
+  stage.innerHTML=labHead(8,d.lead)+
+   (!st.open?'<div style="margin-top:18px"><button class="btn p" id="openBtn">'+d.openBtn+'</button></div>':
+   '<div class="win"><div class="wtb">🖥️ Info Sistèm</div><div class="wcontent"><div class="wh1">About</div><div class="aboutcard">'+
+     d.rows.map((r,k)=>'<div class="arow'+(st.seen[k]?" on":"")+'" data-r="'+k+'"><span class="k">'+r+'</span><span class="ch">›</span></div>').join("")+
+     '<div class="arow'+(st.trapSeen?" on":"")+'" id="trapRow"><span class="k">'+d.trapRow+'</span><span class="ch">›</span></div>'+
+   '</div></div></div>')+nextBar();
+  wireNext();
+  const ob=$("openBtn");if(ob)ob.addEventListener("click",()=>{st.open=true;setObj(0);render();});
+  stage.querySelectorAll(".arow[data-r]").forEach(row=>row.addEventListener("click",()=>{const k=+row.dataset.r;
+    if(!st.seen[k]){st.seen[k]=true;ai(d.rowFb,"good");row.classList.add("on");}
+    if(Object.keys(st.seen).length>=4)setObj(1);}));
+  const tr=$("trapRow");if(tr)tr.addEventListener("click",()=>{st.trapSeen=true;ai(d.trapFb,"warn");tr.classList.add("on");setObj(2);});
+ }
+ render();
+ ai(d.welcome,"neutral");}
+
+/* ---------- lang / reset ---------- */
+function applyLang(){document.documentElement.lang=S.lang;$("cs").textContent=UI[S.lang].cs;$("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ renderSidebar();syncProg();load(S.cur);}
+$("langs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{S.lang=b.dataset.l;$("langs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));applyLang();}));
+$("resetBtn").addEventListener("click",()=>{S.done=Array(NL).fill(false);S.st={};persistSim();renderSidebar();syncProg();load(S.cur);});
+/* init */
+loadSim();
+applyLang();
+</script>
+</body>
+</html>

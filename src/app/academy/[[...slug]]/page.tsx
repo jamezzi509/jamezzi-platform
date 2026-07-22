@@ -15,7 +15,7 @@ import { ComputerCheckpointPlayer } from "@/components/academy/computer-checkpoi
 import { ComputerCoursePage } from "@/components/academy/computer-course-page";
 import { ComputerFinalExamPlayer } from "@/components/academy/computer-final-exam-player";
 import { ComputerGrowthSummaryPlayer } from "@/components/academy/computer-growth-summary-player";
-import { ComputerModuleOneSimulator } from "@/components/academy/computer-module-one-simulator";
+import { ComputerModuleSimulator } from "@/components/academy/computer-module-simulator";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
@@ -42,6 +42,23 @@ import {
 import { getComputerRebuildReadinessReflection } from "@/content/computer-rebuild/readiness-reflection";
 import { courses, launchingFirstCourses } from "@/content/courses";
 import { titleFromSlug } from "@/lib/format";
+
+/**
+ * Modules built as standalone interactive simulators instead of the
+ * text/block lesson format -- any lesson slug tagged with one of these
+ * moduleIds renders the simulator (public/academy/computer-internet-essentials/
+ * module-<n>.html) instead of ComputerBlockLessonPlayer.
+ */
+const computerSimulatorModules: Record<
+  string,
+  { moduleNumber: number; title: string }
+> = {
+  m1: {
+    moduleNumber: 1,
+    title: "Modil 1 — Ou Gen Plas Ou nan Monn Dijital la",
+  },
+  m2: { moduleNumber: 2, title: "Modil 2 — Kijan Yon Òdinatè Mache" },
+};
 
 export async function generateMetadata({
   params,
@@ -440,8 +457,16 @@ export default async function AcademyPage({
       return <ComputerGrowthSummaryPlayer />;
     }
     const lesson = getComputerRebuildLesson(slug[3]);
-    if (lesson?.moduleId === "m1") {
-      return <ComputerModuleOneSimulator />;
+    const simulatorModule = lesson
+      ? computerSimulatorModules[lesson.moduleId]
+      : undefined;
+    if (simulatorModule) {
+      return (
+        <ComputerModuleSimulator
+          moduleNumber={simulatorModule.moduleNumber}
+          title={simulatorModule.title}
+        />
+      );
     }
     if (lesson) {
       return (
