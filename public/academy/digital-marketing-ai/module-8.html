@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 8 — IA pou Maketing</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ---- AI chat tool surface ---- */
+.chatwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;border:1px solid #2a2f3a;border-radius:12px;overflow:hidden;background:#16181d}
+.chatlog{max-height:260px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.bub{display:flex;gap:9px;max-width:88%}
+.bub.user{align-self:flex-end;flex-direction:row-reverse}
+.bub .av2{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:13px}
+.bub.ai .av2{background:#2a2f3a;color:#c9d1e0}
+.bub.user .av2{background:var(--brand);color:#fff}
+.bub .txt{font-size:13px;line-height:1.55;padding:9px 13px;border-radius:12px;color:#e7edf6}
+.bub.ai .txt{background:#22262f;border-bottom-left-radius:3px}
+.bub.user .txt{background:var(--brand);border-bottom-right-radius:3px}
+.typing{display:flex;gap:4px;padding:9px 13px}
+.typing span{width:6px;height:6px;border-radius:50%;background:#8a90a0;animation:tb 1.1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes tb{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.pfields{background:#fff;padding:14px 16px;border-top:1px solid #26292f}
+.pfrow{margin-bottom:9px}
+.pfrow label{display:block;font-size:11px;font-weight:700;color:#6a6f7a;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+.pfrow input{width:100%;border:1px solid #d7d9e0;border-radius:7px;padding:8px 10px;font-size:13px;font-family:inherit;color:#1b1b1b}
+.pfrow input:focus{outline:2px solid #3B6FE0}
+.pqrow{display:flex;align-items:center;gap:10px;margin:10px 0}
+.pqmeter{flex:1;height:6px;border-radius:4px;background:#e5e7eb;overflow:hidden}
+.pqmeter>span{display:block;height:100%;width:0;transition:width .3s,background .3s}
+.pqlabel{font-size:11.5px;font-weight:700;color:#555}
+.sendrow{display:flex;justify-content:flex-end}
+.sendrow button{border:none;background:#3B6FE0;color:#fff;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.sendrow button:disabled{opacity:.4;cursor:not-allowed}
+/* workflow reorder (lesson 7) */
+.wfwrap{background:#fff;border-radius:12px;padding:16px;color:#1b1b1b;font-family:-apple-system,'Segoe UI',Roboto,system-ui}
+.wfcard{display:flex;align-items:center;gap:10px;background:#f5f6f8;border-radius:9px;padding:11px 13px;margin-bottom:8px}
+.wfcard .wfnum{width:24px;height:24px;border-radius:50%;background:#3B6FE0;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.wfcard .wftxt{flex:1;font-size:13.5px;font-weight:600}
+.wfcard .wfbtns{display:flex;gap:5px}
+.wfcard .wfbtns button{width:26px;height:26px;border-radius:6px;border:1px solid #d7d9e0;background:#fff;cursor:pointer;font-weight:700}
+.wfcard .wfbtns button:disabled{opacity:.3;cursor:not-allowed}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 8 · 8.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay entèraktif la",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   send:"Voye →",vag:"Vag",kle:"Klè",eksel:"Ekselan",
+   stampTitle:"Ou fini Modil 8!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche interactive",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   send:"Envoyer →",vag:"Vague",kle:"Clair",eksel:"Excellent",
+   stampTitle:"Module 8 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the interactive task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   send:"Send →",vag:"Vague",kle:"Clear",eksel:"Excellent",
+   stampTitle:"You finished Module 8!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M8={
+ ht:["Rankontre Zouti Chat IA a","Enjenyri Pwonp: Ekri Pwonp ki Mache","Itilize IA pou Rechèch","IA pou Imaj","IA pou Videyo","IA pou Vwa","Bati yon Workflow IA"],
+ fr:["Découvrir l'Outil de Chat IA","Ingénierie de Prompt : Écrire des Prompts qui Marchent","Utiliser l'IA pour la Recherche","L'IA pour les Images","L'IA pour la Vidéo","L'IA pour la Voix","Construire un Workflow IA"],
+ en:["Meet the AI Chat Tool","Prompt Engineering: Writing Prompts That Work","Using AI for Research","AI for Images","AI for Video","AI for Voice","Building an AI Workflow"]};
+
+/* ============ per-lesson chat/task config ============ */
+const CHAT={
+1:{threshold:1,fields:{want:{ht:"Sa ou vle",fr:"Ce que vous voulez",en:"What you want"},context:{ht:"Kontèks",fr:"Contexte",en:"Context"},format:{ht:"Fòma",fr:"Format",en:"Format"}},
+   ph:{want:{ht:"egzanp: ekri m yon lejand",fr:"ex : écris-moi une légende",en:"e.g. write me a caption"},context:{ht:"egzanp: pou ti magazen kafe m",fr:"ex : pour mon petit café",en:"e.g. for my small coffee shop"},format:{ht:"egzanp: kout, cho",fr:"ex : court, chaleureux",en:"e.g. short, warm"}},
+   weak:{ht:"M ka ede — men mwen bezwen plis detay pou bay yon bon repons. Kisa egzakteman, pou kiyès, ak nan ki fòma?",fr:"Je peux aider — mais j'ai besoin de plus de détails pour donner une bonne réponse. Quoi exactement, pour qui, et dans quel format ?",en:"I can help — but I need more detail to give a good answer. What exactly, for whom, and in what format?"},
+   strong:{ht:"Men yon premye vèsyon baze sou sa ou bay la. Ou ka mande m ajiste l (pi kout, pi kazyèl, elt.) olye w rekòmanse.",fr:"Voici une première version basée sur ce que vous avez donné. Vous pouvez me demander de l'ajuster (plus court, plus décontracté, etc.) plutôt que de recommencer.",en:"Here's a first version based on what you gave me. You can ask me to adjust it (shorter, more casual, etc.) instead of starting over."}},
+2:{threshold:3,fields:{want:{ht:"Sa ou vle",fr:"Ce que vous voulez",en:"What you want"},context:{ht:"Kontèks (biznis/odyans)",fr:"Contexte (entreprise/public)",en:"Context (business/audience)"},format:{ht:"Fòma (longè, ton)",fr:"Format (longueur, ton)",en:"Format (length, tone)"}},
+   ph:{want:{ht:"egzanp: ekri yon lejand Instagram",fr:"ex : écris une légende Instagram",en:"e.g. write an Instagram caption"},context:{ht:"egzanp: pou yon boutik rad fanm nan Pòtoprens",fr:"ex : pour une boutique de vêtements femme à Port-au-Prince",en:"e.g. for a women's clothing shop in Port-au-Prince"},format:{ht:"egzanp: 2 fraz, ton cho e dirèk",fr:"ex : 2 phrases, ton chaleureux et direct",en:"e.g. 2 sentences, warm and direct tone"}},
+   weak:{ht:"M ka ekri yon bagay, men li ap jenerik san plis kontèks oswa fòma. Ajoute pi plis detay pou yon rezilta ki reyèlman itil.",fr:"Je peux écrire quelque chose, mais ce sera générique sans plus de contexte ou de format. Ajoutez plus de détails pour un résultat vraiment utile.",en:"I can write something, but it'll be generic without more context or format. Add more detail for a genuinely useful result."},
+   strong:{ht:"Ak tout detay sa yo, men yon vèsyon espesifik ki matche biznis ou, odyans ou, ak ton ou mande a — pi itil pase yon premye eseye jenerik.",fr:"Avec tous ces détails, voici une version spécifique qui correspond à votre entreprise, votre public, et le ton demandé — bien plus utile qu'un premier essai générique.",en:"With all that detail, here's a specific version matching your business, audience, and requested tone — much more useful than a generic first try."}},
+3:{threshold:3,fields:{want:{ht:"Sijè pou fè rechèch",fr:"Sujet à rechercher",en:"Topic to research"},context:{ht:"Poukisa (biznis ou)",fr:"Pourquoi (votre entreprise)",en:"Why (your business)"},format:{ht:"Fòma (lis, rezime, elt.)",fr:"Format (liste, résumé, etc.)",en:"Format (list, summary, etc.)"}},
+   ph:{want:{ht:"egzanp: fason pou fidelize kliyan",fr:"ex : façons de fidéliser les clients",en:"e.g. ways to build customer loyalty"},context:{ht:"egzanp: pou yon ti restoran fanmi",fr:"ex : pour un petit restaurant familial",en:"e.g. for a small family restaurant"},format:{ht:"egzanp: yon lis 5 pwen",fr:"ex : une liste de 5 points",en:"e.g. a list of 5 points"}},
+   weak:{ht:"M ka bay yon repons jenerik, men san kontèks/fòma li ka pa reyèlman itil pou vrè sitiyasyon ou.",fr:"Je peux donner une réponse générique, mais sans contexte/format ça pourrait ne pas être vraiment utile pour votre situation réelle.",en:"I can give a generic answer, but without context/format it might not be genuinely useful for your real situation."},
+   strong:{ht:"Men yon plan rechèch (yon pwen kòmansman) adapte pou sitiyasyon w — sonje verifye nenpòt vrè chif oswa fè espesifik ou jwenn yon lòt kote.",fr:"Voici un plan de recherche (un point de départ) adapté à votre situation — souvenez-vous de vérifier tout vrai chiffre ou fait spécifique trouvé ailleurs.",en:"Here's a research starting framework adapted to your situation — remember to verify any real numbers or specific facts you find elsewhere."}},
+4:{threshold:3,fields:{want:{ht:"Sijè imaj (kisa ki ladan l)",fr:"Sujet de l'image",en:"Image subject"},context:{ht:"Style (foto, ilistrasyon, elt.)",fr:"Style (photo, illustration, etc.)",en:"Style (photo, illustration, etc.)"},format:{ht:"Detay (koulè, anbyans)",fr:"Détails (couleurs, ambiance)",en:"Details (colors, mood)"}},
+   ph:{want:{ht:"egzanp: yon tas kafe cho",fr:"ex : une tasse de café chaud",en:"e.g. a warm cup of coffee"},context:{ht:"egzanp: style ilistrasyon plat",fr:"ex : style illustration plate",en:"e.g. flat illustration style"},format:{ht:"egzanp: koulè cho, anbyans dou",fr:"ex : couleurs chaudes, ambiance douce",en:"e.g. warm colors, cozy mood"}},
+   weak:{ht:"M ka jenere yon imaj, men san style/detay li ap totalman jenerik e enprediktib.",fr:"Je peux générer une image, mais sans style/détails elle sera totalement générique et imprévisible.",en:"I can generate an image, but without style/details it'll be totally generic and unpredictable."},
+   strong:{ht:"🖼️ [Imaj jenere]: yon konsèp ki matche sijè, style, ak detay ou bay yo — sonje sa se yon konsèp, pa yon vrè foto pwodwi ou.",fr:"🖼️ [Image générée] : un concept correspondant au sujet, style, et détails donnés — rappelez-vous que c'est un concept, pas une vraie photo de votre produit.",en:"🖼️ [Generated image]: a concept matching the subject, style, and details you gave — remember this is a concept, not a real photo of your product."}},
+5:{threshold:3,fields:{want:{ht:"Sèn/sijè videyo a",fr:"Scène/sujet de la vidéo",en:"Video scene/subject"},context:{ht:"Objektif ak platfòm",fr:"Objectif et plateforme",en:"Purpose and platform"},format:{ht:"Fòma (rasyo, longè)",fr:"Format (ratio, durée)",en:"Format (ratio, length)"}},
+   ph:{want:{ht:"egzanp: yon moun k ap prepare kafe",fr:"ex : une personne préparant du café",en:"e.g. someone brewing coffee"},context:{ht:"egzanp: pou pwomosyon Instagram",fr:"ex : pour une promotion Instagram",en:"e.g. for an Instagram promo"},format:{ht:"egzanp: 9:16, 15 segond",fr:"ex : 9:16, 15 secondes",en:"e.g. 9:16, 15 seconds"}},
+   weak:{ht:"M ka eseye kreye yon ti klip, men san platfòm/fòma li ka pa mache jan ou vle a.",fr:"Je peux essayer de créer un petit clip, mais sans plateforme/format ça pourrait ne pas fonctionner comme vous le voulez.",en:"I can try to create a short clip, but without platform/format it might not work the way you want."},
+   strong:{ht:"🎬 [Konsèp videyo jenere]: yon ti klip senp ki matche sèn, objektif, ak fòma ou bay — bon pou apèsi rapid anvan yon vrè filmaj.",fr:"🎬 [Concept vidéo généré] : un petit clip simple correspondant à la scène, l'objectif, et le format donnés — bon pour un aperçu rapide avant un vrai tournage.",en:"🎬 [Generated video concept]: a simple short clip matching the scene, purpose, and format you gave — good for a quick preview before real filming."}},
+6:{threshold:3,fields:{want:{ht:"Kontni script la",fr:"Contenu du script",en:"Script content"},context:{ht:"Ton ak odyans",fr:"Ton et public",en:"Tone and audience"},format:{ht:"Fòma/platfòm",fr:"Format/plateforme",en:"Format/platform"}},
+   ph:{want:{ht:"egzanp: prezante yon nouvo pwodwi",fr:"ex : présenter un nouveau produit",en:"e.g. introduce a new product"},context:{ht:"egzanp: ton cho, pou jèn adilt",fr:"ex : ton chaleureux, pour jeunes adultes",en:"e.g. warm tone, for young adults"},format:{ht:"egzanp: kout, pou Instagram Reel",fr:"ex : court, pour Instagram Reel",en:"e.g. short, for an Instagram Reel"}},
+   weak:{ht:"M ka ekri yon vwa, men san ton/platfòm li ka sonnen jenerik oswa pa matche odyans ou.",fr:"Je peux écrire une voix, mais sans ton/plateforme elle pourrait sonner générique ou ne pas correspondre à votre public.",en:"I can write a voice-over, but without tone/platform it might sound generic or not match your audience."},
+   strong:{ht:"🔊 [Vwa jenere]: yon script pou vwa ki matche ton, odyans, ak platfòm ou bay — sonje pa janm klone yon vrè vwa moun san pèmisyon.",fr:"🔊 [Voix générée] : un script vocal correspondant au ton, au public, et à la plateforme donnés — rappelez-vous de ne jamais cloner une vraie voix sans permission.",en:"🔊 [Generated voice]: a voice-over script matching the tone, audience, and platform you gave — remember never to clone a real person's voice without permission."}}
+};
+const WF_STEPS=[{id:"research",ht:"Fè rechèch sou sijè a",fr:"Faire des recherches sur le sujet",en:"Research the topic"},
+ {id:"draft",ht:"Ekri bwouyon kontni an ak IA",fr:"Rédiger le brouillon du contenu avec l'IA",en:"Draft the content with AI"},
+ {id:"image",ht:"Jenere yon imaj pou apiye l",fr:"Générer une image pour l'accompagner",en:"Generate a supporting image"},
+ {id:"review",ht:"Revize e korije ak pwòp jijman ou",fr:"Réviser et corriger avec votre propre jugement",en:"Review and edit with your own judgment"}];
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Chak zouti chat IA mache menm jan senp — ou ekri sa ou vle, li reponn, e pi byen ou dekri sa ou vle a, pi bon repons lan.",
+   secs:[["Kijan yon zouti chat IA mache","Ou ekri yon mesaj (yon 'pwonp'), IA a reponn baze sou modèl nan yon gwo kantite tèks li aprann; li pa 'konnen' biznis ou oswa sonje konvèsasyon anvan si ou pa di l nan menm chat la — panse ak li tankou yon asistan ki li anpil men ki bezwen ou eksplike sitiyasyon an chak fwa."],
+    ["Sa IA bon pou fè","Ekri yon premye vèsyon rapid (yon imèl, yon lejand, yon lis lide), rezime oswa reòganize enfòmasyon ou ba li, jenere lide lè ou bloke."],
+    ["Sa IA pa ye","Li pa toujou egzat (li ka deklare bagay ki fo ak konfyans — 'ilizyone'); li pa ranplase jijman ou oswa vrè konesans kliyan ou; se yon patnè bwouyon/refleksyon, pa yon moun ki pran desizyon final."]],
+   ex:"Ekri yon mesaj bay chat IA a sou yon vrè travay nan biznis ou epi li repons lan kritikman.",
+   quiz:[
+    {q:"Kijan yon zouti chat IA jenere repons li?",opts:["Li chèche nan yon baz done vivan biznis ou","Baze sou modèl aprann nan yon gwo kantite tèks, pa konesans biznis ou espesifik","Li toujou bay menm repons pou tout moun","Li mande fòmasyon espesyal anvan"],ans:1,fb:"Baze sou modèl nan tèks, pa konesans espesifik."},
+    {q:"Kisa IA reyèlman bon pou fè?",opts:["Fè reyèl toujou pafètman egzat","Ekri rapid, rezime, ak jenere lide","Ranplase tout jijman imen","Konnen kliyan ou pèsonèlman"],ans:1,fb:"Ekri rapid, rezime, ak jenere lide se pwen fò l."},
+    {q:"Kisa 'ilizyone' vle di nan IA?",opts:["IA vin kreyatif nan yon bon sans","IA deklare yon bagay fo ak konfyans, tankou si li te vre","Yon bug ki pa janm rive","Yon karakteristik sèlman nan IA imaj"],ans:1,fb:"Se lè IA deklare fo bagay ak konfyans."}],
+   close:{learned:"Yon zouti chat IA reponn baze sou modèl nan tèks, pa vrè konesans biznis ou — se yon patnè bwouyon/refleksyon rapid, pa yon moun ki pran desizyon final.",
+    mistake:"Fè konfyans nan yon repons IA ki sonnen konfyans kòm otomatikman egzat, san verifye l kont sa ou reyèlman konnen.",
+    tip:"Toujou bay kontèks nan mesaj ou (biznis ou, odyans ou, sitiyasyon an) paske IA a pa sonje si ou pa di l.",
+    assign:"Voye yon mesaj bay chat IA a sou yon vrè travay nan biznis ou epi li repons lan kritikman.",
+    dl:"Referans: Sa IA Bon (ak Pa Bon) Pou Fè",
+    checklist:["Mesaj voye?","Repons lan li kritikman, pa fè konfyans avèg?","Kontèks enkli?"],
+    ai:"Eksplike an mo senp sa yon zouti chat AI ka fè byen ak sa li pa ka fè, pou yon [kalite biznis]."}},
+ fr:{lede:"Chaque outil de chat IA fonctionne de la même façon simple — vous écrivez ce que vous voulez, il répond, et mieux vous décrivez ce que vous voulez, meilleure est la réponse.",
+   secs:[["Comment fonctionne un outil de chat IA","Vous écrivez un message (un « prompt »), l'IA répond en se basant sur des modèles dans une énorme quantité de texte qu'elle a appris ; elle ne « connaît » pas votre entreprise ou ne se souvient pas des conversations précédentes sauf si vous le dites dans le même chat — pensez-y comme un assistant très cultivé qui a besoin que vous expliquiez la situation à chaque fois."],
+    ["Ce pour quoi l'IA est douée","Rédiger une première version rapidement (un email, une légende, une liste d'idées), résumer ou réorganiser des informations que vous lui donnez, générer des idées quand vous êtes bloqué."],
+    ["Ce que l'IA n'est pas","Elle n'est pas toujours exacte (elle peut déclarer des choses fausses avec confiance — « halluciner ») ; elle ne remplace pas votre propre jugement ou vraie connaissance client ; c'est un partenaire de brouillon/réflexion, pas un décideur final."]],
+   ex:"Envoyez un message au chat IA sur une vraie tâche dans votre entreprise et lisez la réponse de façon critique.",
+   quiz:[
+    {q:"Comment un outil de chat IA génère-t-il sa réponse ?",opts:["Il cherche dans une base de données en direct de votre entreprise","Basé sur des modèles appris dans une énorme quantité de texte, pas la connaissance de votre entreprise spécifique","Il donne toujours la même réponse à tout le monde","Il nécessite une formation spéciale d'abord"],ans:1,fb:"Basé sur des modèles dans le texte, pas une connaissance spécifique."},
+    {q:"Pour quoi l'IA est-elle réellement douée ?",opts:["Des faits toujours parfaitement exacts","Rédiger rapidement, résumer, et générer des idées","Remplacer tout jugement humain","Connaître vos clients personnellement"],ans:1,fb:"Rédiger rapidement, résumer, et générer des idées sont ses points forts."},
+    {q:"Que signifie « halluciner » pour l'IA ?",opts:["L'IA devient créative de façon positive","L'IA déclare quelque chose de faux avec confiance, comme si c'était vrai","Un bug qui n'arrive jamais","Une fonctionnalité seulement dans l'IA image"],ans:1,fb:"C'est quand l'IA déclare des choses fausses avec confiance."}],
+   close:{learned:"Un outil de chat IA répond en se basant sur des modèles dans le texte, pas une vraie connaissance de votre entreprise — c'est un partenaire de brouillon/réflexion rapide, pas un décideur final.",
+    mistake:"Faire confiance à une réponse IA qui sonne confiante comme automatiquement exacte, sans la vérifier par rapport à ce que vous savez réellement.",
+    tip:"Donnez toujours du contexte dans votre message (votre entreprise, public, situation) car l'IA ne se souvient pas sauf si vous le lui dites.",
+    assign:"Envoyez un message au chat IA sur une vraie tâche dans votre entreprise et lisez la réponse de façon critique.",
+    dl:"Référence : Ce Pour Quoi l'IA Est (et N'est Pas) Douée",
+    checklist:["Message envoyé ?","Réponse lue de façon critique, pas aveuglément acceptée ?","Contexte inclus ?"],
+    ai:"Explique en mots simples ce qu'un outil de chat IA peut bien faire et ce qu'il ne peut pas faire, pour un(e) [type d'entreprise]."}},
+ en:{lede:"Every AI chat tool works the same simple way — you type what you want, it responds, and the better you describe what you want, the better the response.",
+   secs:[["How an AI chat tool works","You type a message (a 'prompt'), the AI responds based on patterns in a huge amount of text it learned from; it doesn't 'know' your business or remember previous conversations unless you tell it in the same chat — think of it as a very well-read assistant who needs you to explain the situation each time."],
+    ["What AI is good at","Drafting a first version fast (an email, a caption, a list of ideas), summarizing or reorganizing information you give it, brainstorming options when you're stuck."],
+    ["What AI is not","It's not always accurate (it can state wrong things confidently — 'hallucinate'); it's not a replacement for your own judgment or real customer knowledge; it's a drafting/thinking partner, not a final decision-maker."]],
+   ex:"Send a message to the AI chat about a real task in your business and read the reply critically.",
+   quiz:[
+    {q:"How does an AI chat tool generate its response?",opts:["It searches a live database of your business","Based on patterns learned from a huge amount of text, not knowledge of your specific business","It always gives the exact same answer to everyone","It requires special training first"],ans:1,fb:"Based on patterns in text, not specific knowledge."},
+    {q:"What is AI genuinely good at?",opts:["Perfectly accurate facts always","Drafting fast, summarizing, and brainstorming options","Replacing all human judgment","Knowing your customers personally"],ans:1,fb:"Drafting fast, summarizing, and brainstorming are its strengths."},
+    {q:"What does 'hallucinate' mean in AI?",opts:["The AI becomes creative in a good way","The AI states something wrong confidently, as if it were true","A bug that never happens","A feature only in image AI"],ans:1,fb:"It's when AI states wrong things confidently."}],
+   close:{learned:"An AI chat tool responds based on patterns in text, not real knowledge of your business — it's a fast drafting/brainstorming partner, not a final decision-maker.",
+    mistake:"Trusting an AI's confident-sounding answer as automatically accurate, without checking it against what you actually know.",
+    tip:"Always give context in your message (your business, audience, situation) since the AI doesn't remember unless you tell it.",
+    assign:"Send one message to the AI chat about a real task in your business and read the reply critically.",
+    dl:"Reference: What AI Is (and Isn't) Good For",
+    checklist:["Message sent?","Response read critically, not blindly trusted?","Context included?"],
+    ai:"Explain in simple words what an AI chat tool can do well and what it can't, for a [type of business]."}}},
+
+2:{ht:{lede:"Menm IA a, ba li yon pi bon pwonp, bay yon repons dramatikman pi bon — enjenyri pwonp se sèlman vin espesifik espre.",
+   secs:[["Sa ki fè yon pwonp fèb","Twò kout/vag ('ekri m yon lejand'), okenn kontèks sou biznis/odyans, okenn fòma spesifye (longè, ton, estrikti) — IA a oblije devine, e devinèt yo jenerik."],
+    ["3 engredyan yon pwonp fò","Sa ou vle (travay espesifik la), Kontèks (pou kiyès, detay kle sou biznis/sitiyasyon ou), Fòma (konbyen tan, ki ton, ki estrikti — yon lis? yon paragraf? fòmèl oswa kazyèl?)."],
+    ["Iterasyon olye rete sou premye a","Premye pwonp ou raman bezwen pafè; trete premye repons lan kòm yon bwouyon epi mande IA a ajiste l ('fè l pi kout', 'pi kazyèl', 'ajoute yon apèl aksyon') olye rekòmanse."]],
+   ex:"Ekri yon pwonp konplè (3 pati) pou yon vrè travay nan biznis ou.",
+   quiz:[
+    {q:"Kisa ki fè yon pwonp fèb?",opts:["Vin twò espesifik","Vin vag san kontèks oswa fòma","Enkli detay biznis ou","Mande yon ton espesifik"],ans:1,fb:"Vag san kontèks/fòma fè yon pwonp fèb."},
+    {q:"Ki 3 engredyan yon pwonp fò?",opts:["Pri, karakteristik, garanti","Sa ou vle, kontèks, ak fòma","Sèlman travay la, anyen dòt","Yon demann long tankou yon esè"],ans:1,fb:"Sa ou vle, kontèks, ak fòma se 3 engredyan yo."},
+    {q:"Ki yon meyè apwoch pase rekòmanse ak yon nouvo pwonp?",opts:["Pa janm revize anyen","Mande IA a ajiste repons ki egziste a (pi kout, pi kazyèl, elt.)","Abandone IA nèt","Kopye premye repons lan kèlkeswa sa"],ans:1,fb:"Mande yon ajisteman olye rekòmanse pi efikas."}],
+   close:{learned:"Yon pwonp fò gen 3 engredyan — sa ou vle, kontèks, ak fòma — e iterasyon bat rekòmanse.",
+    mistake:"Voye yon pwonp vag, yon sèl liy san kontèks epi tann yon repons espesifik e itil.",
+    tip:"Trete premye repons IA a kòm yon bwouyon — mande ajisteman olye reekri pwonp ou de zewo.",
+    assign:"Ekri yon pwonp konplè 3-pati (sa ou vle/kontèks/fòma) pou yon vrè travay nan biznis ou.",
+    dl:"Fèy Travay: Fòmil Pwonp 3-Engredyan",
+    checklist:["Sa ou vle deklare klèman?","Kontèks (biznis/odyans) enkli?","Fòma spesifye?"],
+    ai:"Reekri pwonp vag sa a an yon fò ak tout 3 engredyan yo: 'Ekri m yon lejand.' Bay yon egzanp pou yon [kalite biznis]."}},
+ fr:{lede:"La même IA, avec un meilleur prompt, donne une réponse radicalement meilleure — l'ingénierie de prompt, c'est juste être spécifique exprès.",
+   secs:[["Ce qui rend un prompt faible","Trop court/vague (« écris-moi une légende »), aucun contexte sur l'entreprise/le public, aucun format spécifié (longueur, ton, structure) — l'IA doit deviner, et les suppositions sont génériques."],
+    ["Les 3 ingrédients d'un prompt fort","Ce que vous voulez (la tâche spécifique), Contexte (pour qui, détails clés sur votre entreprise/situation), Format (combien de temps, quel ton, quelle structure — une liste ? un paragraphe ? formel ou décontracté ?)."],
+    ["Itérer plutôt que s'arrêter","Votre premier prompt a rarement besoin d'être parfait ; traitez la première réponse comme un brouillon et demandez à l'IA de l'ajuster (« rends-le plus court », « plus décontracté », « ajoute un appel à l'action ») plutôt que de recommencer."]],
+   ex:"Écrivez un prompt complet (3 parties) pour une vraie tâche dans votre entreprise.",
+   quiz:[
+    {q:"Qu'est-ce qui rend un prompt faible ?",opts:["Être trop spécifique","Être vague sans contexte ni format","Inclure les détails de votre entreprise","Demander un ton spécifique"],ans:1,fb:"Le vague sans contexte/format rend un prompt faible."},
+    {q:"Quels sont les 3 ingrédients d'un prompt fort ?",opts:["Prix, caractéristiques, garantie","Ce que vous voulez, le contexte, et le format","Seulement la tâche, rien d'autre","Une demande longue comme un essai"],ans:1,fb:"Ce que vous voulez, le contexte, et le format sont les 3 ingrédients."},
+    {q:"Quelle est une meilleure approche que recommencer avec un nouveau prompt ?",opts:["Ne jamais rien réviser","Demander à l'IA d'ajuster la réponse existante (plus courte, plus décontractée, etc.)","Abandonner l'IA complètement","Copier la première réponse peu importe quoi"],ans:1,fb:"Demander un ajustement plutôt que recommencer est plus efficace."}],
+   close:{learned:"Un prompt fort a 3 ingrédients — ce que vous voulez, le contexte, et le format — et itérer bat recommencer.",
+    mistake:"Envoyer un prompt vague d'une seule ligne sans contexte et attendre une réponse spécifique et utile.",
+    tip:"Traitez la première réponse IA comme un brouillon — demandez des ajustements plutôt que de réécrire votre prompt de zéro.",
+    assign:"Écrivez un prompt complet en 3 parties (ce que vous voulez/contexte/format) pour une vraie tâche dans votre entreprise.",
+    dl:"Fiche de travail : Formule de Prompt à 3 Ingrédients",
+    checklist:["Ce que vous voulez énoncé clairement ?","Contexte (entreprise/public) inclus ?","Format spécifié ?"],
+    ai:"Réécris ce prompt vague en un prompt fort avec les 3 ingrédients : « Écris-moi une légende. » Donne un exemple pour un(e) [type d'entreprise]."}},
+ en:{lede:"The exact same AI, given a better prompt, gives a dramatically better answer — prompt engineering is just being specific on purpose.",
+   secs:[["What makes a prompt weak","Too short/vague ('write me a caption'), no context about the business/audience, no format specified (length, tone, structure) — the AI has to guess, and guesses are generic."],
+    ["The 3 ingredients of a strong prompt","What you want (the specific task), Context (who it's for, key details about your business/situation), Format (how long, what tone, what structure — a list? a paragraph? formal or casual?)."],
+    ["Iterating instead of settling","Your first prompt rarely needs to be perfect; treat the first response as a draft and ask the AI to adjust it ('make it shorter,' 'more casual,' 'add a call to action') rather than starting over."]],
+   ex:"Write a full 3-part prompt for a real task in your business.",
+   quiz:[
+    {q:"What makes a prompt weak?",opts:["Being too specific","Being vague with no context or format","Including your business details","Asking for a specific tone"],ans:1,fb:"Being vague with no context/format makes a prompt weak."},
+    {q:"What are the 3 ingredients of a strong prompt?",opts:["Price, features, guarantee","What you want, context, and format","Only the task, nothing else","A long essay-length request"],ans:1,fb:"What you want, context, and format are the 3 ingredients."},
+    {q:"What's a better approach than starting over with a new prompt?",opts:["Never revise anything","Ask the AI to adjust the existing response (shorter, more casual, etc.)","Give up on AI entirely","Copy the first response no matter what"],ans:1,fb:"Asking for an adjustment beats starting over."}],
+   close:{learned:"A strong prompt has 3 ingredients — what you want, context, and format — and iterating beats starting over.",
+    mistake:"Sending a vague, one-line prompt with no context and expecting a specific, useful answer.",
+    tip:"Treat the first AI response as a draft — ask for adjustments instead of rewriting your prompt from scratch.",
+    assign:"Write a full 3-part prompt (what you want/context/format) for a real task in your business.",
+    dl:"Worksheet: The 3-Ingredient Prompt Formula",
+    checklist:["What you want stated clearly?","Context (business/audience) included?","Format specified?"],
+    ai:"Rewrite this vague prompt into a strong one with all 3 ingredients: 'Write me a caption.' Give an example for a [type of business]."}}},
+
+3:{ht:{lede:"IA ka akselere rechèch dramatikman — men sèlman si w konnen sa li reyèlman fyab pou fè, ak sa ki toujou bezwen yon verifikasyon imen.",
+   secs:[["Sa rechèch IA bon pou fè","Rezime yon gwo kantite enfòmasyon rapid, jenere yon lis kòmansman lide/kesyon/angle ou pa t panse a, eksplike yon konsèp an mo senp."],
+    ["Sa ki toujou bezwen yon verifikasyon imen","Fè espesifik, nimewo, dat, oswa evènman aktyèl (done fòmasyon IA gen yon dat limit e ka demode oswa senpleman fo); nenpòt bagay ou pral deklare piblikman kòm fè ta dwe verifye nan yon vrè sous anvan, menm règ debaz pou rès kou sa a."],
+    ["Bon pwonp rechèch","Mande yon lis/kad kòmansman olye vrè fè final ('ki kategori komen X yo' olye 'ki egzat pri aktyèl X kounye a'), mande IA a note kote ou ta dwe verifye endepandan, mande plizyè angle/pèspektiv sou yon sijè olye yon sèl repons."]],
+   ex:"Ekri yon pwonp rechèch 3-pati (sijè/kontèks/fòma) pou yon bagay ou reyèlman bezwen fè rechèch sou li.",
+   quiz:[
+    {q:"Ki sa rechèch IA reyèlman bon pou fè?",opts:["Fè ak pri pafètman aktyèl","Rezime enfòmasyon ak jenere lide kòmansman","Ranplase tout verifikasyon fè","Konsèy legal"],ans:1,fb:"Rezime ak jenere lide kòmansman se pwen fò l."},
+    {q:"Kisa ki toujou bezwen yon verifikasyon imen?",opts:["Bwenstòmin laj","Fè espesifik, nimewo, dat, ak evènman aktyèl","Eksplikasyon senp konsèp","Kad kòmansman jeneral"],ans:1,fb:"Fè espesifik ak evènman aktyèl bezwen verifikasyon."},
+    {q:"Ki yon bon apwòch pwonp rechèch?",opts:["Mande sèl vrè fè aktyèl la","Mande yon lis/kad kòmansman epi note kisa pou verifye endepandan","Pa janm mande IA anyen espesifik","Sèlman mande kesyon wi/non"],ans:1,fb:"Lis kòmansman + nòt verifikasyon se bon apwòch."}],
+   close:{learned:"IA akselere rechèch pou rezime ak lide kòmansman — men fè espesifik, nimewo, ak evènman aktyèl toujou bezwen yon verifikasyon imen.",
+    mistake:"Pibliye yon fè oswa nimewo espesifik ki soti nan IA san verifye l nan yon vrè sous anvan.",
+    tip:"Mande IA yon kad kòmansman oswa yon lis angle, apre verifye e ranpli detay yo ou menm.",
+    assign:"Ekri yon pwonp rechèch 3-pati (sijè/kontèks/fòma) pou yon bagay ou reyèlman bezwen fè rechèch sou li.",
+    dl:"Lis Verifikasyon: Fyabilite Rechèch IA",
+    checklist:["Itilize pou rezime/lide kòmansman, pa fè final?","Deklarasyon espesifik make pou verifikasyon?","Plizyè angle mande?"],
+    ai:"Mwen bezwen fè rechèch sou [sijè] pou biznis mwen. Sijere yon pwonp rechèch ki mande yon kad kòmansman e ki make sa m ta dwe verifye mwen menm."}},
+ fr:{lede:"L'IA peut accélérer la recherche de façon spectaculaire — mais seulement si vous savez pour quoi elle est réellement fiable, et ce qui a encore besoin d'une vérification humaine.",
+   secs:[["Ce pour quoi la recherche IA est douée","Résumer rapidement une grande quantité d'informations, générer une liste de départ d'idées/questions/angles auxquels vous n'aviez pas pensé, expliquer un concept en langage simple."],
+    ["Ce qui a encore besoin d'une vérification humaine","Des faits spécifiques, nombres, dates, ou événements actuels (les données d'entraînement de l'IA ont une date limite et peuvent être dépassées ou simplement fausses) ; tout ce que vous allez déclarer publiquement comme un fait devrait être vérifié auprès d'une vraie source d'abord, même règle standard que le reste de ce cours."],
+    ["Bons prompts de recherche","Demandez une liste/un cadre de départ plutôt que des faits finaux (« quelles sont les catégories courantes de X » plutôt que « quel est le prix exact actuel de X »), demandez à l'IA de noter où vous devriez vérifier indépendamment, demandez plusieurs angles/perspectives sur un sujet plutôt qu'une seule réponse."]],
+   ex:"Écrivez un prompt de recherche en 3 parties (sujet/contexte/format) pour quelque chose que vous devez vraiment rechercher.",
+   quiz:[
+    {q:"Pour quoi la recherche IA est-elle réellement douée ?",opts:["Des prix parfaitement actuels","Résumer des informations et générer des idées de départ","Remplacer toute vérification de faits","Des conseils juridiques"],ans:1,fb:"Résumer et générer des idées de départ sont ses points forts."},
+    {q:"Qu'est-ce qui a encore besoin d'une vérification humaine ?",opts:["Le brainstorming large","Des faits spécifiques, nombres, dates, et événements actuels","De simples explications de concepts","Des cadres de départ généraux"],ans:1,fb:"Les faits spécifiques et événements actuels ont besoin de vérification."},
+    {q:"Quelle est une bonne approche de prompt de recherche ?",opts:["Demander le seul vrai fait actuel","Demander une liste/un cadre de départ et noter quoi vérifier indépendamment","Ne jamais rien demander de spécifique à l'IA","Ne poser que des questions oui/non"],ans:1,fb:"Une liste de départ + une note de vérification est une bonne approche."}],
+   close:{learned:"L'IA accélère la recherche pour les résumés et idées de départ — mais les faits spécifiques, nombres, et événements actuels ont toujours besoin d'une vérification humaine.",
+    mistake:"Publier un fait ou nombre spécifique venant de l'IA sans le vérifier auprès d'une vraie source d'abord.",
+    tip:"Demandez à l'IA un cadre de départ ou une liste d'angles, puis vérifiez et remplissez les détails vous-même.",
+    assign:"Écrivez un prompt de recherche en 3 parties (sujet/contexte/format) pour quelque chose que vous devez vraiment rechercher.",
+    dl:"Liste de Vérification : Fiabilité de la Recherche IA",
+    checklist:["Utilisée pour résumés/idées de départ, pas des faits finaux ?","Affirmations spécifiques signalées pour vérification ?","Plusieurs angles demandés ?"],
+    ai:"J'ai besoin de rechercher [sujet] pour mon entreprise. Suggère un prompt de recherche qui demande un cadre de départ et signale ce que je devrais vérifier moi-même."}},
+ en:{lede:"AI can speed up research dramatically — but only if you know what it's actually reliable for, and what still needs a human check.",
+   secs:[["What AI research is good for","Summarizing a large amount of information quickly, generating a starting list of ideas/questions/angles you might not have thought of, explaining a concept in plain language."],
+    ["What still needs a human check","Specific facts, numbers, dates, or current events (AI training data has a cutoff and can be outdated or simply wrong); anything you'll state publicly as fact should be verified from a real source first, same standing rule as the rest of this course."],
+    ["Good research prompts","Ask for a starting list/framework rather than final facts ('what are common categories of X' rather than 'what is the exact current price of X'), ask the AI to note where you should verify independently, ask for multiple angles/perspectives on a topic rather than one answer."]],
+   ex:"Write a 3-part research prompt (topic/context/format) for something you genuinely need to research.",
+   quiz:[
+    {q:"What is AI research genuinely good for?",opts:["Perfectly current facts and prices","Summarizing information and generating starting ideas/angles","Replacing all fact-checking","Legal advice"],ans:1,fb:"Summarizing and generating starting ideas are its strengths."},
+    {q:"What still needs a human check?",opts:["Broad brainstorming","Specific facts, numbers, dates, and current events","Simple explanations of concepts","General starting frameworks"],ans:1,fb:"Specific facts and current events need verification."},
+    {q:"What's a good research prompt approach?",opts:["Ask for the one exact current fact","Ask for a starting list/framework and note what to verify independently","Never ask AI anything specific","Only ask yes/no questions"],ans:1,fb:"A starting list plus a verification note is a good approach."}],
+   close:{learned:"AI speeds up research for summaries and starting ideas — but specific facts, numbers, and current events still need a human check.",
+    mistake:"Publishing a specific fact or number from AI without verifying it from a real source first.",
+    tip:"Ask AI for a starting framework or list of angles, then verify and fill in specifics yourself.",
+    assign:"Write a 3-part research prompt (topic/context/format) for something you genuinely need to research.",
+    dl:"Checklist: AI Research Reliability Check",
+    checklist:["Used for summaries/starting ideas, not final facts?","Specific claims flagged for verification?","Multiple angles requested?"],
+    ai:"I need to research [topic] for my business. Suggest a research prompt that asks for a starting framework and flags what I should verify myself."}}},
+
+4:{ht:{lede:"Zouti imaj IA tounen yon deskripsyon ekri an yon imaj — pi espesifik deskripsyon an, pi pre rezilta a matche sa ou reyèlman imajine.",
+   secs:[["Sa ki fè yon pwonp imaj mache","Sijè (kisa ki ladan imaj la), style (foto-realis, ilistrasyon, design plat, elt.), ak detay (koulè, anbyans, konpozisyon, limyè) — pwonp vag jwenn rezilta jenerik, enprediktib."],
+    ["Atant realis","Imaj IA bon pou konsèp, fon, ak vizyèl estilize; yo souvan pa fyab pou tèks egzat anndan imaj la, logo egzat, oswa presizyon pwodwi — pa itilize IA pou jenere vrè foto pwodwi ou."],
+    ["Itilize imaj IA responsableman","Pa prezante yon imaj IA kòm yon vrè foto pwodwi/kote ou si li pa ye; verifye règleman platfòm/piblisite sou divilgasyon kontni jenere pa IA kote sa pètinan; itilize l pou konsèp, maket, ak fon olye nenpòt bagay ki reklame se yon vrè foto."]],
+   ex:"Ekri yon pwonp imaj 3-pati (sijè/style/detay) pou yon grafik ou ta ka itilize nan maketing.",
+   quiz:[
+    {q:"Kisa ki fè yon pwonp imaj IA mache byen?",opts:["Vin kout otan posib","Dekri sijè, style, ak detay espesifikman","Sèlman non yon koulè","Kopye egzat pwonp yon lòt moun"],ans:1,fb:"Sijè/style/detay se sa ki fè l mache."},
+    {q:"Pou kisa imaj IA souvan pa fyab?",opts:["Anbyans/fon jeneral","Tèks egzat, logo, ak presizyon pwodwi","Konsèp estilize","Ilistrasyon"],ans:1,fb:"Tèks egzat/logo/presizyon pwodwi pa fyab."},
+    {q:"Ki yon enkyetid etik ak imaj IA?",opts:["Yo toujou byen pou itilize nenpòt jan","Prezante youn kòm yon vrè foto pwodwi/kote ou si li pa ye","Yo pa ka itilize nan maketing ditou","Yo ilegal toupatou"],ans:1,fb:"Prezante yon konsèp kòm yon vrè foto se yon pwoblèm etik."}],
+   close:{learned:"Pwonp imaj IA bezwen sijè, style, ak detay pou mache byen — men yo pa fyab pou tèks/logo egzat, e yo pa ta dwe prezante kòm vrè foto.",
+    mistake:"Itilize yon imaj jenere pa IA tankou si li te yon vrè foto pwòp pwodwi oswa kote ou.",
+    tip:"Itilize imaj IA pou konsèp, fon, ak maket — sove vrè foto pou nenpòt bagay ki reklame montre vrè pwodwi ou.",
+    assign:"Ekri yon pwonp imaj 3-pati (sijè/style/detay) pou yon grafik ou ta ka itilize nan maketing.",
+    dl:"Referans: Fòmil Pwonp Imaj IA",
+    checklist:["Sijè dekri?","Style spesifye?","Detay (koulè/anbyans) enkli?","Pa prezante kòm yon vrè foto?"],
+    ai:"Ekri yon pwonp imaj IA detaye (sijè, style, detay) pou yon [kalite grafik] pou biznis mwen."}},
+ fr:{lede:"Les outils d'image IA transforment une description écrite en image — plus la description est spécifique, plus le résultat se rapproche de ce que vous avez réellement imaginé.",
+   secs:[["Ce qui fait fonctionner un prompt d'image","Sujet (ce qui est dans l'image), style (photo-réaliste, illustration, design plat, etc.), et détails (couleurs, ambiance, composition, éclairage) — les prompts vagues obtiennent des résultats génériques et imprévisibles."],
+    ["Attentes réalistes","Les images IA sont bonnes pour les concepts, arrière-plans, et visuels stylisés ; elles ne sont souvent pas fiables pour du texte exact dans l'image, des logos exacts, ou une précision de produit exacte — n'utilisez pas l'IA pour générer vos vraies photos de produit."],
+    ["Utiliser les images IA de façon responsable","Ne présentez pas une image IA comme une vraie photo de votre produit/lieu si ce n'en est pas une ; vérifiez les politiques de plateforme/publicité sur la divulgation de contenu généré par IA quand c'est pertinent ; utilisez-la pour des concepts, maquettes, et arrière-plans plutôt que tout ce qui prétend être une vraie photo."]],
+   ex:"Écrivez un prompt d'image en 3 parties (sujet/style/détails) pour un graphique que vous pourriez utiliser en marketing.",
+   quiz:[
+    {q:"Qu'est-ce qui fait bien fonctionner un prompt d'image IA ?",opts:["Être aussi court que possible","Décrire le sujet, le style, et les détails spécifiquement","Seulement nommer une couleur","Copier exactement le prompt de quelqu'un d'autre"],ans:1,fb:"Sujet/style/détails sont ce qui le fait fonctionner."},
+    {q:"Pour quoi les images IA sont-elles souvent peu fiables ?",opts:["Ambiance/arrière-plans généraux","Texte exact, logos, et précision de produit exacte","Concepts stylisés","Illustrations"],ans:1,fb:"Le texte exact/logos/précision de produit ne sont pas fiables."},
+    {q:"Quelle est une préoccupation éthique avec les images IA ?",opts:["Elles sont toujours bonnes à utiliser n'importe comment","Présenter l'une comme une vraie photo de votre produit/lieu si ce n'en est pas une","Elles ne peuvent pas du tout être utilisées en marketing","Elles sont illégales partout"],ans:1,fb:"Présenter un concept comme une vraie photo est un problème éthique."}],
+   close:{learned:"Les prompts d'image IA ont besoin de sujet, style, et détails pour bien fonctionner — mais ils ne sont pas fiables pour le texte/logo exact, et ne devraient pas être présentés comme de vraies photos.",
+    mistake:"Utiliser une image générée par IA comme si c'était une vraie photo de votre propre produit ou lieu.",
+    tip:"Utilisez les images IA pour des concepts, arrière-plans, et maquettes — gardez de vraies photos pour tout ce qui prétend montrer votre vrai produit.",
+    assign:"Écrivez un prompt d'image en 3 parties (sujet/style/détails) pour un graphique que vous pourriez utiliser en marketing.",
+    dl:"Référence : Formule de Prompt d'Image IA",
+    checklist:["Sujet décrit ?","Style spécifié ?","Détails (couleur/ambiance) inclus ?","Pas présentée comme une vraie photo ?"],
+    ai:"Écris un prompt d'image IA détaillé (sujet, style, détails) pour un(e) [type de graphique] pour mon entreprise."}},
+ en:{lede:"AI image tools turn a written description into a picture — the more specific the description, the closer the result matches what you actually pictured.",
+   secs:[["What makes an image prompt work","Subject (what's in the image), style (photo-realistic, illustration, flat design, etc.), and details (colors, mood, composition, lighting) — vague prompts get generic, unpredictable results."],
+    ["Realistic expectations","AI images are good for concepts, backgrounds, and stylized visuals; they're often not reliable for exact text within the image, exact logos, or precise product accuracy — don't use AI to generate your actual product photos."],
+    ["Using AI images responsibly","Don't present an AI image as a real photo of your product/location if it isn't one; check platform/ad policies about AI-generated content disclosure where relevant; use it for concepts, mockups, and backgrounds rather than anything claiming to be a real photo."]],
+   ex:"Write a 3-part image prompt (subject/style/details) for a graphic you could use in marketing.",
+   quiz:[
+    {q:"What makes an AI image prompt work well?",opts:["Being as short as possible","Describing subject, style, and details specifically","Only naming a color","Copying someone else's exact prompt"],ans:1,fb:"Subject/style/details are what make it work."},
+    {q:"What are AI images often unreliable for?",opts:["General mood/backgrounds","Exact text, logos, and precise product accuracy","Stylized concepts","Illustrations"],ans:1,fb:"Exact text/logos/product accuracy are unreliable."},
+    {q:"What's an ethical concern with AI images?",opts:["They're always fine to use however","Presenting one as a real photo of your product/location when it isn't","They can't be used in marketing at all","They're illegal everywhere"],ans:1,fb:"Presenting a concept as a real photo is an ethical problem."}],
+   close:{learned:"AI image prompts need subject, style, and detail to work well — but they're unreliable for exact text/logos/product accuracy, and shouldn't be presented as real photos.",
+    mistake:"Using an AI-generated image as if it were a real photo of your actual product or location.",
+    tip:"Use AI images for concepts, backgrounds, and mockups — save real photos for anything claiming to show your actual product.",
+    assign:"Write a 3-part image prompt (subject/style/details) for a graphic you could use in marketing.",
+    dl:"Reference: AI Image Prompt Formula",
+    checklist:["Subject described?","Style specified?","Details (color/mood) included?","Not presented as a real photo?"],
+    ai:"Write a detailed AI image prompt (subject, style, details) for a [type of graphic] for my business."}}},
+
+5:{ht:{lede:"Zouti videyo IA pi nouvo e pi limite pase tèks oswa imaj IA — konnen sa yo reyèlman fyab pou fè sove w tan ak desepsyon.",
+   secs:[["Sa videyo IA ka reyèlman fè jodi a","Jenere ti klip oswa sèn kout soti nan yon deskripsyon tèks, kreye vizyèl anime senp soti nan yon script/imaj, ajoute vwa oswa soutit IA otomatikman sou yon filmaj ki deja egziste."],
+    ["Limit aktyèl pou konnen","Sèn pi long, konplèks pi mwens fyab pase kout, senp; karaktè/figi konsistan atravè plizyè klip toujou difisil; pawòl imen realis/senk lèv ap amelyore men souvan toujou artifisyèl vizib."],
+    ["Itilizasyon pratik kounye a","Tounen yon pòs ekri an yon senp videyo ak soutit, jenere vizyèl B-roll/fon kout, apèsi rapid yon konsèp videyo anvan angaje nan vrè filmaj."]],
+   ex:"Ekri yon pwonp 3-pati (sèn/objektif/fòma) pou yon konsèp videyo IA kout pou biznis ou.",
+   quiz:[
+    {q:"Kisa videyo IA ka reyèlman fè byen jodi a?",opts:["Sèn long konplèks pafè","Ti klip kout, vizyèl anime senp, ak soutit/vwa otomatik","Ranplase tout filmaj imen nèt","Garanti yon karaktè konsistan atravè anpil klip"],ans:1,fb:"Ti klip, soutit, ak vwa otomatik se pwen fò l."},
+    {q:"Ki yon limit videyo IA aktyèl?",opts:["Ajoute soutit otomatikman","Karaktè/figi konsistan atravè plizyè klip","Sèn senp kout","Tounen tèks an yon ti klip debaz"],ans:1,fb:"Karaktè konsistan atravè klip yo se yon limit."},
+    {q:"Ki yon itilizasyon pratik pou videyo IA kounye a?",opts:["Ranplase tout filmaj reyèl pou tout tan","Apèsi rapid yon konsèp videyo anvan vrè filmaj","Garanti reyalis pafè","Sèlman pou fim long"],ans:1,fb:"Apèsi rapid anvan vrè filmaj se yon itilizasyon pratik."}],
+   close:{learned:"Videyo IA mache byen pou ti klip kout, soutit/vwa, ak apèsi rapid konsèp — men li gen difikilte ak sèn long, konplèks, oswa karaktè konsistan.",
+    mistake:"Atann videyo IA fyab pou pwodwi kontni long, konplèks, karaktè-konsistan jodi a.",
+    tip:"Itilize videyo IA pou apèsi rapid yon konsèp anvan angaje tan nan vrè filmaj.",
+    assign:"Ekri yon pwonp 3-pati (sèn/objektif/fòma) pou yon konsèp videyo IA kout pou biznis ou.",
+    dl:"Referans: Itilizasyon Realis Videyo IA",
+    checklist:["Sèn/sijè dekri?","Objektif/platfòm bay?","Fòma (rasyo, longè) spesifye?"],
+    ai:"Ekri yon pwonp konsèp videyo IA kout (sèn, objektif, fòma) pou yon videyo [platfòm] pou biznis mwen."}},
+ fr:{lede:"Les outils de vidéo IA sont plus récents et plus limités que le texte ou l'image IA — savoir pour quoi ils sont réellement fiables vous fait gagner du temps et évite les déceptions.",
+   secs:[["Ce que la vidéo IA peut réellement faire aujourd'hui","Générer des clips courts ou des scènes à partir d'une description texte, créer des visuels animés simples à partir d'un script/image, ajouter automatiquement une voix off ou des sous-titres IA à un métrage existant."],
+    ["Limitations actuelles à connaître","Les scènes plus longues et complexes sont moins fiables que les courtes et simples ; des personnages/visages cohérents à travers plusieurs clips restent difficiles ; la parole humaine réaliste/synchronisation labiale s'améliore mais reste souvent visiblement artificielle."],
+    ["Utilisations pratiques actuelles","Transformer un post écrit en une simple vidéo sous-titrée, générer des visuels B-roll/arrière-plan courts, prévisualiser rapidement un concept vidéo avant de s'engager dans un vrai tournage."]],
+   ex:"Écrivez un prompt en 3 parties (scène/objectif/format) pour un court concept vidéo IA pour votre entreprise.",
+   quiz:[
+    {q:"Que peut bien faire la vidéo IA aujourd'hui ?",opts:["Des scènes longues et complexes parfaites","Des clips courts, des visuels animés simples, et des sous-titres/voix off automatiques","Remplacer complètement tout tournage humain","Garantir un personnage cohérent sur de nombreux clips"],ans:1,fb:"Clips courts, sous-titres, et voix off automatiques sont ses points forts."},
+    {q:"Quelle est une limitation actuelle de la vidéo IA ?",opts:["Ajouter des sous-titres automatiquement","Des personnages/visages cohérents à travers plusieurs clips","Des scènes simples et courtes","Transformer du texte en clip basique"],ans:1,fb:"Des personnages cohérents à travers les clips sont une limitation."},
+    {q:"Quelle est une utilisation pratique de la vidéo IA en ce moment ?",opts:["Remplacer tout tournage réel pour toujours","Prévisualiser rapidement un concept vidéo avant un vrai tournage","Garantir un réalisme parfait","Seulement pour les longs métrages"],ans:1,fb:"Prévisualiser rapidement avant un vrai tournage est une utilisation pratique."}],
+   close:{learned:"La vidéo IA fonctionne bien pour les clips courts, sous-titres/voix off, et aperçus rapides de concept — mais peine avec les scènes longues, complexes, ou à personnages cohérents.",
+    mistake:"S'attendre à ce que la vidéo IA produise de façon fiable du contenu long, complexe, à personnages cohérents aujourd'hui.",
+    tip:"Utilisez la vidéo IA pour prévisualiser rapidement un concept avant de consacrer du temps à un vrai tournage.",
+    assign:"Écrivez un prompt en 3 parties (scène/objectif/format) pour un court concept vidéo IA pour votre entreprise.",
+    dl:"Référence : Cas d'Usage Réalistes de la Vidéo IA",
+    checklist:["Scène/sujet décrit ?","Objectif/plateforme donné ?","Format (ratio, durée) spécifié ?"],
+    ai:"Écris un prompt de concept vidéo IA court (scène, objectif, format) pour une vidéo [plateforme] pour mon entreprise."}},
+ en:{lede:"AI video tools are newer and more limited than AI text or images — knowing what they're actually reliable for saves you time and disappointment.",
+   secs:[["What AI video can realistically do today","Generate short clips or scenes from a text description, create simple animated visuals from a script/image, add AI voiceover or captions automatically to existing footage."],
+    ["Current limitations to know","Longer, complex scenes are less reliable than short simple ones; consistent characters/faces across multiple clips is still difficult; realistic human speech/lip-sync is improving but often still noticeably artificial."],
+    ["Practical uses right now","Turning a written post into a simple captioned video, generating short B-roll/background visuals, quickly previewing a video concept before committing to real filming."]],
+   ex:"Write a 3-part prompt (scene/purpose/format) for a short AI video concept for your business.",
+   quiz:[
+    {q:"What can AI video realistically do well today?",opts:["Perfect, long complex scenes","Short clips, simple animated visuals, and automatic captions/voiceover","Fully replace all human filming","Guarantee a consistent character across many clips"],ans:1,fb:"Short clips, captions, and automatic voiceover are its strengths."},
+    {q:"What's a current AI video limitation?",opts:["Adding captions automatically","Consistent characters/faces across multiple clips","Short simple scenes","Turning text into a basic clip"],ans:1,fb:"Consistent characters across clips is a limitation."},
+    {q:"What's a practical use for AI video right now?",opts:["Replacing all real filming forever","Quickly previewing a video concept before real filming","Guaranteeing perfect realism","Only for feature-length films"],ans:1,fb:"Quickly previewing before real filming is a practical use."}],
+   close:{learned:"AI video works well for short clips, captions/voiceover, and quick concept previews — but struggles with long, complex, or character-consistent scenes.",
+    mistake:"Expecting AI video to reliably produce long, complex, consistent-character content today.",
+    tip:"Use AI video to quickly preview a concept before committing time to real filming.",
+    assign:"Write a 3-part prompt (scene/purpose/format) for a short AI video concept for your business.",
+    dl:"Reference: AI Video Realistic Use Cases",
+    checklist:["Scene/subject described?","Purpose/platform given?","Format (ratio, length) specified?"],
+    ai:"Write a short AI video concept prompt (scene, purpose, format) for a [platform] video for my business."}}},
+
+6:{ht:{lede:"Zouti vwa IA ka jenere narasyon oswa li tèks awotvwa nan diferan ton — itil pou vitès, men ak vrè liy etik ki vo konnen.",
+   secs:[["Sa vwa IA bon pou fè","Narasyon rapid pou yon videyo/reklam san bezwen anrejistre pwòp tèt ou, teste diferan ton/rit anvan angaje nan yon vrè anrejistreman, aksesibilite (li kontni awotvwa pou moun ki prefere koute)."],
+    ["Liy etik ak vwa IA","Pa janm klone oswa imite vwa yon vrè moun idantifyab san konsantman klè — sa ka toude yon vyolasyon etik e de plis an plis yon vyolasyon legal; divilge vwa jenere pa IA kote sa pètinan/obligatwa, espesyalman pou nenpòt bagay ki ka konfonn ak yon vrè andòsman moun."],
+    ["Ekri pou vwa IA","Ponktyasyon afekte rit (vigil/pwen kreye poz natirèl); ekri fraz pi kout pou yon narasyon pi klè; spesifye ton ou vle (cho, enèjik, kalm, pwofesyonèl) paske pifò zouti kite w chwazi oswa ajiste l."]],
+   ex:"Ekri yon pwonp 3-pati (kontni script/ton/fòma) pou yon vwa-sou IA pou biznis ou.",
+   quiz:[
+    {q:"Ki sa vwa IA reyèlman itil pou fè?",opts:["Klone nenpòt vrè vwa moun lib","Narasyon rapid, teste ton, ak aksesibilite","Ranplase tout travay vwa imen pou tout tan","Sèlman pou mizik"],ans:1,fb:"Narasyon rapid, teste ton, ak aksesibilite se pwen fò l."},
+    {q:"Ki yon liy etik ak vwa IA?",opts:["Itilize nenpòt ton ou vle","Klone yon vrè vwa moun idantifyab san konsantman klè","Itilize l pou aksesibilite","Teste diferan rit"],ans:1,fb:"Klone san konsantman se yon liy etik."},
+    {q:"Kisa ki afekte rit lè w ekri pou vwa IA?",opts:["Chwa font","Ponktyasyon tankou vigil ak pwen","Non vwa IA a","Anyen, rit se o aza"],ans:1,fb:"Ponktyasyon afekte rit la."}],
+   close:{learned:"Vwa IA itil pou narasyon rapid, teste ton, ak aksesibilite — men pa janm klone yon vrè vwa moun san konsantman klè.",
+    mistake:"Klone oswa imite pre yon vrè vwa moun idantifyab san konsantman klè yo.",
+    tip:"Itilize ponktyasyon espre (vigil, pwen) pou kontwole rit pawòl IA narasyon an.",
+    assign:"Ekri yon pwonp 3-pati (kontni script/ton/fòma) pou yon vwa-sou IA pou biznis ou.",
+    dl:"Referans: Gid Etik ak Ekriti pou Vwa IA",
+    checklist:["Kontni script klè?","Ton spesifye?","Okenn vrè vwa moun klone san konsantman?","Fòma/platfòm bay?"],
+    ai:"Ekri yon script vwa-sou kout (ak yon ton [ton]) pou yon reklam [platfòm] pou biznis mwen."}},
+ fr:{lede:"Les outils de voix IA peuvent générer une narration ou lire du texte à voix haute dans différents tons — utile pour la vitesse, mais avec de vraies lignes éthiques à connaître.",
+   secs:[["Ce pour quoi la voix IA est douée","Narration rapide pour une vidéo/pub sans avoir besoin de s'enregistrer soi-même, tester différents tons/rythmes avant de s'engager dans un vrai enregistrement, accessibilité (lire du contenu à voix haute pour les gens qui préfèrent écouter)."],
+    ["Lignes éthiques avec la voix IA","Ne jamais cloner ou imiter la voix d'une vraie personne identifiable sans consentement clair — ça peut être à la fois une violation éthique et de plus en plus légale ; divulguez la voix générée par IA quand c'est pertinent/requis, surtout pour tout ce qui pourrait être confondu avec un vrai endossement personnel."],
+    ["Écrire pour la voix IA","La ponctuation affecte le rythme (virgules/points créent des pauses naturelles) ; écrivez des phrases plus courtes pour une narration plus claire ; spécifiez le ton voulu (chaleureux, énergique, calme, professionnel) car la plupart des outils vous laissent choisir ou ajuster."]],
+   ex:"Écrivez un prompt en 3 parties (contenu du script/ton/format) pour une voix off IA pour votre entreprise.",
+   quiz:[
+    {q:"Pour quoi la voix IA est-elle réellement utile ?",opts:["Cloner librement la voix de n'importe quelle vraie personne","Narration rapide, test de tons, et accessibilité","Remplacer tout travail vocal humain pour toujours","Seulement pour la musique"],ans:1,fb:"Narration rapide, test de tons, et accessibilité sont ses points forts."},
+    {q:"Quelle est une ligne éthique avec la voix IA ?",opts:["Utiliser n'importe quel ton voulu","Cloner la voix d'une vraie personne identifiable sans consentement clair","L'utiliser pour l'accessibilité","Tester différents rythmes"],ans:1,fb:"Cloner sans consentement est une ligne éthique."},
+    {q:"Qu'est-ce qui affecte le rythme en écrivant pour la voix IA ?",opts:["Le choix de police","La ponctuation comme les virgules et points","Le nom de la voix IA","Rien, le rythme est aléatoire"],ans:1,fb:"La ponctuation affecte le rythme."}],
+   close:{learned:"La voix IA est utile pour la narration rapide, tester des tons, et l'accessibilité — mais ne clonez jamais la voix d'une vraie personne sans consentement clair.",
+    mistake:"Cloner ou imiter de près la voix d'une vraie personne identifiable sans son consentement clair.",
+    tip:"Utilisez la ponctuation délibérément (virgules, points) pour contrôler le rythme de la parole narrée par IA.",
+    assign:"Écrivez un prompt en 3 parties (contenu du script/ton/format) pour une voix off IA pour votre entreprise.",
+    dl:"Référence : Guide d'Éthique et d'Écriture pour la Voix IA",
+    checklist:["Contenu du script clair ?","Ton spécifié ?","Aucune vraie voix de personne clonée sans consentement ?","Format/plateforme donné ?"],
+    ai:"Écris un court script de voix off (avec un ton [ton]) pour une pub [plateforme] pour mon entreprise."}},
+ en:{lede:"AI voice tools can generate narration or read text aloud in different tones — useful for speed, but with real ethical lines worth knowing.",
+   secs:[["What AI voice is good for","Fast narration for a video/ad without needing to record yourself, testing different tones/paces before committing to a real recording, accessibility (reading content aloud for people who prefer listening)."],
+    ["Ethical lines with AI voice","Never clone or imitate a real, identifiable person's voice without clear consent — this can be both an ethical violation and increasingly a legal one; disclose AI-generated voice where relevant/required, especially for anything that could be mistaken for a real person's endorsement."],
+    ["Writing for AI voice","Punctuation affects pacing (commas/periods create natural pauses); write shorter sentences for clearer narration; specify the tone you want (warm, energetic, calm, professional) since most tools let you choose or adjust it."]],
+   ex:"Write a 3-part prompt (script content/tone/format) for an AI voice-over for your business.",
+   quiz:[
+    {q:"What is AI voice genuinely useful for?",opts:["Cloning any real person's voice freely","Fast narration, testing tones, and accessibility","Replacing all human voice work forever","Only for music"],ans:1,fb:"Fast narration, testing tones, and accessibility are its strengths."},
+    {q:"What's an ethical line with AI voice?",opts:["Using any tone you want","Cloning a real, identifiable person's voice without clear consent","Using it for accessibility","Testing different paces"],ans:1,fb:"Cloning without consent is an ethical line."},
+    {q:"What affects pacing when writing for AI voice?",opts:["Font choice","Punctuation like commas and periods","The AI voice's name","Nothing, pacing is random"],ans:1,fb:"Punctuation affects pacing."}],
+   close:{learned:"AI voice is useful for fast narration, tone-testing, and accessibility — but never clone a real person's voice without clear consent.",
+    mistake:"Cloning or closely imitating a real, identifiable person's voice without their clear consent.",
+    tip:"Use punctuation deliberately (commas, periods) to control the pacing of AI-narrated speech.",
+    assign:"Write a 3-part prompt (script content/tone/format) for an AI voice-over for your business.",
+    dl:"Reference: AI Voice Ethics & Writing Guide",
+    checklist:["Script content clear?","Tone specified?","No real person's voice cloned without consent?","Format/platform given?"],
+    ai:"Write a short voice-over script (with a [tone] tone) for a [platform] ad for my business."}}},
+
+7:{ht:{lede:"Vrè pouvwa IA se pa yon sèl pwonp entelijan — se anchennen kèk senp etap an yon workflow repetab ou ka reyitilize chak fwa.",
+   secs:[["Kisa yon workflow ye","Yon sekans etap repetab (souvan: rechèch → bwouyon → vizyèl → revizyon) olye yon sèl pwonp yon sèl fwa; yon fwa ou jwenn yon sekans ki mache, ou reyitilize l olye reenvante apwòch ou chak fwa."],
+    ["Yon egzanp workflow kontni senp","Fè rechèch sou sijè/angle a, ekri bwouyon kontni ekri a, jenere yon imaj ki apiye l, revize e korije tout bagay ak pwòp jijman ou anvan pibliye — chak etap ka itilize yon diferan zouti IA (oswa okenn ditou pou etap revizyon an, ki ta dwe toujou imen)."],
+    ["Kenbe yon imen nan bouk la","Etap revizyon/koreksyon an pa ta dwe janm sote oswa otomatize konplètman — se la vrè jijman ou, vwa mak ou, ak verifikasyon egzatitid rive; IA fè bwouyon, ou deside."]],
+   ex:"Ekri pwòp workflow kontni senp ou (sekans etap ou ta reyèlman itilize) pou yon kalite kontni ou kreye.",
+   quiz:[
+    {q:"Kisa yon workflow IA ye?",opts:["Yon sèl pwonp entelijan, yon sèl fwa","Yon sekans etap repetab ou reyitilize chak fwa","Yon bagay ki pa bezwen okenn patisipasyon imen janm","Yon sèl zouti IA itilize pou kont li"],ans:1,fb:"Se yon sekans etap repetab."},
+    {q:"Nan yon workflow kontni senp (rechèch, bwouyon, imaj, revizyon), ki etap ki ta dwe toujou rete imen?",opts:["Rechèch","Bwouyon","Imaj","Revizyon ak koreksyon"],ans:3,fb:"Etap revizyon an ta dwe toujou rete imen."},
+    {q:"Poukisa kenbe yon imen nan bouk la pou revizyon final la?",opts:["Li pa nesesè, IA toujou egzat","Se la vrè jijman, vwa mak, ak verifikasyon egzatitid rive","Sèlman pou rezon legal","Workflow IA pa bezwen okenn dènye etap"],ans:1,fb:"Jijman, vwa, ak egzatitid rive nan etap sa a."}],
+   close:{learned:"Yon workflow IA se yon sekans repetab (rechèch → bwouyon → vizyèl → revizyon) — etap revizyon imen an pa ta dwe janm sote.",
+    mistake:"Pibliye kontni jenere pa IA dirèkteman san yon etap revizyon/koreksyon imen.",
+    tip:"Yon fwa ou jwenn yon sekans workflow ki mache pou yon kontni, ekri l epi reyitilize l chak fwa.",
+    assign:"Ekri pwòp workflow kontni senp ou (sekans etap ou ta reyèlman itilize) pou yon kalite kontni ou kreye.",
+    dl:"Modèl: Workflow Kontni IA Senp",
+    checklist:["Etap rechèch enkli?","Etap bwouyon enkli?","Etap vizyèl si nesesè?","Etap revizyon imen pa janm sote?"],
+    ai:"Ede m design yon senp workflow kontni IA 4-etap (rechèch, bwouyon, vizyèl, revizyon) pou kreye [kalite kontni] pou biznis mwen."}},
+ fr:{lede:"Le vrai pouvoir de l'IA n'est pas un seul prompt intelligent — c'est enchaîner quelques étapes simples en un workflow répétable que vous pouvez réutiliser à chaque fois.",
+   secs:[["Ce qu'est un workflow","Une séquence répétable d'étapes (souvent : recherche → brouillon → visuel → révision) plutôt qu'un seul prompt ponctuel ; une fois que vous trouvez une séquence qui marche, vous la réutilisez plutôt que de réinventer votre approche à chaque fois."],
+    ["Un exemple simple de workflow de contenu","Rechercher le sujet/angle, rédiger le brouillon du contenu écrit, générer une image de soutien, réviser et corriger le tout avec votre propre jugement avant de publier — chaque étape peut utiliser un outil IA différent (ou aucun pour l'étape de révision, qui devrait toujours être humaine)."],
+    ["Garder un humain dans la boucle","L'étape de révision/correction ne devrait jamais être sautée ou entièrement automatisée — c'est là que votre vrai jugement, la voix de votre marque, et la vérification d'exactitude se produisent ; l'IA fait le brouillon, vous décidez."]],
+   ex:"Écrivez votre propre workflow de contenu simple (la séquence d'étapes que vous utiliseriez réellement) pour un type de contenu que vous créez.",
+   quiz:[
+    {q:"Qu'est-ce qu'un workflow IA ?",opts:["Un seul prompt intelligent, ponctuel","Une séquence répétable d'étapes que vous réutilisez à chaque fois","Quelque chose qui ne nécessite jamais d'implication humaine","Un seul outil IA utilisé seul"],ans:1,fb:"C'est une séquence répétable d'étapes."},
+    {q:"Dans un workflow de contenu simple (recherche, brouillon, image, révision), quelle étape devrait toujours rester humaine ?",opts:["Recherche","Brouillon","Image","Révision et correction"],ans:3,fb:"L'étape de révision devrait toujours rester humaine."},
+    {q:"Pourquoi garder un humain dans la boucle pour la révision finale ?",opts:["Ce n'est pas nécessaire, l'IA est toujours exacte","C'est là que le vrai jugement, la voix de marque, et la vérification d'exactitude se produisent","Seulement pour des raisons légales","Les workflows IA n'ont besoin d'aucune étape finale"],ans:1,fb:"Le jugement, la voix, et l'exactitude se produisent à cette étape."}],
+   close:{learned:"Un workflow IA est une séquence répétable (recherche → brouillon → visuel → révision) — l'étape de révision humaine ne devrait jamais être sautée.",
+    mistake:"Publier du contenu généré par IA directement sans une étape de révision/correction humaine.",
+    tip:"Une fois que vous trouvez une séquence de workflow qui fonctionne pour un contenu, écrivez-la et réutilisez-la à chaque fois.",
+    assign:"Écrivez votre propre workflow de contenu simple (la séquence d'étapes que vous utiliseriez réellement) pour un type de contenu que vous créez.",
+    dl:"Modèle : Workflow de Contenu IA Simple",
+    checklist:["Étape de recherche incluse ?","Étape de brouillon incluse ?","Étape visuelle si nécessaire ?","Étape de révision humaine jamais sautée ?"],
+    ai:"Aide-moi à concevoir un workflow de contenu IA simple en 4 étapes (recherche, brouillon, visuel, révision) pour créer [type de contenu] pour mon entreprise."}},
+ en:{lede:"The real power of AI isn't one clever prompt — it's chaining a few simple steps into a repeatable workflow you can reuse every time.",
+   secs:[["What a workflow is","A repeatable sequence of steps (often: research → draft → visual → review) rather than a single one-off prompt; once you find a sequence that works, you reuse it instead of reinventing your approach each time."],
+    ["A simple content workflow example","Research the topic/angle, draft the written content, generate a supporting image, review and edit everything with your own judgment before publishing — each step can use a different AI tool (or none at all for the review step, which should always be human)."],
+    ["Keeping a human in the loop","The review/edit step should never be skipped or fully automated — this is where your real judgment, brand voice, and accuracy check happen; AI drafts, you decide."]],
+   ex:"Write out your own simple content workflow (the sequence of steps you'd actually use) for one type of content you create.",
+   quiz:[
+    {q:"What is an AI workflow?",opts:["A single, one-off clever prompt","A repeatable sequence of steps you reuse each time","Something that requires no human involvement ever","A single AI tool used alone"],ans:1,fb:"It's a repeatable sequence of steps."},
+    {q:"In a simple content workflow (research, draft, image, review), which step should always stay human?",opts:["Research","Draft","Image","Review and edit"],ans:3,fb:"The review step should always stay human."},
+    {q:"Why keep a human in the loop for the final review?",opts:["It's not necessary, AI is always accurate","That's where real judgment, brand voice, and accuracy checking happen","Only for legal reasons","AI workflows don't need a final step"],ans:1,fb:"Judgment, voice, and accuracy checking happen at this step."}],
+   close:{learned:"An AI workflow is a repeatable sequence (research → draft → visual → review) — the human review step should never be skipped.",
+    mistake:"Publishing AI-generated content straight through without a human review/edit step.",
+    tip:"Once you find a workflow sequence that works for one piece of content, write it down and reuse it every time.",
+    assign:"Write out your own simple content workflow (the sequence of steps you'd actually use) for one type of content you create.",
+    dl:"Template: Simple AI Content Workflow",
+    checklist:["Research step included?","Draft step included?","Visual step if needed?","Human review step never skipped?"],
+    ai:"Help me design a simple 4-step AI content workflow (research, draft, visual, review) for creating [type of content] for my business."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module8-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD8_LESSON_SLUGS=["meet-the-ai-chat-tool","prompt-engineering-writing-prompts-that-work","using-ai-for-research","ai-for-images","ai-for-video","ai-for-voice","building-an-ai-workflow"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+function freshChatSt(){return{exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false,msgs:[],want:"",context:"",format:""};}
+function freshWfSt(){return{exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false,order:["draft","review","research","image"]};}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]=(i===7)?freshWfSt():freshChatSt();}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD8_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===8;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M8[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ chat engine (lessons 1-6) ============ */
+function bubbleHTML(role,text){
+ return '<div class="bub '+role+'"><div class="av2">'+(role==="ai"?"🤖":"🙂")+'</div><div class="txt">'+text+'</div></div>';
+}
+function renderChatLog(n){
+ const st=S.st[n];
+ const log=$("chatLog");if(!log)return;
+ log.innerHTML=st.msgs.map(m=>bubbleHTML(m.role,m.text)).join("");
+ log.scrollTop=log.scrollHeight;
+}
+function qualityScore(n){
+ const st=S.st[n];
+ return [st.want,st.context,st.format].filter(v=>v&&v.trim().length>0).length;
+}
+function renderQuality(n){
+ const cfg=CHAT[n],lang=S.lang,score=qualityScore(n);
+ const pct=Math.round(score/3*100);
+ const color=score<=1?"var(--warn)":score===2?"#3B6FE0":"var(--good)";
+ const label=score<=1?UI[lang].vag:score===2?UI[lang].kle:UI[lang].eksel;
+ const meter=$("pqMeter");if(meter){meter.style.width=pct+"%";meter.style.background=color;}
+ const lbl=$("pqLabel");if(lbl)lbl.textContent=label;
+ const sendBtn=$("sendBtn");if(sendBtn)sendBtn.disabled=!(S.st[n].want&&S.st[n].want.trim().length>0);
+}
+function buildChatUI(n){
+ const cfg=CHAT[n],st=S.st[n],lang=S.lang;
+ let h='<div class="chatwrap"><div class="chatlog" id="chatLog"></div><div class="pfields">';
+ ["want","context","format"].forEach(k=>{
+  h+='<div class="pfrow"><label>'+cfg.fields[k][lang]+'</label><input id="pf_'+k+'" placeholder="'+cfg.ph[k][lang]+'" value="'+(st[k]||"").replace(/"/g,"&quot;")+'"></div>';
+ });
+ h+='<div class="pqrow"><div class="pqmeter"><span id="pqMeter"></span></div><div class="pqlabel" id="pqLabel"></div></div>';
+ h+='<div class="sendrow"><button id="sendBtn">'+UI[lang].send+'</button></div>';
+ h+='</div></div>';
+ return h;
+}
+function wireChatUI(n){
+ const st=S.st[n];
+ ["want","context","format"].forEach(k=>{
+  const inp=$("pf_"+k);
+  if(inp)inp.addEventListener("input",e=>{st[k]=e.target.value;persist();renderQuality(n);});
+ });
+ renderChatLog(n);
+ renderQuality(n);
+ const sendBtn=$("sendBtn");
+ if(sendBtn)sendBtn.addEventListener("click",()=>sendMessage(n));
+}
+function sendMessage(n){
+ const cfg=CHAT[n],st=S.st[n],lang=S.lang;
+ const parts=[st.want,st.context,st.format].filter(Boolean);
+ const userText=parts.join(" — ");
+ st.msgs.push({role:"user",text:userText});
+ renderChatLog(n);
+ const log=$("chatLog");
+ const typingEl=document.createElement("div");typingEl.className="bub ai";
+ typingEl.innerHTML='<div class="av2">🤖</div><div class="txt"><div class="typing"><span></span><span></span><span></span></div></div>';
+ log.appendChild(typingEl);log.scrollTop=log.scrollHeight;
+ const score=qualityScore(n);
+ const reply=(score>=cfg.threshold)?cfg.strong[lang]:cfg.weak[lang];
+ setTimeout(()=>{
+  st.msgs.push({role:"ai",text:reply});
+  if(score>=cfg.threshold&&!st.edDone){st.edDone=true;}
+  persist();renderChatLog(n);renderRail();
+ },850);
+}
+
+/* ============ workflow reorder engine (lesson 7) ============ */
+function buildWfUI(){
+ const st=S.st[7],lang=S.lang;
+ let h='<div class="wfwrap">';
+ st.order.forEach((id,i)=>{
+  const step=WF_STEPS.find(s=>s.id===id);
+  h+='<div class="wfcard"><div class="wfnum">'+(i+1)+'</div><div class="wftxt">'+step[lang]+'</div><div class="wfbtns">'+
+   '<button data-dir="-1" data-id="'+id+'"'+(i===0?" disabled":"")+'>↑</button>'+
+   '<button data-dir="1" data-id="'+id+'"'+(i===st.order.length-1?" disabled":"")+'>↓</button></div></div>';
+ });
+ h+="</div>";
+ return h;
+}
+function wireWfUI(){
+ const st=S.st[7];
+ document.querySelectorAll(".wfbtns button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+   const id=btn.dataset.id,dir=+btn.dataset.dir;
+   const idx=st.order.indexOf(id),swap=idx+dir;
+   if(swap<0||swap>=st.order.length)return;
+   [st.order[idx],st.order[swap]]=[st.order[swap],st.order[idx]];
+   persist();checkWf();rebuildWf();
+  });
+ });
+}
+function checkWf(){
+ const st=S.st[7];
+ const correct=st.order[0]==="research"&&st.order[1]==="draft"&&st.order[2]==="image"&&st.order[3]==="review";
+ if(correct&&!st.edDone){st.edDone=true;persist();}
+ else if(!correct&&st.edDone){st.edDone=false;persist();}
+ renderRail();
+}
+function rebuildWf(){
+ const root=$("illusRoot");if(!root)return;
+ root.innerHTML=buildWfUI();
+ wireWfUI();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 8 · 8."+n;
+ $("topTitle").textContent=M8[lang][n-1];
+ document.title="Academy · "+M8[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 8 · 8.'+n+'</span><h2 class="labh2">'+M8[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="illusRoot"></div></div>';
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const illusRoot=$("illusRoot");
+ if(n===7){illusRoot.innerHTML=buildWfUI();wireWfUI();checkWf();}
+ else{illusRoot.innerHTML=buildChatUI(n);wireChatUI(n);}
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 8?":S.lang==="fr"?"Voulez-vous recommencer le Module 8 ?":"Restart Module 8?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]=(i===7)?freshWfSt():freshChatSt();
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
