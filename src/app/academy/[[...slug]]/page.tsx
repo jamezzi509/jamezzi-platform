@@ -18,7 +18,9 @@ import { ComputerGrowthSummaryPlayer } from "@/components/academy/computer-growt
 import { ComputerModuleSimulator } from "@/components/academy/computer-module-simulator";
 import { ComputerPlatformOnboarding } from "@/components/academy/computer-platform-onboarding";
 import { ComputerReadinessReflectionPlayer } from "@/components/academy/computer-readiness-reflection-player";
+import { DominateDigitalCertificatePlayer } from "@/components/academy/dominate-digital-certificate-player";
 import { DominateDigitalCoursePage } from "@/components/academy/dominate-digital-course-page";
+import { DominateDigitalFinalExamPlayer } from "@/components/academy/dominate-digital-final-exam-player";
 import { DominateDigitalModuleSimulator } from "@/components/academy/dominate-digital-module-simulator";
 import { EnglishCoursePage } from "@/components/academy/english-course-page";
 import { EnglishFinalExam } from "@/components/academy/english-final-exam";
@@ -44,7 +46,11 @@ import {
 } from "@/content/computer-rebuild/lessons";
 import { getComputerRebuildReadinessReflection } from "@/content/computer-rebuild/readiness-reflection";
 import { courses, launchingFirstCourses } from "@/content/courses";
-import { getDominateDigitalLesson } from "@/content/dominate-digital/lessons";
+import { dominateDigitalFinalExam } from "@/content/dominate-digital/final-exam";
+import {
+  dominateDigitalLessons,
+  getDominateDigitalLesson,
+} from "@/content/dominate-digital/lessons";
 import { titleFromSlug } from "@/lib/format";
 
 /**
@@ -575,6 +581,19 @@ export default async function AcademyPage({
     slug[2] === "learn" &&
     slug[3]
   ) {
+    if (slug[3] === "final-exam") {
+      return (
+        <DominateDigitalFinalExamPlayer
+          exam={dominateDigitalFinalExam}
+          allLessons={dominateDigitalLessons}
+        />
+      );
+    }
+    if (slug[3] === "certificate") {
+      return (
+        <DominateDigitalCertificatePlayer allLessons={dominateDigitalLessons} />
+      );
+    }
     const lesson = getDominateDigitalLesson(slug[3]);
     const simulatorModule = lesson
       ? dominateDigitalSimulatorModules[lesson.moduleId]

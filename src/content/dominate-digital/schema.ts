@@ -26,3 +26,32 @@ export interface CourseModule {
   titleEn: string;
   purpose: string;
 }
+
+/**
+ * One multiple-choice question in the final exam's question bank -- per the
+ * brief's standing Section 6 rule (comprehensive final exam, separate from
+ * lesson quizzes, before certification). Tagged with the module it covers so
+ * a miss can point back to a specific lesson to review.
+ */
+export interface FinalExamQuestion {
+  id: string;
+  moduleId: string;
+  recommendedLessonSlug: string;
+  prompt: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+/**
+ * The final exam -- questionsPerAttempt is intentionally smaller than
+ * bank.length so a retry draws a genuinely different set of questions.
+ */
+export interface FinalExam {
+  id: string;
+  titleHt: string;
+  intro: string;
+  questionsPerAttempt: number;
+  passingPercent: number;
+  bank: FinalExamQuestion[];
+}

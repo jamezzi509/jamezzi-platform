@@ -65,14 +65,8 @@ export function DominateDigitalCoursePage() {
           }))}
           progressStorageKey={dominateDigitalProgressStorageKey}
           lessonBaseHref={learnBase}
-          assessmentHref={`${learnBase}/${firstLesson.slug}`}
+          assessmentHref={`${learnBase}/final-exam`}
           language="ht"
-          completeOverride={{
-            href: "#course-path",
-            eyebrow: "TOUT 20 MODIL FINI",
-            title: "Ou fini tout 20 modil kou a — byen fèt!",
-            action: "Revize Kou a",
-          }}
         />
       </Container>
 
