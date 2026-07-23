@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 5 — Ekri Tèks ki Vann</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ci{font-size:19px;flex:none;width:26px;text-align:center}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 5 · 5.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + module/lesson titles ============ */
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 5!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 5 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 5!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M5={
+ ht:["Ekri Tit ki Li","Kwochè: Genyen Pwochen Fraz la","Naratif nan Maketing","Ekri Deskripsyon Pwodwi ki Vann","Apèl a Aksyon (CTA)","Paj Aterisaj ak Paj Vant","Tèks Imèl"],
+ fr:["Écrire des Titres qu'on Lit","Accroches : Gagner la Phrase Suivante","La Narration en Marketing","Écrire des Descriptions de Produits qui Vendent","Appels à l'Action (CTA)","Pages de Destination et de Vente","Texte d'Email"],
+ en:["Writing Headlines That Get Read","Hooks: Earning the Next Sentence","Storytelling in Marketing","Writing Product Descriptions That Sell","Calls to Action (CTAs)","Landing Pages & Sales Pages","Email Copy"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Yon tit gen yon sèl travay — fè yo li pwochen fraz la. Si li echwe nan sa, anyen dòt ou ekri pa konte.",
+   secs:[["Sa ki fè yon tit mache","Pale ak yon benefis espesifik oswa kiryozite, pa yon rezime vag; itilize mo senp, konkrè olye jwe ak mo entelijan; souvan non sitiyasyon egzat lektè a ('Pou [odyans espesifik] ki [pwoblèm espesifik]')."],
+    ["Fòmil tit komen","Kijan Fè ('Kijan pou [rive jwenn yon rezilta] san [obstak komen]'), Kesyon ('Ou ap toujou fè [metòd demode]?'), Nimewo/Lis ('5 fason pou [rezilta]'), Benefis Dirèk ('[Rezilta] nan [tan]'). Sa yo se modèl kòmansman, pa règ fiks — objektif la se klète ak pètinans, pa jis matche yon fòmil pafètman."],
+    ["Teste e amelyore tit yo","Ekri 5-10 vèsyon anvan w chwazi youn, pa jis premye lide ki vini; li l tankou yon etranje ta li l, pa tankou yon moun ki deja konnen pwodwi a; koupe chak mo ki pa ajoute vrè sans."]],
+   illus:"roles",roleCards:[["🛠️","Kijan Fè","Rezoud yon pwoblèm"],["❓","Kesyon","Pwovoke refleksyon"],["🔢","Nimewo/Lis","Òganize enfòmasyon"],["🎯","Benefis Dirèk","Rezilta klè"]],
+   ex:"Ekri 3 diferan vèsyon tit pou pwodwi/sèvis prensipal ou, lè w itilize 3 diferan fòmil nan leson sa a.",
+   quiz:[
+    {q:"Ki sèl travay yon tit genyen?",opts:["Rezime tout atik/paj la","Fè yo li pwochen fraz la","Lis chak karakteristik","Vin osi entelijan posib"],ans:1,fb:"Sèl travay tit la se fè yo li pwochen fraz la."},
+    {q:"Kilès ki yon egzanp fòmil tit 'kijan fè'?",opts:["5 Fason pou Ekonomize Lajan","Kijan pou Ekonomize Lajan San Koupe Tout Bagay Ou Renmen","Ou ap toujou Gaspiye Lajan?","Ekonomize Lajan Jodi a"],ans:1,fb:"Se egzanp fòmil kijan-fè san obstak."},
+    {q:"Poukisa ekri 5-10 vèsyon tit olye itilize premye lide?",opts:["Premye lide toujou pi bon","Plis opsyon anjeneral revele youn pi klè, pi fò pase chwazi imedyatman","Sa obligatwa pa lalwa","Sa gaspiye tan san benefis"],ans:1,fb:"Plis opsyon revele yon tit pi fò pase chwazi premye youn."},
+    {q:"Yon tit fò anjeneral priyorize:",opts:["Jwe mo entelijan sou klète","Mo senp, konkrè ak yon benefis oswa kiryozite espesifik","Vin vag otan posib","Enkli otan mo posib"],ans:1,fb:"Klète ak benefis espesifik se priyorite a."}],
+   close:{learned:"Sèl travay yon tit se fè pwochen fraz la li — mo senp, espesifik bat vagte entelijan.",
+    mistake:"Pibliye premye tit ki vini nan tèt olye ekri plizyè vèsyon epi chwazi pi fò a.",
+    tip:"Li tit ou tankou si w se yon etranje ki wè l premye fwa — èske li reyèlman gen sans e konte pou yo?",
+    assign:"Ekri 3 vèsyon tit pou òf prensipal ou lè w itilize 3 diferan fòmil nan leson sa a.",
+    dl:"Fèy Travay: Fèy Fòmil Tit",
+    checklist:["Benefis espesifik oswa kiryozite, pa vag?","Mo senp olye antelijan?","Omwen 5 vèsyon ekri anvan chwazi?"],
+    ai:"Pwodwi/sèvis mwen se [dekri l] pou [odyans]. Ekri 5 opsyon tit lè w itilize diferan fòmil (kijan fè, kesyon, nimewo, benefis dirèk)."}},
+ fr:{lede:"Un titre a un seul travail — faire lire la phrase suivante. S'il échoue à ça, rien d'autre que vous avez écrit ne compte.",
+   secs:[["Ce qui fait fonctionner un titre","Parle à un bénéfice spécifique ou à la curiosité, pas un résumé vague ; utilise des mots simples, concrets plutôt que des jeux de mots intelligents ; nomme souvent la situation exacte du lecteur (« Pour [public spécifique] qui [problème spécifique] »)."],
+    ["Formules de titre courantes","Comment faire (« Comment [atteindre un résultat] sans [obstacle courant] »), Question (« Vous faites encore [méthode dépassée] ? »), Nombre/liste (« 5 façons de [résultat] »), Bénéfice direct (« [Résultat] en [délai] »). Ce sont des modèles de départ, pas des règles rigides — le but est la clarté et la pertinence, pas de correspondre parfaitement à une formule."],
+    ["Tester et améliorer les titres","Écrivez 5-10 versions avant d'en choisir une, pas juste la première idée ; lisez-le comme le ferait un étranger, pas quelqu'un qui connaît déjà le produit ; coupez chaque mot qui n'ajoute pas de vrai sens."]],
+   illus:"roles",roleCards:[["🛠️","Comment Faire","Résoudre un problème"],["❓","Question","Provoquer la réflexion"],["🔢","Nombre/Liste","Organiser l'information"],["🎯","Bénéfice Direct","Résultat clair"]],
+   ex:"Écrivez 3 versions différentes de titre pour votre produit/service principal, en utilisant 3 formules différentes de cette leçon.",
+   quiz:[
+    {q:"Quel est le seul travail d'un titre ?",opts:["Résumer tout l'article/la page","Faire lire la phrase suivante","Lister chaque caractéristique","Être aussi intelligent que possible"],ans:1,fb:"Le seul travail du titre est de faire lire la phrase suivante."},
+    {q:"Lequel est un exemple de formule de titre « comment faire » ?",opts:["5 Façons d'Économiser de l'Argent","Comment Économiser de l'Argent Sans Couper Tout ce que Vous Aimez","Vous Gaspillez Encore de l'Argent ?","Économisez de l'Argent Aujourd'hui"],ans:1,fb:"C'est un exemple de formule comment-faire sans obstacle."},
+    {q:"Pourquoi écrire 5-10 versions de titre plutôt que d'utiliser la première idée ?",opts:["La première idée est toujours la meilleure","Plus d'options font généralement ressortir une version plus claire et plus forte","C'est requis par la loi","Ça gaspille du temps sans bénéfice"],ans:1,fb:"Plus d'options font ressortir un titre plus fort que de s'installer immédiatement."},
+    {q:"Un titre fort priorise généralement :",opts:["Le jeu de mots intelligent sur la clarté","Des mots simples, concrets et un bénéfice ou une curiosité spécifique","Être aussi vague que possible","Inclure autant de mots que possible"],ans:1,fb:"La clarté et le bénéfice spécifique sont la priorité."}],
+   close:{learned:"Le seul travail d'un titre est de faire lire la phrase suivante — un langage simple et spécifique bat la vaguerie intelligente.",
+    mistake:"Publier le premier titre qui vient à l'esprit plutôt que d'en écrire plusieurs versions et choisir la plus forte.",
+    tip:"Lisez votre titre comme si vous étiez un étranger le voyant pour la première fois — a-t-il vraiment du sens et de l'importance pour eux ?",
+    assign:"Écrivez 3 versions de titre pour votre offre principale en utilisant 3 formules différentes de cette leçon.",
+    dl:"Fiche de travail : Feuille de Formules de Titre",
+    checklist:["Bénéfice spécifique ou curiosité, pas vague ?","Mots simples plutôt qu'intelligents ?","Au moins 5 versions écrites avant de choisir ?"],
+    ai:"Mon produit/service est [décrire] pour [public]. Écris 5 options de titre en utilisant différentes formules (comment faire, question, nombre, bénéfice direct)."}},
+ en:{lede:"A headline has one job — get the very next sentence read. If it fails at that, nothing else you wrote matters.",
+   secs:[["What makes a headline work","Speaks to a specific benefit or curiosity, not a vague summary; uses plain, concrete words over clever wordplay; often names the reader's exact situation ('For [specific audience] who [specific problem]')."],
+    ["Common headline formulas","How-to ('How to [achieve result] without [common obstacle]'), Question ('Still doing [outdated method]?'), Number/list ('5 ways to [result]'), Direct benefit ('[Result] in [timeframe]'). These are starting templates, not rigid rules — the goal is clarity and relevance, not fitting a formula perfectly."],
+    ["Testing and improving headlines","Write 5-10 versions before picking one, not just the first that comes to mind; read it as a stranger would, not as someone who already knows the product; cut every word that doesn't add real meaning."]],
+   illus:"roles",roleCards:[["🛠️","How-To","Solves a problem"],["❓","Question","Sparks reflection"],["🔢","Number/List","Organizes information"],["🎯","Direct Benefit","Clear result"]],
+   ex:"Write 3 different headline versions for your main product/service, using 3 different formulas from this lesson.",
+   quiz:[
+    {q:"What is a headline's one job?",opts:["To summarize the whole article/page","To get the very next sentence read","To list every feature","To be as clever as possible"],ans:1,fb:"A headline's one job is to get the next sentence read."},
+    {q:"Which is a 'how-to' headline formula example?",opts:["5 Ways to Save Money","How to Save Money Without Cutting Everything You Enjoy","Still Wasting Money?","Save Money Today"],ans:1,fb:"That's an example of the how-to-without-obstacle formula."},
+    {q:"Why write 5-10 headline versions instead of using the first idea?",opts:["The first idea is always best","More options usually surface a clearer, stronger one than settling immediately","It's required by law","It wastes time with no benefit"],ans:1,fb:"More options surface a stronger headline than settling immediately."},
+    {q:"A strong headline usually prioritizes:",opts:["Clever wordplay over clarity","Plain, concrete words and a specific benefit or curiosity","Being as vague as possible","Including as many words as possible"],ans:1,fb:"Clarity and a specific benefit are the priority."}],
+   close:{learned:"A headline's only job is to get the next sentence read — plain, specific language beats clever vagueness.",
+    mistake:"Publishing the first headline that comes to mind instead of writing several versions and picking the strongest.",
+    tip:"Read your headline as if you're a stranger seeing it for the first time — does it actually make sense and matter to them?",
+    assign:"Write 3 headline versions for your main offer using 3 different formulas from this lesson.",
+    dl:"Worksheet: Headline Formula Sheet",
+    checklist:["Specific benefit or curiosity, not vague?","Plain words over clever ones?","At least 5 versions written before choosing?"],
+    ai:"My product/service is [describe] for [audience]. Write 5 headline options using different formulas (how-to, question, number, direct benefit)."}}},
+
+2:{ht:{lede:"Yon tit fè w klike — yon kwochè fè w kontinye li, chak fraz rale lektè a nan pwochen an.",
+   secs:[["Sa yon kwochè fè","Liy ouvèti yo touswit apre yon tit (oswa premye segond yon pòs/videyo); sèl travay li se anpeche lektè a kite, menm prensip ak tit la men repete nan chak etap jiska demann lan."],
+    ["Teknik kwochè komen","Kòmanse nan mitan yon istwa oswa yon senaryo (lage lektè a nan yon moman, pa yon vire lantman), mande yon kesyon dirèk lektè a gen tandans deja poze tèt li, deklare yon fè sipriz oswa kontrentwitiv, non fristrasyon egzat lektè a nan premye liy lan."],
+    ["Sa ki kraze yon kwochè","Yon ouvèti lant, jenerik ('Nan mond jodi a, biznis yo bezwen maketing...'), kòmanse ak enfòmasyon sou biznis la olye lektè a, eksplike twòp anvan rive nan pwen an."]],
+   illus:"myths",mythCards:[["Kwochè fèb: 'Nan mond jodi a, biznis yo bezwen maketing...'","Kwochè fò: 'Ou pral pèdi kliyan sa a demen si w pa fè sa a jodi a'"]],mythTag:"KWOCHÈ FÈB",realTag:"KWOCHÈ FÒ",
+   ex:"Ekri 2 kwochè liy ouvèti pou yon pòs sou biznis ou — youn ki kòmanse nan mitan yon senaryo, youn ki kòmanse ak yon kesyon dirèk.",
+   quiz:[
+    {q:"Ki travay yon kwochè genyen?",opts:["Rezime tout kontni a","Anpeche lektè a kite, yon fraz nan yon fwa","Prezante biznis la fòmèlman","Lis kalifikasyon anvan"],ans:1,fb:"Kwochè a kenbe lektè a angaje yon fraz nan yon fwa."},
+    {q:"Kilès ki yon teknik kwochè fò?",opts:["Kòmanse ak 'Nan mond jodi a, biznis yo bezwen...'","Kòmanse nan mitan yon senaryo oswa ak yon kesyon dirèk lektè a deja poze","Eksplike istwa konpayi ou anvan","Lis chak karakteristik imedyatman"],ans:1,fb:"Mitan-senaryo oswa kesyon dirèk se teknik fò."},
+    {q:"Kisa ki komenman kraze yon kwochè?",opts:["Kòmanse ak fristrasyon egzat lektè a","Yon ouvèti lant, jenerik ki reta pwen an","Yon fè sipriz","Yon kòmansman nan mitan istwa"],ans:1,fb:"Yon ouvèti lant, jenerik reta rive nan pwen an."},
+    {q:"Kote fokis la ta dwe ye nan yon kwochè ouvèti?",opts:["Sou biznis la ak istwa li","Sou lektè a ak sitiyasyon yo","Sou trivya san rapò","Sou yon gwo lis kalifikasyon"],ans:1,fb:"Fokis la ta dwe sou lektè a."}],
+   close:{learned:"Yon kwochè kenbe lektè a ap kontinye yon fraz nan yon fwa — kòmanse ak yo (sitiyasyon yo, kesyon, oswa fristrasyon), pa ak biznis ou.",
+    mistake:"Kòmanse ak yon anonsman lant, jenerik ('Nan mond jodi a...') ki reta rive nan nenpòt bagay lektè a reyèlman enterese.",
+    tip:"Koupe premye fraz ou nèt epi wè si dezyèm nan reyèlman yon ouvèti pi fò — li souvan ye.",
+    assign:"Ekri 2 opsyon kwochè pou pwochen pòs ou — youn nan mitan senaryo, youn kòm yon kesyon dirèk.",
+    dl:"Referans: Fèy Referans Teknik Kwochè",
+    checklist:["Ouvri ak lektè a, pa biznis la?","Evite yon anonsman lant, jenerik?","Teste koupe premye fraz la?"],
+    ai:"Pwochen pòs mwen se sou [sijè]. Ekri 3 opsyon kwochè ouvèti lè w itilize diferan teknik (mitan senaryo, kesyon dirèk, fè sipriz)."}},
+ fr:{lede:"Un titre gagne le clic — une accroche gagne tout ce qui suit, chaque phrase attirant le lecteur vers la suivante.",
+   secs:[["Ce que fait une accroche","Les lignes d'ouverture juste après un titre (ou les premières secondes d'un post/vidéo) ; son seul travail est d'empêcher le lecteur de partir, même principe que le titre mais répété à chaque étape jusqu'à la demande."],
+    ["Techniques d'accroche courantes","Commencer au milieu d'une histoire ou d'un scénario (lâcher le lecteur dans un moment, pas un préambule lent), poser une question directe que le lecteur se pose probablement déjà, énoncer un fait surprenant ou contre-intuitif, nommer la frustration exacte du lecteur dans la première ligne."],
+    ["Ce qui casse une accroche","Une ouverture lente et générique (« Dans le monde d'aujourd'hui, les entreprises ont besoin de marketing... »), commencer par des informations sur l'entreprise plutôt que sur le lecteur, expliquer trop avant d'arriver au point."]],
+   illus:"myths",mythCards:[["Accroche faible : « Dans le monde d'aujourd'hui, les entreprises ont besoin de marketing... »","Accroche forte : « Vous allez perdre ce client demain si vous ne faites pas ça aujourd'hui »"]],mythTag:"ACCROCHE FAIBLE",realTag:"ACCROCHE FORTE",
+   ex:"Écrivez 2 accroches d'ouverture pour un post sur votre entreprise — une commençant au milieu d'un scénario, une commençant par une question directe.",
+   quiz:[
+    {q:"Quel est le travail d'une accroche ?",opts:["Résumer tout le contenu","Empêcher le lecteur de partir, une phrase à la fois","Présenter l'entreprise formellement","Lister les qualifications d'abord"],ans:1,fb:"L'accroche garde le lecteur engagé une phrase à la fois."},
+    {q:"Laquelle est une technique d'accroche forte ?",opts:["Commencer par « Dans le monde d'aujourd'hui, les entreprises ont besoin de... »","Commencer au milieu d'un scénario ou par une question directe que le lecteur se pose déjà","Expliquer l'histoire de votre entreprise d'abord","Lister chaque caractéristique immédiatement"],ans:1,fb:"Milieu de scénario ou question directe est une technique forte."},
+    {q:"Qu'est-ce qui casse couramment une accroche ?",opts:["Commencer par la frustration exacte du lecteur","Une ouverture lente et générique qui retarde le point","Un fait surprenant","Un début au milieu d'une histoire"],ans:1,fb:"Une ouverture lente et générique retarde l'arrivée au point."},
+    {q:"Où devrait se trouver le focus dans une accroche d'ouverture ?",opts:["Sur l'entreprise et son histoire","Sur le lecteur et sa situation","Sur des banalités sans rapport","Sur une longue liste de qualifications"],ans:1,fb:"Le focus devrait être sur le lecteur."}],
+   close:{learned:"Une accroche garde le lecteur en mouvement une phrase à la fois — commencez par lui (son scénario, sa question, ou sa frustration), pas par votre entreprise.",
+    mistake:"Ouvrir avec une configuration lente et générique (« Dans le monde d'aujourd'hui... ») qui retarde d'arriver à quoi que ce soit qui intéresse réellement le lecteur.",
+    tip:"Coupez complètement votre première phrase et voyez si la deuxième est en fait une ouverture plus forte — c'est souvent le cas.",
+    assign:"Écrivez 2 options d'accroche pour votre prochain post — une au milieu d'un scénario, une comme question directe.",
+    dl:"Référence : Antisèche des Techniques d'Accroche",
+    checklist:["Ouvre avec le lecteur, pas l'entreprise ?","Évite une configuration lente et générique ?","Testé de couper la première phrase ?"],
+    ai:"Mon prochain post concerne [sujet]. Écris 3 options d'accroche d'ouverture en utilisant différentes techniques (milieu de scénario, question directe, fait surprenant)."}},
+ en:{lede:"A headline earns the click — a hook earns everything after it, one sentence pulling the reader into the next.",
+   secs:[["What a hook does","The opening lines right after a headline (or the first seconds of a post/video); its only job is to keep the reader from leaving, same principle as the headline but repeated at every step until the ask."],
+    ["Common hook techniques","Start mid-story or mid-scenario (drop the reader into a moment, not a slow windup), ask a direct question the reader is likely already asking themselves, state a surprising or counterintuitive fact, name the reader's exact frustration in the first line."],
+    ["What breaks a hook","A slow, generic opening ('In today's world, businesses need marketing...'), starting with information about the business instead of the reader, explaining too much before getting to the point."]],
+   illus:"myths",mythCards:[["Weak hook: 'In today's world, businesses need marketing...'","Strong hook: 'You'll lose this customer tomorrow if you don't do this today'"]],mythTag:"WEAK HOOK",realTag:"STRONG HOOK",
+   ex:"Write 2 opening-line hooks for a post about your business — one starting mid-scenario, one starting with a direct question.",
+   quiz:[
+    {q:"What is a hook's job?",opts:["To summarize the entire piece of content","To keep the reader from leaving, one sentence at a time","To introduce the business formally","To list credentials first"],ans:1,fb:"The hook keeps the reader engaged one sentence at a time."},
+    {q:"Which is a strong hook technique?",opts:["Starting with 'In today's world, businesses need...'","Starting mid-scenario or with a direct question the reader already asks","Explaining your company history first","Listing every feature immediately"],ans:1,fb:"Mid-scenario or a direct question is a strong technique."},
+    {q:"What commonly breaks a hook?",opts:["Starting with the reader's exact frustration","A slow, generic opening that delays the point","A surprising fact","A mid-story start"],ans:1,fb:"A slow, generic opening delays getting to the point."},
+    {q:"Where should the focus be in an opening hook?",opts:["On the business and its history","On the reader and their situation","On unrelated trivia","On a long list of credentials"],ans:1,fb:"The focus should be on the reader."}],
+   close:{learned:"A hook keeps the reader moving one sentence at a time — start with them (their scenario, question, or frustration), not with your business.",
+    mistake:"Opening with a slow, generic setup ('In today's world...') that delays getting to anything the reader actually cares about.",
+    tip:"Cut your first sentence entirely and see if the second one is actually a stronger opening — it often is.",
+    assign:"Write 2 hook options for your next post — one mid-scenario, one as a direct question.",
+    dl:"Reference: Hook Technique Cheat Sheet",
+    checklist:["Opens with the reader, not the business?","Avoids a slow generic setup?","Tested cutting the first sentence?"],
+    ai:"My next post is about [topic]. Write 3 opening hook options using different techniques (mid-scenario, direct question, surprising fact)."}}},
+
+3:{ht:{lede:"Fè di, istwa vann — yon istwa byen rakonte fè yon kliyan santi yon rezilta anvan menm ou mande yo achte.",
+   secs:[["Poukisa istwa mache","Moun sonje e konekte ak naratif pi plis pase lis fè; yon istwa kite lektè a wè tèt yo nan yon sitiyasyon epi imajine rezilta a, ki pi pèsyasif pase di yo dirèkteman sa pou panse."],
+    ["Yon estrikti istwa senp ki mache","Sitiyasyon (yon pwen kòmansman ki gen rapò, souvan yon lit), Pwen Chanjman (sa ki chanje — souvan pwodwi/sèvis ou, men ka tou yon reyalizasyon), Rezilta (rezilta a, ideyalman yon bagay mezirab oswa dekri vividman). Sa reflete vrè vwayaj kliyan ak temwayaj."],
+    ["Kote pou itilize istwa nan maketing","Yon temwayaj kliyan ki ankadre kòm yon ti istwa olye yon kotasyon plat, yon istwa fondatè/orijin ki eksplike poukisa biznis la egziste, yon etid ka 'anvan ak apre', yon pòs sosyal ki dekri yon vrè senaryo kliyan (ak pèmisyon)."]],
+   illus:"journey",journeyLabels:["Sitiyasyon","Pwen Chanjman","Rezilta"],
+   ex:"Ekri yon ti istwa 3-fraz sou yon vrè oswa imajinè kliyan lè w itilize estrikti Sitiyasyon → Pwen Chanjman → Rezilta.",
+   quiz:[
+    {q:"Poukisa istwa konvenki pi efikas pase senp fè?",opts:["Yo pa fè sa, fè toujou konvenki plis","Moun konekte ak e sonje naratif plis pase lis fè","Istwa obligatwa pa lalwa","Fè ilegal nan maketing"],ans:1,fb:"Moun konekte ak e sonje naratif plis pase fè."},
+    {q:"Ki 3 pati yon estrikti istwa maketing senp?",opts:["Entwodiksyon, kò, konklizyon","Sitiyasyon, Pwen Chanjman, Rezilta","Pri, karakteristik, garanti","Logo, slogan, CTA"],ans:1,fb:"Sitiyasyon, Pwen Chanjman, Rezilta se twa pati yo."},
+    {q:"Kilès ki yon bon itilizasyon naratif nan maketing?",opts:["Yon kotasyon plat, yon liy san kontèks","Yon temwayaj kliyan ankadre kòm yon ti istwa ak yon anvan/apre klè","Yon anekdòt o aza san rapò","Yon lis karakteristik san naratif"],ans:1,fb:"Yon temwayaj ankadre kòm ti istwa se bon itilizasyon."},
+    {q:"Kisa 'pwen chanjman' nan yon istwa anjeneral reprezante?",opts:["Fen egzat istwa a","Sa ki chanje — souvan pwodwi/sèvis ou oswa yon reyalizasyon","Yon detay kote san rapò","Pri pwodwi a"],ans:1,fb:"Pwen chanjman se sa ki chanje nan istwa a."}],
+   close:{learned:"Istwa konvenki lè yo kite lektè a wè tèt yo nan yon sitiyasyon epi imajine yon rezilta — itilize yon estrikti senp Sitiyasyon → Pwen Chanjman → Rezilta.",
+    mistake:"Prezante yon temwayaj kòm yon kotasyon plat, jenerik olye ankadre l kòm yon ti istwa ak yon anvan/apre klè.",
+    tip:"Tounen pi bon temwayaj ou an yon istwa 3-fraz lè w itilize Sitiyasyon → Pwen Chanjman → Rezilta.",
+    assign:"Ekri yon ti istwa (3-5 fraz) sou yon vrè oswa realis kliyan pou biznis ou.",
+    dl:"Modèl: Fèy Travay Estrikti Ti Istwa",
+    checklist:["Sitiyasyon etabli?","Pwen chanjman klè?","Rezilta dekri vividman oswa ak yon nimewo?"],
+    ai:"Men yon vye istwa kliyan: [dekri l]. Ede m tounen sa an yon istwa sere 3-5 fraz lè w itilize Sitiyasyon → Pwen Chanjman → Rezilta."}},
+ fr:{lede:"Les faits racontent, les histoires vendent — une histoire bien racontée fait ressentir un résultat au client avant même que vous ne lui ayez demandé d'acheter.",
+   secs:[["Pourquoi les histoires fonctionnent","Les gens se souviennent et se connectent aux récits bien plus qu'aux listes de faits ; une histoire permet au lecteur de se voir dans une situation et d'imaginer le résultat, ce qui est plus persuasif que de lui dire directement quoi penser."],
+    ["Une structure d'histoire simple qui fonctionne","Situation (un point de départ relatable, souvent une lutte), Point de Bascule (ce qui a changé — souvent votre produit/service, mais peut aussi être une prise de conscience), Résultat (le résultat, idéalement quelque chose de mesurable ou décrit vivement). Ça reflète les vrais parcours clients et témoignages."],
+    ["Où utiliser les histoires en marketing","Un témoignage client encadré comme une mini-histoire plutôt qu'une citation plate, une histoire de fondateur/origine qui explique pourquoi l'entreprise existe, une étude de cas « avant et après », un post social décrivant un vrai scénario client (avec permission)."]],
+   illus:"journey",journeyLabels:["Situation","Point de Bascule","Résultat"],
+   ex:"Écrivez une mini-histoire de 3 phrases sur un client réel ou imaginé en utilisant la structure Situation → Point de Bascule → Résultat.",
+   quiz:[
+    {q:"Pourquoi les histoires persuadent-elles plus efficacement que de simples faits ?",opts:["Ce n'est pas le cas, les faits persuadent toujours plus","Les gens se connectent et se souviennent des récits plus que des listes de faits","Les histoires sont requises par la loi","Les faits sont illégaux en marketing"],ans:1,fb:"Les gens se connectent et se souviennent des récits plus que des faits."},
+    {q:"Quelles sont les 3 parties d'une structure d'histoire marketing simple ?",opts:["Intro, corps, conclusion","Situation, Point de Bascule, Résultat","Prix, caractéristiques, garantie","Logo, slogan, CTA"],ans:1,fb:"Situation, Point de Bascule, Résultat sont les 3 parties."},
+    {q:"Lequel est une bonne utilisation de la narration en marketing ?",opts:["Une citation plate d'une ligne sans contexte","Un témoignage client encadré comme une mini-histoire avec un avant/après clair","Une anecdote aléatoire sans rapport","Une liste de caractéristiques sans récit"],ans:1,fb:"Un témoignage encadré comme une mini-histoire est une bonne utilisation."},
+    {q:"Que représente généralement le « point de bascule » dans une histoire ?",opts:["La toute fin de l'histoire","Ce qui a changé — souvent votre produit/service ou une prise de conscience","Un détail secondaire sans rapport","Le prix du produit"],ans:1,fb:"Le point de bascule est ce qui a changé dans l'histoire."}],
+   close:{learned:"Les histoires persuadent en permettant au lecteur de se voir dans une situation et d'imaginer un résultat — utilisez une structure simple Situation → Point de Bascule → Résultat.",
+    mistake:"Présenter un témoignage comme une citation plate et générique plutôt que de l'encadrer comme une mini-histoire avec un avant et après clairs.",
+    tip:"Transformez votre meilleur témoignage en une histoire de 3 phrases utilisant Situation → Point de Bascule → Résultat.",
+    assign:"Écrivez une mini-histoire (3-5 phrases) sur un client réel ou réaliste pour votre entreprise.",
+    dl:"Modèle : Fiche de Structure de Mini-Histoire",
+    checklist:["Situation établie ?","Point de bascule clair ?","Résultat décrit vivement ou avec un chiffre ?"],
+    ai:"Voici une histoire client approximative : [décrire]. Aide-moi à la transformer en une histoire serrée de 3-5 phrases utilisant Situation → Point de Bascule → Résultat."}},
+ en:{lede:"Facts tell, stories sell — a well-told story makes a customer feel an outcome before you've even asked them to buy.",
+   secs:[["Why stories work","People remember and connect with narratives far more than lists of facts; a story lets the reader see themselves in a situation and imagine the outcome, which is more persuasive than being told directly what to think."],
+    ["A simple story structure that works","Situation (a relatable starting point, often a struggle), Turning point (what changed — often your product/service, but can also be a realization), Result (the outcome, ideally something measurable or vividly described). This mirrors real customer journeys and testimonials."],
+    ["Where to use stories in marketing","A customer testimonial framed as a mini-story rather than a flat quote, a founder/origin story that explains why the business exists, a 'before and after' case study, a social post describing a real customer scenario (with permission)."]],
+   illus:"journey",journeyLabels:["Situation","Turning Point","Result"],
+   ex:"Write a 3-sentence mini-story about a real or imagined customer using the Situation → Turning Point → Result structure.",
+   quiz:[
+    {q:"Why do stories persuade more effectively than plain facts?",opts:["They don't, facts always persuade more","People connect with and remember narratives more than lists of facts","Stories are required by law","Facts are illegal in marketing"],ans:1,fb:"People connect with and remember narratives more than facts."},
+    {q:"What are the 3 parts of a simple marketing story structure?",opts:["Intro, body, conclusion","Situation, Turning Point, Result","Price, features, guarantee","Logo, tagline, CTA"],ans:1,fb:"Situation, Turning Point, Result are the 3 parts."},
+    {q:"Which is a good use of storytelling in marketing?",opts:["A flat, one-line quote with no context","A customer testimonial framed as a mini-story with a clear before/after","A random unrelated anecdote","A list of features with no narrative"],ans:1,fb:"A testimonial framed as a mini-story is a good use."},
+    {q:"What does the 'turning point' in a story usually represent?",opts:["The very end of the story","What changed — often your product/service or a realization","An unrelated side detail","The price of the product"],ans:1,fb:"The turning point is what changed in the story."}],
+   close:{learned:"Stories persuade by letting the reader see themselves in a situation and imagine an outcome — use a simple Situation → Turning Point → Result structure.",
+    mistake:"Presenting a testimonial as a flat, generic quote instead of framing it as a mini-story with a clear before and after.",
+    tip:"Turn your best testimonial into a 3-sentence story using Situation → Turning Point → Result.",
+    assign:"Write one mini-story (3-5 sentences) about a real or realistic customer for your business.",
+    dl:"Template: Mini-Story Structure Worksheet",
+    checklist:["Situation established?","Turning point clear?","Result described vividly or with a number?"],
+    ai:"Here's a rough customer story: [describe]. Help me turn this into a tight 3-5 sentence story using Situation → Turning Point → Result."}}},
+
+4:{ht:{lede:"Travay yon deskripsyon pwodwi se pa lis sa yon bagay ye — se ede lektè a imajine itilize l e santi konfyans pou achte l.",
+   secs:[["Dirije ak kliyan an, pa pwodwi a","Kòmanse ak sa kliyan an jwenn oswa santi, lè w itilize tradiksyon karakteristik-a-avantaj Modil 1 la, olye ouvri ak yon fèy espesifikasyon; sove detay teknik pi pou apre benefis la etabli, pou lektè ki vle l."],
+    ["Reponn kesyon yon achtè reyèlman genyen","Kisa sa ye, egzakteman? Pou kiyès li ye? Ki pwoblèm li rezoud? Kisa ki fè l diferan de opsyon similè? Kisa ki rive apre m achte (livrezon, itilizasyon, sipò)? Yon bon deskripsyon reponn sa yo san lektè a bezwen mande."],
+    ["Chwa style ki ede","Ti paragraf ak fraz olye blòk dans, detay sansoryèl oswa espesifik konkrè olye adjektif vag ('kenbe 2 lit e rete frèt 24 èdtan' olye 'bon kalite'), yon fèmti natirèl ki fè pwochen etap la evidan (ajoute nan panye, mesaj pou kòmande)."]],
+   illus:"fbmap",fbRows:[["Vag: 'Bon kalite'","Espesifik: 'Kenbe 2 lit e rete frèt 24 èdtan'"]],fbFeat:"Vag",fbBen:"Espesifik",
+   ex:"Reekri youn nan deskripsyon pwodwi/sèvis aktyèl ou lè w dirije ak benefis kliyan an olye lis karakteristik yo.",
+   quiz:[
+    {q:"Ak kisa yon deskripsyon pwodwi ta dwe dirije?",opts:["Yon fèy espesifikasyon teknik konplè","Sa kliyan an jwenn oswa santi","Istwa konpayi a","Sèlman pri a"],ans:1,fb:"Deskripsyon an ta dwe dirije ak benefis kliyan an."},
+    {q:"Ki detay ki pi pèsyasif nan yon deskripsyon?",opts:["Bon kalite","Kenbe 2 lit e rete frèt 24 èdtan","Bon pwodwi","Bèl atik"],ans:1,fb:"Se yon detay espesifik."},
+    {q:"Kisa yon bon deskripsyon pwodwi ta dwe reponn?",opts:["Sèlman pri a","Kisa li ye, pou kiyès li ye, ki pwoblèm li rezoud, ak kisa ki rive apre achte","Sèlman politik livrezon an","Anyen, deskripsyon pa bezwen reponn kesyon"],ans:1,fb:"Vrè kesyon achtè yo ta dwe reponn."},
+    {q:"Ki chwa style ki ede yon deskripsyon pwodwi?",opts:["Long, paragraf dans","Ti paragraf ak detay konkrè, espesifik","Adjektif vag san detay","Evite mansyone pwochen etap la"],ans:1,fb:"Ti paragraf ak detay espesifik ede."}],
+   close:{learned:"Yon deskripsyon pwodwi ta dwe dirije ak benefis kliyan an, reponn vrè kesyon achtè yo, e itilize detay espesifik olye adjektif vag.",
+    mistake:"Ouvri yon deskripsyon ak yon fèy espesifikasyon teknik olye sa kliyan an reyèlman jwenn oswa santi.",
+    tip:"Ranplase chak adjektif vag ('bon', 'ekstraòdinè', 'kalite') ak yon detay espesifik, konkrè.",
+    assign:"Reekri yon deskripsyon pwodwi/sèvis lè w dirije ak benefis la e ranplase mo vag ak espesifik.",
+    dl:"Fèy Travay: Lis Verifikasyon Reekri Deskripsyon Pwodwi",
+    checklist:["Dirije ak benefis, pa jis karakteristik?","Reponn vrè kesyon achtè yo?","Adjektif vag ranplase ak espesifik?"],
+    ai:"Men deskripsyon pwodwi aktyèl mwen: [kole l]. Reekri l pou dirije ak benefis kliyan an e itilize plis detay espesifik, konkrè."}},
+ fr:{lede:"Le travail d'une description de produit n'est pas de lister ce qu'est quelque chose — c'est d'aider le lecteur à imaginer l'utiliser et se sentir confiant de l'acheter.",
+   secs:[["Menez avec le client, pas le produit","Commencez par ce que le client obtient ou ressent, en utilisant la traduction caractéristique-en-avantage du Module 1, plutôt que d'ouvrir avec une fiche technique ; gardez le détail technique pur pour après que l'avantage soit établi, pour le lecteur qui le veut."],
+    ["Répondez aux questions qu'un acheteur a réellement","Qu'est-ce que c'est, exactement ? Pour qui est-ce ? Quel problème ça résout ? Qu'est-ce qui le différencie d'options similaires ? Que se passe-t-il après l'achat (livraison, utilisation, support) ? Une bonne description répond à ça sans que le lecteur ait à demander."],
+    ["Choix de style qui aident","Paragraphes et phrases courts plutôt que des blocs denses, du détail concret sensoriel ou spécifique plutôt que des adjectifs vagues (« contient 2 litres et reste froid 24 heures » plutôt que « excellente qualité »), une conclusion naturelle qui rend l'étape suivante évidente (ajouter au panier, message pour commander)."]],
+   illus:"fbmap",fbRows:[["Vague : « Bonne qualité »","Spécifique : « Contient 2 litres et reste froid 24 heures »"]],fbFeat:"Vague",fbBen:"Spécifique",
+   ex:"Réécrivez une de vos descriptions de produit/service actuelles en menant avec l'avantage client plutôt que la liste de caractéristiques.",
+   quiz:[
+    {q:"Par quoi une description de produit devrait-elle commencer ?",opts:["Une fiche technique complète","Ce que le client obtient ou ressent","L'histoire de l'entreprise","Le prix seulement"],ans:1,fb:"La description devrait mener avec l'avantage client."},
+    {q:"Quel détail est plus persuasif dans une description ?",opts:["Excellente qualité","Contient 2 litres et reste froid 24 heures","Bon produit","Bel article"],ans:1,fb:"C'est un détail spécifique."},
+    {q:"À quoi une bonne description de produit devrait-elle répondre ?",opts:["Seulement le prix","Ce que c'est, pour qui c'est, quel problème ça résout, et ce qui se passe après l'achat","Seulement la politique de livraison","Rien, les descriptions n'ont pas besoin de répondre à des questions"],ans:1,fb:"Les vraies questions de l'acheteur devraient être répondues."},
+    {q:"Quel choix de style aide une description de produit ?",opts:["De longs paragraphes denses","Des paragraphes courts et du détail concret, spécifique","Des adjectifs vagues sans détails","Éviter de mentionner l'étape suivante"],ans:1,fb:"Des paragraphes courts et du détail spécifique aident."}],
+   close:{learned:"Une description de produit devrait mener avec l'avantage client, répondre aux vraies questions de l'acheteur, et utiliser du détail spécifique plutôt que des adjectifs vagues.",
+    mistake:"Ouvrir une description avec une fiche technique plutôt que ce que le client obtient ou ressent réellement.",
+    tip:"Remplacez chaque adjectif vague (« excellent », « incroyable », « qualité ») par un détail spécifique et concret.",
+    assign:"Réécrivez une description de produit/service en menant avec l'avantage et en remplaçant les mots vagues par des spécifiques.",
+    dl:"Fiche de travail : Liste de Vérification de Réécriture de Description",
+    checklist:["Mène avec l'avantage, pas juste les caractéristiques ?","Répond aux vraies questions de l'acheteur ?","Adjectifs vagues remplacés par des spécifiques ?"],
+    ai:"Voici ma description de produit actuelle : [coller]. Réécris-la pour mener avec l'avantage client et utiliser plus de détail spécifique, concret."}},
+ en:{lede:"A product description's job isn't to list what something is — it's to help the reader picture using it and feel confident buying it.",
+   secs:[["Lead with the customer, not the product","Start from what the customer gets or feels, using the feature-to-benefit translation from Module 1, rather than opening with a spec sheet; save pure technical detail for after the benefit is established, for the reader who wants it."],
+    ["Answer the questions a buyer actually has","What is this, exactly? Who is it for? What problem does it solve? What makes it different from similar options? What happens after I buy (shipping, use, support)? A good description answers these without the reader having to ask."],
+    ["Style choices that help","Short paragraphs and sentences over dense blocks, concrete sensory or specific detail over vague adjectives ('holds 2 liters and stays cold 24 hours' over 'great quality'), a natural close that makes the next step obvious (add to cart, message to order)."]],
+   illus:"fbmap",fbRows:[["Vague: 'Great quality'","Specific: 'Holds 2 liters and stays cold 24 hours'"]],fbFeat:"Vague",fbBen:"Specific",
+   ex:"Rewrite one of your current product/service descriptions leading with the customer benefit instead of the feature list.",
+   quiz:[
+    {q:"What should a product description lead with?",opts:["A full technical spec sheet","What the customer gets or feels","The company's history","The price only"],ans:1,fb:"The description should lead with the customer benefit."},
+    {q:"Which detail is more persuasive in a description?",opts:["Great quality","Holds 2 liters and stays cold 24 hours","Good product","Nice item"],ans:1,fb:"That's a specific detail."},
+    {q:"What should a good product description answer?",opts:["Only the price","What it is, who it's for, what problem it solves, and what happens after buying","Only the shipping policy","Nothing, descriptions don't need to answer questions"],ans:1,fb:"The buyer's real questions should be answered."},
+    {q:"What style choice helps a product description?",opts:["Long, dense paragraphs","Short paragraphs and concrete, specific detail","Vague adjectives with no specifics","Avoiding any mention of the next step"],ans:1,fb:"Short paragraphs and specific detail help."}],
+   close:{learned:"A product description should lead with the customer benefit, answer real buyer questions, and use specific detail over vague adjectives.",
+    mistake:"Opening a description with a technical spec sheet instead of what the customer actually gets or feels.",
+    tip:"Replace every vague adjective ('great,' 'amazing,' 'quality') with one specific, concrete detail.",
+    assign:"Rewrite one product/service description leading with the benefit and replacing vague words with specifics.",
+    dl:"Worksheet: Product Description Rewrite Checklist",
+    checklist:["Leads with benefit, not just features?","Answers the buyer's real questions?","Vague adjectives replaced with specifics?"],
+    ai:"Here's my current product description: [paste it]. Rewrite it to lead with the customer benefit and use more specific, concrete detail."}}},
+
+5:{ht:{lede:"Si w pa klèman di yon moun kisa pou fè apre, pifò moun senpleman p ap fè anyen — yon CTA retire tout enkètitid.",
+   secs:[["Sa ki fè yon CTA mache","Itilize yon vèb aksyon klè (mesaje, kòmande, rezève, rele — pa fraz vag tankou 'aprann plis' lè yon aksyon pi espesifik posib); deklare egzakteman kisa ki rive apre (kisa yo jwenn, konbyen tan sa pran); parèt nan yon moman natirèl, pa antere oswa manke nèt."],
+    ["Matche fòs CTA ak etap lektè a","Yon lektè nan Konnen bonè ka pa prè pou 'Achte Kounye a' — yon ti CTA ('Aprann kijan sa mache', 'Sove pòs sa a') ka pi apwopriye; yon lektè ki deja angaje/enterese ka jere yon CTA pi fò, pi dirèk ('Mesaje nou pou kòmande')."],
+    ["Erè CTA komen","Okenn CTA ditou, kite lektè a pa sèten kisa pou fè; plizyè CTA ki konpetisyone nan yon sèl kote, dilye fokis; CTA vag ('klike isit la') olye espesifik ('Jwenn gid gratis ou')."]],
+   illus:"roles",roleCards:[["🎯","Aksyon Klè","Yon vèb dirèk"],["✨","Rezilta Klè","Kisa yo jwenn"],["⏱️","Moman Natirèl","Kote li parèt"]],
+   ex:"Ekri 2 vèsyon CTA pou òf prensipal ou — youn pou yon moun nan Konnen, youn pou yon moun prè pou achte.",
+   quiz:[
+    {q:"Poukisa yon CTA klè enpòtan?",opts:["Pifò moun ap aji san yo pa di yo kisa pou fè","San yon pwochen etap klè, pifò moun senpleman p ap fè anyen","CTA sèlman dekoratif","Yo pa gen okenn efè reyèl sou konpòtman"],ans:1,fb:"San yon etap klè, pifò moun p ap fè anyen."},
+    {q:"Kilès ki yon CTA pi fò?",opts:["Klike isit la","Mesaje nou pou kòmande konsepsyon pèsonalize ou","Aprann plis","Kontinye li"],ans:1,fb:"Mesaje pou kòmande se yon CTA espesifik e fò."},
+    {q:"Poukisa matche fòs CTA ak etap lektè a?",opts:["Sa pa enpòtan, toujou itilize CTA ki pi fò a","Yon lektè nan premye etap ka pa prè pou yon CTA fò 'achte kounye a'","Etap la pa janm afekte ki CTA mache","Sèlman CTA fò yo ta dwe itilize toujou"],ans:1,fb:"Matche ak sitiyasyon lektè a enpòtan."},
+    {q:"Ki yon erè CTA komen?",opts:["Itilize yon sèl vèb aksyon klè","Plizyè CTA ki konpetisyone dilye fokis, oswa okenn CTA ditou","Deklare kisa ki rive apre","Mete l nan yon moman natirèl"],ans:1,fb:"Okenn CTA oswa plizyè CTA konpetisyone se erè komen."}],
+   close:{learned:"Yon CTA retire enkètitid lè li klèman deklare pwochen aksyon an — matche fòs li ak jan lektè a reyèlman prè.",
+    mistake:"Enkli okenn CTA klè, oswa plizyè ki konpetisyone, kite lektè a pa sèten kisa pou reyèlman fè.",
+    tip:"Li kontni ou epi verifye: èske gen egzakteman yon sèl pwochen etap klè, espesifik nan fen an? Si non, ajoute youn.",
+    assign:"Ekri 2 vèsyon CTA pou òf prensipal ou, matche ak 2 diferan etap lektè (enterè bonè kont prè pou achte).",
+    dl:"Referans: Gid Matche Fòs CTA",
+    checklist:["Yon sèl vèb aksyon klè itilize?","Deklare kisa ki rive apre?","Matche ak vrè preparasyon lektè a?"],
+    ai:"Òf mwen se [dekri l]. Ekri 3 opsyon CTA: youn dou (enterè bonè), youn mwayen, youn fò (prè pou achte)."}},
+ fr:{lede:"Si vous ne dites pas clairement à quelqu'un quoi faire ensuite, la plupart des gens ne feront tout simplement rien — un CTA élimine cette incertitude.",
+   secs:[["Ce qui fait fonctionner un CTA","Utilise un verbe d'action clair (envoyer un message, commander, réserver, appeler — pas des phrases vagues comme « en savoir plus » quand une action plus spécifique est possible) ; énonce exactement ce qui se passe ensuite (ce qu'ils obtiennent, combien de temps ça prend) ; apparaît à un moment naturel, pas enterré ou absent."],
+    ["Adapter la force du CTA à l'étape du lecteur","Un lecteur en Découverte précoce n'est peut-être pas prêt pour « Acheter Maintenant » — un CTA plus léger (« Découvrez comment ça marche », « Enregistrez ce post ») peut être plus approprié ; un lecteur déjà engagé/intéressé peut gérer un CTA plus fort et direct (« Envoyez-nous un message pour commander »)."],
+    ["Erreurs de CTA courantes","Aucun CTA du tout, laissant le lecteur incertain de quoi faire ; plusieurs CTA concurrents au même endroit, diluant le focus ; CTA vagues (« cliquez ici ») plutôt que spécifiques (« Obtenez votre guide gratuit »)."]],
+   illus:"roles",roleCards:[["🎯","Action Claire","Un verbe direct"],["✨","Résultat Clair","Ce qu'ils obtiennent"],["⏱️","Moment Naturel","Où ça apparaît"]],
+   ex:"Écrivez 2 versions de CTA pour votre offre principale — une pour quelqu'un en Découverte, une pour quelqu'un prêt à acheter.",
+   quiz:[
+    {q:"Pourquoi un CTA clair compte-t-il ?",opts:["La plupart des gens agiront sans qu'on leur dise quoi faire","Sans étape suivante claire, la plupart des gens ne feront tout simplement rien","Les CTA sont purement décoratifs","Ils n'ont aucun effet réel sur le comportement"],ans:1,fb:"Sans étape claire, la plupart des gens ne font rien."},
+    {q:"Lequel est un CTA plus fort ?",opts:["Cliquez ici","Envoyez-nous un message pour commander votre design personnalisé","En savoir plus","Continuer la lecture"],ans:1,fb:"Envoyer un message pour commander est un CTA spécifique et fort."},
+    {q:"Pourquoi adapter la force du CTA à l'étape du lecteur ?",opts:["Ça n'a pas d'importance, toujours utiliser le CTA le plus fort","Un lecteur en début de parcours n'est peut-être pas prêt pour un CTA fort « acheter maintenant »","L'étape n'affecte jamais quel CTA fonctionne","Seuls les CTA forts devraient toujours être utilisés"],ans:1,fb:"Adapter à la situation du lecteur est important."},
+    {q:"Quelle est une erreur de CTA courante ?",opts:["Utiliser un seul verbe d'action clair","Plusieurs CTA concurrents diluant le focus, ou aucun CTA du tout","Énoncer ce qui se passe ensuite","Le placer à un moment naturel"],ans:1,fb:"Aucun CTA ou plusieurs CTA concurrents est une erreur courante."}],
+   close:{learned:"Un CTA élimine l'incertitude en énonçant clairement l'action suivante — adaptez sa force à la préparation réelle du lecteur.",
+    mistake:"N'inclure aucun CTA clair, ou plusieurs concurrents, laissant le lecteur incertain de quoi faire réellement.",
+    tip:"Lisez votre contenu et vérifiez : y a-t-il exactement une étape suivante claire et spécifique à la fin ? Sinon, ajoutez-en une.",
+    assign:"Écrivez 2 versions de CTA pour votre offre principale, adaptées à deux étapes de lecteur différentes (intérêt précoce vs prêt à acheter).",
+    dl:"Référence : Guide d'Adaptation de la Force du CTA",
+    checklist:["Un seul verbe d'action clair utilisé ?","Énonce ce qui se passe ensuite ?","Adapté à la vraie préparation du lecteur ?"],
+    ai:"Mon offre est [décrire]. Écris 3 options de CTA : une douce (intérêt précoce), une moyenne, et une forte (prêt à acheter)."}},
+ en:{lede:"If you don't clearly tell someone what to do next, most people simply won't do anything — a CTA removes the guesswork.",
+   secs:[["What makes a CTA work","Uses a clear action verb (message, order, book, call — not vague phrases like 'learn more' when a more specific action is possible); states exactly what happens next (what they get, how long it takes); appears at a natural moment, not buried or missing entirely."],
+    ["Matching CTA strength to the reader's stage","A reader in early Awareness may not be ready for 'Buy Now' — a smaller CTA ('Learn how this works,' 'Save this post') can be more appropriate; a reader who's already engaged/interested can handle a stronger, more direct CTA ('Message us to order')."],
+    ["Common CTA mistakes","No CTA at all, leaving the reader unsure what to do; multiple competing CTAs in one place, diluting focus; vague CTAs ('click here') instead of specific ones ('Get your free guide')."]],
+   illus:"roles",roleCards:[["🎯","Clear Action","A direct verb"],["✨","Clear Result","What they get"],["⏱️","Natural Moment","Where it appears"]],
+   ex:"Write 2 CTA versions for your main offer — one for someone in Awareness, one for someone ready to buy.",
+   quiz:[
+    {q:"Why does a clear CTA matter?",opts:["Most people will act without being told what to do","Without a clear next step, most people simply won't do anything","CTAs are only decorative","They have no real effect on behavior"],ans:1,fb:"Without a clear step, most people don't do anything."},
+    {q:"Which is a stronger CTA?",opts:["Click here","Message us to order your custom design","Learn more","Read on"],ans:1,fb:"Message to order is a specific, strong CTA."},
+    {q:"Why match CTA strength to the reader's stage?",opts:["It doesn't matter, always use the strongest CTA","An early-stage reader may not be ready for a strong 'buy now' CTA","Stage never affects what CTA works","Only strong CTAs should ever be used"],ans:1,fb:"Matching the reader's situation matters."},
+    {q:"What's a common CTA mistake?",opts:["Using one clear action verb","Multiple competing CTAs diluting focus, or no CTA at all","Stating what happens next","Placing it at a natural moment"],ans:1,fb:"No CTA or competing CTAs is a common mistake."}],
+   close:{learned:"A CTA removes guesswork by clearly stating the next action — match its strength to how ready the reader actually is.",
+    mistake:"Including no clear CTA, or several competing ones, leaving the reader unsure what to actually do.",
+    tip:"Read your content and check: is there exactly one clear, specific next step by the end? If not, add one.",
+    assign:"Write 2 CTA versions for your main offer, matched to two different reader stages (early interest vs. ready to buy).",
+    dl:"Reference: CTA Strength Matching Guide",
+    checklist:["One clear action verb used?","States what happens next?","Matched to the reader's actual readiness?"],
+    ai:"My offer is [describe]. Write 3 CTA options: one soft (early interest), one medium, and one strong (ready to buy)."}}},
+
+6:{ht:{lede:"Yon paj aterisaj oswa vant gen yon sèl travay — jwenn yon aksyon espesifik nan men yon lektè ki deja rive ak yon enterè, san anyen dòt konpetisyone pou atansyon yo.",
+   secs:[["Sa ki fè paj sa yo diferan","Kontrèman ak yon sit web jeneral, yon paj aterisaj/vant konsantre sou YON SÈL òf ak YON SÈL aksyon, san okenn meni navigasyon oswa distraksyon ki rale lektè a lòt kote; chak eleman sou paj la ta dwe apiye objektif sa a."],
+    ["Yon estrikti senp ki mache","Tit klè ki deklare rezilta a, yon ti seksyon ki adrese pwen fristrasyon/objektif prensipal la, òf la eksplike klèman (kisa yo jwenn), prèv sosyal (revi/rezilta), adrese 1-2 objeksyon prensipal, ak yon CTA klè, repete (espesyalman sou paj pi long)."],
+    ["Paj vant kont paj aterisaj pi senp","Yon ti paj aterisaj apwopriye pou yon aksyon senp, ki pa gwo angajman (rejwenn yon lis, rezève yon apèl); yon paj vant pi long apwopriye pou yon pi gwo angajman (yon kou peye, yon gwo achte) paske li bezwen espas pou bati konfyans, adrese objeksyon, e montre prèv anvan mande yon pi gwo wi."]],
+   illus:"roles",roleCards:[["📢","Tit Klè","Deklare rezilta a"],["😣","Pwen Fristrasyon","Adrese l dirèkteman"],["🎁","Òf Klè","Kisa yo jwenn"],["⭐","Prèv Sosyal","Revi, rezilta"],["🤔","Objeksyon","Reponn yo"],["🎯","CTA","Pwochen etap"]],
+   ex:"Fè yon plan pwòp paj aterisaj/vant ou an 6 pwen lè w itilize estrikti nan leson sa a.",
+   quiz:[
+    {q:"Kisa ki fè yon paj aterisaj/vant diferan de yon paj sit web jeneral?",opts:["Anyen, yo se menm bagay la","Li konsantre sou yon sèl òf ak yon sèl aksyon, san navigasyon ki distrè","Li ta dwe gen otan lyen navigasyon posib","Li toujou bezwen trè kout"],ans:1,fb:"Konsantre sou yon sèl òf ak aksyon, san distraksyon, se sa ki diferan."},
+    {q:"Kilès ki fè pati yon estrikti paj aterisaj/vant senp e efikas?",opts:["Yon meni navigasyon pou lòt paj","Prèv sosyal ak adrese objeksyon prensipal","Otan òf san rapò posib","Okenn CTA ditou"],ans:1,fb:"Prèv sosyal ak objeksyon fè pati estrikti a."},
+    {q:"Kile yon paj vant pi long (kont yon ti paj aterisaj) fè sans?",opts:["Janm, toujou kenbe chak paj kout","Pou yon pi gwo angajman ki bezwen plis bati konfyans ak jesyon objeksyon","Sèlman pou òf gratis","Longè pa janm konte"],ans:1,fb:"Yon pi gwo angajman bezwen yon paj pi long."},
+    {q:"Poukisa yon paj aterisaj ta dwe evite ekstra navigasyon/distraksyon?",opts:["Navigasyon toujou ede konvèsyon","Chak eleman ta dwe apiye sèl objektif la, e distraksyon rale atansyon lwen l","Distraksyon obligatwa pou bon konsepsyon","Sa pa enpòtan nan okenn fason"],ans:1,fb:"Fokis sou yon sèl objektif enpòtan."}],
+   close:{learned:"Yon paj aterisaj/vant konsantre sou yon sèl òf ak yon sèl aksyon — estriktire l otou pwen fristrasyon, òf, prèv, objeksyon, ak yon CTA klè.",
+    mistake:"Ajoute yon meni navigasyon konplè oswa lyen san rapò ki kite vizitè yo ale anvan yo fè sèl aksyon paj la egziste pou li.",
+    tip:"Matche longè paj ak nivo angajman — yon ti demann bezwen yon ti paj, yon gwo demann bezwen espas pou bati konfyans anvan.",
+    assign:"Fè yon plan pwòp paj aterisaj/vant ou an 6 pwen lè w itilize estrikti leson sa a.",
+    dl:"Modèl: Plan Estrikti Paj Aterisaj",
+    checklist:["Yon sèl òf, yon sèl aksyon?","Okenn navigasyon distrè?","Prèv sosyal ak objeksyon prensipal adrese?","CTA klè, repete?"],
+    ai:"Òf mwen se [dekri l]. Fè yon plan estrikti paj aterisaj pou li lè w itilize tit, pwen fristrasyon, òf, prèv sosyal, objeksyon, ak CTA."}},
+ fr:{lede:"Une page de destination ou de vente a un seul travail — obtenir une action spécifique d'un lecteur déjà arrivé avec un certain intérêt, sans rien d'autre en compétition pour son attention.",
+   secs:[["Ce qui rend ces pages différentes","Contrairement à un site web général, une page de destination/vente se concentre sur UNE offre et UNE action, sans menu de navigation ni distractions qui attirent le lecteur ailleurs ; chaque élément de la page devrait soutenir cet objectif unique."],
+    ["Une structure simple qui fonctionne","Titre clair énonçant le résultat, une courte section adressant le point de friction/objectif principal, l'offre clairement expliquée (ce qu'ils obtiennent), preuve sociale (avis/résultats), adresser les 1-2 principales objections, et un CTA clair et répété (surtout sur les pages plus longues)."],
+    ["Pages de vente contre pages de destination plus simples","Une courte page de destination convient à une action simple, à faible engagement (rejoindre une liste, réserver un appel) ; une page de vente plus longue convient à un engagement plus important (un cours payant, un achat significatif) car elle a besoin d'espace pour bâtir la confiance, adresser les objections, et montrer des preuves avant de demander un plus grand oui."]],
+   illus:"roles",roleCards:[["📢","Titre Clair","Énonce le résultat"],["😣","Point de Friction","L'adresse directement"],["🎁","Offre Claire","Ce qu'ils obtiennent"],["⭐","Preuve Sociale","Avis, résultats"],["🤔","Objections","Y répondre"],["🎯","CTA","Étape suivante"]],
+   ex:"Esquissez votre propre page de destination/vente en 6 points en utilisant la structure de cette leçon.",
+   quiz:[
+    {q:"Qu'est-ce qui rend une page de destination/vente différente d'une page de site web générale ?",opts:["Rien, elles sont identiques","Elle se concentre sur une offre et une action, sans navigation distrayante","Elle devrait avoir autant de liens de navigation que possible","Elle doit toujours être très courte"],ans:1,fb:"Se concentrer sur une offre et action, sans distractions, est la différence."},
+    {q:"Qu'est-ce qui appartient à une structure de page de destination/vente simple et efficace ?",opts:["Un menu de navigation vers d'autres pages","Preuve sociale et adresser les principales objections","Autant d'offres sans rapport que possible","Aucun CTA du tout"],ans:1,fb:"Preuve sociale et objections font partie de la structure."},
+    {q:"Quand une page de vente plus longue (vs une courte page de destination) a-t-elle du sens ?",opts:["Jamais, toujours garder chaque page courte","Pour un engagement plus important qui a besoin de plus de bâtir la confiance et gérer les objections","Seulement pour les offres gratuites","La longueur n'a jamais d'importance"],ans:1,fb:"Un engagement plus important a besoin d'une page plus longue."},
+    {q:"Pourquoi une page de destination devrait-elle éviter la navigation/distractions supplémentaires ?",opts:["La navigation aide toujours la conversion","Chaque élément devrait soutenir l'objectif unique, et les distractions détournent l'attention","Les distractions sont requises pour un bon design","Ça n'a pas d'importance de toute façon"],ans:1,fb:"Le focus sur l'objectif unique est important."}],
+   close:{learned:"Une page de destination/vente se concentre sur une offre et une action — structurez-la autour du point de friction, de l'offre, de la preuve, des objections, et d'un CTA clair.",
+    mistake:"Ajouter un menu de navigation complet ou des liens sans rapport qui laissent les visiteurs s'éloigner avant de faire l'action unique pour laquelle la page existe.",
+    tip:"Adaptez la longueur de la page au niveau d'engagement — une petite demande a besoin d'une page courte, une grande demande a besoin d'espace pour bâtir la confiance d'abord.",
+    assign:"Esquissez votre propre page de destination/vente en 6 points en utilisant la structure de cette leçon.",
+    dl:"Modèle : Plan de Structure de Page de Destination",
+    checklist:["Une offre, une action ?","Aucune navigation distrayante ?","Preuve sociale et principales objections adressées ?","CTA clair et répété ?"],
+    ai:"Mon offre est [décrire]. Esquisse une structure de page de destination pour ça en utilisant titre, point de friction, offre, preuve sociale, objections, et CTA."}},
+ en:{lede:"A landing or sales page has one job only — get a specific action from a reader who's already arrived with some interest, with nothing else competing for their attention.",
+   secs:[["What makes these pages different","Unlike a general website, a landing/sales page focuses on ONE offer and ONE action, with no navigation menu or distractions pulling the reader elsewhere; every element on the page should support that single goal."],
+    ["A simple structure that works","Clear headline stating the outcome, a short section addressing the main pain point/goal, the offer clearly explained (what they get), social proof (reviews/results), addressing the top 1-2 objections, and a clear, repeated CTA (especially on longer pages)."],
+    ["Sales pages vs. simpler landing pages","A short landing page suits a simple, low-commitment action (join a list, book a call); a longer sales page suits a bigger commitment (a paid course, a significant purchase) since it needs room to build trust, address objections, and show proof before asking for a bigger yes."]],
+   illus:"roles",roleCards:[["📢","Clear Headline","States the outcome"],["😣","Pain Point","Addresses it directly"],["🎁","Clear Offer","What they get"],["⭐","Social Proof","Reviews, results"],["🤔","Objections","Answering them"],["🎯","CTA","Next step"]],
+   ex:"Outline your own landing/sales page in 6 bullet points using the structure from this lesson.",
+   quiz:[
+    {q:"What makes a landing/sales page different from a general website page?",opts:["Nothing, they're the same","It focuses on one offer and one action, with no distracting navigation","It should have as many navigation links as possible","It always needs to be very short"],ans:1,fb:"Focusing on one offer and action, with no distractions, is the difference."},
+    {q:"Which belongs in a simple, effective landing/sales page structure?",opts:["A navigation menu to other pages","Social proof and addressing top objections","As many unrelated offers as possible","No CTA at all"],ans:1,fb:"Social proof and objections belong in the structure."},
+    {q:"When does a longer sales page (vs. a short landing page) make sense?",opts:["Never, always keep every page short","For a bigger commitment that needs more trust-building and objection-handling","Only for free offers","Length never matters"],ans:1,fb:"A bigger commitment needs a longer page."},
+    {q:"Why should a landing page avoid extra navigation/distractions?",opts:["Navigation always helps conversion","Every element should support the single goal, and distractions pull attention away from it","Distractions are required by good design","It doesn't matter either way"],ans:1,fb:"Single-goal focus matters."}],
+   close:{learned:"A landing/sales page focuses on one offer and one action — structure it around the pain point, offer, proof, objections, and a clear CTA.",
+    mistake:"Adding a full navigation menu or unrelated links that let visitors wander away before taking the one action the page exists for.",
+    tip:"Match page length to commitment level — a small ask needs a short page, a big ask needs room to build trust first.",
+    assign:"Outline your own landing/sales page in 6 bullet points using this lesson's structure.",
+    dl:"Template: Landing Page Structure Outline",
+    checklist:["One offer, one action?","No distracting navigation?","Social proof and top objections addressed?","Clear, repeated CTA?"],
+    ai:"My offer is [describe]. Outline a landing page structure for it using headline, pain point, offer, social proof, objections, and CTA."}}},
+
+7:{ht:{lede:"Yon imèl mache sèlman si li louvri, apre li li, epi yo aji sou li — chak nan sa se yon travay ekri separe, espesifik.",
+   secs:[["Fè imèl la louvri","Objè a se yon tit pou yon bwat resepsyon: espesifik e pètinan bat vag e entelijan; tèks apèsi (ti moso ki montre apre objè a) se yon dezyèm chans pou genyen louvri a, pa espas gaspiye."],
+    ["Fè imèl la li","Kòmanse ak lektè a, pa ranpli tankou 'Bonjou, mwen espere ou byen'; kenbe paragraf yo kout (imèl souvan li sou yon telefòn); yon sèl lide klè pou chak imèl pi efikas pase eseye kouvri tout bagay yon sèl kou."],
+    ["Fè imèl la jwenn aksyon","Chak imèl ta dwe gen yon sèl objektif klè ak yon sèl CTA klè, matche ak sa ki kouvri pi bonè nan modil sa a; yon liy P.S. souvan li menm pa moun ki eskane rès la — yon bon kote pou repete CTA a oswa ajoute yon ti ankourajman."]],
+   illus:"fbmap",fbRows:[["Objè: 'Bilten Mansyèl'","Objè: 'Ou pèdi $200 chak mwa san w pa konnen'"]],fbFeat:"Vag",fbBen:"Espesifik",
+   ex:"Ekri yon objè ak yon fraz ouvèti pou yon imèl sou pwochen òf oswa mizajou ou.",
+   quiz:[
+    {q:"Poukisa objè a konte konsa?",opts:["Li pa afekte si imèl la louvri","Se yon tit pou bwat resepsyon an — li detèmine si imèl la louvri ditou","Sèlman tèks kò a konte","Objè yo pi dekoratif sèlman"],ans:1,fb:"Objè a detèmine si imèl la louvri."},
+    {q:"Kisa yon liy ouvèti imèl ta dwe evite?",opts:["Kòmanse ak sitiyasyon lektè a","Ranpli jenerik tankou 'Bonjou, mwen espere ou byen' anvan rive nan pwen an","Vin kout","Vin espesifik"],ans:1,fb:"Ranpli jenerik reta rive nan pwen an."},
+    {q:"Poukisa kenbe paragraf imèl kout?",opts:["Sa pa enpòtan pou imèl","Imèl souvan li sou yon telefòn, kote ti paragraf pi fasil li","Long paragraf toujou pi bon","Ti paragraf sanble pa pwofesyonèl"],ans:1,fb:"Imèl souvan li sou yon telefòn."},
+    {q:"Ki yon bon itilizasyon liy P.S. la?",opts:["Kite l deyò, li pa janm li","Repete CTA a oswa ajoute yon ti ankourajman, paske li souvan li menm pa moun ki eskane","Sèlman itilize l pou dekli legal","Li ta dwe gen enfòmasyon ki pi enpòtan an sèlman"],ans:1,fb:"P.S. souvan li menm pa moun ki eskane rès la."}],
+   close:{learned:"Tèks imèl gen 3 travay separe — fè l louvri (objè a), fè l li (ouvèti kout, fokis sou lektè), ak fè l jwenn aksyon (yon CTA klè).",
+    mistake:"Kòmanse imèl ak ranpli jenerik ('Bonjou, mwen espere ou byen') ki reta rive nan nenpòt bagay lektè a enterese.",
+    tip:"Itilize liy P.S. la pou repete CTA ou oswa ajoute yon ti ankourajman ekstra — li souvan li menm pa moun ki eskane tout rès la.",
+    assign:"Ekri yon objè, fraz ouvèti, ak CTA pou pwochen imèl ou.",
+    dl:"Fèy Travay: Lis Verifikasyon Tèks Imèl",
+    checklist:["Objè espesifik, pa vag?","Ouvèti konsantre sou lektè a, okenn ranpli?","Yon sèl CTA klè enkli?"],
+    ai:"M ap ekri yon imèl sou [sijè/òf]. Ekri yon objè, fraz ouvèti, ak CTA pou li."}},
+ fr:{lede:"Un email ne fonctionne que s'il est ouvert, puis lu, puis suivi d'action — chacune de ces étapes est un travail d'écriture séparé et spécifique.",
+   secs:[["Faire ouvrir l'email","La ligne d'objet est un titre pour une boîte de réception : spécifique et pertinent bat vague et intelligent ; le texte d'aperçu (l'extrait montré après l'objet) est une seconde chance de gagner l'ouverture, pas un espace gaspillé."],
+    ["Faire lire l'email","Commencez par le lecteur, pas un remplissage « Bonjour, j'espère que vous allez bien » ; gardez les paragraphes courts (les emails sont souvent lus sur un téléphone) ; une idée claire par email est plus efficace que d'essayer de tout couvrir à la fois."],
+    ["Faire agir sur l'email","Chaque email devrait avoir un seul but clair et un seul CTA clair, correspondant à ce qui a été couvert plus tôt dans ce module ; une ligne P.S. est souvent lue même par ceux qui survolent le reste — un bon endroit pour répéter le CTA ou ajouter une petite incitation."]],
+   illus:"fbmap",fbRows:[["Objet : « Newsletter Mensuelle »","Objet : « Vous perdez 200$ par mois sans le savoir »"]],fbFeat:"Vague",fbBen:"Spécifique",
+   ex:"Écrivez une ligne d'objet et une phrase d'ouverture pour un email sur votre prochaine offre ou mise à jour.",
+   quiz:[
+    {q:"Pourquoi la ligne d'objet compte-t-elle autant ?",opts:["Elle n'affecte pas si l'email est ouvert","C'est un titre pour la boîte de réception — elle détermine si l'email est même ouvert","Seul le texte du corps compte","Les lignes d'objet sont purement décoratives"],ans:1,fb:"La ligne d'objet détermine si l'email est ouvert."},
+    {q:"Que devrait éviter une ligne d'ouverture d'email ?",opts:["Commencer par la situation du lecteur","Un remplissage générique comme « Bonjour, j'espère que vous allez bien » avant d'arriver au point","Être court","Être spécifique"],ans:1,fb:"Le remplissage générique retarde d'arriver au point."},
+    {q:"Pourquoi garder les paragraphes d'email courts ?",opts:["Ça n'a pas d'importance pour l'email","Les emails sont souvent lus sur un téléphone, où les paragraphes courts sont plus faciles à lire","Les longs paragraphes sont toujours meilleurs","Les paragraphes courts semblent peu professionnels"],ans:1,fb:"Les emails sont souvent lus sur un téléphone."},
+    {q:"Quelle est une bonne utilisation de la ligne P.S. ?",opts:["La laisser de côté, elle n'est jamais lue","Répéter le CTA ou ajouter une petite incitation, car elle est souvent lue même par ceux qui survolent","L'utiliser seulement pour les avis légaux","Elle devrait contenir exclusivement l'information la plus importante"],ans:1,fb:"Le P.S. est souvent lu même par ceux qui survolent le reste."}],
+   close:{learned:"Le texte d'email a 3 travaux séparés — se faire ouvrir (ligne d'objet), se faire lire (ouverture courte, centrée sur le lecteur), et se faire suivre d'action (un CTA clair).",
+    mistake:"Commencer les emails par un remplissage générique (« Bonjour, j'espère que vous allez bien ») qui retarde d'arriver à quoi que ce soit qui intéresse le lecteur.",
+    tip:"Utilisez la ligne P.S. pour répéter votre CTA ou ajouter une petite incitation supplémentaire — elle est souvent lue même par ceux qui survolent tout le reste.",
+    assign:"Écrivez une ligne d'objet, une phrase d'ouverture, et un CTA pour votre prochain email.",
+    dl:"Fiche de travail : Liste de Vérification du Texte d'Email",
+    checklist:["Ligne d'objet spécifique, pas vague ?","Ouverture centrée sur le lecteur, aucun remplissage ?","Un CTA clair inclus ?"],
+    ai:"J'écris un email sur [sujet/offre]. Écris une ligne d'objet, une phrase d'ouverture, et un CTA pour ça."}},
+ en:{lede:"An email only works if it gets opened, then read, then acted on — each of those is a separate, specific writing job.",
+   secs:[["Getting the email opened","The subject line is a headline for an inbox: specific and relevant beats vague and clever; a preview text (the snippet shown after the subject) is a second chance to earn the open, not wasted space."],
+    ["Getting the email read","Start with the reader, not 'Hi, hope you're doing well' filler; keep paragraphs short (emails are often read on a phone); one clear idea per email is more effective than trying to cover everything at once."],
+    ["Getting the email acted on","Every email should have one clear purpose and one clear CTA, matching what was covered earlier in this module; a P.S. line is often read even by people who skim the rest — a good place to restate the CTA or add a small incentive."]],
+   illus:"fbmap",fbRows:[["Subject: 'Monthly Newsletter'","Subject: 'You're losing $200 a month without knowing it'"]],fbFeat:"Vague",fbBen:"Specific",
+   ex:"Write a subject line and one-sentence opening for an email about your next offer or update.",
+   quiz:[
+    {q:"Why does the subject line matter so much?",opts:["It doesn't affect whether the email gets opened","It's a headline for the inbox — it determines whether the email gets opened at all","Only the body text matters","Subject lines are purely decorative"],ans:1,fb:"The subject line determines whether the email gets opened."},
+    {q:"What should an email's opening line avoid?",opts:["Starting with the reader's situation","Generic filler like 'Hi, hope you're doing well' before getting to the point","Being short","Being specific"],ans:1,fb:"Generic filler delays getting to the point."},
+    {q:"Why keep email paragraphs short?",opts:["It doesn't matter for email","Emails are often read on a phone, where short paragraphs are easier to read","Long paragraphs are always better","Short paragraphs look unprofessional"],ans:1,fb:"Emails are often read on a phone."},
+    {q:"What's a good use of the P.S. line?",opts:["Leave it out, it's never read","Restate the CTA or add a small incentive, since it's often read even by skimmers","Only use it for legal disclaimers","It should contain the most important information exclusively"],ans:1,fb:"The P.S. is often read even by people who skim the rest."}],
+   close:{learned:"Email copy has 3 separate jobs — get opened (subject line), get read (short, reader-focused opening), and get acted on (one clear CTA).",
+    mistake:"Starting emails with generic filler ('Hi, hope you're doing well') that delays getting to anything the reader cares about.",
+    tip:"Use the P.S. line to restate your CTA or add a small extra incentive — it's often read even by people who skim everything else.",
+    assign:"Write a subject line, opening sentence, and CTA for your next email.",
+    dl:"Worksheet: Email Copy Checklist",
+    checklist:["Subject line specific, not vague?","Opening focuses on the reader, no filler?","One clear CTA included?"],
+    ai:"I'm writing an email about [topic/offer]. Write a subject line, opening sentence, and CTA for it."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module5-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD5_LESSON_SLUGS=["writing-headlines-that-get-read","hooks-earning-the-next-sentence","storytelling-in-marketing","writing-product-descriptions-that-sell","calls-to-action-ctas","landing-pages-and-sales-pages","email-copy"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD5_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===5;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M5[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="myths"){
+  let h='<div style="max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:12px">';
+  d.mythCards.forEach(m=>{
+   h+='<div style="display:flex;gap:14px;align-items:stretch">'+
+    '<div style="flex:1;background:rgba(196,43,28,.12);border:1px solid var(--danger);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:#ff9a8f;font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.mythTag+'</div>'+m[0]+'</div>'+
+    '<div style="flex:1;background:rgba(34,197,94,.12);border:1px solid var(--good);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:#7fe3a3;font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.realTag+'</div>'+m[1]+'</div>'+
+   '</div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="journey"){
+  let svg='<svg viewBox="0 0 660 140" style="width:100%;height:auto;max-width:660px;display:block;margin:0 auto">';
+  const n=d.journeyLabels.length,gap=660/n;
+  svg+='<line x1="'+(gap/2)+'" y1="50" x2="'+(660-gap/2)+'" y2="50" stroke="var(--edge2)" stroke-width="3"/>';
+  d.journeyLabels.forEach((lbl,i)=>{const cx=gap/2+i*gap;
+   svg+='<circle cx="'+cx+'" cy="50" r="26" fill="var(--brand)"/><text x="'+cx+'" y="55" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">'+(i+1)+'</text>';
+   svg+='<text x="'+cx+'" y="100" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="600">'+lbl+'</text>';
+  });
+  svg+="</svg>";return svg;
+ }
+ if(d.illus==="fbmap"){
+  let h='<div style="max-width:660px;margin:0 auto">';
+  d.fbRows.forEach(r=>{
+   h+='<div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">'+
+    '<div style="flex:1;background:var(--ink-600);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:var(--mute);font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.fbFeat+'</div>'+r[0]+'</div>'+
+    '<div style="color:var(--brand);font-size:20px">→</div>'+
+    '<div style="flex:1;background:rgba(var(--brand-rgb),.14);border:1px solid var(--brand);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:var(--brand);font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.fbBen+'</div>'+r[1]+'</div>'+
+   '</div>';
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 5 · 5."+n;
+ $("topTitle").textContent=M5[lang][n-1];
+ document.title="Academy · "+M5[lang][n-1];
+ renderRail();
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 5 · 5.'+n+'</span><h2 class="labh2">'+M5[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M5[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+}
+
+function updateFinishBtn(){
+ const st=S.st[S.cur];const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 5?":S.lang==="fr"?"Voulez-vous recommencer le Module 5 ?":"Restart Module 5?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
