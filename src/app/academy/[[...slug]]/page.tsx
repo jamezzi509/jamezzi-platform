@@ -91,6 +91,7 @@ const dominateDigitalSimulatorModules: Record<
   m4: { moduleNumber: 4, title: "Modil 4 — Konnen Kliyan Ou" },
   m5: { moduleNumber: 5, title: "Modil 5 — Ekri Tèks ki Vann" },
   m6: { moduleNumber: 6, title: "Modil 6 — Kontni Grafik" },
+  m7: { moduleNumber: 7, title: "Modil 7 — Maketing Videyo" },
 };
 
 export async function generateMetadata({
