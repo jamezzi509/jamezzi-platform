@@ -581,14 +581,15 @@ function $(id){return document.getElementById(id);}
 
 function renderMods(){
  const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder",15:"meet-the-ads-manager",16:"meet-the-analytics-dashboard",17:"meet-the-automation-tool",18:"freelancing-vs-starting-an-agency",19:"marketing-for-local-service-businesses",20:"choosing-your-capstone-business"};
  MODULES[S.lang].forEach((title,i)=>{
   const n=i+1,isM1=n===1;
   const mod=document.createElement("div");mod.className="mod"+(isM1?" active":" locked");
   const mh=document.createElement("div");mh.className="mh";
-  if(n===2){
+  if(firstLessonBySlug[n]){
    mh.style.cursor="pointer";
    mh.innerHTML='<div class="num">'+n+'</div><div>'+title+"</div>";
-   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/why-people-really-buy";});
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
   }else{
    mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isM1?"":" 🔒")+"</div>";
   }
