@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 3 — Idantite Mak</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ci{font-size:19px;flex:none;width:26px;text-align:center}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 3 · 3.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 8</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + module/lesson titles ============ */
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 3!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou. Kontinye pou dekouvri lòt modil yo pandan n ap ajoute yo.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 3 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage. Revenez bientôt pour les prochains modules.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 3!",stampBody:"You just earned another stamp in your Learning Passport. Come back soon for the next modules as they're added.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M3={
+ ht:["Bay Biznis Ou Yon Non","Pozisyone (Sa ki Fè w Diferan)","Baz Konsepsyon Logo","Chwazi Koulè Mak Ou","Tipografi pou Mak Ou","Vwa Mak Ou","Pèsonalite Mak Ou","Konsistans nan Tout Bagay"],
+ fr:["Nommer Votre Entreprise","Positionnement (Ce qui Vous Différencie)","Les Bases du Design de Logo","Choisir les Couleurs de Votre Marque","Typographie pour Votre Marque","Voix de Marque","Personnalité de Marque","Cohérence Partout"],
+ en:["Naming Your Business","Positioning (What Makes You Different)","Logo Design Basics","Choosing Your Brand Colors","Typography for Your Brand","Brand Voice","Brand Personality","Consistency Across Everything"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Yon non se premye desizyon yon kliyan pran sou ou anvan menm yo konnen anyen dòt — yon non klè, ki fasil sonje, fè tout lòt efò maketing pi fasil.",
+   secs:[["Sa ki fè yon non mache","Fasil di ak eple (espesyalman enpòtan atravè lang/aksan pou yon odyans dyaspora), fasil sonje san li jenerik, li pa limite kwasans nan lavni (yon non tankou 'Reparasyon Telefòn Pòtoprens' anfèmen w nan yon sèl kote/sèvis), disponib kòm yon domèn/non rezo sosyal."],
+    ["Apwòch komen pou non","Deskriptif (di sa w fè: 'QuickFix Plonbye'), Envante/abstrè (yon mo envante: 'Kodak'), Non Fondatè (itilize non yon vrè moun), Evokatè (sijere yon santiman san dekri literalman: 'Amazon' sijere yon bagay imans). Chak gen konpwomi: non deskriptif klè imedyatman men pi difisil pou make/parèt diferan; non envante inik men bezwen plis maketing pou eksplike sa w fè."],
+    ["Teste yon non anvan angaje","Di l awotvwa bay yon moun ki pa konnen lide a epi wè si yo konprann/sonje l; verifye li pa deja itilize pa yon biznis similè tou pre oswa anliy; verifye domèn/non rezo sosyal la disponib; asire w li pa aksidantèlman vle di yon bagay anbarasan nan yon lòt lang pètinan."]],
+   illus:"roles",roleCards:[["📝","Deskriptif","Di sa w fè"],["✨","Envante","Yon mo orijinal"],["👤","Non Fondatè","Non yon vrè moun"],["🌊","Evokatè","Sijere yon santiman"]],
+   ex:"Si w te gen pou rebatize biznis ou kounye a (oswa yon lide biznis), ki non ou ta chwazi, epi ki apwòch li itilize?",
+   quiz:[
+    {q:"Poukisa non yon biznis enpòtan bonè konsa?",opts:["Li pa enpòtan ditou","Se premye desizyon yon kliyan pran sou ou, li fòme tout lòt enpresyon","Sèlman pri konte","Non ka toujou chanje san okenn koute"],ans:1,fb:"Non an se premye enpresyon an, li fòme tout rès la."},
+    {q:"Kilès ki yon egzanp non deskriptif?",opts:["Amazon","QuickFix Plonbye","Kodak","Ti Machann Boutik (yon ti non fondatè san rapò ak pwodwi a)"],ans:1,fb:"QuickFix Plonbye di dirèkteman sa biznis la fè."},
+    {q:"Ki yon risk yon non pi deskriptif genyen?",opts:["Li enposib pou di awotvwa","Li ka anfèmen w nan yon sèl sèvis/kote lè w ap grandi","Li toujou pi chè pou anrejistre","Li pa ka janm make ditou"],ans:1,fb:"Yon non twò deskriptif ka limite w lè biznis la grandi pi lwen pase sèvis/kote orijinal la."},
+    {q:"Anvan w angaje ak yon non, ou ta dwe...",opts:["Sèlman verifye si ou pèsonèlman renmen l","Teste si li fasil di/sonje epi verifye domèn/non rezo sosyal disponib","Pa janm di l awotvwa bay pèsòn","Chwazi non ki pi long posib pou inik"],ans:1,fb:"Teste ak vrè moun epi verifye disponiblite se etap kle anvan w angaje."}],
+   close:{learned:"Yon non se premye enpresyon kliyan an — klè, fasil sonje, e ki pa anfèmen w nan yon sèl kote/sèvis mache pi byen alontèm.",
+    mistake:"Chwazi yon non ou pèsonèlman renmen san w teste si etranje ka di l, eple l, oswa sonje l.",
+    tip:"Di chwa non ou awotvwa bay 3 moun ki pa konnen biznis ou epi wè si yo sonje l yon jou apre.",
+    assign:"Ekri non biznis ou aktyèl oswa planifye a, apwòch li itilize a, ak yon risk oswa limit li genyen.",
+    dl:"Fèy Travay: Tès Non Biznis",
+    checklist:["Fasil di/eple?","Pa limite kwasans nan lavni?","Domèn/non rezo sosyal disponib?","Okenn sans anbarasan nan yon lòt lang?"],
+    ai:"M ap konsidere non biznis '[non]' pou yon [kalite biznis]. Ki apwòch non sa a ye, epi ki yon risk pou veye?"}},
+ fr:{lede:"Un nom est la première décision qu'un client prend à propos de vous avant même de connaître quoi que ce soit d'autre — un nom clair et mémorable facilite chaque autre effort marketing.",
+   secs:[["Ce qui fait fonctionner un nom","Facile à dire et à épeler (particulièrement important à travers les langues/accents pour un public diaspora), mémorable sans être générique, ne limite pas la croissance future (un nom comme « Réparation Téléphone Port-au-Prince » vous enferme dans un seul lieu/service), disponible comme domaine/identifiant de réseau social."],
+    ["Approches de nommage courantes","Descriptif (dit ce que vous faites : « QuickFix Plomberie »), Inventé/abstrait (un mot inventé : « Kodak »), Nom du fondateur (utilise le nom d'une vraie personne), Évocateur (suggère un sentiment sans décrire littéralement : « Amazon » suggère l'immensité). Chacun a ses compromis : les noms descriptifs sont instantanément clairs mais plus difficiles à protéger/distinguer ; les noms inventés sont uniques mais demandent plus de marketing pour expliquer ce que vous faites."],
+    ["Tester un nom avant de s'engager","Dites-le à voix haute à quelqu'un qui ne connaît pas l'idée et voyez s'il comprend/s'en souvient ; vérifiez qu'il n'est pas déjà utilisé par une entreprise similaire à proximité ou en ligne ; vérifiez la disponibilité du domaine/identifiant ; assurez-vous qu'il ne signifie pas accidentellement quelque chose d'embarrassant dans une autre langue pertinente."]],
+   illus:"roles",roleCards:[["📝","Descriptif","Dit ce que vous faites"],["✨","Inventé","Un mot original"],["👤","Nom du Fondateur","Le nom d'une vraie personne"],["🌊","Évocateur","Suggère un sentiment"]],
+   ex:"Si vous deviez renommer votre entreprise actuelle (ou une idée d'entreprise), quel nom choisiriez-vous, et quelle approche utilise-t-il ?",
+   quiz:[
+    {q:"Pourquoi le nom d'une entreprise compte-t-il autant dès le début ?",opts:["Ça ne compte pas du tout","C'est la première décision qu'un client prend à propos de vous, ça façonne toute autre impression","Seul le prix compte","Les noms peuvent toujours être changés sans coût"],ans:1,fb:"Le nom est la première impression, elle façonne tout le reste."},
+    {q:"Lequel est un exemple de nom descriptif ?",opts:["Amazon","QuickFix Plomberie","Kodak","Ti Machann Boutik (un surnom de fondateur sans rapport avec le produit)"],ans:1,fb:"QuickFix Plomberie dit directement ce que fait l'entreprise."},
+    {q:"Quel est un risque d'un nom trop descriptif ?",opts:["Il est impossible à dire à voix haute","Il peut vous enfermer dans un seul service/lieu en grandissant","Il est toujours plus cher à enregistrer","Il ne peut jamais être protégé"],ans:1,fb:"Un nom trop descriptif peut vous limiter quand l'entreprise grandit au-delà du service/lieu d'origine."},
+    {q:"Avant de vous engager sur un nom, vous devriez :",opts:["Seulement vérifier si vous l'aimez personnellement","Tester s'il est facile à dire/retenir et vérifier la disponibilité du domaine/identifiant","Ne jamais le dire à voix haute à personne","Choisir le nom le plus long possible pour l'unicité"],ans:1,fb:"Tester avec de vraies personnes et vérifier la disponibilité sont des étapes clés avant de s'engager."}],
+   close:{learned:"Un nom est la première impression du client — clair, mémorable, et qui ne vous enferme pas dans un seul lieu/service fonctionne mieux à long terme.",
+    mistake:"Choisir un nom que vous aimez personnellement sans tester si des étrangers peuvent le dire, l'épeler, ou s'en souvenir.",
+    tip:"Dites votre choix de nom à voix haute à 3 personnes qui ne connaissent pas votre entreprise et voyez si elles s'en souviennent le lendemain.",
+    assign:"Écrivez le nom actuel ou prévu de votre entreprise, son approche de nommage, et un risque ou une limite qu'il présente.",
+    dl:"Fiche de travail : Test de Nommage d'Entreprise",
+    checklist:["Facile à dire/épeler ?","Ne limite pas la croissance future ?","Domaine/identifiant disponible ?","Aucun sens embarrassant dans une autre langue ?"],
+    ai:"J'envisage le nom d'entreprise « [nom] » pour un(e) [type d'entreprise]. Quelle approche de nommage est-ce, et quel est un risque à surveiller ?"}},
+ en:{lede:"A name is the first decision a customer makes about you before they know anything else — a clear, memorable name makes every other marketing effort easier.",
+   secs:[["What makes a name work","Easy to say and spell (especially important across languages/accents for a diaspora audience), memorable without being generic, doesn't limit future growth (a name like 'Port-au-Prince Phone Repair' boxes you into one location/service), available as a domain/social handle."],
+    ["Common naming approaches","Descriptive (says what you do: 'QuickFix Plumbing'), Invented/abstract (a made-up word: 'Kodak'), Founder name (uses a real person's name), Evocative (suggests a feeling without literally describing: 'Amazon' suggests vastness). Each has tradeoffs: descriptive names are instantly clear but harder to trademark/stand out; invented names are unique but need more marketing to explain what you do."],
+    ["Testing a name before committing","Say it out loud to someone unfamiliar with the idea and see if they understand/remember it; check it's not already used by a similar business nearby or online; check the domain/handle availability; make sure it doesn't accidentally mean something embarrassing in another relevant language."]],
+   illus:"roles",roleCards:[["📝","Descriptive","Says what you do"],["✨","Invented","A made-up word"],["👤","Founder Name","A real person's name"],["🌊","Evocative","Suggests a feeling"]],
+   ex:"If you had to rename your current business (or a business idea), what name would you pick, and which naming approach does it use?",
+   quiz:[
+    {q:"Why does a business name matter early on?",opts:["It doesn't matter at all","It's the first decision a customer makes about you, shaping every other impression","Only the price matters","Names can always be changed with no cost"],ans:1,fb:"The name is the first impression, shaping everything that follows."},
+    {q:"Which is a descriptive name example?",opts:["Amazon","QuickFix Plumbing","Kodak","Ti Machann Boutik (a founder's nickname unrelated to the product)"],ans:1,fb:"QuickFix Plumbing directly says what the business does."},
+    {q:"What's a risk of a purely descriptive name?",opts:["It's impossible to say out loud","It can box you into one narrow service/location as you grow","It's always more expensive to register","It cannot be trademarked ever"],ans:1,fb:"An overly descriptive name can limit you as the business grows beyond the original service/location."},
+    {q:"Before committing to a name, you should:",opts:["Only check if you personally like it","Test if it's easy to say/remember and check domain/handle availability","Never say it out loud to anyone","Pick the longest possible name for uniqueness"],ans:1,fb:"Testing with real people and checking availability are key steps before committing."}],
+   close:{learned:"A name is the customer's first impression — clear, memorable, and not boxed into one narrow location/service works best long-term.",
+    mistake:"Picking a name you personally love without testing whether strangers can say it, spell it, or remember it.",
+    tip:"Say your name choice out loud to 3 people unfamiliar with your business and see if they remember it a day later.",
+    assign:"Write down your current or planned business name, its naming approach, and one risk or limitation it has.",
+    dl:"Worksheet: Business Naming Test",
+    checklist:["Easy to say/spell?","Doesn't limit future growth?","Domain/handle available?","No embarrassing meaning in another language?"],
+    ai:"I'm considering the business name '[name]' for a [type of business]. What naming approach is this, and what's one risk to watch for?"}}},
+
+2:{ht:{lede:"Si w pa ka di poukisa yon kliyan ta dwe chwazi w olye lòt opsyon an, ni li menm pa ka — pozisyone se deside, espre, sa ki fè w diferan.",
+   secs:[["Sa pozisyone vrèman vle di","Se pa yon slogan, men vrè repons pou 'poukisa ou, pa yo?' pou yon kliyan espesifik; chak biznis pozisyone yon jan, kit yo deside sa espre kit se aksidan (pozisyone default la anjeneral se 'pi bon mache', yon kote difisil pou konpetisyone alontèm)."],
+    ["Angle pozisyone komen","Pri (pi bon mache, men difisil pou kenbe), Kalite/atizanaj (pi byen fè, pi dirab), Vitès/konvenyans (pi rapid, pi fasil rive jwenn), Espesyalizasyon (sèlman pou yon bezwen/odyans espesifik), Eksperyans/relasyon (sèvis pèsonèl, non lokal ki fè konfyans), Valè (pwopriyetè lokal, konsantre sou kominote, sous etik)."],
+    ["Chwazi ak deklare pozisyone ou","Chwazi 1-2 angle ki vre e ki reyèlman vo pou vrè kliyan ou, pa jis sa ou pèsonèlman panse enpresyonan; deklare li nan yon fraz klè ou ta ka di yon etranje ('Nou se sèl [X] ki [Y] pou [odyans espesifik]')."]],
+   illus:"roles",roleCards:[["💲","Pri","Pi bon mache"],["⭐","Kalite","Pi byen fè"],["⚡","Vitès","Pi rapid"],["🎯","Espesyalizasyon","Yon sèl bezwen"],["🤝","Relasyon","Sèvis pèsonèl"],["💚","Valè","Lokal, etik"]],
+   ex:"Ekri yon fraz ki reponn 'poukisa yon moun ta chwazi biznis mwen olye pwochen opsyon an?'",
+   quiz:[
+    {q:"Kisa pozisyone ye, vrèman?",opts:["Yon slogan atire","Vrè repons pou 'poukisa ou, pa yo?' pou yon kliyan espesifik","Yon bagay sèlman gwo konpayi bezwen","Yon desizyon fiks ki pa janm bezwen revize"],ans:1,fb:"Pozisyone se vrè repons a poukisa yon kliyan chwazi w."},
+    {q:"Ki pozisyone default pou yon biznis ki pa deside espre?",opts:["Pi bon kalite","Pi bon mache, anjeneral","Pi konvenyan","Pi espesyalize"],ans:1,fb:"San yon desizyon espre, pi bon mache vin default la souvan."},
+    {q:"Kilès ki yon vrè angle pozisyone?",opts:["Se sèl opsyon pou yon bezwen espesifik ki pa byen sèvi","Kopye sa pi gwo konkirans ou di","Evite nenpòt diferansyasyon klè","Eseye sedwi tout moun egalman"],ans:0,fb:"Sèvi yon bezwen espesifik ki pa byen sèvi se yon vrè angle pozisyone."},
+    {q:"Yon bon deklarasyon pozisyone ta dwe...",opts:["Vag ase pou sedwi tout moun","Yon fraz klè sou poukisa ou, pou yon odyans espesifik","Kenbe sekrè de kliyan yo","Chanje o aza chak mwa"],ans:1,fb:"Yon fraz klè, pou yon odyans espesifik, se bon deklarasyon pozisyone."}],
+   close:{learned:"Pozisyone se deside espre poukisa yon kliyan ta chwazi w — konpetisyone sèlman sou pri se default lè anyen dòt pa deside.",
+    mistake:"Eseye sedwi absoliman tout moun san okenn diferansyasyon klè, ki anjeneral vle di pèsonn pa gen yon fò rezon pou chwazi w.",
+    tip:"Mande 2-3 vrè kliyan poukisa yo aktyèlman chwazi w — vrè repons yo souvan revele vrè pozisyone ou, ki ka diferan de sa w te sipoze a.",
+    assign:"Ekri pozisyone ou nan yon fraz: 'Nou se sèl [kalite biznis] ki [diferans espesifik] pou [odyans espesifik].'",
+    dl:"Fèy Travay: Konstriktè Deklarasyon Pozisyone",
+    checklist:["Angle pozisyone chwazi espre?","Vre e vo pou vrè kliyan?","Deklare nan yon fraz klè?"],
+    ai:"Biznis mwen se [dekri l]. Baze sou sa m ofri, sijere 2 posib angle pozisyone ak yon fraz pozisyone pou chak."}},
+ fr:{lede:"Si vous ne pouvez pas dire pourquoi un client devrait vous choisir plutôt que l'autre option, lui non plus ne le peut pas — le positionnement, c'est décider, exprès, ce qui vous rend différent.",
+   secs:[["Ce que signifie vraiment le positionnement","Ce n'est pas un slogan, mais la vraie réponse à « pourquoi vous, pas eux ? » pour un client spécifique ; chaque entreprise est positionnée d'une façon ou d'une autre, que ce soit décidé exprès ou par accident (le positionnement par défaut est généralement « le moins cher », un endroit difficile pour concurrencer à long terme)."],
+    ["Angles de positionnement courants","Prix (le moins cher, mais difficile à maintenir), Qualité/savoir-faire (le mieux fait, plus durable), Vitesse/commodité (le plus rapide, le plus facile à joindre), Spécialisation (seulement pour un besoin/public spécifique), Expérience/relation (service personnel, nom local de confiance), Valeurs (propriété locale, axé communauté, sourcing éthique)."],
+    ["Choisir et énoncer votre positionnement","Choisissez 1-2 angles à la fois vrais et réellement valorisés par vos vrais clients, pas seulement ce que vous trouvez personnellement impressionnant ; énoncez-le en une phrase claire que vous pourriez dire à un étranger (« Nous sommes le seul [X] qui [Y] pour [public spécifique] »)."]],
+   illus:"roles",roleCards:[["💲","Prix","Le moins cher"],["⭐","Qualité","Le mieux fait"],["⚡","Vitesse","Le plus rapide"],["🎯","Spécialisation","Un seul besoin"],["🤝","Relation","Service personnel"],["💚","Valeurs","Local, éthique"]],
+   ex:"Écrivez une phrase répondant à « pourquoi quelqu'un devrait-il choisir mon entreprise plutôt que la prochaine option ? »",
+   quiz:[
+    {q:"Qu'est-ce que le positionnement, vraiment ?",opts:["Un slogan accrocheur","La vraie réponse à « pourquoi vous, pas eux ? » pour un client spécifique","Quelque chose dont seules les grandes entreprises ont besoin","Une décision fixe qui n'a jamais besoin d'être revue"],ans:1,fb:"Le positionnement est la vraie réponse à pourquoi un client vous choisit."},
+    {q:"Quel est le positionnement par défaut pour une entreprise qui n'a pas décidé exprès ?",opts:["La meilleure qualité","Le moins cher, généralement","Le plus pratique","Le plus spécialisé"],ans:1,fb:"Sans décision exprès, le moins cher devient souvent le défaut."},
+    {q:"Lequel est un vrai angle de positionnement ?",opts:["Être la seule option pour un besoin spécifique mal desservi","Copier ce que dit votre plus grand concurrent","Éviter toute différenciation claire","Essayer de plaire à absolument tout le monde également"],ans:0,fb:"Servir un besoin spécifique mal desservi est un vrai angle de positionnement."},
+    {q:"Un bon énoncé de positionnement devrait être :",opts:["Assez vague pour plaire à tout le monde","Une phrase claire sur pourquoi vous, pour un public spécifique","Gardé secret des clients","Changé au hasard chaque mois"],ans:1,fb:"Une phrase claire, pour un public spécifique, est un bon énoncé de positionnement."}],
+   close:{learned:"Le positionnement, c'est décider exprès pourquoi un client devrait vous choisir — concurrencer seulement sur le prix est le défaut quand rien d'autre n'est décidé.",
+    mistake:"Essayer de plaire à absolument tout le monde sans aucune différenciation claire, ce qui signifie généralement que personne n'a de raison forte de vous choisir.",
+    tip:"Demandez à 2-3 vrais clients pourquoi ils vous ont réellement choisi — leur vraie réponse révèle souvent votre vrai positionnement, qui peut différer de ce que vous supposiez.",
+    assign:"Écrivez votre positionnement en une phrase : « Nous sommes le seul [type d'entreprise] qui [différence spécifique] pour [public spécifique]. »",
+    dl:"Fiche de travail : Constructeur d'Énoncé de Positionnement",
+    checklist:["Angle de positionnement choisi exprès ?","Vrai et valorisé par de vrais clients ?","Énoncé en une phrase claire ?"],
+    ai:"Mon entreprise est [décrire]. En fonction de ce que j'offre, suggère 2 angles de positionnement possibles et un énoncé de positionnement en une phrase pour chacun."}},
+ en:{lede:"If you can't say why a customer should choose you over the next option, neither can they — positioning is deciding, on purpose, what makes you different.",
+   secs:[["What positioning really means","Not a slogan, but the actual answer to 'why you, not them?' for a specific customer; every business is positioned somehow, whether decided on purpose or by accident (default positioning is usually 'cheapest,' a hard place to compete from long-term)."],
+    ["Common positioning angles","Price (cheapest, but hard to sustain), Quality/craftsmanship (best-made, more durable), Speed/convenience (fastest, easiest to reach), Specialization (only for one specific need/audience), Experience/relationship (personal service, trusted local name), Values (locally-owned, community-focused, ethically sourced)."],
+    ["Choosing and stating your positioning","Pick 1-2 angles that are both true and genuinely valued by your real customers, not just what you personally think is impressive; state it in one clear sentence you could say to a stranger ('We're the only [X] that [Y] for [specific audience]')."]],
+   illus:"roles",roleCards:[["💲","Price","Cheapest"],["⭐","Quality","Best-made"],["⚡","Speed","Fastest"],["🎯","Specialization","One specific need"],["🤝","Relationship","Personal service"],["💚","Values","Local, ethical"]],
+   ex:"Write one sentence answering 'why should someone choose my business over the next option?'",
+   quiz:[
+    {q:"What is positioning, really?",opts:["A catchy slogan","The actual answer to 'why you, not them?' for a specific customer","Something only large companies need","A fixed decision that never needs revisiting"],ans:1,fb:"Positioning is the actual answer to why a customer chooses you."},
+    {q:"What's the default positioning for a business that hasn't decided on purpose?",opts:["Best quality","Cheapest, usually","Most convenient","Most specialized"],ans:1,fb:"Without a deliberate decision, cheapest often becomes the default."},
+    {q:"Which is a genuine positioning angle?",opts:["Being the only option for a specific underserved need","Copying whatever your biggest competitor says","Avoiding any clear differentiation","Trying to appeal to absolutely everyone equally"],ans:0,fb:"Serving a specific underserved need is a genuine positioning angle."},
+    {q:"A good positioning statement should be:",opts:["Vague enough to appeal to everyone","One clear sentence about why you, for a specific audience","Kept secret from customers","Changed randomly every month"],ans:1,fb:"A clear sentence, for a specific audience, is a good positioning statement."}],
+   close:{learned:"Positioning is deciding on purpose why a customer should choose you — competing only on price is the default when nothing else is decided.",
+    mistake:"Trying to appeal to absolutely everyone with no clear differentiation, which usually means no one has a strong reason to choose you.",
+    tip:"Ask 2-3 real customers why they actually chose you — their real answer often reveals your true positioning, which may differ from what you assumed.",
+    assign:"Write your positioning in one sentence: 'We're the only [business type] that [specific difference] for [specific audience].'",
+    dl:"Worksheet: Positioning Statement Builder",
+    checklist:["Positioning angle chosen on purpose?","True and valued by real customers?","Stated in one clear sentence?"],
+    ai:"My business is [describe]. Based on what I offer, suggest 2 possible positioning angles and a one-sentence positioning statement for each."}}},
+
+3:{ht:{lede:"Yon logo pa bezwen entelijan oswa konplike pou li mache — li bezwen rekonesab, apwopriye, e itilizab toupatou mak ou parèt.",
+   secs:[["Sa yon logo reyèlman bezwen fè","Rekonesab yon sèl kout je, mache nan yon sèl koulè (pou tanpon, bwodri, enprime bon mache), mache piti (yon icon telefòn, yon favicon) e gwo (yon ansèy), rete lizib san bezwen eksplike."],
+    ["Kalite logo komen","Mak Tèks (non biznis la stilize distenkteman, tankou Coca-Cola), Mak Lèt (inisyal, tankou IBM), Senbòl/icon (yon grafik endepandan, tankou zwazo Twitter la), Konbinezon (icon + tèks ansanm). Chak matche diferan bezwen: yon non tou nèf jeneralman benefisye de yon mak tèks oswa konbinezon, paske yon senbòl pou kont li pa vle di anyen jiskaske mak la deja rekonèt."],
+    ["Erè logo komen pou evite","Twòp koulè oswa detay fen ki disparèt lè li retresi, swiv yon tandans desen ki pral sanble demode nan 2 an, kopye style yon konkirans twò pre olye w reyèlman diferan."]],
+   illus:"roles",roleCards:[["🔤","Mak Tèks","Non stilize"],["🔠","Mak Lèt","Inisyal"],["⭐","Senbòl","Grafik pou kont li"],["🔗","Konbinezon","Icon + tèks"]],
+   ex:"Gade logo aktyèl ou (oswa yon lide logo). Ki kalite li ye, epi èske li rete lizib lè li retresi trè piti?",
+   quiz:[
+    {q:"Ki egzijans debaz ki pi enpòtan pou nenpòt logo?",opts:["Li dwe trè kolore e detaye","Li dwe rekonesab yon sèl kout je e mache piti kou gwo","Li dwe enkli tout istwa biznis la","Li dwe chanje chak ane pou rete fre"],ans:1,fb:"Rekonesab yon sèl kout je e ki ka gwosi/retresi se egzijans debaz la."},
+    {q:"Yon logo ki se jis non biznis la stilize distenkteman rele yon:",opts:["Mak Lèt","Mak Tèks","Senbòl","Mak Konbinezon"],ans:1,fb:"Se yon Mak Tèks."},
+    {q:"Poukisa yon biznis tou nèf ta evite yon logo senbòl sèlman (san tèks)?",opts:["Senbòl toujou pi chè","Yon senbòl pou kont li pa vle di anyen jiskaske mak la deja rekonèt","Senbòl pa ka make","Senbòl mache sèlman pou gwo konpayi"],ans:1,fb:"San rekonesans deja etabli, yon senbòl pou kont li pa gen sans pou piblik la."},
+    {q:"Kilès ki yon erè logo komen?",opts:["Kenbe l senp","Asire l mache nan yon sèl koulè","Twòp detay fen ki disparèt lè li retresi","Teste l nan ti gwosè"],ans:2,fb:"Twòp detay fen se yon erè komen ki fè logo a pèdi klète lè li piti."}],
+   close:{learned:"Travay yon logo se rekonesab e itilizab toupatou — entelijan oswa konplike se pa objektif la, klète nan tout gwosè se objektif la.",
+    mistake:"Fè yon logo ak detay fen oswa twòp koulè ki bèl gwo men vin yon flou lè li piti (yon favicon, yon patch bwode).",
+    tip:"Teste nenpòt lide logo retresi jiska gwosè yon icon aplikasyon telefòn anvan w fini l — si li pa klè la, li bezwen senplifye.",
+    assign:"Evalye logo aktyèl ou (oswa lide logo) kont 3 egzijans debaz la: rekonesab, mache piti, mache nan yon koulè.",
+    dl:"Lis Verifikasyon: Tès Baz Logo",
+    checklist:["Rekonesab yon sèl kout je?","Lizib lè li retresi piti?","Mache nan yon sèl koulè?","Pa depann twòp de yon tandans?"],
+    ai:"Biznis mwen se [dekri l] e mwen vle yon logo [mak tèks/mak lèt/senbòl/konbinezon]. Sijere yon direksyon konsèp senp ak sa pou evite pou kalite sa a."}},
+ fr:{lede:"Un logo n'a pas besoin d'être intelligent ou compliqué pour fonctionner — il doit être reconnaissable, approprié, et utilisable partout où votre marque apparaît.",
+   secs:[["Ce qu'un logo doit vraiment faire","Reconnaissable en un coup d'œil, fonctionner en une seule couleur (pour tampons, broderie, impression bon marché), fonctionner petit (une icône de téléphone, un favicon) et grand (une enseigne), rester lisible sans avoir besoin d'explication."],
+    ["Types de logo courants","Logotype (le nom de l'entreprise stylisé distinctement, comme Coca-Cola), Monogramme (initiales, comme IBM), Symbole/icône (un graphique autonome, comme l'oiseau de Twitter), Combinaison (icône + texte ensemble). Chacun correspond à des besoins différents : un nom tout nouveau bénéficie généralement d'un logotype ou d'une combinaison, car un symbole seul ne signifie rien tant que la marque n'est pas déjà connue."],
+    ["Erreurs de logo courantes à éviter","Trop de couleurs ou de détails fins qui disparaissent en rétrécissant, suivre une tendance de design qui semblera datée dans 2 ans, copier le style d'un concurrent de trop près plutôt que d'être réellement distinct."]],
+   illus:"roles",roleCards:[["🔤","Logotype","Nom stylisé"],["🔠","Monogramme","Initiales"],["⭐","Symbole","Graphique seul"],["🔗","Combinaison","Icône + texte"]],
+   ex:"Regardez votre logo actuel (ou une idée de logo). Quel type est-ce, et reste-t-il lisible quand il est très réduit ?",
+   quiz:[
+    {q:"Quelle est l'exigence de base la plus importante pour tout logo ?",opts:["Il doit être très coloré et détaillé","Il doit être reconnaissable en un coup d'œil et fonctionner petit et grand","Il doit inclure toute l'histoire de l'entreprise","Il doit changer chaque année pour rester frais"],ans:1,fb:"Reconnaissable en un coup d'œil et fonctionnant à toutes les tailles est l'exigence de base."},
+    {q:"Un logo qui est simplement le nom de l'entreprise stylisé distinctement s'appelle un :",opts:["Monogramme","Logotype","Symbole","Logo combiné"],ans:1,fb:"C'est un Logotype."},
+    {q:"Pourquoi une entreprise toute nouvelle pourrait-elle éviter un logo symbole seul (sans texte) ?",opts:["Les symboles sont toujours plus chers","Un symbole seul ne signifie rien tant que la marque n'est pas déjà connue","Les symboles ne peuvent pas être protégés","Les symboles ne fonctionnent que pour les grandes entreprises"],ans:1,fb:"Sans reconnaissance déjà établie, un symbole seul n'a pas de sens pour le public."},
+    {q:"Laquelle est une erreur de logo courante ?",opts:["Le garder simple","S'assurer qu'il fonctionne en une couleur","Trop de détails fins qui disparaissent en rétrécissant","Le tester en petites tailles"],ans:2,fb:"Trop de détails fins est une erreur courante qui fait perdre la clarté du logo en petit format."}],
+   close:{learned:"Le travail d'un logo est d'être reconnaissable et utilisable partout — intelligent ou compliqué n'est pas le but, la clarté à toutes les tailles l'est.",
+    mistake:"Concevoir un logo avec des détails fins ou trop de couleurs qui a l'air bien en grand mais devient flou en petite taille (un favicon, un patch brodé).",
+    tip:"Testez toute idée de logo réduite à la taille d'une icône d'application de téléphone avant de la finaliser — si ce n'est pas clair là, ça doit être simplifié.",
+    assign:"Évaluez votre logo actuel (ou idée de logo) selon les 3 exigences de base : reconnaissable, fonctionne petit, fonctionne en une couleur.",
+    dl:"Liste de vérification : Test des Bases du Logo",
+    checklist:["Reconnaissable en un coup d'œil ?","Lisible quand réduit ?","Fonctionne en une seule couleur ?","Ne dépend pas trop d'une tendance ?"],
+    ai:"Mon entreprise est [décrire] et je veux un logo [logotype/monogramme/symbole/combinaison]. Suggère une direction de concept simple et ce qu'il faut éviter pour ce type."}},
+ en:{lede:"A logo doesn't need to be clever or complicated to work — it needs to be recognizable, appropriate, and usable everywhere your brand shows up.",
+   secs:[["What a logo actually needs to do","Be recognizable at a glance, work in a single color (for stamps, embroidery, low-cost printing), work small (a phone icon, a favicon) and large (a sign), stay legible without needing to be explained."],
+    ["Common logo types","Wordmark (the business name styled distinctively, like Coca-Cola), Lettermark (initials, like IBM), Symbol/icon (a standalone graphic, like Twitter's bird), Combination (icon + text together). Each fits different needs: a brand-new name usually benefits from a wordmark or combination mark, since a symbol alone means nothing until the brand is already known."],
+    ["Common logo mistakes to avoid","Too many colors or fine detail that disappears when shrunk small, following a design trend that will look dated in 2 years, copying a competitor's style too closely instead of being genuinely distinct."]],
+   illus:"roles",roleCards:[["🔤","Wordmark","Styled name"],["🔠","Lettermark","Initials"],["⭐","Symbol","Standalone graphic"],["🔗","Combination","Icon + text"]],
+   ex:"Look at your current logo (or a logo idea). Which type is it, and does it stay legible when shrunk very small?",
+   quiz:[
+    {q:"What's the most important basic requirement for any logo?",opts:["It must be very colorful and detailed","It must be recognizable at a glance and work small and large","It must include the full business story","It must change every year to stay fresh"],ans:1,fb:"Recognizable at a glance and scalable is the basic requirement."},
+    {q:"A logo that's just the business name styled distinctively is called a:",opts:["Lettermark","Wordmark","Symbol","Combination mark"],ans:1,fb:"That's a Wordmark."},
+    {q:"Why might a brand-new business avoid a symbol-only logo (no text)?",opts:["Symbols are always more expensive","A symbol alone means nothing until the brand is already known","Symbols can't be trademarked","Symbols only work for large companies"],ans:1,fb:"Without already-established recognition, a symbol alone doesn't mean anything to the audience."},
+    {q:"Which is a common logo mistake?",opts:["Keeping it simple","Making sure it works in one color","Too much fine detail that disappears when shrunk small","Testing it at small sizes"],ans:2,fb:"Too much fine detail is a common mistake that makes a logo lose clarity when small."}],
+   close:{learned:"A logo's job is to be recognizable and usable everywhere — clever or complex isn't the goal, legibility at every size is.",
+    mistake:"Designing a logo with fine detail or too many colors that looks great large but turns into a blur at a small size (a favicon, an embroidered patch).",
+    tip:"Test any logo idea shrunk down to the size of a phone app icon before finalizing it — if it's unclear there, it needs simplifying.",
+    assign:"Evaluate your current logo (or logo idea) against the 3 basic requirements: recognizable, works small, works in one color.",
+    dl:"Checklist: Logo Basics Test",
+    checklist:["Recognizable at a glance?","Legible when shrunk small?","Works in a single color?","Not overly trend-dependent?"],
+    ai:"My business is [describe] and I want a [wordmark/lettermark/symbol/combination] logo. Suggest a simple concept direction and what to avoid for this type."}}},
+
+4:{ht:{lede:"Modil 2 te kouvri sa koulè yo tandans vle di — leson sa a se sou aktyèlman chwazi pa w yo epi itilize yo menm jan toupatou.",
+   secs:[["Chwazi yon palèt prensipal","Chwazi 1 prensipal koulè ki matche santiman Sikoloji Koulè Modil 2 ou vle kliyan asosye ak mak ou, plis 1-2 koulè sipò (yon net pou tèks/fon, yon aksan pou apèl aksyon); evite chwazi plis pase 3-4 koulè total, paske twòp dilye rekonesans."],
+    ["Asire koulè yo aktyèlman mache ansanm","Verifye ase kontras ant koulè tèks ak fon pou tèks la rete lizib; teste palèt ou nan tou de yon kontèks klere solèy (yon ekran telefòn deyò) ak kondisyon fèb; konsidere kijan koulè ou parèt nan enprime nwa-e-blan senp (tanpon, fotokopi), paske pa tout bagay ap enprime an koulè."],
+    ["Bloke e aplike konsistan","Yon fwa chwazi, ekri egzat koulè yo (pa non oswa kòd) pou ou (oswa nenpòt moun ki ede w) itilize egzakteman menm koulè yo chak fwa, pa yon nyans ki yon ti jan diferan de memwa; aplike yo menm jan atravè logo, anbalaj, pwofil rezo sosyal, ak ansèy."]],
+   illus:"colors",colorSwatches:[["#3B6FE0","Prensipal"],["#9AA6B8","Sipò/Net"],["#E0B23B","Aksan"]],
+   ex:"Fè yon lis prensipal koulè aktyèl oswa planifye w, yon net sipò, ak yon koulè aksan. Èske tou de 3 la mache byen ansanm?",
+   quiz:[
+    {q:"Konbyen koulè mak total ou ta dwe vize?",opts:["Otan posib pou varyete","Anviwon 3-4: yon prensipal, yon net, ak yon aksan","Egzakteman yon koulè e anyen dòt","Sa pa enpòtan, plis toujou pi bon"],ans:1,fb:"3-4 koulè total se yon bon gid pratik."},
+    {q:"Poukisa ou ta dwe teste koulè ou nan tou de kondisyon klere ak fèb?",opts:["Sa pa enpòtan, koulè toujou parèt menm jan","Yon ekran telefòn deyò oswa limyè fèb ka chanje jan koulè lizib/vizib","Sèlman koulè enprime bezwen teste","Koulè dijital pa janm chanje aparans"],ans:1,fb:"Kondisyon limyè ka chanje jan koulè lizib, konsa teste enpòtan."},
+    {q:"Poukisa verifye kijan palèt ou parèt an nwa-e-blan?",opts:["Li pa janm itilize an nwa-e-blan","Kèk materyèl (tanpon, fotokopi) p ap enprime an koulè","Koulè pa janm konte si w gen yon logo","Li sèlman pètinan pou liv enprime"],ans:1,fb:"Kèk materyèl reyèlman enprime an nwa-e-blan, konsa sa enpòtan pou verifye."},
+    {q:"Poukisa ekri egzat kòd/non koulè olye matche 'de memwa'?",opts:["Sa pa enpòtan, apwoksimatif bon","Li asire egzakteman menm koulè yo itilize chak fwa, pwoteje konsistans","Kòd sèlman nesesè pou sit web","Memwa toujou pi egzat"],ans:1,fb:"Ekri egzat kòd asire konsistans total, san varyasyon de memwa."}],
+   close:{learned:"Chwazi yon palèt piti e espre (prensipal + net + aksan) baze sou santiman ou vle, apre aplike l idantikman toupatou.",
+    mistake:"Itilize yon nyans ki yon ti jan diferan chak fwa paske koulè yo chwazi 'de memwa' olye kòd egzat bloke.",
+    tip:"Sove egzat kòd koulè ou yon kote ou ap reyèlman reyitilize (yon nòt, yon senp fèy mak) pou nenpòt moun ki ede w rete konsistan.",
+    assign:"Ekri egzat prensipal, net, ak koulè aksan ou (pa non oswa kòd hex) epi sove yo yon kote ou ap reyitilize.",
+    dl:"Modèl: Fèy Koulè Mak Senp",
+    checklist:["3-4 koulè total, pa plis?","Kontras lizib verifye?","Mache an nwa-e-blan?","Kòd egzat ekri?"],
+    ai:"Santiman mak mwen vle se [santiman]. Sijere yon palèt 3-koulè senp (prensipal, net, aksan) ak kòd hex ki matche."}},
+ fr:{lede:"Le Module 2 couvrait ce que les couleurs ont tendance à signifier — cette leçon porte sur choisir réellement les vôtres et les utiliser de la même façon partout.",
+   secs:[["Choisir une palette principale","Choisissez 1 couleur principale qui correspond au sentiment de la psychologie des couleurs du Module 2 que vous voulez que les clients associent à votre marque, plus 1-2 couleurs secondaires (une neutre pour texte/fonds, un accent pour les appels à l'action) ; évitez de choisir plus de 3-4 couleurs au total, car trop en dilue la reconnaissance."],
+    ["S'assurer que les couleurs fonctionnent bien ensemble","Vérifiez suffisamment de contraste entre les couleurs de texte et de fond pour que le texte reste lisible ; testez votre palette dans un contexte lumineux (un écran de téléphone dehors) et en conditions sombres ; considérez comment vos couleurs apparaissent en impression noir et blanc simple (tampons, photocopies), car tout ne sera pas imprimé en couleur."],
+    ["Verrouiller et appliquer avec cohérence","Une fois choisies, notez les couleurs exactes (par nom ou code) pour que vous (ou quiconque vous aide) utilisiez exactement les mêmes couleurs à chaque fois, pas une nuance légèrement différente de mémoire ; appliquez-les de la même façon sur votre logo, emballage, profils sociaux, et enseignes."]],
+   illus:"colors",colorSwatches:[["#3B6FE0","Principale"],["#9AA6B8","Secondaire/Neutre"],["#E0B23B","Accent"]],
+   ex:"Listez votre couleur principale actuelle ou prévue, une neutre secondaire, et une couleur d'accent. Les 3 fonctionnent-elles bien ensemble ?",
+   quiz:[
+    {q:"Combien de couleurs de marque au total devriez-vous viser ?",opts:["Autant que possible pour la variété","Environ 3-4 : une principale, une neutre, et un accent","Exactement une couleur et rien d'autre","Ça n'a pas d'importance, plus c'est toujours mieux"],ans:1,fb:"3-4 couleurs au total est un bon guide pratique."},
+    {q:"Pourquoi devriez-vous tester vos couleurs en conditions lumineuses et sombres ?",opts:["Ça n'a pas d'importance, les couleurs paraissent toujours pareilles","Un écran de téléphone dehors ou une lumière faible peut changer la lisibilité/visibilité des couleurs","Seules les couleurs imprimées ont besoin d'être testées","Les couleurs numériques ne changent jamais d'apparence"],ans:1,fb:"Les conditions de lumière peuvent changer la lisibilité des couleurs, donc tester compte."},
+    {q:"Pourquoi vérifier comment votre palette apparaît en noir et blanc ?",opts:["Elle n'est jamais utilisée en noir et blanc","Certains supports (tampons, photocopies) ne seront pas imprimés en couleur","La couleur ne compte jamais si vous avez un logo","Ce n'est pertinent que pour les livres imprimés"],ans:1,fb:"Certains supports sont réellement imprimés en noir et blanc, donc c'est important à vérifier."},
+    {q:"Pourquoi noter les codes/noms de couleur exacts plutôt que de faire correspondre « de mémoire » ?",opts:["Ça n'a pas d'importance, approximatif suffit","Ça garantit que les mêmes couleurs exactes sont utilisées à chaque fois, protégeant la cohérence","Les codes ne sont nécessaires que pour les sites web","La mémoire est toujours plus précise"],ans:1,fb:"Noter les codes exacts garantit une cohérence totale, sans variation de mémoire."}],
+   close:{learned:"Choisissez une palette petite et délibérée (principale + neutre + accent) basée sur le sentiment voulu, puis appliquez-la de façon identique partout.",
+    mistake:"Utiliser une nuance légèrement différente à chaque fois parce que les couleurs sont choisies « de mémoire » plutôt que des codes exacts verrouillés.",
+    tip:"Sauvegardez vos codes de couleur exacts quelque part que vous réutiliserez réellement (une note, une simple fiche de marque) pour que quiconque vous aide reste cohérent.",
+    assign:"Notez vos couleurs principale, neutre, et accent exactes (par nom ou code hex) et sauvegardez-les quelque part que vous réutiliserez.",
+    dl:"Modèle : Fiche de Couleurs de Marque Simple",
+    checklist:["3-4 couleurs au total, pas plus ?","Contraste lisible vérifié ?","Fonctionne en noir et blanc ?","Codes exacts notés ?"],
+    ai:"Le sentiment voulu de ma marque est [sentiment]. Suggère une palette simple de 3 couleurs (principale, neutre, accent) avec des codes hex qui correspondent."}},
+ en:{lede:"Module 2 covered what colors tend to mean — this lesson is about actually choosing yours and using them the same way everywhere.",
+   secs:[["Picking a primary palette","Choose 1 main color that matches the feeling from Module 2's color psychology you want customers to associate with your brand, plus 1-2 supporting colors (a neutral for text/backgrounds, an accent for calls-to-action); avoid picking more than 3-4 colors total, since too many dilutes recognition."],
+    ["Making sure colors actually work together","Check enough contrast between text and background colors so text stays readable; test your palette in both a bright, sunny context (a phone screen outdoors) and dim conditions; consider how your colors look in plain black-and-white printing (stamps, photocopies), since not everything will be printed in color."],
+    ["Locking in and applying consistently","Once chosen, write down the exact colors (by name or code) so you (or anyone helping you) use the exact same colors every time, not a slightly different shade from memory; apply them the same way across your logo, packaging, social profiles, and signage."]],
+   illus:"colors",colorSwatches:[["#3B6FE0","Primary"],["#9AA6B8","Neutral"],["#E0B23B","Accent"]],
+   ex:"List your current or planned primary color, one supporting neutral, and one accent color. Do all 3 work well together?",
+   quiz:[
+    {q:"How many total brand colors should you generally aim for?",opts:["As many as possible for variety","Around 3-4: one primary, a neutral, and an accent","Exactly one color and nothing else","It doesn't matter, more is always better"],ans:1,fb:"3-4 total colors is a good practical guideline."},
+    {q:"Why should you test your colors in both bright and dim conditions?",opts:["It doesn't matter, colors always look the same","A phone screen outdoors or dim lighting can change how readable/visible colors are","Only print colors need testing","Digital colors never change appearance"],ans:1,fb:"Lighting conditions can change color readability, so testing matters."},
+    {q:"Why check how your palette looks in black-and-white?",opts:["It never gets used in black-and-white","Some materials (stamps, photocopies) won't be printed in color","Color never matters if you have a logo","It's only relevant for printed books"],ans:1,fb:"Some materials really are printed in black-and-white, so this is worth checking."},
+    {q:"Why write down exact color codes/names instead of matching 'from memory'?",opts:["It doesn't matter, close enough is fine","It ensures the exact same colors are used every time, protecting consistency","Codes are only needed for websites","Memory is always more accurate"],ans:1,fb:"Writing down exact codes ensures full consistency, with no drift from memory."}],
+   close:{learned:"Choose a small, deliberate palette (primary + neutral + accent) based on the feeling you want, then apply it identically everywhere.",
+    mistake:"Using a slightly different shade each time because colors are chosen 'from memory' instead of locked-in exact codes.",
+    tip:"Save your exact color codes somewhere you'll actually reuse them (a note, a simple brand sheet) so anyone helping you stays consistent.",
+    assign:"Write down your exact primary, neutral, and accent colors (by name or hex code) and save them somewhere you'll reuse.",
+    dl:"Template: Simple Brand Color Sheet",
+    checklist:["3-4 colors total, not more?","Readable contrast checked?","Works in black-and-white?","Exact codes written down?"],
+    ai:"My brand's desired feeling is [feeling]. Suggest a simple 3-color palette (primary, neutral, accent) with hex codes that fits."}}},
+
+5:{ht:{lede:"Lèt ou itilize yo di yon bagay anvan menm pèsòn li mo yo — tipografi se chwazi font espre olye w itilize kèlkeswa sa ki te vin default.",
+   secs:[["Sa font yo kominike","Font serif (ak ti pye sou lèt yo) souvan santi tradisyonèl, etabli, ki fè konfyans; font san-serif (pwòp, san pye) santi modèn, senp, aksesib; font script/manyèl santi pèsonèl, kreyatif, oswa elegant men pi difisil pou li nan gwo blòk tèks; font gwo/fonse santi fò e konfyan, font lejè santi delika oswa premyòm."],
+    ["Règ pratik pou itilize font","Limite tèt ou a 1-2 font total (youn pou tit/logo, youn pou kò tèks) — twòp font sanble san planifye e san pwofesyonalis; toujou priyorize lizibilite sou style, espesyalman pou kò tèks moun bezwen aktyèlman li; asire font ou chwazi disponib/gen lisans pou fason w ap itilize l (yon sit web, materyèl enprime)."],
+    ["Matche tipografi ak pozisyone","Yon chwa font ta dwe apiye pozisyone ki soti pi bonè nan modil sa a: yon biznis premyòm, etabli souvan benefisye de yon serif rafine oswa yon san-serif pwòp; yon biznis jenès, plen antren ka itilize yon font pi gwo oswa pi kazyèl; font la ta dwe santi konsistan ak koulè ak logo ou, pa goumen kont yo."]],
+   illus:"roles",roleCards:[["🅰️","Serif","Tradisyonèl"],["🔡","San-Serif","Modèn"],["✍️","Script","Pèsonèl"],["🔠","Gwo/Fonse","Fò"]],
+   ex:"Ki font (yo) idantite mak ou itilize kounye a (si genyen), epi èske santiman li bay matche pozisyone ou?",
+   quiz:[
+    {q:"Ki santiman font san-serif (san ti pye sou lèt yo) komenman bay?",opts:["Tradisyonèl e dekore","Modèn, pwòp, e aksesib","Toujou timid","Enposib pou li"],ans:1,fb:"San-serif komenman santi modèn, pwòp."},
+    {q:"Konbyen font total yon mak ta dwe jeneralman itilize?",opts:["Otan posib pou varyete","1-2 total: youn pou tit, youn pou kò tèks","Egzakteman yon sèl gwosè font","Sa pa enpòtan ditou"],ans:1,fb:"1-2 font total se règ debaz la."},
+    {q:"Kisa ki toujou dwe priyorize pou kò tèks moun bezwen li?",opts:["Style dekoratif sou lizibilite","Lizibilite sou style dekoratif","Font ki pi ra a disponib la","Matche yon konkirans egzakteman"],ans:1,fb:"Lizibilite toujou priyorite pou kò tèks."},
+    {q:"Yon chwa font ta ideyalman dwe...",opts:["Pa gen okenn rapò ak pozisyone ou","Apiye e matche pozisyone ak santiman jeneral mak ou","Chanje o aza pou rete enteresan","Toujou yon style script/manyèl"],ans:1,fb:"Font la ta dwe apiye pozisyone ou."}],
+   close:{learned:"Font kominike yon santiman anvan menm pèsòn li mo yo — chwazi 1-2 font espre ki matche pozisyone ou e priyorize lizibilite.",
+    mistake:"Itilize twòp font diferan atravè materyèl yo, ki sanble san planifye e mine yon santiman mak pwofesyonèl, konsistan.",
+    tip:"Lè w gen dout, chwazi yon font pwòp, trè lizib pou kò tèks epi rezève nenpòt font dekoratif oswa gwo pou tit/logo sèlman.",
+    assign:"Chwazi oswa konfime 1-2 font pou mak ou (tit + kò tèks) epi verifye yo matche santiman ki soti nan pozisyone ou.",
+    dl:"Referans: Modèl Gid Style Tipografi",
+    checklist:["1-2 font total?","Kò tèks priyorize lizibilite?","Santiman font matche pozisyone?","Gen lisans pou vrè itilizasyon ou?"],
+    ai:"Pozisyone mak mwen se [dekri l] e santiman vle se [santiman]. Sijere yon konbinezon font tit ak font kò tèks ki matche."}},
+ fr:{lede:"Les lettres que vous utilisez disent quelque chose avant même qu'on lise les mots — la typographie, c'est choisir des polices exprès plutôt que d'utiliser ce qui était par défaut.",
+   secs:[["Ce que les polices communiquent","Les polices serif (avec de petits pieds sur les lettres) se ressentent souvent traditionnelles, établies, dignes de confiance ; les polices sans-serif (propres, sans pieds) se ressentent modernes, simples, accessibles ; les polices script/manuscrites se ressentent personnelles, créatives, ou élégantes mais plus difficiles à lire en grands blocs de texte ; les polices grasses/lourdes se ressentent fortes et confiantes, les polices légères délicates ou premium."],
+    ["Règles pratiques pour utiliser les polices","Limitez-vous à 1-2 polices au total (une pour les titres/logo, une pour le corps de texte) — trop de polices semble non planifié et non professionnel ; priorisez toujours la lisibilité sur le style, surtout pour le corps de texte que les gens doivent réellement lire ; assurez-vous que vos polices choisies sont disponibles/sous licence pour votre usage (un site web, des supports imprimés)."],
+    ["Assortir la typographie à votre positionnement","Un choix de police devrait soutenir le positionnement défini plus tôt dans ce module : une entreprise premium, établie bénéficie souvent d'un serif raffiné ou d'un sans-serif propre ; une entreprise ludique, axée jeunesse pourrait utiliser une police plus grasse ou plus décontractée ; la police devrait se ressentir cohérente avec les couleurs et le logo, pas les combattre."]],
+   illus:"roles",roleCards:[["🅰️","Serif","Traditionnel"],["🔡","Sans-Serif","Moderne"],["✍️","Script","Personnel"],["🔠","Gras/Lourd","Fort"]],
+   ex:"Quelle(s) police(s) utilise votre image de marque actuelle (le cas échéant), et le sentiment qu'elle donne correspond-il à votre positionnement ?",
+   quiz:[
+    {q:"Quel sentiment donnent couramment les polices sans-serif (sans petits pieds sur les lettres) ?",opts:["Traditionnel et orné","Moderne, propre, et accessible","Toujours enfantin","Impossible à lire"],ans:1,fb:"Le sans-serif se ressent couramment moderne, propre."},
+    {q:"Combien de polices au total une marque devrait-elle généralement utiliser ?",opts:["Autant que possible pour la variété","1-2 au total : une pour les titres, une pour le corps de texte","Exactement une seule taille de police","Ça n'a aucune importance"],ans:1,fb:"1-2 polices au total est la règle de base."},
+    {q:"Qu'est-ce qui devrait toujours être priorisé pour le corps de texte que les gens doivent lire ?",opts:["Le style décoratif sur la lisibilité","La lisibilité sur le style décoratif","La police la plus inhabituelle disponible","Correspondre exactement à un concurrent"],ans:1,fb:"La lisibilité est toujours la priorité pour le corps de texte."},
+    {q:"Un choix de police devrait idéalement :",opts:["N'avoir aucun rapport avec votre positionnement","Soutenir et correspondre à votre positionnement et sentiment de marque général","Changer au hasard pour rester intéressant","Toujours être un style script/manuscrit"],ans:1,fb:"La police devrait soutenir votre positionnement."}],
+   close:{learned:"Les polices communiquent un sentiment avant même qu'on lise les mots — choisissez 1-2 polices exprès qui correspondent à votre positionnement et priorisez la lisibilité.",
+    mistake:"Utiliser trop de polices différentes sur les supports, ce qui semble non planifié et mine un sentiment de marque professionnel et cohérent.",
+    tip:"En cas de doute, choisissez une police propre et très lisible pour le corps de texte et réservez toute police décorative ou grasse aux titres/logo seulement.",
+    assign:"Choisissez ou confirmez 1-2 polices pour votre marque (titre + corps de texte) et vérifiez qu'elles correspondent au sentiment de votre positionnement.",
+    dl:"Référence : Modèle de Guide de Style Typographique",
+    checklist:["1-2 polices au total ?","Le corps de texte priorise-t-il la lisibilité ?","Le sentiment de la police correspond-il au positionnement ?","Sous licence pour votre usage réel ?"],
+    ai:"Le positionnement de ma marque est [décrire] et le sentiment voulu est [sentiment]. Suggère un appariement de police de titre et de police de corps de texte qui correspond."}},
+ en:{lede:"The letters you use say something before anyone reads the words — typography is choosing fonts on purpose instead of using whatever came default.",
+   secs:[["What fonts communicate","Serif fonts (with small feet on letters) often feel traditional, established, trustworthy; sans-serif fonts (clean, no feet) feel modern, simple, approachable; script/handwritten fonts feel personal, creative, or elegant but are harder to read in large blocks of text; heavy/bold fonts feel strong and confident, light fonts feel delicate or premium."],
+    ["Practical rules for using fonts","Limit yourself to 1-2 fonts total (one for headings/logo, one for body text) — too many fonts looks unplanned and unprofessional; always prioritize legibility over style, especially for body text people need to actually read; make sure your chosen fonts are available/licensed for how you'll use them (a website, printed materials)."],
+    ["Matching typography to positioning","A font choice should support the positioning from earlier in this module: a premium, established business often benefits from a refined serif or clean sans-serif; a playful, youth-focused business might use a bolder or more casual typeface; the font should feel consistent with the colors and logo, not fight against them."]],
+   illus:"roles",roleCards:[["🅰️","Serif","Traditional"],["🔡","Sans-Serif","Modern"],["✍️","Script","Personal"],["🔠","Heavy/Bold","Strong"]],
+   ex:"What font(s) does your current branding use (if any), and does the feeling it gives match your positioning?",
+   quiz:[
+    {q:"What feeling do sans-serif fonts (no small feet on letters) commonly give?",opts:["Traditional and ornate","Modern, clean, and approachable","Always childish","Impossible to read"],ans:1,fb:"Sans-serif commonly feels modern, clean."},
+    {q:"How many total fonts should a brand generally use?",opts:["As many as possible for variety","1-2 total: one for headings, one for body text","Exactly one font size only","It doesn't matter at all"],ans:1,fb:"1-2 total fonts is the basic rule."},
+    {q:"What should always be prioritized for body text people need to read?",opts:["Decorative style over legibility","Legibility over decorative style","The most unusual font available","Matching a competitor exactly"],ans:1,fb:"Legibility is always the priority for body text."},
+    {q:"A font choice should ideally:",opts:["Have no relationship to your positioning","Support and match your positioning and overall brand feeling","Change randomly to stay interesting","Always be a script/handwritten style"],ans:1,fb:"The font should support your positioning."}],
+   close:{learned:"Fonts communicate a feeling before anyone reads the words — choose 1-2 fonts on purpose that match your positioning and prioritize legibility.",
+    mistake:"Using too many different fonts across materials, which looks unplanned and undermines a professional, consistent brand feeling.",
+    tip:"When in doubt, pick a clean, highly legible font for body text and reserve any decorative or bold font for headlines/logo only.",
+    assign:"Pick or confirm 1-2 fonts for your brand (heading + body) and check that they match the feeling from your positioning.",
+    dl:"Reference: Typography Style Guide Template",
+    checklist:["1-2 fonts total?","Body text prioritizes legibility?","Font feeling matches positioning?","Licensed for your actual use?"],
+    ai:"My brand's positioning is [describe] and desired feeling is [feeling]. Suggest a heading font and body font pairing that matches."}}},
+
+6:{ht:{lede:"Vwa mak se jan ou sonnen an ekri — vrè mo, ton, ak style ou itilize chak fwa, kenbe konsistan kit se yon lejand, yon imèl, oswa yon repons kliyan.",
+   secs:[["Sa vwa aktyèlman kouvri","Chwa mo (fòmèl kont kazyèl, senp kont teknik), rit fraz (kout e enpakan kont pi long e detaye), imè (prezan oswa non, ak ki kalite), kijan ou adrese kliyan an (fòmèl kont kazyèl, premye non kont tit)."],
+    ["Chwazi yon vwa ki matche","Vwa ou ta dwe matche pozisyone ak odyans ou: yon mak pwodwi timoun sonnen diferan de yon mak sèvis finansye ki vize pwofesyonèl, menm si toude 'zanmitay'. Ekri 3-4 mo ki dekri jan ou vle sonnen (egzanp: 'cho, dirèk, san chichi') epi itilize yo kòm yon vrè filtè pou chak moso ekri."],
+    ["Rete konsistan atravè kanal yo","Menm mak la ta dwe sonnen rekonesab tankou tèt li kit se yon lejand Facebook, yon repons sèvis kliyan, oswa yon deskripsyon pwodwi — menm si fòma a chanje (pi kout pou sosyal, pi long pou yon sit web), karakteristik vwa debaz yo rete menm."]],
+   illus:"roles",roleCards:[["☀️","Cho","Zanmitay, akeyan"],["➡️","Dirèk","San detou"],["🧩","Senp","Fasil konprann"],["🙌","San Chichi","Onèt, plen tè"]],
+   ex:"Ekri 3-4 mo ki dekri jan ou vle biznis ou sonnen an ekri.",
+   quiz:[
+    {q:"Kisa 'vwa mak' vle di?",opts:["Sèlman style vizyèl logo a","Vrè mo, ton, ak style itilize an ekri, kenbe konsistan","Yon vrè vwa anrejistre literalman","Yon bagay ki enpòtan sèlman pou kontni videyo"],ans:1,fb:"Vwa mak se konsistans mo/ton/style an ekri."},
+    {q:"Poukisa vwa ta dwe matche pozisyone ak odyans?",opts:["Li pa dwe, vwa toujou menm pou tout moun","Yon mak timoun ak yon mak finansye pwofesyonèl bezwen diferan vwa menm si toude 'zanmitay'","Sèlman gwo konpayi bezwen panse ak sa","Vwa pa gen okenn efè sou jan yon mak pèsi"],ans:1,fb:"Diferan odyans bezwen diferan vwa, menm si toude gen bon entansyon."},
+    {q:"Ki yon bon fason pou defini vwa mak ou?",opts:["Kite l endefini e enprovize chak fwa","Ekri 3-4 mo espesifik ki dekri jan ou vle sonnen epi itilize yo kòm yon filtè","Kopye egzat mo yon konkirans","Chanje vwa ou nèt pou chak platfòm"],ans:1,fb:"3-4 mo espesifik ki defini bay yon filtè klè pou chak ekri."},
+    {q:"Kisa ki ta dwe rete konsistan menm lè fòma chanje (yon lejand kout kont yon deskripsyon pwodwi pi long)?",opts:["Anyen pa bezwen rete menm","Karakteristik vwa debaz ak ton yo","Menm longè fraz egzat toupatou","Font itilize a"],ans:1,fb:"Karakteristik vwa debaz yo rete menm menm si fòma chanje."}],
+   close:{learned:"Vwa mak se ton ak chwa mo konsistan ou itilize toupatou — li ta dwe matche pozisyone ak odyans ou, pa jenerik.",
+    mistake:"Sonnen tankou yon mak totalman diferan selon platfòm (trè fòmèl sou sit web, trè diferan nan lejand kazyèl sosyal) san okenn fil konsistan.",
+    tip:"Ekri 3-4 mo vwa ou yon kote vizib epi verifye nouvo kontni kont yo anvan w pibliye.",
+    assign:"Ekri 3-4 mo vwa mak ou epi reekri yon moso kontni ki deja egziste pou matche yo pi byen.",
+    dl:"Fèy Travay: Definisyon Vwa Mak",
+    checklist:["3-4 mo vwa defini?","Matche pozisyone/odyans?","Konsistans atravè platfòm verifye?"],
+    ai:"Biznis mwen se [dekri l] e pozisyone mwen se [dekri l]. Sijere 3-4 mo vwa mak ak yon egzanp fraz nan vwa sa a."}},
+ fr:{lede:"La voix de marque, c'est comment vous sonnez à l'écrit — les vrais mots, le ton, et le style que vous utilisez à chaque fois, gardés cohérents que ce soit une légende, un email, ou une réponse client.",
+   secs:[["Ce que la voix couvre réellement","Le choix des mots (formel vs. décontracté, simple vs. technique), le rythme des phrases (court et percutant vs. plus long et détaillé), l'humour (présent ou non, et quel type), comment vous vous adressez au client (« vous » formel vs. décontracté, prénoms vs. titres)."],
+    ["Choisir une voix qui convient","Votre voix devrait correspondre à votre positionnement et public : une marque de produits pour enfants sonne différemment d'une marque de services financiers visant des professionnels, même si les deux sont « chaleureuses ». Écrivez 3-4 mots décrivant comment vous voulez sonner (ex : « chaleureux, direct, sans détour ») et utilisez-les comme un vrai filtre pour chaque texte."],
+    ["Rester cohérent à travers les canaux","La même marque devrait sonner reconnaissablement comme elle-même que ce soit une légende Facebook, une réponse de service client, ou une description de produit — même si le format change (plus court pour le social, plus long pour un site web), les traits de voix sous-jacents restent les mêmes."]],
+   illus:"roles",roleCards:[["☀️","Chaleureux","Amical, accueillant"],["➡️","Direct","Sans détour"],["🧩","Simple","Facile à comprendre"],["🙌","Sans Détour","Honnête, terre-à-terre"]],
+   ex:"Écrivez 3-4 mots décrivant comment vous voulez que votre entreprise sonne à l'écrit.",
+   quiz:[
+    {q:"Que signifie « voix de marque » ?",opts:["Seulement le style visuel du logo","Les vrais mots, ton, et style utilisés à l'écrit, gardés cohérents","Une vraie voix enregistrée littéralement","Quelque chose qui compte seulement pour le contenu vidéo"],ans:1,fb:"La voix de marque est la cohérence des mots/ton/style à l'écrit."},
+    {q:"Pourquoi la voix devrait-elle correspondre au positionnement et au public ?",opts:["Elle ne devrait pas, la voix est toujours la même pour tous","Une marque pour enfants et une marque financière professionnelle ont besoin de voix différentes même si les deux sont « chaleureuses »","Seules les grandes entreprises doivent y penser","La voix n'a aucun effet sur la perception d'une marque"],ans:1,fb:"Des publics différents ont besoin de voix différentes, même avec de bonnes intentions."},
+    {q:"Quelle est une bonne façon de définir votre voix de marque ?",opts:["La laisser indéfinie et improviser à chaque fois","Écrire 3-4 mots spécifiques décrivant comment vous voulez sonner et les utiliser comme filtre","Copier exactement les mots d'un concurrent","Changer complètement de voix pour chaque plateforme"],ans:1,fb:"3-4 mots spécifiques définis donnent un filtre clair pour chaque texte."},
+    {q:"Qu'est-ce qui devrait rester cohérent même quand le format change (une courte légende vs. une description de produit plus longue) ?",opts:["Rien n'a besoin de rester pareil","Les traits de voix sous-jacents et le ton","Exactement la même longueur de phrase partout","La police utilisée"],ans:1,fb:"Les traits de voix sous-jacents restent les mêmes même si le format change."}],
+   close:{learned:"La voix de marque est le ton et choix de mots cohérents que vous utilisez partout — elle devrait correspondre à votre positionnement et public, pas être générique.",
+    mistake:"Sonner comme une marque complètement différente selon la plateforme (très formel sur le site web, très différent dans les légendes sociales décontractées) sans aucun fil cohérent.",
+    tip:"Écrivez vos 3-4 mots de voix quelque part de visible et vérifiez le nouveau contenu par rapport à eux avant de publier.",
+    assign:"Écrivez les 3-4 mots de voix de votre marque et réécrivez un contenu existant pour mieux les correspondre.",
+    dl:"Fiche de travail : Définition de la Voix de Marque",
+    checklist:["3-4 mots de voix définis ?","Correspond au positionnement/public ?","Cohérence à travers les plateformes vérifiée ?"],
+    ai:"Mon entreprise est [décrire] et mon positionnement est [décrire]. Suggère 3-4 mots de voix de marque et un exemple de phrase dans cette voix."}},
+ en:{lede:"Brand voice is how you sound in writing — the actual words, tone, and style you use every time you communicate, kept consistent whether it's a caption, an email, or a customer reply.",
+   secs:[["What voice actually covers","Word choice (formal vs. casual, simple vs. technical), sentence rhythm (short and punchy vs. longer and detailed), humor (present or not, and what kind), how you address the customer (formal 'you' vs. casual, first names vs. titles)."],
+    ["Choosing a voice that fits","Your voice should match your positioning and audience: a children's product brand sounds different from a financial services brand aimed at professionals, even if both are 'friendly.' Write 3-4 words describing how you want to sound (e.g., 'warm, direct, no-nonsense') and use them as a real filter for every piece of writing."],
+    ["Staying consistent across channels","The same brand should sound recognizably like itself whether it's a Facebook caption, a customer service reply, or a product description — even if the format changes (shorter for social, longer for a website), the underlying voice traits stay the same."]],
+   illus:"roles",roleCards:[["☀️","Warm","Friendly, welcoming"],["➡️","Direct","No detour"],["🧩","Simple","Easy to understand"],["🙌","No-Nonsense","Honest, down-to-earth"]],
+   ex:"Write 3-4 words that describe how you want your business to sound in writing.",
+   quiz:[
+    {q:"What does 'brand voice' refer to?",opts:["Only the logo's visual style","The actual words, tone, and style used in writing, kept consistent","A literal recorded voiceover","Something that only matters for video content"],ans:1,fb:"Brand voice is consistency of words/tone/style in writing."},
+    {q:"Why should voice match positioning and audience?",opts:["It shouldn't, voice is always the same for everyone","A children's brand and a professional financial brand need different voices even if both are 'friendly'","Only large companies need to think about this","Voice has no effect on how a brand is perceived"],ans:1,fb:"Different audiences need different voices, even with good intentions."},
+    {q:"What's a good way to define your brand voice?",opts:["Leave it undefined and improvise every time","Write 3-4 specific words describing how you want to sound and use them as a filter","Copy a competitor's exact wording","Change your voice completely for each platform"],ans:1,fb:"3-4 specific defined words give a clear filter for every piece of writing."},
+    {q:"What should stay consistent even as format changes (a short social caption vs. a longer product description)?",opts:["Nothing needs to stay the same","The underlying voice traits and tone","The exact same sentence length everywhere","The font used"],ans:1,fb:"The underlying voice traits stay the same even as format changes."}],
+   close:{learned:"Brand voice is the consistent tone and word choice you use everywhere — it should match your positioning and audience, not be generic.",
+    mistake:"Sounding like a completely different brand depending on the platform (very formal on the website, very different in casual social captions) with no consistent thread.",
+    tip:"Write your 3-4 voice words somewhere visible and check new content against them before publishing.",
+    assign:"Write your brand's 3-4 voice words and rewrite one existing piece of content to better match them.",
+    dl:"Worksheet: Brand Voice Definition",
+    checklist:["3-4 voice words defined?","Matches positioning/audience?","Consistent across platforms checked?"],
+    ai:"My business is [describe] and my positioning is [describe]. Suggest 3-4 brand voice words and one example sentence in that voice."}}},
+
+7:{ht:{lede:"Moun relasyone ak mak menm jan yo relasyone ak moun — bay mak ou yon pèsonalite klè fè li pi fasil pou kliyan santi yon bagay pou ou, pa jis rekonèt ou.",
+   secs:[["Sa pèsonalite mak vle di","Yon seri karakteristik tankou moun kliyan asosye ak yon mak (plen antren, sèrye, rebèl, atansyone, sofistike, avanti); sa fòme vwa, vizyèl, e menm ki kalite kontni/blag/imaj ki 'sou-mak' kont ki pa."],
+    ["Achtip pèsonalite komen","Sensè/senp (fè konfyans, pye atè), Awdasye/eksitan (enèjik, kouraje), Konpetan/ekspè (fyab, entèlijan), Sofistike/premyòm (elegant, aspiratè), Di/di (dirab, deyò). Pifò vrè mak panche sou 1-2 nan sa yo olye eseye vin tout bagay."],
+    ["Aplike pèsonalite konsistan","Pèsonalite ta dwe parèt nan ti chwa repete: imaj ou chwazi, blag (oswa mank de li) ou fè, kijan ou jere plent piblikman; yon mak ki di li 'plen antren' men ki reponn chak plent ak yon lang fwad, fòmèl kreye yon siyal melanje ki konfizan e ki pa fè konfyans."]],
+   illus:"roles",roleCards:[["💛","Sensè","Fè konfyans, atè"],["🔥","Awdasye","Enèjik, kouraje"],["🎓","Konpetan","Fyab, entèlijan"],["💎","Sofistike","Elegant"],["🥾","Di","Dirab, deyò"]],
+   ex:"Chwazi 1-2 karakteristik pèsonalite ki reyèlman matche biznis ou, ak youn ki PA t ap matche.",
+   quiz:[
+    {q:"Kisa pèsonalite mak ye?",opts:["Yon melanj o aza karakteristik san rapò","Yon seri karakteristik tankou moun kliyan asosye ak yon mak, ki fòme vwa ak vizyèl","Pètinan sèlman pou mak pèsonèl, pa biznis","Yon egzijans legal fiks"],ans:1,fb:"Se yon seri karakteristik tankou moun ki fòme vwa ak vizyèl."},
+    {q:"Pifò vrè mak gen tandans...",opts:["Eseye enkane chak karakteristik pèsonalite egalman","Panche sou 1-2 karakteristik pèsonalite konsistan","Evite gen okenn pèsonalite ditou","Chanje pèsonalite nèt chak mwa"],ans:1,fb:"Pifò mak reyèl panche sou 1-2 karakteristik konsistan."},
+    {q:"Kisa ki rive lè yon mak 'plen antren' reponn plent ak yon lang fwad, fòmèl?",opts:["Anyen, kliyan pa remake enkonsistans","Li kreye yon siyal melanje ki konfizan e ki pa fè konfyans","Li toujou amelyore konfyans","Pèsonalite pa aplike a jesyon plent"],ans:1,fb:"Sa kreye yon siyal melanje ki konfizan."},
+    {q:"Kote pèsonalite parèt?",opts:["Sèlman nan konsepsyon logo a","Nan ti chwa repete tankou imaj, blag, ak jesyon plent","Sèlman nan yon sèl deklarasyon misyon","Li pa gen okenn aplikasyon pratik, vizib"],ans:1,fb:"Pèsonalite parèt nan ti chwa repete chak jou."}],
+   close:{learned:"Pèsonalite mak se yon seri karakteristik konsistan, tankou moun ki fòme vwa ak vizyèl — pifò mak panche sou 1-2 karakteristik olye tout.",
+    mistake:"Deklare yon karakteristik pèsonalite (tankou 'plen antren') nan yon slogan men aji totalman diferan nan vrè entèraksyon, ki kreye yon siyal melanje konfizan.",
+    tip:"Teste pèsonalite ou kont yon vrè moman malèz (yon plent kliyan) — èske vrè repons ou matche pèsonalite ou deklare a?",
+    assign:"Chwazi 1-2 vrè karakteristik pèsonalite pou mak ou epi ekri yon fason konkrè chak parèt nan kominikasyon chak jou.",
+    dl:"Referans: Gid Achtip Pèsonalite Mak",
+    checklist:["1-2 karakteristik chwazi delibereman?","Karakteristik parèt nan vrè chwa kominikasyon?","Konsistan menm nan moman difisil (plent)?"],
+    ai:"Biznis mwen se [dekri l]. Sijere 2 karakteristik pèsonalite mak ki reyèlman ta matche, ak yon egzanp kijan chak ka parèt nan yon entèraksyon kliyan."}},
+ fr:{lede:"Les gens se rapportent aux marques de la même façon qu'ils se rapportent aux gens — donner à votre marque une personnalité claire facilite pour les clients de ressentir quelque chose pour vous, pas seulement de vous reconnaître.",
+   secs:[["Ce que signifie la personnalité de marque","Un ensemble de traits humains que les clients associent à une marque (ludique, sérieux, rebelle, bienveillant, sophistiqué, aventureux) ; ça façonne la voix, les visuels, et même quel genre de contenu/blagues/imagerie se ressent « sur marque » ou non."],
+    ["Archétypes de personnalité courants","Sincère/authentique (digne de confiance, terre-à-terre), Audacieux/excitant (énergique, osé), Compétent/expert (fiable, intelligent), Sophistiqué/premium (élégant, aspirationnel), Robuste/dur (durable, extérieur). La plupart des vraies marques penchent vers 1-2 d'entre eux plutôt que d'essayer d'être tout à la fois."],
+    ["Appliquer la personnalité de façon cohérente","La personnalité devrait apparaître dans des choix petits et répétés : les images que vous choisissez, les blagues (ou leur absence) que vous faites, comment vous gérez les plaintes publiquement ; une marque qui prétend être « ludique » mais répond à chaque plainte avec un langage froid et formel crée un signal mixte confus et peu fiable."]],
+   illus:"roles",roleCards:[["💛","Sincère","Digne de confiance"],["🔥","Audacieux","Énergique, osé"],["🎓","Compétent","Fiable, intelligent"],["💎","Sophistiqué","Élégant"],["🥾","Robuste","Durable, extérieur"]],
+   ex:"Choisissez 1-2 traits de personnalité qui correspondent réellement à votre entreprise, et un qui ne correspondrait PAS.",
+   quiz:[
+    {q:"Qu'est-ce que la personnalité de marque ?",opts:["Un assortiment aléatoire de traits sans rapport","Un ensemble de traits humains que les clients associent à une marque, façonnant la voix et les visuels","Pertinent seulement pour les marques personnelles, pas les entreprises","Une exigence légale fixe"],ans:1,fb:"C'est un ensemble de traits humains qui façonnent la voix et les visuels."},
+    {q:"La plupart des vraies marques ont tendance à :",opts:["Essayer d'incarner chaque trait de personnalité également","Pencher vers 1-2 traits de personnalité de façon cohérente","Éviter d'avoir une quelconque personnalité","Changer complètement de personnalité chaque mois"],ans:1,fb:"La plupart des vraies marques penchent vers 1-2 traits cohérents."},
+    {q:"Que se passe-t-il quand une marque « ludique » répond aux plaintes avec un langage froid et formel ?",opts:["Rien, les clients ne remarquent pas l'incohérence","Ça crée un signal mixte confus et peu fiable","Ça améliore toujours la confiance","La personnalité ne s'applique pas à la gestion des plaintes"],ans:1,fb:"Ça crée un signal mixte confus."},
+    {q:"Où la personnalité apparaît-elle ?",opts:["Seulement dans le design du logo","Dans des choix petits et répétés comme l'imagerie, les blagues, et la gestion des plaintes","Seulement dans un énoncé de mission unique","Elle n'a aucune application pratique et visible"],ans:1,fb:"La personnalité apparaît dans des choix petits et répétés au quotidien."}],
+   close:{learned:"La personnalité de marque est un ensemble de traits humains cohérents qui façonnent la voix et les visuels — la plupart des marques penchent vers 1-2 traits plutôt que tous.",
+    mistake:"Revendiquer un trait de personnalité (comme « ludique ») dans un slogan mais se comporter de façon complètement différente dans les vraies interactions, créant un signal mixte confus.",
+    tip:"Testez votre personnalité contre un vrai moment délicat (une plainte client) — votre vraie réponse correspond-elle à la personnalité que vous revendiquez ?",
+    assign:"Choisissez 1-2 vrais traits de personnalité pour votre marque et écrivez une façon concrète dont chacun apparaît dans la communication quotidienne.",
+    dl:"Référence : Guide des Archétypes de Personnalité de Marque",
+    checklist:["1-2 traits choisis délibérément ?","Les traits apparaissent-ils dans de vrais choix de communication ?","Cohérent même dans les moments difficiles (plaintes) ?"],
+    ai:"Mon entreprise est [décrire]. Suggère 2 traits de personnalité de marque qui correspondraient réellement, et un exemple de comment chacun pourrait apparaître dans une interaction client."}},
+ en:{lede:"People relate to brands the same way they relate to people — giving your brand a clear personality makes it easier for customers to feel something about you, not just recognize you.",
+   secs:[["What brand personality means","A set of human-like traits customers associate with a brand (playful, serious, rebellious, nurturing, sophisticated, adventurous); this shapes voice, visuals, and even what kind of content/jokes/imagery feel 'on-brand' versus off."],
+    ["Common personality archetypes","Sincere/wholesome (trustworthy, down-to-earth), bold/exciting (energetic, daring), competent/expert (reliable, intelligent), sophisticated/premium (elegant, aspirational), rugged/tough (durable, outdoorsy). Most real brands lean into 1-2 of these rather than trying to be all of them."],
+    ["Applying personality consistently","Personality should show up in small, repeated choices: the images you choose, the jokes (or lack of them) you make, how you handle complaints publicly; a brand that claims to be 'playful' but responds to every complaint with cold, formal language creates a confusing, untrustworthy mixed signal."]],
+   illus:"roles",roleCards:[["💛","Sincere","Trustworthy, grounded"],["🔥","Bold","Energetic, daring"],["🎓","Competent","Reliable, smart"],["💎","Sophisticated","Elegant"],["🥾","Rugged","Durable, outdoorsy"]],
+   ex:"Pick 1-2 personality traits that genuinely fit your business, and one that would NOT fit.",
+   quiz:[
+    {q:"What is brand personality?",opts:["A random assortment of unrelated traits","A set of human-like traits customers associate with a brand, shaping voice and visuals","Only relevant for personal brands, not businesses","A fixed legal requirement"],ans:1,fb:"It's a set of human-like traits that shape voice and visuals."},
+    {q:"Most real brands tend to:",opts:["Try to embody every personality trait equally","Lean into 1-2 personality traits consistently","Avoid having any personality at all","Change personality completely every month"],ans:1,fb:"Most real brands lean into 1-2 consistent traits."},
+    {q:"What happens when a 'playful' brand responds to complaints with cold, formal language?",opts:["Nothing, customers don't notice inconsistency","It creates a confusing, untrustworthy mixed signal","It always improves trust","Personality doesn't apply to complaint handling"],ans:1,fb:"It creates a confusing mixed signal."},
+    {q:"Where does personality show up?",opts:["Only in the logo design","In small, repeated choices like imagery, jokes, and complaint handling","Only in a single mission statement","It has no practical, visible application"],ans:1,fb:"Personality shows up in small, repeated choices day to day."}],
+   close:{learned:"Brand personality is a set of consistent, human-like traits that shape voice and visuals — most brands lean into 1-2 traits rather than all of them.",
+    mistake:"Claiming a personality trait (like 'playful') in a slogan but behaving completely differently in real interactions, creating a confusing mixed signal.",
+    tip:"Test your personality against a real, awkward moment (a customer complaint) — does your actual response match the personality you claim?",
+    assign:"Pick 1-2 real personality traits for your brand and write down one concrete way each shows up in daily communication.",
+    dl:"Reference: Brand Personality Archetypes Guide",
+    checklist:["1-2 traits chosen deliberately?","Traits show up in real communication choices?","Consistent even in difficult moments (complaints)?"],
+    ai:"My business is [describe]. Suggest 2 brand personality traits that would genuinely fit, and one example of how each could show up in a customer interaction."}}},
+
+8:{ht:{lede:"Ni non, logo, koulè, tipografi, vwa, ni pèsonalite pa konte anpil pou kont yo — konsistans se sa ki tounen chwa separe an yon mak moun aktyèlman rekonèt.",
+   secs:[["Poukisa konsistans konte plis pase nenpòt sèl chwa","Rekonesans bati atravè repetisyon: wè menm koulè, ton, ak style repete se sa ki fè yon mak menmorab, plis pase nenpòt sèl eleman ki entelijan; enkonsistans (yon aparans diferan sou Instagram pase sou sit web ou) fè yon biznis parèt san pwofesyonalis oswa menm fè kliyan pa sèten se menm biznis la."],
+    ["Kote konsistans komenman kase","Diferan vèsyon logo/koulè itilize atravè platfòm, yon vwa fòmèl sou sit web men trè kazyèl sou rezo sosyal san okenn rezon klè, anbalaj oswa ansèy ki pa janm mete ajou pou matche yon aparans mak pi nouvo, diferan manm fanmi/anplwaye ki reprezante mak la diferan san okenn gid pataje."],
+    ["Kenbe konsistans an pratik","Kreye yon sèl referans senp (menm yon sèl paj) ki lis egzat koulè, font, fichye logo, ak mo vwa ou; verifye nouvo materyèl kont li anvan pibliye; mete ajou tout bagay an menm tan lè yon bagay chanje, olye kite ansyen ak nouvo vèsyon egziste ansanm endefiniman."]],
+   illus:"myths",mythCards:[["Logo diferan sou chak platfòm","Menm logo, menm koulè toupatou"],["Vwa fòmèl sou sit web, kazyèl sou rezo sosyal san rezon","Menm vwa, menm ton toupatou"],["Materyèl ansyen ki pa janm mete ajou","Tout materyèl mete ajou an menm tan"]],mythTag:"ENKONSISTAN",realTag:"KONSISTAN",
+   ex:"Gade atravè sit web ou, rezo sosyal, ak nenpòt materyèl enprime. Site yon kote yon bagay enkonsistan (yon koulè, yon vèsyon logo, yon ton).",
+   quiz:[
+    {q:"Poukisa konsistans konte plis pase nenpòt sèl eleman mak ki entelijan?",opts:["Li pa konte, entelijan toujou genyen","Rekonesans bati atravè repetisyon — wè menm bagay yo repete se sa ki fè yon mak menmorab","Konsistans pa gen okenn efè sou konfyans kliyan","Sèlman gwo konpayi bezwen konsistans"],ans:1,fb:"Rekonesans bati atravè repetisyon, pa yon sèl eleman entelijan."},
+    {q:"Kilès ki yon fason komen konsistans kase?",opts:["Itilize menm logo toupatou","Yon vwa fòmèl sou sit web men trè kazyèl diferan sou rezo sosyal san okenn rezon klè","Mete ajou tout materyèl an menm tan","Ekri egzat koulè mak yo"],ans:1,fb:"Yon vwa ki chanje san rezon klè se yon fason komen konsistans kase."},
+    {q:"Kisa enkonsistans atravè platfòm ka fè kliyan santi?",opts:["Plis konfyans nan mak la","Pa sèten si se menm biznis la","Anyen, kliyan pa remake","Plis chans pou achte imedyatman"],ans:1,fb:"Enkonsistans ka fè kliyan pa sèten si se menm biznis la."},
+    {q:"Ki yon fason pratik pou kenbe yon mak konsistan?",opts:["Konte sou memwa sèlman, san referans ekri","Kreye yon sèl referans senp (koulè, font, logo, vwa) epi verifye nouvo materyèl kont li","Kite ansyen ak nouvo vèsyon materyèl egziste ansanm endefiniman","Chanje yon bagay nouvo chak semèn pou rete fre"],ans:1,fb:"Yon fèy referans senp ede kenbe konsistans, olye konte sou memwa."}],
+   close:{learned:"Konsistans atravè tout bagay (non, logo, koulè, tipografi, vwa, pèsonalite) se sa ki tounen chwa separe an yon mak rekonesab.",
+    mistake:"Kite diferan platfòm oswa materyèl derape apa (diferan vèsyon logo, vwa enkonsistan) san okenn sèl referans pou verifye kont li.",
+    tip:"Bati yon sèl fèy referans mak senp kounye a, menm jis yon paj — li peye tèt li premye fwa yon lòt moun ede w kreye kontni.",
+    assign:"Fè yon ti verifikasyon konsistans atravè sit web ou, pwofil rezo sosyal, ak nenpòt materyèl enprime, epi repare pi gwo diferans ou jwenn.",
+    dl:"Modèl: Fèy Referans Mak Yon Paj",
+    checklist:["Menm logo/koulè toupatou?","Menm vwa/ton toupatou?","Yon sèl referans ekri pou verifye kont li?","Ansyen materyèl mete ajou pou matche?"],
+    ai:"Men konfigirasyon mak mwen kounye a: [dekri koulè, logo, vwa]. Ede m bati yon senp fèy referans mak yon paj apati de sa a."}},
+ fr:{lede:"Ni le nom, le logo, la couleur, la typographie, la voix, ni la personnalité ne comptent beaucoup seuls — la cohérence est ce qui transforme des choix séparés en une marque que les gens reconnaissent réellement.",
+   secs:[["Pourquoi la cohérence compte plus que n'importe quel choix unique","La reconnaissance se bâtit par la répétition : voir les mêmes couleurs, ton, et style de façon répétée est ce qui rend une marque mémorable, plus que n'importe quel élément unique étant intelligent ; l'incohérence (une apparence différente sur Instagram que sur votre site web) fait paraître une entreprise non professionnelle ou rend même les clients incertains que c'est la même entreprise."],
+    ["Où la cohérence se brise couramment","Différentes versions de logo/couleurs utilisées selon les plateformes, une voix formelle sur le site web mais très décontractée sur les réseaux sociaux sans raison claire, un emballage ou une enseigne jamais mis à jour pour correspondre à une apparence de marque plus récente, différents membres de la famille/employés représentant la marque différemment sans guide partagé."],
+    ["Garder la cohérence en pratique","Créez une seule référence simple (même une seule page) listant vos couleurs exactes, polices, fichiers logo, et mots de voix ; vérifiez les nouveaux supports par rapport à elle avant de publier ; mettez à jour tout en même temps quand quelque chose change, plutôt que de laisser coexister indéfiniment d'anciennes et nouvelles versions."]],
+   illus:"myths",mythCards:[["Logo différent sur chaque plateforme","Même logo, mêmes couleurs partout"],["Voix formelle sur le site web, décontractée sur le social sans raison","Même voix, même ton partout"],["D'anciens supports jamais mis à jour","Tous les supports mis à jour en même temps"]],mythTag:"INCOHÉRENT",realTag:"COHÉRENT",
+   ex:"Regardez à travers votre site web, réseaux sociaux, et tout support imprimé. Nommez un endroit où quelque chose est incohérent (une couleur, une version de logo, un ton).",
+   quiz:[
+    {q:"Pourquoi la cohérence compte-t-elle plus que n'importe quel élément de marque unique étant intelligent ?",opts:["Ça ne compte pas, l'intelligence gagne toujours","La reconnaissance se bâtit par la répétition — voir les mêmes choses répétées est ce qui rend une marque mémorable","La cohérence n'a aucun effet sur la confiance client","Seules les grandes entreprises ont besoin de cohérence"],ans:1,fb:"La reconnaissance se bâtit par la répétition, pas un seul élément intelligent."},
+    {q:"Quelle est une façon courante dont la cohérence se brise ?",opts:["Utiliser le même logo partout","Une voix formelle sur le site web mais très différente et décontractée sur le social sans raison claire","Mettre à jour tous les supports en même temps","Noter les couleurs exactes de la marque"],ans:1,fb:"Une voix qui change sans raison claire est une façon courante dont la cohérence se brise."},
+    {q:"Que peut faire ressentir l'incohérence à travers les plateformes aux clients ?",opts:["Plus confiants dans la marque","Incertains si c'est la même entreprise","Rien, les clients ne remarquent pas","Plus susceptibles d'acheter immédiatement"],ans:1,fb:"L'incohérence peut rendre les clients incertains que c'est la même entreprise."},
+    {q:"Quelle est une façon pratique de garder une marque cohérente ?",opts:["Compter uniquement sur la mémoire, sans référence écrite","Créer une seule référence simple (couleurs, polices, logo, voix) et vérifier les nouveaux supports par rapport à elle","Laisser coexister indéfiniment d'anciennes et nouvelles versions de supports","Changer quelque chose de nouveau chaque semaine pour rester frais"],ans:1,fb:"Une simple fiche de référence aide à maintenir la cohérence, plutôt que de compter sur la mémoire."}],
+   close:{learned:"La cohérence partout (nom, logo, couleur, typographie, voix, personnalité) est ce qui transforme des choix séparés en une marque reconnaissable.",
+    mistake:"Laisser différentes plateformes ou supports diverger (différentes versions de logo, voix incohérente) sans une seule référence à laquelle se comparer.",
+    tip:"Construisez une seule fiche de référence de marque simple maintenant, même juste une page — elle se rentabilise la première fois que quelqu'un d'autre vous aide à créer du contenu.",
+    assign:"Faites une vérification rapide de cohérence à travers votre site web, profils sociaux, et tout support imprimé, et corrigez la plus grande divergence trouvée.",
+    dl:"Modèle : Fiche de Référence de Marque d'Une Page",
+    checklist:["Même logo/couleurs partout ?","Même voix/ton partout ?","Une seule référence écrite pour vérifier ?","D'anciens supports mis à jour pour correspondre ?"],
+    ai:"Voici ma configuration de marque actuelle : [décrire couleurs, logo, voix]. Aide-moi à construire une simple fiche de référence de marque d'une page à partir de ça."}},
+ en:{lede:"None of naming, logo, color, typography, voice, or personality matters much on its own — consistency is what turns separate choices into a brand people actually recognize.",
+   secs:[["Why consistency matters more than any single choice","Recognition builds through repetition: seeing the same colors, tone, and style repeatedly is what makes a brand memorable, more than any single element being clever; inconsistency (a different look on Instagram than on your website) makes a business look unprofessional or even makes customers unsure it's the same business."],
+    ["Where consistency commonly breaks","Different logo versions/colors used across platforms, a formal voice on the website but very casual on social media with no clear reason, packaging or signage that was never updated to match a newer brand look, different family members/employees representing the brand differently with no shared guide."],
+    ["Keeping it consistent in practice","Create one simple reference (even a single page) listing your exact colors, fonts, logo files, and voice words; check new materials against it before publishing; update everything at once when something does change, rather than letting old and new versions coexist indefinitely."]],
+   illus:"myths",mythCards:[["Different logo on every platform","Same logo, same colors everywhere"],["Formal voice on the website, casual on social with no reason","Same voice, same tone everywhere"],["Old materials never updated","All materials updated at once"]],mythTag:"INCONSISTENT",realTag:"CONSISTENT",
+   ex:"Look across your website, social media, and any printed materials. Name one place where something is inconsistent (a color, a logo version, a tone).",
+   quiz:[
+    {q:"Why does consistency matter more than any single brand element being clever?",opts:["It doesn't, cleverness always wins","Recognition builds through repetition — seeing the same things repeatedly is what makes a brand memorable","Consistency has no effect on customer trust","Only large companies need consistency"],ans:1,fb:"Recognition builds through repetition, not any single clever element."},
+    {q:"What's a common way consistency breaks?",opts:["Using the same logo everywhere","A formal voice on the website but very different casual voice on social with no clear reason","Updating all materials at the same time","Writing down exact brand colors"],ans:1,fb:"A voice that shifts with no clear reason is a common way consistency breaks."},
+    {q:"What can inconsistency across platforms make customers feel?",opts:["More confident in the brand","Unsure if it's even the same business","Nothing, customers don't notice","More likely to buy immediately"],ans:1,fb:"Inconsistency can make customers unsure it's the same business."},
+    {q:"What's a practical way to keep a brand consistent?",opts:["Rely on memory alone, no written reference","Create one simple reference sheet (colors, fonts, logo, voice) and check new materials against it","Let old and new versions of materials coexist indefinitely","Change something new every week to stay fresh"],ans:1,fb:"A simple reference sheet helps keep consistency, rather than relying on memory."}],
+   close:{learned:"Consistency across everything (name, logo, color, typography, voice, personality) is what turns separate choices into a recognizable brand.",
+    mistake:"Letting different platforms or materials drift apart (different logo versions, inconsistent voice) with no single reference to check against.",
+    tip:"Build one simple brand reference sheet now, even just one page — it pays for itself the first time someone else helps you create content.",
+    assign:"Do a quick consistency check across your website, social profiles, and any printed materials, and fix the biggest mismatch you find.",
+    dl:"Template: One-Page Brand Reference Sheet",
+    checklist:["Same logo/colors everywhere?","Same voice/tone everywhere?","One written reference to check against?","Old materials updated to match?"],
+    ai:"Here's my current brand setup: [describe colors, logo, voice]. Help me build a simple one-page brand reference sheet from this."}}}
+};
+
+/* ============ state ============ */
+const NL=8,KEY="jamezzi:digital-marketing-ai:module3-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD3_LESSON_SLUGS=["naming-your-business","positioning","logo-design-basics","choosing-your-brand-colors","typography-for-your-brand","brand-voice","brand-personality","consistency-across-everything"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD3_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===3;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M3[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="colors"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px">';
+  d.colorSwatches.forEach(c=>{
+   h+='<div style="text-align:center">'+
+    '<div style="width:64px;height:64px;border-radius:50%;background:'+c[0]+';margin:0 auto 10px;border:3px solid var(--ink-900);box-shadow:0 0 0 2px var(--edge2)"></div>'+
+    '<div style="font-weight:700;font-size:13px">'+c[1]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="myths"){
+  let h='<div style="max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:12px">';
+  d.mythCards.forEach(m=>{
+   h+='<div style="display:flex;gap:14px;align-items:stretch">'+
+    '<div style="flex:1;background:rgba(196,43,28,.12);border:1px solid var(--danger);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:#ff9a8f;font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.mythTag+'</div>'+m[0]+'</div>'+
+    '<div style="flex:1;background:rgba(34,197,94,.12);border:1px solid var(--good);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:#7fe3a3;font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.realTag+'</div>'+m[1]+'</div>'+
+   '</div>';
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 3 · 3."+n;
+ $("topTitle").textContent=M3[lang][n-1];
+ document.title="Academy · "+M3[lang][n-1];
+ renderRail();
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 3 · 3.'+n+'</span><h2 class="labh2">'+M3[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M3[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+}
+
+function updateFinishBtn(){
+ const st=S.st[S.cur];const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 3?":S.lang==="fr"?"Voulez-vous recommencer le Module 3 ?":"Restart Module 3?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
