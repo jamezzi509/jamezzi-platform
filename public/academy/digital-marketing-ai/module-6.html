@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 6 — Kontni Grafik</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ---- editor (Canva-style tool surface) ---- */
+.edwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui}
+.edtb{display:flex;gap:8px;margin-bottom:12px}
+.edtb button{border:1px solid #d7d9e0;background:#fff;color:#1b1b1b;border-radius:8px;padding:8px 13px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.edtb button:hover{border-color:#3B6FE0}
+.edmain{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.edcanvaswrap{flex:none}
+.edcanvas{position:relative;width:320px;height:320px;border-radius:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.35);cursor:default;touch-action:none}
+.edel{position:absolute;cursor:grab;user-select:none;white-space:nowrap;border:2px solid transparent;border-radius:4px;padding:2px 5px}
+.edel.sel{border-color:#3B6FE0;box-shadow:0 0 0 2px rgba(59,111,224,.25)}
+.edel:active{cursor:grabbing}
+.edel.shape{display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700}
+.edguide{position:absolute;width:16px;height:16px;border-radius:50%;border:2px dashed rgba(0,0,0,.22);transform:translate(-50%,-50%)}
+.edref{margin-top:10px;background:#fff;border:1px solid #d7d9e0;border-radius:8px;padding:10px 12px;font-size:12.5px;color:#333}
+.edside{width:320px;max-width:100%;background:#fff;border-radius:8px;padding:12px;color:#1b1b1b}
+.edlbl{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#8a8f98;margin-bottom:6px}
+.edlayers{margin-bottom:14px}
+.edlayerrow{font-size:12.5px;padding:6px 8px;border-radius:6px;background:#f5f6f8;margin-bottom:4px}
+.edprops{border-top:1px solid #ececef;padding-top:10px;min-height:40px}
+.edswrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.edsw{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d7d9e0;cursor:pointer}
+.edsw.on{box-shadow:0 0 0 2px #3B6FE0}
+.edstep{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.edstep button{width:26px;height:26px;border-radius:6px;border:1px solid #d7d9e0;background:#f5f6f8;font-weight:700;cursor:pointer}
+.edtask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+.edtask b{color:var(--text)}
+@media (max-width:380px){.edcanvas,.edside{width:100%;max-width:300px}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 6 · 6.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay nan editè a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   layers:"Kouch",addText:"+ Tèks",bgLabel:"Fon Canvas",
+   stampTitle:"Ou fini Modil 6!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche dans l'éditeur",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   layers:"Calques",addText:"+ Texte",bgLabel:"Fond du Canevas",
+   stampTitle:"Module 6 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the task in the editor",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   layers:"Layers",addText:"+ Text",bgLabel:"Canvas Background",
+   stampTitle:"You finished Module 6!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M6={
+ ht:["Rankontre Editè a","Yerarchi Vizyèl","Konpozisyon ak Aranjman","Fè yon Grafik Rezo Sosyal","Karisèl","Enfografik","Kit Mak"],
+ fr:["Découvrir l'Éditeur","Hiérarchie Visuelle","Composition et Mise en Page","Créer un Graphique pour les Réseaux Sociaux","Carrousels","Infographies","Kit de Marque"],
+ en:["Meet the Editor","Visual Hierarchy","Composition & Layout","Designing a Social Media Graphic","Carousels","Infographics","Brand Kits"]};
+
+const SW=["#6D5FD8","#3B6FE0","#9AA6B8","#E0B23B","#111111","#FFFFFF"];
+const KIT=["#3B6FE0","#9AA6B8","#E0B23B"];
+
+/* ============ per-lesson editor config ============ */
+const ED={
+1:{els:[{id:"a",type:"text",text:"Klike M",x:20,y:20,fontSize:16,color:"#1b1b1b"}],bg:"#F3F4F8",addToolbar:false,showGuides:false,
+   task:{ht:"Rale tèks la nan mitan canvas la, epi chanje koulè li pou mov mak la.",fr:"Faites glisser le texte au centre du canevas, puis changez sa couleur pour le violet de marque.",en:"Drag the text to the center of the canvas, then change its color to the brand purple."},
+   check:e=>{const a=e.els[0];return a.x>=100&&a.x<=220&&a.y>=100&&a.y<=220&&a.color==="#6D5FD8";}},
+2:{els:[{id:"h",type:"text",text:"TIT PRENSIPAL",x:20,y:30,fontSize:16,color:"#111111"},{id:"s",type:"text",text:"Sou-tit ki apiye",x:20,y:130,fontSize:16,color:"#333333"},{id:"f",type:"text",text:"ti lèt fen anba a",x:20,y:240,fontSize:16,color:"#666666"}],bg:"#FFFFFF",addToolbar:false,showGuides:false,
+   task:{ht:"Klike chak tèks epi itilize +/- gwosè a pou fè Tit la pi gwo pase Sou-tit la, ak Sou-tit la pi gwo pase ti lèt fen an.",fr:"Cliquez chaque texte et utilisez les boutons +/- de taille pour rendre le Titre plus grand que le Sous-titre, et le Sous-titre plus grand que le petit texte.",en:"Click each text and use the +/- size buttons to make the Headline bigger than the Subtext, and the Subtext bigger than the fine print."},
+   check:e=>{const g=id=>e.els.find(x=>x.id===id).fontSize;return g("h")>=g("s")+4&&g("s")>=g("f")+4;}},
+3:{els:[{id:"a",type:"shape",text:"",x:20,y:20,w:30,h:30,color:"#6D5FD8"},{id:"b",type:"shape",text:"",x:250,y:140,w:30,h:30,color:"#3B6FE0"},{id:"c",type:"shape",text:"",x:40,y:260,w:30,h:30,color:"#E0B23B"}],bg:"#FFFFFF",addToolbar:false,showGuides:true,
+   task:{ht:"Rale chak nan 3 fòm yo tou pre yon diferan wonn gid (entèseksyon règ de tyè).",fr:"Faites glisser chacune des 3 formes près d'un cercle guide différent (intersection de la règle des tiers).",en:"Drag each of the 3 shapes near a different guide circle (rule-of-thirds intersection)."},
+   check:e=>{const pts=[[80,80],[240,80],[80,240],[240,240]];const used=new Set();
+    for(const el of e.els){let best=-1,bd=9999;pts.forEach((p,i)=>{if(used.has(i))return;const d=Math.hypot(el.x-p[0],el.y-p[1]);if(d<bd){bd=d;best=i;}});
+     if(best===-1||bd>40)return false;used.add(best);}
+    return used.size===3;}},
+4:{els:[{id:"logo",type:"shape",text:"LOGO",x:20,y:20,w:50,h:50,color:"#9AA6B8"}],bg:"#EDEDED",addToolbar:true,showGuides:false,
+   task:{ht:"Ajoute yon tèks (+ Tèks), rale logo a nan yon kwen, epi chwazi yon koulè mak pou fon an.",fr:"Ajoutez un texte (+ Texte), faites glisser le logo dans un coin, et choisissez une couleur de marque pour le fond.",en:"Add a text (+ Text), drag the logo into a corner, and choose a brand color for the background."},
+   check:e=>{const logo=e.els.find(x=>x.id==="logo");const corner=(logo.x<70||logo.x>230)&&(logo.y<70||logo.y>230);
+    const added=e.els.some(x=>x.id.indexOf("new")===0);const bgOk=KIT.includes(e.bg)||e.bg==="#6D5FD8";
+    return corner&&added&&bgOk;}},
+5:{els:[{id:"logo",type:"shape",text:"LOGO",x:20,y:20,w:40,h:40,color:"#9AA6B8"}],bg:"#CCCCCC",addToolbar:false,showGuides:false,
+   reference:{ht:"Slide 1 itilize: background #3B6FE0 · logo anba agoch",fr:"La Diapo 1 utilise : arrière-plan #3B6FE0 · logo en bas à gauche",en:"Slide 1 uses: background #3B6FE0 · logo bottom-left"},
+   task:{ht:"Fè Slide 2 la matche Slide 1: chanje fon an pou koulè referans lan, epi rale logo a anba agoch.",fr:"Faites correspondre la Diapo 2 à la Diapo 1 : changez le fond pour la couleur de référence, et faites glisser le logo en bas à gauche.",en:"Make Slide 2 match Slide 1: change the background to the reference color, and drag the logo to the bottom-left."},
+   check:e=>{const logo=e.els.find(x=>x.id==="logo");return e.bg==="#3B6FE0"&&logo.x<90&&logo.y>230;}},
+6:{els:[{id:"n1",type:"text",text:"1",x:200,y:40,fontSize:28,color:"#6D5FD8"},{id:"n2",type:"text",text:"2",x:40,y:260,fontSize:28,color:"#6D5FD8"},{id:"n3",type:"text",text:"3",x:120,y:150,fontSize:28,color:"#6D5FD8"}],bg:"#FFFFFF",addToolbar:false,showGuides:false,
+   task:{ht:"Rale nimewo yo pou yo li 1, 2, 3 tèt-an-ba.",fr:"Faites glisser les numéros pour qu'ils se lisent 1, 2, 3 de haut en bas.",en:"Drag the numbers so they read 1, 2, 3 from top to bottom."},
+   check:e=>{const g=t=>e.els.find(x=>x.text===t).y;return g("1")+40<=g("2")&&g("2")+40<=g("3");}},
+7:{els:[{id:"txt",type:"text",text:"Tèks Mak",x:30,y:40,fontSize:18,color:"#FF00FF"},{id:"shape",type:"shape",text:"",x:30,y:120,w:120,h:60,color:"#00FF00"}],bg:"#FFFFFF",addToolbar:false,showGuides:false,kitOnly:true,
+   task:{ht:"Klike tèks la ak fòm nan, epi chwazi sèlman koulè kit mak la (pa koulè o aza) pou korije toude.",fr:"Cliquez le texte et la forme, puis choisissez seulement les couleurs du kit de marque (pas de couleur aléatoire) pour corriger les deux.",en:"Click the text and the shape, then choose only the brand kit colors (not a random color) to fix both."},
+   check:e=>{const t=e.els.find(x=>x.id==="txt"),s=e.els.find(x=>x.id==="shape");return KIT.includes(t.color)&&KIT.includes(s.color);}}
+};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Chak zouti design mache menm jan anba a — yon canvas, kouch, ak pwopriyete. Aprann sa yon fwa e ou ka itilize nenpòt zouti.",
+   secs:[["3 bagay chak zouti design genyen","Canvas (kote design ou ye), Kouch (lòd chak eleman anpile), ak Pwopriyete (koulè, gwosè, pozisyon eleman ki seleksyone a). Chak zouti — Canva, Photoshop, menm editè foto yon telefòn — bati ak menm 3 pyès sa yo."],
+    ["Seleksyone ak deplase eleman","Klike sou yon eleman pou seleksyone l — kontou li klere e pwopriyete l parèt. Rale l nenpòt kote sou canvas la pou repozisyone l. Sèl mouvman sa a (seleksyone, apre rale) se kijan prèske tout bagay nan yon zouti design mache."],
+    ["Poukisa sa enpòtan anvan w design anyen","Yon fwa ou konnen kote zouti yo ye, ou ka sispann chèche bouton epi konsantre sou vrè desizyon yo — kisa design sa a ta dwe di, e kijan li ta dwe santi?"]],
+   ex:"Nan pwòp mo ou, kisa 3 bagay chak zouti design genyen yo ye (canvas, kouch, pwopriyete)? Ekri yon fraz pou chak.",
+   quiz:[
+    {q:"Ki 3 bagay chak zouti design genyen?",opts:["Tit, kò, konklizyon","Canvas, Kouch, Pwopriyete","Pri, karakteristik, garanti","Logo, font, koulè"],ans:1,fb:"Canvas, Kouch, Pwopriyete se 3 pyès debaz yo."},
+    {q:"Kijan ou deplase yon eleman sou canvas la?",opts:["Ou pa ka deplase eleman","Klike pou seleksyone l, apre rale l","Sèlman itilize kòd","Eleman deplase o aza"],ans:1,fb:"Seleksyone apre rale se mouvman debaz la."},
+    {q:"Poukisa konnen kote zouti yo ye enpòtan anvan w design?",opts:["Sa pa enpòtan","Ou ka konsantre sou vrè desizyon design olye chèche bouton","Sa fè design la pi long","Zouti yo pa janm chanje"],ans:1,fb:"Konnen zouti yo lib ou pou konsantre sou desizyon reyèl yo."}],
+   close:{learned:"Chak zouti design gen menm 3 pyès: canvas, kouch, pwopriyete — seleksyone epi rale se mouvman debaz la.",
+    mistake:"Pase tan chèche bouton olye konsantre sou kisa design la ta dwe di ak santi.",
+    tip:"Klike nenpòt eleman kounye a pou wè pwopriyete li parèt — se konsa ou ap dekouvri kisa ou ka chanje.",
+    assign:"Louvri editè a epi eseye seleksyone e rale eleman ki la a anvan w kontinye.",
+    dl:"Referans: Baz Zouti Design",
+    checklist:["Ou konprann canvas la?","Ou konprann kouch yo?","Ou konprann pwopriyete yo?"],
+    ai:"Eksplike an mo trè senp diferans ant canvas, kouch, ak pwopriyete nan yon zouti design tankou Canva."}},
+ fr:{lede:"Chaque outil de design fonctionne de la même façon en dessous — un canevas, des calques, et des propriétés. Apprenez ça une fois et vous pouvez utiliser n'importe lequel.",
+   secs:[["Les 3 choses que possède chaque outil de design","Canevas (où vit votre design), Calques (l'ordre d'empilement de chaque élément), et Propriétés (la couleur, taille, et position de ce qui est sélectionné). Chaque outil — Canva, Photoshop, même l'éditeur photo d'un téléphone — est construit à partir de ces mêmes 3 pièces."],
+    ["Sélectionner et déplacer des éléments","Cliquez un élément pour le sélectionner — sa bordure s'éclaire et ses propriétés apparaissent. Faites-le glisser n'importe où sur le canevas pour le repositionner. Ce seul mouvement (sélectionner, puis glisser) est comment presque tout fonctionne dans un outil de design."],
+    ["Pourquoi ça compte avant de designer quoi que ce soit","Une fois que vous savez où sont les outils, vous pouvez arrêter de chercher des boutons et vous concentrer sur les vraies décisions — que devrait dire ce design, et comment devrait-il se ressentir ?"]],
+   ex:"Dans vos propres mots, quelles sont les 3 choses que possède chaque outil de design (canevas, calques, propriétés) ? Écrivez une phrase pour chacune.",
+   quiz:[
+    {q:"Quelles sont les 3 choses que possède chaque outil de design ?",opts:["Titre, corps, conclusion","Canevas, Calques, Propriétés","Prix, caractéristiques, garantie","Logo, police, couleur"],ans:1,fb:"Canevas, Calques, Propriétés sont les 3 pièces de base."},
+    {q:"Comment déplacez-vous un élément sur le canevas ?",opts:["On ne peut pas déplacer d'éléments","Cliquer pour le sélectionner, puis le glisser","Seulement en utilisant du code","Les éléments se déplacent au hasard"],ans:1,fb:"Sélectionner puis glisser est le mouvement de base."},
+    {q:"Pourquoi savoir où sont les outils compte-t-il avant de designer ?",opts:["Ça n'a pas d'importance","Vous pouvez vous concentrer sur les vraies décisions de design plutôt que chercher des boutons","Ça rend le design plus long","Les outils ne changent jamais"],ans:1,fb:"Connaître les outils vous libère pour vous concentrer sur les vraies décisions."}],
+   close:{learned:"Chaque outil de design a les mêmes 3 pièces : canevas, calques, propriétés — sélectionner puis glisser est le mouvement de base.",
+    mistake:"Passer du temps à chercher des boutons plutôt que de se concentrer sur ce que le design devrait dire et ressentir.",
+    tip:"Cliquez n'importe quel élément maintenant pour voir ses propriétés apparaître — c'est ainsi que vous découvrirez ce que vous pouvez changer.",
+    assign:"Ouvrez l'éditeur et essayez de sélectionner puis glisser l'élément présent avant de continuer.",
+    dl:"Référence : Bases des Outils de Design",
+    checklist:["Vous comprenez le canevas ?","Vous comprenez les calques ?","Vous comprenez les propriétés ?"],
+    ai:"Explique en mots très simples la différence entre canevas, calques, et propriétés dans un outil de design comme Canva."}},
+ en:{lede:"Every design tool works the same underlying way — a canvas, layers, and properties. Learn this once and you can use any of them.",
+   secs:[["The 3 things every design tool has","Canvas (where your design lives), Layers (the stacking order of every element), and Properties (the color, size, and position of whatever's selected). Every tool — Canva, Photoshop, even a phone's photo editor — is built from these same 3 pieces."],
+    ["Selecting and moving elements","Click an element to select it — its border highlights and its properties appear. Drag it anywhere on the canvas to reposition it. This single motion (select, then drag) is how almost everything in a design tool works."],
+    ["Why this matters before designing anything","Once you know where the tools live, you can stop hunting for buttons and focus on the actual decisions — what should this design say, and how should it feel?"]],
+   ex:"In your own words, what are the 3 things every design tool has (canvas, layers, properties)? Write one sentence for each.",
+   quiz:[
+    {q:"What are the 3 things every design tool has?",opts:["Intro, body, conclusion","Canvas, Layers, Properties","Price, features, guarantee","Logo, font, color"],ans:1,fb:"Canvas, Layers, Properties are the 3 core pieces."},
+    {q:"How do you move an element on the canvas?",opts:["You can't move elements","Click to select it, then drag it","Only by using code","Elements move randomly"],ans:1,fb:"Select then drag is the basic motion."},
+    {q:"Why does knowing where the tools live matter before designing?",opts:["It doesn't matter","You can focus on real design decisions instead of hunting for buttons","It makes the design take longer","Tools never change"],ans:1,fb:"Knowing the tools frees you to focus on real decisions."}],
+   close:{learned:"Every design tool has the same 3 pieces: canvas, layers, properties — select then drag is the basic motion.",
+    mistake:"Spending time hunting for buttons instead of focusing on what the design should say and feel.",
+    tip:"Click any element right now to see its properties appear — that's how you'll discover what you can change.",
+    assign:"Open the editor and try selecting and dragging the element that's there before continuing.",
+    dl:"Reference: Design Tool Basics",
+    checklist:["Do you understand the canvas?","Do you understand layers?","Do you understand properties?"],
+    ai:"Explain in very simple words the difference between canvas, layers, and properties in a design tool like Canva."}}},
+
+2:{ht:{lede:"Je a pa li tèt-an-ba pa default — li ale nan sa ki sanble pi enpòtan an premye. Yerarchi vizyèl se design lòd sa a espre.",
+   secs:[["Sa ki kreye yerarchi","Gwosè (pi gwo = wè an premye), Pwa/kontras (gra, koulè ki gen fò kontras kont fon), Pozisyone (pozisyon pi wo, pi santral rale je a an premye), Espas blan otou yon eleman (eleman izole parèt plis)."],
+    ["Yon lis verifikasyon yerarchi senp","Yon eleman dominan (tit la), yon eleman ki apiye (sou-tit), yon eleman diskrè (ti lèt fen/logo) — 3 nivo anjeneral ase."],
+    ["Erè yerarchi komen","Tout bagay menm gwosè (anyen pa parèt), twòp eleman gra ki konpetisyone (bri vizyèl), bagay ki pi mwens enpòtan an ki pi gwo pa aksidan."]],
+   ex:"Gade yon design ou fè deja (oswa yon pòs). Ki eleman ki wè an premye — èske se sa ki ta dwe pi enpòtan an?",
+   quiz:[
+    {q:"Kilès ki kreye yerarchi vizyèl?",opts:["Sèlman koulè","Gwosè, kontras, pozisyone, ak espas blan","Sèlman lòd alfabetik","Yerarchi pa egziste nan design"],ans:1,fb:"Tou de kat la kreye yerarchi ansanm."},
+    {q:"Konbyen nivo yerarchi anjeneral ase?",opts:["10 nivo","3 nivo (dominan, apiye, diskrè)","Yon sèl nivo","Otan posib"],ans:1,fb:"3 nivo souvan ase."},
+    {q:"Kilès ki yon erè yerarchi komen?",opts:["Yon sèl eleman dominan","Tout bagay menm gwosè, konsa anyen pa parèt","Yon ti lèt fen diskrè","Espas blan otou yon eleman"],ans:1,fb:"Menm gwosè tout kote elimine yerarchi."}],
+   close:{learned:"Yerarchi vizyèl se òganize gwosè, kontras, pozisyone, ak espas espre pou gide je a nan yon lòd espesifik.",
+    mistake:"Fè tout eleman menm gwosè/pwa, ki fè pèsonn pa konnen kisa pou gade an premye.",
+    tip:"Chwazi yon sèl eleman pou vin 'dominan' — rès yo ta dwe klèman pi piti oswa pi diskrè.",
+    assign:"Nan editè a, chanje gwosè 3 tèks yo pou kreye yon yerarchi klè (tit pi gwo, sou-tit mwayen, ti lèt fen pi piti).",
+    dl:"Lis Verifikasyon: Nivo Yerarchi",
+    checklist:["Yon sèl eleman dominan?","Yon eleman apiye klèman pi piti?","Yon eleman diskrè pi piti toujou?"],
+    ai:"Gade tèks sa yo: [kole yo]. Sijere ki youn ta dwe dominan, apiye, ak diskrè nan yon design."}},
+ fr:{lede:"L'œil ne lit pas de haut en bas par défaut — il va vers ce qui semble le plus important en premier. La hiérarchie visuelle, c'est concevoir cet ordre exprès.",
+   secs:[["Ce qui crée la hiérarchie","Taille (plus grand = vu en premier), Poids/contraste (gras, couleur à fort contraste contre le fond), Placement (positions plus hautes, plus centrales attirent l'œil en premier), Espace blanc autour d'un élément (les éléments isolés ressortent)."],
+    ["Une liste de vérification de hiérarchie simple","Un élément dominant (le titre), un élément de soutien (sous-titre), un élément discret (petit texte/logo) — 3 niveaux suffisent généralement."],
+    ["Erreurs de hiérarchie courantes","Tout à la même taille (rien ne ressort), trop d'éléments gras qui se concurrencent (bruit visuel), la chose la moins importante accidentellement la plus grande."]],
+   ex:"Regardez un design que vous avez déjà fait (ou un post). Quel élément voit-on en premier — est-ce ce qui devrait être le plus important ?",
+   quiz:[
+    {q:"Qu'est-ce qui crée la hiérarchie visuelle ?",opts:["Seulement la couleur","Taille, contraste, placement, et espace blanc","Seulement l'ordre alphabétique","La hiérarchie n'existe pas en design"],ans:1,fb:"Les quatre créent la hiérarchie ensemble."},
+    {q:"Combien de niveaux de hiérarchie suffisent généralement ?",opts:["10 niveaux","3 niveaux (dominant, soutien, discret)","Un seul niveau","Autant que possible"],ans:1,fb:"3 niveaux suffisent souvent."},
+    {q:"Laquelle est une erreur de hiérarchie courante ?",opts:["Un seul élément dominant","Tout à la même taille, donc rien ne ressort","Un petit texte discret","De l'espace blanc autour d'un élément"],ans:1,fb:"La même taille partout élimine la hiérarchie."}],
+   close:{learned:"La hiérarchie visuelle organise taille, contraste, placement, et espace exprès pour guider l'œil dans un ordre spécifique.",
+    mistake:"Faire tous les éléments de la même taille/poids, ce qui fait que personne ne sait quoi regarder en premier.",
+    tip:"Choisissez un seul élément pour être « dominant » — les autres devraient être clairement plus petits ou plus discrets.",
+    assign:"Dans l'éditeur, changez la taille des 3 textes pour créer une hiérarchie claire (titre plus grand, sous-titre moyen, petit texte plus petit).",
+    dl:"Liste de Vérification : Niveaux de Hiérarchie",
+    checklist:["Un seul élément dominant ?","Un élément de soutien clairement plus petit ?","Un élément discret encore plus petit ?"],
+    ai:"Regarde ces textes : [coller]. Suggère lequel devrait être dominant, de soutien, et discret dans un design."}},
+ en:{lede:"The eye doesn't read top-to-bottom by default — it goes to whatever looks most important first. Visual hierarchy is designing that order on purpose.",
+   secs:[["What creates hierarchy","Size (bigger = seen first), Weight/contrast (bold, high-contrast color vs. background), Placement (higher, more central positions draw the eye first), White space around an element (isolated elements stand out)."],
+    ["A simple hierarchy checklist","One dominant element (the headline), one supporting element (subtext), one subtle element (fine print/logo) — three levels is usually enough."],
+    ["Common hierarchy mistakes","Everything the same size (nothing stands out), too many competing bold elements (visual noise), the least important thing sized biggest by accident."]],
+   ex:"Look at a design you've already made (or a post). Which element is seen first — is that the one that should actually be most important?",
+   quiz:[
+    {q:"What creates visual hierarchy?",opts:["Only color","Size, contrast, placement, and white space","Only alphabetical order","Hierarchy doesn't exist in design"],ans:1,fb:"All four create hierarchy together."},
+    {q:"How many hierarchy levels are usually enough?",opts:["10 levels","3 levels (dominant, supporting, subtle)","Just one level","As many as possible"],ans:1,fb:"3 levels are often enough."},
+    {q:"Which is a common hierarchy mistake?",opts:["One dominant element","Everything the same size, so nothing stands out","A subtle fine print","White space around an element"],ans:1,fb:"Everything the same size eliminates hierarchy."}],
+   close:{learned:"Visual hierarchy organizes size, contrast, placement, and space on purpose to guide the eye in a specific order.",
+    mistake:"Making every element the same size/weight, so no one knows what to look at first.",
+    tip:"Pick one single element to be 'dominant' — the rest should be clearly smaller or more subtle.",
+    assign:"In the editor, change the size of the 3 texts to create clear hierarchy (headline biggest, subtext medium, fine print smallest).",
+    dl:"Checklist: Hierarchy Levels",
+    checklist:["One dominant element?","One supporting element clearly smaller?","One subtle element smaller still?"],
+    ai:"Look at this text: [paste it]. Suggest which should be dominant, supporting, and subtle in a design."}}},
+
+3:{ht:{lede:"Kote ou mete bagay yo konte otan sa yo di — bon konpozisyon gide je a dousman olye kite l pèdi.",
+   secs:[["Alinyman","Eleman ki aliye sou yon menm bò (agoch/santral/adwat) sanble entansyonèl; eleman ki pa aliye sanble aksidan, menm pa kèk pixèl."],
+    ["Balans ak espas blan","Pa ranpli chak pous canvas la; espas vid pa espas gaspiye — li bay je a yon kote pou repoze e fè kontni ki LA santi pi enpòtan."],
+    ["Yon gid layout senp","Règ de tyè: divize canvas la mantalman an yon griy 3x3; mete eleman kle yo tou pre liy/entèseksyon griy la olye jis nan mitan santi pi natirèl e pi dinamik."]],
+   ex:"Gade yon design ou fè deja. Èske eleman kle yo aliye sou yon menm bò, oswa yo gaye o aza?",
+   quiz:[
+    {q:"Poukisa alinyman enpòtan?",opts:["Li pa enpòtan ditou","Eleman ki aliye sanble entansyonèl e pwofesyonèl","Sèlman koulè konte","Alinyman se sèlman pou tèks"],ans:1,fb:"Alinyman fè yon design sanble entansyonèl."},
+    {q:"Kisa espas blan fè?",opts:["Li gaspiye espas","Li bay je a yon kote repoze e fè kontni a santi pi enpòtan","Li toujou move design","Li ranplase bezwen pou koulè"],ans:1,fb:"Espas blan se yon zouti design reyèl, pa gaspiyaj."},
+    {q:"Kisa règ de tyè ye?",opts:["Mete tout bagay nan mitan egzat","Divize canvas an yon griy 3x3 e mete eleman kle tou pre entèseksyon yo","Yon règ ki sèlman pou foto","Yon fason pou chwazi koulè"],ans:1,fb:"Règ de tyè gide kote pou mete eleman kle."}],
+   close:{learned:"Bon konpozisyon itilize alinyman, balans, espas blan, ak yon gid tankou règ de tyè pou gide je a.",
+    mistake:"Gaye eleman o aza san alinyman klè, ki fè design la santi aksidan.",
+    tip:"Chwazi yon sèl bò (agoch, santral, oswa adwat) pou aliye pifò eleman ou yo.",
+    assign:"Nan editè a, rale 3 fòm yo tou pre gid yo montre a, chak nan yon diferan entèseksyon.",
+    dl:"Referans: Gid Règ de Tyè",
+    checklist:["Eleman aliye sou yon menm bò?","Espas blan itilize espre?","Eleman kle tou pre entèseksyon griy?"],
+    ai:"Dekri layout aktyèl mwen an: [dekri l]. Sijere kijan pou aliye eleman yo pi byen lè w itilize règ de tyè."}},
+ fr:{lede:"Où vous placez les choses compte autant que ce qu'elles disent — une bonne composition guide l'œil en douceur plutôt que de le laisser errer.",
+   secs:[["Alignement","Les éléments alignés sur un même bord (gauche/centre/droite) semblent intentionnels ; les éléments mal alignés semblent accidentels, même de quelques pixels."],
+    ["Équilibre et espace blanc","Ne remplissez pas chaque centimètre du canevas ; l'espace vide n'est pas de l'espace gaspillé — il donne à l'œil un endroit où se reposer et fait que le contenu qui EST là semble plus important."],
+    ["Un guide de mise en page simple","La règle des tiers : divisez mentalement le canevas en une grille 3x3 ; placer les éléments clés près des lignes/intersections de la grille plutôt qu'en plein centre semble souvent plus naturel et dynamique."]],
+   ex:"Regardez un design que vous avez déjà fait. Les éléments clés sont-ils alignés sur un même bord, ou sont-ils dispersés au hasard ?",
+   quiz:[
+    {q:"Pourquoi l'alignement compte-t-il ?",opts:["Ça n'a pas d'importance du tout","Les éléments alignés semblent intentionnels et professionnels","Seule la couleur compte","L'alignement n'est que pour le texte"],ans:1,fb:"L'alignement fait qu'un design semble intentionnel."},
+    {q:"Que fait l'espace blanc ?",opts:["Il gaspille de l'espace","Il donne à l'œil un endroit où se reposer et fait que le contenu semble plus important","C'est toujours du mauvais design","Il remplace le besoin de couleur"],ans:1,fb:"L'espace blanc est un vrai outil de design, pas du gaspillage."},
+    {q:"Qu'est-ce que la règle des tiers ?",opts:["Mettre tout en plein centre","Diviser le canevas en une grille 3x3 et placer les éléments clés près des intersections","Une règle seulement pour les photos","Une façon de choisir des couleurs"],ans:1,fb:"La règle des tiers guide où placer les éléments clés."}],
+   close:{learned:"Une bonne composition utilise l'alignement, l'équilibre, l'espace blanc, et un guide comme la règle des tiers pour guider l'œil.",
+    mistake:"Disperser les éléments au hasard sans alignement clair, ce qui fait sembler le design accidentel.",
+    tip:"Choisissez un seul bord (gauche, centre, ou droite) pour aligner la plupart de vos éléments.",
+    assign:"Dans l'éditeur, faites glisser les 3 formes près des guides montrés, chacune sur une intersection différente.",
+    dl:"Référence : Guide de la Règle des Tiers",
+    checklist:["Éléments alignés sur un même bord ?","Espace blanc utilisé exprès ?","Éléments clés près des intersections de la grille ?"],
+    ai:"Décris ma mise en page actuelle : [décrire]. Suggère comment mieux aligner les éléments en utilisant la règle des tiers."}},
+ en:{lede:"Where you place things matters as much as what they say — good composition guides the eye smoothly instead of leaving it to wander.",
+   secs:[["Alignment","Elements lined up on a shared edge (left/center/right) look intentional; misaligned elements look accidental, even by a few pixels."],
+    ["Balance and whitespace","Not filling every inch of the canvas; empty space isn't wasted space, it gives the eye somewhere to rest and makes the content that IS there feel more important."],
+    ["A simple layout guide","The rule of thirds: mentally divide the canvas into a 3x3 grid; placing key elements near the grid lines/intersections instead of dead-center often feels more natural and dynamic."]],
+   ex:"Look at a design you've already made. Are the key elements aligned on a shared edge, or scattered randomly?",
+   quiz:[
+    {q:"Why does alignment matter?",opts:["It doesn't matter at all","Aligned elements look intentional and professional","Only color matters","Alignment is only for text"],ans:1,fb:"Alignment makes a design look intentional."},
+    {q:"What does white space do?",opts:["It wastes space","It gives the eye somewhere to rest and makes content feel more important","It's always bad design","It replaces the need for color"],ans:1,fb:"White space is a real design tool, not waste."},
+    {q:"What is the rule of thirds?",opts:["Putting everything dead-center","Dividing the canvas into a 3x3 grid and placing key elements near intersections","A rule only for photos","A way to choose colors"],ans:1,fb:"The rule of thirds guides where to place key elements."}],
+   close:{learned:"Good composition uses alignment, balance, white space, and a guide like the rule of thirds to guide the eye.",
+    mistake:"Scattering elements randomly with no clear alignment, which makes a design feel accidental.",
+    tip:"Pick one single edge (left, center, or right) to align most of your elements to.",
+    assign:"In the editor, drag the 3 shapes near the shown guides, each onto a different intersection.",
+    dl:"Reference: Rule of Thirds Guide",
+    checklist:["Elements aligned on a shared edge?","White space used on purpose?","Key elements near grid intersections?"],
+    ai:"Describe my current layout: [describe]. Suggest how to better align the elements using the rule of thirds."}}},
+
+4:{ht:{lede:"Kounye a mete tout bagay ansanm — yon vrè grafik rezo sosyal ki konbine yerarchi, konpozisyon, ak mak ou an yon sèl design fini.",
+   secs:[["Yon estrikti grafik sosyal senp e fyab","Yon tit dominan, yon ti sou-tit opsyonèl, yon ti mak/logo nan yon kwen, yon koulè fon konsistan ki soti nan palèt mak ou."],
+    ["Fè gwosè pou vrè platfòm","Kare (1:1) mache toupatou (Instagram feed, Facebook); maj sekirite konte — kenbe tèks enpòtan lwen bò ki ka koupe sou kèk platfòm."],
+    ["Ti touch fini","Verifye kontras (tèks lizib kont fon an), verifye koulè mak yo matche palèt Modil 3 ou, verifye pa gen anyen enpòtan jis sou bò a."]],
+   ex:"Dekri konplè grafik sosyal ou fèk kreye a nan editè a — kisa li di, e ki kliyan li vize?",
+   quiz:[
+    {q:"Ki eleman yon estrikti grafik sosyal senp genyen?",opts:["Sèlman yon logo","Tit dominan, sou-tit opsyonèl, logo nan kwen, koulè fon konsistan","Otan koulè posib","Okenn estrikti espesifik"],ans:1,fb:"Sa yo se eleman debaz yon grafik sosyal senp."},
+    {q:"Poukisa fòma kare (1:1) itil?",opts:["Li mache toupatou (Instagram, Facebook)","Li sèlman mache pou videyo","Li toujou pi move","Li ranplase bezwen pou tit"],ans:0,fb:"Kare mache atravè pifò platfòm sosyal."},
+    {q:"Poukisa verifye kontras enpòtan?",opts:["Li pa enpòtan","Pou tèks lizib kont fon an","Sèlman pou logo","Sèlman pou grafik nwa-e-blan"],ans:1,fb:"Kontras asire tèks la reyèlman lizib."}],
+   close:{learned:"Yon grafik sosyal bon konbine yon tit dominan, yon logo nan kwen, ak koulè mak konsistan nan yon fòma kare.",
+    mistake:"Mete tèks enpòtan jis sou bò a, kote li ka koupe sou kèk platfòm.",
+    tip:"Toujou verifye kontras tèks/fon anvan w konsidere yon design fini.",
+    assign:"Nan editè a, ajoute yon tit, mete logo a nan yon kwen, epi chwazi yon koulè mak pou fon an.",
+    dl:"Lis Verifikasyon: Grafik Sosyal Fini",
+    checklist:["Tit dominan klè?","Logo nan yon kwen?","Koulè fon soti nan palèt mak?","Kontras lizib?"],
+    ai:"M ap fè yon grafik sosyal pou [dekri biznis/òf]. Sijere yon tit kout ak yon koulè fon ki matche mak mwen."}},
+ fr:{lede:"Maintenant assemblez tout — un vrai graphique social combinant hiérarchie, composition, et votre marque en un seul design fini.",
+   secs:[["Une structure de graphique social simple et fiable","Un titre dominant, un court sous-titre optionnel, une petite marque/logo dans un coin, une couleur de fond cohérente issue de votre palette de marque."],
+    ["Dimensionner pour de vraies plateformes","Le carré (1:1) fonctionne partout (fil Instagram, Facebook) ; les marges de sécurité comptent — gardez le texte important loin des bords qui pourraient être coupés sur certaines plateformes."],
+    ["Touches finales","Vérifiez le contraste (texte lisible contre le fond), vérifiez que les couleurs de marque correspondent à votre palette du Module 3, vérifiez que rien d'important n'est juste sur le bord."]],
+   ex:"Décrivez le graphique social complet que vous venez de créer dans l'éditeur — que dit-il, et quel client vise-t-il ?",
+   quiz:[
+    {q:"Quels éléments possède une structure de graphique social simple ?",opts:["Seulement un logo","Titre dominant, sous-titre optionnel, logo dans un coin, couleur de fond cohérente","Autant de couleurs que possible","Aucune structure spécifique"],ans:1,fb:"Ce sont les éléments de base d'un graphique social simple."},
+    {q:"Pourquoi le format carré (1:1) est-il utile ?",opts:["Il fonctionne partout (Instagram, Facebook)","Il ne fonctionne que pour la vidéo","C'est toujours pire","Il remplace le besoin d'un titre"],ans:0,fb:"Le carré fonctionne sur la plupart des plateformes sociales."},
+    {q:"Pourquoi vérifier le contraste est-il important ?",opts:["Ce n'est pas important","Pour que le texte soit lisible contre le fond","Seulement pour le logo","Seulement pour les graphiques en noir et blanc"],ans:1,fb:"Le contraste assure que le texte est réellement lisible."}],
+   close:{learned:"Un bon graphique social combine un titre dominant, un logo dans un coin, et des couleurs de marque cohérentes dans un format carré.",
+    mistake:"Mettre du texte important juste sur le bord, où il pourrait être coupé sur certaines plateformes.",
+    tip:"Vérifiez toujours le contraste texte/fond avant de considérer un design comme terminé.",
+    assign:"Dans l'éditeur, ajoutez un titre, placez le logo dans un coin, et choisissez une couleur de marque pour le fond.",
+    dl:"Liste de Vérification : Graphique Social Terminé",
+    checklist:["Titre dominant clair ?","Logo dans un coin ?","Couleur de fond issue de la palette de marque ?","Contraste lisible ?"],
+    ai:"Je crée un graphique social pour [décrire l'entreprise/l'offre]. Suggère un titre court et une couleur de fond qui correspond à ma marque."}},
+ en:{lede:"Now put it together — a real social graphic combining hierarchy, composition, and your brand into one finished design.",
+   secs:[["A simple, reliable social graphic structure","One dominant headline, optional short subtext, a small logo/brand mark corner placement, a consistent background color from your brand palette."],
+    ["Sizing for real platforms","Square (1:1) works everywhere (Instagram feed, Facebook); safe margins matter — keep important text away from edges that might get cropped on some platforms."],
+    ["Finishing touches","Check contrast (readable text against the background), check brand colors match your Module 3 palette, check nothing important sits right at the edge."]],
+   ex:"Describe the complete social graphic you just made in the editor — what does it say, and which customer is it aimed at?",
+   quiz:[
+    {q:"What belongs in a simple social graphic structure?",opts:["Only a logo","A dominant headline, optional subtext, a corner logo, a consistent background color","As many colors as possible","No specific structure"],ans:1,fb:"These are the basic elements of a simple social graphic."},
+    {q:"Why is square (1:1) format useful?",opts:["It works everywhere (Instagram, Facebook)","It only works for video","It's always worse","It replaces the need for a headline"],ans:0,fb:"Square works across most social platforms."},
+    {q:"Why does checking contrast matter?",opts:["It doesn't matter","So text is readable against the background","Only for the logo","Only for black-and-white graphics"],ans:1,fb:"Contrast ensures the text is actually readable."}],
+   close:{learned:"A good social graphic combines a dominant headline, a corner logo, and consistent brand colors in a square format.",
+    mistake:"Placing important text right at the edge, where it might get cropped on some platforms.",
+    tip:"Always check text/background contrast before considering a design finished.",
+    assign:"In the editor, add a headline, position the logo in a corner, and choose a brand color for the background.",
+    dl:"Checklist: Finished Social Graphic",
+    checklist:["Clear dominant headline?","Logo in a corner?","Background color from brand palette?","Readable contrast?"],
+    ai:"I'm making a social graphic for [describe business/offer]. Suggest a short headline and a background color that matches my brand."}}},
+
+5:{ht:{lede:"Yon karisèl se yon ti sekans slide ki fèt pou swipe youn apre lòt — travay design lan se kenbe chak slide konsistan pandan kontni an avanse.",
+   secs:[["Sa ki fè yon bon karisèl","Style konsistan sou chak slide (menm koulè/font/pozisyon logo) pou li li tankou yon sèl pyès konekte; yon pwogrè klè (chak slide bati sou dènye a); yon premye slide fò, paske se sèl la ki garanti moun wè anvan yo deside swipe."],
+    ["Estrikti karisèl komen","Etap-pa-etap (slide 1 = etap 1, elt.), Anvan/apre/kijan, Konte desann lis (5 konsèy, youn pa slide), Ak istwa (mete kanpe, tansyon, rezolisyon atravè slide yo)."],
+    ["Kenbe konsistans atravè slide yo","Reyitilize menm koulè fon, font, ak pozisyon logo sou chak slide; chanje sèlman sa ki bezwen chanje (tèks/nimewo prensipal la) pou moun rekonèt imedyatman chak nouvo slide fè pati menm karisèl la."]],
+   ex:"Dekri kijan ou fè Slide 2 la matche Slide 1 nan editè a — ki eleman ou te sinkwonize?",
+   quiz:[
+    {q:"Poukisa konsistans enpòtan atravè slide yon karisèl?",opts:["Li pa enpòtan","Li fè slide yo li tankou yon sèl pyès konekte olye imaj separe","Chak slide ta dwe totalman diferan","Konsistans sèlman konte pou premye slide a"],ans:1,fb:"Konsistans fè yo li tankou yon sèl bagay konekte."},
+    {q:"Poukisa premye slide a espesyalman enpòtan?",opts:["Li pa pi enpòtan pase lòt yo","Se sèl la ki garanti moun wè anvan yo deside swipe","Li ta dwe pi kout slide la","Li pa bezwen okenn tit"],ans:1,fb:"Premye slide a se sèl la garanti tout moun wè."},
+    {q:"Kisa ki ta dwe chanje ant slide yo?",opts:["Tout bagay ta dwe chanje","Sèlman sa ki bezwen chanje, tankou tèks/nimewo prensipal la","Koulè fon an dwe chanje chak fwa","Pozisyon logo a dwe deplase chak fwa"],ans:1,fb:"Chanje sèlman sa ki nesesè kenbe konsistans."}],
+   close:{learned:"Yon bon karisèl kenbe menm koulè, font, ak pozisyon logo sou chak slide, e chanje sèlman kontni prensipal la.",
+    mistake:"Kite chak slide gen yon look diferan, ki fè yo li tankou imaj separe olye yon sèl pyès konekte.",
+    tip:"Fè premye slide ou pi fò — se sèl la ki garanti tout moun wè anvan yo deside kontinye.",
+    assign:"Nan editè a, matche koulè fon ak pozisyon logo Slide 2 ou ak sa Slide 1 itilize.",
+    dl:"Modèl: Estrikti Karisèl Konsistan",
+    checklist:["Menm koulè fon sou chak slide?","Menm pozisyon logo?","Yon pwogrè klè slide pa slide?"],
+    ai:"M ap fè yon karisèl sou [sijè]. Sijere yon estrikti 4-slide (egzanp: etap-pa-etap oswa lis konte desann) ki kenbe konsistans."}},
+ fr:{lede:"Un carrousel est une courte séquence de diapositives faite pour être balayée l'une après l'autre — le travail de design est de garder chaque diapo cohérente pendant que le contenu avance.",
+   secs:[["Ce qui fait un bon carrousel","Un style cohérent sur chaque diapo (mêmes couleurs/police/position du logo) pour qu'il se lise comme une seule pièce connectée ; une progression claire (chaque diapo construit sur la précédente) ; une première diapo forte, car c'est la seule garantie d'être vue avant qu'on ne décide de balayer."],
+    ["Structures de carrousel courantes","Étape par étape (diapo 1 = étape 1, etc.), Avant/après/comment, Compte à rebours de liste (5 conseils, un par diapo), Arc narratif (mise en place, tension, résolution à travers les diapos)."],
+    ["Garder la cohérence à travers les diapos","Réutilisez la même couleur de fond, police, et position du logo sur chaque diapo ; changez seulement ce qui doit changer (le texte/numéro principal) pour que les spectateurs reconnaissent instantanément que chaque nouvelle diapo appartient au même carrousel."]],
+   ex:"Décrivez comment vous avez fait correspondre la Diapo 2 à la Diapo 1 dans l'éditeur — quels éléments avez-vous synchronisés ?",
+   quiz:[
+    {q:"Pourquoi la cohérence compte-t-elle à travers les diapos d'un carrousel ?",opts:["Ça n'a pas d'importance","Ça fait que les diapos se lisent comme une seule pièce connectée plutôt que des images séparées","Chaque diapo devrait être totalement différente","La cohérence ne compte que pour la première diapo"],ans:1,fb:"La cohérence les fait se lire comme une seule chose connectée."},
+    {q:"Pourquoi la première diapo est-elle particulièrement importante ?",opts:["Elle n'est pas plus importante que les autres","C'est la seule garantie d'être vue avant qu'on décide de balayer","Elle devrait être la plus courte","Elle n'a pas besoin de titre"],ans:1,fb:"La première diapo est la seule garantie que tout le monde voit."},
+    {q:"Qu'est-ce qui devrait changer entre les diapos ?",opts:["Tout devrait changer","Seulement ce qui doit changer, comme le texte/numéro principal","La couleur de fond doit changer à chaque fois","La position du logo doit bouger à chaque fois"],ans:1,fb:"Ne changez que le nécessaire pour garder la cohérence."}],
+   close:{learned:"Un bon carrousel garde les mêmes couleurs, police, et position de logo sur chaque diapo, et ne change que le contenu principal.",
+    mistake:"Laisser chaque diapo avoir un look différent, ce qui les fait se lire comme des images séparées plutôt qu'une pièce connectée.",
+    tip:"Rendez votre première diapo la plus forte — c'est la seule garantie que tout le monde la voit avant de décider de continuer.",
+    assign:"Dans l'éditeur, faites correspondre la couleur de fond et la position du logo de votre Diapo 2 à ce qu'utilise la Diapo 1.",
+    dl:"Modèle : Structure de Carrousel Cohérente",
+    checklist:["Même couleur de fond sur chaque diapo ?","Même position de logo ?","Une progression claire diapo par diapo ?"],
+    ai:"Je fais un carrousel sur [sujet]. Suggère une structure de 4 diapos (ex : étape par étape ou liste à rebours) qui garde la cohérence."}},
+ en:{lede:"A carousel is a short sequence of slides meant to be swiped one after another — the design job is keeping every slide consistent while the content moves forward.",
+   secs:[["What makes a good carousel","Consistent style across every slide (same colors/fonts/logo placement) so it reads as one connected piece, not separate images; a clear progression (each slide builds on the last); a strong first slide, since that's the only one guaranteed to be seen before someone decides to swipe."],
+    ["Common carousel structures","Step-by-step (slide 1 = step 1, etc.), Before/after/how, List countdown (5 tips, one per slide), Story arc (setup, tension, resolution across slides)."],
+    ["Keeping consistency across slides","Reuse the same background color, font, and logo position on every slide; change only what needs to change (the main text/number) so viewers instantly recognize each new slide belongs to the same carousel."]],
+   ex:"Describe how you made Slide 2 match Slide 1 in the editor — which elements did you sync up?",
+   quiz:[
+    {q:"Why does consistency matter across a carousel's slides?",opts:["It doesn't matter","It makes the slides read as one connected piece instead of separate images","Each slide should be totally different","Consistency only matters for the first slide"],ans:1,fb:"Consistency makes them read as one connected thing."},
+    {q:"Why is the first slide especially important?",opts:["It's not more important than the others","It's the only one guaranteed to be seen before someone decides to swipe","It should be the shortest slide","It doesn't need a headline"],ans:1,fb:"The first slide is the only one guaranteed to be seen by everyone."},
+    {q:"What should change between slides?",opts:["Everything should change","Only what needs to change, like the main text/number","The background color must change every time","The logo position must move every time"],ans:1,fb:"Change only what's necessary to keep consistency."}],
+   close:{learned:"A good carousel keeps the same colors, font, and logo position on every slide, changing only the main content.",
+    mistake:"Letting each slide have a different look, which makes them read as separate images rather than one connected piece.",
+    tip:"Make your first slide the strongest — it's the only one guaranteed to be seen before someone decides to continue.",
+    assign:"In the editor, match your Slide 2's background color and logo position to what Slide 1 uses.",
+    dl:"Template: Consistent Carousel Structure",
+    checklist:["Same background color on every slide?","Same logo position?","A clear progression slide to slide?"],
+    ai:"I'm making a carousel about [topic]. Suggest a 4-slide structure (e.g., step-by-step or countdown list) that keeps consistency."}}},
+
+6:{ht:{lede:"Yon enfografik tounen enfòmasyon an yon bagay ou ka eskane an kèk segond — travay design lan se òganize, pa dekore.",
+   secs:[["Sa ki fè enfòmasyon 'prè pou enfografik'","Yon ti sekans etap, yon ti kantite pwen konparezon, oswa estatistik senp — pa paragraf tèks; chak pwen redwi a yon ti etikèt kout + yon senp icon oswa nimewo."],
+    ["Estrikti enfografik senp","Etap Nimewote (1→2→3 ak yon ti etikèt chak), Pè icon + estatistik, Yon konparezon anvan/apre senp."],
+    ["Kenbe l eskanab","Yon sèl lide vizyèl pa seksyon, style icon/nimewo konsistan toupatou, ase espas pou chak pwen klèman separe de pwochen an."]],
+   ex:"Dekri kijan ou reòganize 3 nimewo yo nan editè a pou yo li 1, 2, 3 tèt-an-ba.",
+   quiz:[
+    {q:"Ki kalite enfòmasyon 'prè pou enfografik'?",opts:["Long paragraf tèks","Yon ti sekans etap oswa estatistik senp","Sèlman opinyon pèsonèl","Enfòmasyon konplèks san rezime"],ans:1,fb:"Enfografik mache pi byen ak enfòmasyon redwi a etap/estatistik senp."},
+    {q:"Kisa ki yon estrikti enfografik komen?",opts:["Etap nimewote (1→2→3)","Yon sèl gwo paragraf","Okenn estrikti espesifik","Sèlman koulè, san tèks"],ans:0,fb:"Etap nimewote se yon estrikti enfografik klasik."},
+    {q:"Kisa ki fè yon enfografik rete eskanab?",opts:["Anpil detay sou chak pwen","Yon sèl lide pa seksyon ak style konsistan","Otan koulè posib","Okenn espasman ant pwen yo"],ans:1,fb:"Yon sèl lide pa seksyon ak espasman klè kenbe l eskanab."}],
+   close:{learned:"Yon enfografik òganize enfòmasyon (etap, estatistik, konparezon) an yon fòma eskanab ak style konsistan.",
+    mistake:"Mete twòp detay nan yon sèl seksyon, ki fè li tounen tèks olye yon vrè enfografik.",
+    tip:"Redwi chak pwen a pi piti vèsyon posib li — yon ti etikèt + yon icon oswa nimewo.",
+    assign:"Nan editè a, reòganize 3 nimewo yo pou yo li 1, 2, 3 tèt-an-ba.",
+    dl:"Modèl: Estrikti Etap Nimewote",
+    checklist:["Chak pwen redwi a yon ti etikèt?","Style icon/nimewo konsistan?","Espasman klè ant chak pwen?"],
+    ai:"Men enfòmasyon mwen vle montre: [dekri l]. Sijere yon estrikti enfografik senp (etap nimewote oswa pè icon+estatistik)."}},
+ fr:{lede:"Une infographie transforme l'information en quelque chose de scannable en quelques secondes — le travail de design est d'organiser, pas de décorer.",
+   secs:[["Ce qui rend l'information « prête pour l'infographie »","Une courte séquence d'étapes, un petit nombre de points de comparaison, ou des statistiques simples — pas des paragraphes de texte ; chaque point réduit à une courte étiquette + une icône ou un numéro simple."],
+    ["Structures d'infographie simples","Étapes numérotées (1→2→3 avec une courte étiquette chacune), Paires icône + statistique, Une simple comparaison avant/après."],
+    ["Rester scannable","Une seule idée visuelle par section, style d'icône/numéro cohérent partout, assez d'espacement pour que chaque point soit clairement séparé du suivant."]],
+   ex:"Décrivez comment vous avez réorganisé les 3 numéros dans l'éditeur pour qu'ils se lisent 1, 2, 3 de haut en bas.",
+   quiz:[
+    {q:"Quel type d'information est « prêt pour l'infographie » ?",opts:["De longs paragraphes de texte","Une courte séquence d'étapes ou des statistiques simples","Seulement une opinion personnelle","Une information complexe sans résumé"],ans:1,fb:"L'infographie fonctionne mieux avec une information réduite en étapes/statistiques simples."},
+    {q:"Quelle est une structure d'infographie courante ?",opts:["Étapes numérotées (1→2→3)","Un seul gros paragraphe","Aucune structure spécifique","Seulement de la couleur, sans texte"],ans:0,fb:"Les étapes numérotées sont une structure d'infographie classique."},
+    {q:"Qu'est-ce qui garde une infographie scannable ?",opts:["Beaucoup de détails sur chaque point","Une seule idée par section avec un style cohérent","Autant de couleurs que possible","Aucun espacement entre les points"],ans:1,fb:"Une seule idée par section avec un espacement clair garde ça scannable."}],
+   close:{learned:"Une infographie organise l'information (étapes, statistiques, comparaisons) dans un format scannable avec un style cohérent.",
+    mistake:"Mettre trop de détails dans une seule section, ce qui la transforme en texte plutôt qu'en vraie infographie.",
+    tip:"Réduisez chaque point à sa version la plus petite possible — une courte étiquette + une icône ou un numéro.",
+    assign:"Dans l'éditeur, réorganisez les 3 numéros pour qu'ils se lisent 1, 2, 3 de haut en bas.",
+    dl:"Modèle : Structure d'Étapes Numérotées",
+    checklist:["Chaque point réduit à une courte étiquette ?","Style d'icône/numéro cohérent ?","Espacement clair entre chaque point ?"],
+    ai:"Voici l'information que je veux montrer : [décrire]. Suggère une structure d'infographie simple (étapes numérotées ou paires icône+statistique)."}},
+ en:{lede:"An infographic turns information into something scannable in seconds — the design job is organizing, not decorating.",
+   secs:[["What makes information 'infographic-ready'","A short sequence of steps, a small number of comparison points, or simple stats — not paragraphs of text; each point reduced to a short label + a simple icon or number."],
+    ["Simple infographic structures","Numbered steps (1→2→3 with a short label each), icon + stat pairs, a simple before/after comparison."],
+    ["Keeping it scannable","One visual idea per section, consistent icon/number style throughout, enough spacing that each point is clearly separate from the next."]],
+   ex:"Describe how you reordered the 3 numbers in the editor so they read 1, 2, 3 top to bottom.",
+   quiz:[
+    {q:"What kind of information is 'infographic-ready'?",opts:["Long paragraphs of text","A short sequence of steps or simple stats","Only personal opinion","Complex information with no summary"],ans:1,fb:"Infographics work best with information reduced to simple steps/stats."},
+    {q:"What's a common infographic structure?",opts:["Numbered steps (1→2→3)","One giant paragraph","No specific structure","Only color, no text"],ans:0,fb:"Numbered steps are a classic infographic structure."},
+    {q:"What keeps an infographic scannable?",opts:["Lots of detail on each point","One idea per section with a consistent style","As many colors as possible","No spacing between points"],ans:1,fb:"One idea per section with clear spacing keeps it scannable."}],
+   close:{learned:"An infographic organizes information (steps, stats, comparisons) into a scannable format with a consistent style.",
+    mistake:"Cramming too much detail into one section, which turns it into text rather than a real infographic.",
+    tip:"Reduce each point to its smallest possible version — a short label plus an icon or number.",
+    assign:"In the editor, reorder the 3 numbers so they read 1, 2, 3 top to bottom.",
+    dl:"Template: Numbered Steps Structure",
+    checklist:["Each point reduced to a short label?","Consistent icon/number style?","Clear spacing between each point?"],
+    ai:"Here's the information I want to show: [describe]. Suggest a simple infographic structure (numbered steps or icon+stat pairs)."}}},
+
+7:{ht:{lede:"Yon kit mak sove koulè, font, ak logo ou nan yon sèl kote pou chak nouvo design kòmanse konsistan — san w pa bezwen sonje oswa re-deside anyen.",
+   secs:[["Sa ki fè pati yon kit mak senp","Koulè prensipal/net/aksan ou soti nan Modil 3, 1-2 font ou, fichye logo ou nan de fòma komen (vèsyon klè ak fonse si w genyen)."],
+    ["Itilize yon kit mak pandan w design","Pran koulè ak font DEPI kit la olye chwazi nouvo chak fwa; se sa ki fè 50 diferan grafik toujou sanble yo soti nan menm biznis la."],
+    ["Kenbe kit la ajou","Si w chanje koulè prensipal ou oswa logo (Modil 3), mete kit la ajou imedyatman pou chak design nan lavni itilize nouvo vèsyon an — yon kit demode kreye menm enkonsistans Modil 3 te avèti kont li."]],
+   ex:"Dekri kit mak ou aktyèl (oswa youn ou ta bezwen kreye) — ki koulè, font, ak logo ki ladan l?",
+   quiz:[
+    {q:"Kisa ki fè pati yon kit mak senp?",opts:["Sèlman yon logo","Koulè prensipal/net/aksan, 1-2 font, ak fichye logo","Sèlman non biznis la","Okenn koulè espesifik"],ans:1,fb:"Sa yo se eleman debaz yon kit mak."},
+    {q:"Poukisa pran koulè/font depi yon kit olye chwazi nouvo chak fwa?",opts:["Sa pa fè okenn diferans","Se sa ki fè plizyè design toujou sanble yo soti nan menm biznis la","Li toujou pi rapid chwazi nouvo koulè","Kit yo sèlman pou gwo konpayi"],ans:1,fb:"Yon kit kenbe konsistans atravè tout design."},
+    {q:"Kisa ki rive si w pa mete kit la ajou apre yon chanjman mak?",opts:["Anyen, kit la toujou kòrèk otomatikman","Design nan lavni ka toujou itilize ansyen vèsyon an, kreye enkonsistans","Kit la efase tèt li","Sa pa gen okenn efè sou konsistans"],ans:1,fb:"Yon kit demode kreye menm enkonsistans Modil 3 te avèti kont li."}],
+   close:{learned:"Yon kit mak sove koulè, font, ak logo ou nan yon sèl kote pou kenbe chak nouvo design konsistan san w bezwen re-deside.",
+    mistake:"Chwazi koulè o aza pou chak nouvo design olye toujou pran yo depi kit mak ou.",
+    tip:"Mete kit la ajou imedyatman chak fwa yon eleman mak ou chanje (Modil 3) — pa kite l demode.",
+    assign:"Nan editè a, itilize sèlman koulè kit mak la (pa yon lòt koulè) pou korije 2 eleman ki gen koulè ki pa matche.",
+    dl:"Modèl: Fèy Kit Mak Senp",
+    checklist:["Koulè prensipal/net/aksan idantifye?","Font idantifye?","Kit la ajou ak dènye vèsyon logo/koulè?"],
+    ai:"Men koulè ak font mak mwen: [dekri yo]. Ede m òganize sa an yon senp kit mak yon paj."}},
+ fr:{lede:"Un kit de marque sauvegarde vos couleurs, polices, et logo en un seul endroit pour que chaque nouveau design commence cohérent — sans que vous ayez à vous souvenir ou redécider quoi que ce soit.",
+   secs:[["Ce qui appartient à un kit de marque simple","Vos couleurs principale/neutre/accent du Module 3, vos 1-2 polices, vos fichiers logo dans quelques formats courants (version claire et foncée si vous en avez)."],
+    ["Utiliser un kit de marque en concevant","Prenez les couleurs et polices DU kit plutôt que d'en choisir de nouvelles à chaque fois ; c'est ce qui fait que 50 graphiques différents semblent toujours venir de la même entreprise."],
+    ["Garder le kit à jour","Si vous changez votre couleur principale ou logo (Module 3), mettez le kit à jour immédiatement pour que chaque futur design utilise la nouvelle version — un kit dépassé crée exactement l'incohérence dont le Module 3 mettait en garde."]],
+   ex:"Décrivez votre kit de marque actuel (ou celui que vous devriez créer) — quelles couleurs, polices, et logo contient-il ?",
+   quiz:[
+    {q:"Qu'est-ce qui appartient à un kit de marque simple ?",opts:["Seulement un logo","Couleurs principale/neutre/accent, 1-2 polices, et fichiers logo","Seulement le nom de l'entreprise","Aucune couleur spécifique"],ans:1,fb:"Ce sont les éléments de base d'un kit de marque."},
+    {q:"Pourquoi prendre les couleurs/polices d'un kit plutôt que d'en choisir de nouvelles à chaque fois ?",opts:["Ça ne fait aucune différence","C'est ce qui fait que plusieurs designs semblent toujours venir de la même entreprise","C'est toujours plus rapide de choisir de nouvelles couleurs","Les kits ne sont que pour les grandes entreprises"],ans:1,fb:"Un kit garde la cohérence à travers tous les designs."},
+    {q:"Que se passe-t-il si vous ne mettez pas le kit à jour après un changement de marque ?",opts:["Rien, le kit se corrige automatiquement","Les futurs designs pourraient encore utiliser l'ancienne version, créant de l'incohérence","Le kit s'efface tout seul","Ça n'a aucun effet sur la cohérence"],ans:1,fb:"Un kit dépassé crée exactement l'incohérence dont le Module 3 mettait en garde."}],
+   close:{learned:"Un kit de marque sauvegarde vos couleurs, polices, et logo en un seul endroit pour garder chaque nouveau design cohérent sans redécider.",
+    mistake:"Choisir des couleurs au hasard pour chaque nouveau design plutôt que de toujours les prendre de votre kit de marque.",
+    tip:"Mettez le kit à jour immédiatement chaque fois qu'un élément de votre marque change (Module 3) — ne le laissez pas devenir dépassé.",
+    assign:"Dans l'éditeur, utilisez seulement les couleurs du kit de marque (pas une autre couleur) pour corriger 2 éléments aux couleurs qui ne correspondent pas.",
+    dl:"Modèle : Fiche de Kit de Marque Simple",
+    checklist:["Couleurs principale/neutre/accent identifiées ?","Police identifiée ?","Le kit est-il à jour avec la dernière version du logo/couleurs ?"],
+    ai:"Voici les couleurs et polices de ma marque : [décrire]. Aide-moi à organiser ça en un simple kit de marque d'une page."}},
+ en:{lede:"A brand kit saves your colors, fonts, and logo in one place so every new design starts consistent — without you having to remember or re-decide anything.",
+   secs:[["What belongs in a simple brand kit","Your primary/neutral/accent colors from Module 3, your 1-2 fonts, your logo file(s) in a couple of common formats (light and dark version if you have one)."],
+    ["Using a brand kit while designing","Pull colors and fonts FROM the kit instead of picking new ones each time; this is what makes 50 different graphics still look like they're from the same business."],
+    ["Keeping the kit updated","If you change your primary color or logo (Module 3), update the kit immediately so every future design uses the new version — an outdated kit causes the exact inconsistency Module 3 warned about."]],
+   ex:"Describe your current brand kit (or the one you should create) — what colors, fonts, and logo are in it?",
+   quiz:[
+    {q:"What belongs in a simple brand kit?",opts:["Only a logo","Primary/neutral/accent colors, 1-2 fonts, and logo files","Only the business name","No specific colors"],ans:1,fb:"These are the basic elements of a brand kit."},
+    {q:"Why pull colors/fonts from a kit instead of picking new ones each time?",opts:["It makes no difference","It's what makes multiple designs still look like they're from the same business","It's always faster to pick new colors","Kits are only for large companies"],ans:1,fb:"A kit keeps consistency across every design."},
+    {q:"What happens if you don't update the kit after a brand change?",opts:["Nothing, the kit fixes itself automatically","Future designs might still use the old version, creating inconsistency","The kit erases itself","It has no effect on consistency"],ans:1,fb:"An outdated kit causes the exact inconsistency Module 3 warned about."}],
+   close:{learned:"A brand kit saves your colors, fonts, and logo in one place to keep every new design consistent without re-deciding.",
+    mistake:"Picking colors randomly for each new design instead of always pulling them from your brand kit.",
+    tip:"Update the kit immediately whenever a brand element changes (Module 3) — don't let it go stale.",
+    assign:"In the editor, use only the brand kit colors (not a different color) to fix 2 mismatched-color elements.",
+    dl:"Template: Simple Brand Kit Sheet",
+    checklist:["Primary/neutral/accent colors identified?","Font identified?","Is the kit updated with the latest logo/color version?"],
+    ai:"Here are my brand's colors and fonts: [describe]. Help me organize this into a simple, one-page brand kit."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module6-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD6_LESSON_SLUGS=["meet-the-editor","visual-hierarchy","composition-and-layout","designing-a-social-media-graphic","carousels","infographics","brand-kits"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false,ed:{els:JSON.parse(JSON.stringify(ED[i].els)),bg:ED[i].bg,sel:null}};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD6_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===6;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M6[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+ updateFinishBtn();
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ editor engine ============ */
+function checkTask(n){
+ const st=S.st[n],cfg=ED[n];
+ const done=cfg.check(st.ed);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function elHTML(el){
+ const style="left:"+el.x+"px;top:"+el.y+"px;"+(el.type==="text"?"font-size:"+el.fontSize+"px;color:"+el.color+";font-weight:700;":"width:"+el.w+"px;height:"+el.h+"px;background:"+el.color+";");
+ return '<div class="edel'+(el.type==="shape"?" shape":"")+'" data-id="'+el.id+'" style="'+style+'">'+(el.text||"")+'</div>';
+}
+function buildEditor(n){
+ const cfg=ED[n],st=S.st[n],lang=S.lang;
+ let h='<div class="edwrap">';
+ if(cfg.addToolbar)h+='<div class="edtb"><button id="edAddText">'+UI[lang].addText+'</button></div>';
+ h+='<div class="edmain"><div class="edcanvaswrap"><div class="edcanvas" id="edCanvas" style="background:'+st.ed.bg+'">';
+ if(cfg.showGuides)h+=[[80,80],[240,80],[80,240],[240,240]].map(p=>'<div class="edguide" style="left:'+p[0]+'px;top:'+p[1]+'px"></div>').join("");
+ h+=st.ed.els.map(el=>elHTML(el)).join("");
+ h+='</div>';
+ if(cfg.reference)h+='<div class="edref">'+cfg.reference[lang]+'</div>';
+ h+='</div><div class="edside"><div class="edlbl">'+UI[lang].bgLabel+'</div><div class="edswrow" id="edBgRow">'+
+  (cfg.kitOnly?KIT:SW).map(c=>'<div class="edsw'+(st.ed.bg===c?" on":"")+'" data-bgc="'+c+'" style="background:'+c+'"></div>').join("")+
+  '</div><div class="edlbl">'+UI[lang].layers+'</div><div class="edlayers">'+
+  st.ed.els.slice().reverse().map(el=>'<div class="edlayerrow">'+(el.type==="text"?"🅰️ ":"▭ ")+(el.text||"Fòm")+'</div>').join("")+
+  '</div><div class="edprops" id="edProps"></div></div></div>';
+ h+='<div class="edtask"><b>'+UI[lang].objEd+':</b> '+cfg.task[lang]+'</div></div>';
+ return h;
+}
+function wireEditor(n){
+ const cfg=ED[n],st=S.st[n];
+ const canvas=$("edCanvas");
+ if(!canvas)return;
+ const bgRow=$("edBgRow");
+ if(bgRow)bgRow.querySelectorAll(".edsw").forEach(sw=>sw.addEventListener("click",()=>{
+  st.ed.bg=sw.dataset.bgc;persist();rebuildEditor(n);
+ }));
+ canvas.querySelectorAll(".edel").forEach(elDiv=>{
+  const id=elDiv.dataset.id;
+  elDiv.addEventListener("pointerdown",e=>{
+   e.preventDefault();
+   selectEl(n,id);
+   const data=st.ed.els.find(x=>x.id===id);
+   const startX=e.clientX,startY=e.clientY,origX=data.x,origY=data.y;
+   function onMove(ev){
+    const dx=ev.clientX-startX,dy=ev.clientY-startY;
+    data.x=Math.max(0,Math.min(290,origX+dx));
+    data.y=Math.max(0,Math.min(290,origY+dy));
+    elDiv.style.left=data.x+"px";elDiv.style.top=data.y+"px";
+   }
+   function onUp(){
+    document.removeEventListener("pointermove",onMove);
+    document.removeEventListener("pointerup",onUp);
+    persist();checkTask(n);renderRail();
+   }
+   document.addEventListener("pointermove",onMove);
+   document.addEventListener("pointerup",onUp);
+  });
+ });
+ if(cfg.addToolbar){
+  const btn=$("edAddText");
+  if(btn)btn.addEventListener("click",()=>{
+   const txt=prompt(S.lang==="ht"?"Ki tèks?":S.lang==="fr"?"Quel texte ?":"What text?","Tit Nouvo");
+   if(!txt)return;
+   const id="new"+Date.now();
+   st.ed.els.push({id,type:"text",text:txt,x:40,y:150,fontSize:18,color:"#111111"});
+   persist();rebuildEditor(n);
+  });
+ }
+ renderProps(n);
+}
+function selectEl(n,id){
+ S.st[n].ed.sel=id;
+ document.querySelectorAll(".edel").forEach(d=>d.classList.toggle("sel",d.dataset.id===id));
+ renderProps(n);
+}
+function renderProps(n){
+ const box=$("edProps");if(!box)return;
+ const st=S.st[n],cfg=ED[n];
+ const el=st.ed.els.find(x=>x.id===st.ed.sel);
+ if(!el){box.innerHTML="";return;}
+ const palette=cfg.kitOnly?KIT:SW;
+ let h='<div class="edswrow">'+palette.map(c=>'<div class="edsw'+(el.color===c?" on":"")+'" data-c="'+c+'" style="background:'+c+'"></div>').join("")+'</div>';
+ if(el.type==="text")h+='<div class="edstep"><button data-d="-1">−</button><span>'+el.fontSize+'px</span><button data-d="1">+</button></div>';
+ else h+='<div class="edstep"><button data-d="-1">−</button><span>'+el.w+'×'+el.h+'</span><button data-d="1">+</button></div>';
+ box.innerHTML=h;
+ box.querySelectorAll(".edsw").forEach(sw=>sw.addEventListener("click",()=>{
+  el.color=sw.dataset.c;persist();rebuildEditor(n);
+ }));
+ box.querySelectorAll(".edstep button").forEach(b=>b.addEventListener("click",()=>{
+  const d=+b.dataset.d*(el.type==="text"?2:8);
+  if(el.type==="text")el.fontSize=Math.max(10,Math.min(40,el.fontSize+d));
+  else{el.w=Math.max(20,Math.min(160,el.w+d));el.h=Math.max(20,Math.min(160,el.h+d));}
+  persist();rebuildEditor(n);
+ }));
+}
+function rebuildEditor(n){
+ const illus=document.getElementById("edRoot");
+ if(!illus)return;
+ illus.innerHTML=buildEditor(n);
+ wireEditor(n);
+ checkTask(n);renderRail();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 6 · 6."+n;
+ $("topTitle").textContent=M6[lang][n-1];
+ document.title="Academy · "+M6[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 6 · 6.'+n+'</span><h2 class="labh2">'+M6[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="edRoot"></div></div>';
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ buildAndWireEditorFor(n);
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function buildAndWireEditorFor(n){
+ const root=$("edRoot");
+ root.innerHTML=buildEditor(n);
+ wireEditor(n);
+ checkTask(n);
+}
+
+function updateFinishBtn(){
+ const st=S.st[S.cur];const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 6?":S.lang==="fr"?"Voulez-vous recommencer le Module 6 ?":"Restart Module 6?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false,ed:{els:JSON.parse(JSON.stringify(ED[i].els)),bg:ED[i].bg,sel:null}};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
