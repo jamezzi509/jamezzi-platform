@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 16 — Analitik</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ============ Analytics dashboard tool surface (GA4-style, sparse accent use) ============ */
+.gawrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;background:#fff;border-radius:10px;overflow:hidden;color:#1b1f27;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.gatabs{display:flex;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.gatab{padding:12px 16px;font-size:13px;font-weight:600;color:#5b6472;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.gatab.on{color:#4285F4;border-bottom-color:#4285F4}
+.gabody{padding:18px}
+.galbl{font-size:11.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em;margin-bottom:10px}
+.gatiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.gatile{border:1px solid #e5e7eb;border-radius:10px;padding:14px;text-align:center;background:#f9fafb;cursor:default}
+.gatile.clickable{cursor:pointer}
+.gatile.sel{border-color:#4285F4;background:#eef4ff}
+.gatile .n{font-size:24px;font-weight:800;color:#1b1f27}
+.gatile .l{font-size:11px;color:#6b7280;margin-top:3px}
+.gabars{display:flex;align-items:flex-end;gap:8px;height:120px;margin-bottom:8px}
+.gabarcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;cursor:pointer}
+.gabar{width:100%;background:#4285F4;border-radius:4px 4px 0 0;min-height:4px}
+.gabarcol.sel .gabar{background:#EA4335}
+.gabarlbl{font-size:10px;color:#6b7280;text-align:center;margin-top:4px}
+.gabarval{font-size:11px;font-weight:700;color:#1b1f27;margin-bottom:2px}
+.gaformula{background:#f3f4f6;border-radius:8px;padding:12px 14px;font-size:12.5px;color:#374151;margin-bottom:14px}
+.gainputrow{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.gainputrow label{font-size:12.5px;font-weight:700;color:#374151;min-width:110px}
+.gainput{border:1px solid #d7dce3;border-radius:8px;padding:8px 11px;font-size:13.5px;font-family:inherit;width:110px}
+.gainput:focus{outline:2px solid #4285F4}
+.gacheck{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.gacheck.ok{background:#dcfce7;color:#166534}
+.gacheck.no{background:#f3f4f6;color:#6b7280}
+.gachips{display:flex;gap:6px;flex-wrap:wrap}
+.gachip{padding:8px 12px;border-radius:999px;border:1px solid #d7dce3;font-size:12.5px;cursor:pointer;background:#f7f8fa;font-family:inherit}
+.gachip.on{background:#4285F4;color:#fff;border-color:#4285F4}
+.gatask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 16 · 16.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay tablo a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   tabOverview:"Apèsi Jeneral",tabSources:"Sous Trafik",tabEngagement:"Angajman",tabConversion:"Konvèsyon",tabMoney:"Lajan",tabDashboard:"Tablo Ou",
+   sessions:"Sesyon",users:"Itilizatè",bounceRate:"To Rebond",conversions:"Konvèsyon",conversionRate:"To Konvèsyon",
+   adSpend:"Depans Piblisite",adConversions:"Konvèsyon Piblisite",revenue:"Revni",cac:"CAC",roas:"ROAS",roi:"ROI",
+   yourAnswer:"Repons Ou",check:"Verifye",correct:"Kòrèk ✓",tryAgain:"Eseye Ankò",
+   pinMetrics:"Chwazi Metrik pou Tablo Ou",
+   mSessions:"Sesyon",mUsers:"Itilizatè",mBounce:"To Rebond",mSources:"Sous Trafik",mConvRate:"To Konvèsyon",mCac:"CAC",mRoas:"ROAS",mRoi:"ROI",
+   pinned:"Metrik Chwazi",
+   sevenDays:"Sesyon sou 7 Jou",
+   dayNames:["Len","Mad","Mèk","Jed","Van","Sam","Dim"],
+   srcDirect:"Dirèk",srcOrganic:"Rechèch Òganik",srcSocial:"Rezo Sosyal",srcPaid:"Piblisite Peye",srcReferral:"Referans",
+   stampTitle:"Ou fini Modil 16!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche du tableau",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   tabOverview:"Aperçu",tabSources:"Sources de Trafic",tabEngagement:"Engagement",tabConversion:"Conversion",tabMoney:"Argent",tabDashboard:"Votre Tableau",
+   sessions:"Sessions",users:"Utilisateurs",bounceRate:"Taux de Rebond",conversions:"Conversions",conversionRate:"Taux de Conversion",
+   adSpend:"Dépense Publicitaire",adConversions:"Conversions Publicitaires",revenue:"Revenu",cac:"CAC",roas:"ROAS",roi:"ROI",
+   yourAnswer:"Votre Réponse",check:"Vérifier",correct:"Correct ✓",tryAgain:"Réessayer",
+   pinMetrics:"Choisir des Métriques pour Votre Tableau",
+   mSessions:"Sessions",mUsers:"Utilisateurs",mBounce:"Taux de Rebond",mSources:"Sources de Trafic",mConvRate:"Taux de Conversion",mCac:"CAC",mRoas:"ROAS",mRoi:"ROI",
+   pinned:"Métriques Choisies",
+   sevenDays:"Sessions sur 7 Jours",
+   dayNames:["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],
+   srcDirect:"Direct",srcOrganic:"Recherche Organique",srcSocial:"Réseaux Sociaux",srcPaid:"Publicité Payante",srcReferral:"Référencement",
+   stampTitle:"Module 16 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the dashboard task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   tabOverview:"Overview",tabSources:"Traffic Sources",tabEngagement:"Engagement",tabConversion:"Conversion",tabMoney:"Money",tabDashboard:"Your Dashboard",
+   sessions:"Sessions",users:"Users",bounceRate:"Bounce Rate",conversions:"Conversions",conversionRate:"Conversion Rate",
+   adSpend:"Ad Spend",adConversions:"Ad Conversions",revenue:"Revenue",cac:"CAC",roas:"ROAS",roi:"ROI",
+   yourAnswer:"Your Answer",check:"Check",correct:"Correct ✓",tryAgain:"Try Again",
+   pinMetrics:"Choose Metrics for Your Dashboard",
+   mSessions:"Sessions",mUsers:"Users",mBounce:"Bounce Rate",mSources:"Traffic Sources",mConvRate:"Conversion Rate",mCac:"CAC",mRoas:"ROAS",mRoi:"ROI",
+   pinned:"Pinned Metrics",
+   sevenDays:"Sessions Over 7 Days",
+   dayNames:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+   srcDirect:"Direct",srcOrganic:"Organic Search",srcSocial:"Social Media",srcPaid:"Paid Ads",srcReferral:"Referral",
+   stampTitle:"You finished Module 16!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M16={
+ ht:["Rankontre Tablo Analitik la","Konprann Sous Trafik Yo","Metrik Kle: Sesyon, Itilizatè ak To Rebond","To Konvèsyon","Kout Akizisyon Kliyan (CAC)","ROAS ak ROI","Bati Tablo Ou"],
+ fr:["Découvrir le Tableau de Bord Analytique","Comprendre les Sources de Trafic","Métriques Clés : Sessions, Utilisateurs et Taux de Rebond","Taux de Conversion","Coût d'Acquisition Client (CAC)","ROAS et ROI","Construire Votre Tableau de Bord"],
+ en:["Meet the Analytics Dashboard","Understanding Traffic Sources","Key Metrics: Sessions, Users & Bounce Rate","Conversion Rate","Customer Acquisition Cost (CAC)","ROAS & ROI","Building Your Dashboard"]};
+
+/* Fixed underlying dataset -- all metrics below are computed from these same base numbers */
+const DATA={
+ sessionsByDay:[180,210,195,240,260,300,215],
+ sources:{direct:320,organic:540,social:210,paid:380,referral:150},
+ users:1200,
+ sessions:1600,
+ bounceRate:42,
+ conversions:48,
+ adSpend:600,
+ adConversions:30,
+ avgOrderValue:85};
+function conversionRate(){return +( (DATA.conversions/DATA.sessions)*100 ).toFixed(2);}
+function cac(){return +(DATA.adSpend/DATA.adConversions).toFixed(2);}
+function revenue(){return DATA.adConversions*DATA.avgOrderValue;}
+function roas(){return +(revenue()/DATA.adSpend).toFixed(2);}
+function roi(){return +(((revenue()-DATA.adSpend)/DATA.adSpend)*100).toFixed(1);}
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Yon tablo analitik montre vrè done sou kijan moun jwenn ak itilize biznis ou sou entènèt — konnen kijan pou li li se yon abilite ki pi enpòtan pase jis gade nimewo yo san konprann yo.",
+   secs:[["6 seksyon tablo a","Apèsi Jeneral, Sous Trafik, Angajman, Konvèsyon, Lajan (CAC/ROAS/ROI), ak Tablo Ou — chak seksyon reponn yon kesyon diferan sou biznis ou."],
+    ["Li done, pa jis gade yo","Yon tablo plen ak nimewo pa itil si ou pa konnen ki kesyon chak nimewo reponn — objektif chak leson se aprann li done yo pou pran aksyon."]],
+   ex:"Ki 1 kesyon ou ta renmen yon tablo analitik reponn pou biznis ou?",
+   quiz:[
+    {q:"Konbyen seksyon tablo analitik la genyen?",opts:["3","6","10","1"],ans:1,fb:"Gen 6 seksyon: Apèsi, Sous Trafik, Angajman, Konvèsyon, Lajan, Tablo Ou."},
+    {q:"Kisa objektif prensipal yon tablo analitik ye?",opts:["Sèlman montre nimewo o aza","Ede w konprann done pou pran aksyon","Ranplase bezwen pou yon sit web","Anyen espesyal"],ans:1,fb:"Objektif la se konprann done pou aksyon."},
+    {q:"Ki 6 seksyon yo?",opts:["Sèlman Konvèsyon","Apèsi, Sous Trafik, Angajman, Konvèsyon, Lajan, Tablo Ou","Sèlman Lajan","Pa gen seksyon"],ans:1,fb:"Apèsi, Sous Trafik, Angajman, Konvèsyon, Lajan, Tablo Ou."}],
+   close:{learned:"Yon tablo analitik gen 6 seksyon (Apèsi, Sous Trafik, Angajman, Konvèsyon, Lajan, Tablo Ou) ki chak reponn yon kesyon diferan sou biznis ou.",
+    mistake:"Gade nimewo yo san konprann ki kesyon yo reponn, ki fè tablo a santi konfizan olye itil.",
+    tip:"Chak fwa ou gade yon metrik, mande tèt ou: 'ki kesyon sa a reponn, e ki aksyon li ta ka mennen?'",
+    assign:"Ki 1 kesyon ou ta renmen yon tablo analitik reponn pou biznis ou?",
+    dl:"Referans: 6 Seksyon yon Tablo Analitik",
+    checklist:["Vizite tab Apèsi?","Vizite tab Sous Trafik?","Vizite tab Angajman?","Vizite tab Konvèsyon?","Vizite tab Lajan?","Vizite tab Tablo Ou?"],
+    ai:"Eksplike ki kesyon chak seksyon yon tablo analitik reponn, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Un tableau de bord analytique montre de vraies données sur comment les gens trouvent et utilisent votre entreprise en ligne — savoir le lire est une compétence plus importante que juste regarder les chiffres sans les comprendre.",
+   secs:[["Les 6 sections du tableau","Aperçu, Sources de Trafic, Engagement, Conversion, Argent (CAC/ROAS/ROI), et Votre Tableau — chaque section répond à une question différente sur votre entreprise."],
+    ["Lire les données, pas juste les regarder","Un tableau plein de chiffres n'est pas utile si vous ne savez pas quelle question chaque chiffre répond — l'objectif de chaque leçon est d'apprendre à lire les données pour agir."]],
+   ex:"Quelle 1 question aimeriez-vous qu'un tableau analytique réponde pour votre entreprise ?",
+   quiz:[
+    {q:"Combien de sections le tableau analytique a-t-il ?",opts:["3","6","10","1"],ans:1,fb:"Il y a 6 sections : Aperçu, Sources de Trafic, Engagement, Conversion, Argent, Votre Tableau."},
+    {q:"Quel est l'objectif principal d'un tableau analytique ?",opts:["Seulement montrer des chiffres au hasard","Aider à comprendre les données pour agir","Remplacer le besoin d'un site web","Rien de spécial"],ans:1,fb:"L'objectif est de comprendre les données pour agir."},
+    {q:"Quelles sont les 6 sections ?",opts:["Seulement Conversion","Aperçu, Sources de Trafic, Engagement, Conversion, Argent, Votre Tableau","Seulement Argent","Il n'y a pas de sections"],ans:1,fb:"Aperçu, Sources de Trafic, Engagement, Conversion, Argent, Votre Tableau."}],
+   close:{learned:"Un tableau analytique a 6 sections (Aperçu, Sources de Trafic, Engagement, Conversion, Argent, Votre Tableau) qui répondent chacune à une question différente sur votre entreprise.",
+    mistake:"Regarder les chiffres sans comprendre quelle question ils répondent, ce qui rend le tableau confus plutôt qu'utile.",
+    tip:"Chaque fois que vous regardez une métrique, demandez-vous : « à quelle question ça répond, et quelle action ça pourrait mener ? »",
+    assign:"Quelle 1 question aimeriez-vous qu'un tableau analytique réponde pour votre entreprise ?",
+    dl:"Référence : Les 6 Sections d'un Tableau Analytique",
+    checklist:["Onglet Aperçu visité ?","Onglet Sources de Trafic visité ?","Onglet Engagement visité ?","Onglet Conversion visité ?","Onglet Argent visité ?","Onglet Votre Tableau visité ?"],
+    ai:"Explique à quelle question chaque section d'un tableau analytique répond, pour un propriétaire de petite entreprise."}},
+ en:{lede:"An analytics dashboard shows real data on how people find and use your business online — knowing how to read it is a more important skill than just looking at the numbers without understanding them.",
+   secs:[["The dashboard's 6 sections","Overview, Traffic Sources, Engagement, Conversion, Money (CAC/ROAS/ROI), and Your Dashboard — each section answers a different question about your business."],
+    ["Reading data, not just looking at it","A dashboard full of numbers isn't useful if you don't know what question each number answers — the goal of each lesson is to learn to read the data to take action."]],
+   ex:"What's 1 question you'd like an analytics dashboard to answer for your business?",
+   quiz:[
+    {q:"How many sections does the analytics dashboard have?",opts:["3","6","10","1"],ans:1,fb:"There are 6 sections: Overview, Traffic Sources, Engagement, Conversion, Money, Your Dashboard."},
+    {q:"What's the main goal of an analytics dashboard?",opts:["Only show random numbers","Help you understand data to take action","Replace the need for a website","Nothing special"],ans:1,fb:"The goal is understanding data to act."},
+    {q:"What are the 6 sections?",opts:["Only Conversion","Overview, Traffic Sources, Engagement, Conversion, Money, Your Dashboard","Only Money","There are no sections"],ans:1,fb:"Overview, Traffic Sources, Engagement, Conversion, Money, Your Dashboard."}],
+   close:{learned:"An analytics dashboard has 6 sections (Overview, Traffic Sources, Engagement, Conversion, Money, Your Dashboard) that each answer a different question about your business.",
+    mistake:"Looking at numbers without understanding what question they answer, which makes the dashboard feel confusing instead of useful.",
+    tip:"Every time you look at a metric, ask yourself: \"what question does this answer, and what action could it lead to?\"",
+    assign:"What's 1 question you'd like an analytics dashboard to answer for your business?",
+    dl:"Reference: The 6 Sections of an Analytics Dashboard",
+    checklist:["Overview tab visited?","Traffic Sources tab visited?","Engagement tab visited?","Conversion tab visited?","Money tab visited?","Your Dashboard tab visited?"],
+    ai:"Explain what question each section of an analytics dashboard answers, for a small business owner."}}},
+
+2:{ht:{lede:"Chak vizitè rive sou sit ou soti yon kote — konnen ki sous trafik ki pi fò ede w konnen ki efò maketing k ap reyèlman mache.",
+   secs:[["5 sous trafik komen","Dirèk (moun tape adrès la), Rechèch Òganik (Google, Modil 11), Rezo Sosyal (Modil 9), Piblisite Peye (Modil 15), ak Referans (lyen soti nan lòt sit)."],
+    ["Poukisa sa a enpòtan","Si pifò trafik ou soti nan yon sèl sous, sa ka vle di ou depann twòp sou li — konnen sa ede w deside kote pou envesti plis efò."]],
+   ex:"Ki sous trafik ou panse ta pi gwo pou biznis ou kounye a, e poukisa?",
+   quiz:[
+    {q:"Ki 5 sous trafik komen yo?",opts:["Sèlman rezo sosyal","Dirèk, Rechèch Òganik, Rezo Sosyal, Piblisite Peye, Referans","Sèlman piblisite peye","Pa gen sous diferan"],ans:1,fb:"5 sous yo: Dirèk, Òganik, Sosyal, Peye, Referans."},
+    {q:"Poukisa konnen sous trafik ou enpòtan?",opts:["Sa pa itil","Sa ede w konnen ki efò maketing k ap reyèlman mache","Tout sous idantik","Sous pa afekte desizyon maketing"],ans:1,fb:"Sa montre ki efò maketing reyèlman mache."},
+    {q:"Kisa 'Rechèch Òganik' vle di?",opts:["Piblisite peye","Trafik ki soti nan rezilta rechèch gratis tankou Google","Trafik ki soti nan imèl","Trafik dirèk"],ans:1,fb:"Òganik se trafik gratis nan rechèch."}],
+   close:{learned:"Konnen ki sous trafik (Dirèk, Òganik, Sosyal, Peye, Referans) ki pi gwo ede w konnen ki efò maketing k ap reyèlman mennen moun sou sit ou.",
+    mistake:"Inyore rapò sous trafik nèt, ki fè w pa janm konnen si ou twò depann sou yon sèl sous ki ka disparèt.",
+    tip:"Si yon sous trafik piti anpil, sa ka vle di gen opòtinite pou envesti plis efò la — pa jis selebre sous ki deja gwo a.",
+    assign:"Ki sous trafik ou panse ta pi gwo pou biznis ou kounye a, e poukisa?",
+    dl:"Referans: 5 Sous Trafik Komen yo",
+    checklist:["Sous trafik ki pi gwo a idantifye?"],
+    ai:"Eksplike diferans ant 5 sous trafik komen yo, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Chaque visiteur qui arrive sur votre site vient de quelque part — savoir quelle source de trafic est la plus forte vous aide à savoir quels efforts marketing fonctionnent vraiment.",
+   secs:[["5 sources de trafic courantes","Direct (les gens tapent l'adresse), Recherche Organique (Google, Module 11), Réseaux Sociaux (Module 9), Publicité Payante (Module 15), et Référencement (liens depuis d'autres sites)."],
+    ["Pourquoi c'est important","Si la plupart de votre trafic vient d'une seule source, ça pourrait signifier que vous en dépendez trop — le savoir vous aide à décider où investir plus d'effort."]],
+   ex:"Quelle source de trafic pensez-vous serait la plus grande pour votre entreprise en ce moment, et pourquoi ?",
+   quiz:[
+    {q:"Quelles sont les 5 sources de trafic courantes ?",opts:["Seulement les réseaux sociaux","Direct, Recherche Organique, Réseaux Sociaux, Publicité Payante, Référencement","Seulement la publicité payante","Il n'y a pas de sources différentes"],ans:1,fb:"5 sources : Direct, Organique, Social, Payant, Référencement."},
+    {q:"Pourquoi connaître vos sources de trafic est-il important ?",opts:["Ce n'est pas utile","Ça vous aide à savoir quels efforts marketing fonctionnent vraiment","Toutes les sources sont identiques","Les sources n'affectent pas les décisions marketing"],ans:1,fb:"Ça montre quels efforts marketing fonctionnent vraiment."},
+    {q:"Que signifie « Recherche Organique » ?",opts:["Publicité payante","Trafic venant des résultats de recherche gratuits comme Google","Trafic venant d'email","Trafic direct"],ans:1,fb:"Organique est le trafic de recherche gratuit."}],
+   close:{learned:"Connaître quelle source de trafic (Direct, Organique, Social, Payant, Référencement) est la plus grande vous aide à savoir quels efforts marketing amènent vraiment les gens sur votre site.",
+    mistake:"Ignorer complètement le rapport de sources de trafic, ce qui fait que vous ne savez jamais si vous dépendez trop d'une seule source qui pourrait disparaître.",
+    tip:"Si une source de trafic est très petite, ça pourrait signifier qu'il y a une opportunité d'y investir plus d'effort — ne célébrez pas juste la source déjà grande.",
+    assign:"Quelle source de trafic pensez-vous serait la plus grande pour votre entreprise en ce moment, et pourquoi ?",
+    dl:"Référence : Les 5 Sources de Trafic Courantes",
+    checklist:["La plus grande source de trafic identifiée ?"],
+    ai:"Explique la différence entre les 5 sources de trafic courantes, pour un propriétaire de petite entreprise."}},
+ en:{lede:"Every visitor who arrives on your site comes from somewhere — knowing which traffic source is strongest helps you know which marketing efforts are actually working.",
+   secs:[["5 common traffic sources","Direct (people typed the address), Organic Search (Google, Module 11), Social Media (Module 9), Paid Ads (Module 15), and Referral (links from other sites)."],
+    ["Why this matters","If most of your traffic comes from a single source, that might mean you depend too much on it — knowing this helps you decide where to invest more effort."]],
+   ex:"What traffic source do you think would be biggest for your business right now, and why?",
+   quiz:[
+    {q:"What are the 5 common traffic sources?",opts:["Only social media","Direct, Organic Search, Social Media, Paid Ads, Referral","Only paid ads","There are no different sources"],ans:1,fb:"5 sources: Direct, Organic, Social, Paid, Referral."},
+    {q:"Why does knowing your traffic sources matter?",opts:["It isn't useful","It helps you know which marketing efforts are actually working","All sources are identical","Sources don't affect marketing decisions"],ans:1,fb:"It shows which marketing efforts actually work."},
+    {q:"What does \"Organic Search\" mean?",opts:["Paid advertising","Traffic from free search results like Google","Traffic from email","Direct traffic"],ans:1,fb:"Organic is free search traffic."}],
+   close:{learned:"Knowing which traffic source (Direct, Organic, Social, Paid, Referral) is biggest helps you know which marketing efforts actually bring people to your site.",
+    mistake:"Ignoring the traffic sources report entirely, which means you never know if you depend too much on a single source that could disappear.",
+    tip:"If one traffic source is very small, that might mean there's an opportunity to invest more effort there — don't just celebrate the already-big source.",
+    assign:"What traffic source do you think would be biggest for your business right now, and why?",
+    dl:"Reference: The 5 Common Traffic Sources",
+    checklist:["Biggest traffic source identified?"],
+    ai:"Explain the difference between the 5 common traffic sources, for a small business owner."}}},
+
+3:{ht:{lede:"Sesyon, Itilizatè, ak To Rebond se 3 metrik debaz ki dekri jan moun itilize sit ou — men yo pa vle di menm bagay.",
+   secs:[["Sesyon kont Itilizatè","Yon 'itilizatè' se yon moun; yon 'sesyon' se yon vizit — menm moun nan ka gen plizyè sesyon (vizite plizyè fwa), kidonk kantite sesyon souvan pi wo pase kantite itilizatè."],
+    ["To Rebond","Pousantaj moun ki kite apre yo wè sèlman yon paj san fè okenn lòt aksyon — yon to rebond wo pa toujou move, men li vo egzamine si li parèt sou yon paj enpòtan."]],
+   ex:"Si to rebond ou vin monte sibitman, ki 2 bagay ou ta egzamine anvan?",
+   quiz:[
+    {q:"Kisa yon 'itilizatè' reprezante?",opts:["Yon vizit","Yon moun","Yon paj","Yon sous trafik"],ans:1,fb:"Yon itilizatè se yon moun."},
+    {q:"Poukisa kantite sesyon ka pi wo pase kantite itilizatè?",opts:["Sa pa ka janm rive","Menm moun ka gen plizyè sesyon (vizite plizyè fwa)","Sesyon ak itilizatè toujou egal","Itilizatè toujou pi wo"],ans:1,fb:"Menm moun ka vizite plizyè fwa."},
+    {q:"Kisa To Rebond mezire?",opts:["Konbyen moun achte","Pousantaj moun ki kite apre yon sèl paj san lòt aksyon","Konbyen lajan yo depanse","Konbyen tan yo pase sou sit la"],ans:1,fb:"To Rebond mezire depa apre yon sèl paj."}],
+   close:{learned:"Yon itilizatè se yon moun, yon sesyon se yon vizit (menm moun ka gen plizyè), ak To Rebond mezire pousantaj moun ki kite apre yon sèl paj san lòt aksyon.",
+    mistake:"Konfonn kantite sesyon ak kantite vrè moun (itilizatè) — yon gwo kantite sesyon pa vle di ou gen yon gwo kantite kliyan diferan.",
+    tip:"Si to rebond monte sibitman sou yon paj espesifik, egzamine si paj la chaje lan oswa si kontni an pa matche sa moun t ap chèche.",
+    assign:"Si to rebond ou vin monte sibitman, ki 2 bagay ou ta egzamine anvan?",
+    dl:"Referans: Sesyon kont Itilizatè kont To Rebond",
+    checklist:["Metrik ki pi ba a idantifye?"],
+    ai:"Eksplike diferans ant Sesyon, Itilizatè, ak To Rebond, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Sessions, Utilisateurs, et Taux de Rebond sont 3 métriques de base qui décrivent comment les gens utilisent votre site — mais elles ne signifient pas la même chose.",
+   secs:[["Sessions vs. Utilisateurs","Un « utilisateur » est une personne ; une « session » est une visite — la même personne peut avoir plusieurs sessions (visiter plusieurs fois), donc le nombre de sessions est souvent plus élevé que le nombre d'utilisateurs."],
+    ["Taux de Rebond","Le pourcentage de gens qui partent après avoir vu une seule page sans faire d'autre action — un taux de rebond élevé n'est pas toujours mauvais, mais ça vaut la peine de l'examiner s'il apparaît sur une page importante."]],
+   ex:"Si votre taux de rebond montait soudainement, quelles 2 choses examineriez-vous d'abord ?",
+   quiz:[
+    {q:"Que représente un « utilisateur » ?",opts:["Une visite","Une personne","Une page","Une source de trafic"],ans:1,fb:"Un utilisateur est une personne."},
+    {q:"Pourquoi le nombre de sessions peut-il être plus élevé que le nombre d'utilisateurs ?",opts:["Ça ne peut jamais arriver","La même personne peut avoir plusieurs sessions (visiter plusieurs fois)","Sessions et utilisateurs sont toujours égaux","Les utilisateurs sont toujours plus élevés"],ans:1,fb:"La même personne peut visiter plusieurs fois."},
+    {q:"Que mesure le Taux de Rebond ?",opts:["Combien de gens achètent","Le pourcentage de gens qui partent après une seule page sans autre action","Combien d'argent ils dépensent","Combien de temps ils passent sur le site"],ans:1,fb:"Le Taux de Rebond mesure le départ après une seule page."}],
+   close:{learned:"Un utilisateur est une personne, une session est une visite (la même personne peut en avoir plusieurs), et le Taux de Rebond mesure le pourcentage de gens qui partent après une seule page sans autre action.",
+    mistake:"Confondre le nombre de sessions avec le nombre de vraies personnes (utilisateurs) — un grand nombre de sessions ne signifie pas que vous avez un grand nombre de clients différents.",
+    tip:"Si le taux de rebond monte soudainement sur une page spécifique, examinez si la page charge lentement ou si le contenu ne correspond pas à ce que les gens cherchaient.",
+    assign:"Si votre taux de rebond montait soudainement, quelles 2 choses examineriez-vous d'abord ?",
+    dl:"Référence : Sessions vs. Utilisateurs vs. Taux de Rebond",
+    checklist:["La métrique la plus basse identifiée ?"],
+    ai:"Explique la différence entre Sessions, Utilisateurs, et Taux de Rebond, pour un propriétaire de petite entreprise."}},
+ en:{lede:"Sessions, Users, and Bounce Rate are 3 basic metrics that describe how people use your site — but they don't mean the same thing.",
+   secs:[["Sessions vs. Users","A \"user\" is a person; a \"session\" is a visit — the same person can have multiple sessions (visiting several times), so the session count is often higher than the user count."],
+    ["Bounce Rate","The percentage of people who leave after seeing only one page with no other action — a high bounce rate isn't always bad, but it's worth examining if it shows up on an important page."]],
+   ex:"If your bounce rate suddenly spiked, what 2 things would you examine first?",
+   quiz:[
+    {q:"What does a \"user\" represent?",opts:["A visit","A person","A page","A traffic source"],ans:1,fb:"A user is a person."},
+    {q:"Why can the session count be higher than the user count?",opts:["That can never happen","The same person can have multiple sessions (visiting several times)","Sessions and users are always equal","Users are always higher"],ans:1,fb:"The same person can visit multiple times."},
+    {q:"What does Bounce Rate measure?",opts:["How many people buy","The percentage of people who leave after one page with no other action","How much money they spend","How much time they spend on the site"],ans:1,fb:"Bounce Rate measures leaving after one page."}],
+   close:{learned:"A user is a person, a session is a visit (the same person can have several), and Bounce Rate measures the percentage of people who leave after one page with no other action.",
+    mistake:"Confusing the session count with the count of real different people (users) — a large session count doesn't mean you have a large count of different customers.",
+    tip:"If bounce rate suddenly spikes on a specific page, examine whether the page loads slowly or whether the content doesn't match what people were searching for.",
+    assign:"If your bounce rate suddenly spiked, what 2 things would you examine first?",
+    dl:"Reference: Sessions vs. Users vs. Bounce Rate",
+    checklist:["Lowest metric identified?"],
+    ai:"Explain the difference between Sessions, Users, and Bounce Rate, for a small business owner."}}},
+
+4:{ht:{lede:"To konvèsyon di w ki pousantaj vizitè ki reyèlman fè aksyon ou vle a — se yon fason objektif pou mezire si yon sit oswa kanpay reyèlman mache.",
+   secs:[["Fòmil la senp","To Konvèsyon = (Konvèsyon ÷ Sesyon) × 100 — si 1600 sesyon mennen a 48 konvèsyon, to a se 3%."],
+    ["Itilize l pou konpare","To konvèsyon ede w konpare pèfòmans atravè tan oswa ant diferan kanpay/paj — yon chanjman nan to a souvan pi enpòtan pase yon chanjman nan kantite sesyon sèl."]],
+   ex:"Si yon lòt paj gen 800 sesyon ak 32 konvèsyon, ki to konvèsyon li?",
+   quiz:[
+    {q:"Ki fòmil to konvèsyon an?",opts:["Sesyon ÷ Konvèsyon","(Konvèsyon ÷ Sesyon) × 100","Konvèsyon × Sesyon","Pa gen fòmil"],ans:1,fb:"To Konvèsyon = (Konvèsyon ÷ Sesyon) × 100."},
+    {q:"Poukisa to konvèsyon itil pou konpare?",opts:["Li pa itil pou konpare","Li ede konpare pèfòmans san konsidere gwosè trafik la","Li ranplase bezwen pou lòt metrik","Li toujou menm jan pou tout sit"],ans:1,fb:"Li konpare san konsidere gwosè trafik la."},
+    {q:"Si 1600 sesyon mennen a 48 konvèsyon, ki to a?",opts:["3%","48%","1600%","16%"],ans:0,fb:"(48÷1600)×100 = 3%."}],
+   close:{learned:"To Konvèsyon = (Konvèsyon ÷ Sesyon) × 100 — li mezire pousantaj vizitè ki reyèlman fè aksyon ou vle a, e li ede konpare pèfòmans san konsidere gwosè trafik la.",
+    mistake:"Konsantre sèlman sou kantite konvèsyon brit san konsidere to a — 100 konvèsyon sou 100,000 sesyon (0.1%) pi mal pase 50 konvèsyon sou 1,000 sesyon (5%).",
+    tip:"Yon chanjman nan to konvèsyon an souvan di w plis pase yon chanjman nan kantite sesyon sèl.",
+    assign:"Si yon lòt paj gen 800 sesyon ak 32 konvèsyon, ki to konvèsyon li?",
+    dl:"Fèy Travay: Kalkile To Konvèsyon",
+    checklist:["To konvèsyon kalkile kòrèkteman (~3%)?"],
+    ai:"Eksplike fòmil to konvèsyon an ak yon egzanp, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Le taux de conversion vous dit quel pourcentage de visiteurs fait réellement l'action que vous voulez — c'est une façon objective de mesurer si un site ou une campagne fonctionne vraiment.",
+   secs:[["La formule est simple","Taux de Conversion = (Conversions ÷ Sessions) × 100 — si 1600 sessions mènent à 48 conversions, le taux est 3 %."],
+    ["L'utiliser pour comparer","Le taux de conversion aide à comparer la performance dans le temps ou entre différentes campagnes/pages — un changement dans le taux compte souvent plus qu'un changement dans le nombre de sessions seul."]],
+   ex:"Si une autre page a 800 sessions et 32 conversions, quel est son taux de conversion ?",
+   quiz:[
+    {q:"Quelle est la formule du taux de conversion ?",opts:["Sessions ÷ Conversions","(Conversions ÷ Sessions) × 100","Conversions × Sessions","Il n'y a pas de formule"],ans:1,fb:"Taux de Conversion = (Conversions ÷ Sessions) × 100."},
+    {q:"Pourquoi le taux de conversion est-il utile pour comparer ?",opts:["Il n'est pas utile pour comparer","Il aide à comparer la performance sans considérer la taille du trafic","Il remplace le besoin d'autres métriques","Il est toujours identique pour tous les sites"],ans:1,fb:"Il compare sans considérer la taille du trafic."},
+    {q:"Si 1600 sessions mènent à 48 conversions, quel est le taux ?",opts:["3%","48%","1600%","16%"],ans:0,fb:"(48÷1600)×100 = 3%."}],
+   close:{learned:"Taux de Conversion = (Conversions ÷ Sessions) × 100 — il mesure le pourcentage de visiteurs qui font réellement l'action que vous voulez, et aide à comparer la performance sans considérer la taille du trafic.",
+    mistake:"Se concentrer seulement sur le nombre brut de conversions sans considérer le taux — 100 conversions sur 100 000 sessions (0,1 %) est pire que 50 conversions sur 1 000 sessions (5 %).",
+    tip:"Un changement dans le taux de conversion vous en dit souvent plus qu'un changement dans le nombre de sessions seul.",
+    assign:"Si une autre page a 800 sessions et 32 conversions, quel est son taux de conversion ?",
+    dl:"Fiche de travail : Calculer le Taux de Conversion",
+    checklist:["Taux de conversion calculé correctement (~3 %) ?"],
+    ai:"Explique la formule du taux de conversion avec un exemple, pour un propriétaire de petite entreprise."}},
+ en:{lede:"Conversion rate tells you what percentage of visitors actually take the action you want — it's an objective way to measure whether a site or campaign is really working.",
+   secs:[["The formula is simple","Conversion Rate = (Conversions ÷ Sessions) × 100 — if 1600 sessions lead to 48 conversions, the rate is 3%."],
+    ["Using it to compare","Conversion rate helps you compare performance over time or between different campaigns/pages — a change in the rate often matters more than a change in session count alone."]],
+   ex:"If another page has 800 sessions and 32 conversions, what's its conversion rate?",
+   quiz:[
+    {q:"What's the conversion rate formula?",opts:["Sessions ÷ Conversions","(Conversions ÷ Sessions) × 100","Conversions × Sessions","There's no formula"],ans:1,fb:"Conversion Rate = (Conversions ÷ Sessions) × 100."},
+    {q:"Why is conversion rate useful for comparing?",opts:["It isn't useful for comparing","It helps compare performance regardless of traffic size","It replaces the need for other metrics","It's always the same for every site"],ans:1,fb:"It compares regardless of traffic size."},
+    {q:"If 1600 sessions lead to 48 conversions, what's the rate?",opts:["3%","48%","1600%","16%"],ans:0,fb:"(48÷1600)×100 = 3%."}],
+   close:{learned:"Conversion Rate = (Conversions ÷ Sessions) × 100 — it measures the percentage of visitors who actually take the action you want, and helps compare performance regardless of traffic size.",
+    mistake:"Focusing only on the raw conversion count without considering the rate — 100 conversions out of 100,000 sessions (0.1%) is worse than 50 conversions out of 1,000 sessions (5%).",
+    tip:"A change in conversion rate often tells you more than a change in session count alone.",
+    assign:"If another page has 800 sessions and 32 conversions, what's its conversion rate?",
+    dl:"Worksheet: Calculating Conversion Rate",
+    checklist:["Conversion rate calculated correctly (~3%)?"],
+    ai:"Explain the conversion rate formula with an example, for a small business owner."}}},
+
+5:{ht:{lede:"CAC di w konbyen li koute an mwayèn pou jwenn yon nouvo kliyan — konnen l ede w deside si yon kanpay piblisite reyèlman fè sans finansyèman.",
+   secs:[["Fòmil CAC la","CAC = Depans Piblisite ÷ Kantite Konvèsyon ki Soti nan Piblisite a — si $600 depanse mennen a 30 konvèsyon, CAC a se $20."],
+    ["Konpare CAC ak valè kliyan an","Yon CAC ka sanble segondè, men si yon kliyan tipik depanse plis pase CAC a sou tan, kanpay la ka toujou rantab."]],
+   ex:"Si yon lòt kanpay depanse $450 pou 15 konvèsyon, ki CAC li?",
+   quiz:[
+    {q:"Ki fòmil CAC la?",opts:["Konvèsyon ÷ Depans","Depans ÷ Konvèsyon","Depans × Konvèsyon","Pa gen fòmil"],ans:1,fb:"CAC = Depans ÷ Konvèsyon."},
+    {q:"Poukisa CAC enpòtan?",opts:["Li pa itil","Li ede deside si yon kanpay fè sans finansyèman","Li ranplase bezwen pou swiv depans","Li toujou fiks"],ans:1,fb:"CAC ede deside si kanpay la fè sans."},
+    {q:"Si $600 depanse mennen a 30 konvèsyon, ki CAC a?",opts:["$20","$600","$30","$18000"],ans:0,fb:"600÷30 = $20."}],
+   close:{learned:"CAC = Depans Piblisite ÷ Konvèsyon — li di w konbyen li koute an mwayèn pou jwenn yon nouvo kliyan, e li dwe konpare ak valè yon kliyan pote sou tan.",
+    mistake:"Jije yon CAC 'wo' san konpare li ak konbyen yon kliyan tipik depanse sou tan — yon CAC segondè ka toujou rantab si valè kliyan an pi wo.",
+    tip:"Toujou konpare CAC ou ak valè lavi yon kliyan (konbyen li tipikman depanse sou tan), pa jis gade CAC a poukont li.",
+    assign:"Si yon lòt kanpay depanse $450 pou 15 konvèsyon, ki CAC li?",
+    dl:"Fèy Travay: Kalkile CAC",
+    checklist:["CAC kalkile kòrèkteman (~$20)?"],
+    ai:"Eksplike fòmil CAC ak yon egzanp, pou yon pwopriyetè ti biznis k ap konsidere piblisite peye."}},
+ fr:{lede:"Le CAC vous dit combien il coûte en moyenne pour acquérir un nouveau client — le connaître vous aide à décider si une campagne publicitaire a vraiment du sens financièrement.",
+   secs:[["La formule du CAC","CAC = Dépense Publicitaire ÷ Nombre de Conversions venant de la Publicité — si 600 $ dépensés mènent à 30 conversions, le CAC est 20 $."],
+    ["Comparer le CAC à la valeur du client","Un CAC peut sembler élevé, mais si un client typique dépense plus que le CAC dans le temps, la campagne peut quand même être rentable."]],
+   ex:"Si une autre campagne dépense 450 $ pour 15 conversions, quel est son CAC ?",
+   quiz:[
+    {q:"Quelle est la formule du CAC ?",opts:["Conversions ÷ Dépense","Dépense ÷ Conversions","Dépense × Conversions","Il n'y a pas de formule"],ans:1,fb:"CAC = Dépense ÷ Conversions."},
+    {q:"Pourquoi le CAC est-il important ?",opts:["Il n'est pas utile","Il aide à décider si une campagne a du sens financièrement","Il remplace le besoin de suivre les dépenses","Il est toujours fixe"],ans:1,fb:"Le CAC aide à décider si la campagne a du sens."},
+    {q:"Si 600 $ dépensés mènent à 30 conversions, quel est le CAC ?",opts:["20 $","600 $","30 $","18000 $"],ans:0,fb:"600÷30 = 20 $."}],
+   close:{learned:"CAC = Dépense Publicitaire ÷ Conversions — il vous dit combien il coûte en moyenne pour acquérir un nouveau client, et devrait être comparé à la valeur qu'un client apporte dans le temps.",
+    mistake:"Juger un CAC « élevé » sans le comparer à combien un client typique dépense dans le temps — un CAC élevé peut quand même être rentable si la valeur du client est plus élevée.",
+    tip:"Comparez toujours votre CAC à la valeur vie d'un client (combien il dépense typiquement dans le temps), pas juste regarder le CAC seul.",
+    assign:"Si une autre campagne dépense 450 $ pour 15 conversions, quel est son CAC ?",
+    dl:"Fiche de travail : Calculer le CAC",
+    checklist:["CAC calculé correctement (~20 $) ?"],
+    ai:"Explique la formule du CAC avec un exemple, pour un propriétaire de petite entreprise qui considère la publicité payante."}},
+ en:{lede:"CAC tells you how much it costs on average to acquire a new customer — knowing it helps you decide if an ad campaign really makes financial sense.",
+   secs:[["The CAC formula","CAC = Ad Spend ÷ Number of Conversions from the Ad — if $600 spent leads to 30 conversions, the CAC is $20."],
+    ["Comparing CAC to customer value","A CAC might look high, but if a typical customer spends more than the CAC over time, the campaign can still be profitable."]],
+   ex:"If another campaign spends $450 for 15 conversions, what's its CAC?",
+   quiz:[
+    {q:"What's the CAC formula?",opts:["Conversions ÷ Spend","Spend ÷ Conversions","Spend × Conversions","There's no formula"],ans:1,fb:"CAC = Spend ÷ Conversions."},
+    {q:"Why does CAC matter?",opts:["It isn't useful","It helps decide if a campaign makes financial sense","It replaces the need to track spend","It's always fixed"],ans:1,fb:"CAC helps decide if the campaign makes sense."},
+    {q:"If $600 spent leads to 30 conversions, what's the CAC?",opts:["$20","$600","$30","$18000"],ans:0,fb:"600÷30 = $20."}],
+   close:{learned:"CAC = Ad Spend ÷ Conversions — it tells you how much it costs on average to acquire a new customer, and should be compared to the value a customer brings over time.",
+    mistake:"Judging a \"high\" CAC without comparing it to how much a typical customer spends over time — a high CAC can still be profitable if customer value is higher.",
+    tip:"Always compare your CAC to a customer's lifetime value (how much they typically spend over time), not just looking at CAC alone.",
+    assign:"If another campaign spends $450 for 15 conversions, what's its CAC?",
+    dl:"Worksheet: Calculating CAC",
+    checklist:["CAC calculated correctly (~$20)?"],
+    ai:"Explain the CAC formula with an example, for a small business owner considering paid advertising."}}},
+
+6:{ht:{lede:"ROAS (rannman sou depans piblisite) ak ROI (rannman sou envestisman) tou de mezire si lajan ou envesti bay plis lajan an retou — men yo kalkile yon ti jan diferan.",
+   secs:[["ROAS: senp rapò revni/depans","ROAS = Revni ÷ Depans — si $600 depans mennen a $2,550 revni, ROAS a se 4.25 (oswa 425%), sa vle di chak dola depanse retounen $4.25."],
+    ["ROI: pran an kont pwofi net","ROI = (Revni − Depans) ÷ Depans — li montre pwofi reyèl apre w retire depans lan, pa jis revni brit la."]],
+   ex:"Si yon kanpay depanse $200 e fè $800 revni, ki ROAS ak ROI li?",
+   quiz:[
+    {q:"Ki fòmil ROAS la?",opts:["Depans ÷ Revni","Revni ÷ Depans","Revni × Depans","Pa gen fòmil"],ans:1,fb:"ROAS = Revni ÷ Depans."},
+    {q:"Ki diferans ant ROAS ak ROI?",opts:["Yo idantik nèt","ROI retire depans lan pou montre pwofi net, ROAS se senp rapò brit","ROAS toujou pi enpòtan","ROI pa gen rapò ak lajan"],ans:1,fb:"ROI montre pwofi net, ROAS se rapò brit."},
+    {q:"Si $600 depans mennen a $2,550 revni, apeprè ki ROAS a?",opts:["4.25","2.55","600","0.24"],ans:0,fb:"2550÷600 = 4.25."}],
+   close:{learned:"ROAS = Revni ÷ Depans (yon rapò brit); ROI = (Revni − Depans) ÷ Depans (pwofi net) — tou de mezire rannman, men ROI pran an kont depans lan.",
+    mistake:"Konfonn ROAS ak ROI tankou yo se menm bagay — yon ROAS wo pa otomatikman vle di yon gwo pwofi si depans yo te wo tou.",
+    tip:"Itilize ROAS pou konpare rapidman ant kanpay yo, men gade ROI lè ou vle konnen egzakteman konbyen pwofi reyèl ou fè.",
+    assign:"Si yon kanpay depanse $200 e fè $800 revni, ki ROAS ak ROI li?",
+    dl:"Fèy Travay: Kalkile ROAS ak ROI",
+    checklist:["ROAS kalkile kòrèkteman (~4.25)?","ROI kalkile kòrèkteman (~325%)?"],
+    ai:"Eksplike diferans ant ROAS ak ROI ak yon egzanp, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Le ROAS (retour sur dépense publicitaire) et le ROI (retour sur investissement) mesurent tous deux si l'argent que vous investissez rapporte plus d'argent en retour — mais ils se calculent un peu différemment.",
+   secs:[["ROAS : simple rapport revenu/dépense","ROAS = Revenu ÷ Dépense — si 600 $ de dépense mènent à 2 550 $ de revenu, le ROAS est 4,25 (ou 425 %), ce qui veut dire que chaque dollar dépensé rapporte 4,25 $."],
+    ["ROI : prend en compte le profit net","ROI = (Revenu − Dépense) ÷ Dépense — il montre le vrai profit après avoir retiré la dépense, pas juste le revenu brut."]],
+   ex:"Si une campagne dépense 200 $ et fait 800 $ de revenu, quels sont son ROAS et son ROI ?",
+   quiz:[
+    {q:"Quelle est la formule du ROAS ?",opts:["Dépense ÷ Revenu","Revenu ÷ Dépense","Revenu × Dépense","Il n'y a pas de formule"],ans:1,fb:"ROAS = Revenu ÷ Dépense."},
+    {q:"Quelle est la différence entre ROAS et ROI ?",opts:["Ils sont complètement identiques","ROI retire la dépense pour montrer le profit net, ROAS est un simple rapport brut","ROAS est toujours plus important","ROI n'a aucun rapport avec l'argent"],ans:1,fb:"ROI montre le profit net, ROAS est le rapport brut."},
+    {q:"Si 600 $ de dépense mènent à 2 550 $ de revenu, quel est approximativement le ROAS ?",opts:["4.25","2.55","600","0.24"],ans:0,fb:"2550÷600 = 4.25."}],
+   close:{learned:"ROAS = Revenu ÷ Dépense (un rapport brut) ; ROI = (Revenu − Dépense) ÷ Dépense (profit net) — les deux mesurent le retour, mais le ROI prend en compte la dépense.",
+    mistake:"Confondre ROAS et ROI comme s'ils étaient la même chose — un ROAS élevé ne signifie pas automatiquement un gros profit si les dépenses étaient élevées aussi.",
+    tip:"Utilisez le ROAS pour comparer rapidement entre campagnes, mais regardez le ROI quand vous voulez savoir exactement combien de profit réel vous faites.",
+    assign:"Si une campagne dépense 200 $ et fait 800 $ de revenu, quels sont son ROAS et son ROI ?",
+    dl:"Fiche de travail : Calculer le ROAS et le ROI",
+    checklist:["ROAS calculé correctement (~4.25) ?","ROI calculé correctement (~325 %) ?"],
+    ai:"Explique la différence entre ROAS et ROI avec un exemple, pour un propriétaire de petite entreprise."}},
+ en:{lede:"ROAS (return on ad spend) and ROI (return on investment) both measure whether the money you invest brings back more money — but they're calculated a bit differently.",
+   secs:[["ROAS: a simple revenue/spend ratio","ROAS = Revenue ÷ Spend — if $600 spend leads to $2,550 revenue, the ROAS is 4.25 (or 425%), meaning every dollar spent returns $4.25."],
+    ["ROI: accounts for net profit","ROI = (Revenue − Spend) ÷ Spend — it shows the real profit after subtracting the spend, not just the raw revenue."]],
+   ex:"If a campaign spends $200 and makes $800 revenue, what's its ROAS and ROI?",
+   quiz:[
+    {q:"What's the ROAS formula?",opts:["Spend ÷ Revenue","Revenue ÷ Spend","Revenue × Spend","There's no formula"],ans:1,fb:"ROAS = Revenue ÷ Spend."},
+    {q:"What's the difference between ROAS and ROI?",opts:["They're completely identical","ROI subtracts the spend to show net profit, ROAS is a simple raw ratio","ROAS always matters more","ROI has nothing to do with money"],ans:1,fb:"ROI shows net profit, ROAS is the raw ratio."},
+    {q:"If $600 spend leads to $2,550 revenue, what's approximately the ROAS?",opts:["4.25","2.55","600","0.24"],ans:0,fb:"2550÷600 = 4.25."}],
+   close:{learned:"ROAS = Revenue ÷ Spend (a raw ratio); ROI = (Revenue − Spend) ÷ Spend (net profit) — both measure return, but ROI accounts for the spend.",
+    mistake:"Confusing ROAS and ROI as if they were the same thing — a high ROAS doesn't automatically mean a big profit if the spend was also high.",
+    tip:"Use ROAS to quickly compare between campaigns, but look at ROI when you want to know exactly how much real profit you're making.",
+    assign:"If a campaign spends $200 and makes $800 revenue, what's its ROAS and ROI?",
+    dl:"Worksheet: Calculating ROAS and ROI",
+    checklist:["ROAS calculated correctly (~4.25)?","ROI calculated correctly (~325%)?"],
+    ai:"Explain the difference between ROAS and ROI with an example, for a small business owner."}}},
+
+7:{ht:{lede:"Yon bon tablo pèsonèl konbine metrik trafik (jan moun rive) ak metrik lajan (si sa vo lajan) — konsantre sèlman sou youn nan de kategori yo kite w pa wè tout foto a.",
+   secs:[["Melanje 2 kategori","Chwazi omwen yon metrik trafik (Sous Trafik, Sesyon, To Rebond) ak omwen yon metrik lajan (CAC, ROAS, ROI) pou yon tablo ki reyèlman itil."],
+    ["Mwens se plis","Yon tablo ak 15 metrik konfonn plis pase li klarifye — chwazi sèlman 3-4 metrik ki reyèlman gide desizyon ou yo."]],
+   ex:"Ki 3-4 metrik ou ta chwazi pou yon tablo chak semèn pou biznis ou, e poukisa?",
+   quiz:[
+    {q:"Kisa yon bon tablo pèsonèl konbine?",opts:["Sèlman metrik trafik","Metrik trafik ak metrik lajan ansanm","Sèlman metrik lajan","Otan metrik posib"],ans:1,fb:"Yon bon tablo konbine trafik ak lajan."},
+    {q:"Poukisa 'mwens se plis' aplike pou tablo?",opts:["Plis metrik toujou pi bon","Twòp metrik konfonn olye klarifye desizyon","Yon tablo dwe gen tout metrik posib","Sa pa gen enpòtans"],ans:1,fb:"Twòp metrik konfonn olye klarifye."},
+    {q:"Ki egzanp yon metrik lajan?",opts:["Sesyon","CAC (Kout Akizisyon Kliyan)","Sous Trafik","To Rebond"],ans:1,fb:"CAC se yon metrik lajan."}],
+   close:{learned:"Yon bon tablo pèsonèl konbine omwen 1 metrik trafik ak omwen 1 metrik lajan — 3-4 metrik byen chwazi gide desizyon pi byen pase 15 metrik ki konfonn.",
+    mistake:"Eseye mete tout metrik posib nan yon sèl tablo, ki fè li tounen twò konfonn pou itilize regilyèman.",
+    tip:"Chwazi metrik ki dirèkteman gide yon desizyon ou pran chak semèn — si yon metrik pa chanje sa ou fè, li pa bezwen sou tablo prensipal ou.",
+    assign:"Ki 3-4 metrik ou ta chwazi pou yon tablo chak semèn pou biznis ou, e poukisa?",
+    dl:"Fèy Travay: Bati Tablo Pèsonèl Ou",
+    checklist:["Omwen 3 metrik chwazi?","Omwen 1 metrik trafik enkli?","Omwen 1 metrik lajan enkli?"],
+    ai:"Ede m chwazi 4 metrik pou yon tablo chak semèn pou yon [kalite biznis]."}},
+ fr:{lede:"Un bon tableau personnel combine des métriques de trafic (comment les gens arrivent) et des métriques d'argent (si ça vaut la peine) — se concentrer sur une seule des deux catégories vous laisse sans voir toute l'image.",
+   secs:[["Mélanger 2 catégories","Choisissez au moins une métrique de trafic (Sources de Trafic, Sessions, Taux de Rebond) et au moins une métrique d'argent (CAC, ROAS, ROI) pour un tableau vraiment utile."],
+    ["Moins, c'est plus","Un tableau avec 15 métriques confond plus qu'il ne clarifie — choisissez seulement 3-4 métriques qui guident vraiment vos décisions."]],
+   ex:"Quelles 3-4 métriques choisiriez-vous pour un tableau hebdomadaire pour votre entreprise, et pourquoi ?",
+   quiz:[
+    {q:"Que combine un bon tableau personnel ?",opts:["Seulement des métriques de trafic","Des métriques de trafic et d'argent ensemble","Seulement des métriques d'argent","Autant de métriques que possible"],ans:1,fb:"Un bon tableau combine trafic et argent."},
+    {q:"Pourquoi « moins c'est plus » s'applique-t-il aux tableaux ?",opts:["Plus de métriques est toujours mieux","Trop de métriques confond plutôt que ça ne clarifie les décisions","Un tableau doit avoir toutes les métriques possibles","Ça n'a pas d'importance"],ans:1,fb:"Trop de métriques confond plutôt que ça clarifie."},
+    {q:"Quel est un exemple de métrique d'argent ?",opts:["Sessions","CAC (Coût d'Acquisition Client)","Sources de Trafic","Taux de Rebond"],ans:1,fb:"Le CAC est une métrique d'argent."}],
+   close:{learned:"Un bon tableau personnel combine au moins 1 métrique de trafic et au moins 1 métrique d'argent — 3-4 métriques bien choisies guident mieux les décisions que 15 métriques confuses.",
+    mistake:"Essayer de mettre toutes les métriques possibles dans un seul tableau, ce qui le rend trop confus pour être utilisé régulièrement.",
+    tip:"Choisissez des métriques qui guident directement une décision que vous prenez chaque semaine — si une métrique ne change pas ce que vous faites, elle n'a pas besoin d'être sur votre tableau principal.",
+    assign:"Quelles 3-4 métriques choisiriez-vous pour un tableau hebdomadaire pour votre entreprise, et pourquoi ?",
+    dl:"Fiche de travail : Construire Votre Tableau Personnel",
+    checklist:["Au moins 3 métriques choisies ?","Au moins 1 métrique de trafic incluse ?","Au moins 1 métrique d'argent incluse ?"],
+    ai:"Aide-moi à choisir 4 métriques pour un tableau hebdomadaire pour un(e) [type d'entreprise]."}},
+ en:{lede:"A good personal dashboard combines traffic metrics (how people arrive) with money metrics (whether it's worth it) — focusing on just one of the two categories leaves you without the full picture.",
+   secs:[["Mixing 2 categories","Choose at least one traffic metric (Traffic Sources, Sessions, Bounce Rate) and at least one money metric (CAC, ROAS, ROI) for a truly useful dashboard."],
+    ["Less is more","A dashboard with 15 metrics confuses more than it clarifies — choose only 3-4 metrics that actually guide your decisions."]],
+   ex:"What 3-4 metrics would you choose for a weekly dashboard for your business, and why?",
+   quiz:[
+    {q:"What does a good personal dashboard combine?",opts:["Only traffic metrics","Traffic metrics and money metrics together","Only money metrics","As many metrics as possible"],ans:1,fb:"A good dashboard combines traffic and money."},
+    {q:"Why does \"less is more\" apply to dashboards?",opts:["More metrics is always better","Too many metrics confuse rather than clarify decisions","A dashboard should have every possible metric","It doesn't matter"],ans:1,fb:"Too many metrics confuse rather than clarify."},
+    {q:"What's an example of a money metric?",opts:["Sessions","CAC (Customer Acquisition Cost)","Traffic Sources","Bounce Rate"],ans:1,fb:"CAC is a money metric."}],
+   close:{learned:"A good personal dashboard combines at least 1 traffic metric and at least 1 money metric — 3-4 well-chosen metrics guide decisions better than 15 confusing ones.",
+    mistake:"Trying to put every possible metric into one dashboard, which makes it too confusing to use regularly.",
+    tip:"Choose metrics that directly guide a decision you make every week — if a metric doesn't change what you do, it doesn't need to be on your main dashboard.",
+    assign:"What 3-4 metrics would you choose for a weekly dashboard for your business, and why?",
+    dl:"Worksheet: Building Your Personal Dashboard",
+    checklist:["At least 3 metrics chosen?","At least 1 traffic metric included?","At least 1 money metric included?"],
+    ai:"Help me choose 4 metrics for a weekly dashboard for a [type of business]."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module16-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD16_LESSON_SLUGS=["meet-the-analytics-dashboard","understanding-traffic-sources","key-metrics-sessions-users-bounce-rate","conversion-rate","customer-acquisition-cost-cac","roas-and-roi","building-your-dashboard"];
+function freshAnalytics(){
+ return {selSource:null,selEngagement:null,
+  convRateInput:"",cacInput:"",roasInput:"",roiInput:"",
+  pinned:[],
+  visited:{overview:false,sources:false,engagement:false,conversion:false,money:false,dashboard:false}};
+}
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{},tab:"overview",an:freshAnalytics()};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+if(!S.an)S.an=freshAnalytics();
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD16_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder",15:"meet-the-ads-manager"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===16;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M16[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ analytics dashboard engine ============ */
+function checkTask(n){
+ const st=S.st[n];
+ const done=C[n].check(S.an);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function renderToolPanel(){
+ const lang=S.lang,ui=UI[lang],a=S.an;
+ let h='<div class="gawrap"><div class="gatabs">';
+ [["overview",ui.tabOverview],["sources",ui.tabSources],["engagement",ui.tabEngagement],["conversion",ui.tabConversion],["money",ui.tabMoney],["dashboard",ui.tabDashboard]].forEach(([id,lbl])=>{
+  h+='<button class="gatab'+(S.tab===id?" on":"")+'" data-tab="'+id+'">'+lbl+"</button>";
+ });
+ h+='</div><div class="gabody" id="gaBody">';
+
+ if(S.tab==="overview"){
+  h+='<div class="galbl">'+ui.sevenDays+'</div><div class="gabars">'+
+   DATA.sessionsByDay.map((v,i)=>{
+    const maxV=Math.max(...DATA.sessionsByDay);
+    return '<div class="gabarcol"><div class="gabarval">'+v+'</div><div class="gabar" style="height:'+Math.round((v/maxV)*100)+'%"></div><div class="gabarlbl">'+ui.dayNames[i]+"</div></div>";
+   }).join("")+"</div>";
+  h+='<div class="gatiles"><div class="gatile"><div class="n">'+DATA.sessions.toLocaleString()+'</div><div class="l">'+ui.sessions+'</div></div>'+
+   '<div class="gatile"><div class="n">'+DATA.users.toLocaleString()+'</div><div class="l">'+ui.users+'</div></div>'+
+   '<div class="gatile"><div class="n">'+DATA.conversions+'</div><div class="l">'+ui.conversions+"</div></div></div>";
+ } else if(S.tab==="sources"){
+  const srcs=[["direct",ui.srcDirect,DATA.sources.direct],["organic",ui.srcOrganic,DATA.sources.organic],["social",ui.srcSocial,DATA.sources.social],["paid",ui.srcPaid,DATA.sources.paid],["referral",ui.srcReferral,DATA.sources.referral]];
+  const maxV=Math.max(...srcs.map(s=>s[2]));
+  h+='<div class="galbl">'+ui.tabSources+'</div><div class="gabars">'+
+   srcs.map(([id,l,v])=>'<div class="gabarcol'+(a.selSource===id?" sel":"")+'" data-src="'+id+'"><div class="gabarval">'+v+'</div><div class="gabar" style="height:'+Math.round((v/maxV)*100)+'%"></div><div class="gabarlbl">'+l+"</div></div>").join("")+
+   "</div>";
+ } else if(S.tab==="engagement"){
+  const tiles=[["sessions",ui.sessions,DATA.sessions],["users",ui.users,DATA.users],["bounce",ui.bounceRate,DATA.bounceRate+"%"]];
+  h+='<div class="galbl">'+ui.tabEngagement+'</div><div class="gatiles">'+
+   tiles.map(([id,l,v])=>'<div class="gatile clickable'+(a.selEngagement===id?" sel":"")+'" data-eng="'+id+'"><div class="n">'+v+'</div><div class="l">'+l+"</div></div>").join("")+
+   "</div>";
+ } else if(S.tab==="conversion"){
+  h+='<div class="gatiles"><div class="gatile"><div class="n">'+DATA.sessions.toLocaleString()+'</div><div class="l">'+ui.sessions+'</div></div>'+
+   '<div class="gatile"><div class="n">'+DATA.conversions+'</div><div class="l">'+ui.conversions+"</div></div></div>";
+  h+='<div class="gaformula">'+ui.conversionRate+' = (Conversions ÷ Sessions) × 100</div>';
+  const ok=Math.abs(parseFloat(a.convRateInput||"0")-conversionRate())<=0.3;
+  h+='<div class="gainputrow"><label>'+ui.conversionRate+' (%)</label><input class="gainput" id="gaConvInput" value="'+(a.convRateInput||"").replace(/"/g,"&quot;")+'"/><span class="gacheck '+(ok&&a.convRateInput?"ok":"no")+'">'+(ok&&a.convRateInput?ui.correct:ui.check)+"</span></div>";
+ } else if(S.tab==="money"){
+  h+='<div class="gatiles"><div class="gatile"><div class="n">$'+DATA.adSpend+'</div><div class="l">'+ui.adSpend+'</div></div>'+
+   '<div class="gatile"><div class="n">'+DATA.adConversions+'</div><div class="l">'+ui.adConversions+'</div></div>'+
+   '<div class="gatile"><div class="n">$'+revenue()+'</div><div class="l">'+ui.revenue+"</div></div></div>";
+  h+='<div class="gaformula">'+ui.cac+' = '+ui.adSpend+' ÷ '+ui.adConversions+'</div>';
+  const cacOk=Math.abs(parseFloat(a.cacInput||"0")-cac())<=1;
+  h+='<div class="gainputrow"><label>'+ui.cac+' ($)</label><input class="gainput" id="gaCacInput" value="'+(a.cacInput||"").replace(/"/g,"&quot;")+'"/><span class="gacheck '+(cacOk&&a.cacInput?"ok":"no")+'">'+(cacOk&&a.cacInput?ui.correct:ui.check)+"</span></div>";
+  h+='<div class="gaformula">'+ui.roas+' = '+ui.revenue+' ÷ '+ui.adSpend+' &nbsp;·&nbsp; '+ui.roi+' = (('+ui.revenue+' − '+ui.adSpend+') ÷ '+ui.adSpend+') × 100</div>';
+  const roasOk=Math.abs(parseFloat(a.roasInput||"0")-roas())<=0.3;
+  const roiOk=Math.abs(parseFloat(a.roiInput||"0")-roi())<=15;
+  h+='<div class="gainputrow"><label>'+ui.roas+'</label><input class="gainput" id="gaRoasInput" value="'+(a.roasInput||"").replace(/"/g,"&quot;")+'"/><span class="gacheck '+(roasOk&&a.roasInput?"ok":"no")+'">'+(roasOk&&a.roasInput?ui.correct:ui.check)+"</span></div>";
+  h+='<div class="gainputrow"><label>'+ui.roi+' (%)</label><input class="gainput" id="gaRoiInput" value="'+(a.roiInput||"").replace(/"/g,"&quot;")+'"/><span class="gacheck '+(roiOk&&a.roiInput?"ok":"no")+'">'+(roiOk&&a.roiInput?ui.correct:ui.check)+"</span></div>";
+ } else if(S.tab==="dashboard"){
+  const metrics=[["sessions",ui.mSessions,"traffic"],["users",ui.mUsers,"traffic"],["bounce",ui.mBounce,"traffic"],["sources",ui.mSources,"traffic"],["convrate",ui.mConvRate,"money"],["cac",ui.mCac,"money"],["roas",ui.mRoas,"money"],["roi",ui.mRoi,"money"]];
+  h+='<div class="galbl">'+ui.pinMetrics+'</div><div class="gachips">'+
+   metrics.map(([id,l])=>'<div class="gachip'+(a.pinned.includes(id)?" on":"")+'" data-pin="'+id+'">'+l+"</div>").join("")+"</div>";
+  if(a.pinned.length){
+   h+='<div class="galbl" style="margin-top:16px">'+ui.pinned+'</div><div class="gatiles">'+
+    a.pinned.map(id=>{const m=metrics.find(x=>x[0]===id);return '<div class="gatile"><div class="l">'+m[1]+"</div></div>";}).join("")+"</div>";
+  }
+ }
+ h+="</div></div>";
+ return h;
+}
+function wireToolPanel(){
+ const box=$("gaBody");if(!box)return;
+ document.querySelectorAll(".gatab").forEach(bt=>bt.addEventListener("click",()=>{
+  S.tab=bt.dataset.tab;S.an.visited[S.tab]=true;persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ if(S.tab==="sources"){
+  document.querySelectorAll("[data-src]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.an.selSource=bt.dataset.src;persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="engagement"){
+  document.querySelectorAll("[data-eng]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.an.selEngagement=bt.dataset.eng;persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="conversion"){
+  const ci=$("gaConvInput");
+  if(ci)ci.addEventListener("input",e=>{S.an.convRateInput=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+ } else if(S.tab==="money"){
+  const cc=$("gaCacInput"),rr=$("gaRoasInput"),ri=$("gaRoiInput");
+  if(cc)cc.addEventListener("input",e=>{S.an.cacInput=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(rr)rr.addEventListener("input",e=>{S.an.roasInput=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(ri)ri.addEventListener("input",e=>{S.an.roiInput=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+ } else if(S.tab==="dashboard"){
+  document.querySelectorAll("[data-pin]").forEach(ch=>ch.addEventListener("click",()=>{
+   const id=ch.dataset.pin,arr=S.an.pinned;
+   const idx=arr.indexOf(id);
+   if(idx>=0)arr.splice(idx,1);else arr.push(id);
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ }
+}
+function refreshTool(){
+ const root=$("gaRoot");if(!root)return;
+ root.innerHTML=renderToolPanel();
+ wireToolPanel();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 16 · 16."+n;
+ $("topTitle").textContent=M16[lang][n-1];
+ document.title="Academy · "+M16[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 16 · 16.'+n+'</span><h2 class="labh2">'+M16[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="gaRoot"></div><div class="gatask"><b>'+ui.objEd+':</b> '+C[n].task[lang]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ checkTask(n);
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const root=$("gaRoot");
+ root.innerHTML=renderToolPanel();wireToolPanel();
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function updateFinishBtn(){
+ const st=S.st[S.cur];
+ const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ per-lesson tasks & checks ============ */
+C[1].task={ht:"Vizite chak nan 6 seksyon yo omwen yon fwa.",fr:"Visitez chacune des 6 sections au moins une fois.",en:"Visit each of the 6 sections at least once."};
+C[1].check=a=>Object.values(a.visited).every(Boolean);
+C[2].task={ht:"Klike sou sous trafik ki pi gwo a.",fr:"Cliquez sur la source de trafic la plus grande.",en:"Click on the biggest traffic source."};
+C[2].check=a=>{const top=Object.entries(DATA.sources).sort((x,y)=>y[1]-x[1])[0][0];return a.selSource===top;};
+C[3].task={ht:"Klike sou metrik ki gen pi ba nimewo a.",fr:"Cliquez sur la métrique qui a le nombre le plus bas.",en:"Click on the metric with the lowest number."};
+C[3].check=a=>{const vals={sessions:DATA.sessions,users:DATA.users,bounce:DATA.bounceRate};const lowest=Object.entries(vals).sort((x,y)=>x[1]-y[1])[0][0];return a.selEngagement===lowest;};
+C[4].task={ht:"Kalkile to konvèsyon an (Konvèsyon ÷ Sesyon × 100) epi antre repons lan.",fr:"Calculez le taux de conversion (Conversions ÷ Sessions × 100) et entrez la réponse.",en:"Calculate the conversion rate (Conversions ÷ Sessions × 100) and enter the answer."};
+C[4].check=a=>Math.abs(parseFloat(a.convRateInput||"0")-conversionRate())<=0.3&&!!a.convRateInput;
+C[5].task={ht:"Kalkile CAC (Depans ÷ Konvèsyon) epi antre repons lan.",fr:"Calculez le CAC (Dépense ÷ Conversions) et entrez la réponse.",en:"Calculate CAC (Spend ÷ Conversions) and enter the answer."};
+C[5].check=a=>Math.abs(parseFloat(a.cacInput||"0")-cac())<=1&&!!a.cacInput;
+C[6].task={ht:"Kalkile ROAS (Revni ÷ Depans) ak ROI ((Revni − Depans) ÷ Depans, kòm pousantaj) epi antre repons yo.",fr:"Calculez le ROAS (Revenu ÷ Dépense) et le ROI ((Revenu − Dépense) ÷ Dépense, en pourcentage) et entrez les réponses.",en:"Calculate ROAS (Revenue ÷ Spend) and ROI ((Revenue − Spend) ÷ Spend, as a percentage) and enter the answers."};
+C[6].check=a=>Math.abs(parseFloat(a.roasInput||"0")-roas())<=0.3&&!!a.roasInput&&Math.abs(parseFloat(a.roiInput||"0")-roi())<=15&&!!a.roiInput;
+C[7].task={ht:"Chwazi omwen 3 metrik pou tablo pèsonèl ou, ki gen ladan omwen 1 metrik trafik ak 1 metrik lajan.",fr:"Choisissez au moins 3 métriques pour votre tableau personnel, incluant au moins 1 métrique de trafic et 1 métrique d'argent.",en:"Choose at least 3 metrics for your personal dashboard, including at least 1 traffic metric and 1 money metric."};
+C[7].check=a=>{const traffic=["sessions","users","bounce","sources"],money=["convrate","cac","roas","roi"];return a.pinned.length>=3&&a.pinned.some(m=>traffic.includes(m))&&a.pinned.some(m=>money.includes(m));};
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 16?":S.lang==="fr"?"Voulez-vous recommencer le Module 16 ?":"Restart Module 16?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{},tab:"overview",an:freshAnalytics()};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>

@@ -100,6 +100,7 @@ const dominateDigitalSimulatorModules: Record<
   m13: { moduleNumber: 13, title: "Modil 13 — Maketing pa Imèl" },
   m14: { moduleNumber: 14, title: "Modil 14 — Sit Web ak Paj Aterisaj" },
   m15: { moduleNumber: 15, title: "Modil 15 — Piblisite Peye" },
+  m16: { moduleNumber: 16, title: "Modil 16 — Analitik" },
 };
 
 export async function generateMetadata({
