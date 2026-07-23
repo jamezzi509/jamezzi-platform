@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 15 — Piblisite Peye</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ============ Ads Manager tool surface (generic SaaS dashboard, neutral accent) ============ */
+.adwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;background:#fff;border-radius:10px;overflow:hidden;color:#1b1f27;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.adtabs{display:flex;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.adtab{padding:12px 16px;font-size:13px;font-weight:600;color:#5b6472;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.adtab.on{color:#3B6FE0;border-bottom-color:#3B6FE0}
+.adbody{padding:18px}
+.adlbl{font-size:11.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+.adplatgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:14px}
+.adplat{border:1px solid #e5e7eb;border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;background:#f9fafb;font-family:inherit}
+.adplat.on{border-color:#3B6FE0;background:#eef2ff}
+.adplat .em{font-size:22px;margin-bottom:6px}
+.adplat .l{font-size:12.5px;font-weight:700}
+.adplatdesc{font-size:12.5px;color:#374151;background:#f3f4f6;border-radius:8px;padding:10px 12px}
+.adobjgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.adobj{border:1px solid #e5e7eb;border-radius:10px;padding:14px;text-align:left;cursor:pointer;background:#f9fafb;font-family:inherit}
+.adobj.on{border-color:#3B6FE0;background:#eef2ff}
+.adobj .l{font-size:13px;font-weight:700;margin-bottom:4px}
+.adobj .d{font-size:11.5px;color:#6b7280}
+.adrow{margin-bottom:16px}
+.adinput{width:100%;border:1px solid #d7dce3;border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:#1b1f27}
+.adinput:focus{outline:2px solid #3B6FE0}
+.adrange{width:100%}
+.adrangevals{display:flex;justify-content:space-between;font-size:12px;color:#374151;margin-top:4px}
+.adchips{display:flex;gap:6px;flex-wrap:wrap}
+.adchip{padding:7px 12px;border-radius:999px;border:1px solid #d7dce3;font-size:12.5px;cursor:pointer;background:#f7f8fa;font-family:inherit}
+.adchip.on{background:#3B6FE0;color:#fff;border-color:#3B6FE0}
+.adreach{background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;padding:12px 14px;margin-top:14px;font-size:13px;color:#3730a3}
+.adreach b{font-size:16px}
+.adselect{width:100%;border:1px solid #d7dce3;border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:#1b1f27}
+.adtoggle{display:flex;align-items:center;justify-content:space-between;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.adtogglebtn{font-size:12.5px;font-weight:700;border:1px solid #d7dce3;background:#fff;border-radius:8px;padding:7px 14px;cursor:pointer;font-family:inherit}
+.adtogglebtn.on{background:#22c55e;color:#fff;border-color:#22c55e}
+.adtogglebtn:disabled{opacity:.4;cursor:not-allowed}
+.adnote{font-size:11.5px;color:#9ca3af;margin-top:4px}
+.adtask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 15 · 15.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay tablo a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   tabPlatform:"Platfòm",tabObjective:"Objektif",tabAudience:"Odyans",tabBudget:"Bidjè",tabCreative:"Kreyasyon",tabTracking:"Swiv",
+   platMeta:"Meta",platGoogle:"Google",platTiktok:"TikTok",platLinkedin:"LinkedIn",platPinterest:"Pinterest",
+   platMetaDesc:"Bon pou odyans laj e kontni vizyèl sou Facebook/Instagram.",
+   platGoogleDesc:"Kaptire moun k ap chèche aktivman sou Google Search.",
+   platTiktokDesc:"Bon pou videyo kout ak jenn odyans.",
+   platLinkedinDesc:"Bon pou biznis-a-biznis (B2B) ak pwofesyonèl.",
+   platPinterestDesc:"Bon pou lide/enspirasyon ak achte planifye davans.",
+   objAwareness:"Konnesans",objConsideration:"Konsiderasyon",objConversion:"Konvèsyon",
+   objAwarenessDesc:"Fè moun konnen biznis ou egziste.",
+   objConsiderationDesc:"Fè moun enterese ase pou vizite/aprann plis.",
+   objConversionDesc:"Fè moun pran yon aksyon espesifik (achte, enskri).",
+   ageRange:"Ranje Laj",location:"Kote",locationPh:"Vil, Katye...",interests:"Enterè",
+   intBiz:"Biznis Lokal",intFam:"Fanmi",intStudent:"Etidyan",intEntre:"Antreprenè",intTravel:"Vwayaj",
+   estReach:"Odyans Estime",dailyBudget:"Bidjè Chak Jou",duration:"Dire Kanpay la (jou)",estSpend:"Depans Total Estime",
+   headline:"Tit Piblisite a",image:"Imaj",imagePh:"Chwazi yon imaj...",imgProduct:"Foto Pwodwi",imgLifestyle:"Foto Lavi Reyèl",imgTeam:"Foto Ekip la",imgOffer:"Grafik Ofri",
+   cta:"Tèks CTA",pixelLbl:"Pixel Swiv",pixelDesc:"Yon ti kòd sou sit ou ki kolekte done sou vizitè.",
+   retargetLbl:"Odyans Retablaj (Retargeting)",retargetDesc:"Yon odyans ki gen ladan sèlman moun ki deja vizite sit ou.",
+   activate:"Aktive",activated:"Aktive ✓",needPixelFirst:"Enstale pixel la anvan",
+   stampTitle:"Ou fini Modil 15!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche du tableau",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   tabPlatform:"Plateforme",tabObjective:"Objectif",tabAudience:"Audience",tabBudget:"Budget",tabCreative:"Créatif",tabTracking:"Suivi",
+   platMeta:"Meta",platGoogle:"Google",platTiktok:"TikTok",platLinkedin:"LinkedIn",platPinterest:"Pinterest",
+   platMetaDesc:"Bon pour une large audience et du contenu visuel sur Facebook/Instagram.",
+   platGoogleDesc:"Capture les gens qui cherchent activement sur Google Search.",
+   platTiktokDesc:"Bon pour les vidéos courtes et le jeune public.",
+   platLinkedinDesc:"Bon pour le business-à-business (B2B) et les professionnels.",
+   platPinterestDesc:"Bon pour les idées/l'inspiration et les achats planifiés à l'avance.",
+   objAwareness:"Notoriété",objConsideration:"Considération",objConversion:"Conversion",
+   objAwarenessDesc:"Faire savoir aux gens que votre entreprise existe.",
+   objConsiderationDesc:"Rendre les gens assez intéressés pour visiter/en savoir plus.",
+   objConversionDesc:"Faire prendre une action spécifique (acheter, s'inscrire).",
+   ageRange:"Tranche d'Âge",location:"Lieu",locationPh:"Ville, Quartier...",interests:"Centres d'Intérêt",
+   intBiz:"Entreprise Locale",intFam:"Famille",intStudent:"Étudiant",intEntre:"Entrepreneur",intTravel:"Voyage",
+   estReach:"Audience Estimée",dailyBudget:"Budget Quotidien",duration:"Durée de la Campagne (jours)",estSpend:"Dépense Totale Estimée",
+   headline:"Titre de la Publicité",image:"Image",imagePh:"Choisir une image...",imgProduct:"Photo Produit",imgLifestyle:"Photo Style de Vie",imgTeam:"Photo de l'Équipe",imgOffer:"Graphique d'Offre",
+   cta:"Texte du CTA",pixelLbl:"Pixel de Suivi",pixelDesc:"Un petit code sur votre site qui collecte des données sur les visiteurs.",
+   retargetLbl:"Audience de Reciblage (Retargeting)",retargetDesc:"Une audience qui inclut seulement les gens ayant déjà visité votre site.",
+   activate:"Activer",activated:"Activé ✓",needPixelFirst:"Installez le pixel d'abord",
+   stampTitle:"Module 15 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the dashboard task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   tabPlatform:"Platform",tabObjective:"Objective",tabAudience:"Audience",tabBudget:"Budget",tabCreative:"Creative",tabTracking:"Tracking",
+   platMeta:"Meta",platGoogle:"Google",platTiktok:"TikTok",platLinkedin:"LinkedIn",platPinterest:"Pinterest",
+   platMetaDesc:"Good for broad reach and visual content on Facebook/Instagram.",
+   platGoogleDesc:"Captures people actively searching on Google Search.",
+   platTiktokDesc:"Good for short-form video and younger audiences.",
+   platLinkedinDesc:"Good for business-to-business (B2B) and professionals.",
+   platPinterestDesc:"Good for ideas/inspiration and planned-ahead purchases.",
+   objAwareness:"Awareness",objConsideration:"Consideration",objConversion:"Conversion",
+   objAwarenessDesc:"Let people know your business exists.",
+   objConsiderationDesc:"Get people interested enough to visit/learn more.",
+   objConversionDesc:"Get people to take a specific action (buy, sign up).",
+   ageRange:"Age Range",location:"Location",locationPh:"City, Neighborhood...",interests:"Interests",
+   intBiz:"Local Business",intFam:"Family",intStudent:"Student",intEntre:"Entrepreneur",intTravel:"Travel",
+   estReach:"Estimated Reach",dailyBudget:"Daily Budget",duration:"Campaign Duration (days)",estSpend:"Estimated Total Spend",
+   headline:"Ad Headline",image:"Image",imagePh:"Choose an image...",imgProduct:"Product Photo",imgLifestyle:"Lifestyle Photo",imgTeam:"Team Photo",imgOffer:"Offer Graphic",
+   cta:"CTA Text",pixelLbl:"Tracking Pixel",pixelDesc:"A small code on your site that collects data on visitors.",
+   retargetLbl:"Retargeting Audience",retargetDesc:"An audience that includes only people who already visited your site.",
+   activate:"Activate",activated:"Activated ✓",needPixelFirst:"Install the pixel first",
+   stampTitle:"You finished Module 15!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M15={
+ ht:["Rankontre Jesyonè Piblisite a","Chwazi Platfòm Piblisite Ou","Fikse Objektif Kanpay la","Sib Odyans Ou","Fikse Bidjè Ou","Baz Kreyasyon Piblisite","Retablaj ak Pixel"],
+ fr:["Découvrir le Gestionnaire de Publicités","Choisir Votre Plateforme Publicitaire","Définir les Objectifs de Campagne","Cibler Votre Audience","Définir Votre Budget","Les Bases du Créatif Publicitaire","Reciblage et Pixels"],
+ en:["Meet the Ads Manager","Choosing Your Ad Platform","Setting Campaign Objectives","Audience Targeting","Setting Your Budget","Ad Creative Basics","Retargeting & Pixels"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Piblisite peye ka mete biznis ou devan moun ki poko konnen ou — zouti sa a imite yon jesyonè piblisite reyèl ak 6 etap: Platfòm, Objektif, Odyans, Bidjè, Kreyasyon, ak Swiv (Tracking).",
+   secs:[["6 etap yon kanpay","Chak etap konstwi sou sa anvan li — chwazi bon platfòm, yon objektif klè, bon odyans, yon bidjè rezonab, yon kreyasyon ki atire, ak fason pou swiv rezilta."],
+    ["Menm prensip, diferan platfòm","Kèlkeswa si se Meta, Google, TikTok, LinkedIn, oswa Pinterest, chak platfòm swiv menm etap debaz sa yo — sa fè konesans ou aplikab pataje."]],
+   ex:"Ki platfòm piblisite ou panse ta pi bon pou biznis ou, e poukisa?",
+   quiz:[
+    {q:"Konbyen etap yon kanpay piblisite gen nan zouti sa a?",opts:["3","6","10","1"],ans:1,fb:"Gen 6 etap: Platfòm, Objektif, Odyans, Bidjè, Kreyasyon, Swiv."},
+    {q:"Kisa ki rete menm kèlkeswa platfòm lan?",opts:["Anyen","Etap debaz kanpay yo (objektif, odyans, bidjè, kreyasyon)","Pri a","Koulè yo"],ans:1,fb:"Etap debaz yo rete menm atravè platfòm yo."},
+    {q:"Ki 6 etap yo?",opts:["Sèlman Bidjè","Platfòm, Objektif, Odyans, Bidjè, Kreyasyon, ak Swiv","Sèlman Kreyasyon","Pa gen etap"],ans:1,fb:"Platfòm, Objektif, Odyans, Bidjè, Kreyasyon, Swiv."}],
+   close:{learned:"Yon kanpay piblisite swiv 6 etap (Platfòm, Objektif, Odyans, Bidjè, Kreyasyon, Swiv) ki rete menm kèlkeswa platfòm ou chwazi.",
+    mistake:"Kwè chak platfòm mande yon konpetans totalman diferan, olye rekonèt ke etap debaz yo pataje atravè yo tout.",
+    tip:"Aprann etap debaz yo yon fwa, epi w ka aplike konesans sa a sou nenpòt platfòm piblisite.",
+    assign:"Ki platfòm piblisite ou panse ta pi bon pou biznis ou, e poukisa?",
+    dl:"Referans: 6 Etap yon Kanpay Piblisite",
+    checklist:["Vizite tab Platfòm?","Vizite tab Objektif?","Vizite tab Odyans?","Vizite tab Bidjè?","Vizite tab Kreyasyon?","Vizite tab Swiv?"],
+    ai:"Eksplike 6 etap yon kanpay piblisite peye, an tèm senp pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"La publicité payante peut mettre votre entreprise devant des gens qui ne vous connaissent pas encore — cet outil imite un vrai gestionnaire de publicités avec 6 étapes : Plateforme, Objectif, Audience, Budget, Créatif, et Suivi (Tracking).",
+   secs:[["Les 6 étapes d'une campagne","Chaque étape se construit sur la précédente — choisir la bonne plateforme, un objectif clair, la bonne audience, un budget raisonnable, un créatif attirant, et une façon de suivre les résultats."],
+    ["Mêmes principes, plateformes différentes","Que ce soit Meta, Google, TikTok, LinkedIn, ou Pinterest, chaque plateforme suit ces mêmes étapes de base — ça rend votre connaissance applicable partout."]],
+   ex:"Quelle plateforme publicitaire pensez-vous serait la meilleure pour votre entreprise, et pourquoi ?",
+   quiz:[
+    {q:"Combien d'étapes une campagne publicitaire a-t-elle dans cet outil ?",opts:["3","6","10","1"],ans:1,fb:"Il y a 6 étapes : Plateforme, Objectif, Audience, Budget, Créatif, Suivi."},
+    {q:"Qu'est-ce qui reste identique peu importe la plateforme ?",opts:["Rien","Les étapes de base de la campagne (objectif, audience, budget, créatif)","Le prix","Les couleurs"],ans:1,fb:"Les étapes de base restent identiques à travers les plateformes."},
+    {q:"Quelles sont les 6 étapes ?",opts:["Seulement Budget","Plateforme, Objectif, Audience, Budget, Créatif, et Suivi","Seulement Créatif","Il n'y a pas d'étapes"],ans:1,fb:"Plateforme, Objectif, Audience, Budget, Créatif, Suivi."}],
+   close:{learned:"Une campagne publicitaire suit 6 étapes (Plateforme, Objectif, Audience, Budget, Créatif, Suivi) qui restent identiques peu importe la plateforme choisie.",
+    mistake:"Croire que chaque plateforme demande une compétence totalement différente, plutôt que de reconnaître que les étapes de base sont partagées à travers elles toutes.",
+    tip:"Apprenez les étapes de base une fois, et vous pourrez appliquer cette connaissance à n'importe quelle plateforme publicitaire.",
+    assign:"Quelle plateforme publicitaire pensez-vous serait la meilleure pour votre entreprise, et pourquoi ?",
+    dl:"Référence : Les 6 Étapes d'une Campagne Publicitaire",
+    checklist:["Onglet Plateforme visité ?","Onglet Objectif visité ?","Onglet Audience visité ?","Onglet Budget visité ?","Onglet Créatif visité ?","Onglet Suivi visité ?"],
+    ai:"Explique les 6 étapes d'une campagne de publicité payante, en termes simples pour un propriétaire de petite entreprise."}},
+ en:{lede:"Paid advertising can put your business in front of people who don't know you yet — this tool mimics a real ads manager with 6 steps: Platform, Objective, Audience, Budget, Creative, and Tracking.",
+   secs:[["The 6 steps of a campaign","Each step builds on the one before — choosing the right platform, a clear objective, the right audience, a reasonable budget, an attractive creative, and a way to track results."],
+    ["Same principles, different platforms","Whether it's Meta, Google, TikTok, LinkedIn, or Pinterest, every platform follows these same basic steps — that makes your knowledge transferable."]],
+   ex:"What ad platform do you think would be best for your business, and why?",
+   quiz:[
+    {q:"How many steps does an ad campaign have in this tool?",opts:["3","6","10","1"],ans:1,fb:"There are 6 steps: Platform, Objective, Audience, Budget, Creative, Tracking."},
+    {q:"What stays the same regardless of platform?",opts:["Nothing","The basic campaign steps (objective, audience, budget, creative)","The price","The colors"],ans:1,fb:"The basic steps stay the same across platforms."},
+    {q:"What are the 6 steps?",opts:["Only Budget","Platform, Objective, Audience, Budget, Creative, and Tracking","Only Creative","There are no steps"],ans:1,fb:"Platform, Objective, Audience, Budget, Creative, Tracking."}],
+   close:{learned:"An ad campaign follows 6 steps (Platform, Objective, Audience, Budget, Creative, Tracking) that stay the same regardless of which platform you choose.",
+    mistake:"Believing each platform requires a totally different skill, rather than recognizing the basic steps are shared across all of them.",
+    tip:"Learn the basic steps once, and you can apply that knowledge to any ad platform.",
+    assign:"What ad platform do you think would be best for your business, and why?",
+    dl:"Reference: The 6 Steps of an Ad Campaign",
+    checklist:["Platform tab visited?","Objective tab visited?","Audience tab visited?","Budget tab visited?","Creative tab visited?","Tracking tab visited?"],
+    ai:"Explain the 6 steps of a paid advertising campaign, in simple terms for a small business owner."}}},
+
+2:{ht:{lede:"Chak platfòm piblisite gen yon fòs diferan — chwazi youn ki matche ak kote vrè kliyan ou pase tan yo, pa jis youn ki popilè.",
+   secs:[["Fòs chak platfòm","Meta (Facebook/Instagram) bon pou odyans laj e vizyèl; Google Ads kaptire moun k ap chèche aktivman; TikTok bon pou videyo kout ak jenn odyans; LinkedIn bon pou biznis-a-biznis (B2B); Pinterest bon pou lide/enspirasyon ak achte planifye."],
+    ["Matche platfòm ak objektif","Yon biznis ki vann sèvis pou lòt biznis (B2B) jwenn pi bon rezilta sou LinkedIn pase sou Pinterest, pa egzanp — konnen odyans ou dirije chwa platfòm ou."]],
+   ex:"Dekri vrè kliyan ou epi di ki platfòm ki ta matche pi byen ak yo.",
+   quiz:[
+    {q:"Ki platfòm bon pou biznis-a-biznis (B2B)?",opts:["Pinterest","LinkedIn","TikTok sèlman","Okenn platfòm pa fè B2B"],ans:1,fb:"LinkedIn bon pou B2B ak pwofesyonèl."},
+    {q:"Ki platfòm kaptire moun k ap chèche aktivman?",opts:["Google Ads","Pinterest","Okenn","Yo tout menm jan"],ans:1,fb:"Google Ads kaptire rechèch aktif."},
+    {q:"Poukisa pa chwazi yon platfòm sèlman paske li popilè?",opts:["Se toujou pi bon chwa","Ou ta dwe matche platfòm ak kote vrè kliyan ou ye","Popilarite se sèl bagay ki konte","Tout platfòm idantik"],ans:1,fb:"Matche platfòm ak vrè kliyan ou konte plis pase popilarite."}],
+   close:{learned:"Chak platfòm gen yon fòs diferan (Meta pou pòte vizyèl laj, Google pou rechèch aktif, TikTok pou jenn odyans, LinkedIn pou B2B, Pinterest pou enspirasyon) — chwazi youn ki matche ak vrè kliyan ou.",
+    mistake:"Chwazi yon platfòm sèlman paske li popilè oswa 'tout moun itilize l,' san konsidere si vrè kliyan ou reyèlman pase tan la.",
+    tip:"Si ou pa sèten, konsidere kote vrè kliyan ou deja pase tan yo online anvan w chwazi yon platfòm.",
+    assign:"Dekri vrè kliyan ou epi di ki platfòm ki ta matche pi byen ak yo.",
+    dl:"Referans: Fòs Chak Platfòm Piblisite",
+    checklist:["Yon platfòm chwazi?","Platfòm lan matche ak sitiyasyon B2B ki dekri a?"],
+    ai:"Ede m chwazi ant Meta, Google, TikTok, LinkedIn, ak Pinterest pou yon [kalite biznis]."}},
+ fr:{lede:"Chaque plateforme publicitaire a une force différente — choisissez-en une qui correspond à où vos vrais clients passent leur temps, pas juste une populaire.",
+   secs:[["La force de chaque plateforme","Meta (Facebook/Instagram) est bon pour une large audience et le contenu visuel ; Google Ads capture les gens qui cherchent activement ; TikTok est bon pour les vidéos courtes et le jeune public ; LinkedIn est bon pour le business-à-business (B2B) ; Pinterest est bon pour les idées/l'inspiration et les achats planifiés."],
+    ["Faire correspondre plateforme et objectif","Une entreprise qui vend des services à d'autres entreprises (B2B) obtient de meilleurs résultats sur LinkedIn que sur Pinterest, par exemple — connaître votre audience guide votre choix de plateforme."]],
+   ex:"Décrivez votre vrai client et dites quelle plateforme lui correspondrait le mieux.",
+   quiz:[
+    {q:"Quelle plateforme est bonne pour le business-à-business (B2B) ?",opts:["Pinterest","LinkedIn","Seulement TikTok","Aucune plateforme ne fait de B2B"],ans:1,fb:"LinkedIn est bon pour le B2B et les professionnels."},
+    {q:"Quelle plateforme capture les gens qui cherchent activement ?",opts:["Google Ads","Pinterest","Aucune","Elles sont toutes pareilles"],ans:1,fb:"Google Ads capture la recherche active."},
+    {q:"Pourquoi ne pas choisir une plateforme juste parce qu'elle est populaire ?",opts:["C'est toujours le meilleur choix","Vous devriez faire correspondre la plateforme à où sont vos vrais clients","La popularité est la seule chose qui compte","Toutes les plateformes sont identiques"],ans:1,fb:"Faire correspondre la plateforme à vos vrais clients compte plus que la popularité."}],
+   close:{learned:"Chaque plateforme a une force différente (Meta pour la large portée visuelle, Google pour la recherche active, TikTok pour le jeune public, LinkedIn pour le B2B, Pinterest pour l'inspiration) — choisissez-en une qui correspond à vos vrais clients.",
+    mistake:"Choisir une plateforme juste parce qu'elle est populaire ou que « tout le monde l'utilise », sans considérer si vos vrais clients y passent réellement du temps.",
+    tip:"Si vous n'êtes pas sûr, considérez où vos vrais clients passent déjà du temps en ligne avant de choisir une plateforme.",
+    assign:"Décrivez votre vrai client et dites quelle plateforme lui correspondrait le mieux.",
+    dl:"Référence : La Force de Chaque Plateforme Publicitaire",
+    checklist:["Une plateforme choisie ?","La plateforme correspond-elle à la situation B2B décrite ?"],
+    ai:"Aide-moi à choisir entre Meta, Google, TikTok, LinkedIn, et Pinterest pour un(e) [type d'entreprise]."}},
+ en:{lede:"Every ad platform has a different strength — choose one that matches where your real customers spend time, not just a popular one.",
+   secs:[["Each platform's strength","Meta (Facebook/Instagram) is good for broad reach and visual content; Google Ads captures people actively searching; TikTok is good for short-form video and younger audiences; LinkedIn is good for business-to-business (B2B); Pinterest is good for ideas/inspiration and planned-ahead purchases."],
+    ["Matching platform to objective","A business selling services to other businesses (B2B) gets better results on LinkedIn than Pinterest, for example — knowing your audience drives your platform choice."]],
+   ex:"Describe your real customer and say which platform would fit them best.",
+   quiz:[
+    {q:"What platform is good for business-to-business (B2B)?",opts:["Pinterest","LinkedIn","Only TikTok","No platform does B2B"],ans:1,fb:"LinkedIn is good for B2B and professionals."},
+    {q:"What platform captures people actively searching?",opts:["Google Ads","Pinterest","None","They're all the same"],ans:1,fb:"Google Ads captures active search."},
+    {q:"Why not choose a platform just because it's popular?",opts:["It's always the best choice","You should match the platform to where your real customers are","Popularity is the only thing that matters","All platforms are identical"],ans:1,fb:"Matching the platform to real customers matters more than popularity."}],
+   close:{learned:"Each platform has a different strength (Meta for broad visual reach, Google for active search, TikTok for younger audiences, LinkedIn for B2B, Pinterest for inspiration) — choose one that matches your real customers.",
+    mistake:"Choosing a platform just because it's popular or \"everyone uses it,\" without considering whether your real customers actually spend time there.",
+    tip:"If you're unsure, consider where your real customers already spend time online before choosing a platform.",
+    assign:"Describe your real customer and say which platform would fit them best.",
+    dl:"Reference: Each Ad Platform's Strength",
+    checklist:["A platform chosen?","Does the platform match the described B2B situation?"],
+    ai:"Help me choose between Meta, Google, TikTok, LinkedIn, and Pinterest for a [type of business]."}}},
+
+3:{ht:{lede:"Yon objektif kanpay klè gide tout lòt desizyon yo — mande moun 'achte kounye a' pa gen menm sans ak jis fè yo rekonèt non biznis ou.",
+   secs:[["3 objektif prensipal","Konnesans (fè moun konnen w egziste), Konsiderasyon (fè moun enterese ase pou vizite/aprann plis), ak Konvèsyon (fè moun pran yon aksyon espesifik tankou achte)."],
+    ["Matche objektif ak etap antonwa a","Sa dirèkteman lye ak antonwa maketing Modil 1 la — objektif Konnesans matche etap konsyantizasyon, Konvèsyon matche etap desizyon an."]],
+   ex:"Pou biznis ou, dekri yon sitiyasyon kote chak nan 3 objektif yo ta lojik.",
+   quiz:[
+    {q:"Ki objektif matche 'mande moun achte kounye a'?",opts:["Konnesans","Konvèsyon","Okenn nan yo","Tout twa an menm tan toujou pi bon"],ans:1,fb:"Konvèsyon matche yon aksyon espesifik tankou achte."},
+    {q:"Kisa objektif Konnesans fè?",opts:["Fè moun achte imedyatman","Fè moun konnen biznis ou egziste","Ranplase bezwen pou lòt objektif","Anyen"],ans:1,fb:"Konnesans fè moun konnen w egziste."},
+    {q:"Ak ki modil objektif yo lye dirèkteman?",opts:["Modil 3","Modil 1 (antonwa maketing an)","Modil 6","Pa gen okenn lyen"],ans:1,fb:"Objektif yo lye dirèkteman ak antonwa Modil 1 la."}],
+   close:{learned:"Yon objektif kanpay klè (Konnesans, Konsiderasyon, oswa Konvèsyon) ta dwe matche ak etap antonwa maketing (Modil 1) moun ou vize a ye.",
+    mistake:"Mete yon objektif Konvèsyon pou yon odyans ki poko janm tande pale de biznis ou — yo poko pare pou aksyon sa a.",
+    tip:"Si ou pa sèten ki objektif chwazi, panse a ki kote nan antonwa a moun ou vize a ye kounye a.",
+    assign:"Pou biznis ou, dekri yon sitiyasyon kote chak nan 3 objektif yo ta lojik.",
+    dl:"Referans: 3 Objektif Kanpay yo",
+    checklist:["Yon objektif chwazi?","Objektif la matche ak sitiyasyon 'achte kounye a' ki dekri a?"],
+    ai:"Ede m chwazi ant Konnesans, Konsiderasyon, ak Konvèsyon pou yon kanpay [kalite biznis]."}},
+ fr:{lede:"Un objectif de campagne clair guide toutes les autres décisions — demander aux gens « d'acheter maintenant » n'a pas le même sens que juste les faire reconnaître le nom de votre entreprise.",
+   secs:[["3 objectifs principaux","Notoriété (faire savoir aux gens que vous existez), Considération (rendre les gens assez intéressés pour visiter/en savoir plus), et Conversion (faire prendre une action spécifique comme acheter)."],
+    ["Faire correspondre l'objectif à l'étape de l'entonnoir","Ça se lie directement à l'entonnoir marketing du Module 1 — l'objectif Notoriété correspond à l'étape de sensibilisation, Conversion correspond à l'étape de décision."]],
+   ex:"Pour votre entreprise, décrivez une situation où chacun des 3 objectifs aurait du sens.",
+   quiz:[
+    {q:"Quel objectif correspond à « demander aux gens d'acheter maintenant » ?",opts:["Notoriété","Conversion","Aucun d'eux","Les trois en même temps sont toujours meilleurs"],ans:1,fb:"Conversion correspond à une action spécifique comme acheter."},
+    {q:"Que fait l'objectif Notoriété ?",opts:["Fait acheter les gens immédiatement","Fait savoir aux gens que votre entreprise existe","Remplace le besoin d'autres objectifs","Rien"],ans:1,fb:"La Notoriété fait savoir aux gens que vous existez."},
+    {q:"À quel module les objectifs se lient-ils directement ?",opts:["Module 3","Module 1 (l'entonnoir marketing)","Module 6","Aucun lien"],ans:1,fb:"Les objectifs se lient directement à l'entonnoir du Module 1."}],
+   close:{learned:"Un objectif de campagne clair (Notoriété, Considération, ou Conversion) devrait correspondre à l'étape de l'entonnoir marketing (Module 1) où se trouve votre public cible.",
+    mistake:"Mettre un objectif Conversion pour une audience qui n'a jamais entendu parler de votre entreprise — elle n'est pas encore prête pour cette action.",
+    tip:"Si vous n'êtes pas sûr de quel objectif choisir, pensez à où dans l'entonnoir se trouve votre public cible en ce moment.",
+    assign:"Pour votre entreprise, décrivez une situation où chacun des 3 objectifs aurait du sens.",
+    dl:"Référence : Les 3 Objectifs de Campagne",
+    checklist:["Un objectif choisi ?","L'objectif correspond-il à la situation « acheter maintenant » décrite ?"],
+    ai:"Aide-moi à choisir entre Notoriété, Considération, et Conversion pour une campagne de [type d'entreprise]."}},
+ en:{lede:"A clear campaign objective guides every other decision — asking people to \"buy now\" doesn't carry the same meaning as just getting them to recognize your business name.",
+   secs:[["3 main objectives","Awareness (let people know you exist), Consideration (get people interested enough to visit/learn more), and Conversion (get people to take a specific action like buying)."],
+    ["Matching objective to funnel stage","This ties directly to the marketing funnel from Module 1 — Awareness matches the awareness stage, Conversion matches the decision stage."]],
+   ex:"For your business, describe a situation where each of the 3 objectives would make sense.",
+   quiz:[
+    {q:"Which objective matches \"asking people to buy now\"?",opts:["Awareness","Conversion","Neither of them","All three at once is always better"],ans:1,fb:"Conversion matches a specific action like buying."},
+    {q:"What does the Awareness objective do?",opts:["Get people to buy immediately","Let people know your business exists","Replace the need for other objectives","Nothing"],ans:1,fb:"Awareness lets people know you exist."},
+    {q:"Which module do objectives tie directly to?",opts:["Module 3","Module 1 (the marketing funnel)","Module 6","No connection"],ans:1,fb:"Objectives tie directly to Module 1's funnel."}],
+   close:{learned:"A clear campaign objective (Awareness, Consideration, or Conversion) should match the marketing funnel stage (Module 1) your target audience is at.",
+    mistake:"Setting a Conversion objective for an audience that's never heard of your business — they're not ready for that action yet.",
+    tip:"If you're unsure which objective to choose, think about where in the funnel your target audience currently sits.",
+    assign:"For your business, describe a situation where each of the 3 objectives would make sense.",
+    dl:"Reference: The 3 Campaign Objectives",
+    checklist:["An objective chosen?","Does the objective match the described \"buy now\" situation?"],
+    ai:"Help me choose between Awareness, Consideration, and Conversion for a [type of business] campaign."}}},
+
+4:{ht:{lede:"Yon kanpay ki vize 'tout moun' souvan gaspiye lajan sou moun ki pa janm ta enterese — bon siblaj konsantre bidjè ou sou moun ki reyèlman matche ak vrè kliyan ou.",
+   secs:[["Twa fason pou ranje odyans","Ranje laj, kote, ak enterè — chak youn ede w rive pi pre vrè avata kliyan ou (Modil 4) olye 'tout moun ki gen entènèt.'"],
+    ["Balans, pa ekstrèm","Yon odyans twò laj (tout moun 18-65 san enterè espesifik) gaspiye bidjè; yon odyans twò etwat ka kite bidjè a pa gen ase moun pou rive."]],
+   ex:"Dekri ranje laj, kote, ak enterè ki ta pi lojik pou vrè kliyan biznis ou.",
+   quiz:[
+    {q:"Poukisa vize 'tout moun' souvan gaspiye lajan?",opts:["Li pa gaspiye anyen","Li depanse sou moun ki pa janm ta enterese olye konsantre sou vrè kliyan","Tout moun se toujou pi bon","Siblaj pa afekte rezilta"],ans:1,fb:"Vize tout moun depanse sou moun ki pa enterese."},
+    {q:"Ki 3 fason pou ranje yon odyans?",opts:["Sèlman koulè","Laj, kote, ak enterè","Sèlman non","Pa gen fason pou ranje"],ans:1,fb:"Laj, kote, ak enterè se 3 fason yo."},
+    {q:"Kisa ki ka pase si odyans ou twò etwat?",opts:["Anyen, pi etwat toujou pi bon","Bidjè a ka pa gen ase moun pou rive","Li toujou pi ekonomik","Sa pa afekte rezilta ditou"],ans:1,fb:"Twò etwat ka lakòz pa gen ase moun pou rive."}],
+   close:{learned:"Bon siblaj (laj, kote, enterè) rive pi pre vrè avata kliyan ou olye 'tout moun' — men chèche yon balans, pa yon ekstrèm twò laj oswa twò etwat.",
+    mistake:"Kite ranje laj la nan default konplè (18-65) san chwazi okenn enterè, ki fè bidjè a gaspiye sou moun ki pa janm ta enterese.",
+    tip:"Panse a avata kliyan ou (Modil 4) pou deside laj, kote, ak enterè ki pi lojik anvan w lanse yon kanpay.",
+    assign:"Dekri ranje laj, kote, ak enterè ki ta pi lojik pou vrè kliyan biznis ou.",
+    dl:"Fèy Travay: Sib Odyans Ou",
+    checklist:["Ranje laj pi etwat pase 18-65 (pa plis pase 30 an)?","Yon kote antre?","1-3 enterè chwazi?"],
+    ai:"Ede m defini yon odyans (laj, kote, enterè) pou yon [kalite biznis] ki vize [dekri kliyan ou]."}},
+ fr:{lede:"Une campagne qui vise « tout le monde » gaspille souvent de l'argent sur des gens qui ne seraient jamais intéressés — un bon ciblage concentre votre budget sur les gens qui correspondent réellement à vos vrais clients.",
+   secs:[["Trois façons de définir l'audience","Tranche d'âge, lieu, et centres d'intérêt — chacun vous aide à vous rapprocher de votre vrai avatar client (Module 4) plutôt que « tout le monde ayant internet »."],
+    ["L'équilibre, pas l'extrême","Une audience trop large (tout le monde 18-65 sans intérêt spécifique) gaspille le budget ; une audience trop étroite peut laisser le budget sans assez de gens à atteindre."]],
+   ex:"Décrivez la tranche d'âge, le lieu, et les centres d'intérêt qui seraient les plus logiques pour les vrais clients de votre entreprise.",
+   quiz:[
+    {q:"Pourquoi viser « tout le monde » gaspille-t-il souvent de l'argent ?",opts:["Ça ne gaspille rien","Ça dépense sur des gens qui ne seraient jamais intéressés au lieu de se concentrer sur les vrais clients","Tout le monde est toujours mieux","Le ciblage n'affecte pas les résultats"],ans:1,fb:"Viser tout le monde dépense sur des gens non intéressés."},
+    {q:"Quelles sont les 3 façons de définir une audience ?",opts:["Seulement la couleur","Âge, lieu, et centres d'intérêt","Seulement le nom","Il n'y a pas de façon de définir"],ans:1,fb:"Âge, lieu, et centres d'intérêt sont les 3 façons."},
+    {q:"Que peut-il se passer si votre audience est trop étroite ?",opts:["Rien, plus étroit est toujours mieux","Le budget peut ne pas avoir assez de gens à atteindre","C'est toujours plus économique","Ça n'affecte pas du tout les résultats"],ans:1,fb:"Trop étroit peut signifier pas assez de gens à atteindre."}],
+   close:{learned:"Un bon ciblage (âge, lieu, centres d'intérêt) se rapproche de votre vrai avatar client plutôt que « tout le monde » — mais cherchez un équilibre, pas un extrême trop large ou trop étroit.",
+    mistake:"Laisser la tranche d'âge au défaut complet (18-65) sans choisir aucun centre d'intérêt, ce qui gaspille le budget sur des gens qui ne seraient jamais intéressés.",
+    tip:"Pensez à votre avatar client (Module 4) pour décider de l'âge, du lieu, et des centres d'intérêt les plus logiques avant de lancer une campagne.",
+    assign:"Décrivez la tranche d'âge, le lieu, et les centres d'intérêt qui seraient les plus logiques pour les vrais clients de votre entreprise.",
+    dl:"Fiche de travail : Cibler Votre Audience",
+    checklist:["Tranche d'âge plus étroite que 18-65 (pas plus de 30 ans) ?","Un lieu entré ?","1-3 centres d'intérêt choisis ?"],
+    ai:"Aide-moi à définir une audience (âge, lieu, centres d'intérêt) pour un(e) [type d'entreprise] ciblant [décris ton client]."}},
+ en:{lede:"A campaign that targets \"everyone\" often wastes money on people who'd never be interested — good targeting focuses your budget on people who actually match your real customers.",
+   secs:[["Three ways to shape an audience","Age range, location, and interests — each helps you get closer to your real customer avatar (Module 4) instead of \"everyone with internet.\""],
+    ["Balance, not extremes","An audience too broad (everyone 18-65 with no specific interests) wastes budget; an audience too narrow can leave the budget with not enough people to reach."]],
+   ex:"Describe the age range, location, and interests that would make the most sense for your business's real customers.",
+   quiz:[
+    {q:"Why does targeting \"everyone\" often waste money?",opts:["It doesn't waste anything","It spends on people who'd never be interested instead of focusing on real customers","Everyone is always better","Targeting doesn't affect results"],ans:1,fb:"Targeting everyone spends on uninterested people."},
+    {q:"What are the 3 ways to shape an audience?",opts:["Only color","Age, location, and interests","Only name","There's no way to shape it"],ans:1,fb:"Age, location, and interests are the 3 ways."},
+    {q:"What can happen if your audience is too narrow?",opts:["Nothing, narrower is always better","The budget may not have enough people to reach","It's always more economical","It doesn't affect results at all"],ans:1,fb:"Too narrow can mean not enough people to reach."}],
+   close:{learned:"Good targeting (age, location, interests) gets closer to your real customer avatar instead of \"everyone\" — but aim for balance, not an extreme too broad or too narrow.",
+    mistake:"Leaving the age range at the full default (18-65) with no interests chosen, which wastes budget on people who'd never be interested.",
+    tip:"Think about your customer avatar (Module 4) to decide the most logical age, location, and interests before launching a campaign.",
+    assign:"Describe the age range, location, and interests that would make the most sense for your business's real customers.",
+    dl:"Worksheet: Targeting Your Audience",
+    checklist:["Age range narrower than 18-65 (no more than 30 years)?","A location entered?","1-3 interests chosen?"],
+    ai:"Help me define an audience (age, location, interests) for a [type of business] targeting [describe your customer]."}}},
+
+5:{ht:{lede:"Yon bidjè ki twò piti pa bay yon kanpay ase tan pou reyèlman aprann sa k ap mache — bidjè ou ak konbyen jou kanpay la kouri ansanm detèmine sa ou ka aprann.",
+   secs:[["Bidjè chak jou kont dire kanpay la","Yon bidjè chak jou di konbyen ou pare pou depanse chak jou; dire a di konbyen jou kanpay la kontinye — toude ansanm detèmine depans total la."],
+    ["Bay kanpay la tan pou aprann","Yon kanpay ki kouri sèlman 1 jou pa gen ase done pou konnen si li mache — pifò platfòm rekòmande omwen kèk jou pou platfòm lan aprann ki moun ki reponn pi byen."]],
+   ex:"Poukisa ta ka gen sans kite yon kanpay kouri plizyè jou anvan w jije si li mache?",
+   quiz:[
+    {q:"Kisa bidjè chak jou reprezante?",opts:["Depans total pou tout kanpay la","Konbyen ou pare pou depanse chak jou","Yon frè inik","Pri pou chak klik"],ans:1,fb:"Bidjè chak jou se konbyen ou depanse chak jou."},
+    {q:"Poukisa yon kanpay 1 jou ka pa ase?",opts:["Li toujou ase","Pa gen ase tan pou platfòm lan aprann ki moun ki reponn pi byen","1 jou toujou pi bon pase plis jou","Dire pa afekte rezilta"],ans:1,fb:"1 jou pa bay ase tan pou platfòm lan aprann."},
+    {q:"Kisa ki detèmine depans total yon kanpay?",opts:["Sèlman bidjè chak jou","Bidjè chak jou konbine ak dire kanpay la","Sèlman dire a","Okenn nan yo"],ans:1,fb:"Bidjè chak jou X dire a = depans total."}],
+   close:{learned:"Bidjè chak jou ak dire kanpay la ansanm detèmine depans total ak konbyen tan platfòm lan gen pou aprann — yon kanpay ki twò kout pa bay ase tan pou vrèman aprann.",
+    mistake:"Fikse yon bidjè ki minim posib ak yon dire trè kout (1 jou), ki pa bay ase tan/done pou konnen si kanpay la reyèlman mache.",
+    tip:"Kite yon kanpay kouri omwen kèk jou anvan w jije rezilta li — desizyon rapid ka bloke yon kanpay ki ta mache si l te gen plis tan.",
+    assign:"Poukisa ta ka gen sans kite yon kanpay kouri plizyè jou anvan w jije si li mache?",
+    dl:"Lis Verifikasyon: Bidjè Kanpay Rezonab",
+    checklist:["Bidjè chak jou omwen $10?","Dire kanpay la omwen 3 jou?"],
+    ai:"Sijere yon bidjè chak jou ak yon dire rezonab pou yon premye kanpay pou yon [kalite biznis]."}},
+ fr:{lede:"Un budget trop petit ne donne pas à une campagne assez de temps pour vraiment apprendre ce qui fonctionne — votre budget et le nombre de jours où la campagne tourne déterminent ensemble ce que vous pouvez apprendre.",
+   secs:[["Budget quotidien vs. durée de la campagne","Un budget quotidien dit combien vous êtes prêt à dépenser chaque jour ; la durée dit combien de jours la campagne continue — les deux ensemble déterminent la dépense totale."],
+    ["Donner à la campagne le temps d'apprendre","Une campagne qui ne tourne qu'1 jour n'a pas assez de données pour savoir si elle fonctionne — la plupart des plateformes recommandent au moins quelques jours pour que la plateforme apprenne qui répond le mieux."]],
+   ex:"Pourquoi pourrait-il être logique de laisser une campagne tourner plusieurs jours avant de juger si elle fonctionne ?",
+   quiz:[
+    {q:"Que représente le budget quotidien ?",opts:["La dépense totale pour toute la campagne","Combien vous êtes prêt à dépenser chaque jour","Des frais uniques","Le prix par clic"],ans:1,fb:"Le budget quotidien est combien vous dépensez chaque jour."},
+    {q:"Pourquoi une campagne d'1 jour peut-elle ne pas suffire ?",opts:["Elle suffit toujours","Pas assez de temps pour que la plateforme apprenne qui répond le mieux","1 jour est toujours mieux que plus de jours","La durée n'affecte pas les résultats"],ans:1,fb:"1 jour ne donne pas assez de temps pour que la plateforme apprenne."},
+    {q:"Qu'est-ce qui détermine la dépense totale d'une campagne ?",opts:["Seulement le budget quotidien","Le budget quotidien combiné à la durée de la campagne","Seulement la durée","Aucun des deux"],ans:1,fb:"Budget quotidien × durée = dépense totale."}],
+   close:{learned:"Le budget quotidien et la durée de la campagne déterminent ensemble la dépense totale et combien de temps la plateforme a pour apprendre — une campagne trop courte ne donne pas assez de temps pour vraiment apprendre.",
+    mistake:"Fixer un budget aussi minimal que possible avec une durée très courte (1 jour), ce qui ne donne pas assez de temps/données pour savoir si la campagne fonctionne vraiment.",
+    tip:"Laissez une campagne tourner au moins quelques jours avant de juger ses résultats — des décisions rapides peuvent bloquer une campagne qui aurait fonctionné avec plus de temps.",
+    assign:"Pourquoi pourrait-il être logique de laisser une campagne tourner plusieurs jours avant de juger si elle fonctionne ?",
+    dl:"Liste de Vérification : Budget de Campagne Raisonnable",
+    checklist:["Budget quotidien d'au moins 10 $ ?","Durée de la campagne d'au moins 3 jours ?"],
+    ai:"Suggère un budget quotidien et une durée raisonnables pour une première campagne pour un(e) [type d'entreprise]."}},
+ en:{lede:"A budget that's too small doesn't give a campaign enough time to really learn what's working — your budget and how many days the campaign runs together determine what you can learn.",
+   secs:[["Daily budget vs. campaign duration","A daily budget says how much you're willing to spend each day; duration says how many days the campaign continues — both together determine total spend."],
+    ["Giving the campaign time to learn","A campaign that runs only 1 day doesn't have enough data to know if it's working — most platforms recommend at least a few days for the platform to learn who responds best."]],
+   ex:"Why might it make sense to let a campaign run for several days before judging whether it's working?",
+   quiz:[
+    {q:"What does daily budget represent?",opts:["Total spend for the whole campaign","How much you're willing to spend each day","A one-time fee","Price per click"],ans:1,fb:"Daily budget is how much you spend each day."},
+    {q:"Why might a 1-day campaign not be enough?",opts:["It's always enough","Not enough time for the platform to learn who responds best","1 day is always better than more days","Duration doesn't affect results"],ans:1,fb:"1 day doesn't give enough time for the platform to learn."},
+    {q:"What determines a campaign's total spend?",opts:["Only daily budget","Daily budget combined with campaign duration","Only duration","Neither of them"],ans:1,fb:"Daily budget × duration = total spend."}],
+   close:{learned:"Daily budget and campaign duration together determine total spend and how much time the platform has to learn — a campaign that's too short doesn't give enough time to really learn.",
+    mistake:"Setting the smallest possible budget with a very short duration (1 day), which doesn't give enough time/data to know if the campaign is really working.",
+    tip:"Let a campaign run for at least a few days before judging its results — quick decisions can kill a campaign that would have worked with more time.",
+    assign:"Why might it make sense to let a campaign run for several days before judging whether it's working?",
+    dl:"Checklist: Reasonable Campaign Budget",
+    checklist:["Daily budget of at least $10?","Campaign duration of at least 3 days?"],
+    ai:"Suggest a reasonable daily budget and duration for a first campaign for a [type of business]."}}},
+
+6:{ht:{lede:"Menm bon siblaj pa sove yon kreyasyon fèb — tit, imaj, ak CTA a travay ansanm pou fè yon moun rete gade epi aji.",
+   secs:[["3 pati yon bon kreyasyon","Yon tit ki atire atansyon rapid, yon imaj ki matche mesaj la (pa jis dekorasyon), ak yon CTA espesifik ki di egzakteman ki aksyon pou pran (sonje Modil 5 ak 14)."],
+    ["Rete koeran ak mak ou","Kreyasyon an ta dwe santi tankou biznis ou, pa yon mòd jenerik ki ka aplike a nenpòt biznis — sonje idantite mak Modil 3 la."]],
+   ex:"Ekri yon tit piblisite pou biznis ou ki atire atansyon nan 3 segond.",
+   quiz:[
+    {q:"Ki 3 pati yon bon kreyasyon piblisite genyen?",opts:["Sèlman yon tit","Tit, imaj, ak CTA","Sèlman yon imaj","Sèlman pri a"],ans:1,fb:"Tit, imaj, ak CTA se 3 pati yo."},
+    {q:"Poukisa yon imaj ta dwe matche mesaj la?",opts:["Imaj se sèlman dekorasyon san rezon","Yon imaj ki matche ede kominike mesaj la klèman","Imaj pa gen okenn wòl","Nenpòt imaj mache byen"],ans:1,fb:"Yon imaj ki matche kominike mesaj la klèman."},
+    {q:"Ki modil ki kouvri idantite mak ki ta dwe rete koeran nan yon kreyasyon?",opts:["Modil 1","Modil 3","Modil 7","Modil 11"],ans:1,fb:"Modil 3 kouvri idantite mak."}],
+   close:{learned:"Yon bon kreyasyon piblisite konbine yon tit ki atire, yon imaj ki matche mesaj la, ak yon CTA espesifik — tout pandan li rete koeran ak idantite mak ou (Modil 3).",
+    mistake:"Kite tèks CTA a jenerik ('Submit'/'Click Here') olye di egzakteman ki aksyon pou pran, ki fè moun pa sèten kisa pou fè apre.",
+    tip:"Chwazi yon imaj ki reyèlman reprezante sa ou ofri, pa jis yon imaj bèl san rapò ak mesaj la.",
+    assign:"Ekri yon tit piblisite pou biznis ou ki atire atansyon nan 3 segond.",
+    dl:"Fèy Travay: Estrikti Kreyasyon Piblisite",
+    checklist:["Tit ekri (omwen 10 karaktè)?","Imaj chwazi?","Tèks CTA espesifik (pa 'Submit'/'Click Here')?"],
+    ai:"Ekri yon tit piblisite, sijere yon imaj, ak yon tèks CTA espesifik pou yon [pwodwi/sèvis]."}},
+ fr:{lede:"Même un bon ciblage ne sauve pas un créatif faible — le titre, l'image, et le CTA travaillent ensemble pour faire arrêter quelqu'un et agir.",
+   secs:[["Les 3 parties d'un bon créatif","Un titre qui attire l'attention rapidement, une image qui correspond au message (pas juste de la décoration), et un CTA spécifique qui dit exactement quelle action prendre (souvenez-vous des Modules 5 et 14)."],
+    ["Rester cohérent avec votre marque","Le créatif devrait ressembler à votre entreprise, pas à un modèle générique applicable à n'importe quelle entreprise — souvenez-vous de l'identité de marque du Module 3."]],
+   ex:"Écrivez un titre publicitaire pour votre entreprise qui attire l'attention en 3 secondes.",
+   quiz:[
+    {q:"Quelles sont les 3 parties d'un bon créatif publicitaire ?",opts:["Seulement un titre","Titre, image, et CTA","Seulement une image","Seulement le prix"],ans:1,fb:"Titre, image, et CTA sont les 3 parties."},
+    {q:"Pourquoi une image devrait-elle correspondre au message ?",opts:["L'image est juste de la décoration sans raison","Une image qui correspond aide à communiquer le message clairement","L'image n'a aucun rôle","N'importe quelle image fonctionne bien"],ans:1,fb:"Une image qui correspond communique le message clairement."},
+    {q:"Quel module couvre l'identité de marque qui devrait rester cohérente dans un créatif ?",opts:["Module 1","Module 3","Module 7","Module 11"],ans:1,fb:"Le Module 3 couvre l'identité de marque."}],
+   close:{learned:"Un bon créatif publicitaire combine un titre attirant, une image qui correspond au message, et un CTA spécifique — tout en restant cohérent avec votre identité de marque (Module 3).",
+    mistake:"Laisser le texte du CTA générique (« Envoyer »/« Cliquez Ici ») plutôt que de dire exactement quelle action prendre, ce qui laisse les gens incertains de quoi faire ensuite.",
+    tip:"Choisissez une image qui représente vraiment ce que vous offrez, pas juste une belle image sans rapport avec le message.",
+    assign:"Écrivez un titre publicitaire pour votre entreprise qui attire l'attention en 3 secondes.",
+    dl:"Fiche de travail : Structure du Créatif Publicitaire",
+    checklist:["Titre écrit (au moins 10 caractères) ?","Image choisie ?","Texte CTA spécifique (pas « Envoyer »/« Cliquez Ici ») ?"],
+    ai:"Écris un titre publicitaire, suggère une image, et un texte CTA spécifique pour un(e) [produit/service]."}},
+ en:{lede:"Even good targeting doesn't save a weak creative — the headline, image, and CTA work together to make someone stop scrolling and act.",
+   secs:[["The 3 parts of a good creative","A headline that grabs attention fast, an image that matches the message (not just decoration), and a specific CTA that says exactly what action to take (remember Modules 5 and 14)."],
+    ["Staying consistent with your brand","The creative should feel like your business, not a generic template that could apply to any business — remember Module 3's brand identity."]],
+   ex:"Write an ad headline for your business that grabs attention in 3 seconds.",
+   quiz:[
+    {q:"What are the 3 parts of a good ad creative?",opts:["Only a headline","Headline, image, and CTA","Only an image","Only the price"],ans:1,fb:"Headline, image, and CTA are the 3 parts."},
+    {q:"Why should an image match the message?",opts:["Image is just decoration for no reason","A matching image helps communicate the message clearly","Image has no role","Any image works fine"],ans:1,fb:"A matching image communicates the message clearly."},
+    {q:"Which module covers the brand identity that should stay consistent in a creative?",opts:["Module 1","Module 3","Module 7","Module 11"],ans:1,fb:"Module 3 covers brand identity."}],
+   close:{learned:"A good ad creative combines an attention-grabbing headline, an image that matches the message, and a specific CTA — all while staying consistent with your brand identity (Module 3).",
+    mistake:"Leaving the CTA text generic (\"Submit\"/\"Click Here\") rather than saying exactly what action to take, which leaves people unsure what to do next.",
+    tip:"Choose an image that genuinely represents what you offer, not just a pretty image unrelated to the message.",
+    assign:"Write an ad headline for your business that grabs attention in 3 seconds.",
+    dl:"Worksheet: Ad Creative Structure",
+    checklist:["Headline written (at least 10 characters)?","Image chosen?","Specific CTA text (not \"Submit\"/\"Click Here\")?"],
+    ai:"Write an ad headline, suggest an image, and a specific CTA text for a [product/service]."}}},
+
+7:{ht:{lede:"Yon pixel se yon ti kòd ki swiv moun ki vizite sit ou — san li enstale, ou pa ka rebati yon odyans pou moun ki deja montre enterè.",
+   secs:[["Pixel la anvan tout bagay","Pixel la dwe enstale sou sit ou anvan nenpòt lòt bagay — li se sa ki kolekte done sou ki moun vizite, san li ou pa gen okenn done pou travay ak li."],
+    ["Retablaj (retargeting) itilize done sa a","Yon fwa pixel la enstale, ou ka bati yon odyans espesifik ki gen ladan sèlman moun ki deja vizite sit ou — moun sa yo souvan konvèti pi byen paske yo deja konnen w."]],
+   ex:"Poukisa yon odyans retablaj konvèti pi byen pase yon odyans ki pa janm tande pale de biznis ou?",
+   quiz:[
+    {q:"Kisa yon pixel fè?",opts:["Anyen espesyal","Swiv moun ki vizite sit ou pou kolekte done","Ranplase bezwen pou yon sit web","Se yon kalite imaj"],ans:1,fb:"Pixel la swiv vizitè pou kolekte done."},
+    {q:"Poukisa pixel la dwe enstale anvan retablaj?",opts:["Lòd la pa enpòtan","San pixel la, pa gen done pou bati yon odyans retablaj","Retablaj mache san pixel","Pixel la vin apre retablaj toujou"],ans:1,fb:"San pixel la, pa gen done pou retablaj."},
+    {q:"Poukisa yon odyans retablaj souvan konvèti pi byen?",opts:["Yo peye plis","Yo deja konnen biznis ou e montre enterè anvan","Yo pa janm tande pale de biznis ou","Pa gen rezon espesifik"],ans:1,fb:"Yo deja konnen w e montre enterè anvan."}],
+   close:{learned:"Yon pixel dwe enstale anvan nenpòt lòt bagay, paske li kolekte done san sa pa gen okenn fason pou bati yon odyans retablaj — moun nan yon odyans retablaj souvan konvèti pi byen paske yo deja konnen w.",
+    mistake:"Eseye bati yon odyans retablaj anvan pixel la menm enstale, ki enposib paske pa gen done pou travay ak li.",
+    tip:"Enstale pixel la kounye a, menm anvan w gen yon kanpay ki pare — plis tan li kolekte done, pi bon odyans retablaj ou ka bati pita.",
+    assign:"Poukisa yon odyans retablaj konvèti pi byen pase yon odyans ki pa janm tande pale de biznis ou?",
+    dl:"Referans: Pixel ak Retablaj Eksplike",
+    checklist:["Pixel la aktive?","Retablaj aktive apre pixel la?"],
+    ai:"Eksplike relasyon ant yon pixel swiv ak yon odyans retablaj, an tèm senp pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Un pixel est un petit code qui suit les gens qui visitent votre site — sans lui installé, vous ne pouvez pas reconstruire une audience de gens ayant déjà montré de l'intérêt.",
+   secs:[["Le pixel avant tout","Le pixel doit être installé sur votre site avant tout le reste — c'est lui qui collecte les données sur qui visite, sans lui vous n'avez aucune donnée avec laquelle travailler."],
+    ["Le reciblage (retargeting) utilise ces données","Une fois le pixel installé, vous pouvez bâtir une audience spécifique qui inclut seulement les gens ayant déjà visité votre site — ces gens convertissent souvent mieux car ils vous connaissent déjà."]],
+   ex:"Pourquoi une audience de reciblage convertit-elle mieux qu'une audience qui n'a jamais entendu parler de votre entreprise ?",
+   quiz:[
+    {q:"Que fait un pixel ?",opts:["Rien de spécial","Suit les gens qui visitent votre site pour collecter des données","Remplace le besoin d'un site web","C'est un type d'image"],ans:1,fb:"Le pixel suit les visiteurs pour collecter des données."},
+    {q:"Pourquoi le pixel doit-il être installé avant le reciblage ?",opts:["L'ordre n'a pas d'importance","Sans le pixel, il n'y a pas de données pour bâtir une audience de reciblage","Le reciblage fonctionne sans pixel","Le pixel vient toujours après le reciblage"],ans:1,fb:"Sans le pixel, il n'y a pas de données pour le reciblage."},
+    {q:"Pourquoi une audience de reciblage convertit-elle souvent mieux ?",opts:["Ils paient plus","Ils connaissent déjà votre entreprise et ont montré de l'intérêt avant","Ils n'ont jamais entendu parler de votre entreprise","Aucune raison particulière"],ans:1,fb:"Ils vous connaissent déjà et ont montré de l'intérêt avant."}],
+   close:{learned:"Un pixel doit être installé avant tout le reste, car il collecte les données sans lesquelles il n'y a aucun moyen de bâtir une audience de reciblage — les gens dans une audience de reciblage convertissent souvent mieux car ils vous connaissent déjà.",
+    mistake:"Essayer de bâtir une audience de reciblage avant même que le pixel soit installé, ce qui est impossible car il n'y a pas de données avec lesquelles travailler.",
+    tip:"Installez le pixel maintenant, même avant d'avoir une campagne prête — plus longtemps il collecte des données, meilleure sera l'audience de reciblage que vous pourrez bâtir plus tard.",
+    assign:"Pourquoi une audience de reciblage convertit-elle mieux qu'une audience qui n'a jamais entendu parler de votre entreprise ?",
+    dl:"Référence : Pixel et Reciblage Expliqués",
+    checklist:["Le pixel est-il activé ?","Le reciblage est-il activé après le pixel ?"],
+    ai:"Explique la relation entre un pixel de suivi et une audience de reciblage, en termes simples pour un propriétaire de petite entreprise."}},
+ en:{lede:"A pixel is a small code that tracks people who visit your site — without it installed, you can't rebuild an audience of people who already showed interest.",
+   secs:[["The pixel comes before everything","The pixel must be installed on your site before anything else — it's what collects data on who visits; without it, you have no data to work with."],
+    ["Retargeting uses that data","Once the pixel is installed, you can build a specific audience that includes only people who already visited your site — these people often convert better because they already know you."]],
+   ex:"Why does a retargeting audience convert better than an audience that's never heard of your business?",
+   quiz:[
+    {q:"What does a pixel do?",opts:["Nothing special","Tracks people who visit your site to collect data","Replaces the need for a website","It's a type of image"],ans:1,fb:"The pixel tracks visitors to collect data."},
+    {q:"Why must the pixel be installed before retargeting?",opts:["Order doesn't matter","Without the pixel, there's no data to build a retargeting audience","Retargeting works without a pixel","The pixel always comes after retargeting"],ans:1,fb:"Without the pixel, there's no data for retargeting."},
+    {q:"Why does a retargeting audience often convert better?",opts:["They pay more","They already know your business and showed interest before","They've never heard of your business","No particular reason"],ans:1,fb:"They already know you and showed interest before."}],
+   close:{learned:"A pixel must be installed before anything else, since it collects the data without which there's no way to build a retargeting audience — people in a retargeting audience often convert better because they already know you.",
+    mistake:"Trying to build a retargeting audience before the pixel is even installed, which is impossible since there's no data to work with.",
+    tip:"Install the pixel now, even before you have a campaign ready — the longer it collects data, the better a retargeting audience you can build later.",
+    assign:"Why does a retargeting audience convert better than an audience that's never heard of your business?",
+    dl:"Reference: Pixels and Retargeting Explained",
+    checklist:["Is the pixel activated?","Is retargeting activated after the pixel?"],
+    ai:"Explain the relationship between a tracking pixel and a retargeting audience, in simple terms for a small business owner."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module15-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD15_LESSON_SLUGS=["meet-the-ads-manager","choosing-your-ad-platform","setting-campaign-objectives","audience-targeting","setting-your-budget","ad-creative-basics","retargeting-and-pixels"];
+function freshCampaign(){
+ return {platform:"",objective:"",
+  audience:{ageMin:18,ageMax:65,location:"",interests:[]},
+  budget:{daily:5,duration:1},
+  creative:{headline:"",image:"",cta:""},
+  pixelInstalled:false,retargetingSet:false,
+  visited:{platform:false,objective:false,audience:false,budget:false,creative:false,tracking:false}};
+}
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{},tab:"platform",campaign:freshCampaign()};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+if(!S.campaign)S.campaign=freshCampaign();
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD15_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===15;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M15[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ ads manager engine ============ */
+function checkTask(n){
+ const st=S.st[n];
+ const done=C[n].check(S.campaign);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function estReach(c){
+ let reach=100000;
+ const ageWidth=c.audience.ageMax-c.audience.ageMin;
+ reach=Math.round(reach*(ageWidth/47));
+ c.audience.interests.forEach(()=>{reach=Math.round(reach*0.55);});
+ if(c.audience.location.trim())reach=Math.round(reach*0.6);
+ return Math.max(500,reach);
+}
+function renderToolPanel(){
+ const lang=S.lang,ui=UI[lang],c=S.campaign;
+ let h='<div class="adwrap"><div class="adtabs">';
+ [["platform",ui.tabPlatform],["objective",ui.tabObjective],["audience",ui.tabAudience],["budget",ui.tabBudget],["creative",ui.tabCreative],["tracking",ui.tabTracking]].forEach(([id,lbl])=>{
+  h+='<button class="adtab'+(S.tab===id?" on":"")+'" data-tab="'+id+'">'+lbl+"</button>";
+ });
+ h+='</div><div class="adbody" id="adBody">';
+
+ if(S.tab==="platform"){
+  const plats=[["meta","📘",ui.platMeta,ui.platMetaDesc],["google","🔍",ui.platGoogle,ui.platGoogleDesc],["tiktok","🎵",ui.platTiktok,ui.platTiktokDesc],["linkedin","💼",ui.platLinkedin,ui.platLinkedinDesc],["pinterest","📌",ui.platPinterest,ui.platPinterestDesc]];
+  h+='<div class="adlbl">'+ui.tabPlatform+'</div><div class="adplatgrid">'+
+   plats.map(([id,em,l])=>'<button class="adplat'+(c.platform===id?" on":"")+'" data-plat="'+id+'"><div class="em">'+em+'</div><div class="l">'+l+"</div></button>").join("")+"</div>";
+  if(c.platform){const p=plats.find(x=>x[0]===c.platform);h+='<div class="adplatdesc">'+p[3]+"</div>";}
+ } else if(S.tab==="objective"){
+  const objs=[["awareness",ui.objAwareness,ui.objAwarenessDesc],["consideration",ui.objConsideration,ui.objConsiderationDesc],["conversion",ui.objConversion,ui.objConversionDesc]];
+  h+='<div class="adlbl">'+ui.tabObjective+'</div><div class="adobjgrid">'+
+   objs.map(([id,l,d])=>'<button class="adobj'+(c.objective===id?" on":"")+'" data-objv="'+id+'"><div class="l">'+l+'</div><div class="d">'+d+"</div></button>").join("")+"</div>";
+ } else if(S.tab==="audience"){
+  h+='<div class="adrow"><div class="adlbl">'+ui.ageRange+'</div>'+
+   '<input type="range" class="adrange" id="adAgeMin" min="13" max="70" value="'+c.audience.ageMin+'"/>'+
+   '<input type="range" class="adrange" id="adAgeMax" min="13" max="70" value="'+c.audience.ageMax+'"/>'+
+   '<div class="adrangevals"><span>'+c.audience.ageMin+"</span><span>"+c.audience.ageMax+"</span></div></div>";
+  h+='<div class="adrow"><div class="adlbl">'+ui.location+'</div><input class="adinput" id="adLocation" placeholder="'+ui.locationPh+'" value="'+(c.audience.location||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="adrow"><div class="adlbl">'+ui.interests+'</div><div class="adchips">'+
+   [["biz",ui.intBiz],["fam",ui.intFam],["student",ui.intStudent],["entre",ui.intEntre],["travel",ui.intTravel]].map(([id,l])=>
+    '<div class="adchip'+(c.audience.interests.includes(id)?" on":"")+'" data-chip="'+id+'">'+l+"</div>").join("")+"</div></div>";
+  h+='<div class="adreach">'+ui.estReach+": <b>"+estReach(c).toLocaleString()+"</b></div>";
+ } else if(S.tab==="budget"){
+  const spend=c.budget.daily*c.budget.duration;
+  h+='<div class="adrow"><div class="adlbl">'+ui.dailyBudget+" ($"+c.budget.daily+')</div><input type="range" class="adrange" id="adDaily" min="5" max="100" value="'+c.budget.daily+'"/></div>';
+  h+='<div class="adrow"><div class="adlbl">'+ui.duration+" ("+c.budget.duration+")</div><input type=\"range\" class=\"adrange\" id=\"adDuration\" min=\"1\" max=\"30\" value=\""+c.budget.duration+'"/></div>';
+  h+='<div class="adreach">'+ui.estSpend+": <b>$"+spend+"</b></div>";
+ } else if(S.tab==="creative"){
+  h+='<div class="adrow"><div class="adlbl">'+ui.headline+'</div><input class="adinput" id="adHeadline" value="'+(c.creative.headline||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="adrow"><div class="adlbl">'+ui.image+'</div><select class="adselect" id="adImage"><option value="">'+ui.imagePh+"</option>"+
+   ["imgProduct","imgLifestyle","imgTeam","imgOffer"].map(k=>'<option value="'+k+'"'+(c.creative.image===k?" selected":"")+">"+ui[k]+"</option>").join("")+"</select></div>";
+  h+='<div class="adrow"><div class="adlbl">'+ui.cta+'</div><input class="adinput" id="adCta" value="'+(c.creative.cta||"").replace(/"/g,"&quot;")+'"/></div>';
+ } else if(S.tab==="tracking"){
+  h+='<div class="adtoggle"><div><div style="font-weight:700;font-size:13.5px">'+ui.pixelLbl+'</div><div style="font-size:12px;color:#6b7280">'+ui.pixelDesc+'</div></div><button class="adtogglebtn'+(c.pixelInstalled?" on":"")+'" id="adPixelBtn">'+(c.pixelInstalled?ui.activated:ui.activate)+"</button></div>";
+  h+='<div class="adtoggle"><div><div style="font-weight:700;font-size:13.5px">'+ui.retargetLbl+'</div><div style="font-size:12px;color:#6b7280">'+ui.retargetDesc+(c.pixelInstalled?"":'</div><div class="adnote">'+ui.needPixelFirst)+'</div></div><button class="adtogglebtn'+(c.retargetingSet?" on":"")+'" id="adRetargetBtn"'+(c.pixelInstalled?"":" disabled")+'>'+(c.retargetingSet?ui.activated:ui.activate)+"</button></div>";
+ }
+ h+="</div></div>";
+ return h;
+}
+function wireToolPanel(){
+ const box=$("adBody");if(!box)return;
+ document.querySelectorAll(".adtab").forEach(bt=>bt.addEventListener("click",()=>{
+  S.tab=bt.dataset.tab;S.campaign.visited[S.tab]=true;persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ if(S.tab==="platform"){
+  document.querySelectorAll("[data-plat]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.campaign.platform=bt.dataset.plat;persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="objective"){
+  document.querySelectorAll("[data-objv]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.campaign.objective=bt.dataset.objv;persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="audience"){
+  const amin=$("adAgeMin"),amax=$("adAgeMax"),loc=$("adLocation");
+  if(amin)amin.addEventListener("input",e=>{S.campaign.audience.ageMin=Math.min(+e.target.value,S.campaign.audience.ageMax);persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(amax)amax.addEventListener("input",e=>{S.campaign.audience.ageMax=Math.max(+e.target.value,S.campaign.audience.ageMin);persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(loc)loc.addEventListener("input",e=>{S.campaign.audience.location=e.target.value;persist();checkTask(S.cur);renderRail();});
+  document.querySelectorAll(".adchip").forEach(ch=>ch.addEventListener("click",()=>{
+   const id=ch.dataset.chip,arr=S.campaign.audience.interests;
+   const idx=arr.indexOf(id);
+   if(idx>=0)arr.splice(idx,1);else arr.push(id);
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="budget"){
+  const daily=$("adDaily"),dur=$("adDuration");
+  if(daily)daily.addEventListener("input",e=>{S.campaign.budget.daily=+e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(dur)dur.addEventListener("input",e=>{S.campaign.budget.duration=+e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+ } else if(S.tab==="creative"){
+  const hd=$("adHeadline"),im=$("adImage"),ct=$("adCta");
+  if(hd)hd.addEventListener("input",e=>{S.campaign.creative.headline=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(im)im.addEventListener("change",e=>{S.campaign.creative.image=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(ct)ct.addEventListener("input",e=>{S.campaign.creative.cta=e.target.value;persist();checkTask(S.cur);renderRail();});
+ } else if(S.tab==="tracking"){
+  const pb=$("adPixelBtn"),rb=$("adRetargetBtn");
+  if(pb)pb.addEventListener("click",()=>{
+   S.campaign.pixelInstalled=true;persist();checkTask(S.cur);renderRail();refreshTool();
+  });
+  if(rb)rb.addEventListener("click",()=>{
+   if(!S.campaign.pixelInstalled)return;
+   S.campaign.retargetingSet=true;persist();checkTask(S.cur);renderRail();refreshTool();
+  });
+ }
+}
+function refreshTool(){
+ const root=$("adRoot");if(!root)return;
+ root.innerHTML=renderToolPanel();
+ wireToolPanel();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 15 · 15."+n;
+ $("topTitle").textContent=M15[lang][n-1];
+ document.title="Academy · "+M15[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 15 · 15.'+n+'</span><h2 class="labh2">'+M15[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="adRoot"></div><div class="adtask"><b>'+ui.objEd+':</b> '+C[n].task[lang]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ checkTask(n);
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const root=$("adRoot");
+ root.innerHTML=renderToolPanel();wireToolPanel();
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function updateFinishBtn(){
+ const st=S.st[S.cur];
+ const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ per-lesson tasks & checks ============ */
+C[1].task={ht:"Vizite chak nan 6 tab yo (Platfòm, Objektif, Odyans, Bidjè, Kreyasyon, Swiv) omwen yon fwa.",fr:"Visitez chacun des 6 onglets (Plateforme, Objectif, Audience, Budget, Créatif, Suivi) au moins une fois.",en:"Visit each of the 6 tabs (Platform, Objective, Audience, Budget, Creative, Tracking) at least once."};
+C[1].check=c=>Object.values(c.visited).every(Boolean);
+C[2].task={ht:"Ou vann lojisyèl pou biznis (yon pwodwi B2B). Chwazi platfòm ki pi lojik pou odyans sa a.",fr:"Vous vendez un logiciel pour entreprises (un produit B2B). Choisissez la plateforme la plus logique pour cette audience.",en:"You sell business software (a B2B product). Choose the platform that makes the most sense for this audience."};
+C[2].check=c=>c.platform==="linkedin";
+C[3].task={ht:"Ou vle moun achte kounye a sou sit web ou. Chwazi objektif ki matche sa.",fr:"Vous voulez que les gens achètent maintenant sur votre site web. Choisissez l'objectif qui correspond.",en:"You want people to buy right now on your website. Choose the objective that matches."};
+C[3].check=c=>c.objective==="conversion";
+C[4].task={ht:"Ranje yon ranje laj pi etwat pase 18-65 (pa plis pase 30 an diferans), antre yon kote, epi chwazi 1-3 enterè.",fr:"Réglez une tranche d'âge plus étroite que 18-65 (pas plus de 30 ans d'écart), entrez un lieu, et choisissez 1-3 centres d'intérêt.",en:"Set an age range narrower than 18-65 (no more than 30 years apart), enter a location, and choose 1-3 interests."};
+C[4].check=c=>{const w=c.audience.ageMax-c.audience.ageMin;return w<=30&&!!c.audience.location.trim()&&c.audience.interests.length>=1&&c.audience.interests.length<=3;};
+C[5].task={ht:"Chwazi yon bidjè chak jou rezonab (omwen $10) ak yon dire kanpay omwen 3 jou.",fr:"Choisissez un budget quotidien raisonnable (au moins 10 $) et une durée de campagne d'au moins 3 jours.",en:"Choose a reasonable daily budget (at least $10) and a campaign duration of at least 3 days."};
+C[5].check=c=>c.budget.daily>=10&&c.budget.duration>=3;
+const GENERIC_BTN=["submit","click here","voye","klike isit","envoyer","cliquez ici"];
+C[6].task={ht:"Ekri yon tit (omwen 10 karaktè), chwazi yon imaj, ak yon tèks CTA espesifik (pa 'Submit'/'Click Here').",fr:"Écrivez un titre (au moins 10 caractères), choisissez une image, et un texte CTA spécifique (pas « Envoyer »/« Cliquez Ici »).",en:"Write a headline (at least 10 characters), choose an image, and specific CTA text (not \"Submit\"/\"Click Here\")."};
+C[6].check=c=>{const bt=c.creative.cta.trim().toLowerCase();return c.creative.headline.trim().length>=10&&!!c.creative.image&&!!c.creative.cta.trim()&&!GENERIC_BTN.includes(bt);};
+C[7].task={ht:"Aktive pixel la anvan, epi aktive retablaj (retargeting) — nòt: retablaj pa disponib jiskaske pixel la aktive anvan.",fr:"Activez le pixel d'abord, puis activez le reciblage (retargeting) — note : le reciblage n'est pas disponible tant que le pixel n'est pas activé d'abord.",en:"Activate the pixel first, then activate retargeting — note: retargeting isn't available until the pixel is activated first."};
+C[7].check=c=>c.pixelInstalled&&c.retargetingSet;
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 15?":S.lang==="fr"?"Voulez-vous recommencer le Module 15 ?":"Restart Module 15?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{},tab:"platform",campaign:freshCampaign()};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>

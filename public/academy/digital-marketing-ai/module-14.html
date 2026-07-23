@@ -163,7 +163,7 @@ const UI={
    fHeadline:"Tit Prensipal",fSubheadline:"Souti",fButton:"Tèks Bouton",fHeading:"Tit Seksyon",fText:"Tèks",fAlt:"Tèks Altènatif (Alt)",fQuote:"Sitasyon",fAuthor:"Non Kliyan",
    remove:"Wete",speedLbl:"Nòt Vitès",navPlaceholder:"Kay · Sèvis · Sou Nou · Kontak",
    stampTitle:"Ou fini Modil 14!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
-   stampBtn:"Retounen nan Kou a →"},
+   stampBtn:"Ale nan Modil 15 →"},
  fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
    exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
    cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
@@ -174,7 +174,7 @@ const UI={
    fHeadline:"Titre Principal",fSubheadline:"Sous-titre",fButton:"Texte du Bouton",fHeading:"Titre de Section",fText:"Texte",fAlt:"Texte Alternatif (Alt)",fQuote:"Citation",fAuthor:"Nom du Client",
    remove:"Retirer",speedLbl:"Score de Vitesse",navPlaceholder:"Accueil · Services · À Propos · Contact",
    stampTitle:"Module 14 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
-   stampBtn:"Retour au cours →"},
+   stampBtn:"Aller au Module 15 →"},
  en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
    exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
    cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
@@ -185,7 +185,7 @@ const UI={
    fHeadline:"Headline",fSubheadline:"Subheadline",fButton:"Button Text",fHeading:"Section Heading",fText:"Text",fAlt:"Alt Text",fQuote:"Quote",fAuthor:"Customer Name",
    remove:"Remove",speedLbl:"Speed Score",navPlaceholder:"Home · Services · About · Contact",
    stampTitle:"You finished Module 14!",stampBody:"You just earned another stamp in your Learning Passport.",
-   stampBtn:"Back to the course →"}};
+   stampBtn:"Go to Module 15 →"}};
 
 const MODULES={
  ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
@@ -566,7 +566,7 @@ function $(id){return document.getElementById(id);}
 
 function renderMods(){
  const wrap=$("mods");wrap.innerHTML="";
- const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool"};
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",15:"meet-the-ads-manager"};
  MODULES[S.lang].forEach((title,i)=>{
   const n=i+1,isActive=n===14;
   const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
@@ -780,7 +780,7 @@ function updateFinishBtn(){
 
 function showStamp(){
  const ui=UI[S.lang];
- $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai/learn/meet-the-ads-manager" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
 }
 
 /* ============ per-lesson tasks & checks ============ */

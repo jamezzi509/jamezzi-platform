@@ -99,6 +99,7 @@ const dominateDigitalSimulatorModules: Record<
   m12: { moduleNumber: 12, title: "Modil 12 — Google Business Profile" },
   m13: { moduleNumber: 13, title: "Modil 13 — Maketing pa Imèl" },
   m14: { moduleNumber: 14, title: "Modil 14 — Sit Web ak Paj Aterisaj" },
+  m15: { moduleNumber: 15, title: "Modil 15 — Piblisite Peye" },
 };
 
 export async function generateMetadata({
