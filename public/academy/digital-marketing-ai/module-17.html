@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 17 — Otomatizasyon Maketing</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ============ Automation tool surface (generic SaaS dashboard, neutral accent) ============ */
+.amwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;background:#fff;border-radius:10px;overflow:hidden;color:#1b1f27;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.amtabs{display:flex;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.amtab{padding:12px 16px;font-size:13px;font-weight:600;color:#5b6472;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.amtab.on{color:#3B6FE0;border-bottom-color:#3B6FE0}
+.ambody{padding:18px}
+.amlbl{font-size:11.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em;margin-bottom:10px}
+.amcontact{display:flex;align-items:center;gap:12px;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:10px;background:#f9fafb;cursor:default}
+.amcontact.clickable{cursor:pointer}
+.amcontact.sel{border-color:#3B6FE0;background:#eef2ff}
+.amavatar{width:36px;height:36px;border-radius:50%;background:#e5e7eb;display:grid;place-items:center;font-weight:700;font-size:14px;color:#4b5563;flex:none}
+.amcname{font-weight:700;font-size:13.5px}
+.amcmeta{font-size:11.5px;color:#6b7280;margin-top:2px}
+.amscore{font-size:18px;font-weight:800;color:#1b1f27;margin-left:auto;margin-right:10px}
+.amselect{border:1px solid #d7dce3;border-radius:8px;padding:7px 10px;font-size:12.5px;font-family:inherit;color:#1b1f27}
+.aminput,.amtextarea{width:100%;border:1px solid #d7dce3;border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:#1b1f27;margin-bottom:12px}
+.aminput:focus,.amtextarea:focus{outline:2px solid #3B6FE0}
+.amchatpreview{background:#f3f4f6;border-radius:10px;padding:14px;margin-top:14px}
+.ambubble{display:inline-block;background:#3B6FE0;color:#fff;border-radius:12px 12px 12px 2px;padding:8px 12px;font-size:12.5px;margin-bottom:8px;max-width:80%}
+.amreplybtn{display:block;border:1px solid #d7dce3;background:#fff;border-radius:8px;padding:6px 10px;font-size:11.5px;margin:4px 0;color:#374151}
+.amseqcard{display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#f9fafb}
+.amseqcard.trig{border-color:#3B6FE0;background:#eef2ff}
+.amseqcard.cond{border-color:#EA4335;background:#fef2f2}
+.amseqtag{font-size:9.5px;font-weight:700;text-transform:uppercase;color:#6b7280;margin-right:8px;min-width:66px}
+.amseqlbl{flex:1;font-size:13px;font-weight:600}
+.amseqbtns{display:flex;gap:4px}
+.amseqbtns button{font-size:11px;border:1px solid #d7dce3;background:#fff;border-radius:6px;padding:5px 8px;cursor:pointer;font-family:inherit}
+.amaddseq{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.amtask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+@media (max-width:640px){.amaddseq{flex-direction:column}.amcontact{flex-wrap:wrap}.amscore{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 17 · 17.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay tablo a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   tabCrm:"CRM",tabChatbot:"Chatbot",tabWorkflow:"Workflow",
+   stage:"Etap",lead:"Lead",prospect:"Prospect",customer:"Kliyan",
+   score:"Nòt",opens:"imèl louvri",pages:"paj vizite",formYes:"fòm soumèt",formNo:"pa gen fòm",
+   greeting:"Mesaj Byenveni",question:"Kesyon an",replyA:"Repons Chwa A",replyB:"Repons Chwa B",
+   seqAdd:"Ajoute Etap",seqUp:"↑",seqDown:"↓",remove:"Wete",
+   tagTrigger:"Deklanchè",tagEmail:"Imèl",tagWait:"Tan",tagCondition:"Kondisyon",tagAction:"Aksyon",
+   stepTrigger:"Deklanchè: Lead Reach yon Nòt",stepEmail1:"Voye Imèl 1: Byenveni",stepWait:"Tann 2 Jou",stepEmail2:"Voye Imèl 2: Plis Valè",stepCondition:"Si Yo Louvri Imèl la...",stepOffer:"Voye Òf Espesyal",stepReminder:"Voye Rapèl",stepTag:"Tag kòm 'Enterese'",
+   stampTitle:"Ou fini Modil 17!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche du tableau",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   tabCrm:"CRM",tabChatbot:"Chatbot",tabWorkflow:"Workflow",
+   stage:"Étape",lead:"Lead",prospect:"Prospect",customer:"Client",
+   score:"Score",opens:"emails ouverts",pages:"pages visitées",formYes:"formulaire soumis",formNo:"pas de formulaire",
+   greeting:"Message de Bienvenue",question:"La Question",replyA:"Réponse Choix A",replyB:"Réponse Choix B",
+   seqAdd:"Ajouter une Étape",seqUp:"↑",seqDown:"↓",remove:"Retirer",
+   tagTrigger:"Déclencheur",tagEmail:"Email",tagWait:"Attente",tagCondition:"Condition",tagAction:"Action",
+   stepTrigger:"Déclencheur : Lead Atteint un Score",stepEmail1:"Envoyer Email 1 : Bienvenue",stepWait:"Attendre 2 Jours",stepEmail2:"Envoyer Email 2 : Plus de Valeur",stepCondition:"Si Ils Ont Ouvert l'Email...",stepOffer:"Envoyer une Offre Spéciale",stepReminder:"Envoyer un Rappel",stepTag:"Taguer comme « Intéressé »",
+   stampTitle:"Module 17 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the dashboard task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   tabCrm:"CRM",tabChatbot:"Chatbot",tabWorkflow:"Workflow",
+   stage:"Stage",lead:"Lead",prospect:"Prospect",customer:"Customer",
+   score:"Score",opens:"emails opened",pages:"pages visited",formYes:"form submitted",formNo:"no form",
+   greeting:"Welcome Message",question:"The Question",replyA:"Reply Choice A",replyB:"Reply Choice B",
+   seqAdd:"Add Step",seqUp:"↑",seqDown:"↓",remove:"Remove",
+   tagTrigger:"Trigger",tagEmail:"Email",tagWait:"Wait",tagCondition:"Condition",tagAction:"Action",
+   stepTrigger:"Trigger: Lead Reaches a Score",stepEmail1:"Send Email 1: Welcome",stepWait:"Wait 2 Days",stepEmail2:"Send Email 2: More Value",stepCondition:"If They Opened the Email...",stepOffer:"Send Special Offer",stepReminder:"Send Reminder",stepTag:"Tag as \"Interested\"",
+   stampTitle:"You finished Module 17!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M17={
+ ht:["Rankontre Zouti Otomatizasyon an","Òganize Kontak nan yon CRM","Nòt Lead ak Segmantasyon","Baz Chatbot","Kanpay Lead Nurturing","Deklanchè ak Kondisyon Workflow","Bati yon Otomatizasyon Konplè"],
+ fr:["Découvrir l'Outil d'Automatisation","Organiser les Contacts dans un CRM","Score de Lead et Segmentation","Les Bases du Chatbot","Campagnes de Lead Nurturing","Déclencheurs et Conditions de Workflow","Construire une Automatisation Complète"],
+ en:["Meet the Automation Tool","Organizing Contacts in a CRM","Lead Scoring & Segmentation","Chatbot Basics","Lead Nurturing Campaigns","Workflow Triggers & Conditions","Building a Complete Automation"]};
+
+/* Fixed contact dataset -- score computed live from these signals, never edited directly */
+const CONTACTS=[
+ {id:"c1",initials:"ML",name:"Marie L.",opens:3,pages:5,form:true},
+ {id:"c2",initials:"JP",name:"Jean P.",opens:1,pages:2,form:false},
+ {id:"c3",initials:"SD",name:"Sophie D.",opens:5,pages:8,form:true},
+ {id:"c4",initials:"MA",name:"Marc A.",opens:0,pages:1,form:false}];
+function contactScore(c){return c.opens*2+c.pages*1+(c.form?20:0);}
+
+const STEPS=[
+ {id:"trigger",type:"trigger",ht:"Deklanchè: Lead Reach yon Nòt",fr:"Déclencheur : Lead Atteint un Score",en:"Trigger: Lead Reaches a Score"},
+ {id:"email1",type:"email",ht:"Voye Imèl 1: Byenveni",fr:"Envoyer Email 1 : Bienvenue",en:"Send Email 1: Welcome"},
+ {id:"wait",type:"wait",ht:"Tann 2 Jou",fr:"Attendre 2 Jours",en:"Wait 2 Days"},
+ {id:"email2",type:"email",ht:"Voye Imèl 2: Plis Valè",fr:"Envoyer Email 2 : Plus de Valeur",en:"Send Email 2: More Value"},
+ {id:"condition",type:"condition",ht:"Si Yo Louvri Imèl la...",fr:"Si Ils Ont Ouvert l'Email...",en:"If They Opened the Email..."},
+ {id:"offer",type:"email",ht:"Voye Òf Espesyal",fr:"Envoyer une Offre Spéciale",en:"Send Special Offer"},
+ {id:"reminder",type:"email",ht:"Voye Rapèl",fr:"Envoyer un Rappel",en:"Send Reminder"},
+ {id:"tag",type:"action",ht:"Tag kòm 'Enterese'",fr:"Taguer comme « Intéressé »",en:"Tag as \"Interested\""}];
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Otomatizasyon kite w konstwi sistèm ki travay pou ou san w pa fè chak aksyon manyèlman — zouti sa a gen 3 pati: yon CRM pou òganize kontak, yon chatbot pou reponn kesyon otomatikman, ak yon workflow pou konstwi sekans otomatik.",
+   secs:[["3 pati zouti a","CRM (Jesyon Relasyon Kliyan) pou òganize ak swiv kontak; Chatbot pou reponn kesyon otomatikman; Workflow pou konstwi sekans ak deklanchè ak kondisyon."],
+    ["Poukisa otomatizasyon konte","Yon sistèm otomatik travay pou ou 24/7 — chak nouvo lead resevwa menm bon eksperyans lan san w pa fè anyen manyèlman apre premye enstalasyon an."]],
+   ex:"Ki 1 pwosesis nan biznis ou ou ta renmen otomatize?",
+   quiz:[
+    {q:"Konbyen pati zouti sa a genyen?",opts:["1","3","6","10"],ans:1,fb:"Gen 3 pati: CRM, Chatbot, Workflow."},
+    {q:"Kisa CRM vle di?",opts:["Yon kalite imaj","Jesyon Relasyon Kliyan","Yon rezo sosyal","Yon fòm kontak"],ans:1,fb:"CRM = Jesyon Relasyon Kliyan."},
+    {q:"Ki 3 pati yo?",opts:["Sèlman Chatbot","CRM, Chatbot, ak Workflow","Sèlman Workflow","Pa gen pati"],ans:1,fb:"CRM, Chatbot, ak Workflow."}],
+   close:{learned:"Zouti otomatizasyon an gen 3 pati (CRM, Chatbot, Workflow) ki ansanm kite w konstwi sistèm ki travay pou ou san aksyon manyèl chak fwa.",
+    mistake:"Kwè otomatizasyon mande konpetans teknik konplike, olye rekonèt ke se yon seri etap lojik ou ka aprann.",
+    tip:"Kòmanse ak yon sèl pwosesis senp pou otomatize anvan w eseye otomatize tout biznis ou yon sèl kou.",
+    assign:"Ki 1 pwosesis nan biznis ou ou ta renmen otomatize?",
+    dl:"Referans: 3 Pati Zouti Otomatizasyon an",
+    checklist:["Vizite tab CRM?","Vizite tab Chatbot?","Vizite tab Workflow?"],
+    ai:"Eksplike ki wòl CRM, Chatbot, ak Workflow chak jwe nan otomatizasyon maketing, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"L'automatisation vous permet de construire des systèmes qui travaillent pour vous sans que vous fassiez chaque action manuellement — cet outil a 3 parties : un CRM pour organiser les contacts, un chatbot pour répondre aux questions automatiquement, et un workflow pour construire des séquences automatiques.",
+   secs:[["Les 3 parties de l'outil","CRM (Gestion de la Relation Client) pour organiser et suivre les contacts ; Chatbot pour répondre aux questions automatiquement ; Workflow pour construire des séquences avec déclencheurs et conditions."],
+    ["Pourquoi l'automatisation compte","Un système automatique travaille pour vous 24/7 — chaque nouveau lead reçoit la même bonne expérience sans que vous fassiez quoi que ce soit manuellement après la configuration initiale."]],
+   ex:"Quel 1 processus dans votre entreprise aimeriez-vous automatiser ?",
+   quiz:[
+    {q:"Combien de parties cet outil a-t-il ?",opts:["1","3","6","10"],ans:1,fb:"Il y a 3 parties : CRM, Chatbot, Workflow."},
+    {q:"Que signifie CRM ?",opts:["Un type d'image","Gestion de la Relation Client","Un réseau social","Un formulaire de contact"],ans:1,fb:"CRM = Gestion de la Relation Client."},
+    {q:"Quelles sont les 3 parties ?",opts:["Seulement Chatbot","CRM, Chatbot, et Workflow","Seulement Workflow","Il n'y a pas de parties"],ans:1,fb:"CRM, Chatbot, et Workflow."}],
+   close:{learned:"L'outil d'automatisation a 3 parties (CRM, Chatbot, Workflow) qui ensemble vous permettent de construire des systèmes qui travaillent pour vous sans action manuelle à chaque fois.",
+    mistake:"Croire que l'automatisation demande des compétences techniques compliquées, plutôt que de reconnaître que c'est une série d'étapes logiques que vous pouvez apprendre.",
+    tip:"Commencez avec un seul processus simple à automatiser avant d'essayer d'automatiser toute votre entreprise d'un coup.",
+    assign:"Quel 1 processus dans votre entreprise aimeriez-vous automatiser ?",
+    dl:"Référence : Les 3 Parties de l'Outil d'Automatisation",
+    checklist:["Onglet CRM visité ?","Onglet Chatbot visité ?","Onglet Workflow visité ?"],
+    ai:"Explique quel rôle le CRM, le Chatbot, et le Workflow jouent chacun dans l'automatisation marketing, pour un propriétaire de petite entreprise."}},
+ en:{lede:"Automation lets you build systems that work for you without doing each action manually — this tool has 3 parts: a CRM to organize contacts, a chatbot to answer questions automatically, and a workflow to build automatic sequences.",
+   secs:[["The tool's 3 parts","CRM (Customer Relationship Management) to organize and track contacts; Chatbot to answer questions automatically; Workflow to build sequences with triggers and conditions."],
+    ["Why automation matters","An automatic system works for you 24/7 — every new lead gets the same good experience without you doing anything manually after the initial setup."]],
+   ex:"What's 1 process in your business you'd like to automate?",
+   quiz:[
+    {q:"How many parts does this tool have?",opts:["1","3","6","10"],ans:1,fb:"There are 3 parts: CRM, Chatbot, Workflow."},
+    {q:"What does CRM mean?",opts:["A type of image","Customer Relationship Management","A social network","A contact form"],ans:1,fb:"CRM = Customer Relationship Management."},
+    {q:"What are the 3 parts?",opts:["Only Chatbot","CRM, Chatbot, and Workflow","Only Workflow","There are no parts"],ans:1,fb:"CRM, Chatbot, and Workflow."}],
+   close:{learned:"The automation tool has 3 parts (CRM, Chatbot, Workflow) that together let you build systems that work for you without manual action every time.",
+    mistake:"Believing automation requires complicated technical skills, rather than recognizing it's a series of logical steps you can learn.",
+    tip:"Start with one simple process to automate before trying to automate your whole business at once.",
+    assign:"What's 1 process in your business you'd like to automate?",
+    dl:"Reference: The 3 Parts of the Automation Tool",
+    checklist:["CRM tab visited?","Chatbot tab visited?","Workflow tab visited?"],
+    ai:"Explain what role the CRM, Chatbot, and Workflow each play in marketing automation, for a small business owner."}}},
+
+2:{ht:{lede:"Yon CRM byen òganize sèvi w konnen ki kontak ki pi pre yon vant, e ki kontak ki bezwen plis atansyon — sa a depann de kijan yo etikèt (tag) chak kontak.",
+   secs:[["Etap kliyan yo","Lead (yon moun ki fèk montre yon ti enterè), Prospect (yon moun ki montre plis siy enterè, tankou soumèt yon fòm), ak Kliyan (yon moun ki deja achte)."],
+    ["Etikèt yo dwe baze sou aksyon reyèl","Pa jis santiman — yon nòt (score) ki kalkile ak aksyon reyèl (imèl louvri, paj vizite, fòm soumèt) bay yon fason objektif pou deside ki etikèt yon kontak merite."]],
+   ex:"Ki 2 aksyon ou ta swiv pou kalkile nòt yon lead pou biznis ou?",
+   quiz:[
+    {q:"Kisa yon 'Lead' ye?",opts:["Yon kliyan ki deja achte","Yon moun ki fèk montre yon ti enterè","Yon anplwaye","Yon konkiran"],ans:1,fb:"Yon Lead se yon moun ki fèk montre yon ti enterè."},
+    {q:"Poukisa etikèt yo ta dwe baze sou aksyon reyèl olye santiman?",opts:["Santiman toujou pi presi","Yon nòt objektif bay yon fason konsistan pou deside etikèt","Aksyon reyèl pa gen enpòtans","Etikèt pa bezwen gen okenn baz"],ans:1,fb:"Yon nòt objektif bay yon fason konsistan."},
+    {q:"Kisa yon 'Prospect' ye konpare ak yon 'Lead'?",opts:["Yo idantik nèt","Yon Prospect montre plis siy enterè (tankou soumèt yon fòm)","Yon Prospect toujou yon kliyan deja","Lead toujou pi enterese pase Prospect"],ans:1,fb:"Prospect montre plis siy enterè."}],
+   close:{learned:"Etap yo (Lead, Prospect, Kliyan) ta dwe baze sou aksyon reyèl yon kontak fè, itilize yon nòt objektif olye santiman sèlman.",
+    mistake:"Etikèt kontak yo baze sou santiman oswa enpresyon jeneral, olye itilize yon nòt konsistan ki baze sou vrè aksyon yo fè.",
+    tip:"Yon nòt objektif fè fasil pou plizyè moun nan yon ekip toujou dakò sou ki etap yon kontak ye.",
+    assign:"Ki 2 aksyon ou ta swiv pou kalkile nòt yon lead pou biznis ou?",
+    dl:"Fèy Travay: Etap Kontak nan yon CRM",
+    checklist:["Chak kontak etikèt kòrèkteman selon nòt li?"],
+    ai:"Eksplike diferans ant Lead, Prospect, ak Kliyan nan yon CRM, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Un CRM bien organisé vous sert à savoir quel contact est le plus proche d'une vente, et quel contact a besoin de plus d'attention — ça dépend de comment vous étiquetez (taguez) chaque contact.",
+   secs:[["Les étapes clients","Lead (une personne qui vient de montrer un petit intérêt), Prospect (une personne qui montre plus de signes d'intérêt, comme soumettre un formulaire), et Client (une personne qui a déjà acheté)."],
+    ["Les étiquettes devraient être basées sur des actions réelles","Pas juste un sentiment — un score calculé avec des actions réelles (emails ouverts, pages visitées, formulaire soumis) donne une façon objective de décider quelle étiquette un contact mérite."]],
+   ex:"Quelles 2 actions suivriez-vous pour calculer le score d'un lead pour votre entreprise ?",
+   quiz:[
+    {q:"Qu'est-ce qu'un « Lead » ?",opts:["Un client qui a déjà acheté","Une personne qui vient de montrer un petit intérêt","Un employé","Un concurrent"],ans:1,fb:"Un Lead est une personne qui vient de montrer un petit intérêt."},
+    {q:"Pourquoi les étiquettes devraient-elles être basées sur des actions réelles plutôt qu'un sentiment ?",opts:["Le sentiment est toujours plus précis","Un score objectif donne une façon cohérente de décider de l'étiquette","Les actions réelles n'ont pas d'importance","Les étiquettes n'ont pas besoin de base"],ans:1,fb:"Un score objectif donne une façon cohérente de décider."},
+    {q:"Qu'est-ce qu'un « Prospect » comparé à un « Lead » ?",opts:["Ils sont complètement identiques","Un Prospect montre plus de signes d'intérêt (comme soumettre un formulaire)","Un Prospect est toujours déjà client","Un Lead est toujours plus intéressé qu'un Prospect"],ans:1,fb:"Un Prospect montre plus de signes d'intérêt."}],
+   close:{learned:"Les étapes (Lead, Prospect, Client) devraient être basées sur les actions réelles qu'un contact fait, en utilisant un score objectif plutôt que juste un sentiment.",
+    mistake:"Étiqueter les contacts basé sur un sentiment ou une impression générale, plutôt que d'utiliser un score cohérent basé sur les vraies actions qu'ils font.",
+    tip:"Un score objectif facilite le fait que plusieurs personnes dans une équipe soient toujours d'accord sur l'étape d'un contact.",
+    assign:"Quelles 2 actions suivriez-vous pour calculer le score d'un lead pour votre entreprise ?",
+    dl:"Fiche de travail : Étapes de Contact dans un CRM",
+    checklist:["Chaque contact étiqueté correctement selon son score ?"],
+    ai:"Explique la différence entre Lead, Prospect, et Client dans un CRM, pour un propriétaire de petite entreprise."}},
+ en:{lede:"A well-organized CRM helps you know which contact is closest to a sale, and which contact needs more attention — that depends on how you tag each contact.",
+   secs:[["Customer stages","Lead (someone who just showed a little interest), Prospect (someone showing more signs of interest, like submitting a form), and Customer (someone who already bought)."],
+    ["Tags should be based on real actions","Not just a feeling — a score calculated from real actions (emails opened, pages visited, form submitted) gives an objective way to decide what tag a contact deserves."]],
+   ex:"What 2 actions would you track to calculate a lead's score for your business?",
+   quiz:[
+    {q:"What is a \"Lead\"?",opts:["A customer who already bought","Someone who just showed a little interest","An employee","A competitor"],ans:1,fb:"A Lead is someone who just showed a little interest."},
+    {q:"Why should tags be based on real actions rather than a feeling?",opts:["Feeling is always more precise","An objective score gives a consistent way to decide the tag","Real actions don't matter","Tags don't need any basis"],ans:1,fb:"An objective score gives a consistent way to decide."},
+    {q:"What is a \"Prospect\" compared to a \"Lead\"?",opts:["They're completely identical","A Prospect shows more signs of interest (like submitting a form)","A Prospect is always already a customer","A Lead is always more interested than a Prospect"],ans:1,fb:"A Prospect shows more signs of interest."}],
+   close:{learned:"Stages (Lead, Prospect, Customer) should be based on the real actions a contact takes, using an objective score rather than just a feeling.",
+    mistake:"Tagging contacts based on a feeling or general impression, rather than using a consistent score based on the real actions they take.",
+    tip:"An objective score makes it easy for multiple people on a team to always agree on what stage a contact is at.",
+    assign:"What 2 actions would you track to calculate a lead's score for your business?",
+    dl:"Worksheet: Contact Stages in a CRM",
+    checklist:["Each contact tagged correctly per their score?"],
+    ai:"Explain the difference between Lead, Prospect, and Customer in a CRM, for a small business owner."}}},
+
+3:{ht:{lede:"Nòt yon lead (lead score) di w ki kontak ki pi cho — konsantre tan ou sou lead ki gen pi bon nòt yo souvan bay pi bon rezilta pase kontakte tout moun menm jan an.",
+   secs:[["Kijan nòt la kalkile","Chak aksyon (louvri yon imèl, vizite yon paj, soumèt yon fòm) ajoute pwen — plis aksyon yon kontak fè, pi wo nòt li."],
+    ["Priyorite lead ki pi cho yo","Si ou gen yon ti tan pou swiv, kontakte lead ki gen pi wo nòt yo an premye — yo montre pi gwo siy yo pare pou aji."]],
+   ex:"Si ou te gen tan pou rele sèlman 1 lead jodi a, ki jan ou ta chwazi kiyès?",
+   quiz:[
+    {q:"Kisa yon nòt lead (lead score) di w?",opts:["Anyen espesyal","Ki kontak ki montre plis enterè atravè aksyon reyèl yo","Laj kontak la","Non biznis kontak la"],ans:1,fb:"Nòt la montre ki kontak ki montre plis enterè."},
+    {q:"Poukisa konsantre sou lead ki gen pi wo nòt yo?",opts:["Sa pa gen enpòtans, tout lead idantik","Yo montre pi gwo siy yo pare pou aji, kidonk yo souvan bay pi bon rezilta","Nòt ba toujou pi bon","Nòt pa afekte priyorite"],ans:1,fb:"Yo montre pi gwo siy yo pare pou aji."},
+    {q:"Ki aksyon ki ta ka ajoute nan yon nòt lead?",opts:["Sèlman koulè favori","Louvri imèl, vizite paj, soumèt fòm","Sèlman non biznis","Pa gen aksyon ki konte"],ans:1,fb:"Louvri imèl, vizite paj, soumèt fòm ajoute pwen."}],
+   close:{learned:"Yon nòt lead kalkile ak aksyon reyèl (imèl louvri, paj vizite, fòm soumèt) — konsantre sou lead ki gen pi wo nòt yo souvan bay pi bon rezilta.",
+    mistake:"Kontakte tout lead menm jan an san konsidere nòt yo, ki gaspiye tan sou moun ki poko reyèlman enterese.",
+    tip:"Si ou gen yon ti tan pou swiv chak jou, kòmanse toujou ak lead ki gen pi wo nòt la.",
+    assign:"Si ou te gen tan pou rele sèlman 1 lead jodi a, ki jan ou ta chwazi kiyès?",
+    dl:"Referans: Kijan Nòt Lead Kalkile",
+    checklist:["Kontak ki gen pi wo nòt la idantifye?"],
+    ai:"Eksplike kijan pou kalkile ak itilize yon nòt lead, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Le score d'un lead vous dit quel contact est le plus « chaud » — concentrer votre temps sur les leads avec les meilleurs scores donne souvent de meilleurs résultats que de contacter tout le monde de la même façon.",
+   secs:[["Comment le score se calcule","Chaque action (ouvrir un email, visiter une page, soumettre un formulaire) ajoute des points — plus un contact fait d'actions, plus son score est élevé."],
+    ["Prioriser les leads les plus chauds","Si vous avez peu de temps pour faire un suivi, contactez d'abord les leads avec les scores les plus élevés — ils montrent les plus grands signes d'être prêts à agir."]],
+   ex:"Si vous n'aviez le temps d'appeler qu'1 lead aujourd'hui, comment choisiriez-vous lequel ?",
+   quiz:[
+    {q:"Que vous dit le score d'un lead ?",opts:["Rien de spécial","Quel contact montre le plus d'intérêt à travers des actions réelles","L'âge du contact","Le nom de l'entreprise du contact"],ans:1,fb:"Le score montre quel contact montre le plus d'intérêt."},
+    {q:"Pourquoi se concentrer sur les leads avec les scores les plus élevés ?",opts:["Ça n'a pas d'importance, tous les leads sont identiques","Ils montrent les plus grands signes d'être prêts à agir, donc donnent souvent de meilleurs résultats","Un score bas est toujours mieux","Le score n'affecte pas la priorité"],ans:1,fb:"Ils montrent les plus grands signes d'être prêts à agir."},
+    {q:"Quelles actions pourraient s'ajouter à un score de lead ?",opts:["Seulement la couleur préférée","Ouvrir un email, visiter une page, soumettre un formulaire","Seulement le nom de l'entreprise","Aucune action ne compte"],ans:1,fb:"Ouvrir un email, visiter une page, soumettre un formulaire ajoutent des points."}],
+   close:{learned:"Un score de lead se calcule avec des actions réelles (emails ouverts, pages visitées, formulaire soumis) — se concentrer sur les leads avec les scores les plus élevés donne souvent de meilleurs résultats.",
+    mistake:"Contacter tous les leads de la même façon sans considérer leur score, ce qui gaspille du temps sur des gens pas encore vraiment intéressés.",
+    tip:"Si vous avez peu de temps pour faire un suivi chaque jour, commencez toujours par le lead avec le score le plus élevé.",
+    assign:"Si vous n'aviez le temps d'appeler qu'1 lead aujourd'hui, comment choisiriez-vous lequel ?",
+    dl:"Référence : Comment se Calcule le Score de Lead",
+    checklist:["Le contact avec le score le plus élevé identifié ?"],
+    ai:"Explique comment calculer et utiliser un score de lead, pour un propriétaire de petite entreprise."}},
+ en:{lede:"A lead's score tells you which contact is \"hottest\" — focusing your time on the leads with the best scores often gives better results than contacting everyone the same way.",
+   secs:[["How the score is calculated","Each action (opening an email, visiting a page, submitting a form) adds points — the more actions a contact takes, the higher their score."],
+    ["Prioritizing the hottest leads","If you have limited time to follow up, contact the leads with the highest scores first — they show the biggest signs of being ready to act."]],
+   ex:"If you only had time to call 1 lead today, how would you choose which one?",
+   quiz:[
+    {q:"What does a lead's score tell you?",opts:["Nothing special","Which contact shows the most interest through real actions","The contact's age","The contact's business name"],ans:1,fb:"The score shows which contact shows the most interest."},
+    {q:"Why focus on the leads with the highest scores?",opts:["It doesn't matter, all leads are identical","They show the biggest signs of being ready to act, so often give better results","A low score is always better","Score doesn't affect priority"],ans:1,fb:"They show the biggest signs of being ready to act."},
+    {q:"What actions might add to a lead score?",opts:["Only favorite color","Opening an email, visiting a page, submitting a form","Only business name","No actions matter"],ans:1,fb:"Opening an email, visiting a page, submitting a form add points."}],
+   close:{learned:"A lead score is calculated from real actions (emails opened, pages visited, form submitted) — focusing on the leads with the highest scores often gives better results.",
+    mistake:"Contacting all leads the same way without considering their score, which wastes time on people not yet really interested.",
+    tip:"If you have limited time to follow up each day, always start with the highest-scoring lead.",
+    assign:"If you only had time to call 1 lead today, how would you choose which one?",
+    dl:"Reference: How Lead Score Is Calculated",
+    checklist:["Highest-scoring contact identified?"],
+    ai:"Explain how to calculate and use a lead score, for a small business owner."}}},
+
+4:{ht:{lede:"Yon chatbot senp ka reponn kesyon komen otomatikman 24/7 — men li mache byen sèlman si flux la klè ak byen panse davans.",
+   secs:[["Estrikti yon flux chatbot senp","Yon mesaj byenveni, yon kesyon ki kite vizitè a chwazi, ak repons diferan ki matche chak chwa — chak pati travay ansanm pou gide moun nan vè bon enfòmasyon an."],
+    ["Konnen limit li","Yon chatbot bon pou kesyon komen e repetitif, men li ta dwe toujou gen yon fason pou pase bay yon vrè moun lè kesyon an twò konplike."]],
+   ex:"Ki 2 kesyon komen kliyan poze biznis ou tout tan ki ta bon pou yon chatbot reponn?",
+   quiz:[
+    {q:"Ki estrikti debaz yon flux chatbot senp?",opts:["Sèlman yon mesaj san rezon","Yon byenveni, yon kesyon, ak repons ki matche chak chwa","Sèlman yon kesyon san repons","Pa gen estrikti"],ans:1,fb:"Byenveni, kesyon, ak repons ki matche."},
+    {q:"Pou ki kalite kesyon yon chatbot bon?",opts:["Kesyon konplike ki mande jijman","Kesyon komen e repetitif","Okenn kesyon","Sèlman kesyon pri"],ans:1,fb:"Chatbot bon pou kesyon komen e repetitif."},
+    {q:"Kisa yon chatbot ta dwe toujou genyen?",opts:["Okenn fason pou pase bay yon moun","Yon fason pou pase bay yon vrè moun lè kesyon an twò konplike","Sèlman yon sèl repons pou tout moun","Pa gen bezwen pou sa"],ans:1,fb:"Toujou gen yon fason pou pase bay yon vrè moun."}],
+   close:{learned:"Yon flux chatbot senp gen yon byenveni, yon kesyon, ak repons ki matche chak chwa — li ta dwe toujou gen yon fason pou pase bay yon vrè moun lè sa nesesè.",
+    mistake:"Bati yon chatbot ki eseye reponn tout kesyon posib san yon fason pou pase bay yon vrè moun, ki fristre kliyan ak kesyon konplike.",
+    tip:"Kòmanse ak 2-3 kesyon ki pi komen kliyan yo poze — pa eseye kouvri tout posiblite yon sèl kou.",
+    assign:"Ki 2 kesyon komen kliyan poze biznis ou tout tan ki ta bon pou yon chatbot reponn?",
+    dl:"Fèy Travay: Bati Premye Flux Chatbot Ou",
+    checklist:["Mesaj byenveni ekri (omwen 10 karaktè)?","Kesyon an ekri?","Tou de repons yo ekri?"],
+    ai:"Sijere yon flux chatbot senp (byenveni, kesyon, 2 repons) pou yon [kalite biznis]."}},
+ fr:{lede:"Un chatbot simple peut répondre aux questions courantes automatiquement 24/7 — mais ça fonctionne bien seulement si le flux est clair et bien pensé à l'avance.",
+   secs:[["Structure d'un flux de chatbot simple","Un message de bienvenue, une question qui laisse le visiteur choisir, et des réponses différentes qui correspondent à chaque choix — chaque partie travaille ensemble pour guider la personne vers la bonne information."],
+    ["Connaître ses limites","Un chatbot est bon pour les questions courantes et répétitives, mais il devrait toujours avoir une façon de passer à une vraie personne quand la question est trop compliquée."]],
+   ex:"Quelles 2 questions courantes les clients posent-ils tout le temps à votre entreprise qui seraient bonnes pour un chatbot ?",
+   quiz:[
+    {q:"Quelle est la structure de base d'un flux de chatbot simple ?",opts:["Seulement un message sans raison","Une bienvenue, une question, et des réponses qui correspondent à chaque choix","Seulement une question sans réponse","Il n'y a pas de structure"],ans:1,fb:"Bienvenue, question, et réponses correspondantes."},
+    {q:"Pour quel type de questions un chatbot est-il bon ?",opts:["Des questions compliquées qui demandent du jugement","Des questions courantes et répétitives","Aucune question","Seulement des questions de prix"],ans:1,fb:"Un chatbot est bon pour les questions courantes et répétitives."},
+    {q:"Qu'est-ce qu'un chatbot devrait toujours avoir ?",opts:["Aucune façon de passer à une personne","Une façon de passer à une vraie personne quand la question est trop compliquée","Seulement une réponse pour tout le monde","Ce n'est pas nécessaire"],ans:1,fb:"Toujours une façon de passer à une vraie personne."}],
+   close:{learned:"Un flux de chatbot simple a une bienvenue, une question, et des réponses qui correspondent à chaque choix — il devrait toujours avoir une façon de passer à une vraie personne quand nécessaire.",
+    mistake:"Construire un chatbot qui essaie de répondre à toutes les questions possibles sans une façon de passer à une vraie personne, ce qui frustre les clients avec des questions compliquées.",
+    tip:"Commencez avec les 2-3 questions les plus courantes que posent vos clients — n'essayez pas de couvrir toutes les possibilités d'un coup.",
+    assign:"Quelles 2 questions courantes les clients posent-ils tout le temps à votre entreprise qui seraient bonnes pour un chatbot ?",
+    dl:"Fiche de travail : Construire Votre Premier Flux de Chatbot",
+    checklist:["Message de bienvenue écrit (au moins 10 caractères) ?","La question écrite ?","Les deux réponses écrites ?"],
+    ai:"Suggère un flux de chatbot simple (bienvenue, question, 2 réponses) pour un(e) [type d'entreprise]."}},
+ en:{lede:"A simple chatbot can answer common questions automatically 24/7 — but it works well only if the flow is clear and well thought out in advance.",
+   secs:[["Structure of a simple chatbot flow","A welcome message, a question that lets the visitor choose, and different replies matching each choice — each part works together to guide the person to the right information."],
+    ["Knowing its limits","A chatbot is good for common, repetitive questions, but it should always have a way to hand off to a real person when the question is too complicated."]],
+   ex:"What 2 common questions do customers ask your business all the time that would be good for a chatbot to answer?",
+   quiz:[
+    {q:"What's the basic structure of a simple chatbot flow?",opts:["Just a message for no reason","A welcome, a question, and replies matching each choice","Just a question with no reply","There's no structure"],ans:1,fb:"Welcome, question, and matching replies."},
+    {q:"What kind of questions is a chatbot good for?",opts:["Complicated questions requiring judgment","Common, repetitive questions","No questions","Only pricing questions"],ans:1,fb:"A chatbot is good for common, repetitive questions."},
+    {q:"What should a chatbot always have?",opts:["No way to hand off to a person","A way to hand off to a real person when the question is too complicated","Only one reply for everyone","No need for that"],ans:1,fb:"Always a way to hand off to a real person."}],
+   close:{learned:"A simple chatbot flow has a welcome, a question, and replies matching each choice — it should always have a way to hand off to a real person when needed.",
+    mistake:"Building a chatbot that tries to answer every possible question without a way to hand off to a real person, which frustrates customers with complicated questions.",
+    tip:"Start with the 2-3 most common questions your customers ask — don't try to cover every possibility at once.",
+    assign:"What 2 common questions do customers ask your business all the time that would be good for a chatbot to answer?",
+    dl:"Worksheet: Building Your First Chatbot Flow",
+    checklist:["Welcome message written (at least 10 characters)?","The question written?","Both replies written?"],
+    ai:"Suggest a simple chatbot flow (welcome, question, 2 replies) for a [type of business]."}}},
+
+5:{ht:{lede:"Yon kanpay 'nurturing' bati konfyans ak yon lead sou tan ak plizyè ti touch, olye eseye vann yo nan yon sèl imèl.",
+   secs:[["Plizyè touch, pa yon sèl","Yon sèl imèl raman ase pou konvenk yon moun — yon sekans plizyè imèl, chak youn bay valè, bati konfyans pi efikasman sou tan."],
+    ["Kite tan pase ant chak touch","Mete yon tan datant (tankou 2 jou) ant imèl yo evite bonbade yon lead e kite yo tan pou reyèlman li e reflechi."]],
+   ex:"Ki 3 imèl ou ta voye nan yon sekans nurturing pou yon nouvo lead?",
+   quiz:[
+    {q:"Poukisa plizyè touch pi efikas pase yon sèl imèl?",opts:["Yon sèl imèl toujou ase","Yon sekans plizyè imèl bati konfyans pi efikasman sou tan","Plis imèl toujou anmède moun","Sa pa gen enpòtans konbyen imèl ou voye"],ans:1,fb:"Yon sekans bati konfyans pi efikasman sou tan."},
+    {q:"Poukisa kite tan pase ant chak imèl?",opts:["Pa gen rezon espesifik","Sa evite bonbade lead la e kite yo tan pou reflechi","Tan pa gen okenn efè","Ou ta dwe voye tout imèl yo yon sèl kou"],ans:1,fb:"Sa evite bonbade e kite tan pou reflechi."},
+    {q:"Ki premye etap yon sekans nurturing ta dwe ye?",opts:["Yon ofri vant dirèk","Yon deklanchè ki fè sekans lan kòmanse","Yon kesyon o aza","Pa gen premye etap"],ans:1,fb:"Yon deklanchè fè sekans lan kòmanse."}],
+   close:{learned:"Yon kanpay nurturing kòmanse ak yon deklanchè, itilize plizyè imèl (pa yon sèl), ak tan datant ant yo pou bati konfyans sou tan.",
+    mistake:"Voye yon sèl gwo imèl vant epi tann sa reyisi, olye bati konfyans sou plizyè ti touch avèk tan pase ant yo.",
+    tip:"Chak imèl nan sekans lan ta dwe bay yon ti valè reyèl, pa jis mande yon vant chak fwa.",
+    assign:"Ki 3 imèl ou ta voye nan yon sekans nurturing pou yon nouvo lead?",
+    dl:"Modèl: Estrikti Kanpay Nurturing Debaz",
+    checklist:["Sekans lan kòmanse ak yon deklanchè?","Omwen 2 imèl nan sekans lan?","Omwen 1 tan datant ant imèl yo?"],
+    ai:"Sijere yon sekans nurturing 3-imèl pou yon nouvo lead pou yon [kalite biznis]."}},
+ fr:{lede:"Une campagne de « nurturing » bâtit la confiance avec un lead dans le temps avec plusieurs petits contacts, plutôt que d'essayer de leur vendre en un seul email.",
+   secs:[["Plusieurs contacts, pas un seul","Un seul email suffit rarement à convaincre quelqu'un — une séquence de plusieurs emails, chacun apportant de la valeur, bâtit la confiance plus efficacement dans le temps."],
+    ["Laisser du temps passer entre chaque contact","Mettre un délai d'attente (comme 2 jours) entre les emails évite de submerger un lead et leur laisse le temps de vraiment lire et réfléchir."]],
+   ex:"Quels 3 emails enverriez-vous dans une séquence de nurturing pour un nouveau lead ?",
+   quiz:[
+    {q:"Pourquoi plusieurs contacts sont-ils plus efficaces qu'un seul email ?",opts:["Un seul email suffit toujours","Une séquence de plusieurs emails bâtit la confiance plus efficacement dans le temps","Plus d'emails dérange toujours les gens","Ça n'a pas d'importance combien d'emails vous envoyez"],ans:1,fb:"Une séquence bâtit la confiance plus efficacement dans le temps."},
+    {q:"Pourquoi laisser du temps passer entre chaque email ?",opts:["Aucune raison particulière","Ça évite de submerger le lead et lui laisse le temps de réfléchir","Le temps n'a aucun effet","Vous devriez envoyer tous les emails d'un coup"],ans:1,fb:"Ça évite de submerger et laisse le temps de réfléchir."},
+    {q:"Quelle devrait être la première étape d'une séquence de nurturing ?",opts:["Une offre de vente directe","Un déclencheur qui fait démarrer la séquence","Une question au hasard","Il n'y a pas de première étape"],ans:1,fb:"Un déclencheur fait démarrer la séquence."}],
+   close:{learned:"Une campagne de nurturing commence par un déclencheur, utilise plusieurs emails (pas un seul), et un délai d'attente entre eux pour bâtir la confiance dans le temps.",
+    mistake:"Envoyer un seul gros email de vente et attendre que ça marche, plutôt que de bâtir la confiance à travers plusieurs petits contacts avec du temps entre eux.",
+    tip:"Chaque email dans la séquence devrait apporter une petite valeur réelle, pas juste demander une vente à chaque fois.",
+    assign:"Quels 3 emails enverriez-vous dans une séquence de nurturing pour un nouveau lead ?",
+    dl:"Modèle : Structure de Campagne de Nurturing de Base",
+    checklist:["La séquence commence-t-elle par un déclencheur ?","Au moins 2 emails dans la séquence ?","Au moins 1 délai d'attente entre les emails ?"],
+    ai:"Suggère une séquence de nurturing en 3 emails pour un nouveau lead pour un(e) [type d'entreprise]."}},
+ en:{lede:"A nurturing campaign builds trust with a lead over time through several small touches, instead of trying to sell them in one email.",
+   secs:[["Multiple touches, not one","A single email rarely convinces someone — a sequence of several emails, each providing value, builds trust more effectively over time."],
+    ["Letting time pass between each touch","Adding a wait time (like 2 days) between emails avoids overwhelming a lead and gives them time to actually read and think."]],
+   ex:"What 3 emails would you send in a nurturing sequence for a new lead?",
+   quiz:[
+    {q:"Why are multiple touches more effective than a single email?",opts:["A single email is always enough","A sequence of several emails builds trust more effectively over time","More emails always annoy people","It doesn't matter how many emails you send"],ans:1,fb:"A sequence builds trust more effectively over time."},
+    {q:"Why let time pass between each email?",opts:["No particular reason","It avoids overwhelming the lead and gives them time to think","Time has no effect","You should send all the emails at once"],ans:1,fb:"It avoids overwhelming and gives time to think."},
+    {q:"What should the first step of a nurturing sequence be?",opts:["A direct sales offer","A trigger that starts the sequence","A random question","There's no first step"],ans:1,fb:"A trigger starts the sequence."}],
+   close:{learned:"A nurturing campaign starts with a trigger, uses multiple emails (not just one), and a wait time between them to build trust over time.",
+    mistake:"Sending one big sales email and waiting for it to work, instead of building trust through several small touches with time between them.",
+    tip:"Every email in the sequence should provide a little real value, not just ask for a sale every time.",
+    assign:"What 3 emails would you send in a nurturing sequence for a new lead?",
+    dl:"Template: Basic Nurturing Campaign Structure",
+    checklist:["Does the sequence start with a trigger?","At least 2 emails in the sequence?","At least 1 wait time between emails?"],
+    ai:"Suggest a 3-email nurturing sequence for a new lead for a [type of business]."}}},
+
+6:{ht:{lede:"Yon kondisyon (if/then) kite otomatizasyon ou reyaji diferaman selon sa yon moun fè — pa tout moun ta dwe resevwa menm pwochen etap la.",
+   secs:[["Sa yon kondisyon fè","Yon etap kondisyon tcheke yon bagay espesifik (tankou 'èske yo louvri imèl anvan an?') epi dirije chemen an diferaman selon repons lan."],
+    ["Kondisyon vin apre sa l ap tcheke a","Yon kondisyon ki tcheke 'èske yo louvri imèl la' dwe vin JIS apre imèl sa a nan sekans lan — li pa ka tcheke yon bagay ki poko rive."]],
+   ex:"Ki yon kondisyon ou ta itilize pou dirije yon lead diferaman selon si yo klike sou yon lyen oswa non?",
+   quiz:[
+    {q:"Kisa yon etap kondisyon fè?",opts:["Anyen espesyal","Li tcheke yon bagay espesifik e dirije chemen an diferaman selon repons lan","Li ranplase bezwen pou yon deklanchè","Li toujou premye etap la"],ans:1,fb:"Li dirije chemen an selon repons yon kesyon espesifik."},
+    {q:"Ki pozisyon yon kondisyon ki tcheke 'èske yo louvri yon imèl' ta dwe genyen?",opts:["Nenpòt kote","Jis apre imèl sa a nan sekans lan","Toujou premye etap la","Pa gen pozisyon espesifik"],ans:1,fb:"Jis apre imèl la, paske se sa l ap tcheke a."},
+    {q:"Poukisa kondisyon itil nan yon otomatizasyon?",opts:["Yo pa itil","Yo kite pwochen etap la diferan selon sa yon moun reyèlman fè","Tout moun ta dwe resevwa menm bagay kanmenm","Kondisyon konplike san rezon"],ans:1,fb:"Yo kite pwochen etap la diferan selon vrè aksyon moun nan."}],
+   close:{learned:"Yon etap kondisyon tcheke yon bagay espesifik epi dirije chemen an diferaman selon repons lan — li dwe vin jis apre sa l ap tcheke a nan sekans lan.",
+    mistake:"Mete yon kondisyon ki tcheke 'èske yo louvri yon imèl' avan menm imèl sa a te voye, ki pa gen sans paske pa gen done pou tcheke ankò.",
+    tip:"Toujou mande tèt ou: 'kisa kondisyon sa a ap tcheke, e èske sa deja rive nan sekans lan avan?'",
+    assign:"Ki yon kondisyon ou ta itilize pou dirije yon lead diferaman selon si yo klike sou yon lyen oswa non?",
+    dl:"Referans: Kijan Kondisyon Workflow Mache",
+    checklist:["Yon etap kondisyon ajoute?","Kondisyon an vin jis apre yon etap imèl?"],
+    ai:"Eksplike kijan yon kondisyon 'if/then' travay nan yon otomatizasyon, ak yon egzanp, pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Une condition (si/alors) permet à votre automatisation de réagir différemment selon ce que fait une personne — tout le monde ne devrait pas recevoir la même prochaine étape.",
+   secs:[["Ce que fait une condition","Une étape de condition vérifie quelque chose de spécifique (comme « ont-ils ouvert l'email précédent ? ») puis dirige le chemin différemment selon la réponse."],
+    ["La condition vient après ce qu'elle vérifie","Une condition qui vérifie « ont-ils ouvert l'email » doit venir JUSTE après cet email dans la séquence — elle ne peut pas vérifier quelque chose qui n'est pas encore arrivé."]],
+   ex:"Quelle condition utiliseriez-vous pour diriger un lead différemment selon qu'il clique sur un lien ou non ?",
+   quiz:[
+    {q:"Que fait une étape de condition ?",opts:["Rien de spécial","Elle vérifie quelque chose de spécifique et dirige le chemin différemment selon la réponse","Elle remplace le besoin d'un déclencheur","Elle est toujours la première étape"],ans:1,fb:"Elle dirige le chemin selon la réponse à une question spécifique."},
+    {q:"Quelle position une condition qui vérifie « ont-ils ouvert un email » devrait-elle avoir ?",opts:["N'importe où","Juste après cet email dans la séquence","Toujours la première étape","Aucune position spécifique"],ans:1,fb:"Juste après l'email, car c'est ce qu'elle vérifie."},
+    {q:"Pourquoi les conditions sont-elles utiles dans une automatisation ?",opts:["Elles ne sont pas utiles","Elles laissent la prochaine étape différer selon ce que la personne fait réellement","Tout le monde devrait recevoir la même chose de toute façon","Les conditions sont compliquées sans raison"],ans:1,fb:"Elles laissent la prochaine étape différer selon les vraies actions."}],
+   close:{learned:"Une étape de condition vérifie quelque chose de spécifique puis dirige le chemin différemment selon la réponse — elle doit venir juste après ce qu'elle vérifie dans la séquence.",
+    mistake:"Mettre une condition qui vérifie « ont-ils ouvert un email » avant même que cet email soit envoyé, ce qui n'a aucun sens car il n'y a pas de donnée à vérifier encore.",
+    tip:"Demandez-vous toujours : « que vérifie cette condition, et est-ce déjà arrivé dans la séquence avant ? »",
+    assign:"Quelle condition utiliseriez-vous pour diriger un lead différemment selon qu'il clique sur un lien ou non ?",
+    dl:"Référence : Comment Fonctionnent les Conditions de Workflow",
+    checklist:["Une étape de condition ajoutée ?","La condition vient-elle juste après une étape email ?"],
+    ai:"Explique comment fonctionne une condition « si/alors » dans une automatisation, avec un exemple, pour un propriétaire de petite entreprise."}},
+ en:{lede:"A condition (if/then) lets your automation react differently based on what someone does — not everyone should get the same next step.",
+   secs:[["What a condition does","A condition step checks something specific (like \"did they open the previous email?\") and then routes the path differently based on the answer."],
+    ["The condition comes after what it's checking","A condition checking \"did they open the email\" must come RIGHT AFTER that email in the sequence — it can't check something that hasn't happened yet."]],
+   ex:"What condition would you use to route a lead differently based on whether they click a link or not?",
+   quiz:[
+    {q:"What does a condition step do?",opts:["Nothing special","It checks something specific and routes the path differently based on the answer","It replaces the need for a trigger","It's always the first step"],ans:1,fb:"It routes the path based on a specific answer."},
+    {q:"What position should a condition checking \"did they open an email\" have?",opts:["Anywhere","Right after that email in the sequence","Always the first step","No specific position"],ans:1,fb:"Right after the email, since that's what it's checking."},
+    {q:"Why are conditions useful in an automation?",opts:["They aren't useful","They let the next step differ based on what the person actually does","Everyone should get the same thing anyway","Conditions are complicated for no reason"],ans:1,fb:"They let the next step differ based on real actions."}],
+   close:{learned:"A condition step checks something specific and then routes the path differently based on the answer — it must come right after what it's checking in the sequence.",
+    mistake:"Putting a condition checking \"did they open an email\" before that email is even sent, which makes no sense since there's no data to check yet.",
+    tip:"Always ask yourself: \"what is this condition checking, and has that already happened earlier in the sequence?\"",
+    assign:"What condition would you use to route a lead differently based on whether they click a link or not?",
+    dl:"Reference: How Workflow Conditions Work",
+    checklist:["A condition step added?","Does the condition come right after an email step?"],
+    ai:"Explain how an \"if/then\" condition works in an automation, with an example, for a small business owner."}}},
+
+7:{ht:{lede:"Yon otomatizasyon konplè konbine tout sa nou aprann yo: yon deklanchè, plizyè touch, yon kondisyon ki dirije chemen an, ak yon aksyon final ki matche chak chemen.",
+   secs:[["Mete tout bagay ansanm","Deklanchè → Imèl → Tan Datant → Imèl → Kondisyon → Aksyon final (yon lòt imèl oswa yon tag) — chak pati konstwi sou sa anvan li."],
+    ["Teste anvan lanse","Anvan ou lanse yon otomatizasyon konplè, swiv chemen an tèt ansanm ankò pou verifye lòd la fè sans e chak kondisyon vrèman vin apre sa l tcheke a."]],
+   ex:"Dekri chemen konplè yon otomatizasyon 5-etap ou ta bati pou biznis ou.",
+   quiz:[
+    {q:"Ki pati yon otomatizasyon konplè genyen?",opts:["Sèlman yon deklanchè","Yon deklanchè, touch, yon kondisyon, ak yon aksyon final","Sèlman yon aksyon final","Pa gen pati espesifik"],ans:1,fb:"Deklanchè, touch, kondisyon, ak aksyon final."},
+    {q:"Poukisa teste yon otomatizasyon anvan lanse l enpòtan?",opts:["Sa pa nesesè","Pou verifye lòd la fè sans e kondisyon yo vin apre sa yo tcheke a","Teste toujou pèdi tan","Otomatizasyon pa ka gen erè"],ans:1,fb:"Pou verifye lòd la fè sans anvan lanse."},
+    {q:"Kisa ki ta dwe vin apre yon kondisyon nan yon otomatizasyon konplè?",opts:["Anyen, kondisyon se toujou dènye etap la","Yon aksyon final ki matche chemen an","Yon lòt deklanchè","Yon lòt kondisyon toujou"],ans:1,fb:"Yon aksyon final ki matche chemen an chwazi a."}],
+   close:{learned:"Yon otomatizasyon konplè konbine yon deklanchè, plizyè touch, yon kondisyon ki dirije chemen an, ak yon aksyon final ki matche chak chemen — teste l tèt ansanm anvan lanse.",
+    mistake:"Lanse yon otomatizasyon konplèks san janm swiv chemen an tèt ansanm anvan, ki ka lakòz erè lòd ou pa remake jiskaske li deja aktif.",
+    tip:"Yon otomatizasyon senp men konplè ki reyèlman travay bat yon otomatizasyon konplike ki gen erè lòd.",
+    assign:"Dekri chemen konplè yon otomatizasyon 5-etap ou ta bati pou biznis ou.",
+    dl:"Fèy Travay: Verifikasyon Otomatizasyon Konplè",
+    checklist:["Sekans lan kòmanse ak yon deklanchè?","Gen omwen 4 etap total?","Gen yon kondisyon jis apre yon imèl?","Gen omwen yon etap apre kondisyon an?"],
+    ai:"Ede m planifye yon otomatizasyon 5-etap konplè (deklanchè, imèl, kondisyon, aksyon final) pou yon [kalite biznis]."}},
+ fr:{lede:"Une automatisation complète combine tout ce que nous avons appris : un déclencheur, plusieurs contacts, une condition qui dirige le chemin, et une action finale qui correspond à chaque chemin.",
+   secs:[["Tout assembler","Déclencheur → Email → Délai d'Attente → Email → Condition → Action finale (un autre email ou un tag) — chaque partie se construit sur la précédente."],
+    ["Tester avant de lancer","Avant de lancer une automatisation complète, suivez le chemin mentalement encore une fois pour vérifier que l'ordre a du sens et que chaque condition vient vraiment après ce qu'elle vérifie."]],
+   ex:"Décrivez le chemin complet d'une automatisation en 5 étapes que vous construiriez pour votre entreprise.",
+   quiz:[
+    {q:"Quelles parties une automatisation complète a-t-elle ?",opts:["Seulement un déclencheur","Un déclencheur, des contacts, une condition, et une action finale","Seulement une action finale","Aucune partie spécifique"],ans:1,fb:"Déclencheur, contacts, condition, et action finale."},
+    {q:"Pourquoi tester une automatisation avant de la lancer est-il important ?",opts:["Ce n'est pas nécessaire","Pour vérifier que l'ordre a du sens et que les conditions viennent après ce qu'elles vérifient","Tester fait toujours perdre du temps","Les automatisations ne peuvent pas avoir d'erreurs"],ans:1,fb:"Pour vérifier que l'ordre a du sens avant de lancer."},
+    {q:"Qu'est-ce qui devrait venir après une condition dans une automatisation complète ?",opts:["Rien, la condition est toujours la dernière étape","Une action finale qui correspond au chemin choisi","Un autre déclencheur","Toujours une autre condition"],ans:1,fb:"Une action finale qui correspond au chemin choisi."}],
+   close:{learned:"Une automatisation complète combine un déclencheur, plusieurs contacts, une condition qui dirige le chemin, et une action finale qui correspond à chaque chemin — testez-la mentalement avant de la lancer.",
+    mistake:"Lancer une automatisation complexe sans jamais suivre le chemin mentalement avant, ce qui peut causer des erreurs d'ordre que vous ne remarquez pas avant qu'elle soit déjà active.",
+    tip:"Une automatisation simple mais complète qui fonctionne vraiment bat une automatisation compliquée avec des erreurs d'ordre.",
+    assign:"Décrivez le chemin complet d'une automatisation en 5 étapes que vous construiriez pour votre entreprise.",
+    dl:"Fiche de travail : Vérification d'Automatisation Complète",
+    checklist:["La séquence commence-t-elle par un déclencheur ?","Y a-t-il au moins 4 étapes au total ?","Y a-t-il une condition juste après un email ?","Y a-t-il au moins une étape après la condition ?"],
+    ai:"Aide-moi à planifier une automatisation complète en 5 étapes (déclencheur, email, condition, action finale) pour un(e) [type d'entreprise]."}},
+ en:{lede:"A complete automation combines everything we've learned: a trigger, several touches, a condition that routes the path, and a final action matching each path.",
+   secs:[["Putting it all together","Trigger → Email → Wait → Email → Condition → Final action (another email or a tag) — each part builds on the one before."],
+    ["Testing before launching","Before launching a complete automation, walk through the path mentally again to verify the order makes sense and every condition truly comes after what it checks."]],
+   ex:"Describe the complete path of a 5-step automation you'd build for your business.",
+   quiz:[
+    {q:"What parts does a complete automation have?",opts:["Only a trigger","A trigger, touches, a condition, and a final action","Only a final action","No specific parts"],ans:1,fb:"Trigger, touches, condition, and final action."},
+    {q:"Why does testing an automation before launching matter?",opts:["It isn't necessary","To verify the order makes sense and conditions come after what they check","Testing always wastes time","Automations can't have errors"],ans:1,fb:"To verify the order makes sense before launching."},
+    {q:"What should come after a condition in a complete automation?",opts:["Nothing, the condition is always the last step","A final action matching the chosen path","Another trigger","Always another condition"],ans:1,fb:"A final action matching the chosen path."}],
+   close:{learned:"A complete automation combines a trigger, several touches, a condition that routes the path, and a final action matching each path — walk through it mentally before launching.",
+    mistake:"Launching a complex automation without ever walking through the path mentally first, which can cause order errors you don't notice until it's already active.",
+    tip:"A simple but complete automation that actually works beats a complicated one with order errors.",
+    assign:"Describe the complete path of a 5-step automation you'd build for your business.",
+    dl:"Worksheet: Complete Automation Verification",
+    checklist:["Does the sequence start with a trigger?","Are there at least 4 total steps?","Is there a condition right after an email?","Is there at least one step after the condition?"],
+    ai:"Help me plan a complete 5-step automation (trigger, email, condition, final action) for a [type of business]."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module17-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD17_LESSON_SLUGS=["meet-the-automation-tool","organizing-contacts-in-a-crm","lead-scoring-and-segmentation","chatbot-basics","lead-nurturing-campaigns","workflow-triggers-and-conditions","building-a-complete-automation"];
+function freshAutomation(){
+ return {stages:{c1:"",c2:"",c3:"",c4:""},selContact:null,
+  chatbot:{greeting:"",question:"",replyA:"",replyB:""},
+  sequence:[],
+  visited:{crm:false,chatbot:false,workflow:false}};
+}
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{},tab:"crm",am:freshAutomation()};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+if(!S.am)S.am=freshAutomation();
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD17_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder",15:"meet-the-ads-manager",16:"meet-the-analytics-dashboard"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===17;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M17[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ automation tool engine ============ */
+function checkTask(n){
+ const st=S.st[n];
+ const done=C[n].check(S.am);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function renderToolPanel(){
+ const lang=S.lang,ui=UI[lang],a=S.am;
+ let h='<div class="amwrap"><div class="amtabs">';
+ [["crm",ui.tabCrm],["chatbot",ui.tabChatbot],["workflow",ui.tabWorkflow]].forEach(([id,lbl])=>{
+  h+='<button class="amtab'+(S.tab===id?" on":"")+'" data-tab="'+id+'">'+lbl+"</button>";
+ });
+ h+='</div><div class="ambody" id="amBody">';
+
+ if(S.tab==="crm"){
+  h+='<div class="amlbl">'+ui.tabCrm+'</div>';
+  CONTACTS.forEach(c=>{
+   const score=contactScore(c);
+   h+='<div class="amcontact'+(a.selContact===c.id?" sel":"")+'" data-contact="'+c.id+'"><div class="amavatar">'+c.initials+'</div><div><div class="amcname">'+c.name+'</div><div class="amcmeta">'+c.opens+" "+ui.opens+" · "+c.pages+" "+ui.pages+" · "+(c.form?ui.formYes:ui.formNo)+'</div></div><div class="amscore">'+score+'</div><select class="amselect" data-stagesel="'+c.id+'"><option value="">'+ui.stage+"</option>"+
+    ["lead","prospect","customer"].map(s=>'<option value="'+s+'"'+(a.stages[c.id]===s?" selected":"")+">"+ui[s]+"</option>").join("")+
+    "</select></div>";
+  });
+ } else if(S.tab==="chatbot"){
+  h+='<div class="amrow"><div class="amlbl">'+ui.greeting+'</div><input class="aminput" id="amGreeting" value="'+(a.chatbot.greeting||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="amlbl">'+ui.question+'</div><input class="aminput" id="amQuestion" value="'+(a.chatbot.question||"").replace(/"/g,"&quot;")+'"/>';
+  h+='<div class="amlbl">'+ui.replyA+'</div><input class="aminput" id="amReplyA" value="'+(a.chatbot.replyA||"").replace(/"/g,"&quot;")+'"/>';
+  h+='<div class="amlbl">'+ui.replyB+'</div><input class="aminput" id="amReplyB" value="'+(a.chatbot.replyB||"").replace(/"/g,"&quot;")+'"/>';
+  if(a.chatbot.greeting||a.chatbot.question){
+   h+='<div class="amchatpreview">';
+   if(a.chatbot.greeting)h+='<div class="ambubble">'+a.chatbot.greeting+"</div>";
+   if(a.chatbot.question)h+='<div class="ambubble">'+a.chatbot.question+"</div>";
+   if(a.chatbot.replyA)h+='<div class="amreplybtn">'+a.chatbot.replyA+"</div>";
+   if(a.chatbot.replyB)h+='<div class="amreplybtn">'+a.chatbot.replyB+"</div>";
+   h+="</div>";
+  }
+ } else if(S.tab==="workflow"){
+  h+='<div id="amSeq">'+a.sequence.map((sid,i)=>{
+   const step=STEPS.find(s=>s.id===sid);
+   const tagLbl=step.type==="trigger"?ui.tagTrigger:step.type==="email"?ui.tagEmail:step.type==="wait"?ui.tagWait:step.type==="condition"?ui.tagCondition:ui.tagAction;
+   return '<div class="amseqcard'+(step.type==="trigger"?" trig":"")+(step.type==="condition"?" cond":"")+'"><span class="amseqtag">'+tagLbl+'</span><span class="amseqlbl">'+step[lang]+'</span><div class="amseqbtns">'+
+    '<button data-mv="up" data-i="'+i+'"'+(i===0?" disabled":"")+">"+ui.seqUp+"</button>"+
+    '<button data-mv="down" data-i="'+i+'"'+(i===a.sequence.length-1?" disabled":"")+">"+ui.seqDown+"</button>"+
+    '<button data-rmvseq="'+i+'">'+ui.remove+"</button></div></div>";
+  }).join("")+"</div>";
+  h+='<div class="amaddseq"><select class="amselect" id="amSeqPick">'+STEPS.map(s=>'<option value="'+s.id+'">'+s[lang]+"</option>").join("")+'</select><button class="btn g" id="amSeqAdd">'+ui.seqAdd+"</button></div>";
+ }
+ h+="</div></div>";
+ return h;
+}
+function wireToolPanel(){
+ const box=$("amBody");if(!box)return;
+ document.querySelectorAll(".amtab").forEach(bt=>bt.addEventListener("click",()=>{
+  S.tab=bt.dataset.tab;S.am.visited[S.tab]=true;persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ if(S.tab==="crm"){
+  document.querySelectorAll("[data-contact]").forEach(el=>el.addEventListener("click",e=>{
+   if(e.target.tagName==="SELECT")return;
+   S.am.selContact=el.dataset.contact;persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+  document.querySelectorAll("[data-stagesel]").forEach(sel=>sel.addEventListener("change",e=>{
+   S.am.stages[sel.dataset.stagesel]=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="chatbot"){
+  const g=$("amGreeting"),q=$("amQuestion"),ra=$("amReplyA"),rb=$("amReplyB");
+  if(g)g.addEventListener("input",e=>{S.am.chatbot.greeting=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(q)q.addEventListener("input",e=>{S.am.chatbot.question=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(ra)ra.addEventListener("input",e=>{S.am.chatbot.replyA=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+  if(rb)rb.addEventListener("input",e=>{S.am.chatbot.replyB=e.target.value;persist();checkTask(S.cur);renderRail();refreshTool();});
+ } else if(S.tab==="workflow"){
+  document.querySelectorAll("[data-mv]").forEach(bt=>bt.addEventListener("click",()=>{
+   const i=+bt.dataset.i,dir=bt.dataset.mv,seq=S.am.sequence;
+   const j=dir==="up"?i-1:i+1;
+   if(j<0||j>=seq.length)return;
+   [seq[i],seq[j]]=[seq[j],seq[i]];
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+  document.querySelectorAll("[data-rmvseq]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.am.sequence.splice(+bt.dataset.rmvseq,1);persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+  const addBtn=$("amSeqAdd");
+  if(addBtn)addBtn.addEventListener("click",()=>{
+   const pick=$("amSeqPick").value;
+   S.am.sequence.push(pick);persist();checkTask(S.cur);renderRail();refreshTool();
+  });
+ }
+}
+function refreshTool(){
+ const root=$("amRoot");if(!root)return;
+ root.innerHTML=renderToolPanel();
+ wireToolPanel();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 17 · 17."+n;
+ $("topTitle").textContent=M17[lang][n-1];
+ document.title="Academy · "+M17[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 17 · 17.'+n+'</span><h2 class="labh2">'+M17[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="amRoot"></div><div class="amtask"><b>'+ui.objEd+':</b> '+C[n].task[lang]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ checkTask(n);
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const root=$("amRoot");
+ root.innerHTML=renderToolPanel();wireToolPanel();
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function updateFinishBtn(){
+ const st=S.st[S.cur];
+ const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ per-lesson tasks & checks ============ */
+C[1].task={ht:"Vizite chak nan 3 pati yo (CRM, Chatbot, Workflow) omwen yon fwa.",fr:"Visitez chacune des 3 parties (CRM, Chatbot, Workflow) au moins une fois.",en:"Visit each of the 3 parts (CRM, Chatbot, Workflow) at least once."};
+C[1].check=a=>Object.values(a.visited).every(Boolean);
+C[2].task={ht:"Etikèt chak kontak: Prospect si nòt li ≥20, Lead si nòt li <20.",fr:"Étiquetez chaque contact : Prospect si son score est ≥20, Lead si son score est <20.",en:"Tag each contact: Prospect if their score is ≥20, Lead if their score is <20."};
+C[2].check=a=>CONTACTS.every(c=>{const s=contactScore(c);const expected=s>=20?"prospect":"lead";return a.stages[c.id]===expected;});
+C[3].task={ht:"Klike sou kontak ki gen nòt ki pi wo a.",fr:"Cliquez sur le contact qui a le score le plus élevé.",en:"Click on the contact with the highest score."};
+C[3].check=a=>{const top=CONTACTS.slice().sort((x,y)=>contactScore(y)-contactScore(x))[0].id;return a.selContact===top;};
+C[4].task={ht:"Ranpli mesaj byenveni (omwen 10 karaktè), kesyon an, ak tou de repons yo pou chwa yo.",fr:"Remplissez le message de bienvenue (au moins 10 caractères), la question, et les deux réponses.",en:"Fill in the welcome message (at least 10 characters), the question, and both reply options."};
+C[4].check=a=>a.chatbot.greeting.trim().length>=10&&!!a.chatbot.question.trim()&&!!a.chatbot.replyA.trim()&&!!a.chatbot.replyB.trim();
+C[5].task={ht:"Bati yon sekans ki kòmanse ak yon deklanchè, gen omwen 2 imèl, ak omwen 1 tan datant ant yo.",fr:"Construisez une séquence qui commence par un déclencheur, a au moins 2 emails, et au moins 1 délai d'attente entre eux.",en:"Build a sequence that starts with a trigger, has at least 2 emails, and at least 1 wait time between them."};
+C[5].check=a=>{const seq=a.sequence;if(seq[0]!=="trigger")return false;const emailCount=seq.filter(id=>STEPS.find(s=>s.id===id).type==="email").length;const waitCount=seq.filter(id=>STEPS.find(s=>s.id===id).type==="wait").length;return emailCount>=2&&waitCount>=1;};
+C[6].task={ht:"Ajoute yon etap kondisyon epi mete l jis apre yon etap imèl nan sekans ou an.",fr:"Ajoutez une étape de condition et placez-la juste après une étape email dans votre séquence.",en:"Add a condition step and place it right after an email step in your sequence."};
+C[6].check=a=>{const seq=a.sequence;const idx=seq.findIndex(id=>STEPS.find(s=>s.id===id).type==="condition");if(idx<=0)return false;return STEPS.find(s=>s.id===seq[idx-1]).type==="email";};
+C[7].task={ht:"Fini otomatizasyon ou an: asire gen omwen yon etap apre kondisyon an (yon aksyon final).",fr:"Terminez votre automatisation : assurez-vous qu'il y a au moins une étape après la condition (une action finale).",en:"Finish your automation: make sure there's at least one step after the condition (a final action)."};
+C[7].check=a=>{const seq=a.sequence;const idx=seq.findIndex(id=>STEPS.find(s=>s.id===id).type==="condition");if(idx<=0)return false;const condOk=STEPS.find(s=>s.id===seq[idx-1]).type==="email";return condOk&&idx<seq.length-1&&seq.length>=5;};
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 17?":S.lang==="fr"?"Voulez-vous recommencer le Module 17 ?":"Restart Module 17?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{},tab:"crm",am:freshAutomation()};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
