@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 14 — Sit Web ak Paj Aterisaj</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ============ Page builder tool surface (generic SaaS dashboard, neutral accent) ============ */
+.pgwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;background:#fff;border-radius:10px;overflow:hidden;color:#1b1f27;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.pgtoolbar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #e5e7eb;flex-wrap:wrap}
+.pgdevice{display:flex;background:#f3f4f6;border-radius:8px;padding:3px;gap:2px}
+.pgdevice button{border:none;background:none;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;color:#5b6472;font-family:inherit}
+.pgdevice button.on{background:#3B6FE0;color:#fff}
+.pgverify{margin-left:auto;font-size:12.5px;font-weight:600;border:1px solid #3B6FE0;color:#3B6FE0;background:#fff;border-radius:8px;padding:7px 12px;cursor:pointer;font-family:inherit}
+.pgverify.done{background:#f0fdf4;border-color:#22c55e;color:#166534;cursor:default}
+.pgcanvaswrap{padding:20px;background:#f3f4f6}
+.pgcanvas{margin:0 auto;transition:max-width .25s ease;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.pgblock{border-bottom:1px solid #eef0f3;padding:14px 16px}
+.pgblock:last-child{border-bottom:none}
+.pgblockhead{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pgblocktype{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em}
+.pgblockbtns{margin-left:auto;display:flex;gap:4px}
+.pgblockbtns button{font-size:10.5px;border:1px solid #d7dce3;background:#fff;border-radius:6px;padding:4px 7px;cursor:pointer;font-family:inherit}
+.pgfield{width:100%;border:1px solid #d7dce3;border-radius:6px;padding:7px 9px;font-size:13px;font-family:inherit;margin-bottom:6px;color:#1b1f27}
+.pgfield:last-child{margin-bottom:0}
+.pgheroprev{font-size:11px;color:#9ca3af;margin-bottom:8px}
+.pgnavlabel{font-size:13px;color:#374151;font-style:italic}
+.pgpalette{display:flex;gap:8px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid #e5e7eb}
+.pgpalette button{font-size:12px;border:1px solid #d7dce3;background:#fff;border-radius:8px;padding:7px 11px;cursor:pointer;font-family:inherit}
+.pgpalette button:hover{border-color:#3B6FE0}
+.pgspeed{padding:12px 16px;border-top:1px solid #e5e7eb;display:flex;align-items:center;gap:10px}
+.pgspeedbar{flex:1;height:8px;border-radius:6px;background:#e5e7eb;overflow:hidden}
+.pgspeedbar>span{display:block;height:100%}
+.pgspeedtext{font-size:11.5px;font-weight:700;color:#6b7280;white-space:nowrap}
+.pgtask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+@media (max-width:640px){.pgtoolbar{flex-wrap:wrap}.pgverify{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 14 · 14.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay tablo a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   devDesktop:"Òdinatè",devMobile:"Mobil",verifyMobile:"Verifye sou Mobil",verified:"Verifye ✓",
+   blkHero:"ERO",blkSection:"SEKSYON",blkImage:"IMAJ",blkForm:"FÒM",blkTestimonial:"TEMWAYAJ",blkCta:"CTA",blkNav:"MENI NAVIGASYON",
+   addHero:"+ Ero",addSection:"+ Seksyon",addImage:"+ Imaj",addForm:"+ Fòm",addTestimonial:"+ Temwayaj",addCta:"+ CTA",addNav:"+ Meni Navigasyon",
+   fHeadline:"Tit Prensipal",fSubheadline:"Souti",fButton:"Tèks Bouton",fHeading:"Tit Seksyon",fText:"Tèks",fAlt:"Tèks Altènatif (Alt)",fQuote:"Sitasyon",fAuthor:"Non Kliyan",
+   remove:"Wete",speedLbl:"Nòt Vitès",navPlaceholder:"Kay · Sèvis · Sou Nou · Kontak",
+   stampTitle:"Ou fini Modil 14!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche du tableau",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   devDesktop:"Bureau",devMobile:"Mobile",verifyMobile:"Vérifier sur Mobile",verified:"Vérifié ✓",
+   blkHero:"HÉROS",blkSection:"SECTION",blkImage:"IMAGE",blkForm:"FORMULAIRE",blkTestimonial:"TÉMOIGNAGE",blkCta:"CTA",blkNav:"MENU DE NAVIGATION",
+   addHero:"+ Héros",addSection:"+ Section",addImage:"+ Image",addForm:"+ Formulaire",addTestimonial:"+ Témoignage",addCta:"+ CTA",addNav:"+ Menu de Navigation",
+   fHeadline:"Titre Principal",fSubheadline:"Sous-titre",fButton:"Texte du Bouton",fHeading:"Titre de Section",fText:"Texte",fAlt:"Texte Alternatif (Alt)",fQuote:"Citation",fAuthor:"Nom du Client",
+   remove:"Retirer",speedLbl:"Score de Vitesse",navPlaceholder:"Accueil · Services · À Propos · Contact",
+   stampTitle:"Module 14 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the dashboard task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   devDesktop:"Desktop",devMobile:"Mobile",verifyMobile:"Verify on Mobile",verified:"Verified ✓",
+   blkHero:"HERO",blkSection:"SECTION",blkImage:"IMAGE",blkForm:"FORM",blkTestimonial:"TESTIMONIAL",blkCta:"CTA",blkNav:"NAV MENU",
+   addHero:"+ Hero",addSection:"+ Section",addImage:"+ Image",addForm:"+ Form",addTestimonial:"+ Testimonial",addCta:"+ CTA",addNav:"+ Nav Menu",
+   fHeadline:"Headline",fSubheadline:"Subheadline",fButton:"Button Text",fHeading:"Section Heading",fText:"Text",fAlt:"Alt Text",fQuote:"Quote",fAuthor:"Customer Name",
+   remove:"Remove",speedLbl:"Speed Score",navPlaceholder:"Home · Services · About · Contact",
+   stampTitle:"You finished Module 14!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M14={
+ ht:["Rankontre Zouti Konsepsyon Paj la","Sa yon Paj Dakèy Bezwen","Paj Aterisaj (Landing Pages)","Ekri pou Konvèsyon","Fòm ki Konvèti","Baz Vitès Paj","Optimizasyon Mobil"],
+ fr:["Découvrir l'Outil de Conception de Page","Les Essentiels d'une Page d'Accueil","Pages d'Atterrissage (Landing Pages)","Écrire pour la Conversion","Formulaires qui Convertissent","Les Bases de la Vitesse de Page","Optimisation Mobile"],
+ en:["Meet the Page Builder","Homepage Essentials","Landing Pages","Writing for Conversion","Forms That Convert","Page Speed Basics","Mobile Optimization"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Yon paj byen bati ka fè plis pou biznis ou pase anpil pòs rezo sosyal ansanm — zouti sa a kite w konstwi yon paj ak blòk, epi verifye jan li parèt sou òdinatè ak sou telefòn.",
+   secs:[["Blòk kap konstwi yon paj","Ero (tit prensipal), Seksyon, Imaj, Fòm, Temwayaj, ak CTA — chak blòk gen yon wòl espesifik nan paj la."],
+    ["Toujou verifye tou de vèsyon","Yon paj ka sanble bon sou òdinatè men kase sou telefòn (oswa vis vèsa) — zouti a kite w chanje ant apèsi Òdinatè ak Mobil pou verifye tou de."]],
+   ex:"Ki 3 blòk ou panse ta pi enpòtan pou premye paj biznis ou?",
+   quiz:[
+    {q:"Ki kalite blòk ki egziste nan zouti sa a?",opts:["Sèlman tèks","Ero, Seksyon, Imaj, Fòm, Temwayaj, ak CTA","Sèlman imaj","Pa gen blòk"],ans:1,fb:"Gen plizyè kalite blòk diferan."},
+    {q:"Poukisa verifye tou de apèsi Òdinatè ak Mobil enpòtan?",opts:["Sa pa nesesè","Yon paj ka sanble bon sou youn men kase sou lòt la","Mobil pa janm itilize","Òdinatè se sèl bagay ki konte"],ans:1,fb:"Yon paj ka bon sou youn e kase sou lòt la."},
+    {q:"Kisa yon blòk Ero reprezante?",opts:["Pye paj la","Tit prensipal ak premye enpresyon an","Yon fòm kontak","Yon lis pri"],ans:1,fb:"Ero se tit prensipal/premye enpresyon an."}],
+   close:{learned:"Yon paj byen bati konstwi ak blòk (Ero, Seksyon, Imaj, Fòm, Temwayaj, CTA), epi verifye sou tou de apèsi Òdinatè ak Mobil anvan piblikasyon.",
+    mistake:"Bati yon paj sèlman sou apèsi Òdinatè san janm verifye kijan li parèt sou Mobil, kote pifò vizitè yo rive.",
+    tip:"Chanje ant de apèsi yo souvan pandan w ap konstwi, pa jis nan fen an.",
+    assign:"Ki 3 blòk ou panse ta pi enpòtan pou premye paj biznis ou?",
+    dl:"Referans: Blòk Konsepsyon Paj Debaz yo",
+    checklist:["Omwen 1 blòk ajoute?","Apèsi Òdinatè verifye?","Apèsi Mobil verifye?"],
+    ai:"Eksplike ki blòk yon paj byen bati bezwen genyen, pou yon [kalite biznis]."}},
+ fr:{lede:"Une page bien construite peut faire plus pour votre entreprise que de nombreux posts sur les réseaux sociaux réunis — cet outil vous permet de construire une page avec des blocs, puis de vérifier comment elle apparaît sur ordinateur et sur téléphone.",
+   secs:[["Les blocs qui construisent une page","Héros (titre principal), Section, Image, Formulaire, Témoignage, et CTA — chaque bloc a un rôle spécifique dans la page."],
+    ["Toujours vérifier les deux versions","Une page peut sembler bonne sur ordinateur mais être cassée sur téléphone (ou l'inverse) — l'outil vous permet de basculer entre l'aperçu Bureau et Mobile pour vérifier les deux."]],
+   ex:"Quels 3 blocs pensez-vous seraient les plus importants pour la première page de votre entreprise ?",
+   quiz:[
+    {q:"Quels types de blocs existent dans cet outil ?",opts:["Seulement du texte","Héros, Section, Image, Formulaire, Témoignage, et CTA","Seulement des images","Il n'y a pas de blocs"],ans:1,fb:"Il existe plusieurs types de blocs différents."},
+    {q:"Pourquoi est-il important de vérifier les aperçus Bureau et Mobile ?",opts:["Ce n'est pas nécessaire","Une page peut sembler bonne sur l'un mais être cassée sur l'autre","Mobile n'est jamais utilisé","Seul le bureau compte"],ans:1,fb:"Une page peut être bonne sur l'un et cassée sur l'autre."},
+    {q:"Que représente un bloc Héros ?",opts:["Le pied de page","Le titre principal et la première impression","Un formulaire de contact","Une liste de prix"],ans:1,fb:"Le Héros est le titre principal/la première impression."}],
+   close:{learned:"Une page bien construite utilise des blocs (Héros, Section, Image, Formulaire, Témoignage, CTA), et est vérifiée sur les aperçus Bureau et Mobile avant publication.",
+    mistake:"Construire une page en regardant seulement l'aperçu Bureau sans jamais vérifier comment elle apparaît sur Mobile, là où la plupart des visiteurs arrivent.",
+    tip:"Basculez entre les deux aperçus souvent pendant que vous construisez, pas juste à la fin.",
+    assign:"Quels 3 blocs pensez-vous seraient les plus importants pour la première page de votre entreprise ?",
+    dl:"Référence : Les Blocs de Base de Conception de Page",
+    checklist:["Au moins 1 bloc ajouté ?","Aperçu Bureau vérifié ?","Aperçu Mobile vérifié ?"],
+    ai:"Explique quels blocs une page bien construite devrait avoir, pour un(e) [type d'entreprise]."}},
+ en:{lede:"A well-built page can do more for your business than many social media posts combined — this tool lets you build a page with blocks, then check how it looks on desktop and on phone.",
+   secs:[["The blocks that build a page","Hero (main headline), Section, Image, Form, Testimonial, and CTA — each block has a specific role on the page."],
+    ["Always check both versions","A page can look great on desktop but be broken on phone (or vice versa) — the tool lets you switch between Desktop and Mobile preview to check both."]],
+   ex:"What 3 blocks do you think would be most important for your business's first page?",
+   quiz:[
+    {q:"What kinds of blocks exist in this tool?",opts:["Only text","Hero, Section, Image, Form, Testimonial, and CTA","Only images","There are no blocks"],ans:1,fb:"There are several different block types."},
+    {q:"Why does checking both Desktop and Mobile previews matter?",opts:["It isn't necessary","A page can look fine on one but be broken on the other","Mobile is never used","Only desktop matters"],ans:1,fb:"A page can be fine on one and broken on the other."},
+    {q:"What does a Hero block represent?",opts:["The page footer","The main headline and first impression","A contact form","A price list"],ans:1,fb:"Hero is the main headline/first impression."}],
+   close:{learned:"A well-built page uses blocks (Hero, Section, Image, Form, Testimonial, CTA), and is checked on both Desktop and Mobile previews before publishing.",
+    mistake:"Building a page only looking at the Desktop preview without ever checking how it looks on Mobile, where most visitors arrive.",
+    tip:"Switch between the two previews often while building, not just at the end.",
+    assign:"What 3 blocks do you think would be most important for your business's first page?",
+    dl:"Reference: Basic Page Design Blocks",
+    checklist:["At least 1 block added?","Desktop preview checked?","Mobile preview checked?"],
+    ai:"Explain what blocks a well-built page should have, for a [type of business]."}}},
+
+2:{ht:{lede:"Paj dakèy (homepage) se souvan premye enpresyon yon moun genyen sou biznis ou — li bezwen di klèman ki sa ou fè, pou kiyès, ak ki pwochen etap pou pran, tout san moun pa oblije chèche.",
+   secs:[["Blòk Ero a se kle","Tit prensipal ki di klèman valè ou ofri, yon souti ki ajoute detay, ak yon bouton CTA ki mennen a pwochen etap la — twa pati sa yo tout parèt anvan menm moun eskane pi ba."],
+    ["Klè bat entelijan","Yon tit ki eseye vin trè entelijan oswa vag souvan konfonn vizitè — yon tit klè ki di egzakteman sa ou ofri toujou mache pi byen."]],
+   ex:"Ekri yon tit ero pou biznis ou ki di klèman ki valè ou ofri.",
+   quiz:[
+    {q:"Ki blòk ki pi enpòtan sou yon paj dakèy?",opts:["Pye paj la","Blòk Ero a (tit, souti, CTA)","Yon lis pri","Yon kalandriye"],ans:1,fb:"Blòk Ero a se pi enpòtan an."},
+    {q:"Kisa yon tit ero ta dwe fè?",opts:["Vin trè entelijan e vag","Di klèman ki valè ou ofri","Kache enfòmasyon an","Itilize jagon teknik sèlman"],ans:1,fb:"Yon bon tit di klèman valè a."},
+    {q:"Poukisa 3 pati Ero a (tit, souti, CTA) enpòtan?",opts:["Yo pa nesesè","Yo parèt anvan menm moun eskane pi ba, kidonk yo dwe klè imedyatman","Sèlman CTA a konte","Souti a pa gen okenn wòl"],ans:1,fb:"Yo parèt anvan tout lòt bagay, dwe klè imedyatman."}],
+   close:{learned:"Blòk Ero a (tit, souti, CTA) se pati ki pi enpòtan sou yon paj dakèy — li dwe klè imedyatman, san moun pa oblije eskane pi ba pou konprann sa ou ofri.",
+    mistake:"Ekri yon tit ero vag oswa 'entelijan' ki pa di klèman sa biznis ou ofri, ki konfonn vizitè yo olye enfòme yo.",
+    tip:"Yon tit klè ki di egzakteman sa ou ofri toujou bat yon tit entelijan men vag.",
+    assign:"Ekri yon tit ero pou biznis ou ki di klèman ki valè ou ofri.",
+    dl:"Fèy Travay: Estrikti Blòk Ero",
+    checklist:["Tit prensipal ekri (omwen 10 karaktè)?","Souti ekri (omwen 10 karaktè)?","Tèks bouton ekri?"],
+    ai:"Ekri yon tit ero, yon souti, ak yon tèks bouton pou yon [kalite biznis]."}},
+ fr:{lede:"La page d'accueil est souvent la première impression qu'une personne a de votre entreprise — elle doit dire clairement ce que vous faites, pour qui, et quelle prochaine étape prendre, sans que personne n'ait à chercher.",
+   secs:[["Le bloc Héros est la clé","Un titre principal qui dit clairement la valeur que vous offrez, un sous-titre qui ajoute des détails, et un bouton CTA qui mène à la prochaine étape — ces 3 parties apparaissent toutes avant même que quelqu'un ne fasse défiler plus bas."],
+    ["La clarté bat l'intelligence","Un titre qui essaie d'être très intelligent ou vague confond souvent les visiteurs — un titre clair qui dit exactement ce que vous offrez fonctionne toujours mieux."]],
+   ex:"Écrivez un titre héros pour votre entreprise qui dit clairement quelle valeur vous offrez.",
+   quiz:[
+    {q:"Quel est le bloc le plus important sur une page d'accueil ?",opts:["Le pied de page","Le bloc Héros (titre, sous-titre, CTA)","Une liste de prix","Un calendrier"],ans:1,fb:"Le bloc Héros est le plus important."},
+    {q:"Que devrait faire un titre héros ?",opts:["Devenir très intelligent et vague","Dire clairement quelle valeur vous offrez","Cacher l'information","Utiliser seulement du jargon technique"],ans:1,fb:"Un bon titre dit clairement la valeur."},
+    {q:"Pourquoi les 3 parties du Héros (titre, sous-titre, CTA) sont-elles importantes ?",opts:["Elles ne sont pas nécessaires","Elles apparaissent avant tout le reste, donc doivent être claires immédiatement","Seul le CTA compte","Le sous-titre n'a aucun rôle"],ans:1,fb:"Elles apparaissent avant tout, doivent être claires immédiatement."}],
+   close:{learned:"Le bloc Héros (titre, sous-titre, CTA) est la partie la plus importante d'une page d'accueil — il doit être clair immédiatement, sans que les gens aient à faire défiler pour comprendre ce que vous offrez.",
+    mistake:"Écrire un titre héros vague ou « intelligent » qui ne dit pas clairement ce que votre entreprise offre, ce qui confond les visiteurs au lieu de les informer.",
+    tip:"Un titre clair qui dit exactement ce que vous offrez bat toujours un titre intelligent mais vague.",
+    assign:"Écrivez un titre héros pour votre entreprise qui dit clairement quelle valeur vous offrez.",
+    dl:"Fiche de travail : Structure du Bloc Héros",
+    checklist:["Titre principal écrit (au moins 10 caractères) ?","Sous-titre écrit (au moins 10 caractères) ?","Texte du bouton écrit ?"],
+    ai:"Écris un titre héros, un sous-titre, et un texte de bouton pour un(e) [type d'entreprise]."}},
+ en:{lede:"The homepage is often someone's first impression of your business — it needs to clearly say what you do, for whom, and what next step to take, all without anyone having to hunt for it.",
+   secs:[["The Hero block is key","A headline that clearly states the value you offer, a subheadline that adds detail, and a CTA button that leads to the next step — all 3 parts appear before someone even scrolls further."],
+    ["Clear beats clever","A headline that tries to be very clever or vague often confuses visitors — a clear headline that says exactly what you offer always works better."]],
+   ex:"Write a hero headline for your business that clearly states the value you offer.",
+   quiz:[
+    {q:"What's the most important block on a homepage?",opts:["The footer","The Hero block (headline, subheadline, CTA)","A price list","A calendar"],ans:1,fb:"The Hero block is the most important."},
+    {q:"What should a hero headline do?",opts:["Become very clever and vague","Clearly state the value you offer","Hide the information","Only use technical jargon"],ans:1,fb:"A good headline clearly states the value."},
+    {q:"Why do the Hero's 3 parts (headline, subheadline, CTA) matter?",opts:["They aren't necessary","They appear before everything else, so must be clear immediately","Only the CTA matters","The subheadline has no role"],ans:1,fb:"They appear before everything else, must be clear immediately."}],
+   close:{learned:"The Hero block (headline, subheadline, CTA) is the most important part of a homepage — it must be clear immediately, without people needing to scroll to understand what you offer.",
+    mistake:"Writing a vague or \"clever\" hero headline that doesn't clearly state what your business offers, which confuses visitors instead of informing them.",
+    tip:"A clear headline that says exactly what you offer always beats a clever but vague one.",
+    assign:"Write a hero headline for your business that clearly states the value you offer.",
+    dl:"Worksheet: Hero Block Structure",
+    checklist:["Headline written (at least 10 characters)?","Subheadline written (at least 10 characters)?","Button text written?"],
+    ai:"Write a hero headline, subheadline, and button text for a [type of business]."}}},
+
+3:{ht:{lede:"Yon paj aterisaj (landing page) diferan de yon paj dakèy — li gen yon sèl objektif, e li retire distraksyon (tankou meni navigasyon) ki ta ka fè yon vizitè kite paj la san pran aksyon.",
+   secs:[["Yon sèl objektif, pa plizyè","Yon paj aterisaj efikas mennen vizitè a vè yon sèl aksyon (enskri, achte, telechaje) — pa ofri 10 lyen diferan ki ka mennen yo lòt kote."],
+    ["Retire meni navigasyon an","Kontrèman ak yon paj dakèy nòmal, yon paj aterisaj souvan retire meni navigasyon an nèt — chak lyen siplemantè se yon fason pou vizitè a chape san fè aksyon prensipal la."]],
+   ex:"Ki lyen ou ta tante mete sou yon paj aterisaj ki ta ka detounen atansyon vizitè a?",
+   quiz:[
+    {q:"Kisa ki diferan yon paj aterisaj de yon paj dakèy?",opts:["Yo idantik","Yon paj aterisaj gen yon sèl objektif e retire distraksyon","Paj aterisaj toujou pi long","Paj aterisaj pa bezwen yon CTA"],ans:1,fb:"Yon paj aterisaj gen yon sèl objektif klè."},
+    {q:"Poukisa retire meni navigasyon an sou yon paj aterisaj?",opts:["Li pa fè okenn diferans","Chak lyen siplemantè se yon fason pou vizitè chape san aksyon","Meni navigasyon toujou obligatwa","Sa fè paj la pi bèl sèlman"],ans:1,fb:"Chak lyen se yon fason pou chape san fè aksyon."},
+    {q:"Konbyen objektif yon bon paj aterisaj ta dwe genyen?",opts:["Otan posib","Yon sèl objektif klè","Zewo objektif","Yon objektif diferan pou chak vizitè"],ans:1,fb:"Yon sèl objektif klè se pi bon."}],
+   close:{learned:"Yon paj aterisaj gen yon sèl objektif e retire distraksyon (tankou meni navigasyon) ki ta ka fè vizitè yo kite san pran aksyon prensipal la.",
+    mistake:"Ajoute yon meni navigasyon konplè sou yon paj aterisaj 'pou li sanble pwofesyonèl,' san reyalize sa bay vizitè yo plis fason pou chape.",
+    tip:"Si yon lyen pa mennen dirèkteman a objektif prensipal paj la, konsidere retire l nèt.",
+    assign:"Ki lyen ou ta tante mete sou yon paj aterisaj ki ta ka detounen atansyon vizitè a?",
+    dl:"Lis Verifikasyon: Konsepsyon Paj Aterisaj",
+    checklist:["Blòk Ero prezan?","Blòk Fòm oswa CTA prezan?","Okenn blòk Meni Navigasyon prezan?"],
+    ai:"Eksplike poukisa yon paj aterisaj pou yon [kalite biznis] ta dwe retire meni navigasyon an."}},
+ fr:{lede:"Une page d'atterrissage (landing page) diffère d'une page d'accueil — elle a un seul objectif, et elle retire les distractions (comme un menu de navigation) qui pourraient faire quitter un visiteur sans agir.",
+   secs:[["Un seul objectif, pas plusieurs","Une page d'atterrissage efficace mène le visiteur vers une seule action (s'inscrire, acheter, télécharger) — pas offrir 10 liens différents qui pourraient le mener ailleurs."],
+    ["Retirer le menu de navigation","Contrairement à une page d'accueil normale, une page d'atterrissage retire souvent entièrement le menu de navigation — chaque lien supplémentaire est une façon pour le visiteur de s'échapper sans faire l'action principale."]],
+   ex:"Quel lien seriez-vous tenté de mettre sur une page d'atterrissage qui pourrait détourner l'attention du visiteur ?",
+   quiz:[
+    {q:"Qu'est-ce qui différencie une page d'atterrissage d'une page d'accueil ?",opts:["Elles sont identiques","Une page d'atterrissage a un seul objectif et retire les distractions","Les pages d'atterrissage sont toujours plus longues","Les pages d'atterrissage n'ont pas besoin de CTA"],ans:1,fb:"Une page d'atterrissage a un seul objectif clair."},
+    {q:"Pourquoi retirer le menu de navigation sur une page d'atterrissage ?",opts:["Ça ne fait aucune différence","Chaque lien supplémentaire est une façon de s'échapper sans agir","Le menu de navigation est toujours obligatoire","Ça rend juste la page plus belle"],ans:1,fb:"Chaque lien est une façon de s'échapper sans agir."},
+    {q:"Combien d'objectifs une bonne page d'atterrissage devrait-elle avoir ?",opts:["Autant que possible","Un seul objectif clair","Zéro objectif","Un objectif différent pour chaque visiteur"],ans:1,fb:"Un seul objectif clair est le meilleur."}],
+   close:{learned:"Une page d'atterrissage a un seul objectif et retire les distractions (comme un menu de navigation) qui pourraient faire quitter les visiteurs sans faire l'action principale.",
+    mistake:"Ajouter un menu de navigation complet sur une page d'atterrissage « pour qu'elle paraisse professionnelle », sans réaliser que ça donne aux visiteurs plus de façons de s'échapper.",
+    tip:"Si un lien ne mène pas directement à l'objectif principal de la page, envisagez de le retirer entièrement.",
+    assign:"Quel lien seriez-vous tenté de mettre sur une page d'atterrissage qui pourrait détourner l'attention du visiteur ?",
+    dl:"Liste de Vérification : Conception de Page d'Atterrissage",
+    checklist:["Bloc Héros présent ?","Bloc Formulaire ou CTA présent ?","Aucun bloc Menu de Navigation présent ?"],
+    ai:"Explique pourquoi une page d'atterrissage pour un(e) [type d'entreprise] devrait retirer le menu de navigation."}},
+ en:{lede:"A landing page differs from a homepage — it has one single goal, and it removes distractions (like a navigation menu) that could make a visitor leave without taking action.",
+   secs:[["One goal, not several","An effective landing page leads the visitor toward one single action (sign up, buy, download) — not offering 10 different links that could lead them elsewhere."],
+    ["Removing the nav menu","Unlike a normal homepage, a landing page often removes the navigation menu entirely — every extra link is a way for the visitor to escape without taking the main action."]],
+   ex:"What link would you be tempted to put on a landing page that could distract the visitor's attention?",
+   quiz:[
+    {q:"What makes a landing page different from a homepage?",opts:["They're identical","A landing page has one goal and removes distractions","Landing pages are always longer","Landing pages don't need a CTA"],ans:1,fb:"A landing page has one clear goal."},
+    {q:"Why remove the nav menu on a landing page?",opts:["It makes no difference","Every extra link is a way to escape without acting","The nav menu is always required","It just makes the page prettier"],ans:1,fb:"Every link is a way to escape without acting."},
+    {q:"How many goals should a good landing page have?",opts:["As many as possible","One clear goal","Zero goals","A different goal for each visitor"],ans:1,fb:"One clear goal is best."}],
+   close:{learned:"A landing page has one single goal and removes distractions (like a nav menu) that could make visitors leave without taking the main action.",
+    mistake:"Adding a full navigation menu to a landing page \"to make it look professional,\" without realizing it gives visitors more ways to escape.",
+    tip:"If a link doesn't lead directly to the page's main goal, consider removing it entirely.",
+    assign:"What link would you be tempted to put on a landing page that could distract the visitor's attention?",
+    dl:"Checklist: Landing Page Design",
+    checklist:["Hero block present?","Form or CTA block present?","No Nav Menu block present?"],
+    ai:"Explain why a landing page for a [type of business] should remove the navigation menu."}}},
+
+4:{ht:{lede:"Menm bèl konsepsyon paj pa konvèti san yon bouton CTA ki klè e ki fè aksyon parèt evidan — konbine yon apèl a aksyon espesifik ak prèv sosyal (temwayaj) bati konfyans anvan yon moun aji.",
+   secs:[["Yon CTA espesifik, pa jenerik","Yon bouton ki di 'Voye' oswa 'Klike Isit' pa di anyen sou sa k ap pase apre — yon bouton ki di 'Kòmanse Esè Gratis Ou' oswa 'Rezève Plas Ou' klè sou pwochen etap la (sonje Modil 5)."],
+    ["Prèv sosyal bati konfyans","Yon temwayaj vrè kliyan bò kote CTA a bay yon vizitè rezon pou fè konfyans anvan yo aji — sa se sikoloji vant (Modil 2) aplike dirèkteman sou paj la."]],
+   ex:"Ekri 2 tèks CTA — youn jenerik ('Voye'), youn espesifik. Ki diferans lan fè pou yon vizitè?",
+   quiz:[
+    {q:"Poukisa yon bouton 'Klike Isit' pa efikas?",opts:["Li toujou pi efikas","Li pa di anyen sou sa k ap pase apre klike a","Tout bouton dwe di 'Klike Isit'","Bouton pa afekte konvèsyon"],ans:1,fb:"Li pa klè sou pwochen etap la."},
+    {q:"Kisa yon temwayaj fè sou yon paj?",opts:["Anyen espesyal","Bay yon vizitè rezon pou fè konfyans anvan yo aji","Ranplase bezwen pou yon CTA","Fè paj la pi long san rezon"],ans:1,fb:"Li bati konfyans anvan aksyon."},
+    {q:"Ki modil ki kouvri sikoloji dèyè prèv sosyal?",opts:["Modil 1","Modil 2","Modil 6","Modil 9"],ans:1,fb:"Modil 2 kouvri sikoloji vant, ki gen ladan prèv sosyal."}],
+   close:{learned:"Yon CTA espesifik (pa jenerik) ansanm ak yon temwayaj vrè kliyan konbine yon pwochen etap klè ak konfyans, ki ansanm ede konvèsyon.",
+    mistake:"Kite bouton yo di sèlman 'Submit' oswa 'Click Here,' ki pa bay vizitè a okenn rezon espesifik pou klike kounye a.",
+    tip:"Yon bon CTA souvan mansyone benefis la dirèkteman (tankou 'Kòmanse Ekonomize Kounye a' olye 'Voye').",
+    assign:"Ekri 2 tèks CTA — youn jenerik ('Voye'), youn espesifik. Ki diferans lan fè pou yon vizitè?",
+    dl:"Fèy Travay: CTA Espesifik kont Jenerik",
+    checklist:["Tèks bouton Ero a espesifik (pa 'Submit'/'Click Here')?","Blòk Temwayaj ajoute?"],
+    ai:"Ekri 3 tèks CTA espesifik (pa jenerik) pou yon paj [pwodwi/sèvis]."}},
+ fr:{lede:"Même une belle conception de page ne convertit pas sans un bouton CTA clair qui rend l'action évidente — combiner un appel à l'action spécifique avec une preuve sociale (témoignage) bâtit la confiance avant qu'une personne n'agisse.",
+   secs:[["Un CTA spécifique, pas générique","Un bouton qui dit « Envoyer » ou « Cliquez Ici » ne dit rien sur ce qui se passe après — un bouton qui dit « Commencer Votre Essai Gratuit » ou « Réserver Votre Place » est clair sur la prochaine étape (souvenez-vous du Module 5)."],
+    ["La preuve sociale bâtit la confiance","Un témoignage d'un vrai client à côté du CTA donne au visiteur une raison de faire confiance avant d'agir — c'est la psychologie de la vente (Module 2) appliquée directement sur la page."]],
+   ex:"Écrivez 2 textes de CTA — un générique (« Envoyer »), un spécifique. Quelle différence ça fait pour un visiteur ?",
+   quiz:[
+    {q:"Pourquoi un bouton « Cliquez Ici » n'est-il pas efficace ?",opts:["Il est toujour plus efficace","Il ne dit rien sur ce qui se passe après avoir cliqué","Tous les boutons devraient dire « Cliquez Ici »","Les boutons n'affectent pas la conversion"],ans:1,fb:"Il n'est pas clair sur la prochaine étape."},
+    {q:"Que fait un témoignage sur une page ?",opts:["Rien de spécial","Donne au visiteur une raison de faire confiance avant d'agir","Remplace le besoin d'un CTA","Rend la page plus longue sans raison"],ans:1,fb:"Il bâtit la confiance avant l'action."},
+    {q:"Quel module couvre la psychologie derrière la preuve sociale ?",opts:["Module 1","Module 2","Module 6","Module 9"],ans:1,fb:"Le Module 2 couvre la psychologie de la vente, incluant la preuve sociale."}],
+   close:{learned:"Un CTA spécifique (pas générique) associé à un témoignage d'un vrai client combine une prochaine étape claire avec de la confiance, ce qui aide ensemble la conversion.",
+    mistake:"Laisser les boutons dire seulement « Envoyer » ou « Cliquez Ici », ce qui ne donne au visiteur aucune raison spécifique de cliquer maintenant.",
+    tip:"Un bon CTA mentionne souvent le bénéfice directement (comme « Commencez à Économiser Maintenant » plutôt que « Envoyer »).",
+    assign:"Écrivez 2 textes de CTA — un générique (« Envoyer »), un spécifique. Quelle différence ça fait pour un visiteur ?",
+    dl:"Fiche de travail : CTA Spécifique vs. Générique",
+    checklist:["Le texte du bouton Héros est-il spécifique (pas « Envoyer »/« Cliquez Ici ») ?","Un bloc Témoignage a-t-il été ajouté ?"],
+    ai:"Écris 3 textes de CTA spécifiques (pas génériques) pour une page de [produit/service]."}},
+ en:{lede:"Even beautiful page design doesn't convert without a clear CTA button that makes the action obvious — combining a specific call to action with social proof (a testimonial) builds trust before someone acts.",
+   secs:[["A specific CTA, not generic","A button that says \"Submit\" or \"Click Here\" says nothing about what happens next — a button that says \"Start Your Free Trial\" or \"Reserve Your Spot\" is clear about the next step (remember Module 5)."],
+    ["Social proof builds trust","A real customer testimonial next to the CTA gives a visitor a reason to trust before acting — that's the psychology of selling (Module 2) applied directly to the page."]],
+   ex:"Write 2 CTA texts — one generic (\"Submit\"), one specific. What difference does it make for a visitor?",
+   quiz:[
+    {q:"Why isn't a \"Click Here\" button effective?",opts:["It's always more effective","It says nothing about what happens after clicking","All buttons should say \"Click Here\"","Buttons don't affect conversion"],ans:1,fb:"It's unclear about the next step."},
+    {q:"What does a testimonial do on a page?",opts:["Nothing special","Gives a visitor a reason to trust before acting","Replaces the need for a CTA","Makes the page longer for no reason"],ans:1,fb:"It builds trust before action."},
+    {q:"Which module covers the psychology behind social proof?",opts:["Module 1","Module 2","Module 6","Module 9"],ans:1,fb:"Module 2 covers the psychology of selling, including social proof."}],
+   close:{learned:"A specific (not generic) CTA paired with a real customer testimonial combines a clear next step with trust, which together help conversion.",
+    mistake:"Leaving buttons saying only \"Submit\" or \"Click Here,\" which gives the visitor no specific reason to click right now.",
+    tip:"A good CTA often mentions the benefit directly (like \"Start Saving Now\" rather than \"Submit\").",
+    assign:"Write 2 CTA texts — one generic (\"Submit\"), one specific. What difference does it make for a visitor?",
+    dl:"Worksheet: Specific vs. Generic CTAs",
+    checklist:["Is the Hero button text specific (not \"Submit\"/\"Click Here\")?","Was a Testimonial block added?"],
+    ai:"Write 3 specific (not generic) CTA texts for a [product/service] page."}}},
+
+5:{ht:{lede:"Menm pi bon fòm nan monn lan pa konvèti si vizitè yo dwe fè yon defile san fen anvan yo jwenn li — plasman yon fòm konte menm jan ak kontni li a.",
+   secs:[["Pa antere fòm ou","Si yon vizitè enterese dwe eskane pase 5-6 blòk anvan yo jwenn yon fason pou aji, anpil ap kite anvan yo rive la — mete yon fòm oswa CTA toupre tèt paj la ede kaptire moun ki pare pou aji imedyatman."],
+    ["Repete pi ba tou","Sa pa vle di sèlman yon fòm nan tèt la — repete CTA a pi ba nan paj la itil tou pou moun ki bezwen li plis kontni anvan yo aji."]],
+   ex:"Poukisa yon fòm ki antere anba 6 blòk ta ka pèdi konvèsyon konpare ak youn pi wo?",
+   quiz:[
+    {q:"Kisa ki pase si yon fòm antere twò ba nan yon paj?",opts:["Anyen, pozisyon pa gen enpòtans","Anpil vizitè enterese ka kite anvan yo jwenn li","Li toujou konvèti pi byen","Fòm yo pa dwe janm parèt nan tèt paj la"],ans:1,fb:"Anpil vizitè ka kite anvan yo jwenn li."},
+    {q:"Ki avantaj repete CTA a pi ba nan paj la?",opts:["Okenn avantaj","Li kaptire moun ki bezwen plis kontni anvan yo aji","Li konfonn vizitè yo","Sa diminye konvèsyon"],ans:1,fb:"Li kaptire moun ki bezwen wè plis anvan aji."},
+    {q:"Ki pozisyon yon fòm/CTA ta dwe genyen pou pi bon konvèsyon?",opts:["Toujou dènye blòk la","Pre tèt paj la, nan premye kèk blòk","Pa gen pozisyon ki konte","Kache nan yon meni"],ans:1,fb:"Pre tèt la, nan premye kèk blòk, se pi bon."}],
+   close:{learned:"Plasman yon fòm/CTA konte — mete youn pre tèt paj la kaptire moun ki pare pou aji imedyatman, epi repete l pi ba itil pou moun ki bezwen plis kontni anvan.",
+    mistake:"Antere sèl fòm/CTA ou anba plizyè blòk kontni, ki fè vizitè enterese kite anvan yo menm jwenn yon fason pou aji.",
+    tip:"Yon fòm/CTA nan premye 2-3 blòk yo kaptire moun ki deja pare, san w pa oblije sakrifye kontni ki swiv pou moun ki bezwen plis konvenk.",
+    assign:"Poukisa yon fòm ki antere anba 6 blòk ta ka pèdi konvèsyon konpare ak youn pi wo?",
+    dl:"Lis Verifikasyon: Plasman Fòm/CTA",
+    checklist:["Yon blòk Fòm oswa CTA prezan?","Li parèt nan 3 premye blòk yo?"],
+    ai:"Eksplike poukisa plasman yon fòm konte pou konvèsyon sou yon paj [kalite biznis]."}},
+ fr:{lede:"Même le meilleur formulaire au monde ne convertit pas si les visiteurs doivent faire défiler sans fin avant de le trouver — le placement d'un formulaire compte autant que son contenu.",
+   secs:[["N'enterrez pas votre formulaire","Si un visiteur intéressé doit parcourir 5-6 blocs avant de trouver un moyen d'agir, beaucoup partiront avant d'y arriver — mettre un formulaire ou CTA près du haut de la page aide à capturer les gens prêts à agir immédiatement."],
+    ["Répétez plus bas aussi","Ça ne veut pas dire seulement un formulaire en haut — répéter le CTA plus bas dans la page est aussi utile pour les gens qui ont besoin de plus de contenu avant d'agir."]],
+   ex:"Pourquoi un formulaire enterré sous 6 blocs pourrait-il perdre des conversions comparé à un placé plus haut ?",
+   quiz:[
+    {q:"Que se passe-t-il si un formulaire est enterré trop bas dans une page ?",opts:["Rien, la position n'a pas d'importance","Beaucoup de visiteurs intéressés peuvent partir avant de le trouver","Il convertit toujours mieux","Les formulaires ne devraient jamais apparaître en haut de page"],ans:1,fb:"Beaucoup de visiteurs peuvent partir avant de le trouver."},
+    {q:"Quel avantage y a-t-il à répéter le CTA plus bas dans la page ?",opts:["Aucun avantage","Ça capture les gens qui ont besoin de plus de contenu avant d'agir","Ça confond les visiteurs","Ça diminue la conversion"],ans:1,fb:"Ça capture les gens qui veulent voir plus avant d'agir."},
+    {q:"Quelle position un formulaire/CTA devrait-il avoir pour une meilleure conversion ?",opts:["Toujours le dernier bloc","Près du haut de la page, dans les premiers blocs","Aucune position ne compte","Caché dans un menu"],ans:1,fb:"Près du haut, dans les premiers blocs, est le meilleur."}],
+   close:{learned:"Le placement d'un formulaire/CTA compte — en mettre un près du haut de la page capture les gens prêts à agir immédiatement, et le répéter plus bas aide ceux qui ont besoin de plus de contenu avant.",
+    mistake:"Enterrer votre seul formulaire/CTA sous plusieurs blocs de contenu, ce qui fait que les visiteurs intéressés partent avant même de trouver un moyen d'agir.",
+    tip:"Un formulaire/CTA dans les 2-3 premiers blocs capture les gens déjà prêts, sans sacrifier le contenu qui suit pour ceux qui ont besoin d'être plus convaincus.",
+    assign:"Pourquoi un formulaire enterré sous 6 blocs pourrait-il perdre des conversions comparé à un placé plus haut ?",
+    dl:"Liste de Vérification : Placement de Formulaire/CTA",
+    checklist:["Un bloc Formulaire ou CTA est-il présent ?","Apparaît-il dans les 3 premiers blocs ?"],
+    ai:"Explique pourquoi le placement d'un formulaire compte pour la conversion sur une page de [type d'entreprise]."}},
+ en:{lede:"Even the best form in the world doesn't convert if visitors have to scroll forever before finding it — a form's placement matters just as much as its content.",
+   secs:[["Don't bury your form","If an interested visitor has to skim past 5-6 blocks before finding a way to act, many will leave before getting there — putting a form or CTA near the top of the page helps capture people ready to act immediately."],
+    ["Repeat it lower too","That doesn't mean only a form at the top — repeating the CTA further down the page is also useful for people who need more content before acting."]],
+   ex:"Why might a form buried under 6 blocks lose conversions compared to one placed higher?",
+   quiz:[
+    {q:"What happens if a form is buried too low on a page?",opts:["Nothing, position doesn't matter","Many interested visitors may leave before finding it","It always converts better","Forms should never appear near the top of a page"],ans:1,fb:"Many visitors may leave before finding it."},
+    {q:"What's the advantage of repeating the CTA further down the page?",opts:["No advantage","It captures people who need more content before acting","It confuses visitors","It lowers conversion"],ans:1,fb:"It captures people who want to see more before acting."},
+    {q:"What position should a form/CTA have for best conversion?",opts:["Always the last block","Near the top of the page, in the first few blocks","No position matters","Hidden in a menu"],ans:1,fb:"Near the top, in the first few blocks, is best."}],
+   close:{learned:"A form/CTA's placement matters — putting one near the top of the page captures people ready to act immediately, and repeating it lower helps those who need more content first.",
+    mistake:"Burying your only form/CTA under several content blocks, which makes interested visitors leave before even finding a way to act.",
+    tip:"A form/CTA in the first 2-3 blocks captures people already ready, without sacrificing the content that follows for people who need more convincing.",
+    assign:"Why might a form buried under 6 blocks lose conversions compared to one placed higher?",
+    dl:"Checklist: Form/CTA Placement",
+    checklist:["Is a Form or CTA block present?","Does it appear in the first 3 blocks?"],
+    ai:"Explain why form placement matters for conversion on a [type of business] page."}}},
+
+6:{ht:{lede:"Yon paj ki chaje lan pèdi vizitè anvan yo menm wè kontni ou a — chak blòk siplemantè, sitou imaj, ajoute pwa ki ka ralanti paj la.",
+   secs:[["Sa ki ralanti yon paj","Imaj gwo/anpil yo se souvan pi gwo koupab la — chak imaj siplemantè ajoute tan chajman, kidonk chwazi ak kantite ak gwosè yo avèk atansyon."],
+    ["Nòt vitès senp","Zouti sa a kalkile yon 'nòt vitès' senp dapre konbyen blòk lou (imaj) ou genyen — kenbe kantite imaj rezonab pou yon nòt bon."]],
+   ex:"Ki jan ou ta desizyon konbyen imaj mete sou yon paj si vitès ak kalite vizyèl toude enpòtan?",
+   quiz:[
+    {q:"Kisa ki souvan pi gwo koupab pou yon paj lan?",opts:["Tèks","Imaj gwo oswa anpil imaj","Koulè","Non biznis la"],ans:1,fb:"Imaj yo souvan pi gwo koupab pou vitès."},
+    {q:"Poukisa vitès paj enpòtan?",opts:["Li pa enpòtan","Yon paj ki chaje lan pèdi vizitè anvan yo wè kontni an","Vitès pa afekte vizitè ditou","Sèlman moun ki gen entènèt lan gen pwoblèm"],ans:1,fb:"Yon paj lan pèdi vizitè."},
+    {q:"Kijan pou kenbe yon bon nòt vitès?",opts:["Ajoute otan imaj posib","Kenbe kantite blòk lou (imaj) rezonab","Vitès pa ka kontwole","Retire tout tèks"],ans:1,fb:"Kenbe kantite imaj rezonab kenbe bon nòt."}],
+   close:{learned:"Vitès paj konte — imaj gwo/anpil yo souvan pi gwo koupab la, kidonk kenbe kantite blòk imaj rezonab pou yon bon eksperyans vizitè.",
+    mistake:"Ajoute anpil imaj 'pou paj la parèt pi bèl' san konsidere pwa siplemantè sa ajoute nan tan chajman an.",
+    tip:"Chak imaj ta dwe gen yon rezon reyèl pou egziste sou paj la — pa jis dekorasyon san objektif.",
+    assign:"Ki jan ou ta desizyon konbyen imaj mete sou yon paj si vitès ak kalite vizyèl toude enpòtan?",
+    dl:"Lis Verifikasyon: Baz Vitès Paj",
+    checklist:["Nòt vitès la nan zòn vèt la (omwen 60)?","Pa plis pase 2 blòk imaj ajoute?"],
+    ai:"Sijere kijan pou balanse vitès ak kalite vizyèl sou yon paj pou yon [kalite biznis]."}},
+ fr:{lede:"Une page qui charge lentement perd des visiteurs avant même qu'ils voient votre contenu — chaque bloc supplémentaire, surtout les images, ajoute du poids qui peut ralentir la page.",
+   secs:[["Ce qui ralentit une page","Les images grandes/nombreuses sont souvent le plus grand coupable — chaque image supplémentaire ajoute du temps de chargement, donc choisissez la quantité et la taille avec soin."],
+    ["Un score de vitesse simple","Cet outil calcule un « score de vitesse » simple basé sur combien de blocs lourds (images) vous avez — gardez le nombre d'images raisonnable pour un bon score."]],
+   ex:"Comment décideriez-vous combien d'images mettre sur une page si la vitesse et la qualité visuelle comptent toutes les deux ?",
+   quiz:[
+    {q:"Qu'est-ce qui est souvent le plus grand coupable pour une page lente ?",opts:["Le texte","Des images grandes ou nombreuses","La couleur","Le nom de l'entreprise"],ans:1,fb:"Les images sont souvent le plus grand coupable pour la vitesse."},
+    {q:"Pourquoi la vitesse de la page compte-t-elle ?",opts:["Ça n'a pas d'importance","Une page lente perd des visiteurs avant qu'ils voient le contenu","La vitesse n'affecte pas du tout les visiteurs","Seules les personnes avec un mauvais internet ont des problèmes"],ans:1,fb:"Une page lente perd des visiteurs."},
+    {q:"Comment garder un bon score de vitesse ?",opts:["Ajouter autant d'images que possible","Garder le nombre de blocs lourds (images) raisonnable","La vitesse ne peut pas être contrôlée","Retirer tout le texte"],ans:1,fb:"Garder le nombre d'images raisonnable maintient un bon score."}],
+   close:{learned:"La vitesse de la page compte — les images grandes/nombreuses sont souvent le plus grand coupable, donc gardez le nombre de blocs image raisonnable pour une bonne expérience visiteur.",
+    mistake:"Ajouter beaucoup d'images « pour que la page paraisse plus belle » sans considérer le poids supplémentaire que ça ajoute au temps de chargement.",
+    tip:"Chaque image devrait avoir une vraie raison d'être sur la page — pas juste de la décoration sans but.",
+    assign:"Comment décideriez-vous combien d'images mettre sur une page si la vitesse et la qualité visuelle comptent toutes les deux ?",
+    dl:"Liste de Vérification : Bases de la Vitesse de Page",
+    checklist:["Le score de vitesse est-il dans la zone verte (au moins 60) ?","Pas plus de 2 blocs image ajoutés ?"],
+    ai:"Suggère comment équilibrer vitesse et qualité visuelle sur une page pour un(e) [type d'entreprise]."}},
+ en:{lede:"A slow-loading page loses visitors before they even see your content — every extra block, especially images, adds weight that can slow the page down.",
+   secs:[["What slows a page down","Large or numerous images are often the biggest culprit — every extra image adds loading time, so choose the count and size carefully."],
+    ["A simple speed score","This tool calculates a simple \"speed score\" based on how many heavy blocks (images) you have — keep the image count reasonable for a good score."]],
+   ex:"How would you decide how many images to put on a page if both speed and visual quality matter?",
+   quiz:[
+    {q:"What's often the biggest culprit for a slow page?",opts:["Text","Large or numerous images","Color","The business name"],ans:1,fb:"Images are often the biggest culprit for speed."},
+    {q:"Why does page speed matter?",opts:["It doesn't matter","A slow page loses visitors before they see the content","Speed doesn't affect visitors at all","Only people with bad internet have issues"],ans:1,fb:"A slow page loses visitors."},
+    {q:"How do you keep a good speed score?",opts:["Add as many images as possible","Keep the number of heavy blocks (images) reasonable","Speed can't be controlled","Remove all text"],ans:1,fb:"Keeping the image count reasonable keeps a good score."}],
+   close:{learned:"Page speed matters — large/numerous images are often the biggest culprit, so keep the image block count reasonable for a good visitor experience.",
+    mistake:"Adding lots of images \"to make the page look nicer\" without considering the extra weight that adds to loading time.",
+    tip:"Every image should have a real reason to be on the page — not just decoration without a purpose.",
+    assign:"How would you decide how many images to put on a page if both speed and visual quality matter?",
+    dl:"Checklist: Page Speed Basics",
+    checklist:["Is the speed score in the green zone (at least 60)?","No more than 2 image blocks added?"],
+    ai:"Suggest how to balance speed and visual quality on a page for a [type of business]."}}},
+
+7:{ht:{lede:"Pifò vizitè kounye a rive sou yon paj sou telefòn yo — yon paj ki pa teste sou mobil ka gen tèks twò piti oswa bouton ki twò pre pou touche fasil.",
+   secs:[["Toujou teste sou mobil","Chanje a apèsi Mobil pou wè egzakteman sa yon vizitè telefòn wè — pa sipoze paj la otomatikman byen paske li bon sou òdinatè."],
+    ["Bouton ak tèks ki fasil pou itilize","Sou yon ti ekran, bouton yo bezwen ase gwo pou yon dwèt touche fasil, ak tèks la bezwen ka li san zoom."]],
+   ex:"Sou yon paj ou konnen, kisa ki ta ka mal si yo pa janm teste li sou mobil?",
+   quiz:[
+    {q:"Poukisa teste sou mobil enpòtan?",opts:["Pèsonn pa itilize telefòn","Yon paj ka pa byen menm si li bon sou òdinatè","Mobil ak òdinatè toujou idantik","Sa pa nesesè ditou"],ans:1,fb:"Yon paj ka bon sou youn e pa byen sou lòt la."},
+    {q:"Kisa ki ka mal sou yon paj ki pa optimize pou mobil?",opts:["Anyen, tout paj otomatikman adapte","Tèks twò piti oswa bouton twò pre pou touche fasil","Koulè yo chanje","Vitès toujou pi bon"],ans:1,fb:"Tèks/bouton yo ka difisil pou itilize."},
+    {q:"Kijan pou verifye yon paj bon pou mobil?",opts:["Sipoze li bon san verifye","Chanje a apèsi Mobil e verifye tèks/bouton yo fasil pou itilize","Sèlman gade sou òdinatè","Mande kliyan yo verifye pou ou"],ans:1,fb:"Chanje a apèsi Mobil e verifye reyèlman."}],
+   close:{learned:"Pifò vizitè rive sou mobil, kidonk chanje a apèsi Mobil e verifye tèks/bouton yo fasil pou itilize se yon etap obligatwa, pa yon opsyon.",
+    mistake:"Sipoze yon paj otomatikman byen sou mobil paske li bon sou òdinatè, san janm chanje a apèsi Mobil pou vrèman verifye.",
+    tip:"Teste sou mobil souvan pandan konsepsyon an, pa sèlman yon fwa nan fen an.",
+    assign:"Sou yon paj ou konnen, kisa ki ta ka mal si yo pa janm teste li sou mobil?",
+    dl:"Lis Verifikasyon: Optimizasyon Mobil",
+    checklist:["Chanje a apèsi Mobil?","Klike 'Verifye sou Mobil' pou konfime?"],
+    ai:"Ban m yon lis verifikasyon optimizasyon mobil senp pou revize pou yon paj [kalite biznis]."}},
+ fr:{lede:"La plupart des visiteurs arrivent maintenant sur une page depuis leur téléphone — une page qui n'est pas testée sur mobile peut avoir un texte trop petit ou des boutons trop rapprochés pour être touchés facilement.",
+   secs:[["Toujours tester sur mobile","Basculez vers l'aperçu Mobile pour voir exactement ce qu'un visiteur sur téléphone voit — ne supposez pas que la page va automatiquement bien parce qu'elle est bonne sur ordinateur."],
+    ["Des boutons et du texte faciles à utiliser","Sur un petit écran, les boutons doivent être assez grands pour qu'un doigt les touche facilement, et le texte doit être lisible sans zoomer."]],
+   ex:"Sur une page que vous connaissez, qu'est-ce qui pourrait mal aller si elle n'est jamais testée sur mobile ?",
+   quiz:[
+    {q:"Pourquoi tester sur mobile est-il important ?",opts:["Personne n'utilise de téléphone","Une page peut ne pas bien aller même si elle est bonne sur ordinateur","Mobile et ordinateur sont toujours identiques","Ce n'est pas nécessaire du tout"],ans:1,fb:"Une page peut être bonne sur l'un et pas sur l'autre."},
+    {q:"Qu'est-ce qui peut mal aller sur une page non optimisée pour mobile ?",opts:["Rien, toutes les pages s'adaptent automatiquement","Texte trop petit ou boutons trop rapprochés pour toucher facilement","Les couleurs changent","La vitesse est toujours meilleure"],ans:1,fb:"Le texte/les boutons peuvent être difficiles à utiliser."},
+    {q:"Comment vérifier qu'une page est bonne pour mobile ?",opts:["Supposer qu'elle est bonne sans vérifier","Basculer vers l'aperçu Mobile et vérifier que texte/boutons sont faciles à utiliser","Regarder seulement sur ordinateur","Demander aux clients de vérifier pour vous"],ans:1,fb:"Basculer vers l'aperçu Mobile et vraiment vérifier."}],
+   close:{learned:"La plupart des visiteurs arrivent sur mobile, donc basculer vers l'aperçu Mobile et vérifier que le texte/les boutons sont faciles à utiliser est une étape obligatoire, pas optionnelle.",
+    mistake:"Supposer qu'une page va automatiquement bien sur mobile parce qu'elle est bonne sur ordinateur, sans jamais basculer vers l'aperçu Mobile pour vraiment vérifier.",
+    tip:"Testez sur mobile souvent pendant la conception, pas seulement une fois à la fin.",
+    assign:"Sur une page que vous connaissez, qu'est-ce qui pourrait mal aller si elle n'est jamais testée sur mobile ?",
+    dl:"Liste de Vérification : Optimisation Mobile",
+    checklist:["Basculé vers l'aperçu Mobile ?","Cliqué sur « Vérifier sur Mobile » pour confirmer ?"],
+    ai:"Donne-moi une liste de vérification simple d'optimisation mobile à examiner pour une page de [type d'entreprise]."}},
+ en:{lede:"Most visitors now arrive on a page from their phone — a page that isn't tested on mobile can have text too small or buttons too close together to tap easily.",
+   secs:[["Always test on mobile","Switch to the Mobile preview to see exactly what a phone visitor sees — don't assume the page is automatically fine just because it's good on desktop."],
+    ["Buttons and text that are easy to use","On a small screen, buttons need to be big enough for a finger to tap easily, and text needs to be readable without zooming."]],
+   ex:"On a page you know, what could go wrong if it's never tested on mobile?",
+   quiz:[
+    {q:"Why does testing on mobile matter?",opts:["Nobody uses phones","A page can be not fine even if it's good on desktop","Mobile and desktop are always identical","It isn't necessary at all"],ans:1,fb:"A page can be good on one and not on the other."},
+    {q:"What can go wrong on a page not optimized for mobile?",opts:["Nothing, all pages adapt automatically","Text too small or buttons too close together to tap easily","Colors change","Speed is always better"],ans:1,fb:"Text/buttons can be hard to use."},
+    {q:"How do you verify a page is good for mobile?",opts:["Assume it's fine without checking","Switch to Mobile preview and verify text/buttons are easy to use","Only look at it on desktop","Ask customers to check for you"],ans:1,fb:"Switch to Mobile preview and actually verify."}],
+   close:{learned:"Most visitors arrive on mobile, so switching to Mobile preview and verifying text/buttons are easy to use is a required step, not optional.",
+    mistake:"Assuming a page is automatically fine on mobile because it's good on desktop, without ever switching to Mobile preview to actually check.",
+    tip:"Test on mobile often during design, not just once at the end.",
+    assign:"On a page you know, what could go wrong if it's never tested on mobile?",
+    dl:"Checklist: Mobile Optimization",
+    checklist:["Switched to Mobile preview?","Clicked \"Verify on Mobile\" to confirm?"],
+    ai:"Give me a simple mobile optimization checklist to review for a [type of business] page."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module14-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD14_LESSON_SLUGS=["meet-the-page-builder","homepage-essentials","landing-pages","writing-for-conversion","forms-that-convert","page-speed-basics","mobile-optimization"];
+const BLOCK_FIELDS={
+ hero:["headline","subheadline","button"],
+ section:["heading","text"],
+ image:["alt"],
+ form:["headline","button"],
+ testimonial:["quote","author"],
+ cta:["button"],
+ nav:[]};
+function newBlock(type){
+ const b={id:"b"+Date.now()+Math.random().toString(36).slice(2,6),type};
+ BLOCK_FIELDS[type].forEach(f=>{b[f]="";});
+ return b;
+}
+function freshPage(){
+ return {blocks:[],previewMode:"desktop",previewVisited:{desktop:true,mobile:false},mobileChecked:false};
+}
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{},page:freshPage()};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+if(!S.page)S.page=freshPage();
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD14_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===14;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M14[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ page builder engine ============ */
+function checkTask(n){
+ const st=S.st[n];
+ const done=C[n].check(S.page);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function speedScore(p){
+ const imgCount=p.blocks.filter(b=>b.type==="image").length;
+ return Math.max(0,100-imgCount*20);
+}
+function renderToolPanel(){
+ const lang=S.lang,ui=UI[lang],p=S.page;
+ let h='<div class="pgwrap"><div class="pgtoolbar"><div class="pgdevice">'+
+  '<button data-dev="desktop" class="'+(p.previewMode==="desktop"?"on":"")+'">'+ui.devDesktop+'</button>'+
+  '<button data-dev="mobile" class="'+(p.previewMode==="mobile"?"on":"")+'">'+ui.devMobile+"</button></div>";
+ if(p.previewMode==="mobile"){
+  h+='<button class="pgverify'+(p.mobileChecked?" done":"")+'" id="pgVerify"'+(p.mobileChecked?" disabled":"")+'>'+(p.mobileChecked?ui.verified:ui.verifyMobile)+"</button>";
+ }
+ h+='</div><div class="pgcanvaswrap"><div class="pgcanvas" style="max-width:'+(p.previewMode==="mobile"?"340px":"100%")+'" id="pgCanvas">';
+ p.blocks.forEach((b,i)=>{
+  const typeLbl=ui["blk"+b.type.charAt(0).toUpperCase()+b.type.slice(1)];
+  h+='<div class="pgblock"><div class="pgblockhead"><span class="pgblocktype">'+typeLbl+'</span><div class="pgblockbtns">'+
+   '<button data-mv="up" data-i="'+i+'"'+(i===0?" disabled":"")+">↑</button>"+
+   '<button data-mv="down" data-i="'+i+'"'+(i===p.blocks.length-1?" disabled":"")+">↓</button>"+
+   '<button data-rmv="'+i+'">'+ui.remove+"</button></div></div>";
+  if(b.type==="nav"){
+   h+='<div class="pgnavlabel">'+ui.navPlaceholder+"</div>";
+  }else{
+   BLOCK_FIELDS[b.type].forEach(f=>{
+    const lblKey="f"+f.charAt(0).toUpperCase()+f.slice(1);
+    const isLong=f==="text"||f==="quote";
+    h+='<div style="font-size:10.5px;color:#9ca3af;margin-bottom:2px">'+ui[lblKey]+"</div>";
+    h+=isLong?'<textarea class="pgfield" data-i="'+i+'" data-f="'+f+'" rows="2">'+(b[f]||"")+"</textarea>":
+     '<input class="pgfield" data-i="'+i+'" data-f="'+f+'" value="'+(b[f]||"").replace(/"/g,"&quot;")+'"/>';
+   });
+  }
+  h+="</div>";
+ });
+ h+="</div></div>";
+ h+='<div class="pgpalette">'+
+  '<button data-add="hero">'+ui.addHero+"</button>"+
+  '<button data-add="section">'+ui.addSection+"</button>"+
+  '<button data-add="image">'+ui.addImage+"</button>"+
+  '<button data-add="form">'+ui.addForm+"</button>"+
+  '<button data-add="testimonial">'+ui.addTestimonial+"</button>"+
+  '<button data-add="cta">'+ui.addCta+"</button>"+
+  '<button data-add="nav">'+ui.addNav+"</button></div>";
+ const score=speedScore(p);
+ const color=score>=60?"var(--good)":score>=30?"var(--warn)":"var(--danger)";
+ h+='<div class="pgspeed"><span class="pgspeedtext">'+ui.speedLbl+"</span><div class=\"pgspeedbar\"><span style=\"width:"+score+"%;background:"+color+'"></span></div><span class="pgspeedtext">'+score+"/100</span></div>";
+ h+="</div>";
+ return h;
+}
+function wireToolPanel(){
+ const box=$("pgRoot");if(!box)return;
+ document.querySelectorAll("[data-dev]").forEach(bt=>bt.addEventListener("click",()=>{
+  S.page.previewMode=bt.dataset.dev;S.page.previewVisited[bt.dataset.dev]=true;persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ const vb=$("pgVerify");
+ if(vb)vb.addEventListener("click",()=>{
+  S.page.mobileChecked=true;persist();checkTask(S.cur);renderRail();refreshTool();
+ });
+ document.querySelectorAll(".pgfield").forEach(el=>el.addEventListener("input",e=>{
+  const i=+e.target.dataset.i,f=e.target.dataset.f;
+  S.page.blocks[i][f]=e.target.value;persist();checkTask(S.cur);renderRail();
+ }));
+ document.querySelectorAll("[data-mv]").forEach(bt=>bt.addEventListener("click",()=>{
+  const i=+bt.dataset.i,dir=bt.dataset.mv,blocks=S.page.blocks;
+  const j=dir==="up"?i-1:i+1;
+  if(j<0||j>=blocks.length)return;
+  [blocks[i],blocks[j]]=[blocks[j],blocks[i]];
+  persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ document.querySelectorAll("[data-rmv]").forEach(bt=>bt.addEventListener("click",()=>{
+  S.page.blocks.splice(+bt.dataset.rmv,1);persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ document.querySelectorAll("[data-add]").forEach(bt=>bt.addEventListener("click",()=>{
+  S.page.blocks.push(newBlock(bt.dataset.add));persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+}
+function refreshTool(){
+ const root=$("pgRoot");if(!root)return;
+ root.innerHTML=renderToolPanel();
+ wireToolPanel();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 14 · 14."+n;
+ $("topTitle").textContent=M14[lang][n-1];
+ document.title="Academy · "+M14[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 14 · 14.'+n+'</span><h2 class="labh2">'+M14[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="pgRoot"></div><div class="pgtask"><b>'+ui.objEd+':</b> '+C[n].task[lang]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ checkTask(n);
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const root=$("pgRoot");
+ root.innerHTML=renderToolPanel();wireToolPanel();
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function updateFinishBtn(){
+ const st=S.st[S.cur];
+ const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ per-lesson tasks & checks ============ */
+const GENERIC_BTN=["submit","click here","voye","klike isit","envoyer","cliquez ici"];
+C[1].task={ht:"Ajoute omwen 1 blòk epi verifye tou de apèsi yo (Òdinatè ak Mobil).",fr:"Ajoutez au moins 1 bloc et vérifiez les deux aperçus (Bureau et Mobile).",en:"Add at least 1 block and check both previews (Desktop and Mobile)."};
+C[1].check=p=>p.blocks.length>=1&&p.previewVisited.desktop&&p.previewVisited.mobile;
+C[2].task={ht:"Bati blòk Ero ou ak yon tit (omwen 10 karaktè), yon souti (omwen 10 karaktè), ak yon tèks bouton.",fr:"Construisez votre bloc Héros avec un titre (au moins 10 caractères), un sous-titre (au moins 10 caractères), et un texte de bouton.",en:"Build your Hero block with a headline (at least 10 characters), a subheadline (at least 10 characters), and button text."};
+C[2].check=p=>{const h=p.blocks.find(b=>b.type==="hero");return !!(h&&h.headline.trim().length>=10&&h.subheadline.trim().length>=10&&h.button.trim());};
+C[3].task={ht:"Bati yon paj ak yon blòk Ero ak omwen yon blòk Fòm oswa CTA — men SAN okenn blòk Meni Navigasyon.",fr:"Construisez une page avec un bloc Héros et au moins un bloc Formulaire ou CTA — mais SANS aucun bloc Menu de Navigation.",en:"Build a page with a Hero block and at least a Form or CTA block — but with NO Nav Menu block."};
+C[3].check=p=>p.blocks.some(b=>b.type==="hero")&&p.blocks.some(b=>b.type==="form"||b.type==="cta")&&!p.blocks.some(b=>b.type==="nav");
+C[4].task={ht:"Chanje tèks bouton Ero a pou li espesifik (pa 'Submit' oswa 'Click Here'), epi ajoute yon blòk Temwayaj.",fr:"Changez le texte du bouton Héros pour qu'il soit spécifique (pas « Envoyer » ou « Cliquez Ici »), et ajoutez un bloc Témoignage.",en:"Change the Hero button text to be specific (not \"Submit\" or \"Click Here\"), and add a Testimonial block."};
+C[4].check=p=>{const h=p.blocks.find(b=>b.type==="hero");if(!h)return false;const bt=h.button.trim().toLowerCase();return !!(h.button.trim()&&!GENERIC_BTN.includes(bt))&&p.blocks.some(b=>b.type==="testimonial");};
+C[5].task={ht:"Asire yon blòk Fòm oswa CTA parèt nan 3 premye blòk paj la (deplase l si nesesè).",fr:"Assurez-vous qu'un bloc Formulaire ou CTA apparaît dans les 3 premiers blocs de la page (déplacez-le si nécessaire).",en:"Make sure a Form or CTA block appears in the first 3 blocks of the page (move it if needed)."};
+C[5].check=p=>{const idx=p.blocks.findIndex(b=>b.type==="form"||b.type==="cta");return idx>=0&&idx<=2;};
+C[6].task={ht:"Kenbe nòt vitès la nan zòn vèt la (pa plis pase 2 blòk imaj).",fr:"Gardez le score de vitesse dans la zone verte (pas plus de 2 blocs image).",en:"Keep the speed score in the green zone (no more than 2 image blocks)."};
+C[6].check=p=>speedScore(p)>=60;
+C[7].task={ht:"Chanje a apèsi Mobil epi klike 'Verifye sou Mobil' pou konfime paj la fasil pou itilize.",fr:"Basculez vers l'aperçu Mobile et cliquez sur « Vérifier sur Mobile » pour confirmer que la page est facile à utiliser.",en:"Switch to Mobile preview and click \"Verify on Mobile\" to confirm the page is easy to use."};
+C[7].check=p=>p.mobileChecked===true;
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 14?":S.lang==="fr"?"Voulez-vous recommencer le Module 14 ?":"Restart Module 14?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{},page:freshPage()};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
