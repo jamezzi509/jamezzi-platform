@@ -261,6 +261,76 @@ export function WeatherScene({ bubbleText = "Sunny!" }: { bubbleText?: string })
   );
 }
 
+/** John in front of a simple house -- daily routine/home/pets/neighbors lessons. */
+export function HomeScene({ bubbleText }: { bubbleText?: string }) {
+  return (
+    <Frame>
+      <g transform="translate(300,110)">
+        <path d="M-46 30 L0 -20 L46 30 Z" fill="url(#lesson-shirtB)" opacity=".85" />
+        <rect x="-34" y="30" width="68" height="46" rx="4" fill="#fff" opacity=".92" />
+        <rect x="-10" y="46" width="20" height="30" rx="2" fill="url(#lesson-shirtA)" />
+      </g>
+      <Character x={140} y={165} variant="a" pose="wave" />
+      {bubbleText && <SpeechBubble x={190} y={26} text={bubbleText} />}
+    </Frame>
+  );
+}
+
+/** John holding a small screen/device -- technology lessons. */
+export function TechScene({ bubbleText = "Online" }: { bubbleText?: string }) {
+  return (
+    <Frame>
+      <Character x={140} y={160} variant="a" pose="neutral" />
+      <g transform="translate(178,120)">
+        <rect x="-24" y="-32" width="48" height="64" rx="8" fill="#2a2a3a" />
+        <rect x="-19" y="-25" width="38" height="48" rx="2" fill="url(#lesson-shirtA)" opacity=".8" />
+      </g>
+      <Character x={290} y={160} variant="b" pose="point" flip />
+      <SpeechBubble x={230} y={16} text={bubbleText} />
+    </Frame>
+  );
+}
+
+/** Characters at a shared counter/table -- restaurant/store/office/bank/doctor situations. */
+export function TableScene({ bubbleText = "Welcome!" }: { bubbleText?: string }) {
+  return (
+    <Frame>
+      <rect x="60" y="176" width="300" height="20" rx="6" fill="#D8D3F7" opacity=".7" />
+      <Character x={140} y={150} variant="a" pose="arms-out" />
+      <Character x={280} y={150} variant="b" pose="wave" flip />
+      <SpeechBubble x={210} y={22} text={bubbleText} />
+    </Frame>
+  );
+}
+
+/** John listening with a hand cupped to his ear -- listening-comprehension lessons. */
+export function ListeningScene({ bubbleText = "…" }: { bubbleText?: string }) {
+  return (
+    <Frame>
+      <Character x={290} y={158} variant="b" pose="raise-hand" flip />
+      <Character x={140} y={158} variant="a" pose="wave" />
+      <g transform="translate(320,90)">
+        <path d="M-14 0 a14 14 0 0 1 28 0 v10 a14 14 0 0 1 -28 0Z" fill="none" stroke="#534AB7" strokeWidth="3" />
+      </g>
+      <SpeechBubble x={190} y={18} text={bubbleText} />
+    </Frame>
+  );
+}
+
+/** Ana with a pencil and a sheet of paper -- writing-mechanics lessons. */
+export function WritingScene() {
+  return (
+    <Frame>
+      <Character x={280} y={160} variant="b" pose="neutral" flip />
+      <g transform="translate(150,110)">
+        <rect x="-30" y="-20" width="60" height="76" rx="6" fill="#fff" stroke="#E1DEF7" strokeWidth="2" />
+        <path d="M-18 -4 h36 M-18 10 h36 M-18 24 h20" stroke="#C9C4EE" strokeWidth="3" strokeLinecap="round" />
+      </g>
+      <Character x={150} y={185} variant="a" pose="point" />
+    </Frame>
+  );
+}
+
 /** Ana holding up fingers for counting/numbers lessons. */
 export function CountingScene({ bubbleText = "1, 2, 3…" }: { bubbleText?: string }) {
   return (
@@ -316,10 +386,40 @@ export function AlphabetScene() {
 const slugSceneRules: { test: RegExp; Scene: typeof GreetingScene; bubble: string }[] = [
   { test: /alphabet|letter/, Scene: AlphabetScene, bubble: "" },
   { test: /weather/, Scene: WeatherScene, bubble: "" },
-  { test: /number|count|how-many|age/, Scene: CountingScene, bubble: "1, 2, 3…" },
-  { test: /question|ask/, Scene: QuestionScene, bubble: "?" },
-  { test: /feel|family|describ|personality|character/, Scene: TogetherScene, bubble: "" },
-  { test: /point|object|thing|vocabulary|word/, Scene: PointingScene, bubble: "Look!" },
+  { test: /number|count|how-many|^age$|-age-/, Scene: CountingScene, bubble: "1, 2, 3…" },
+  // Technology: computer, phone, internet, email, browser, downloads, AI tools
+  {
+    test: /computer|phone|internet|wifi|email|browser|website|download|upload|tech|ai-and-chatgpt/,
+    Scene: TechScene,
+    bubble: "Online",
+  },
+  // Real-world situations: restaurant, store, travel, services, meetings
+  {
+    test: /restaurant|at-the-store|taxi|airport|doctor|bank|hotel|phone-call|meeting|customer-service|business-email|working-with-clients|presentations|job-interview|remote-work|freelancing|at-work/,
+    Scene: TableScene,
+    bubble: "Welcome!",
+  },
+  // Listening-comprehension lessons get their own distinct visual
+  { test: /^listening-|-listening$/, Scene: ListeningScene, bubble: "" },
+  // Writing mechanics: capitalization, punctuation, paragraphs
+  { test: /capitaliz|punctuation|paragraph|writing-mission/, Scene: WritingScene, bubble: "" },
+  // Daily life at home
+  {
+    test: /daily-routine|around-the-house|days-of-the-week|pets-and-animals|friends-and-neighbors|daily-life/,
+    Scene: HomeScene,
+    bubble: "",
+  },
+  { test: /question|ask|can-i-pattern|would-you-pattern|saying-no/, Scene: QuestionScene, bubble: "?" },
+  {
+    test: /feel|family|describ|personality|character|small-talk|idiom|tone-and-politeness|humor|compliment|cultural-notes|story-|role-play|reacting/,
+    Scene: TogetherScene,
+    bubble: "",
+  },
+  {
+    test: /point|object|thing|vocabulary|word|action-verb|power-verb|phrasal-verb|go-and-come|eat-drink|walk-and-run|work-and-study|play-watch|buy-and-sell|cook-wash|make-and-take|put-and-get|give-and-bring|become-and-find|keep-and-leave|do-does-did|look-up|get-up|put-on|come-back|turn-on/,
+    Scene: PointingScene,
+    bubble: "Look!",
+  },
 ];
 
 /**
