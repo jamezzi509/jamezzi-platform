@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 20 — Pwojè Kapstòn</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 20 · 20.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini tout Kou a!",stampBody:"Ou fèk ranpli Pasaport Aprantisaj ou ak tout 20 modil Maketing Dijital & AI a. Byen fèt!",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Vous avez terminé tout le cours !",stampBody:"Vous venez de remplir votre Passeport d'Apprentissage avec les 20 modules de Marketing Digital & IA. Félicitations !",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished the entire course!",stampBody:"You just filled your Learning Passport with all 20 modules of Digital Marketing & AI. Congratulations!",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M20={
+ ht:["Chwazi Biznis Kapstòn Ou","Idantite Mak: Non, Logo, ak Pèsona","Prezans Online: Sit Web, Plan Kontni, ak Rezo Sosyal","Byen AI: Imaj, Videyo, ak Tèks","Paj Aterisaj ak Sekans Imèl","Kanpay Piblisite Peye","Tablo Bò Analitik ak Prezante Kapstòn Ou"],
+ fr:["Choisir Votre Entreprise pour le Capstone","Image de Marque : Nom, Logo et Persona","Présence en Ligne : Site Web, Plan de Contenu et Réseaux Sociaux","Actifs IA : Images, Vidéo et Texte","Page de Destination et Séquence d'Emails","Campagne de Publicité Payante","Tableau de Bord Analytique et Présentation de Votre Capstone"],
+ en:["Choosing Your Capstone Business","Brand Identity: Name, Logo & Persona","Online Presence: Website, Content Plan & Social Pages","AI Assets: Images, Video & Copy","Landing Page & Email Sequence","Paid Advertising Campaign","Analytics Dashboard & Presenting Your Capstone"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Pwojè Kapstòn nan se dènye pwojè kou a: olye w fè yon egzèsis izole pou chak sijè, ou pral pran TOUT sa ou aprann nan 19 modil anvan yo pou bati yon pakè maketing konplè pou yon sèl biznis — menm jan yon vrè kliyan ta mande w fè l.",
+   secs:[["Poukisa yon sèl biznis, pa plizyè egzèsis separe","Nan lavi reyèl, yon kliyan pa mande w 'ekri yon tit' epi 'chwazi yon koulè' kòm 2 travay separe — yo mande w yon estrateji konplè ki koresponn ansanm. Kapstòn nan simile sa: chak leson bati sou dènye a, sou menm biznis la."],
+    ["6 etap kapstòn nan","1) Idantite Mak (non, logo, pèsona) — 2) Prezans Online (sit web, plan kontni, rezo sosyal) — 3) Byen AI (imaj, videyo, tèks) — 4) Konvèsyon (paj aterisaj, sekans imèl) — 5) Piblisite Peye (kanpay peye) — 6) Analitik (metrik pou swiv). Chak etap itilize konsèp soti nan yon modil espesifik ou deja fè."]],
+   illus:"hub",hubCenter:"Pwojè Kapstòn",hubSpokes:["Idantite Mak","Prezans Online","Byen AI","Konvèsyon","Piblisite Peye","Analitik"],
+   ex:"Ekri non biznis ou chwazi pou kapstòn nan (ou ka itilize pwòp biznis ou, yon biznis lokal ou konnen, oswa yon nouvo lide), yon fraz ki dekri sa l fè, ak kliyan ideyal li.",
+   quiz:[
+    {q:"Poukisa kapstòn nan itilize YON sèl biznis pou tout 7 leson yo, olye plizyè biznis diferan?",opts:["Paske se pi fasil pou ekri","Paske sa reflete kijan yon vrè kliyan mande yon estrateji konplè ki koresponn ansanm, pa moso separe","Paske règ kou a mande sa san rezon","Non pa gen okenn rezon espesifik"],ans:1,fb:"Yon sèl biznis kite chak pyès (mak, sit web, imèl, piblisite) koresponn ansanm, jan yon vrè kliyan ta bezwen l."},
+    {q:"Konbyen etap gen nan kapstòn nan?",opts:["3 etap","6 etap","10 etap","20 etap"],ans:1,fb:"6 etap: Idantite Mak, Prezans Online, Byen AI, Konvèsyon, Piblisite Peye, ak Analitik."},
+    {q:"Kisa ki karakterize chak etap nan kapstòn nan?",opts:["Yo tout endepandan san rapò youn ak lòt","Chak etap itilize konsèp soti nan yon modil espesifik ou deja fè pi bonè nan kou a","Yo pa gen rapò ak rès kou a","Se sèlman teyori san aplikasyon"],ans:1,fb:"Chak etap rekonekte ak yon modil espesifik (pa egzanp, Idantite Mak rekonekte ak Modil 3 ak 4)."}],
+   close:{learned:"Pwojè Kapstòn nan konbine tout 19 modil anvan yo nan yon sèl pwojè konplè pou yon sèl biznis, bati atravè 6 etap: Idantite Mak, Prezans Online, Byen AI, Konvèsyon, Piblisite Peye, ak Analitik.",
+    mistake:"Eseye fè kapstòn nan pou plizyè biznis diferan an menm tan, ki fè pyès yo pa janm koresponn ansanm jan yon vrè estrateji ta dwe fè.",
+    tip:"Chwazi yon biznis ou reyèlman konnen (pwòp biznis ou oswa yon biznis lokal ou byen konnen) — sa fè chak egzèsis pi fasil pase envante detay nan de bwa pou yon biznis fiktif.",
+    assign:"Ekri non biznis ou chwazi pou kapstòn nan, yon fraz ki dekri sa l fè, ak kliyan ideyal li.",
+    dl:"Referans: Fèy Travay Pwojè Kapstòn — 6 Etap",
+    checklist:["Yon biznis chwazi ak yon deskripsyon kout ekri?"],
+    ai:"Ede m panse a 3 lide biznis Ayisyen ki ta bon kandida pou yon pwojè kapstòn maketing dijital konplè."}},
+ fr:{lede:"Le Projet Capstone est le dernier projet du cours : plutôt que de faire un exercice isolé pour chaque sujet, vous allez prendre TOUT ce que vous avez appris dans les 19 modules précédents pour construire un pack marketing complet pour une seule entreprise — exactement comme un vrai client vous le demanderait.",
+   secs:[["Pourquoi une seule entreprise, pas plusieurs exercices séparés","Dans la vraie vie, un client ne vous demande pas d'« écrire un titre » puis de « choisir une couleur » comme 2 tâches séparées — il vous demande une stratégie complète où tout correspond ensemble. Le capstone simule ça : chaque leçon construit sur la précédente, sur la même entreprise."],
+    ["Les 6 étapes du capstone","1) Image de Marque (nom, logo, persona) — 2) Présence en Ligne (site web, plan de contenu, réseaux sociaux) — 3) Actifs IA (images, vidéo, texte) — 4) Conversion (page de destination, séquence d'emails) — 5) Publicité Payante (campagne payante) — 6) Analytique (métriques à suivre). Chaque étape utilise des concepts d'un module spécifique que vous avez déjà fait."]],
+   illus:"hub",hubCenter:"Projet Capstone",hubSpokes:["Image de Marque","Présence en Ligne","Actifs IA","Conversion","Publicité Payante","Analytique"],
+   ex:"Écrivez le nom de l'entreprise que vous avez choisie pour le capstone (vous pouvez utiliser votre propre entreprise, une entreprise locale que vous connaissez, ou une nouvelle idée), une phrase décrivant ce qu'elle fait, et son client idéal.",
+   quiz:[
+    {q:"Pourquoi le capstone utilise-t-il UNE seule entreprise pour les 7 leçons, plutôt que plusieurs entreprises différentes ?",opts:["Parce que c'est plus facile à écrire","Parce que ça reflète comment un vrai client demande une stratégie complète où tout correspond ensemble, pas des morceaux séparés","Parce que les règles du cours l'exigent sans raison","Il n'y a aucune raison spécifique"],ans:1,fb:"Une seule entreprise permet à chaque pièce (marque, site web, emails, publicité) de correspondre ensemble, comme un vrai client en aurait besoin."},
+    {q:"Combien d'étapes y a-t-il dans le capstone ?",opts:["3 étapes","6 étapes","10 étapes","20 étapes"],ans:1,fb:"6 étapes : Image de Marque, Présence en Ligne, Actifs IA, Conversion, Publicité Payante, et Analytique."},
+    {q:"Qu'est-ce qui caractérise chaque étape du capstone ?",opts:["Elles sont toutes indépendantes sans rapport entre elles","Chaque étape utilise des concepts d'un module spécifique déjà fait plus tôt dans le cours","Elles n'ont aucun rapport avec le reste du cours","C'est seulement de la théorie sans application"],ans:1,fb:"Chaque étape se reconnecte à un module spécifique (par exemple, Image de Marque se reconnecte aux Modules 3 et 4)."}],
+   close:{learned:"Le Projet Capstone combine les 19 modules précédents en un seul projet complet pour une seule entreprise, construit à travers 6 étapes : Image de Marque, Présence en Ligne, Actifs IA, Conversion, Publicité Payante, et Analytique.",
+    mistake:"Essayer de faire le capstone pour plusieurs entreprises différentes en même temps, ce qui fait que les pièces ne correspondent jamais ensemble comme une vraie stratégie devrait le faire.",
+    tip:"Choisissez une entreprise que vous connaissez vraiment (votre propre entreprise ou une entreprise locale que vous connaissez bien) — ça rend chaque exercice plus facile que d'inventer des détails de toutes pièces pour une entreprise fictive.",
+    assign:"Écrivez le nom de l'entreprise que vous avez choisie pour le capstone, une phrase décrivant ce qu'elle fait, et son client idéal.",
+    dl:"Référence : Fiche de Travail du Projet Capstone — 6 Étapes",
+    checklist:["Une entreprise choisie avec une courte description écrite ?"],
+    ai:"Aide-moi à penser à 3 idées d'entreprises haïtiennes qui seraient de bons candidats pour un projet capstone de marketing digital complet."}},
+ en:{lede:"The Capstone Project is the course's final project: instead of doing an isolated exercise for each topic, you'll take EVERYTHING you learned across the previous 19 modules to build a complete marketing package for one business — exactly as a real client would ask you to.",
+   secs:[["Why one business, not several separate exercises","In real life, a client doesn't ask you to \"write a headline\" and then \"pick a color\" as 2 separate tasks — they ask for one complete strategy where everything fits together. The capstone simulates that: each lesson builds on the last, on the same business."],
+    ["The 6 stages of the capstone","1) Brand Identity (name, logo, persona) — 2) Online Presence (website, content plan, social media) — 3) AI Assets (images, video, copy) — 4) Conversion (landing page, email sequence) — 5) Paid Advertising (paid campaign) — 6) Analytics (metrics to track). Each stage uses concepts from a specific module you've already completed."]],
+   illus:"hub",hubCenter:"Capstone Project",hubSpokes:["Brand Identity","Online Presence","AI Assets","Conversion","Paid Advertising","Analytics"],
+   ex:"Write the name of the business you've chosen for the capstone (you can use your own business, a local business you know, or a new idea), a sentence describing what it does, and its ideal customer.",
+   quiz:[
+    {q:"Why does the capstone use ONE business across all 7 lessons, rather than several different businesses?",opts:["Because it's easier to write","Because it reflects how a real client asks for one complete strategy where everything fits together, not separate pieces","Because the course rules require it for no reason","There's no specific reason"],ans:1,fb:"One business lets every piece (brand, website, emails, ads) fit together, the way a real client would need."},
+    {q:"How many stages are there in the capstone?",opts:["3 stages","6 stages","10 stages","20 stages"],ans:1,fb:"6 stages: Brand Identity, Online Presence, AI Assets, Conversion, Paid Advertising, and Analytics."},
+    {q:"What characterizes each stage of the capstone?",opts:["They're all independent with no connection to each other","Each stage uses concepts from a specific module already completed earlier in the course","They have no connection to the rest of the course","It's only theory with no application"],ans:1,fb:"Each stage reconnects to a specific module (for example, Brand Identity reconnects to Modules 3 and 4)."}],
+   close:{learned:"The Capstone Project combines the previous 19 modules into one complete project for one business, built across 6 stages: Brand Identity, Online Presence, AI Assets, Conversion, Paid Advertising, and Analytics.",
+    mistake:"Trying to do the capstone for several different businesses at once, which means the pieces never fit together the way a real strategy should.",
+    tip:"Choose a business you actually know (your own business or a local business you know well) — it makes every exercise easier than inventing details out of thin air for a fictional business.",
+    assign:"Write the name of the business you've chosen for the capstone, a sentence describing what it does, and its ideal customer.",
+    dl:"Reference: Capstone Project Worksheet — 6 Stages",
+    checklist:["A business chosen with a short description written?"],
+    ai:"Help me think of 3 Haitian business ideas that would be good candidates for a complete digital marketing capstone project."}}},
+
+2:{ht:{lede:"Kounye a ou gen yon biznis chwazi, premye etap la se bati idantite mak li: non, logo, ak yon pèsona kliyan — sa ou te aprann nan Modil 3 (Idantite Mak) ak Modil 4 (Konnen Kliyan Ou).",
+   secs:[["Non ak idantite vizyèl","Yon bon non ta dwe fasil pou sonje e reflete sa biznis la fè. Idantite vizyèl la (koulè, style logo) ta dwe rete konsistan sou tout kanal — sit web, rezo sosyal, imèl — jan Modil 3 te montre."],
+    ["Pèsona kliyan gide tout lòt desizyon yo","Yon pèsona kout (non, laj, pi gwo bezwen) soti nan Modil 4 se pa yon egzèsis izole — se referans ou pral itilize pou chak desizyon kontni, piblisite, ak imèl pi devan nan kapstòn nan."]],
+   illus:"roles",roleCards:[["🏷️","Non & Idantite Vizyèl","Fasil pou sonje, konsistan"],["🎨","Koulè & Style","Menm sou tout kanal"],["👤","Pèsona Kliyan","Gide tout lòt desizyon"]],
+   ex:"Dekri idantite vizyèl biznis ou (2-3 koulè, yon style — mòdèn, chalè, pwofesyonèl, elatriye) ak yon pèsona kliyan kout: non, laj, ak pi gwo bezwen li.",
+   quiz:[
+    {q:"Ki 2 modil anvan yo dirèkteman itil pou etap sa a?",opts:["Modil 8 ak 16","Modil 3 (Idantite Mak) ak Modil 4 (Konnen Kliyan Ou)","Modil 15 ak 17","Modil 1 sèlman"],ans:1,fb:"Modil 3 ak Modil 4 dirèkteman itil isit la."},
+    {q:"Poukisa idantite vizyèl la ta dwe rete konsistan sou tout kanal?",opts:["Sa pa gen enpòtans","Konsistans ede moun rekonèt mak la kèlkeswa kote yo wè l","Chak kanal ta dwe gen yon koulè diferan","Se sèlman pou fè bagay yo pi konplike"],ans:1,fb:"Konsistans ede moun rekonèt mak la sou tout kanal."},
+    {q:"Ki wòl pèsona kliyan an jwe pou rès kapstòn nan?",opts:["Li pa gen okenn wòl apre leson sa a","Li sèvi kòm referans pou tout desizyon kontni, piblisite, ak imèl pi devan","Li sèlman itil pou premye leson an","Li ranplase bezwen pou lòt desizyon"],ans:1,fb:"Pèsona a se referans ou pral itilize pou tout desizyon pi devan."}],
+   close:{learned:"Etap 1 nan kapstòn nan bati idantite mak (non, koulè, style) ak yon pèsona kliyan kout ki pral gide tout desizyon pi devan yo — konsèp ki soti dirèkteman nan Modil 3 ak 4.",
+    mistake:"Chwazi idantite vizyèl ki chanje de yon kanal a yon lòt (koulè diferan sou sit web pase sou Facebook), ki fè mak la sanble konfizyon oswa pa pwofesyonèl.",
+    tip:"Yon pèsona ki gen yon sèl 'pi gwo bezwen' klè pi itil pase yon lis long karakteristik jeneral — se sa ki pral gide tit ak mesaj ou pi devan.",
+    assign:"Dekri idantite vizyèl biznis ou (2-3 koulè, yon style) ak yon pèsona kliyan kout: non, laj, ak pi gwo bezwen li.",
+    dl:"Referans: Fèy Travay Idantite Mak & Pèsona",
+    checklist:["Idantite vizyèl ak pèsona kliyan ekri?"],
+    ai:"Ede m kreye yon pèsona kliyan kout pou biznis mwen an, ki baze sou yon pi gwo bezwen espesifik."}},
+ fr:{lede:"Maintenant que vous avez une entreprise choisie, la première étape est de construire son image de marque : nom, logo, et un persona client — ce que vous avez appris au Module 3 (Image de Marque) et au Module 4 (Connaître Votre Client).",
+   secs:[["Nom et identité visuelle","Un bon nom devrait être facile à retenir et refléter ce que fait l'entreprise. L'identité visuelle (couleurs, style de logo) devrait rester cohérente sur tous les canaux — site web, réseaux sociaux, emails — comme le Module 3 l'a montré."],
+    ["Le persona client guide toutes les autres décisions","Un court persona (nom, âge, plus grand besoin) du Module 4 n'est pas un exercice isolé — c'est la référence que vous utiliserez pour chaque décision de contenu, publicité, et email plus loin dans le capstone."]],
+   illus:"roles",roleCards:[["🏷️","Nom & Identité Visuelle","Facile à retenir, cohérent"],["🎨","Couleurs & Style","Identique sur tous les canaux"],["👤","Persona Client","Guide toutes les autres décisions"]],
+   ex:"Décrivez l'identité visuelle de votre entreprise (2-3 couleurs, un style — moderne, chaleureux, professionnel, etc.) et un court persona client : nom, âge, et son plus grand besoin.",
+   quiz:[
+    {q:"Quels 2 modules précédents sont directement utiles pour cette étape ?",opts:["Modules 8 et 16","Module 3 (Image de Marque) et Module 4 (Connaître Votre Client)","Modules 15 et 17","Seulement le Module 1"],ans:1,fb:"Les Modules 3 et 4 sont directement utiles ici."},
+    {q:"Pourquoi l'identité visuelle devrait-elle rester cohérente sur tous les canaux ?",opts:["Ça n'a pas d'importance","La cohérence aide les gens à reconnaître la marque partout où ils la voient","Chaque canal devrait avoir une couleur différente","C'est seulement pour compliquer les choses"],ans:1,fb:"La cohérence aide à reconnaître la marque sur tous les canaux."},
+    {q:"Quel rôle joue le persona client pour le reste du capstone ?",opts:["Il n'a aucun rôle après cette leçon","Il sert de référence pour toutes les décisions de contenu, publicité et email plus loin","Il n'est utile que pour la première leçon","Il remplace le besoin d'autres décisions"],ans:1,fb:"Le persona est la référence que vous utiliserez pour toutes les décisions futures."}],
+   close:{learned:"L'étape 1 du capstone construit une image de marque (nom, couleurs, style) et un court persona client qui guidera toutes les décisions futures — des concepts directement issus des Modules 3 et 4.",
+    mistake:"Choisir une identité visuelle qui change d'un canal à l'autre (couleurs différentes sur le site web que sur Facebook), ce qui fait paraître la marque confuse ou peu professionnelle.",
+    tip:"Un persona avec un seul « plus grand besoin » clair est plus utile qu'une longue liste de caractéristiques générales — c'est ce qui guidera les titres et messages plus loin.",
+    assign:"Décrivez l'identité visuelle de votre entreprise (2-3 couleurs, un style) et un court persona client : nom, âge, et son plus grand besoin.",
+    dl:"Référence : Fiche de Travail Image de Marque & Persona",
+    checklist:["Identité visuelle et persona client écrits ?"],
+    ai:"Aide-moi à créer un court persona client pour mon entreprise, basé sur un besoin spécifique majeur."}},
+ en:{lede:"Now that you have a chosen business, the first step is building its brand identity: name, logo, and a customer persona — what you learned in Module 3 (Branding) and Module 4 (Know Your Customer).",
+   secs:[["Name and visual identity","A good name should be easy to remember and reflect what the business does. The visual identity (colors, logo style) should stay consistent across every channel — website, social media, email — as Module 3 showed."],
+    ["Customer persona guides every other decision","A short persona (name, age, biggest need) from Module 4 isn't an isolated exercise — it's the reference you'll use for every content, ad, and email decision later in the capstone."]],
+   illus:"roles",roleCards:[["🏷️","Name & Visual Identity","Memorable, consistent"],["🎨","Colors & Style","Same across every channel"],["👤","Customer Persona","Guides every other decision"]],
+   ex:"Describe your business's visual identity (2-3 colors, a style — modern, warm, professional, etc.) and a short customer persona: name, age, and their biggest need.",
+   quiz:[
+    {q:"Which 2 earlier modules are directly useful for this stage?",opts:["Modules 8 and 16","Module 3 (Branding) and Module 4 (Know Your Customer)","Modules 15 and 17","Only Module 1"],ans:1,fb:"Modules 3 and 4 are directly useful here."},
+    {q:"Why should visual identity stay consistent across every channel?",opts:["It doesn't matter","Consistency helps people recognize the brand wherever they see it","Each channel should have a different color","It's only to make things more complicated"],ans:1,fb:"Consistency helps people recognize the brand across every channel."},
+    {q:"What role does the customer persona play for the rest of the capstone?",opts:["It has no role after this lesson","It serves as the reference for every content, ad, and email decision later on","It's only useful for the first lesson","It replaces the need for other decisions"],ans:1,fb:"The persona is the reference you'll use for every decision going forward."}],
+   close:{learned:"Stage 1 of the capstone builds a brand identity (name, colors, style) and a short customer persona that will guide every decision going forward — concepts drawn directly from Modules 3 and 4.",
+    mistake:"Choosing a visual identity that changes from one channel to another (different colors on the website than on Facebook), which makes the brand feel confusing or unprofessional.",
+    tip:"A persona with one clear \"biggest need\" is more useful than a long list of general characteristics — that's what will guide headlines and messaging later.",
+    assign:"Describe your business's visual identity (2-3 colors, a style) and a short customer persona: name, age, and their biggest need.",
+    dl:"Reference: Brand Identity & Persona Worksheet",
+    checklist:["Visual identity and customer persona written?"],
+    ai:"Help me create a short customer persona for my business, based on one specific major need."}}},
+
+3:{ht:{lede:"Ak yon idantite mak ak yon pèsona kliyan an plas, kounye a li lè pou planifye kote biznis la ap parèt sou entènèt: sit web li, plan kontni li, ak rezo sosyal li ta dwe itilize — konsèp ki soti nan Modil 14, 10, ak 9.",
+   secs:[["Sit web ak plan kontni koresponn ak pèsona a","Seksyon sit web ou (paj akèy, sèvis, kontak) ak pilye kontni ou (Modil 10) ta dwe reponn dirèkteman bezwen pèsona a ou defini nan leson dènye a — pa jis lis jeneral kontni popilè."],
+    ["Chwazi platfòm rezo sosyal ki fè sans","Olye eseye tout platfòm, Modil 9 te montre chak platfòm gen yon karaktè diferan — chwazi 1-2 ki koresponn ak kote pèsona ou pi aktif la."]],
+   illus:"roles",roleCards:[["🏠","Paj Akèy","Seksyon ki reponn bezwen kliyan"],["📅","Plan Kontni","Pilye ki koresponn ak pèsona a"],["📱","Rezo Sosyal","1-2 platfòm ki fè sans"]],
+   ex:"Dekri 3 seksyon pou paj akèy biznis ou, 3 pilye kontni (Modil 10), ak 2 platfòm rezo sosyal (Modil 9) ou ta chwazi pou pèsona ou.",
+   quiz:[
+    {q:"Ki 3 modil anvan yo itil pou etap sa a?",opts:["Modil 14, 10, ak 9","Modil 1, 2, ak 3","Modil 6, 7, ak 8","Modil 15, 16, ak 17"],ans:0,fb:"Modil 14 (sit web), 10 (kontni), ak 9 (rezo sosyal) itil isit la."},
+    {q:"Ki sa ki ta dwe gide chwa seksyon sit web ak pilye kontni yo?",opts:["Sa ki popilè jeneralman, san rapò ak kliyan an","Bezwen pèsona kliyan ou defini nan leson anvan an","Prensipalman gou pwopriyetè biznis la","Pa gen gid espesifik"],ans:1,fb:"Bezwen pèsona a ta dwe gide chwa seksyon ak pilye yo."},
+    {q:"Poukisa pa eseye tout platfòm rezo sosyal an menm tan?",opts:["Se pa posib pou itilize plis pase 1 platfòm","Chak platfòm gen yon karaktè diferan; pi bon chwazi 1-2 ki koresponn ak pèsona a","Tout platfòm idantik nèt","Pa gen okenn diferans ant platfòm yo"],ans:1,fb:"Chak platfòm gen yon karaktè diferan (Modil 9) — chwazi sa ki koresponn ak pèsona a."}],
+   close:{learned:"Etap 2 nan kapstòn nan planifye prezans online biznis la: seksyon sit web, pilye kontni, ak platfòm rezo sosyal — tout chwazi an fonksyon pèsona kliyan defini nan etap anvan an, pa jeneralman.",
+    mistake:"Eseye itilize tout platfòm rezo sosyal ki egziste yo, olye chwazi 1-2 ki reyèlman koresponn ak kote pèsona kliyan an pi aktif.",
+    tip:"Chak seksyon sit web ak chak pilye kontni ta dwe kapab reponn kesyon: 'Ki bezwen pèsona a sa a reponn?' Si repons lan pa klè, revize l.",
+    assign:"Dekri 3 seksyon pou paj akèy biznis ou, 3 pilye kontni, ak 2 platfòm rezo sosyal ou ta chwazi pou pèsona ou.",
+    dl:"Referans: Fèy Travay Prezans Online",
+    checklist:["Seksyon sit web, pilye kontni, ak platfòm rezo sosyal chwazi?"],
+    ai:"Ede m chwazi 2 platfòm rezo sosyal ki pi bon pou biznis mwen an, ki baze sou pèsona kliyan mwen defini a."}},
+ fr:{lede:"Avec une image de marque et un persona client en place, il est maintenant temps de planifier où l'entreprise apparaîtra en ligne : son site web, son plan de contenu, et les réseaux sociaux qu'elle devrait utiliser — des concepts issus des Modules 14, 10, et 9.",
+   secs:[["Le site web et le plan de contenu correspondent au persona","Les sections de votre site web (page d'accueil, services, contact) et vos piliers de contenu (Module 10) devraient répondre directement aux besoins du persona défini dans la leçon précédente — pas juste une liste générique de contenu populaire."],
+    ["Choisir les réseaux sociaux qui font sens","Plutôt que d'essayer toutes les plateformes, le Module 9 a montré que chaque plateforme a un caractère différent — choisissez 1-2 qui correspondent à où votre persona est le plus actif."]],
+   illus:"roles",roleCards:[["🏠","Page d'Accueil","Sections qui répondent aux besoins du client"],["📅","Plan de Contenu","Piliers qui correspondent au persona"],["📱","Réseaux Sociaux","1-2 plateformes qui font sens"]],
+   ex:"Décrivez 3 sections pour la page d'accueil de votre entreprise, 3 piliers de contenu (Module 10), et 2 plateformes de réseaux sociaux (Module 9) que vous choisiriez pour votre persona.",
+   quiz:[
+    {q:"Quels 3 modules précédents sont utiles pour cette étape ?",opts:["Modules 14, 10, et 9","Modules 1, 2, et 3","Modules 6, 7, et 8","Modules 15, 16, et 17"],ans:0,fb:"Les Modules 14 (site web), 10 (contenu), et 9 (réseaux sociaux) sont utiles ici."},
+    {q:"Qu'est-ce qui devrait guider le choix des sections du site web et des piliers de contenu ?",opts:["Ce qui est généralement populaire, sans rapport avec le client","Les besoins du persona client défini dans la leçon précédente","Principalement le goût du propriétaire de l'entreprise","Il n'y a aucun guide spécifique"],ans:1,fb:"Les besoins du persona devraient guider le choix des sections et piliers."},
+    {q:"Pourquoi ne pas essayer toutes les plateformes de réseaux sociaux en même temps ?",opts:["Il n'est pas possible d'utiliser plus d'une plateforme","Chaque plateforme a un caractère différent ; mieux vaut choisir 1-2 qui correspondent au persona","Toutes les plateformes sont complètement identiques","Il n'y a aucune différence entre les plateformes"],ans:1,fb:"Chaque plateforme a un caractère différent (Module 9) — choisissez celles qui correspondent au persona."}],
+   close:{learned:"L'étape 2 du capstone planifie la présence en ligne de l'entreprise : sections du site web, piliers de contenu, et plateformes de réseaux sociaux — tous choisis en fonction du persona client défini à l'étape précédente, pas de manière générique.",
+    mistake:"Essayer d'utiliser toutes les plateformes de réseaux sociaux existantes, plutôt que de choisir 1-2 qui correspondent vraiment à où le persona client est le plus actif.",
+    tip:"Chaque section du site web et chaque pilier de contenu devrait pouvoir répondre à la question : « Quel besoin du persona ceci répond-il ? » Si la réponse n'est pas claire, révisez-la.",
+    assign:"Décrivez 3 sections pour la page d'accueil de votre entreprise, 3 piliers de contenu, et 2 plateformes de réseaux sociaux que vous choisiriez pour votre persona.",
+    dl:"Référence : Fiche de Travail Présence en Ligne",
+    checklist:["Sections du site web, piliers de contenu, et plateformes de réseaux sociaux choisis ?"],
+    ai:"Aide-moi à choisir les 2 meilleures plateformes de réseaux sociaux pour mon entreprise, basé sur le persona client que j'ai défini."}},
+ en:{lede:"With a brand identity and customer persona in place, it's now time to plan where the business will show up online: its website, content plan, and which social media platforms it should use — concepts drawn from Modules 14, 10, and 9.",
+   secs:[["Website and content plan match the persona","Your website sections (homepage, services, contact) and content pillars (Module 10) should directly answer the needs of the persona defined in the last lesson — not just a generic list of popular content."],
+    ["Choosing social platforms that make sense","Rather than trying every platform, Module 9 showed that each platform has a different character — choose 1-2 that match where your persona is most active."]],
+   illus:"roles",roleCards:[["🏠","Homepage","Sections that answer customer needs"],["📅","Content Plan","Pillars that match the persona"],["📱","Social Media","1-2 platforms that make sense"]],
+   ex:"Describe 3 sections for your business's homepage, 3 content pillars (Module 10), and 2 social media platforms (Module 9) you'd choose for your persona.",
+   quiz:[
+    {q:"Which 3 earlier modules are useful for this stage?",opts:["Modules 14, 10, and 9","Modules 1, 2, and 3","Modules 6, 7, and 8","Modules 15, 16, and 17"],ans:0,fb:"Modules 14 (website), 10 (content), and 9 (social media) are useful here."},
+    {q:"What should guide the choice of website sections and content pillars?",opts:["Whatever is generally popular, unrelated to the customer","The needs of the customer persona defined in the previous lesson","Mainly the business owner's personal taste","There's no specific guide"],ans:1,fb:"The persona's needs should guide the choice of sections and pillars."},
+    {q:"Why not try every social media platform at once?",opts:["It's not possible to use more than one platform","Each platform has a different character; better to choose 1-2 that match the persona","All platforms are completely identical","There's no difference between platforms"],ans:1,fb:"Each platform has a different character (Module 9) — choose ones that match the persona."}],
+   close:{learned:"Stage 2 of the capstone plans the business's online presence: website sections, content pillars, and social media platforms — all chosen based on the customer persona defined in the previous stage, not generically.",
+    mistake:"Trying to use every social media platform that exists, rather than choosing 1-2 that genuinely match where the customer persona is most active.",
+    tip:"Every website section and content pillar should be able to answer the question: \"What persona need does this answer?\" If the answer isn't clear, revise it.",
+    assign:"Describe 3 sections for your business's homepage, 3 content pillars, and 2 social media platforms you'd choose for your persona.",
+    dl:"Reference: Online Presence Worksheet",
+    checklist:["Website sections, content pillars, and social media platforms chosen?"],
+    ai:"Help me choose the 2 best social media platforms for my business, based on the customer persona I defined."}}},
+
+4:{ht:{lede:"Ak yon plan prezans online, kounye a bezwen byen konkrè pou ranpli l: imaj, videyo, ak tèks. Modil 6 (Kontni Grafik), Modil 7 (Videyo), ak Modil 8 (IA pou Maketing) montre kijan pou kreye yo efikasman, souvan ak èd AI.",
+   secs:[["AI kòm asistan, pa ranplasman","Modil 8 te montre yon bon pwonp AI (sa w vle, kontèks, fòma) bay yon rezilta pi bon pase yon pwonp vag. Pou byen kapstòn nan, chak pwonp ta dwe mansyone mak, koulè, ak pèsona a defini nan leson anvan yo."],
+    ["Tèks ak imaj ta dwe travay ansanm","Yon imaj bèl san yon tèks ki koresponn (oswa vis vèsa) pèdi enpak. Modil 5 (Ekri Tèks) ak Modil 6 travay ansanm isit la: chak byen vizyèl bezwen yon mesaj ki matche."]],
+   illus:"roles",roleCards:[["🖼️","Imaj AI","Mansyone mak ak koulè"],["🎬️","Videyo","Kout, adapte pou platfòm"],["✍️","Tèks/Kopi","Matche ak imaj la"]],
+   ex:"Ekri yon pwonp AI pou yon imaj (Modil 8) ak yon pwonp AI pou yon tèks piblisite (Modil 5 ak 8) pou biznis ou — chak youn ta dwe mansyone mak ak pèsona ou.",
+   quiz:[
+    {q:"Ki 3 modil anvan yo dirèkteman itil pou kreye byen AI yo?",opts:["Modil 6, 7, ak 8","Modil 11, 12, ak 13","Modil 1, 2, ak 3","Modil 18, 19, ak 20"],ans:0,fb:"Modil 6 (grafik), 7 (videyo), ak 8 (AI) itil isit la."},
+    {q:"Ki sa ki fè yon pwonp AI bon pase yon pwonp vag (Modil 8)?",opts:["Longè pwonp la sèlman","Li mansyone sa w vle, kontèks, ak fòma","Itilize mo konplike","Pa gen diferans ant pwonp yo"],ans:1,fb:"Yon bon pwonp mansyone sa w vle, kontèks, ak fòma (Modil 8)."},
+    {q:"Poukisa tèks ak imaj ta dwe travay ansanm olye yo endepandan?",opts:["Yo pa gen rapò youn ak lòt","Yon imaj san yon tèks ki koresponn (oswa vis vèsa) pèdi enpak","Sèlman imaj konte","Sèlman tèks konte"],ans:1,fb:"Yo travay ansanm — youn san lòt la pèdi enpak."}],
+   close:{learned:"Etap 3 nan kapstòn nan kreye byen AI (imaj, videyo, tèks) ki reflete mak ak pèsona defini nan etap anvan yo, itilize pwonp AI byen strikti soti nan Modil 8, ak prensip ekri Modil 5.",
+    mistake:"Kreye byen vizyèl ak tèks ki pa mansyone mak ni pèsona a, ki fè yo sanble jenerik e pa koneke ak rès kapstòn nan.",
+    tip:"Toujou mansyone koulè mak ou ak pi gwo bezwen pèsona a nan chak pwonp AI — sa fè rezilta a pi kole ak idantite ou defini deja.",
+    assign:"Ekri yon pwonp AI pou yon imaj ak yon pwonp AI pou yon tèks piblisite pou biznis ou — chak youn ta dwe mansyone mak ak pèsona ou.",
+    dl:"Referans: Fèy Travay Byen AI",
+    checklist:["Yon pwonp imaj ak yon pwonp tèks ekri, tou de mansyone mak/pèsona?"],
+    ai:"Ede m ekri yon pwonp AI pou yon imaj pwomosyonèl pou biznis mwen an, ki mansyone koulè mak mwen ak pèsona kliyan mwen."}},
+ fr:{lede:"Avec un plan de présence en ligne, il faut maintenant des actifs concrets pour le remplir : images, vidéo, et texte. Le Module 6 (Contenu Graphique), le Module 7 (Vidéo), et le Module 8 (IA pour le Marketing) montrent comment les créer efficacement, souvent avec l'aide de l'IA.",
+   secs:[["L'IA comme assistante, pas comme remplacement","Le Module 8 a montré qu'un bon prompt IA (ce que vous voulez, le contexte, le format) donne un meilleur résultat qu'un prompt vague. Pour bien faire le capstone, chaque prompt devrait mentionner la marque, les couleurs, et le persona définis dans les leçons précédentes."],
+    ["Texte et image devraient travailler ensemble","Une belle image sans texte correspondant (ou vice versa) perd de son impact. Le Module 5 (Rédaction) et le Module 6 travaillent ensemble ici : chaque actif visuel a besoin d'un message qui correspond."]],
+   illus:"roles",roleCards:[["🖼️","Image IA","Mentionne la marque et les couleurs"],["🎬️","Vidéo","Courte, adaptée à la plateforme"],["✍️","Texte/Copy","Correspond à l'image"]],
+   ex:"Écrivez un prompt IA pour une image (Module 8) et un prompt IA pour un texte publicitaire (Modules 5 et 8) pour votre entreprise — chacun devrait mentionner votre marque et votre persona.",
+   quiz:[
+    {q:"Quels 3 modules précédents sont directement utiles pour créer les actifs IA ?",opts:["Modules 6, 7, et 8","Modules 11, 12, et 13","Modules 1, 2, et 3","Modules 18, 19, et 20"],ans:0,fb:"Les Modules 6 (graphique), 7 (vidéo), et 8 (IA) sont utiles ici."},
+    {q:"Qu'est-ce qui rend un prompt IA meilleur qu'un prompt vague (Module 8) ?",opts:["Seulement la longueur du prompt","Il mentionne ce que vous voulez, le contexte, et le format","Utiliser des mots compliqués","Il n'y a aucune différence entre les prompts"],ans:1,fb:"Un bon prompt mentionne ce que vous voulez, le contexte, et le format (Module 8)."},
+    {q:"Pourquoi le texte et l'image devraient-ils travailler ensemble plutôt qu'indépendamment ?",opts:["Ils n'ont aucun rapport entre eux","Une image sans texte correspondant (ou vice versa) perd de son impact","Seule l'image compte","Seul le texte compte"],ans:1,fb:"Ils travaillent ensemble — l'un sans l'autre perd de son impact."}],
+   close:{learned:"L'étape 3 du capstone crée des actifs IA (images, vidéo, texte) qui reflètent la marque et le persona définis aux étapes précédentes, en utilisant des prompts IA bien structurés du Module 8, et les principes de rédaction du Module 5.",
+    mistake:"Créer des actifs visuels et du texte qui ne mentionnent ni la marque ni le persona, ce qui les fait paraître génériques et déconnectés du reste du capstone.",
+    tip:"Mentionnez toujours les couleurs de votre marque et le plus grand besoin du persona dans chaque prompt IA — ça rend le résultat plus cohérent avec l'identité déjà définie.",
+    assign:"Écrivez un prompt IA pour une image et un prompt IA pour un texte publicitaire pour votre entreprise — chacun devrait mentionner votre marque et votre persona.",
+    dl:"Référence : Fiche de Travail Actifs IA",
+    checklist:["Un prompt image et un prompt texte écrits, tous deux mentionnant la marque/persona ?"],
+    ai:"Aide-moi à écrire un prompt IA pour une image promotionnelle pour mon entreprise, qui mentionne les couleurs de ma marque et mon persona client."}},
+ en:{lede:"With an online presence plan, you now need concrete assets to fill it: images, video, and copy. Module 6 (Graphic Content), Module 7 (Video), and Module 8 (AI for Marketing) show how to create them efficiently, often with AI's help.",
+   secs:[["AI as an assistant, not a replacement","Module 8 showed that a good AI prompt (what you want, context, format) produces a better result than a vague prompt. To do the capstone well, every prompt should mention the brand, colors, and persona defined in earlier lessons."],
+    ["Copy and image should work together","A beautiful image without matching copy (or vice versa) loses impact. Module 5 (Copywriting) and Module 6 work together here: every visual asset needs a message that matches."]],
+   illus:"roles",roleCards:[["🖼️","AI Image","Mentions brand and colors"],["🎬️","Video","Short, adapted for the platform"],["✍️","Copy","Matches the image"]],
+   ex:"Write an AI prompt for an image (Module 8) and an AI prompt for ad copy (Modules 5 and 8) for your business — each should mention your brand and persona.",
+   quiz:[
+    {q:"Which 3 earlier modules are directly useful for creating the AI assets?",opts:["Modules 6, 7, and 8","Modules 11, 12, and 13","Modules 1, 2, and 3","Modules 18, 19, and 20"],ans:0,fb:"Modules 6 (graphic), 7 (video), and 8 (AI) are useful here."},
+    {q:"What makes an AI prompt better than a vague prompt (Module 8)?",opts:["Only the prompt's length","It mentions what you want, context, and format","Using complicated words","There's no difference between prompts"],ans:1,fb:"A good prompt mentions what you want, context, and format (Module 8)."},
+    {q:"Why should copy and image work together rather than independently?",opts:["They have no connection to each other","An image without matching copy (or vice versa) loses impact","Only the image matters","Only the copy matters"],ans:1,fb:"They work together — either one without the other loses impact."}],
+   close:{learned:"Stage 3 of the capstone creates AI assets (images, video, copy) that reflect the brand and persona defined in earlier stages, using well-structured AI prompts from Module 8, and copywriting principles from Module 5.",
+    mistake:"Creating visual assets and copy that mention neither the brand nor the persona, which makes them feel generic and disconnected from the rest of the capstone.",
+    tip:"Always mention your brand colors and the persona's biggest need in every AI prompt — it makes the result feel more tied to the identity you've already defined.",
+    assign:"Write an AI prompt for an image and an AI prompt for ad copy for your business — each should mention your brand and persona.",
+    dl:"Reference: AI Assets Worksheet",
+    checklist:["An image prompt and a copy prompt written, both mentioning brand/persona?"],
+    ai:"Help me write an AI prompt for a promotional image for my business, mentioning my brand colors and customer persona."}}},
+
+5:{ht:{lede:"Kounye a byen yo pare, li lè pou konstwi kote yo pral konvèti moun an kliyan: yon paj aterisaj ak yon sekans imèl byenveni — konsèp ki soti nan Modil 14, 13, ak 5.",
+   secs:[["Yon paj aterisaj ki gen yon sèl objektif","Modil 14 te montre yon bon paj aterisaj konsantre sou YON aksyon (achte, enskri, kontakte) — pa mele plizyè objektif ansanm. Tit la ta dwe pale dirèkteman ak pi gwo bezwen pèsona a."],
+    ["Sekans imèl kontinye konvèsasyon an","Modil 13 te montre yon sekans byenveni ki bay valè anvan l vann (byenveni → livre valè → kontni → òf). Chak imèl ta dwe santi tankou yon kontinyasyon natirèl, pa yon lis mesaj san rapò."]],
+   illus:"roles",roleCards:[["📄","Tit Paj Aterisaj","Pale dirèkteman ak pèsona a"],["🔘","Bouton Aksyon (CTA)","Yon sèl objektif klè"],["✉️","Sekans Imèl","Byenveni → Valè → Òf"]],
+   ex:"Ekri yon tit pou paj aterisaj biznis ou, yon bouton aksyon (CTA) espesifik, ak 3 sijè pou yon sekans imèl byenveni 3 etap.",
+   quiz:[
+    {q:"Ki 3 modil anvan yo itil pou etap sa a?",opts:["Modil 14, 13, ak 5","Modil 9, 10, ak 11","Modil 6, 7, ak 8","Modil 1, 2, ak 3"],ans:0,fb:"Modil 14 (paj aterisaj), 13 (imèl), ak 5 (ekri tèks) itil isit la."},
+    {q:"Sou konbyen objektif yon bon paj aterisaj ta dwe konsantre, dapre Modil 14?",opts:["Plizyè objektif an menm tan","YON sèl objektif klè","Pa gen objektif espesifik","Otan objektif ke posib"],ans:1,fb:"Yon bon paj aterisaj konsantre sou YON sèl objektif (Modil 14)."},
+    {q:"Ki estrikti yon bon sekans imèl byenveni swiv, dapre Modil 13?",opts:["Vann imedyatman san kontèks","Byenveni → livre valè → kontni → òf","Voye 10 imèl vant nan yon sèl jou","Pa gen estrikti espesifik"],ans:1,fb:"Yon bon sekans bay valè anvan l vann (Modil 13)."}],
+   close:{learned:"Etap 4 nan kapstòn nan bati konvèsyon: yon paj aterisaj ak yon sèl objektif klè, ak yon sekans imèl ki bay valè anvan l vann — konsèp dirèkteman soti nan Modil 14, 13, ak 5.",
+    mistake:"Bati yon paj aterisaj ki gen plizyè bouton aksyon diferan (achte, enskri, kontakte, telechaje) an menm tan, ki konfonn vizitè a e diminye chans konvèsyon.",
+    tip:"Chak imèl nan sekans lan ta dwe gen yon sèl objektif tou (enfòme, bati konfyans, oswa envite aksyon) — pa mele yo tout ansanm nan yon sèl imèl long.",
+    assign:"Ekri yon tit pou paj aterisaj biznis ou, yon bouton aksyon (CTA) espesifik, ak 3 sijè pou yon sekans imèl byenveni 3 etap.",
+    dl:"Referans: Fèy Travay Konvèsyon",
+    checklist:["Tit, CTA, ak 3 sijè imèl ekri?"],
+    ai:"Ede m ekri yon tit paj aterisaj konvenkan pou biznis mwen an, ki pale dirèkteman ak pi gwo bezwen kliyan mwen an."}},
+ fr:{lede:"Maintenant que les actifs sont prêts, il est temps de construire l'endroit où vous convertirez les gens en clients : une page de destination et une séquence d'emails de bienvenue — des concepts issus des Modules 14, 13, et 5.",
+   secs:[["Une page de destination avec un seul objectif","Le Module 14 a montré qu'une bonne page de destination se concentre sur UNE seule action (acheter, s'inscrire, contacter) — sans mélanger plusieurs objectifs ensemble. Le titre devrait parler directement au plus grand besoin du persona."],
+    ["La séquence d'emails continue la conversation","Le Module 13 a montré une séquence de bienvenue qui donne de la valeur avant de vendre (bienvenue → livrer de la valeur → contenu → offre). Chaque email devrait sembler une continuation naturelle, pas une liste de messages sans rapport."]],
+   illus:"roles",roleCards:[["📄","Titre de Page de Destination","Parle directement au persona"],["🔘","Bouton d'Action (CTA)","Un seul objectif clair"],["✉️","Séquence d'Emails","Bienvenue → Valeur → Offre"]],
+   ex:"Écrivez un titre pour la page de destination de votre entreprise, un bouton d'action (CTA) spécifique, et 3 sujets pour une séquence d'emails de bienvenue en 3 étapes.",
+   quiz:[
+    {q:"Quels 3 modules précédents sont utiles pour cette étape ?",opts:["Modules 14, 13, et 5","Modules 9, 10, et 11","Modules 6, 7, et 8","Modules 1, 2, et 3"],ans:0,fb:"Les Modules 14 (page de destination), 13 (email), et 5 (rédaction) sont utiles ici."},
+    {q:"Sur combien d'objectifs une bonne page de destination devrait-elle se concentrer, selon le Module 14 ?",opts:["Plusieurs objectifs en même temps","UN seul objectif clair","Aucun objectif spécifique","Autant d'objectifs que possible"],ans:1,fb:"Une bonne page de destination se concentre sur UN seul objectif (Module 14)."},
+    {q:"Quelle structure une bonne séquence d'emails de bienvenue suit-elle, selon le Module 13 ?",opts:["Vendre immédiatement sans contexte","Bienvenue → livrer de la valeur → contenu → offre","Envoyer 10 emails de vente en une seule journée","Il n'y a aucune structure spécifique"],ans:1,fb:"Une bonne séquence donne de la valeur avant de vendre (Module 13)."}],
+   close:{learned:"L'étape 4 du capstone construit la conversion : une page de destination avec un seul objectif clair, et une séquence d'emails qui donne de la valeur avant de vendre — des concepts directement issus des Modules 14, 13, et 5.",
+    mistake:"Construire une page de destination avec plusieurs boutons d'action différents (acheter, s'inscrire, contacter, télécharger) en même temps, ce qui confond le visiteur et diminue les chances de conversion.",
+    tip:"Chaque email de la séquence devrait aussi avoir un seul objectif (informer, bâtir la confiance, ou inviter à l'action) — ne les mélangez pas tous dans un seul long email.",
+    assign:"Écrivez un titre pour la page de destination de votre entreprise, un bouton d'action (CTA) spécifique, et 3 sujets pour une séquence d'emails de bienvenue en 3 étapes.",
+    dl:"Référence : Fiche de Travail Conversion",
+    checklist:["Titre, CTA, et 3 sujets d'emails écrits ?"],
+    ai:"Aide-moi à écrire un titre de page de destination convaincant pour mon entreprise, qui parle directement au plus grand besoin de mon client."}},
+ en:{lede:"Now that the assets are ready, it's time to build where you'll convert people into customers: a landing page and a welcome email sequence — concepts drawn from Modules 14, 13, and 5.",
+   secs:[["A landing page with one objective","Module 14 showed that a good landing page focuses on ONE action (buy, sign up, contact) — without mixing several objectives together. The headline should speak directly to the persona's biggest need."],
+    ["The email sequence continues the conversation","Module 13 showed a welcome sequence that delivers value before selling (welcome → deliver value → content → offer). Each email should feel like a natural continuation, not a list of unrelated messages."]],
+   illus:"roles",roleCards:[["📄","Landing Page Headline","Speaks directly to the persona"],["🔘","Call to Action (CTA)","One clear objective"],["✉️","Email Sequence","Welcome → Value → Offer"]],
+   ex:"Write a headline for your business's landing page, a specific call to action (CTA), and 3 subject lines for a 3-step welcome email sequence.",
+   quiz:[
+    {q:"Which 3 earlier modules are useful for this stage?",opts:["Modules 14, 13, and 5","Modules 9, 10, and 11","Modules 6, 7, and 8","Modules 1, 2, and 3"],ans:0,fb:"Modules 14 (landing page), 13 (email), and 5 (copywriting) are useful here."},
+    {q:"How many objectives should a good landing page focus on, per Module 14?",opts:["Several objectives at once","ONE clear objective","No specific objective","As many objectives as possible"],ans:1,fb:"A good landing page focuses on ONE objective (Module 14)."},
+    {q:"What structure does a good welcome email sequence follow, per Module 13?",opts:["Sell immediately with no context","Welcome → deliver value → content → offer","Send 10 sales emails in a single day","There's no specific structure"],ans:1,fb:"A good sequence delivers value before selling (Module 13)."}],
+   close:{learned:"Stage 4 of the capstone builds conversion: a landing page with one clear objective, and an email sequence that delivers value before selling — concepts drawn directly from Modules 14, 13, and 5.",
+    mistake:"Building a landing page with several different calls to action (buy, sign up, contact, download) at once, which confuses the visitor and lowers conversion chances.",
+    tip:"Every email in the sequence should also have one objective (inform, build trust, or invite action) — don't mix them all into one long email.",
+    assign:"Write a headline for your business's landing page, a specific call to action (CTA), and 3 subject lines for a 3-step welcome email sequence.",
+    dl:"Reference: Conversion Worksheet",
+    checklist:["Headline, CTA, and 3 email subject lines written?"],
+    ai:"Help me write a compelling landing page headline for my business that speaks directly to my customer's biggest need."}}},
+
+6:{ht:{lede:"Ak yon paj aterisaj ki pare pou konvèti moun, kounye a se lè pou mennen moun ladan l atravè yon kanpay piblisite peye — konsèp ki soti nan Modil 15.",
+   secs:[["Chwazi platfòm ak objektif ki koresponn ak objektif paj la","Modil 15 te montre chak platfòm gen fòs diferan, e chwa objektif kanpay la (konsyantizasyon, trafik, konvèsyon) ta dwe koresponn ak sa paj aterisaj ou fèt pou fè."],
+    ["Odyans ak bidjè baze sou pèsona a","Olye viser 'tout moun,' Modil 15 te montre limite odyans la (laj, lokasyon, enterè) ki koresponn ak pèsona ou defini pi bonè, ak yon bidjè reyalis pou objektif la."]],
+   illus:"roles",roleCards:[["📲","Platfòm & Objektif","Koresponn ak objektif paj la"],["🎯","Odyans","Limite dapre pèsona a"],["💰","Bidjè","Reyalis pou objektif la"]],
+   ex:"Chwazi yon platfòm piblisite (Modil 15) ak yon objektif kanpay pou biznis ou, epi dekri kout odyans ou (laj, lokasyon, enterè) ak yon bidjè pou premye kanpay la.",
+   quiz:[
+    {q:"Ki modil anvan an dirèkteman itil pou etap sa a?",opts:["Modil 9","Modil 15 (Piblisite Peye)","Modil 3","Modil 20"],ans:1,fb:"Modil 15 dirèkteman itil pou piblisite peye."},
+    {q:"Ki sa ki ta dwe koresponn ak objektif kanpay piblisite a?",opts:["Sa ki popilè jeneralman","Objektif paj aterisaj la (sa w vle vizitè a fè)","Koulè platfòm nan","Pa gen rapò espesifik"],ans:1,fb:"Objektif kanpay la ta dwe koresponn ak objektif paj aterisaj la."},
+    {q:"Poukisa limite odyans lan olye viser tout moun?",opts:["Sa pa gen enpòtans","Yon odyans limite ki koresponn ak pèsona a bay pi bon rezilta pase viser tout moun","Limite odyans lan koute plis lajan toujou","Tout moun se toujou pi bon"],ans:1,fb:"Yon odyans limite ki koresponn ak pèsona a bay pi bon rezilta (Modil 15)."}],
+   close:{learned:"Etap 5 nan kapstòn nan bati yon kanpay piblisite peye: platfòm ak objektif ki koresponn ak objektif paj aterisaj la, ak yon odyans limite dapre pèsona a — konsèp dirèkteman soti nan Modil 15.",
+    mistake:"Chwazi yon objektif kanpay (pa egzanp konsyantizasyon) ki pa koresponn ak sa paj aterisaj la fèt pou fè (pa egzanp konvèti moun an kliyan).",
+    tip:"Yon bidjè ti kal men byen vize (odyans limite, objektif klè) souvan bay pi bon rezilta pase yon bidjè gwo men vag.",
+    assign:"Chwazi yon platfòm piblisite ak yon objektif kanpay pou biznis ou, epi dekri kout odyans ou ak yon bidjè pou premye kanpay la.",
+    dl:"Referans: Fèy Travay Piblisite Peye",
+    checklist:["Platfòm, objektif, odyans, ak bidjè chwazi?"],
+    ai:"Ede m chwazi yon objektif kanpay piblisite ki koresponn ak yon paj aterisaj ki gen pou objektif fè moun achte."}},
+ fr:{lede:"Avec une page de destination prête à convertir les gens, il est maintenant temps d'y amener les gens grâce à une campagne de publicité payante — des concepts issus du Module 15.",
+   secs:[["Choisir une plateforme et un objectif qui correspondent à l'objectif de la page","Le Module 15 a montré que chaque plateforme a une force différente, et le choix de l'objectif de campagne (notoriété, trafic, conversion) devrait correspondre à ce que votre page de destination est censée faire."],
+    ["Audience et budget basés sur le persona","Plutôt que de viser « tout le monde », le Module 15 a montré limiter l'audience (âge, localisation, intérêts) pour correspondre au persona défini plus tôt, avec un budget réaliste pour l'objectif."]],
+   illus:"roles",roleCards:[["📲","Plateforme & Objectif","Correspond à l'objectif de la page"],["🎯","Audience","Limitée selon le persona"],["💰","Budget","Réaliste pour l'objectif"]],
+   ex:"Choisissez une plateforme de publicité (Module 15) et un objectif de campagne pour votre entreprise, puis décrivez brièvement votre audience (âge, localisation, intérêts) et un budget pour la première campagne.",
+   quiz:[
+    {q:"Quel module précédent est directement utile pour cette étape ?",opts:["Module 9","Module 15 (Publicité Payante)","Module 3","Module 20"],ans:1,fb:"Le Module 15 est directement utile pour la publicité payante."},
+    {q:"Qu'est-ce qui devrait correspondre à l'objectif de la campagne publicitaire ?",opts:["Ce qui est généralement populaire","L'objectif de la page de destination (ce que vous voulez que le visiteur fasse)","La couleur de la plateforme","Il n'y a aucun rapport spécifique"],ans:1,fb:"L'objectif de la campagne devrait correspondre à l'objectif de la page de destination."},
+    {q:"Pourquoi limiter l'audience plutôt que de viser tout le monde ?",opts:["Ça n'a pas d'importance","Une audience limitée qui correspond au persona donne de meilleurs résultats que viser tout le monde","Limiter l'audience coûte toujours plus cher","Tout le monde est toujours mieux"],ans:1,fb:"Une audience limitée qui correspond au persona donne de meilleurs résultats (Module 15)."}],
+   close:{learned:"L'étape 5 du capstone construit une campagne de publicité payante : plateforme et objectif qui correspondent à l'objectif de la page de destination, et une audience limitée selon le persona — des concepts directement issus du Module 15.",
+    mistake:"Choisir un objectif de campagne (par exemple notoriété) qui ne correspond pas à ce que la page de destination est censée faire (par exemple convertir les gens en clients).",
+    tip:"Un petit budget mais bien ciblé (audience limitée, objectif clair) donne souvent de meilleurs résultats qu'un gros budget mais vague.",
+    assign:"Choisissez une plateforme de publicité et un objectif de campagne pour votre entreprise, puis décrivez brièvement votre audience et un budget pour la première campagne.",
+    dl:"Référence : Fiche de Travail Publicité Payante",
+    checklist:["Plateforme, objectif, audience, et budget choisis ?"],
+    ai:"Aide-moi à choisir un objectif de campagne publicitaire qui correspond à une page de destination dont l'objectif est de faire acheter les gens."}},
+ en:{lede:"With a landing page ready to convert people, it's now time to bring people to it through a paid advertising campaign — concepts drawn from Module 15.",
+   secs:[["Choosing a platform and objective that match the page's goal","Module 15 showed each platform has a different strength, and the campaign objective choice (awareness, traffic, conversion) should match what your landing page is built to do."],
+    ["Audience and budget based on the persona","Rather than targeting \"everyone,\" Module 15 showed narrowing the audience (age, location, interests) to match the persona defined earlier, with a realistic budget for the objective."]],
+   illus:"roles",roleCards:[["📲","Platform & Objective","Matches the page's goal"],["🎯","Audience","Narrowed based on the persona"],["💰","Budget","Realistic for the objective"]],
+   ex:"Choose an advertising platform (Module 15) and campaign objective for your business, then briefly describe your audience (age, location, interests) and a budget for the first campaign.",
+   quiz:[
+    {q:"Which earlier module is directly useful for this stage?",opts:["Module 9","Module 15 (Paid Advertising)","Module 3","Module 20"],ans:1,fb:"Module 15 is directly useful for paid advertising."},
+    {q:"What should the ad campaign's objective match?",opts:["Whatever is generally popular","The landing page's goal (what you want the visitor to do)","The platform's color","There's no specific connection"],ans:1,fb:"The campaign's objective should match the landing page's goal."},
+    {q:"Why narrow the audience rather than targeting everyone?",opts:["It doesn't matter","A narrowed audience that matches the persona gives better results than targeting everyone","Narrowing the audience always costs more","Everyone is always better"],ans:1,fb:"A narrowed audience that matches the persona gives better results (Module 15)."}],
+   close:{learned:"Stage 5 of the capstone builds a paid advertising campaign: platform and objective that match the landing page's goal, and a narrowed audience based on the persona — concepts drawn directly from Module 15.",
+    mistake:"Choosing a campaign objective (e.g. awareness) that doesn't match what the landing page is built to do (e.g. converting people into customers).",
+    tip:"A small but well-targeted budget (narrow audience, clear objective) often gives better results than a large but vague budget.",
+    assign:"Choose an advertising platform and campaign objective for your business, then briefly describe your audience and a budget for the first campaign.",
+    dl:"Reference: Paid Advertising Worksheet",
+    checklist:["Platform, objective, audience, and budget chosen?"],
+    ai:"Help me choose an ad campaign objective that matches a landing page whose goal is to get people to buy."}}},
+
+7:{ht:{lede:"Dènye etap la se dènye pyès pil la: konnen ki metrik pou swiv pou wè si tout travay ou fè a mache — konsèp ki soti nan Modil 16 — epi fè yon revizyon final ki mete tout 6 etap yo ansanm.",
+   secs:[["Kòmanse ak yon ti kantite metrik ki gen sans","Modil 16 te montre pa gen bezwen swiv 20 metrik depi kòmansman — chwazi 2-3 ki dirèkteman koneke ak objektif paj aterisaj ou (pa egzanp, konvèsyon) ak objektif kanpay piblisite ou (pa egzanp, kliyan pou chak dola depanse)."],
+    ["Revizyon final: èske tout pyès yo koresponn ansanm?","Se pa sifizan pou chak pyès (mak, sit web, imèl, piblisite) bon poukont li — verifye yo tout pale menm lang lan: menm koulè, menm mesaj pou pèsona a, menm objektif kanpay/paj la."]],
+   illus:"hub",hubCenter:"Kapstòn Konplè",hubSpokes:["Idantite Mak ✓","Prezans Online ✓","Byen AI ✓","Konvèsyon ✓","Piblisite Peye ✓","Analitik ✓"],
+   ex:"Ki 3 metrik (Modil 16) ou ta swiv an premye pou biznis ou, e poukisa chak youn dirèkteman koneke ak objektif ou defini pi bonè (konvèsyon, kliyan, elatriye)?",
+   quiz:[
+    {q:"Konbyen metrik Modil 16 rekòmande pou kòmanse swiv, olye eseye swiv tout bagay ansanm?",opts:["20 metrik","2-3 metrik ki dirèkteman koneke ak objektif ou","Okenn metrik pa nesesè","100 metrik"],ans:1,fb:"Kòmanse ak 2-3 metrik ki dirèkteman koneke ak objektif ou (Modil 16)."},
+    {q:"Ki sa yon revizyon final kapstòn nan verifye?",opts:["Si chak pyès separe bon poukont li sèlman","Si tout pyès yo (mak, sit web, imèl, piblisite) koresponn ansanm ak pale menm lang lan","Si sit web la gen plis koulè posib","Pa gen bezwen revizyon final"],ans:1,fb:"Revizyon final la verifye tout pyès yo koresponn ansanm, pa jis chak youn separeman."},
+    {q:"Apre Modil 20, konbyen modil total ou fin fè nan kou Maketing Dijital & AI a?",opts:["10 modil","15 modil","Tout 20 modil","5 modil"],ans:2,fb:"Modil 20 se dènye modil la — sa vle di tout 20 modil yo fini."}],
+   close:{learned:"Etap 6 (dènye a) nan kapstòn nan chwazi yon ti kantite metrik ki koneke dirèkteman ak objektif ou (Modil 16), epi fè yon revizyon final pou verifye tout 6 etap yo (idantite, prezans online, byen AI, konvèsyon, piblisite, analitik) koresponn ansanm kòm yon sèl estrateji konplè.",
+    mistake:"Swiv anpil metrik san rapò dirèk ak objektif ou, ki fè difisil pou konnen ki chif reyèlman enpòtan pou biznis ou.",
+    tip:"Si yon metrik pa ede w reponn kesyon 'èske sa mache?' pou objektif espesifik ou, li pa yon priyorite pou kòmanse.",
+    assign:"Ki 3 metrik ou ta swiv an premye pou biznis ou, e poukisa chak youn dirèkteman koneke ak objektif ou defini pi bonè?",
+    dl:"Referans: Fèy Travay Analitik & Revizyon Final Kapstòn",
+    checklist:["3 metrik chwazi ak yon rezon pou chak, plis yon revizyon final tout 6 etap yo?"],
+    ai:"Ede m chwazi 3 metrik pou kòmanse swiv pou biznis mwen an, ki dirèkteman koneke ak objektif konvèsyon mwen defini nan paj aterisaj mwen."}},
+ fr:{lede:"La dernière étape est la dernière pièce du puzzle : savoir quelles métriques suivre pour voir si tout votre travail fonctionne — des concepts issus du Module 16 — puis faire une révision finale qui rassemble les 6 étapes.",
+   secs:[["Commencer avec un petit nombre de métriques pertinentes","Le Module 16 a montré qu'il n'est pas nécessaire de suivre 20 métriques dès le départ — choisissez 2-3 qui se connectent directement à l'objectif de votre page de destination (par exemple, conversion) et à l'objectif de votre campagne publicitaire (par exemple, clients par dollar dépensé)."],
+    ["Révision finale : est-ce que toutes les pièces correspondent ensemble ?","Il ne suffit pas que chaque pièce (marque, site web, emails, publicité) soit bonne toute seule — vérifiez qu'elles parlent toutes le même langage : mêmes couleurs, même message pour le persona, même objectif de campagne/page."]],
+   illus:"hub",hubCenter:"Capstone Complet",hubSpokes:["Image de Marque ✓","Présence en Ligne ✓","Actifs IA ✓","Conversion ✓","Publicité Payante ✓","Analytique ✓"],
+   ex:"Quelles 3 métriques (Module 16) suivriez-vous en premier pour votre entreprise, et pourquoi chacune se connecte-t-elle directement à l'objectif que vous avez défini plus tôt (conversion, clients, etc.) ?",
+   quiz:[
+    {q:"Combien de métriques le Module 16 recommande-t-il de commencer à suivre, plutôt que d'essayer de tout suivre en même temps ?",opts:["20 métriques","2-3 métriques qui se connectent directement à votre objectif","Aucune métrique n'est nécessaire","100 métriques"],ans:1,fb:"Commencez avec 2-3 métriques qui se connectent directement à votre objectif (Module 16)."},
+    {q:"Que vérifie une révision finale du capstone ?",opts:["Si chaque pièce séparée est bonne toute seule uniquement","Si toutes les pièces (marque, site web, emails, publicité) correspondent ensemble et parlent le même langage","Si le site web a le plus de couleurs possible","Aucune révision finale n'est nécessaire"],ans:1,fb:"La révision finale vérifie que toutes les pièces correspondent ensemble, pas seulement chacune séparément."},
+    {q:"Après le Module 20, combien de modules au total avez-vous terminé dans le cours Marketing Digital & IA ?",opts:["10 modules","15 modules","Les 20 modules","5 modules"],ans:2,fb:"Le Module 20 est le dernier module — ça veut dire que les 20 modules sont terminés."}],
+   close:{learned:"L'étape 6 (dernière) du capstone choisit un petit nombre de métriques directement connectées à votre objectif (Module 16), puis fait une révision finale pour vérifier que les 6 étapes (identité, présence en ligne, actifs IA, conversion, publicité, analytique) correspondent ensemble comme une seule stratégie complète.",
+    mistake:"Suivre beaucoup de métriques sans rapport direct avec votre objectif, ce qui rend difficile de savoir quels chiffres comptent vraiment pour votre entreprise.",
+    tip:"Si une métrique ne vous aide pas à répondre à la question « est-ce que ça fonctionne ? » pour votre objectif spécifique, ce n'est pas une priorité pour commencer.",
+    assign:"Quelles 3 métriques suivriez-vous en premier pour votre entreprise, et pourquoi chacune se connecte-t-elle directement à l'objectif que vous avez défini plus tôt ?",
+    dl:"Référence : Fiche de Travail Analytique & Révision Finale du Capstone",
+    checklist:["3 métriques choisies avec une raison pour chacune, plus une révision finale des 6 étapes ?"],
+    ai:"Aide-moi à choisir 3 métriques à commencer à suivre pour mon entreprise, qui se connectent directement à l'objectif de conversion que j'ai défini sur ma page de destination."}},
+ en:{lede:"The final stage is the last piece of the puzzle: knowing which metrics to track to see if all your work is actually working — concepts drawn from Module 16 — then doing a final review that ties all 6 stages together.",
+   secs:[["Start with a small number of metrics that make sense","Module 16 showed there's no need to track 20 metrics from the start — choose 2-3 that connect directly to your landing page's goal (e.g. conversion) and your ad campaign's goal (e.g. customers per dollar spent)."],
+    ["Final review: does everything fit together?","It's not enough for each piece (brand, website, emails, ads) to be good on its own — check that they all speak the same language: same colors, same message for the persona, same campaign/page goal."]],
+   illus:"hub",hubCenter:"Complete Capstone",hubSpokes:["Brand Identity ✓","Online Presence ✓","AI Assets ✓","Conversion ✓","Paid Advertising ✓","Analytics ✓"],
+   ex:"What 3 metrics (Module 16) would you track first for your business, and why does each one directly connect to the goal you defined earlier (conversion, customers, etc.)?",
+   quiz:[
+    {q:"How many metrics does Module 16 recommend starting with, rather than trying to track everything at once?",opts:["20 metrics","2-3 metrics that directly connect to your goal","No metrics are necessary","100 metrics"],ans:1,fb:"Start with 2-3 metrics that directly connect to your goal (Module 16)."},
+    {q:"What does a final capstone review check?",opts:["Only whether each separate piece is good on its own","Whether all the pieces (brand, website, emails, ads) fit together and speak the same language","Whether the website has as many colors as possible","No final review is necessary"],ans:1,fb:"The final review checks that all the pieces fit together, not just each one separately."},
+    {q:"After Module 20, how many total modules have you completed in the Digital Marketing & AI course?",opts:["10 modules","15 modules","All 20 modules","5 modules"],ans:2,fb:"Module 20 is the final module — meaning all 20 modules are complete."}],
+   close:{learned:"Stage 6 (the final one) of the capstone chooses a small number of metrics directly connected to your goal (Module 16), then does a final review to check that all 6 stages (identity, online presence, AI assets, conversion, advertising, analytics) fit together as one complete strategy.",
+    mistake:"Tracking many metrics with no direct connection to your goal, which makes it hard to know which numbers actually matter for your business.",
+    tip:"If a metric doesn't help you answer \"is this working?\" for your specific goal, it's not a priority to start with.",
+    assign:"What 3 metrics would you track first for your business, and why does each one directly connect to the goal you defined earlier?",
+    dl:"Reference: Analytics & Final Capstone Review Worksheet",
+    checklist:["3 metrics chosen with a reason for each, plus a final review of all 6 stages?"],
+    ai:"Help me choose 3 metrics to start tracking for my business that directly connect to the conversion goal I defined on my landing page."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module20-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD20_LESSON_SLUGS=["choosing-your-capstone-business","brand-identity-name-logo-and-persona","online-presence-website-content-plan-and-social-pages","ai-assets-images-video-and-copy","landing-page-and-email-sequence","paid-advertising-campaign","analytics-dashboard-and-presenting-your-capstone"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD20_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder",15:"meet-the-ads-manager",16:"meet-the-analytics-dashboard",17:"meet-the-automation-tool",18:"freelancing-vs-starting-an-agency",19:"marketing-for-local-service-businesses"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===20;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M20[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="hub"){
+  let h='<div style="max-width:560px;margin:0 auto;text-align:center">'+
+   '<div style="display:inline-block;background:var(--brand);color:#fff;font-weight:800;font-size:14px;border-radius:12px;padding:14px 22px;margin-bottom:18px">'+d.hubCenter+'</div>'+
+   '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">';
+  d.hubSpokes.forEach(s=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:10px;padding:11px;font-size:12.5px;font-weight:600">'+s+"</div>";
+  });
+  h+="</div></div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 20 · 20."+n;
+ $("topTitle").textContent=M20[lang][n-1];
+ document.title="Academy · "+M20[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 20 · 20.'+n+'</span><h2 class="labh2">'+M20[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M20[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🏆</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 20?":S.lang==="fr"?"Voulez-vous recommencer le Module 20 ?":"Restart Module 20?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>

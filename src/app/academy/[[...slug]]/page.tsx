@@ -104,6 +104,7 @@ const dominateDigitalSimulatorModules: Record<
   m17: { moduleNumber: 17, title: "Modil 17 — Otomatizasyon Maketing" },
   m18: { moduleNumber: 18, title: "Modil 18 — Freelans ak Kreye Ajans" },
   m19: { moduleNumber: 19, title: "Modil 19 — Maketing pou Diferan Biznis" },
+  m20: { moduleNumber: 20, title: "Modil 20 — Pwojè Final" },
 };
 
 export async function generateMetadata({
