@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 11 — SEO (Referansman)</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 11 · 11.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 11!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 11 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 11!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M11={
+ ht:["Kijan Rechèch Google Reyèlman Mache","Baz Rechèch Mo Kle","Entansyon Rechèch","Baz SEO Sou Paj la","Baz SEO Teknik","SEO Lokal","Optimizasyon Rechèch IA"],
+ fr:["Comment Fonctionne Vraiment la Recherche Google","Les Bases de la Recherche de Mots-Clés","L'Intention de Recherche","Les Bases du SEO On-Page","Les Bases du SEO Technique","Le SEO Local","L'Optimisation pour la Recherche IA"],
+ en:["How Google Search Actually Works","Keyword Research Basics","Search Intent","On-Page SEO Basics","Technical SEO Basics","Local SEO","AI Search Optimization"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Chak motè rechèch swiv menm pwosesis twa etap debaz la — konprann li demistifye 'SEO' soti nan yon bwat nwa mistèrye pou vin yon sistèm lojik ou reyèlman ka travay ak li.",
+   secs:[["Eksplore (Crawling)","Motè rechèch yo voye pwogram otomatik (crawlers/bots) ki swiv lyen soti nan yon paj a yon lòt, dekouvri ki paj ki egziste atravè entènèt la."],
+    ["Endeksasyon (Indexing)","Yon fwa yon paj jwenn, motè rechèch la li e estoke kontni li nan yon gwo endèks — tankou yon katalòg kat bibliyotèk — pou li ka rekipere pita; yon paj ki pa endekse pa ka parèt nan rezilta rechèch ditou, kèlkeswa jan li bon."],
+    ["Klasman (Ranking)","Lè yon moun fè rechèch, motè a pa montre chak paj endekse — li klase paj yo dapre jan yo sanble reponn rechèch espesifik sa a, itilize sinyal tankou pètinans, kalite, ak konfyans (pa plasman peye, ki se yon sistèm piblisite peye separe kouvri nan Modil 15)."]],
+   illus:"journey",journeySteps:["Eksplore","Endekse","Klase","Montre"],
+   ex:"Nan pwòp mo ou, eksplike poukisa yon paj ki pa endekse pa ka janm parèt nan rezilta rechèch, kèlkeswa jan li byen ekri.",
+   quiz:[
+    {q:"Kisa crawlers fè?",opts:["Anyen, yo pa egziste","Swiv lyen soti nan yon paj a yon lòt pou dekouvri ki paj ki egziste","Sèlman travay sou piblisite peye","Klase paj yo enstantaneman"],ans:1,fb:"Crawlers swiv lyen pou dekouvri paj yo."},
+    {q:"Kisa ki pase si yon paj pa janm endekse?",opts:["Li klase #1 otomatikman","Li pa ka parèt nan rezilta rechèch ditou","Li sèlman parèt pou rechèch peye","Endeksasyon pa gen enpòtans"],ans:1,fb:"San endeksasyon, paj la pa ka parèt ditou."},
+    {q:"Kisa klasman itilize pou deside lòd la?",opts:["Yon lotri o aza","Sinyal tankou pètinans, kalite, ak konfyans","Sèlman konbyen kòb yo peye","Lòd alfabetik"],ans:1,fb:"Klasman itilize sinyal pètinans/kalite/konfyans."}],
+   close:{learned:"Motè rechèch swiv 3 etap — eksplorasyon (dekouvri paj), endeksasyon (estoke yo), ak klasman (òdone rezilta dapre pètinans/kalite/konfyans) — yon paj envizib nan nenpòt etap pa ka parèt nan rezilta.",
+    mistake:"Sipoze yon sit web parèt otomatikman nan rechèch jis paske li egziste — si li pa janm eksplore oswa endekse, li envizib kèlkeswa jan kontni an bon.",
+    tip:"Si ou pa si sit ou endekse, chèche 'site:domèn ou.com' nan Google pou wè ki paj li gen estoke.",
+    assign:"Eksplike nan pwòp mo ou poukisa yon paj ki pa endekse pa ka janm parèt nan rezilta rechèch.",
+    dl:"Referans: Kijan Motè Rechèch Mache, Senplifye",
+    checklist:["Ka eksplike eksplorasyon?","Ka eksplike endeksasyon?","Ka eksplike klasman?","Konprann se 3 etap separe?"],
+    ai:"Eksplike kijan motè rechèch jwenn, estoke, ak klase paj entènèt, an tèm senp pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Chaque moteur de recherche suit le même processus de base en trois étapes — le comprendre démystifie le « SEO » qui passe d'une boîte noire mystérieuse à un système logique avec lequel vous pouvez vraiment travailler.",
+   secs:[["Exploration (Crawling)","Les moteurs de recherche envoient des programmes automatisés (robots/crawlers) qui suivent les liens de page en page, découvrant quelles pages existent à travers le web."],
+    ["Indexation (Indexing)","Une fois une page trouvée, le moteur de recherche lit et stocke son contenu dans un immense index — comme un catalogue de fiches de bibliothèque — pour pouvoir le récupérer plus tard ; une page qui n'est pas indexée ne peut apparaître dans les résultats de recherche du tout, peu importe sa qualité."],
+    ["Classement (Ranking)","Quand quelqu'un fait une recherche, le moteur ne montre pas chaque page indexée — il classe les pages selon à quel point elles semblent répondre à cette recherche spécifique, en utilisant des signaux comme la pertinence, la qualité, et la confiance (pas le placement payant, qui est un système de publicité payante séparé couvert au Module 15)."]],
+   illus:"journey",journeySteps:["Explorer","Indexer","Classer","Afficher"],
+   ex:"Avec vos propres mots, expliquez pourquoi une page qui n'est pas indexée ne peut jamais apparaître dans les résultats de recherche, peu importe sa qualité d'écriture.",
+   quiz:[
+    {q:"Que font les robots d'exploration (crawlers) ?",opts:["Rien, ils n'existent pas","Suivre les liens de page en page pour découvrir quelles pages existent","Seulement travailler sur les publicités payantes","Classer les pages instantanément"],ans:1,fb:"Les crawlers suivent les liens pour découvrir les pages."},
+    {q:"Que se passe-t-il si une page n'est jamais indexée ?",opts:["Elle se classe #1 automatiquement","Elle ne peut pas apparaître dans les résultats de recherche du tout","Elle n'apparaît que pour les recherches payantes","L'indexation n'a pas d'importance"],ans:1,fb:"Sans indexation, la page ne peut pas apparaître du tout."},
+    {q:"Qu'est-ce que le classement utilise pour décider de l'ordre ?",opts:["Une loterie au hasard","Des signaux comme la pertinence, la qualité, et la confiance","Seulement combien d'argent a été payé","L'ordre alphabétique"],ans:1,fb:"Le classement utilise des signaux de pertinence/qualité/confiance."}],
+   close:{learned:"Les moteurs de recherche suivent 3 étapes — exploration (découvrir les pages), indexation (les stocker), et classement (ordonner les résultats par pertinence/qualité/confiance) — une page invisible à n'importe quelle étape ne peut pas apparaître dans les résultats.",
+    mistake:"Supposer qu'un site web apparaît automatiquement dans la recherche juste parce qu'il existe — s'il n'est jamais exploré ou indexé, il est invisible peu importe la qualité du contenu.",
+    tip:"Si vous n'êtes pas sûr que votre site est indexé, cherchez « site:votredomaine.com » dans Google pour voir quelles pages il a stockées.",
+    assign:"Expliquez avec vos propres mots pourquoi une page qui n'est pas indexée ne peut jamais apparaître dans les résultats de recherche.",
+    dl:"Référence : Comment Fonctionnent les Moteurs de Recherche, Simplifié",
+    checklist:["Peut expliquer l'exploration ?","Peut expliquer l'indexation ?","Peut expliquer le classement ?","Comprend que ce sont 3 étapes séparées ?"],
+    ai:"Explique comment les moteurs de recherche trouvent, stockent, et classent les pages web, en termes simples pour un propriétaire de petite entreprise."}},
+ en:{lede:"Every search engine follows the same basic three-step process — understanding it demystifies \"SEO\" from a mysterious black box into a logical system you can actually work with.",
+   secs:[["Crawling","Search engines send out automated programs (crawlers/bots) that follow links from page to page, discovering what pages exist across the web."],
+    ["Indexing","Once a page is found, the search engine reads and stores its content in a massive index — like a library card catalog — so it can be retrieved later; a page that isn't indexed can't show up in search results at all, no matter how good it is."],
+    ["Ranking","When someone searches, the engine doesn't show every indexed page — it ranks pages by how well they seem to answer that specific search, using signals like relevance, quality, and trustworthiness (not paid placement, which is a separate paid-ads system covered in Module 15)."]],
+   illus:"journey",journeySteps:["Crawl","Index","Rank","Serve"],
+   ex:"In your own words, explain why a page that isn't indexed can never appear in search results, no matter how well-written it is.",
+   quiz:[
+    {q:"What do crawlers do?",opts:["Nothing, they don't exist","Follow links from page to page discovering what pages exist","Only work on paid ads","Rank pages instantly"],ans:1,fb:"Crawlers follow links discovering pages."},
+    {q:"What happens if a page is never indexed?",opts:["It ranks #1 automatically","It can't show up in search results at all","It only shows up for paid searches","Indexing doesn't matter"],ans:1,fb:"Without indexing, the page can't show up at all."},
+    {q:"What does ranking use to decide order?",opts:["A random lottery","Signals like relevance, quality, and trustworthiness","Only how much money was paid","Alphabetical order"],ans:1,fb:"Ranking uses relevance/quality/trust signals."}],
+   close:{learned:"Search engines follow 3 steps — crawling (discovering pages), indexing (storing them), and ranking (ordering results by relevance/quality/trust) — a page invisible to any step can't appear in results.",
+    mistake:"Assuming a website automatically appears in search just by existing — if it's never crawled or indexed, it's invisible no matter how good the content is.",
+    tip:"If you're unsure whether your site is indexed, search \"site:yourdomain.com\" in Google to see what pages it has stored.",
+    assign:"Explain in your own words why a page that isn't indexed can never appear in search results.",
+    dl:"Reference: How Search Engines Work, Simplified",
+    checklist:["Can explain crawling?","Can explain indexing?","Can explain ranking?","Understands these are 3 separate steps?"],
+    ai:"Explain how search engines find, store, and rank web pages, in simple terms for a small business owner."}}},
+
+2:{ht:{lede:"Mo kle se vrè mo ak fraz moun tape nan yon bawo rechèch — konnen ki sa vrè kliyan ou itilize se fondasyon tout lòt bagay nan SEO bati sou li.",
+   secs:[["Kote lide mo kle soti","Kesyon kliyan reyèlman poze w (an pèsòn, pa mesaj, nan revi); sa paj konkirans yo klase pou; ak sijesyon otokonplete pwòp motè rechèch la bay lè ou kòmanse tape yon fraz pètinan."],
+    ["Mo kle kout kont mo kle long-tail","Mo kle kout ('soulye') laj, chèche anpil, e trè konpetitif; mo kle long-tail ('soulye konfòtab pou mache pou pye plat') pi espesifik, chèche mwens souvan, men pi fasil pou klase e souvan pi pre yon moun ki pare pou achte."],
+    ["Matche mo kle ak vrè paj","Chak paj enpòtan sou sit ou ta dwe gen yon mo kle prensipal li bati alantou li, travay natirèlman nan tit, tit segondè, ak kò a — pa foure san natirèl, ki li mal e ka reyèlman fè mal olye ede."]],
+   illus:"roles",roleCards:[["💬","Kesyon Kliyan","Sa moun mande w tout tan"],["🔎","Otokonplete Rechèch","Sijesyon rechèch la bay"],["🏆","Paj Konkirans","Sa ki mache pou lòt moun"]],
+   ex:"Site 3 vrè kesyon oswa fraz kliyan ou reyèlman itilize lè y ap chèche sa ou ofri.",
+   quiz:[
+    {q:"Kisa yon mo kle 'long-tail' ye?",opts:["Yon rechèch trè kout, yon sèl mo","Yon fraz pi espesifik, chèche mwens souvan men pi fasil pou klase","Yon mo kle ki pa janm chèche","Sèlman itilize pou piblisite peye"],ans:1,fb:"Long-tail se espesifik, mwens chèche, pi fasil pou klase."},
+    {q:"Kote bon lide mo kle soti?",opts:["Sèlman devine o aza","Vrè kesyon kliyan, paj konkirans, ak otokonplete rechèch","Sèlman soti nan lojisyèl chè","Yo pa gen enpòtans, nenpòt mo mache"],ans:1,fb:"Vrè kesyon/konkirans/otokonplete se bon sous."},
+    {q:"Kisa ki pase si ou foure mo kle san natirèl nan yon paj?",opts:["Li toujou klase #1","Li li mal e ka reyèlman fè mal olye ede","Anyen pa chanje ditou","Se estrateji SEO rekòmande"],ans:1,fb:"Foure san natirèl li mal e ka fè mal."}],
+   close:{learned:"Mo kle se vrè mo kliyan chèche — mo kle long-tail pi espesifik e pi fasil pou klase, e chak paj ta dwe natirèlman santre sou yon mo kle prensipal.",
+    mistake:"Foure yon mo kle san natirèl nan yon paj plizyè fwa, ki li mal pou vrè vizitè e ka fè mal olye ede klasman ou.",
+    tip:"Mo kle long-tail chèche mwens souvan men tipikman pi fasil pou klase e pi pre yon kliyan ki pare pou achte.",
+    assign:"Site 3 vrè kesyon oswa fraz kliyan ou reyèlman itilize lè y ap chèche sa ou ofri.",
+    dl:"Fèy Travay: Bank Lide Mo Kle",
+    checklist:["3 vrè fraz kliyan site?","Omwen yon fraz long-tail enkli?","Mo kle santi natirèl, pa foure?"],
+    ai:"Sijere 8 fraz mo kle long-tail yon kliyan ta ka chèche pou yon [kalite biznis] nan [kote/kontèks]."}},
+ fr:{lede:"Les mots-clés sont les vrais mots et phrases que les gens tapent dans une barre de recherche — savoir lesquels vos vrais clients utilisent est la fondation sur laquelle tout le reste du SEO se construit.",
+   secs:[["D'où viennent les idées de mots-clés","Les questions que les clients vous posent réellement (en personne, par message, dans les avis) ; ce pour quoi les pages des concurrents se classent ; et les suggestions d'auto-complétion du moteur de recherche lui-même quand vous commencez à taper une phrase pertinente."],
+    ["Mots-clés courts vs. longue traîne","Les mots-clés courts (« chaussures ») sont larges, très recherchés, et très compétitifs ; les mots-clés longue traîne (« chaussures de marche confortables pour pieds plats ») sont plus spécifiques, moins recherchés, mais beaucoup plus faciles à classer et souvent plus proches de quelqu'un prêt à acheter."],
+    ["Faire correspondre les mots-clés aux vraies pages","Chaque page importante de votre site devrait avoir un mot-clé principal autour duquel elle est construite, intégré naturellement dans le titre, les titres, et le corps — pas bourré artificiellement, ce qui se lit mal et peut en fait nuire plutôt qu'aider."]],
+   illus:"roles",roleCards:[["💬","Questions Clients","Ce que les gens vous demandent tout le temps"],["🔎","Auto-complétion de Recherche","Suggestions que donne la recherche"],["🏆","Pages Concurrentes","Ce qui fonctionne pour d'autres"]],
+   ex:"Listez 3 vraies questions ou phrases que vos clients utilisent réellement en cherchant ce que vous offrez.",
+   quiz:[
+    {q:"Qu'est-ce qu'un mot-clé « longue traîne » ?",opts:["Une recherche très courte, un seul mot","Une phrase plus spécifique, moins recherchée mais plus facile à classer","Un mot-clé qui n'est jamais recherché","Seulement utilisé pour les publicités payantes"],ans:1,fb:"La longue traîne est spécifique, moins recherchée, plus facile à classer."},
+    {q:"D'où viennent les bonnes idées de mots-clés ?",opts:["Seulement deviner au hasard","Vraies questions clients, pages concurrentes, et auto-complétion de recherche","Seulement de logiciels chers","Ils n'ont pas d'importance, n'importe quel mot fonctionne"],ans:1,fb:"Vraies questions/concurrents/auto-complétion sont de bonnes sources."},
+    {q:"Que se passe-t-il si vous bourrez artificiellement des mots-clés dans une page ?",opts:["Elle se classe toujours #1","Elle se lit mal et peut en fait nuire plutôt qu'aider","Rien ne change du tout","C'est la stratégie SEO recommandée"],ans:1,fb:"Le bourrage artificiel se lit mal et peut nuire."}],
+   close:{learned:"Les mots-clés sont les vrais mots que les clients recherchent — les mots-clés longue traîne sont plus spécifiques et plus faciles à classer, et chaque page devrait naturellement se centrer sur un mot-clé principal.",
+    mistake:"Bourrer artificiellement un mot-clé dans une page de façon répétée, ce qui se lit mal pour les vrais visiteurs et peut nuire plutôt qu'aider votre classement.",
+    tip:"Les mots-clés longue traîne sont moins recherchés mais généralement plus faciles à classer et plus proches d'un client prêt à acheter.",
+    assign:"Listez 3 vraies questions ou phrases que vos clients utilisent réellement en cherchant ce que vous offrez.",
+    dl:"Fiche de travail : Banque d'Idées de Mots-Clés",
+    checklist:["3 vraies phrases clients listées ?","Au moins une phrase longue traîne incluse ?","Les mots-clés se sentent naturels, pas bourrés ?"],
+    ai:"Suggère 8 phrases de mots-clés longue traîne qu'un client pourrait rechercher pour un(e) [type d'entreprise] dans [lieu/contexte]."}},
+ en:{lede:"Keywords are the actual words and phrases people type into a search bar — knowing which ones your real customers use is the foundation everything else in SEO builds on.",
+   secs:[["Where keyword ideas come from","The questions customers actually ask you (in person, by message, in reviews); what competitors' pages are ranking for; and a search engine's own autocomplete suggestions when you start typing a relevant phrase."],
+    ["Short vs. long-tail keywords","Short keywords (\"shoes\") are broad, highly searched, and highly competitive; long-tail keywords (\"comfortable walking shoes for flat feet\") are more specific, searched less often, but far easier to rank for and often closer to someone ready to buy."],
+    ["Matching keywords to real pages","Each important page on your site should have a primary keyword it's built around, naturally worked into the title, headings, and body — not stuffed in unnaturally, which reads poorly and can actually hurt rather than help."]],
+   illus:"roles",roleCards:[["💬","Customer Questions","What people ask you all the time"],["🔎","Search Autocomplete","Suggestions search itself gives"],["🏆","Competitor Pages","What works for others"]],
+   ex:"List 3 real questions or phrases your customers actually use when looking for what you offer.",
+   quiz:[
+    {q:"What is a \"long-tail\" keyword?",opts:["A very short, one-word search","A more specific phrase, searched less often but easier to rank for","A keyword that never gets searched","Only used for paid ads"],ans:1,fb:"Long-tail is specific, less searched, easier to rank for."},
+    {q:"Where do good keyword ideas come from?",opts:["Only guessing randomly","Real customer questions, competitor pages, and search autocomplete","Only from expensive software","They don't matter, any word works"],ans:1,fb:"Real questions/competitors/autocomplete are good sources."},
+    {q:"What happens if you unnaturally stuff keywords into a page?",opts:["It always ranks #1","It reads poorly and can actually hurt rather than help","Nothing changes at all","It's the recommended SEO strategy"],ans:1,fb:"Unnatural stuffing reads poorly and can hurt."}],
+   close:{learned:"Keywords are the real words customers search — long-tail keywords are more specific and easier to rank for, and each page should naturally center on one primary keyword.",
+    mistake:"Unnaturally stuffing a keyword into a page repeatedly, which reads poorly to real visitors and can hurt rather than help your ranking.",
+    tip:"Long-tail keywords are searched less often but are usually easier to rank for and closer to a ready-to-buy customer.",
+    assign:"List 3 real questions or phrases your customers actually use when looking for what you offer.",
+    dl:"Worksheet: Keyword Idea Bank",
+    checklist:["3 real customer phrases listed?","At least one long-tail phrase included?","Keywords feel natural, not stuffed?"],
+    ai:"Suggest 8 long-tail keyword phrases a customer might search for a [type of business] in [location/context]."}}},
+
+3:{ht:{lede:"Menm mo kle egzat la ka vle di bagay konplètman diferan tou depann de sa moun k ap chèche a reyèlman vle — matche kontni ou ak vrè entansyon dèyè yon rechèch enpòtan plis pase mo kle a limenm.",
+   secs:[["Entansyon enfòmasyonèl","Moun k ap chèche a vle aprann yon bagay ('kijan SEO mache') — yo poko pare pou achte, kidonk kontni isit la ta dwe anseye, pa fè vant."],
+    ["Entansyon navigasyonèl","Moun k ap chèche a deja konnen kote yo vle ale e jis itilize rechèch pou rive la ('Jamezzi Academy koneksyon') — pa gen anpil pou optimize isit la pi lwen pase asire rechèch mak pa ou mennen vin jwenn ou."],
+    ["Entansyon transaksyonèl","Moun k ap chèche a pare pou aji ('achte soulye kouri sou entènèt,' 'konsiltan SEO tou pre m') — se isit la yon ofri klè ak yon apèl a aksyon (Modil 5) ta dwe ye, paske moun nan pre yon desizyon."]],
+   illus:"roles",roleCards:[["📖","Enfòmasyonèl","Vle aprann yon bagay"],["🧭","Navigasyonèl","Deja konnen kote yo prale"],["🛒","Transaksyonèl","Pare pou aji/achte"]],
+   ex:"Pran yon lide mo kle nan lis ou epi idantifye ki nan 3 entansyon yo li matche.",
+   quiz:[
+    {q:"Kisa entansyon rechèch enfòmasyonèl vle di?",opts:["Moun k ap chèche a pare pou achte imedyatman","Moun k ap chèche a vle aprann yon bagay e poko pare pou achte","Moun k ap chèche a deja konnen egzakteman kote pou ale","Entansyon pa afekte kontni ditou"],ans:1,fb:"Enfòmasyonèl vle aprann, poko pare pou achte."},
+    {q:"Kisa entansyon transaksyonèl vle di?",opts:["Moun k ap chèche a vle sèlman enfòmasyon jeneral","Moun k ap chèche a pare pou aji, tankou achte oswa rezève","Moun k ap chèche a ap chèche yon sit web espesifik li konnen","Entansyon a se menm bagay ak navigasyonèl"],ans:1,fb:"Transaksyonèl vle di pare pou aji."},
+    {q:"Poukisa matche entansyon konte plis pase mo kle a limenm?",opts:["Li pa konte ditou","Menm mo kle a ka vle di bagay trè diferan tou depann de sa moun k ap chèche a reyèlman vle","Sèlman matche egzat mo kle konte","Entansyon sèlman pètinan pou piblisite peye"],ans:1,fb:"Menm mo kle, diferan vrè siyifikasyon."}],
+   close:{learned:"Menm mo kle a ka pote entansyon enfòmasyonèl, navigasyonèl, oswa transaksyonèl — matche kontni ak vrè entansyon dèyè yon rechèch konte plis pase mo kle a limenm.",
+    mistake:"Ekri yon pi bon lang vant pou yon rechèch enfòmasyonèl, ki pa matche sa moun k ap chèche a reyèlman te vle e fè yo ale.",
+    tip:"Paj entansyon transaksyonèl se kote yon ofri klè ak yon apèl a aksyon ta dwe ye — paj enfòmasyonèl ta dwe anseye anvan.",
+    assign:"Pran yon lide mo kle nan lis ou epi idantifye ki nan 3 entansyon yo li matche.",
+    dl:"Referans: 3 Kalite Entansyon Rechèch",
+    checklist:["Mo kle chwazi nan lis ou?","Bon entansyon idantifye?","Konprann poukisa kontni ta dwe matche entansyon sa a?"],
+    ai:"Pou mo kle [mo kle ou a], di m ki entansyon rechèch li tipikman matche e ki kalite kontni ki ta matche li."}},
+ fr:{lede:"Exactement le même mot-clé peut vouloir dire des choses complètement différentes selon ce que le chercheur veut vraiment — faire correspondre votre contenu à la vraie intention derrière une recherche compte plus que le mot-clé lui-même.",
+   secs:[["Intention informationnelle","Le chercheur veut apprendre quelque chose (« comment fonctionne le SEO ») — il n'est pas encore prêt à acheter, donc le contenu ici devrait enseigner, pas vendre."],
+    ["Intention navigationnelle","Le chercheur sait déjà où il veut aller et utilise juste la recherche pour y arriver (« connexion Jamezzi Academy ») — pas grand-chose à optimiser ici au-delà de s'assurer que les recherches de votre marque mènent bien à vous."],
+    ["Intention transactionnelle","Le chercheur est prêt à agir (« acheter des chaussures de course en ligne », « consultant SEO près de chez moi ») — c'est ici qu'une offre claire et un appel à l'action (Module 5) ont leur place, puisque la personne est proche d'une décision."]],
+   illus:"roles",roleCards:[["📖","Informationnelle","Veut apprendre quelque chose"],["🧭","Navigationnelle","Sait déjà où aller"],["🛒","Transactionnelle","Prêt à agir/acheter"]],
+   ex:"Prenez une idée de mot-clé de votre liste et identifiez laquelle des 3 intentions elle correspond.",
+   quiz:[
+    {q:"Que signifie l'intention de recherche informationnelle ?",opts:["Le chercheur est prêt à acheter immédiatement","Le chercheur veut apprendre quelque chose et n'est pas prêt à acheter","Le chercheur sait déjà exactement où aller","L'intention n'affecte pas du tout le contenu"],ans:1,fb:"Informationnelle veut apprendre, pas encore prêt à acheter."},
+    {q:"Que signifie l'intention transactionnelle ?",opts:["Le chercheur veut seulement des infos générales","Le chercheur est prêt à agir, comme acheter ou réserver","Le chercheur cherche un site web spécifique connu","L'intention est la même que navigationnelle"],ans:1,fb:"Transactionnelle signifie prêt à agir."},
+    {q:"Pourquoi faire correspondre l'intention compte-t-il plus que le mot-clé seul ?",opts:["Ça n'a pas d'importance du tout","Le même mot-clé peut vouloir dire des choses très différentes selon ce que le chercheur veut vraiment","Seule la correspondance exacte du mot-clé compte","L'intention n'est pertinente que pour les publicités payantes"],ans:1,fb:"Même mot-clé, vraie signification différente."}],
+   close:{learned:"Le même mot-clé peut porter une intention informationnelle, navigationnelle, ou transactionnelle — faire correspondre le contenu à la vraie intention derrière une recherche compte plus que le mot-clé lui-même.",
+    mistake:"Écrire un pur argumentaire de vente pour une recherche informationnelle, ce qui ne correspond pas à ce que ce chercheur voulait vraiment et le fait fuir.",
+    tip:"Les pages d'intention transactionnelle sont où une offre claire et un appel à l'action ont leur place — les pages informationnelles devraient d'abord enseigner.",
+    assign:"Prenez une idée de mot-clé de votre liste et identifiez laquelle des 3 intentions elle correspond.",
+    dl:"Référence : Les 3 Types d'Intention de Recherche",
+    checklist:["Mot-clé choisi dans votre liste ?","Bonne intention identifiée ?","Comprend pourquoi le contenu devrait correspondre à cette intention ?"],
+    ai:"Pour le mot-clé [votre mot-clé], dis-moi quelle intention de recherche il correspond probablement et quel type de contenu lui conviendrait."}},
+ en:{lede:"The exact same keyword can mean completely different things depending on what the searcher actually wants — matching your content to the real intent behind a search matters more than the keyword itself.",
+   secs:[["Informational intent","The searcher wants to learn something (\"how does SEO work\") — they're not ready to buy yet, so content here should teach, not pitch."],
+    ["Navigational intent","The searcher already knows where they want to go and is just using search to get there (\"Jamezzi Academy login\") — not much to optimize here beyond making sure your own branded searches lead to you."],
+    ["Transactional intent","The searcher is ready to act (\"buy running shoes online,\" \"SEO consultant near me\") — this is where a clear offer and call to action (Module 5) belongs, since the person is close to a decision."]],
+   illus:"roles",roleCards:[["📖","Informational","Wants to learn something"],["🧭","Navigational","Already knows where to go"],["🛒","Transactional","Ready to act/buy"]],
+   ex:"Take one keyword idea from your list and identify which of the 3 intents it matches.",
+   quiz:[
+    {q:"What does informational search intent mean?",opts:["The searcher is ready to buy immediately","The searcher wants to learn something and isn't ready to buy yet","The searcher already knows exactly where to go","Intent doesn't affect content at all"],ans:1,fb:"Informational means wanting to learn, not ready to buy."},
+    {q:"What does transactional intent mean?",opts:["The searcher wants general information only","The searcher is ready to act, like buying or booking","The searcher is looking for a specific known website","Intent is the same as navigational"],ans:1,fb:"Transactional means ready to act."},
+    {q:"Why does matching intent matter more than the keyword alone?",opts:["It doesn't matter at all","The same keyword can mean very different things depending on what the searcher actually wants","Only the exact keyword match matters","Intent is only relevant for paid ads"],ans:1,fb:"Same keyword, different real meaning."}],
+   close:{learned:"The same keyword can carry informational, navigational, or transactional intent — matching content to the real intent behind a search matters more than the keyword itself.",
+    mistake:"Writing a pure sales pitch for an informational search, which mismatches what that searcher actually wanted and drives them away.",
+    tip:"Transactional-intent pages are where a clear offer and call to action belong — informational pages should teach first.",
+    assign:"Take one keyword idea from your list and identify which of the 3 intents it matches.",
+    dl:"Reference: The 3 Types of Search Intent",
+    checklist:["Keyword picked from your list?","Correct intent identified?","Understands why content should match that intent?"],
+    ai:"For the keyword [your keyword], tell me which search intent it likely matches and what kind of content would fit it."}}},
+
+4:{ht:{lede:"SEO sou paj se tout bagay ou kontwole dirèkteman sou pwòp paj ou pou ede tou de motè rechèch ak vrè vizitè konprann sou ki sa li ye — ti detay espesifik ki adisyone.",
+   secs:[["Tit tag ak tit segondè","Tit tag la (sa ki parèt kòm lyen ble ou ka klike nan rezilta rechèch) ta dwe klèman dekri paj la e enkli mo kle prensipal li natirèlman; tit segondè yo (H1, H2...) òganize paj la pou tou de lektè ak motè rechèch, sanble ak estrikti blog Modil 10."],
+    ["Deskripsyon meta","Rezime kout ki parèt anba tit la nan rezilta rechèch; li pa afekte klasman dirèkteman, men yon rezime klè, enteresan ogmante chans yon moun reyèlman klike sou rezilta ou olye pa yon konkiran."],
+    ["Tèks altènatif imaj","Yon ti deskripsyon tèks tache ak chak imaj, li pa motè rechèch (ki pa ka 'wè' imaj) ak pa lektè ekran pou vizitè ki gen andikap vizyèl — yon pratik SEO ak aksè an menm tan."]],
+   illus:"roles",roleCards:[["🏷️","Tit Tag","Tit klè ak mo kle"],["📝","Deskripsyon Meta","Rezime ki fè moun klike"],["🖼️","Tèks Altènatif Imaj","Deskri imaj pou aksè ak SEO"]],
+   ex:"Ekri yon tit tag ak yon deskripsyon meta pou yon vrè paj sou sit ou (oswa youn ou ta renmen bati).",
+   quiz:[
+    {q:"Kisa yon tit tag ye?",opts:["Yon chan kache pèsonn pa wè","Tit ou ka klike montre nan rezilta rechèch, ki dekri paj la","Yon non fichye entèn o aza","Sèlman itilize pou imaj"],ans:1,fb:"Tit tag se tit ou ka klike nan rezilta rechèch."},
+    {q:"Èske deskripsyon meta afekte klasman dirèkteman?",opts:["Wi, se faktè klasman #1","Non, men yon rezime konvenkan ogmante chans yon moun klike sou rezilta ou","Li ranplase bezwen pou yon tit tag","Li sèlman pètinan pou imaj"],ans:1,fb:"Li pa klase dirèkteman, li ogmante klik."},
+    {q:"Pou kisa tèks altènatif imaj itilize?",opts:["Anyen itil","Dekri yon imaj pou motè rechèch ak lektè ekran, ede tou de SEO ak aksè","Sèlman rezon dekoratif","Fè yon imaj chaje pi vit"],ans:1,fb:"Se SEO + aksè an menm tan."}],
+   close:{learned:"SEO sou paj kouvri tit tag, tit segondè, deskripsyon meta, ak tèks altènatif imaj — ti detay sou paj ki ede tou de motè rechèch ak vrè vizitè konprann e chwazi paj ou.",
+    mistake:"Kite tit tag jenerik oswa default (tankou 'Home' oswa 'Untitled') olye ekri yon deskripsyon klè, natirèl ak mo kle, sou vrè paj la.",
+    tip:"Yon deskripsyon meta konvenkan pap ogmante klasman dirèkteman, men li ka ogmante konsiderableman konbyen moun k ap chèche klike sou rezilta ou olye yon konkiran.",
+    assign:"Ekri yon tit tag ak yon deskripsyon meta pou yon vrè paj sou sit ou (oswa youn ou ta renmen bati).",
+    dl:"Fèy Travay: Lis Verifikasyon SEO Sou Paj",
+    checklist:["Tit tag ekri ak mo kle prensipal?","Deskripsyon meta konvenkan e egzat?","Tèks altènatif konsidere pou imaj kle yo?"],
+    ai:"Ekri yon tit tag ak deskripsyon meta pou yon paj sou [dekri paj la] ki vize mo kle [mo kle ou a]."}},
+ fr:{lede:"Le SEO on-page, c'est tout ce que vous contrôlez directement sur votre propre page pour aider à la fois les moteurs de recherche et les vrais visiteurs à comprendre de quoi il s'agit — de petits détails spécifiques qui s'additionnent.",
+   secs:[["Balises de titre et titres","La balise de titre (ce qui s'affiche comme le lien bleu cliquable dans les résultats de recherche) devrait décrire clairement la page et inclure son mot-clé principal naturellement ; les titres (H1, H2...) organisent la page pour les lecteurs et les moteurs de recherche, similaire à la structure de blog du Module 10."],
+    ["Meta descriptions","Le court résumé affiché sous le titre dans les résultats de recherche ; il n'affecte pas directement le classement, mais une description claire et convaincante augmente la chance que quelqu'un clique réellement sur votre résultat plutôt que celui d'un concurrent."],
+    ["Texte alternatif d'image","Une courte description textuelle attachée à chaque image, lue par les moteurs de recherche (qui ne peuvent pas « voir » les images) et par les lecteurs d'écran pour les visiteurs malvoyants — à la fois une pratique SEO et d'accessibilité."]],
+   illus:"roles",roleCards:[["🏷️","Balise de Titre","Titre clair avec mot-clé"],["📝","Meta Description","Résumé qui fait cliquer"],["🖼️","Texte Alt d'Image","Décrit l'image pour l'accès et le SEO"]],
+   ex:"Écrivez une balise de titre et une meta description pour une vraie page de votre site (ou une que vous aimeriez construire).",
+   quiz:[
+    {q:"Qu'est-ce qu'une balise de titre ?",opts:["Un champ caché que personne ne voit","Le titre cliquable affiché dans les résultats de recherche, décrivant la page","Un nom de fichier interne aléatoire","Seulement utilisé pour les images"],ans:1,fb:"La balise de titre est le titre cliquable dans les résultats de recherche."},
+    {q:"La meta description affecte-t-elle directement le classement ?",opts:["Oui, c'est le facteur de classement #1","Non, mais une convaincante augmente la chance que quelqu'un clique sur votre résultat","Elle remplace le besoin d'une balise de titre","Elle n'est pertinente que pour les images"],ans:1,fb:"Elle ne classe pas directement, elle augmente les clics."},
+    {q:"À quoi sert le texte alternatif d'image ?",opts:["Rien d'utile","Décrire une image pour les moteurs de recherche et les lecteurs d'écran, aidant le SEO et l'accessibilité","Seulement des fins décoratives","Faire charger une image plus vite"],ans:1,fb:"C'est le SEO + l'accessibilité en même temps."}],
+   close:{learned:"Le SEO on-page couvre les balises de titre, les titres, les meta descriptions, et le texte alternatif d'image — de petits détails on-page qui aident les moteurs de recherche et les vrais visiteurs à comprendre et choisir votre page.",
+    mistake:"Laisser les balises de titre génériques ou par défaut (comme « Home » ou « Sans titre ») plutôt que d'écrire une description claire et naturelle avec mot-clé de la page réelle.",
+    tip:"Une meta description convaincante ne boostera pas directement le classement, mais elle peut significativement augmenter combien de chercheurs cliquent sur votre résultat plutôt qu'un concurrent.",
+    assign:"Écrivez une balise de titre et une meta description pour une vraie page de votre site (ou une que vous aimeriez construire).",
+    dl:"Fiche de travail : Liste de Vérification SEO On-Page",
+    checklist:["Balise de titre écrite avec le mot-clé principal ?","Meta description convaincante et exacte ?","Texte alternatif considéré pour les images clés ?"],
+    ai:"Écris une balise de titre et une meta description pour une page sur [décris la page] ciblant le mot-clé [ton mot-clé]."}},
+ en:{lede:"On-page SEO is everything you control directly on your own page to help both search engines and real visitors understand what it's about — small, specific details that add up.",
+   secs:[["Title tags and headings","The title tag (what shows as the clickable blue link in search results) should clearly describe the page and include its primary keyword naturally; headings (H1, H2...) organize the page for both readers and search engines, similar to the blog structure from Module 10."],
+    ["Meta descriptions","The short summary shown under the title in search results; it doesn't directly affect ranking, but a clear, compelling one increases the chance someone actually clicks your result over a competitor's."],
+    ["Image alt text","A short text description attached to each image, read by search engines (who can't \"see\" images) and by screen readers for visually impaired visitors — both an SEO and an accessibility practice at once."]],
+   illus:"roles",roleCards:[["🏷️","Title Tag","Clear title with keyword"],["📝","Meta Description","Summary that earns clicks"],["🖼️","Image Alt Text","Describes image for access & SEO"]],
+   ex:"Write a title tag and a meta description for one real page on your site (or one you'd like to build).",
+   quiz:[
+    {q:"What is a title tag?",opts:["A hidden field nobody sees","The clickable headline shown in search results, describing the page","A random internal file name","Only used for images"],ans:1,fb:"A title tag is the clickable headline in search results."},
+    {q:"Does the meta description directly affect ranking?",opts:["Yes, it's the #1 ranking factor","No, but a compelling one increases the chance someone clicks your result","It replaces the need for a title tag","It only matters for images"],ans:1,fb:"It doesn't rank directly, it boosts clicks."},
+    {q:"What is image alt text used for?",opts:["Nothing useful","Describing an image for search engines and screen readers, helping both SEO and accessibility","Only decorative purposes","Making an image load faster"],ans:1,fb:"It's SEO + accessibility at once."}],
+   close:{learned:"On-page SEO covers title tags, headings, meta descriptions, and image alt text — small on-page details that help both search engines and real visitors understand and choose your page.",
+    mistake:"Leaving title tags generic or default (like \"Home\" or \"Untitled\") instead of writing a clear, keyword-natural description of the actual page.",
+    tip:"A compelling meta description won't boost ranking directly, but it can meaningfully increase how many searchers click your result over a competitor's.",
+    assign:"Write a title tag and a meta description for one real page on your site (or one you'd like to build).",
+    dl:"Worksheet: On-Page SEO Checklist",
+    checklist:["Title tag written with primary keyword?","Meta description compelling and accurate?","Alt text considered for key images?"],
+    ai:"Write a title tag and meta description for a page about [describe the page] targeting the keyword [your keyword]."}}},
+
+5:{ht:{lede:"Menm pi bon paj ekri ka gen difikilte pou klase si gen yon pwoblèm teknik ki jennen li — SEO teknik se debarase chemen an pou motè rechèch ak vizitè ka reyèlman rive e itilize sit ou.",
+   secs:[["Vitès sit la","Yon paj ki chaje lan fristre vizitè (ki souvan pati anvan li fini chaje) e motè rechèch yo konte vitès chajman nan klasman, paske yon eksperyans lan se yon move eksperyans pou moun k ap chèche."],
+    ["Bon pou mobil","Pifò rechèch kounye a fèt sou telefòn, e yon sit ki difisil pou itilize sou yon ti ekran (tèks tou piti, bouton twò pre) fè mal ni eksperyans vizitè a ni klasman an."],
+    ["Ka eksplore (Crawlability)","Motè rechèch bezwen reyèlman kapab jwenn e li paj ou yo; lyen ki kase, paj aksidantèlman bloke soti nan motè rechèch, ak navigasyon sit konfizan tout fè travay crawlers (Leson 11.1) pi difisil."]],
+   illus:"roles",roleCards:[["⚡","Vitès Sit la","Chaje rapid, pa fè moun tann"],["📱","Bon pou Mobil","Fasil pou itilize sou telefòn"],["🔗","Ka Eksplore","Lyen ki mache, pa gen bloke"]],
+   ex:"Ouvri sit ou (oswa yon konkiran) sou telefòn ou — èske li fasil pou li e touche san zoom?",
+   quiz:[
+    {q:"Poukisa vitès sit la enpòtan pou SEO?",opts:["Li pa enpòtan ditou","Paj lan fristre vizitè e motè rechèch konte vitès nan klasman","Vitès sèlman enpòtan pou gwo sit web","Sit ki pi rapid toujou klase #1 otomatikman"],ans:1,fb:"Li fristre vizitè e konte nan klasman."},
+    {q:"Poukisa bon pou mobil enpòtan?",opts:["Pèsonn pa chèche sou telefòn","Pifò rechèch fèt sou telefòn, e yon sit difisil pou mobil fè mal tou de eksperyans ak klasman","Mobil pa gen okenn efè sou SEO","Sèlman desktop enpòtan pou klasman"],ans:1,fb:"Pifò rechèch se sou mobil."},
+    {q:"Kisa 'ka eksplore' (crawlability) ye?",opts:["Sèlman kijan yon paj chaje vit","Èske motè rechèch ka reyèlman jwenn e li paj ou san obstak","Yon kalite piblisite peye","Sèlman pètinan pou imaj"],ans:1,fb:"Se èske motè rechèch ka jwenn/li sit la."}],
+   close:{learned:"SEO teknik debarase chemen an pou motè rechèch ak vizitè — vitès sit la, bon pou mobil, ak ka eksplore (pa gen lyen kase oswa bloke aksidantèl) tout enpòtan ansanm ak bon kontni.",
+    mistake:"Konsantre sèlman sou ekri gwo kontni pandan w inyore yon sit ki lan pou chaje oswa difisil pou mobil, ki mine chans kontni sa a genyen pou klase oswa konvèti.",
+    tip:"Teste pwòp sit ou sou telefòn ou regilyèman — yon eksperyans ki pa bon pou mobil koute w tou de vizitè ak klasman an silans.",
+    assign:"Ouvri sit ou (oswa yon konkiran) sou telefòn ou — èske li fasil pou li e touche san zoom?",
+    dl:"Lis Verifikasyon: Baz SEO Teknik",
+    checklist:["Sit teste sou mobil?","Vitès chajman verifye?","Pa gen lyen kase evidan jwenn?"],
+    ai:"Ban m yon lis verifikasyon SEO teknik senp pou revize pou yon sit web [kalite biznis]."}},
+ fr:{lede:"Même la page la mieux écrite peut avoir du mal à se classer s'il y a un problème technique qui bloque le chemin — le SEO technique consiste à dégager la voie pour que les moteurs de recherche et les visiteurs puissent réellement atteindre et utiliser votre site.",
+   secs:[["Vitesse du site","Une page qui charge lentement frustre les visiteurs (qui partent souvent avant qu'elle finisse de charger) et les moteurs de recherche tiennent compte de la vitesse de chargement dans le classement, car une expérience lente est une mauvaise expérience pour les chercheurs."],
+    ["Convivialité mobile","La plupart des recherches se font maintenant sur téléphone, et un site difficile à utiliser sur un petit écran (texte minuscule, boutons trop rapprochés) nuit à la fois à l'expérience visiteur et au classement."],
+    ["Explorabilité (Crawlability)","Les moteurs de recherche doivent réellement pouvoir trouver et lire vos pages ; les liens brisés, les pages accidentellement bloquées aux moteurs de recherche, et une navigation de site confuse rendent tous le travail des crawlers (Leçon 11.1) plus difficile."]],
+   illus:"roles",roleCards:[["⚡","Vitesse du Site","Charge vite, ne fait pas attendre"],["📱","Convivial Mobile","Facile à utiliser sur téléphone"],["🔗","Explorable","Liens qui fonctionnent, rien de bloqué"]],
+   ex:"Ouvrez votre site (ou celui d'un concurrent) sur votre téléphone — est-il facile à lire et à toucher sans zoomer ?",
+   quiz:[
+    {q:"Pourquoi la vitesse du site compte-t-elle pour le SEO ?",opts:["Ça n'a pas d'importance du tout","Les pages lentes frustrent les visiteurs et les moteurs de recherche tiennent compte de la vitesse dans le classement","La vitesse ne compte que pour les grands sites web","Les sites plus rapides se classent toujours #1 automatiquement"],ans:1,fb:"Ça frustre les visiteurs et compte dans le classement."},
+    {q:"Pourquoi la convivialité mobile compte-t-elle ?",opts:["Personne ne cherche sur téléphone","La plupart des recherches se font sur téléphone, et un site difficile sur mobile nuit à l'expérience et au classement","Le mobile n'a aucun effet sur le SEO","Seul le bureau compte pour le classement"],ans:1,fb:"La plupart des recherches sont sur mobile."},
+    {q:"Qu'est-ce que « l'explorabilité » (crawlability) ?",opts:["Seulement la vitesse de chargement d'une page","Si les moteurs de recherche peuvent réellement trouver et lire vos pages sans obstacles","Un type de publicité payante","Seulement pertinent pour les images"],ans:1,fb:"C'est si les moteurs de recherche peuvent trouver/lire le site."}],
+   close:{learned:"Le SEO technique dégage la voie pour les moteurs de recherche et les visiteurs — la vitesse du site, la convivialité mobile, et l'explorabilité (pas de liens brisés ou de blocages accidentels) comptent toutes aux côtés d'un bon contenu.",
+    mistake:"Se concentrer uniquement sur l'écriture d'un excellent contenu tout en ignorant un site lent ou difficile à utiliser sur mobile, ce qui compromet la chance de ce contenu de se classer ou de convertir.",
+    tip:"Testez régulièrement votre propre site sur votre téléphone — une expérience mobile peu conviviale vous coûte silencieusement à la fois des visiteurs et du classement.",
+    assign:"Ouvrez votre site (ou celui d'un concurrent) sur votre téléphone — est-il facile à lire et à toucher sans zoomer ?",
+    dl:"Liste de Vérification : Bases du SEO Technique",
+    checklist:["Site testé sur mobile ?","Vitesse de chargement vérifiée ?","Aucun lien manifestement brisé trouvé ?"],
+    ai:"Donne-moi une liste de vérification SEO technique simple à examiner pour un site web de [type d'entreprise]."}},
+ en:{lede:"Even the best-written page can struggle to rank if there's a technical problem getting in its way — technical SEO is about clearing the path so search engines and visitors can actually reach and use your site.",
+   secs:[["Site speed","A page that loads slowly frustrates visitors (who often leave before it finishes) and search engines factor loading speed into ranking, since a slow experience is a bad one for searchers."],
+    ["Mobile-friendliness","Most searches now happen on phones, and a site that's hard to use on a small screen (tiny text, buttons too close together) hurts both the visitor experience and ranking."],
+    ["Crawlability","Search engines need to actually be able to find and read your pages; broken links, pages accidentally blocked from search engines, and confusing site navigation all make it harder for crawlers (Lesson 11.1) to do their job."]],
+   illus:"roles",roleCards:[["⚡","Site Speed","Loads fast, no waiting"],["📱","Mobile-Friendly","Easy to use on a phone"],["🔗","Crawlable","Links that work, nothing blocked"]],
+   ex:"Open your site (or a competitor's) on your phone — is it easy to read and tap without zooming?",
+   quiz:[
+    {q:"Why does site speed matter for SEO?",opts:["It doesn't matter at all","Slow pages frustrate visitors and search engines factor speed into ranking","Speed only matters for large websites","Faster sites always rank #1 automatically"],ans:1,fb:"It frustrates visitors and is factored into ranking."},
+    {q:"Why does mobile-friendliness matter?",opts:["Nobody searches on phones","Most searches happen on phones, and a hard-to-use mobile site hurts both experience and ranking","Mobile has no effect on SEO","Only desktop matters for ranking"],ans:1,fb:"Most searches are mobile."},
+    {q:"What is \"crawlability\"?",opts:["How fast a page loads only","Whether search engines can actually find and read your pages without obstacles","A type of paid ad","Only relevant for images"],ans:1,fb:"It's whether search engines can find/read the site."}],
+   close:{learned:"Technical SEO clears the path for search engines and visitors — site speed, mobile-friendliness, and crawlability (no broken links or accidental blocks) all matter alongside good content.",
+    mistake:"Focusing only on writing great content while ignoring a slow-loading or hard-to-use-on-mobile site, which undermines that content's chance to rank or convert.",
+    tip:"Test your own site on your phone regularly — a mobile-unfriendly experience quietly costs you both visitors and ranking.",
+    assign:"Open your site (or a competitor's) on your phone — is it easy to read and tap without zooming?",
+    dl:"Checklist: Technical SEO Basics",
+    checklist:["Site tested on mobile?","Loading speed checked?","No obviously broken links found?"],
+    ai:"Give me a simple technical SEO checklist to review for a [type of business] website."}}},
+
+6:{ht:{lede:"Pou yon biznis ki sèvi yon zòn espesifik, parèt lè kliyan tou pre chèche konte plis pase klase nasyonalman — SEO lokal se genyen moman 'tou pre m' sa a.",
+   secs:[["Google Business Profile kòm fondasyon","Yon Google Business Profile konplè, egzat, verifye (non, adrès, orè, kategori, foto) se pi gwo faktè sèl nan vizibilite rechèch lokal — kouvri an plen pwofondè nan Modil 12."],
+    ["Mo kle lokal","Ajoute kote natirèlman nan kontni ou ('boulanjri nan Pétion-Ville' olye jis 'boulanjri') ede motè rechèch matche w ak moun tou pre k ap chèche egzakteman sa a."],
+    ["Revi ak sitasyon","Vrè revi kliyan bati sinyal konfyans motè rechèch peze lou pou rezilta lokal; sitasyon (non biznis ou, adrès, ak telefòn liste konsistan atravè lòt sit/anyè) ranfòse ke ou se yon vrè biznis lokal etabli."]],
+   illus:"hub",hubCenter:"SEO Lokal",hubSpokes:["Google Business Profile","Mo Kle Lokal","Revi Kliyan","Sitasyon Konsistan"],
+   ex:"Chèche non biznis ou plis vil ou — kisa ki parèt, e èske Google Business Profile ou parèt?",
+   quiz:[
+    {q:"Kisa ki pi gwo faktè sèl nan vizibilite rechèch lokal?",opts:["Yon kanpay piblisite peye sèlman","Yon Google Business Profile konplè, egzat, verifye","Koulè sit web ou","Longè non domèn ou"],ans:1,fb:"Google Business Profile se pi gwo faktè a."},
+    {q:"Kisa mo kle lokal ye?",opts:["Mo kle san rapò ak kote","Kote ajoute natirèlman nan kontni pou matche moun tou pre k ap chèche","Sèlman itilize nan piblisite peye","Mo kle ki fè mal pou SEO"],ans:1,fb:"Se kote ajoute nan kontni."},
+    {q:"Kisa 'sitasyon' nan SEO lokal ye?",opts:["Dokiman legal","Non biznis ou, adrès, ak telefòn liste konsistan atravè lòt sit/anyè","Yon kalite revi","Yon penalite klasman"],ans:1,fb:"Se lis NAP konsistan."}],
+   close:{learned:"SEO lokal santre sou yon Google Business Profile konplè, mo kle lokal natirèl, ak revi/sitasyon konsistan — tout sinyal ke ou se yon vrè biznis lokal etabli.",
+    mistake:"Gen yon non biznis, adrès, oswa nimewo telefòn ki pa konsistan atravè diferan lis sou entènèt, ki konfonn motè rechèch sou si ou se yon vrè biznis etabli.",
+    tip:"Vrè revi, ak reponn yo, se youn nan pi fò sinyal konfyans lokal yo — aktivman mande kliyan satisfè kite youn.",
+    assign:"Chèche non biznis ou plis vil ou — kisa ki parèt, e èske Google Business Profile ou parèt?",
+    dl:"Lis Verifikasyon: Baz SEO Lokal",
+    checklist:["Google Business Profile verifye/reklame?","Omwen yon mo kle lokal idantifye?","Enfòmasyon biznis konsistan atravè lis yo?"],
+    ai:"Sijere 5 fraz mo kle lokal pou yon [kalite biznis] ki chita nan [vil/katye]."}},
+ fr:{lede:"Pour une entreprise qui sert une zone spécifique, apparaître quand des clients à proximité cherchent compte plus que se classer nationalement — le SEO local consiste à gagner ce moment « près de moi ».",
+   secs:[["Google Business Profile comme fondation","Un profil Google Business complet, exact, vérifié (nom, adresse, heures, catégorie, photos) est le facteur unique le plus important de visibilité de recherche locale — couvert en pleine profondeur au Module 12."],
+    ["Mots-clés locaux","Ajouter la localisation naturellement dans votre contenu (« boulangerie à Pétion-Ville » plutôt que juste « boulangerie ») aide les moteurs de recherche à vous faire correspondre aux chercheurs à proximité cherchant exactement ça."],
+    ["Avis et citations","De vrais avis clients bâtissent des signaux de confiance que les moteurs de recherche pèsent lourdement pour les résultats locaux ; les citations (le nom, l'adresse, et le téléphone de votre entreprise listés de façon cohérente sur d'autres sites/annuaires) renforcent que vous êtes une vraie entreprise locale établie."]],
+   illus:"hub",hubCenter:"SEO Local",hubSpokes:["Google Business Profile","Mots-Clés Locaux","Avis Clients","Citations Cohérentes"],
+   ex:"Cherchez le nom de votre entreprise plus votre ville — qu'est-ce qui apparaît, et votre profil Google Business apparaît-il ?",
+   quiz:[
+    {q:"Quel est le facteur unique le plus important de visibilité de recherche locale ?",opts:["Seulement une campagne publicitaire payante","Un profil Google Business complet, exact, vérifié","La couleur de votre site web","La longueur de votre nom de domaine"],ans:1,fb:"Le profil Google Business est le plus grand facteur."},
+    {q:"Que sont les mots-clés locaux ?",opts:["Des mots-clés sans rapport avec la localisation","La localisation ajoutée naturellement dans le contenu pour correspondre aux chercheurs à proximité","Seulement utilisés dans les publicités payantes","Des mots-clés qui nuisent au SEO"],ans:1,fb:"C'est la localisation ajoutée dans le contenu."},
+    {q:"Que sont les « citations » en SEO local ?",opts:["Des documents juridiques","Le nom, l'adresse, et le téléphone de votre entreprise listés de façon cohérente sur d'autres sites/annuaires","Un type d'avis","Une pénalité de classement"],ans:1,fb:"Ce sont des listes NAP cohérentes."}],
+   close:{learned:"Le SEO local se centre sur un profil Google Business complet, des mots-clés locaux naturels, et des avis/citations cohérents — tous des signaux que vous êtes une vraie entreprise locale établie.",
+    mistake:"Avoir un nom d'entreprise, une adresse, ou un numéro de téléphone incohérent à travers différentes fiches en ligne, ce qui confond les moteurs de recherche sur si vous êtes une entreprise légitime et établie.",
+    tip:"Les avis authentiques, avec réponse, sont l'un des signaux de confiance locaux les plus forts — demandez activement aux clients satisfaits d'en laisser un.",
+    assign:"Cherchez le nom de votre entreprise plus votre ville — qu'est-ce qui apparaît, et votre profil Google Business apparaît-il ?",
+    dl:"Liste de Vérification : Bases du SEO Local",
+    checklist:["Profil Google Business vérifié/réclamé ?","Au moins un mot-clé local identifié ?","Infos d'entreprise cohérentes à travers les fiches ?"],
+    ai:"Suggère 5 phrases de mots-clés locaux pour un(e) [type d'entreprise] situé(e) à [ville/quartier]."}},
+ en:{lede:"For a business that serves a specific area, showing up when nearby customers search matters more than ranking nationally — local SEO is about winning that \"near me\" moment.",
+   secs:[["Google Business Profile as the foundation","A complete, accurate, verified Google Business Profile (name, address, hours, category, photos) is the single biggest factor in local search visibility — covered in full depth in Module 12."],
+    ["Local keywords","Adding location naturally into your content (\"bakery in Pétion-Ville\" instead of just \"bakery\") helps search engines match you to nearby searchers looking for exactly that."],
+    ["Reviews and citations","Genuine customer reviews build trust signals search engines weigh heavily for local results; citations (your business name, address, and phone listed consistently across other sites/directories) reinforce that you're a real, established local business."]],
+   illus:"hub",hubCenter:"Local SEO",hubSpokes:["Google Business Profile","Local Keywords","Customer Reviews","Consistent Citations"],
+   ex:"Search your own business name plus your city — what shows up, and does your Google Business Profile appear?",
+   quiz:[
+    {q:"What's the single biggest factor in local search visibility?",opts:["A paid ad campaign only","A complete, accurate, verified Google Business Profile","The color of your website","How long your domain name is"],ans:1,fb:"Google Business Profile is the biggest factor."},
+    {q:"What are local keywords?",opts:["Keywords with no relevance to location","Location added naturally into content to match nearby searchers","Only used in paid ads","Keywords that hurt SEO"],ans:1,fb:"It's location added into content."},
+    {q:"What are \"citations\" in local SEO?",opts:["Legal documents","Your business name, address, and phone listed consistently across other sites/directories","A type of review","A ranking penalty"],ans:1,fb:"Consistent NAP listings."}],
+   close:{learned:"Local SEO centers on a complete Google Business Profile, natural local keywords, and consistent reviews/citations — all signals that you're a real, established local business.",
+    mistake:"Having an inconsistent business name, address, or phone number across different online listings, which confuses search engines about whether you're a legitimate, established business.",
+    tip:"Genuine, responded-to reviews are one of the strongest local trust signals — actively ask satisfied customers to leave one.",
+    assign:"Search your own business name plus your city — what shows up, and does your Google Business Profile appear?",
+    dl:"Checklist: Local SEO Basics",
+    checklist:["Google Business Profile checked/claimed?","At least one local keyword identified?","Business info consistent across listings?"],
+    ai:"Suggest 5 local keyword phrases for a [type of business] located in [city/neighborhood]."}}},
+
+7:{ht:{lede:"Plis moun kounye a jwenn repons soti nan zouti chat IA ak rezime rechèch pouse pa IA olye yon lis lyen ble tradisyonèl — se sous IA a reyèlman site se yon nouvo abilite ki lye ak SEO tradisyonèl li vo bati akote li.",
+   secs:[["Kijan rechèch IA diferan de rechèch tradisyonèl","Olye yon lis lyen pou klike, yon rechèch pouse pa IA souvan bay yon repons ekri dirèk, pafwa site kèk sous — klè, estriktire, e reponn dirèkteman a yon kesyon fè kontni pi anpil chans pou rale nan repons sa a."],
+    ["Sa ki fè kontni site pa IA","Repons klè, dirèk deklare klèman (pa antere anba entwodiksyon vag); kontni byen estriktire ak vrè tit (ki tou de SEO tradisyonèl ak analiz IA benefisye); ak enfòmasyon reyèlman egzat, fyab, paske zouti IA favorize kontni ki li kòm otorite."],
+    ["Sa a bati sou, pa ranplase, SEO tradisyonèl","Menm fondamantal yo nan tout modil sa a (vrè mo kle, matche entansyon, estrikti klè sou paj, sante teknik) se egzakteman sa ki fè kontni fasil tou pou zouti IA jwenn, konprann, e site — pa gen okenn jwèt separe, diferan pou aprann soti nan zewo."]],
+   illus:"roles",roleCards:[["💬","Repons Dirèk","Deklare kle a klèman"],["🏗️","Estrikti Klè","Tit ak seksyon reyèl"],["✅","Enfòmasyon Fyab","Egzat e otorite"]],
+   ex:"Chwazi yon paj/moso kontni epi reekri liy ouvèti li pou deklare repons kle a dirèkteman e klèman.",
+   quiz:[
+    {q:"Kijan rechèch pouse pa IA souvan diferan de rechèch tradisyonèl?",opts:["Li idantik, pa gen diferans","Li souvan bay yon repons ekri dirèk, pafwa site sous, olye jis yon lis lyen","Rechèch IA pa janm itilize okenn sous","Li sèlman mache pou gwo konpayi"],ans:1,fb:"Li bay repons dirèk, pafwa ak sitasyon sous."},
+    {q:"Kisa ki fè kontni pi chans pou site pa rechèch IA?",opts:["Repons vag, antere","Repons klè, dirèk ak vrè estrikti ak enfòmasyon egzat, fyab","Foure mo kle sèlman","Longè sèlman, kèlkeswa klète"],ans:1,fb:"Klè, dirèk, estriktire, egzat."},
+    {q:"Èske optimizasyon rechèch IA ranplase fondamantal SEO tradisyonèl?",opts:["Wi, konplètman abilite diferan","Non, menm fondamantal yo (mo kle, entansyon, estrikti, sante teknik) ede tou ak rechèch IA","SEO kounye a initil","Yo pa gen anyen an komen"],ans:1,fb:"Li bati sou menm fondamantal yo."}],
+   close:{learned:"Rechèch pouse pa IA souvan bay yon repons dirèk olye yon lis lyen — kontni klè, dirèk, byen estriktire, egzat se sa ki rale nan e site nan repons sa yo.",
+    mistake:"Sipoze optimizasyon rechèch IA se yon abilite totalman separe ki mande yon estrateji diferan, lè li reyèlman bati sou menm fondamantal SEO kouvri nan tout modil sa a.",
+    tip:"Deklare repons kle a yon kesyon pwobab dirèkteman e bonè, olye antere li anba yon entwodiksyon long, vag.",
+    assign:"Chwazi yon paj/moso kontni epi reekri liy ouvèti li pou deklare repons kle a dirèkteman e klèman.",
+    dl:"Referans: Sa ki Fè Kontni Site pa IA",
+    checklist:["Liy ouvèti deklare yon repons dirèk?","Kontni byen estriktire ak vrè tit?","Enfòmasyon egzat e fyab?"],
+    ai:"Reekri liy ouvèti sa a pou deklare repons lan pi dirèkteman e klèman pou rechèch IA: [kole liy ouvèti aktyèl ou]."}},
+ fr:{lede:"Plus de gens obtiennent maintenant des réponses d'outils de chat IA et de résumés de recherche alimentés par l'IA plutôt qu'une liste traditionnelle de liens bleus — être la source qu'une IA cite réellement est une nouvelle compétence connexe qui vaut la peine d'être développée aux côtés du SEO traditionnel.",
+   secs:[["Comment la recherche IA diffère de la recherche traditionnelle","Au lieu d'une liste de liens à cliquer, une recherche alimentée par l'IA donne souvent une réponse écrite directe, citant parfois quelques sources — être clair, structuré, et répondre directement à une question rend le contenu plus susceptible d'être intégré dans cette réponse."],
+    ["Ce qui rend le contenu citable par l'IA","Des réponses claires et directes énoncées simplement (pas enterrées sous des intros vagues) ; du contenu bien structuré avec de vrais titres (dont bénéficient à la fois le SEO traditionnel et l'analyse IA) ; et des informations vraiment exactes et fiables, car les outils IA favorisent le contenu qui se lit comme faisant autorité."],
+    ["Ceci s'appuie sur, ne remplace pas, le SEO traditionnel","Les mêmes fondamentaux de tout ce module (vrais mots-clés, correspondance d'intention, structure on-page claire, santé technique) sont exactement ce qui rend aussi le contenu facile à trouver, comprendre, et citer pour les outils IA — il n'y a pas de jeu séparé et différent à apprendre depuis zéro."]],
+   illus:"roles",roleCards:[["💬","Réponse Directe","Énonce la clé clairement"],["🏗️","Structure Claire","Titres et sections réels"],["✅","Info Fiable","Exacte et faisant autorité"]],
+   ex:"Choisissez une page/pièce de contenu et réécrivez sa ligne d'ouverture pour énoncer la réponse clé directement et clairement.",
+   quiz:[
+    {q:"Comment la recherche alimentée par l'IA diffère-t-elle souvent de la recherche traditionnelle ?",opts:["C'est identique, aucune différence","Elle donne souvent une réponse écrite directe, citant parfois des sources, au lieu de juste une liste de liens","La recherche IA n'utilise jamais aucune source","Elle ne fonctionne que pour les grandes entreprises"],ans:1,fb:"Elle donne une réponse directe, parfois avec citation de sources."},
+    {q:"Qu'est-ce qui rend le contenu plus susceptible d'être cité par la recherche IA ?",opts:["Des réponses vagues et enterrées","Des réponses claires et directes avec une vraie structure et des infos exactes et fiables","Seulement le bourrage de mots-clés","La longueur seule, peu importe la clarté"],ans:1,fb:"Clair, direct, structuré, exact."},
+    {q:"L'optimisation pour la recherche IA remplace-t-elle les fondamentaux du SEO traditionnel ?",opts:["Oui, des compétences complètement différentes","Non, les mêmes fondamentaux (mots-clés, intention, structure, santé technique) aident aussi avec la recherche IA","Le SEO est maintenant sans intérêt","Ils n'ont rien en commun"],ans:1,fb:"Ça s'appuie sur les mêmes fondamentaux."}],
+   close:{learned:"La recherche alimentée par l'IA donne souvent une réponse directe au lieu d'une liste de liens — un contenu clair, direct, bien structuré, et exact est ce qui est intégré dans et cité par ces réponses.",
+    mistake:"Supposer que l'optimisation pour la recherche IA est une compétence totalement séparée nécessitant une stratégie différente, alors qu'elle s'appuie en fait sur les mêmes fondamentaux SEO couverts dans tout ce module.",
+    tip:"Énoncez la réponse clé à une question probable directement et tôt, plutôt que de l'enterrer sous une longue introduction vague.",
+    assign:"Choisissez une page/pièce de contenu et réécrivez sa ligne d'ouverture pour énoncer la réponse clé directement et clairement.",
+    dl:"Référence : Ce Qui Rend le Contenu Citable par l'IA",
+    checklist:["La ligne d'ouverture énonce-t-elle une réponse directe ?","Le contenu est-il clairement structuré avec de vrais titres ?","L'information est-elle exacte et fiable ?"],
+    ai:"Réécris cette ligne d'ouverture pour énoncer la réponse plus directement et clairement pour la recherche IA : [colle ta ligne d'ouverture actuelle]."}},
+ en:{lede:"More people now get answers from AI chat tools and AI-powered search summaries instead of a traditional list of blue links — being the source an AI actually cites is a new, related skill worth building alongside traditional SEO.",
+   secs:[["How AI search differs from traditional search","Instead of a list of links to click, an AI-powered search often gives a direct written answer, sometimes citing a few sources — being clear, structured, and directly answering a question makes content more likely to be pulled into that answer."],
+    ["What makes content AI-citable","Clear, direct answers stated plainly (not buried under vague intros); well-structured content with real headings (which both traditional SEO and AI parsing benefit from); and genuinely accurate, trustworthy information, since AI tools favor content that reads as authoritative."],
+    ["This builds on, not replaces, traditional SEO","The same fundamentals from this whole module (real keywords, matching intent, clear on-page structure, technical health) are exactly what also makes content easy for AI tools to find, understand, and cite — there's no separate, different game to learn from scratch."]],
+   illus:"roles",roleCards:[["💬","Direct Answer","States the key clearly"],["🏗️","Clear Structure","Real headings and sections"],["✅","Trustworthy Info","Accurate and authoritative"]],
+   ex:"Pick one page/piece of content and rewrite its opening line to state the key answer directly and clearly.",
+   quiz:[
+    {q:"How does AI-powered search often differ from traditional search?",opts:["It's identical, no difference","It often gives a direct written answer, sometimes citing sources, instead of just a list of links","AI search never uses any sources","It only works for large companies"],ans:1,fb:"It gives a direct answer, sometimes citing sources."},
+    {q:"What makes content more likely to be cited by AI search?",opts:["Vague, buried answers","Clear, direct answers with real structure and accurate, trustworthy information","Keyword stuffing only","Length alone, regardless of clarity"],ans:1,fb:"Clear, direct, structured, accurate."},
+    {q:"Does AI search optimization replace traditional SEO fundamentals?",opts:["Yes, completely different skills","No, the same fundamentals (keywords, intent, structure, technical health) also help with AI search","SEO is now irrelevant","They have nothing in common"],ans:1,fb:"It builds on the same fundamentals."}],
+   close:{learned:"AI-powered search often gives a direct answer instead of a list of links — clear, direct, well-structured, accurate content is what gets pulled into and cited in those answers.",
+    mistake:"Assuming AI search optimization is a totally separate skill requiring a different strategy, when it actually builds on the same SEO fundamentals covered in this whole module.",
+    tip:"State the key answer to a likely question directly and early, rather than burying it under a long, vague introduction.",
+    assign:"Pick one page/piece of content and rewrite its opening line to state the key answer directly and clearly.",
+    dl:"Reference: What Makes Content AI-Citable",
+    checklist:["Opening line states a direct answer?","Content is clearly structured with real headings?","Information is accurate and trustworthy?"],
+    ai:"Rewrite this opening line to state the answer more directly and clearly for AI search: [paste your current opening line]."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module11-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD11_LESSON_SLUGS=["how-google-search-actually-works","keyword-research-basics","search-intent","on-page-seo-basics","technical-seo-basics","local-seo","ai-search-optimization"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD11_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===11;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M11[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="hub"){
+  let h='<div style="max-width:560px;margin:0 auto;text-align:center">'+
+   '<div style="display:inline-block;background:var(--brand);color:#fff;font-weight:800;font-size:14px;border-radius:12px;padding:14px 22px;margin-bottom:18px">'+d.hubCenter+'</div>'+
+   '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">';
+  d.hubSpokes.forEach(s=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:10px;padding:11px;font-size:12.5px;font-weight:600">'+s+"</div>";
+  });
+  h+="</div></div>";return h;
+ }
+ if(d.illus==="journey"){
+  let h='<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:660px;margin:0 auto">';
+  d.journeySteps.forEach((s,i)=>{
+   h+='<div style="display:flex;align-items:center;gap:8px">'+
+    '<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:10px;padding:12px 16px;text-align:center;min-width:90px">'+
+    '<div style="width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;margin:0 auto 6px">'+(i+1)+'</div>'+
+    '<div style="font-size:12.5px;font-weight:600">'+s+"</div></div>"+
+    (i<d.journeySteps.length-1?'<div style="color:var(--mute);font-size:16px">→</div>':"")+"</div>";
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 11 · 11."+n;
+ $("topTitle").textContent=M11[lang][n-1];
+ document.title="Academy · "+M11[lang][n-1];
+ renderRail();
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 11 · 11.'+n+'</span><h2 class="labh2">'+M11[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M11[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 11?":S.lang==="fr"?"Voulez-vous recommencer le Module 11 ?":"Restart Module 11?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
