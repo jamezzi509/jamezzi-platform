@@ -88,6 +88,7 @@ const dominateDigitalSimulatorModules: Record<
   m1: { moduleNumber: 1, title: "Modil 1 — Baz Maketing Dijital" },
   m2: { moduleNumber: 2, title: "Modil 2 — Sikoloji Vant" },
   m3: { moduleNumber: 3, title: "Modil 3 — Idantite Mak" },
+  m4: { moduleNumber: 4, title: "Modil 4 — Konnen Kliyan Ou" },
 };
 
 export async function generateMetadata({

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 4 — Konnen Kliyan Ou</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ci{font-size:19px;flex:none;width:26px;text-align:center}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 4 · 4.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+/* ============ i18n: UI + module/lesson titles ============ */
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 4!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 4 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 4!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M4={
+ ht:["Bati yon Avata Kliyan","Jwenn Pwen Fristrasyon","Konprann Objektif Kliyan","Jere Objeksyon Komen","Baz Rechèch Mache","Rechèch Konkirans","Mete Tout Bagay Ansanm: Pwofil Kliyan Ou"],
+ fr:["Construire un Avatar Client","Trouver les Points de Friction","Comprendre les Objectifs du Client","Gérer les Objections Courantes","Bases de l'Étude de Marché","Recherche sur la Concurrence","Tout Assembler : Votre Profil Client"],
+ en:["Building a Customer Avatar","Finding Pain Points","Understanding Customer Goals","Handling Common Objections","Market Research Basics","Competitor Research","Putting It All Together: Your Customer Profile"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Yon avata kliyan se yon imaj espesifik, mwatye-fiktif de kliyan ideyal ou — pi klè imaj sa a ye, pi fasil chak lòt desizyon maketing vin genyen.",
+   secs:[["Sa yon avata kliyan enkli","Demografik debaz (ranje laj, kote, nivo revni, sitiyasyon fanmi) ki pètinan pou biznis ou, lavi ak abitid chak jou (kote yo pase tan anliy, kijan yo pran desizyon), ak pwoblèm oswa dezi espesifik ki mennen yo jwenn ou."],
+    ["Poukisa 'tout moun' se pa yon avata kliyan","Eseye sedwi tout moun anjeneral vle di pale klèman ak pèsonn; yon avata espesifik (egzanp: 'yon manman 35 an nan Pòtoprens ki jere yon ti magazen, aktif sou WhatsApp ak Facebook, ki manke tan') fè ekri kontni ak chwazi kanal pi fasil pase yon 'nenpòt moun ki ta ka vle sa a' vag."],
+    ["Bati yon avata ak vrè enfòmasyon","Baze l sou vrè ansyen kliyan lè posib, pa jis imajinasyon pi; si w ap kòmanse, itilize pi bon vrè estimasyon ou epi rafine l pandan vrè kliyan rive; yon avata detaye pi itil pase senk vag — pifò biznis bezwen sèlman 1-2 avata prensipal, pa yon douzèn."]],
+   illus:"roles",roleCards:[["👤","Laj/Sitiyasyon","Ranje laj, fanmi"],["📍","Kote/Kanal","Kote yo pase tan"],["🕒","Abitid Chak Jou","Kijan yo viv"],["🎯","Pwoblèm Prensipal","Sa ki mennen yo jwenn ou"]],
+   ex:"Dekri avata kliyan ou ki pi enpòtan an 2-3 fraz (ranje laj, sitiyasyon, pwoblèm prensipal yo pote ba ou).",
+   quiz:[
+    {q:"Kisa yon avata kliyan ye?",opts:["Yon vrè foto literal yon vrè kliyan","Yon imaj espesifik, mwatye-fiktif de kliyan ideyal ou","Yon dokiman legal biznis","Yon slogan maketing"],ans:1,fb:"Se yon imaj espesifik, mwatye-fiktif ki reprezante kliyan ideyal ou."},
+    {q:"Poukisa 'tout moun' pa yon avata kliyan itil?",opts:["Tout moun toujou pi bon sib","Pale ak tout moun anjeneral vle di pale klèman ak pèsonn","Li ilegal pou vize yon gwoup espesifik","Se menm bagay ak rechèch mache"],ans:1,fb:"Sedwi tout moun souvan mennen pale klèman ak pèsonn."},
+    {q:"Sou kisa yon avata kliyan ta dwe baze, lè posib?",opts:["Pi imajinasyon san okenn baz reyèl","Vrè ansyen kliyan ak obsèvasyon onèt","Yon vye chwa o aza san rafinman","Sa yon konkirans deklare kòm odyans li"],ans:1,fb:"Baze l sou vrè kliyan ki reyèl."},
+    {q:"Konbyen avata kliyan prensipal pifò biznis reyèlman bezwen?",opts:["Douzèn, pou kouvri chak posibilite","Anjeneral jis 1-2 detaye","Egzakteman zewo, avata pa ede","Yon diferan pou chak kliyan endividyèl"],ans:1,fb:"Pifò biznis bezwen sèlman 1-2 avata detaye."}],
+   close:{learned:"Yon avata kliyan se yon imaj espesifik, mwatye-fiktif de kliyan ideyal ou, baze sou vrè enfòmasyon — avata pi klè fè chak lòt desizyon maketing pi fasil.",
+    mistake:"Eseye sedwi 'tout moun', ki anjeneral vle di pèsonn espesifik pa reyèlman santi yo pale ak li.",
+    tip:"Baze avata ou sou 2-3 vrè ansyen kliyan ou reyèlman sonje, pa yon vye chwa jenerik.",
+    assign:"Ekri avata kliyan ou ki pi enpòtan an 2-3 fraz.",
+    dl:"Fèy Travay: Konstriktè Avata Kliyan",
+    checklist:["Baze sou vrè obsèvasyon?","Espesifik, pa vag?","Enkli pwoblèm/dezi prensipal yo?"],
+    ai:"Biznis mwen se [dekri l]. Baze sou kalite kliyan mwen sèvi, ede m bati yon avata kliyan espesifik an 2-3 fraz."}},
+ fr:{lede:"Un avatar client est une image spécifique, semi-fictive de votre client idéal — plus cette image est claire, plus chaque autre décision marketing devient facile.",
+   secs:[["Ce qu'inclut un avatar client","Des données démographiques de base (tranche d'âge, lieu, niveau de revenu, situation familiale) pertinentes pour votre entreprise, la vie et les habitudes quotidiennes (où ils passent du temps en ligne, comment ils prennent des décisions), et le problème ou désir spécifique qui les amène vers vous."],
+    ["Pourquoi « tout le monde » n'est pas un avatar client","Essayer de plaire à tout le monde signifie généralement parler clairement à personne ; un avatar spécifique (ex : « une mère de 35 ans à Port-au-Prince qui gère une petite boutique, active sur WhatsApp et Facebook, manquant de temps ») rend l'écriture de contenu et le choix des canaux bien plus faciles qu'un vague « n'importe qui pourrait vouloir ça »."],
+    ["Construire un avatar à partir d'informations réelles","Basez-le sur de vrais clients passés quand possible, pas sur de la pure imagination ; si vous débutez, utilisez votre meilleure estimation honnête et affinez-la à mesure que de vrais clients arrivent ; un avatar détaillé est plus utile que cinq vagues — la plupart des entreprises n'ont besoin que d'1-2 avatars principaux, pas d'une douzaine."]],
+   illus:"roles",roleCards:[["👤","Âge/Situation","Tranche d'âge, famille"],["📍","Lieu/Canal","Où ils passent du temps"],["🕒","Habitudes Quotidiennes","Comment ils vivent"],["🎯","Problème Principal","Ce qui les amène à vous"]],
+   ex:"Décrivez votre avatar client le plus important en 2-3 phrases (tranche d'âge, situation, problème principal qu'ils vous apportent).",
+   quiz:[
+    {q:"Qu'est-ce qu'un avatar client ?",opts:["Une vraie photo littérale d'un vrai client","Une image spécifique, semi-fictive de votre client idéal","Un document légal d'entreprise","Un slogan marketing"],ans:1,fb:"C'est une image spécifique, semi-fictive représentant votre client idéal."},
+    {q:"Pourquoi « tout le monde » n'est-il pas un avatar client utile ?",opts:["Tout le monde est toujours la meilleure cible","Parler à tout le monde signifie généralement parler clairement à personne","C'est illégal de cibler un groupe spécifique","C'est la même chose que l'étude de marché"],ans:1,fb:"Plaire à tout le monde mène souvent à ne parler clairement à personne."},
+    {q:"Sur quoi un avatar client devrait-il être basé, quand possible ?",opts:["Pure imagination sans aucune base réelle","De vrais clients passés et une observation honnête","Une supposition aléatoire sans raffinement","Un public revendiqué par un concurrent"],ans:1,fb:"Basez-le sur de vrais clients réels."},
+    {q:"Combien d'avatars clients principaux la plupart des entreprises ont-elles réellement besoin ?",opts:["Des douzaines, pour couvrir chaque possibilité","Généralement juste 1-2 détaillés","Exactement zéro, les avatars n'aident pas","Un différent pour chaque client individuel"],ans:1,fb:"La plupart des entreprises n'ont besoin que d'1-2 avatars détaillés."}],
+   close:{learned:"Un avatar client est une image spécifique, semi-fictive de votre client idéal, basée sur de vraies informations — des avatars plus clairs facilitent chaque autre décision marketing.",
+    mistake:"Essayer de plaire à « tout le monde », ce qui signifie généralement que personne de spécifique ne se sent vraiment concerné.",
+    tip:"Basez votre avatar sur 2-3 vrais clients passés dont vous vous souvenez réellement, pas une supposition générique.",
+    assign:"Écrivez votre avatar client le plus important en 2-3 phrases.",
+    dl:"Fiche de travail : Constructeur d'Avatar Client",
+    checklist:["Basé sur une observation réelle ?","Spécifique, pas vague ?","Inclut leur problème/désir principal ?"],
+    ai:"Mon entreprise est [décrire]. En fonction du type de client que je sers, aide-moi à construire un avatar client spécifique en 2-3 phrases."}},
+ en:{lede:"A customer avatar is a specific, semi-fictional picture of your ideal customer — the clearer this picture is, the easier every other marketing decision becomes.",
+   secs:[["What a customer avatar includes","Basic demographics (age range, location, income level, family situation) relevant to your business, daily life and habits (where they spend time online, how they make decisions), and the specific problem or desire that brings them to you."],
+    ["Why 'everyone' is not a customer avatar","Trying to appeal to everyone usually means speaking clearly to no one; a specific avatar (e.g., 'a 35-year-old mother in Port-au-Prince managing a small shop, active on WhatsApp and Facebook, short on time') makes writing content and choosing channels far easier than a vague 'anyone who might want this.'"],
+    ["Building an avatar from real information","Base it on real past customers when possible, not pure imagination; if you're just starting, use your best honest guess and refine it as real customers arrive; one detailed avatar is more useful than five vague ones — most businesses need only 1-2 core avatars, not a dozen."]],
+   illus:"roles",roleCards:[["👤","Age/Situation","Age range, family"],["📍","Location/Channel","Where they spend time"],["🕒","Daily Habits","How they live"],["🎯","Main Problem","What brings them to you"]],
+   ex:"Describe your single most important customer avatar in 2-3 sentences (age range, situation, main problem they bring to you).",
+   quiz:[
+    {q:"What is a customer avatar?",opts:["A literal photo of a real customer","A specific, semi-fictional picture of your ideal customer","A legal business document","A marketing slogan"],ans:1,fb:"It's a specific, semi-fictional picture representing your ideal customer."},
+    {q:"Why is 'everyone' not a useful customer avatar?",opts:["Everyone is always the best target","Speaking to everyone usually means speaking clearly to no one","It's illegal to target a specific group","It's the same as market research"],ans:1,fb:"Appealing to everyone often means speaking clearly to no one."},
+    {q:"What should a customer avatar be based on, when possible?",opts:["Pure imagination with no real basis","Real past customers and honest observation","A random guess with no refinement","A competitor's stated audience"],ans:1,fb:"Base it on real customers."},
+    {q:"How many core customer avatars do most businesses actually need?",opts:["Dozens, to cover every possibility","Usually just 1-2 detailed ones","Exactly zero, avatars don't help","A different one for every single customer"],ans:1,fb:"Most businesses need only 1-2 detailed avatars."}],
+   close:{learned:"A customer avatar is a specific, semi-fictional picture of your ideal customer, based on real information — clearer avatars make every other marketing decision easier.",
+    mistake:"Trying to appeal to 'everyone,' which usually means no specific person feels truly spoken to.",
+    tip:"Base your avatar on 2-3 real past customers you actually remember, not a generic guess.",
+    assign:"Write your single most important customer avatar in 2-3 sentences.",
+    dl:"Worksheet: Customer Avatar Builder",
+    checklist:["Based on real observation?","Specific, not vague?","Includes their main problem/desire?"],
+    ai:"My business is [describe]. Based on the type of customer I serve, help me build a specific customer avatar in 2-3 sentences."}}},
+
+2:{ht:{lede:"Yon pwen fristrasyon se fristrasyon espesifik ki fè yon kliyan reyèlman al chèche yon solisyon — jwenn li presizeman, e rès maketing ou ekri tèt li.",
+   secs:[["Sa yon pwen fristrasyon reyèlman ye","Pa jis 'yon pwoblèm', men fristrasyon, enkyetid, oswa dezagreman espesifik kliyan an reyèlman santi, nan pwòp mo yo; yon pwen fristrasyon vag ('moun vle ekonomize lajan') pi mwens itil pase youn espesifik ('mwen bouke peye pou livrezon ki pran 3 jou lè m bezwen l demen')."],
+    ["Kote pou jwenn vrè pwen fristrasyon","Konvèsasyon dirèk ak vrè oswa posib kliyan (mande, pa sipoze), revi ak plent sou konkirans (kisa moun swete te diferan?), kesyon kliyan deja mande w repete, kòmantè sou pòs rezo sosyal nan endistri ou."],
+    ["Itilize pwen fristrasyon nan maketing","Pale ak fristrasyon espesifik la nan pwòp mo ou anvan w prezante solisyon ou ('Bouke tann 3 jou pou livrezon?'); sa montre kliyan an ou konprann yo anvan menm w mande yon bagay, ki bati konfyans ak atansyon."]],
+   illus:"fbmap",fbRows:[["Vag: 'Moun vle ekonomize lajan'","Espesifik: 'Mwen bouke peye pou livrezon ki pran 3 jou'"]],fbFeat:"Vag",fbBen:"Espesifik",
+   ex:"Ekri yon pwen fristrasyon espesifik yon vrè oswa posib kliyan te eksprime bay ou, nan pwòp mo yo si posib.",
+   quiz:[
+    {q:"Kisa ki fè yon pwen fristrasyon itil pou maketing?",opts:["Li vag otan posib","Li se yon fristrasyon espesifik nan pwòp mo kliyan an","Li konsène yon bagay san rapò ak biznis ou","Li se yon bagay ou sipoze san verifye"],ans:1,fb:"Espesifik nan pwòp mo kliyan an, se sa ki fè li itil."},
+    {q:"Kilès ki yon pwen fristrasyon espesifik e itil?",opts:["Moun vle ekonomize lajan","Mwen bouke peye pou livrezon ki pran 3 jou lè m bezwen l demen","Kliyan renmen bon sèvis","Tout moun vle kalite"],ans:1,fb:"Se yon fristrasyon espesifik sou livrezon."},
+    {q:"Kote ou ka jwenn vrè pwen fristrasyon?",opts:["Sèlman lè w devine pou kont ou","Konvèsasyon dirèk, revi konkirans, ak kesyon kliyan repete","Sèlman nan yon liv teksbouk","Yo pa ka reyèlman jwenn, sèlman imajine"],ans:1,fb:"Konvèsasyon, revi, ak kesyon repete se vrè sous."},
+    {q:"Poukisa non yon pwen fristrasyon espesifik kliyan nan maketing bati konfyans?",opts:["Li pa afekte konfyans ditou","Li montre ou konprann yo anvan w mande anyen","Se yon teknik manipilasyon san vrè benefis","Li mache sèlman pou gwo konpayi"],ans:1,fb:"Sa montre konpreyansyon anvan w mande anyen."}],
+   close:{learned:"Yon pwen fristrasyon se yon fristrasyon espesifik nan pwòp mo kliyan an — pi espesifik li ye, pi itil li ye pou maketing.",
+    mistake:"Itilize pwen fristrasyon vag ('moun vle ekonomize tan') olye espesifik ki soti nan vrè konvèsasyon oswa plent.",
+    tip:"Li revi konkirans (espesyalman negatif) — se yon min lò vrè, espesifik pwen fristrasyon.",
+    assign:"Ekri 3 pwen fristrasyon espesifik ki soti nan vrè konvèsasyon, revi, oswa kesyon repete ou rankontre.",
+    dl:"Fèy Travay: Kolekte Pwen Fristrasyon",
+    checklist:["Pwen fristrasyon espesifik, pa vag?","Soti nan vrè sous?","Ekri nan pwòp mo kliyan an lè posib?"],
+    ai:"Biznis mwen sèvi [dekri kliyan]. Baze sou plent komen nan endistri sa a, sijere 3 pwen fristrasyon espesifik mwen ta dwe koute."}},
+ fr:{lede:"Un point de friction est la frustration spécifique qui pousse un client à réellement chercher une solution — trouvez-le précisément, et le reste de votre marketing s'écrit tout seul.",
+   secs:[["Ce qu'est vraiment un point de friction","Pas juste « un problème », mais la frustration, l'inquiétude, ou le désagrément spécifique que votre client ressent réellement, dans ses propres mots ; un point de friction vague (« les gens veulent économiser de l'argent ») est bien moins utile qu'un spécifique (« j'en ai marre de payer une livraison qui prend 3 jours quand j'en ai besoin demain »)."],
+    ["Où trouver de vrais points de friction","Conversations directes avec de vrais ou potentiels clients (demandez, ne supposez pas), avis et plaintes sur les concurrents (que souhaitent les gens différent ?), questions que les clients vous posent déjà de façon répétée, commentaires sur les publications de réseaux sociaux dans votre secteur."],
+    ["Utiliser les points de friction en marketing","Adressez la frustration spécifique dans vos propres mots avant de présenter votre solution (« Marre d'attendre 3 jours pour une livraison ? ») ; ça montre au client que vous le comprenez avant même de lui avoir demandé quoi que ce soit, ce qui bâtit confiance et attention."]],
+   illus:"fbmap",fbRows:[["Vague : « Les gens veulent économiser de l'argent »","Spécifique : « J'en ai marre de payer une livraison qui prend 3 jours »"]],fbFeat:"Vague",fbBen:"Spécifique",
+   ex:"Écrivez un point de friction spécifique qu'un vrai ou potentiel client vous a exprimé, dans ses propres mots si possible.",
+   quiz:[
+    {q:"Qu'est-ce qui rend un point de friction utile pour le marketing ?",opts:["Être aussi vague que possible","Être une frustration spécifique dans les propres mots du client","Être sans rapport avec votre entreprise","Être quelque chose que vous supposez sans vérifier"],ans:1,fb:"Spécifique dans les propres mots du client, c'est ce qui le rend utile."},
+    {q:"Lequel est un point de friction spécifique et utile ?",opts:["Les gens veulent économiser de l'argent","J'en ai marre de payer une livraison qui prend 3 jours quand j'en ai besoin demain","Les clients aiment le bon service","Tout le monde veut de la qualité"],ans:1,fb:"C'est une frustration spécifique sur la livraison."},
+    {q:"Où pouvez-vous trouver de vrais points de friction ?",opts:["Seulement en devinant seul","Conversations directes, avis sur concurrents, et questions répétées des clients","Seulement dans un manuel scolaire","On ne peut pas vraiment les trouver, seulement les imaginer"],ans:1,fb:"Conversations, avis, et questions répétées sont de vraies sources."},
+    {q:"Pourquoi nommer le point de friction spécifique d'un client en marketing bâtit-il la confiance ?",opts:["Ça n'affecte pas la confiance du tout","Ça montre que vous le comprenez avant de demander quoi que ce soit","C'est une tactique de manipulation sans vrai bénéfice","Ça ne fonctionne que pour les grandes entreprises"],ans:1,fb:"Ça montre la compréhension avant de rien demander."}],
+   close:{learned:"Un point de friction est une frustration spécifique dans les propres mots du client — plus il est spécifique, plus il est utile pour le marketing.",
+    mistake:"Utiliser des points de friction vagues (« les gens veulent gagner du temps ») plutôt que des spécifiques tirés de vraies conversations ou plaintes.",
+    tip:"Lisez les avis de concurrents (surtout négatifs) — c'est une mine d'or de vrais points de friction spécifiques.",
+    assign:"Écrivez 3 points de friction spécifiques tirés de vraies conversations, avis, ou questions répétées que vous avez rencontrées.",
+    dl:"Fiche de travail : Collecteur de Points de Friction",
+    checklist:["Points de friction spécifiques, pas vagues ?","Tirés de vraies sources ?","Écrits dans les propres mots du client si possible ?"],
+    ai:"Mon entreprise sert [décrire le client]. En fonction des plaintes courantes dans ce secteur, suggère 3 points de friction spécifiques à écouter."}},
+ en:{lede:"A pain point is the specific frustration that makes a customer actually go looking for a solution — find it precisely, and the rest of your marketing writes itself.",
+   secs:[["What a pain point really is","Not just 'a problem,' but the specific frustration, worry, or inconvenience your customer actually feels, in their own words; a vague pain point ('people want to save money') is far less useful than a specific one ('I'm tired of paying for delivery that takes 3 days when I need it tomorrow')."],
+    ["Where to find real pain points","Direct conversations with real or potential customers (ask, don't assume), reviews and complaints about competitors (what do people wish was different?), questions customers already ask you repeatedly, comments on social media posts in your industry."],
+    ["Using pain points in marketing","Speak to the specific frustration in your own words before presenting your solution ('Tired of waiting 3 days for delivery?'); this shows the customer you understand them before you've asked for anything, which builds trust and attention."]],
+   illus:"fbmap",fbRows:[["Vague: 'People want to save money'","Specific: 'I'm tired of paying for delivery that takes 3 days'"]],fbFeat:"Vague",fbBen:"Specific",
+   ex:"Write down one specific pain point a real or potential customer has expressed to you, in their own words if possible.",
+   quiz:[
+    {q:"What makes a pain point useful for marketing?",opts:["Being as vague as possible","Being a specific frustration in the customer's own words","Being about something unrelated to your business","Being something you assume without checking"],ans:1,fb:"Specific in the customer's own words is what makes it useful."},
+    {q:"Which is a specific, useful pain point?",opts:["People want to save money","I'm tired of paying for delivery that takes 3 days when I need it tomorrow","Customers like good service","Everyone wants quality"],ans:1,fb:"That's a specific frustration about delivery."},
+    {q:"Where can you find real pain points?",opts:["Only by guessing on your own","Direct conversations, competitor reviews, and repeated customer questions","Only from a textbook","They can't really be found, only imagined"],ans:1,fb:"Conversations, reviews, and repeated questions are real sources."},
+    {q:"Why does naming a customer's specific pain point in marketing build trust?",opts:["It doesn't affect trust at all","It shows you understand them before asking for anything","It's a manipulation tactic with no real benefit","It only works for large companies"],ans:1,fb:"It shows understanding before asking for anything."}],
+   close:{learned:"A pain point is a specific frustration in the customer's own words — the more specific it is, the more useful it is for marketing.",
+    mistake:"Using vague pain points ('people want to save time') instead of specific ones drawn from real conversations or complaints.",
+    tip:"Read reviews of competitors (especially negative ones) — they're a goldmine of real, specific pain points.",
+    assign:"Write down 3 specific pain points from real conversations, reviews, or repeated questions you've encountered.",
+    dl:"Worksheet: Pain Point Collector",
+    checklist:["Pain points are specific, not vague?","Drawn from real sources?","Written in customer's own words where possible?"],
+    ai:"My business serves [describe customer]. Based on common complaints in this industry, suggest 3 specific pain points I should listen for."}}},
+
+3:{ht:{lede:"Pwen fristrasyon se sa kliyan vle chape kite — objektif se sa yo vle deplase vè; konprann toude ba w tout imaj sa ki motive yon achte.",
+   secs:[["Objektif kont pwen fristrasyon","Yon pwen fristrasyon se fristrasyon an ('vant magazen m enkonsistan'); yon objektif se rezilta yo dezire ('revni estab, previzib chak mwa'); pifò vrè desizyon motive pa toude deplase kite fristrasyon ak deplase vè yon objektif an menm tan."],
+    ["Kalite objektif kliyan","Objektif pratik (ekonomize tan, ekonomize lajan, rezoud yon tach espesifik), objektif emosyonèl (santi konfyans, santi respekte, santi an kontwòl), objektif sosyal (wè kòm reyisi, bay pou fanmi, fè pati yon kominote). Yon sèl kliyan souvan gen objektif nan plis pase yon kategori an menm tan."],
+    ["Pale ak objektif nan maketing","Dekri rezilta kliyan an reyèlman vle, pa jis karakteristik ki mennen l la ('finalman wè revni estab chak mwa' olye jis 'zouti swivi nou an gen 10 karakteristik'); objektif bay maketing yon angle pozitif, ki gade devan pou konbine ak angle pwen fristrasyon an."]],
+   illus:"roles",roleCards:[["⚙️","Pratik","Ekonomize tan/lajan"],["💛","Emosyonèl","Santi konfyans"],["🤝","Sosyal","Wè kòm reyisi"]],
+   ex:"Site yon objektif pratik ak yon objektif emosyonèl avata kliyan prensipal ou ap eseye rive jwenn.",
+   quiz:[
+    {q:"Ki diferans ant yon pwen fristrasyon ak yon objektif?",opts:["Yo se egzakteman menm bagay la","Yon pwen fristrasyon se sa yo chape kite, yon objektif se sa yo deplase vè","Objektif pa konte, sèlman pwen fristrasyon konte","Pwen fristrasyon sèlman aplike pou sèvis, objektif sèlman pou pwodwi"],ans:1,fb:"Youn se chape kite, lòt se deplase vè."},
+    {q:"Kilès ki yon egzanp objektif emosyonèl?",opts:["Ekonomize $50 chak mwa","Santi konfyans e an kontwòl","Redwi tan livrezon","Ogmante espas depo"],ans:1,fb:"Santi konfyans e an kontwòl se yon objektif emosyonèl."},
+    {q:"Poukisa maketing ta dwe dekri objektif/rezilta olye jis karakteristik?",opts:["Karakteristik toujou pi pèsyasif","Dekri rezilta dezire konekte pi dirèkteman ak sa kliyan an reyèlman vle","Rezilta ilegal pou mansyone","Sa pa enpòtan ki youn ou itilize"],ans:1,fb:"Rezilta konekte pi dirèkteman ak sa kliyan an vle."},
+    {q:"Yon sèl kliyan ka gen objektif nan:",opts:["Sèlman yon kategori a lafwa","Plis pase yon kategori an menm tan (pratik, emosyonèl, sosyal)","Okenn vrè objektif ditou","Sèlman objektif ki matche mesaj yon konkirans"],ans:1,fb:"Yon sèl kliyan souvan gen objektif nan plizyè kategori an menm tan."}],
+   close:{learned:"Objektif se sa kliyan deplase vè (pratik, emosyonèl, sosyal) — konbine objektif ak pwen fristrasyon ba w tout imaj sa ki motive yon desizyon.",
+    mistake:"Dekri sèlman karakteristik pwodwi olye vrè rezilta oswa santiman kliyan an vle rive jwenn.",
+    tip:"Pou chak pwen fristrasyon ou idantifye, ekri objektif ki matche li vle di — de a souvan vin ansanm.",
+    assign:"Ekri yon objektif pratik ak yon objektif emosyonèl pou avata kliyan prensipal ou.",
+    dl:"Fèy Travay: Kat Objektif Kliyan",
+    checklist:["Objektif pratik idantifye?","Objektif emosyonèl oswa sosyal idantifye?","Maketing dekri rezilta a, pa jis karakteristik?"],
+    ai:"Avata kliyan mwen se [dekri l]. Sijere yon objektif pratik, yon objektif emosyonèl, ak yon objektif sosyal moun sa a pwobableman genyen."}},
+ fr:{lede:"Les points de friction sont ce dont les clients veulent s'échapper — les objectifs sont ce vers quoi ils veulent avancer ; comprendre les deux vous donne le tableau complet de ce qui motive un achat.",
+   secs:[["Objectifs contre points de friction","Un point de friction est la frustration (« les ventes de ma boutique sont incohérentes ») ; un objectif est le résultat désiré (« un revenu stable et prévisible chaque mois ») ; la plupart des vraies décisions sont motivées à la fois par s'éloigner de la douleur et avancer vers un objectif en même temps."],
+    ["Types d'objectifs clients","Objectifs pratiques (gagner du temps, économiser de l'argent, résoudre une tâche spécifique), objectifs émotionnels (se sentir confiant, respecté, en contrôle), objectifs sociaux (être vu comme réussi, subvenir à sa famille, faire partie d'une communauté). Un seul client a souvent des objectifs dans plus d'une catégorie à la fois."],
+    ["Parler aux objectifs en marketing","Décrivez le résultat que le client veut réellement, pas juste la fonctionnalité qui l'y mène (« voir enfin un revenu stable chaque mois » plutôt que juste « notre outil de suivi a 10 fonctionnalités ») ; les objectifs donnent au marketing un angle positif et tourné vers l'avenir à associer à l'angle du point de friction."]],
+   illus:"roles",roleCards:[["⚙️","Pratique","Économiser temps/argent"],["💛","Émotionnel","Se sentir confiant"],["🤝","Social","Être vu comme réussi"]],
+   ex:"Nommez un objectif pratique et un objectif émotionnel que votre avatar client principal essaie d'atteindre.",
+   quiz:[
+    {q:"Quelle est la différence entre un point de friction et un objectif ?",opts:["C'est exactement la même chose","Un point de friction est ce dont ils s'échappent, un objectif est ce vers quoi ils avancent","Les objectifs ne comptent pas, seuls les points de friction comptent","Les points de friction ne s'appliquent qu'aux services, les objectifs qu'aux produits"],ans:1,fb:"L'un est s'échapper, l'autre est avancer vers."},
+    {q:"Lequel est un exemple d'objectif émotionnel ?",opts:["Économiser 50$ par mois","Se sentir confiant et en contrôle","Réduire le temps de livraison","Augmenter l'espace de stockage"],ans:1,fb:"Se sentir confiant et en contrôle est un objectif émotionnel."},
+    {q:"Pourquoi le marketing devrait-il décrire l'objectif/résultat plutôt que juste la fonctionnalité ?",opts:["Les fonctionnalités sont toujours plus persuasives","Décrire le résultat désiré se connecte plus directement à ce que le client veut réellement","Les résultats sont illégaux à mentionner","Peu importe lequel vous utilisez"],ans:1,fb:"Le résultat se connecte plus directement à ce que le client veut."},
+    {q:"Un seul client peut avoir des objectifs dans :",opts:["Seulement une catégorie à la fois","Plus d'une catégorie à la fois (pratique, émotionnel, social)","Aucun vrai objectif du tout","Seulement des objectifs qui correspondent au message d'un concurrent"],ans:1,fb:"Un seul client a souvent des objectifs dans plusieurs catégories à la fois."}],
+   close:{learned:"Les objectifs sont ce vers quoi les clients avancent (pratique, émotionnel, social) — associer objectifs et points de friction donne le tableau complet de ce qui motive une décision.",
+    mistake:"Décrire seulement les fonctionnalités du produit plutôt que le résultat réel ou le sentiment que le client veut atteindre.",
+    tip:"Pour chaque point de friction identifié, écrivez l'objectif correspondant qu'il implique — les deux viennent souvent en paire.",
+    assign:"Écrivez un objectif pratique et un objectif émotionnel pour votre avatar client principal.",
+    dl:"Fiche de travail : Cartographie des Objectifs Client",
+    checklist:["Objectif pratique identifié ?","Objectif émotionnel ou social identifié ?","Le marketing décrit-il le résultat, pas juste les fonctionnalités ?"],
+    ai:"Mon avatar client est [décrire]. Suggère un objectif pratique, un objectif émotionnel, et un objectif social que cette personne a probablement."}},
+ en:{lede:"Pain points are what customers want to escape from — goals are what they want to move toward; understanding both gives you the full picture of what drives a purchase.",
+   secs:[["Goals vs. pain points","A pain point is the frustration ('my shop's sales are inconsistent'); a goal is the desired outcome ('steady, predictable income each month'); most real decisions are driven by both moving away from pain and moving toward a goal at the same time."],
+    ["Types of customer goals","Practical goals (save time, save money, solve a specific task), emotional goals (feel confident, feel respected, feel in control), social goals (be seen as successful, provide for family, be part of a community). A single customer often has goals in more than one category at once."],
+    ["Speaking to goals in marketing","Describe the outcome the customer actually wants, not just the feature that gets them there ('finally see steady income every month' rather than just 'our tracking tool has 10 features'); goals give marketing a positive, forward-looking angle to pair with the pain-point angle."]],
+   illus:"roles",roleCards:[["⚙️","Practical","Save time/money"],["💛","Emotional","Feel confident"],["🤝","Social","Be seen as successful"]],
+   ex:"Name one practical goal and one emotional goal your main customer avatar is trying to reach.",
+   quiz:[
+    {q:"What's the difference between a pain point and a goal?",opts:["They're exactly the same thing","A pain point is what they escape from, a goal is what they move toward","Goals don't matter, only pain points do","Pain points only apply to services, goals only to products"],ans:1,fb:"One is escaping from, the other is moving toward."},
+    {q:"Which is an example of an emotional goal?",opts:["Save $50 per month","Feel confident and in control","Reduce delivery time","Increase storage space"],ans:1,fb:"Feeling confident and in control is an emotional goal."},
+    {q:"Why should marketing describe the goal/outcome rather than just features?",opts:["Features are always more persuasive","Describing the desired outcome connects more directly to what the customer actually wants","Outcomes are illegal to mention","It doesn't matter which you use"],ans:1,fb:"The outcome connects more directly to what the customer wants."},
+    {q:"A single customer can have goals in:",opts:["Only one category at a time","More than one category at once (practical, emotional, social)","No real goals at all","Only goals that match a competitor's messaging"],ans:1,fb:"A single customer often has goals in multiple categories at once."}],
+   close:{learned:"Goals are what customers move toward (practical, emotional, social) — pairing goals with pain points gives the full picture of what drives a decision.",
+    mistake:"Describing only product features instead of the actual outcome or feeling the customer wants to reach.",
+    tip:"For every pain point you've identified, write the matching goal it implies — the two usually come as a pair.",
+    assign:"Write one practical goal and one emotional goal for your main customer avatar.",
+    dl:"Worksheet: Customer Goals Mapping",
+    checklist:["Practical goal identified?","Emotional or social goal identified?","Marketing describes the outcome, not just features?"],
+    ai:"My customer avatar is [describe]. Suggest one practical goal, one emotional goal, and one social goal this person likely has."}}},
+
+4:{ht:{lede:"Chak 'petèt pita' kache yon vrè rezon espesifik — konnen objeksyon komen yo davans pèmèt ou reponn yo anvan menm yo vin yon rezon pou ale.",
+   secs:[["Sa yon objeksyon reyèlman ye","Yon enkyetid vrè, anjeneral rezonab ki anpeche yon moun achte kounye a (se pa 'fè difisil'); kategori komen: pri ('twò chè'), konfyans ('mwen pa konnen biznis sa a'), tan ('pa kounye a'), bezwen ('mwen pa sèten mwen reyèlman bezwen sa'), risk ('e si li pa mache pou mwen?')."],
+    ["Kote objeksyon soti","Kesyon dirèk kliyan mande anvan yo achte, ezitasyon ou remake nan konvèsasyon, enkyetid komen leve nan revi pwodwi/sèvis similè, pwòp santiman onèt ou sou sa ou ta enkyete nan sitiyasyon kliyan an."],
+    ["Adrese objeksyon aktivman","Reponn 2-3 objeksyon ki pi komen dirèkteman nan maketing ou anvan kliyan an oblije mande (yon garanti klè pou risk, vrè revi pou konfyans, yon plan peman pou pri); sa pi efikas pase reponn defansivman sèlman apre yon moun leve yon enkyetid."]],
+   illus:"roles",roleCards:[["💲","Pri","Twò chè"],["🤝","Konfyans","Pa konnen biznis la"],["⏰","Tan","Pa kounye a"],["❓","Bezwen","Pa sèten bezwen l"],["⚠️","Risk","E si li pa mache?"]],
+   ex:"Ekri 2 objeksyon prensipal ou panse anpeche moun achte lakay ou, ak yon fason onèt pou adrese chak.",
+   quiz:[
+    {q:"Kisa yon objeksyon reyèlman ye?",opts:["Yon siy kliyan an ap fè difisil","Yon enkyetid vrè, anjeneral rezonab ki anpeche yon moun achte kounye a","Yon bagay ki ta dwe inyore","Prèv pwodwi a move"],ans:1,fb:"Se yon enkyetid vrè, rezonab, pa yon kliyan ki fè difisil."},
+    {q:"Kilès ki yon kategori objeksyon komen?",opts:["Move tan","Konfyans ('mwen pa konnen biznis sa a')","Lòd alfabè","Chwa font"],ans:1,fb:"Konfyans se yon kategori objeksyon komen."},
+    {q:"Kote ou ka jwenn vrè objeksyon?",opts:["Sèlman lè w devine san okenn prèv","Kesyon dirèk kliyan, ezitasyon nan konvèsasyon, ak revi pwodwi similè","Yo pa ka jwenn, sèlman envante","Sèlman nan yon dokiman legal"],ans:1,fb:"Kesyon dirèk, ezitasyon, ak revi se vrè sous."},
+    {q:"Ki apwòch ki pi efikas pou objeksyon?",opts:["Tann pasivman epi espere pèsonn pa leve yo","Adrese 2-3 ki pi komen aktivman nan maketing ou anvan moun mande","Inyore yo nèt","Diskite ak nenpòt moun ki leve youn"],ans:1,fb:"Adrese aktivman pi efikas pase reponn defansivman."}],
+   close:{learned:"Yon objeksyon se yon enkyetid vrè, rezonab (pri, konfyans, tan, bezwen, risk) — adrese pi komen yo aktivman pi efikas pase reponn defansivman.",
+    mistake:"Reponn objeksyon sèlman apre yon kliyan leve yo, olye adrese 2-3 ki pi komen davans nan maketing ou.",
+    tip:"Mande yon kliyan resan sa ki te prèske anpeche yo achte — repons onèt yo se yon vrè objeksyon ki vo adrese piblikman.",
+    assign:"Ekri 2 objeksyon prensipal kliyan ou ak yon fason onèt pou adrese chak nan maketing ou.",
+    dl:"Fèy Travay: Planifikasyon Jesyon Objeksyon",
+    checklist:["2-3 objeksyon prensipal idantifye?","Chak gen yon repons onèt, dirèk?","Adrese aktivman, pa jis reyaktivman?"],
+    ai:"Biznis mwen se [dekri l]. Ki 2-3 objeksyon ki pi posib yon posib kliyan ta genyen, epi kijan m ta ka adrese chak onètman nan maketing mwen?"}},
+ fr:{lede:"Chaque « peut-être plus tard » cache une vraie raison spécifique — connaître les objections courantes à l'avance vous permet d'y répondre avant même qu'elles deviennent une raison de partir.",
+   secs:[["Ce qu'est vraiment une objection","Une préoccupation réelle, généralement raisonnable qui empêche quelqu'un d'acheter maintenant (ce n'est pas être « difficile ») ; catégories courantes : prix (« trop cher »), confiance (« je ne connais pas cette entreprise »), timing (« pas maintenant »), besoin (« pas sûr d'en avoir vraiment besoin »), risque (« et si ça ne marche pas pour moi ? »)."],
+    ["D'où viennent les objections","Questions directes que les clients posent avant d'acheter, hésitation que vous remarquez dans les conversations, préoccupations courantes soulevées dans les avis de produits/services similaires, votre propre ressenti honnête sur ce qui vous inquiéterait à la place du client."],
+    ["Adresser les objections proactivement","Répondez directement aux 2-3 objections les plus courantes dans votre marketing avant que le client n'ait à demander (une garantie claire pour le risque, de vrais avis pour la confiance, un plan de paiement pour le prix) ; c'est plus efficace que de seulement répondre défensivement après qu'une préoccupation soit soulevée."]],
+   illus:"roles",roleCards:[["💲","Prix","Trop cher"],["🤝","Confiance","Ne connaît pas l'entreprise"],["⏰","Timing","Pas maintenant"],["❓","Besoin","Pas sûr d'en avoir besoin"],["⚠️","Risque","Et si ça ne marche pas ?"]],
+   ex:"Écrivez les 2 principales objections qui, selon vous, empêchent les gens d'acheter chez vous, et une façon honnête d'adresser chacune.",
+   quiz:[
+    {q:"Qu'est-ce qu'une objection, vraiment ?",opts:["Un signe que le client est difficile","Une préoccupation réelle, généralement raisonnable qui empêche d'acheter maintenant","Quelque chose à ignorer","Une preuve que le produit est mauvais"],ans:1,fb:"C'est une préoccupation réelle et raisonnable, pas un client difficile."},
+    {q:"Laquelle est une catégorie d'objection courante ?",opts:["La météo","La confiance (« je ne connais pas cette entreprise »)","L'ordre alphabétique","Le choix de police"],ans:1,fb:"La confiance est une catégorie d'objection courante."},
+    {q:"Où pouvez-vous trouver de vraies objections ?",opts:["Seulement en devinant sans preuve","Questions directes des clients, hésitation dans les conversations, et avis de produits similaires","On ne peut pas les trouver, seulement les inventer","Seulement dans un document légal"],ans:1,fb:"Questions directes, hésitation, et avis sont de vraies sources."},
+    {q:"Quelle est une approche plus efficace pour les objections ?",opts:["Attendre passivement en espérant que personne ne les soulève","Adresser proactivement les 2-3 plus courantes dans votre marketing avant qu'on ne demande","Les ignorer complètement","Débattre avec quiconque en soulève une"],ans:1,fb:"Adresser proactivement est plus efficace que répondre défensivement."}],
+   close:{learned:"Une objection est une préoccupation réelle et raisonnable (prix, confiance, timing, besoin, risque) — adresser proactivement les plus courantes est plus efficace que réagir défensivement.",
+    mistake:"Ne répondre aux objections qu'après qu'un client les soulève, plutôt que d'adresser les 2-3 principales en amont dans votre marketing.",
+    tip:"Demandez à un client récent ce qui a failli l'empêcher d'acheter — sa réponse honnête est une vraie objection qui mérite d'être adressée publiquement.",
+    assign:"Écrivez vos 2 principales objections clients et une façon honnête d'adresser chacune dans votre marketing.",
+    dl:"Fiche de travail : Planificateur de Gestion des Objections",
+    checklist:["2-3 objections principales identifiées ?","Chacune a une réponse honnête et directe ?","Adressées proactivement, pas juste réactivement ?"],
+    ai:"Mon entreprise est [décrire]. Quelles sont les 2-3 objections les plus probables d'un client potentiel, et comment pourrais-je adresser chacune honnêtement dans mon marketing ?"}},
+ en:{lede:"Every 'maybe later' hides a real, specific reason — knowing the common objections in advance lets you answer them before they even become a reason to walk away.",
+   secs:[["What an objection really is","A genuine, usually reasonable concern that stops someone from buying right now (not being 'difficult'); common categories: price ('too expensive'), trust ('I don't know this business'), timing ('not right now'), need ('not sure I actually need this'), risk ('what if it doesn't work for me?')."],
+    ["Where objections come from","Direct questions customers ask before buying, hesitation you notice in conversations, common concerns raised in reviews of similar products/services, your own honest sense of what you'd worry about in the customer's position."],
+    ["Addressing objections proactively","Answer the most common 2-3 objections directly in your marketing before the customer has to ask (a clear guarantee for risk, real reviews for trust, a payment plan for price); this is more effective than only responding defensively after someone raises a concern."]],
+   illus:"roles",roleCards:[["💲","Price","Too expensive"],["🤝","Trust","Doesn't know the business"],["⏰","Timing","Not right now"],["❓","Need","Not sure they need it"],["⚠️","Risk","What if it doesn't work?"]],
+   ex:"Write the top 2 objections you think stop people from buying from you, and one honest way to address each.",
+   quiz:[
+    {q:"What is an objection, really?",opts:["A sign the customer is being difficult","A genuine, usually reasonable concern stopping someone from buying right now","Something that should be ignored","Proof the product is bad"],ans:1,fb:"It's a genuine, reasonable concern, not a difficult customer."},
+    {q:"Which is a common objection category?",opts:["Weather","Trust ('I don't know this business')","Alphabet order","Font choice"],ans:1,fb:"Trust is a common objection category."},
+    {q:"Where can you find real objections?",opts:["Only by guessing with no evidence","Direct customer questions, hesitation in conversations, and reviews of similar products","They can't be found, only invented","Only from a legal document"],ans:1,fb:"Direct questions, hesitation, and reviews are real sources."},
+    {q:"What's a more effective approach to objections?",opts:["Wait passively and hope no one raises them","Address the most common 2-3 proactively in your marketing before being asked","Ignore them entirely","Argue with anyone who raises one"],ans:1,fb:"Addressing proactively is more effective than reacting defensively."}],
+   close:{learned:"An objection is a genuine, reasonable concern (price, trust, timing, need, risk) — addressing the most common ones proactively is more effective than reacting defensively.",
+    mistake:"Only responding to objections after a customer raises them, instead of addressing the top 2-3 upfront in your marketing.",
+    tip:"Ask a recent customer what almost stopped them from buying — their honest answer is a real objection worth addressing publicly.",
+    assign:"Write your top 2 customer objections and one honest way to address each in your marketing.",
+    dl:"Worksheet: Objection Handling Planner",
+    checklist:["Top 2-3 objections identified?","Each has an honest, direct response?","Addressed proactively, not just reactively?"],
+    ai:"My business is [describe]. What are the 2-3 most likely objections a potential customer would have, and how could I address each honestly in my marketing?"}}},
+
+5:{ht:{lede:"Rechèch mache vle di verifye sipozisyon ou sou kliyan kont reyalite anvan ou envesti vrè tan ak lajan baze sou yon vye chwa.",
+   secs:[["Sa rechèch mache reponn","Èske gen vrè demand pou sa? (èske moun reyèlman ap chèche/mande sou pwoblèm sa a), Ki gwosè odyans potansyèl la? (yon estimasyon apwoksimatif, pa egzat), Kisa vrè kliyan di yo vle, nan pwòp mo yo? (pa jis sa ou sipoze yo vle)."],
+    ["Metòd rechèch senp, ki pa koute chè","Chèche sa moun aktyèlman ap mande anliy (tèm rechèch, kesyon fowòm, kòmantè sou pòs similè), gen konvèsasyon dirèk ak 5-10 posib kliyan, gade sa kliyan biznis similè di nan revi piblik, fè yon ti tès trè piti, bon mache (yon senp pòs, yon ti piblisite) anvan yon gwo envestisman."],
+    ["Li rechèch onètman","Pa sèlman chèche enfòmasyon ki konfime sa ou deja te kwè (bias konfimasyon); yon ti kantite vrè enfòmasyon kliyan pi vo pase yon gwo kantite sipozisyon ki pa teste; li bon pou ajiste plan ou lè vrè rechèch kontredi premye lide ou."]],
+   illus:"roles",roleCards:[["🔍","Rechèch Anliy","Kesyon reyèl"],["💬","Konvèsasyon Dirèk","5-10 kliyan"],["⭐","Revi Konkirans","Sa kliyan di"],["🧪","Ti Tès","Anvan gwo envestisman"]],
+   ex:"Chwazi yon sipozisyon w ap fè sou kliyan ou ak yon fason senp ou ta ka verifye si li reyèlman vre.",
+   quiz:[
+    {q:"Kisa rechèch mache ede w verifye?",opts:["Anyen itil, se yon gaspiyaj tan","Sipozisyon ou sou kliyan kont vrè prèv anvan w envesti","Sèlman sa konkirans yo ap fè","Sèlman egzijans legal"],ans:1,fb:"Sipozisyon kont reyalite anvan w envesti."},
+    {q:"Kilès ki yon metòd rechèch senp, ki pa koute chè?",opts:["Anboche yon konpayi sondaj nasyonal chè imedyatman","Konvèsasyon dirèk ak 5-10 posib kliyan","Devine san verifye anyen","Inyore konkirans nèt"],ans:1,fb:"Konvèsasyon dirèk se yon metòd senp e efikas."},
+    {q:"Kisa bias konfimasyon ye nan kontèks sa a?",opts:["Konfime lisans biznis ou","Sèlman chèche enfòmasyon ki dakò ak sa ou deja te kwè","Yon kalite metòd rechèch mache","Yon bagay ki pa aplike pou ti biznis"],ans:1,fb:"Se sèlman chèche enfòmasyon ki konfime sa ou deja kwè."},
+    {q:"Kisa ou ta dwe fè si vrè rechèch kontredi premye lide ou?",opts:["Inyore rechèch la epi kontinye jan planifye","Prè pou ajiste plan ou baze sou vrè enfòmasyon an","Sispann biznis la nèt","Fè konfyans sèlman ak pwòp opinyon ou sou vrè kliyan"],ans:1,fb:"Prè pou ajiste plan ou baze sou vrè enfòmasyon."}],
+   close:{learned:"Rechèch mache verifye sipozisyon ou sou kliyan kont vrè prèv — menm ti rechèch bon mache bat vye chwa ki pa teste.",
+    mistake:"Sèlman chèche enfòmasyon ki konfime sa ou deja te kwè, olye verifye sipozisyon ou onètman.",
+    tip:"Gen 5 vrè konvèsasyon ak posib kliyan anvan w fè yon gwo envestisman baze sou yon vye chwa.",
+    assign:"Chwazi yon sipozisyon sou kliyan ou ak yon fason senp, ki pa koute chè pou teste li semèn sa a.",
+    dl:"Fèy Travay: Plan Rechèch Mache Senp",
+    checklist:["Sipozisyon idantifye?","Metòd rechèch ki pa koute chè chwazi?","Prè pou ajiste plan si rechèch kontredi sipozisyon?"],
+    ai:"M ap sipoze [sipozisyon] sou kliyan mwen. Sijere 2 fason senp, ki pa koute chè pou verifye si sa reyèlman vre."}},
+ fr:{lede:"L'étude de marché signifie vérifier vos hypothèses sur les clients par rapport à la réalité avant d'investir du vrai temps et argent basés sur une supposition.",
+   secs:[["Ce à quoi répond l'étude de marché","Y a-t-il une vraie demande pour ça ? (les gens cherchent-ils/demandent-ils réellement sur ce problème), Quelle est la taille du public potentiel ? (une estimation approximative, pas exacte), Que disent les vrais clients qu'ils veulent, dans leurs propres mots ? (pas juste ce que vous supposez qu'ils veulent)."],
+    ["Méthodes de recherche simples et peu coûteuses","Rechercher ce que les gens demandent réellement en ligne (termes de recherche, questions de forum, commentaires sur des publications similaires), avoir des conversations directes avec 5-10 clients potentiels, regarder ce que les clients d'entreprises similaires disent dans les avis publics, faire un très petit test bon marché (une simple publication, une petite pub) avant un gros investissement."],
+    ["Lire la recherche honnêtement","Ne cherchez pas seulement des informations qui confirment ce que vous croyiez déjà (biais de confirmation) ; une petite quantité de vraies informations clients vaut plus qu'une grande quantité d'hypothèses non testées ; c'est correct d'ajuster votre plan quand la vraie recherche contredit votre première idée."]],
+   illus:"roles",roleCards:[["🔍","Recherche en Ligne","Vraies questions"],["💬","Conversations Directes","5-10 clients"],["⭐","Avis Concurrents","Ce que disent les clients"],["🧪","Petit Test","Avant gros investissement"]],
+   ex:"Choisissez une hypothèse que vous faites sur vos clients et une façon simple de vérifier si elle est réellement vraie.",
+   quiz:[
+    {q:"Qu'est-ce que l'étude de marché vous aide à vérifier ?",opts:["Rien d'utile, c'est une perte de temps","Vos hypothèses sur les clients par rapport à de vraies preuves avant d'investir","Seulement ce que font les concurrents","Seulement les exigences légales"],ans:1,fb:"Les hypothèses contre la réalité avant d'investir."},
+    {q:"Laquelle est une méthode de recherche simple et peu coûteuse ?",opts:["Engager immédiatement une firme de sondage national coûteuse","Conversations directes avec 5-10 clients potentiels","Deviner sans rien vérifier","Ignorer complètement les concurrents"],ans:1,fb:"Les conversations directes sont une méthode simple et efficace."},
+    {q:"Qu'est-ce que le biais de confirmation dans ce contexte ?",opts:["Confirmer votre licence d'entreprise","Ne chercher que des informations qui correspondent à ce que vous croyiez déjà","Un type de méthode d'étude de marché","Quelque chose qui ne s'applique pas aux petites entreprises"],ans:1,fb:"C'est ne chercher que des informations qui confirment ce que vous croyez déjà."},
+    {q:"Que devriez-vous faire si la vraie recherche contredit votre première idée ?",opts:["Ignorer la recherche et continuer comme prévu","Être prêt à ajuster votre plan basé sur les vraies informations","Arrêter complètement l'entreprise","Ne faire confiance qu'à votre propre opinion plutôt qu'aux vrais clients"],ans:1,fb:"Être prêt à ajuster votre plan basé sur les vraies informations."}],
+   close:{learned:"L'étude de marché vérifie vos hypothèses sur les clients par rapport à de vraies preuves — même une petite recherche bon marché bat une supposition non testée.",
+    mistake:"Ne chercher que des informations qui confirment ce que vous croyiez déjà, plutôt que de vérifier honnêtement vos hypothèses.",
+    tip:"Ayez 5 vraies conversations avec des clients potentiels avant de faire un gros investissement basé sur une supposition.",
+    assign:"Choisissez une hypothèse sur vos clients et une façon simple et peu coûteuse de la tester cette semaine.",
+    dl:"Fiche de travail : Plan d'Étude de Marché Simple",
+    checklist:["Hypothèse identifiée ?","Méthode de recherche peu coûteuse choisie ?","Prêt à ajuster le plan si la recherche contredit l'hypothèse ?"],
+    ai:"Je suppose [hypothèse] sur mes clients. Suggère 2 façons simples et peu coûteuses de vérifier si c'est réellement vrai."}},
+ en:{lede:"Market research means checking your assumptions about customers against reality before you invest real time and money based on a guess.",
+   secs:[["What market research answers","Is there real demand for this? (are people actually searching for/asking about this problem), How big is the potential audience? (a rough estimate, not exact), What do real customers say they want, in their own words? (not just what you assume they want)."],
+    ["Simple, low-cost research methods","Search what people are actually asking online (search terms, forum questions, comments on similar posts), have direct conversations with 5-10 potential customers, look at what similar businesses' customers say in public reviews, run a very small, cheap test (a simple post, a small ad) before a big investment."],
+    ["Reading research honestly","Don't only look for information that confirms what you already believed (confirmation bias); a small amount of real customer information is more valuable than a large amount of untested assumption; it's fine to adjust your plan when real research contradicts your first idea."]],
+   illus:"roles",roleCards:[["🔍","Online Search","Real questions"],["💬","Direct Conversations","5-10 customers"],["⭐","Competitor Reviews","What customers say"],["🧪","Small Test","Before a big investment"]],
+   ex:"Pick one assumption you're making about your customers and one simple way you could check if it's actually true.",
+   quiz:[
+    {q:"What does market research help you check?",opts:["Nothing useful, it's a waste of time","Your assumptions about customers against real evidence before investing","Only what competitors are doing","Only legal requirements"],ans:1,fb:"Assumptions against reality before investing."},
+    {q:"Which is a simple, low-cost research method?",opts:["Hiring an expensive national survey firm immediately","Direct conversations with 5-10 potential customers","Guessing without checking anything","Ignoring competitors entirely"],ans:1,fb:"Direct conversations are a simple, effective method."},
+    {q:"What is confirmation bias in this context?",opts:["Confirming your business license","Only looking for information that agrees with what you already believed","A type of market research method","Something that doesn't apply to small businesses"],ans:1,fb:"It's only looking for information confirming what you already believe."},
+    {q:"What should you do if real research contradicts your first idea?",opts:["Ignore the research and continue as planned","Be willing to adjust your plan based on the real information","Stop the business entirely","Only trust your own opinion over real customers"],ans:1,fb:"Be willing to adjust your plan based on real information."}],
+   close:{learned:"Market research checks your assumptions about customers against real evidence — even small, cheap research beats untested guessing.",
+    mistake:"Only looking for information that confirms what you already believed, instead of honestly checking your assumptions.",
+    tip:"Have 5 real conversations with potential customers before making a big investment based on a guess.",
+    assign:"Pick one assumption about your customers and one simple, low-cost way to test it this week.",
+    dl:"Worksheet: Simple Market Research Plan",
+    checklist:["Assumption identified?","Low-cost research method chosen?","Willing to adjust plan if research contradicts assumption?"],
+    ai:"I'm assuming [assumption] about my customers. Suggest 2 simple, low-cost ways to check if this is actually true."}}},
+
+6:{ht:{lede:"Etidye konkirans ou pa sou kopye yo — se sou jwenn twou yo kite ouvè ou ka ranpli pi byen.",
+   secs:[["Sa pou reyèlman gade","Kisa kliyan yo plenyen sou nan revi? (yon sous dirèk pwen fristrasyon ak opòtinite), Kisa yo fè byen ke kliyan klèman valorize?, Kisa ki manke ke kliyan mande men yo pa jwenn?, Kijan yo fikse pri ak pozisyone tèt yo?"],
+    ["Tounen rechèch an yon avantaj","Chèche yon vrè twou (yon bezwen pa byen sèvi, yon plent komen ou ka rezoud, yon odyans yo inyore) olye eseye kopye tout sa yo fè; diferan nan yon fason kliyan reyèlman valorize bat idantik men yon ti jan pi bon mache."],
+    ["Rete onèt e konsantre","Fè rechèch konkirans peryodikman, pa obsesyonèlman — verifye chak jou kreye enkyetid, pa insight; pa janm kopye kontni yo, idantite mak yo, oswa deklarasyon yo dirèkteman (se toude yon pwoblèm etik ak yon risk legal); itilize sa w aprann pou file pwòp pozisyone ou, pa vin yon kopi yon lòt moun."]],
+   illus:"roles",roleCards:[["😠","Plent Kliyan","Sa yo pa renmen"],["✅","Pwen Fò","Sa yo fè byen"],["🕳️","Twou/Bezwen Manke","Sa ki manke"],["💲","Pri/Pozisyone","Kijan yo pozisyone"]],
+   ex:"Chwazi yon vrè oswa pèsi konkirans. Site yon bagay kliyan yo plenyen sou ke ou ta ka reyèlman fè pi byen.",
+   quiz:[
+    {q:"Ki vrè objektif rechèch konkirans?",opts:["Pou kopye tout sa yon konkirans fè","Pou jwenn yon vrè twou ou ka ranpli pi byen, pa kopye yo","Pou toujou vann pi ba pri pase yo","Li pa gen okenn vrè objektif"],ans:1,fb:"Objektif se jwenn yon vrè twou pou ranpli pi byen."},
+    {q:"Kote ou ka jwenn enfòmasyon konkirans itil?",opts:["Sèlman lè w mande konkirans lan dirèkteman","Revi ak plent sou yo, sa kliyan di yo valorize, ak sa ki manke","Li pa ka reyèlman rechèche ditou","Sèlman nan dokiman entèn prive yo"],ans:1,fb:"Revi, valè, ak twou se sous itil."},
+    {q:"Ki yon vrè risk lè w kopye kontni oswa idantite mak yon konkirans dirèkteman?",opts:["Pa gen okenn risk ditou","Se toude yon pwoblèm etik ak yon risk legal","Li toujou garanti plis vant","Li obligatwa pou bon maketing"],ans:1,fb:"Se toude yon pwoblèm etik ak yon risk legal."},
+    {q:"Konbyen fwa ou ta dwe fè rechèch konkirans?",opts:["Chak jou, obsesyonèlman","Peryodikman, pa obsesyonèlman","Janm, se yon gaspiyaj tan","Sèlman yon fwa, nan kòmansman an"],ans:1,fb:"Peryodikman, pa obsesyonèlman, se bon apwòch la."}],
+   close:{learned:"Rechèch konkirans jwenn yon vrè twou pou ranpli pi byen — se pa yon bagay pou kopye, e se pa yon bagay pou verifye obsesyonèlman.",
+    mistake:"Kopye kontni, idantite mak, oswa deklarasyon yon konkirans dirèkteman, ki pote toude risk etik e legal.",
+    tip:"Li revi negatif pi gwo konkirans ou — se souvan kat ki pi klè yon opòtinite ou ka ranpli.",
+    assign:"Site yon vrè twou yon konkirans kite ouvè ak yon fason ou ta ka reyèlman ranpli l pi byen.",
+    dl:"Fèy Travay: Jwenn Twou Konkirans",
+    checklist:["Vrè twou idantifye (pa jis 'pi bon mache')?","Anyen kopye dirèkteman?","Itilize pou file pwòp pozisyone ou?"],
+    ai:"Konkirans mwen yo se [dekri yo]. Baze sou plent komen nan endistri sa a, sijere yon twou mwen ta ka reyèlman ranpli pi byen."}},
+ fr:{lede:"Étudier vos concurrents ne consiste pas à les copier — il s'agit de trouver l'écart qu'ils laissent ouvert que vous pouvez mieux combler.",
+   secs:[["Ce qu'il faut réellement regarder","De quoi leurs clients se plaignent-ils dans les avis ? (une source directe de points de friction et opportunités), Que font-ils bien que les clients valorisent clairement ?, Que manque-t-il que les clients demandent mais n'obtiennent pas ?, Comment fixent-ils leurs prix et se positionnent-ils ?"],
+    ["Transformer la recherche en avantage","Cherchez un vrai écart (un besoin mal desservi, une plainte courante que vous pouvez résoudre, un public qu'ils ignorent) plutôt que d'essayer de copier tout ce qu'ils font ; être différent d'une façon que les clients valorisent réellement bat être identique mais un peu moins cher."],
+    ["Rester honnête et concentré","Recherchez les concurrents périodiquement, pas obsessionnellement — vérifier chaque jour crée de l'anxiété, pas de l'insight ; ne copiez jamais leur contenu, image de marque, ou revendications directement (à la fois un problème éthique et un risque légal) ; utilisez ce que vous apprenez pour affiner votre propre positionnement, pas pour devenir une copie de quelqu'un d'autre."]],
+   illus:"roles",roleCards:[["😠","Plaintes Clients","Ce qu'ils n'aiment pas"],["✅","Points Forts","Ce qu'ils font bien"],["🕳️","Écart/Besoin Manquant","Ce qui manque"],["💲","Prix/Positionnement","Comment ils se positionnent"]],
+   ex:"Choisissez un concurrent réel ou perçu. Nommez une chose dont leurs clients se plaignent que vous pourriez réellement mieux faire.",
+   quiz:[
+    {q:"Quel est le vrai but de la recherche sur la concurrence ?",opts:["Copier tout ce que fait un concurrent","Trouver un vrai écart que vous pouvez mieux combler, pas les copier","Toujours vendre moins cher qu'eux","Ça n'a aucun vrai but"],ans:1,fb:"Le but est de trouver un vrai écart à mieux combler."},
+    {q:"Où pouvez-vous trouver des informations utiles sur les concurrents ?",opts:["Seulement en demandant directement au concurrent","Avis et plaintes sur eux, ce que les clients disent valoriser, et ce qui manque","Ça ne peut pas du tout être recherché","Seulement dans leurs documents internes privés"],ans:1,fb:"Avis, valeur, et écarts sont des sources utiles."},
+    {q:"Quel est un vrai risque à copier directement le contenu ou l'image de marque d'un concurrent ?",opts:["Il n'y a aucun risque du tout","C'est à la fois un problème éthique et un risque légal","Ça garantit toujours plus de ventes","C'est requis pour un bon marketing"],ans:1,fb:"C'est à la fois un problème éthique et un risque légal."},
+    {q:"À quelle fréquence devriez-vous rechercher les concurrents ?",opts:["Tous les jours, obsessionnellement","Périodiquement, pas obsessionnellement","Jamais, c'est une perte de temps","Une seule fois, au tout début"],ans:1,fb:"Périodiquement, pas obsessionnellement, est la bonne approche."}],
+   close:{learned:"La recherche sur la concurrence trouve un vrai écart à mieux combler — pas quelque chose à copier, et pas quelque chose à vérifier obsessionnellement.",
+    mistake:"Copier directement le contenu, l'image de marque, ou les revendications d'un concurrent, ce qui comporte à la fois un risque éthique et légal.",
+    tip:"Lisez les avis négatifs de votre principal concurrent — c'est souvent la carte la plus claire d'une opportunité que vous pouvez combler.",
+    assign:"Nommez un vrai écart qu'un concurrent laisse ouvert et une façon dont vous pourriez réellement mieux le combler.",
+    dl:"Fiche de travail : Trouveur d'Écart Concurrentiel",
+    checklist:["Vrai écart identifié (pas juste « être moins cher ») ?","Rien copié directement ?","Utilisé pour affiner votre propre positionnement ?"],
+    ai:"Mes concurrents sont [décrire]. En fonction des plaintes courantes dans ce secteur, suggère un écart que je pourrais réellement mieux combler."}},
+ en:{lede:"Studying your competitors isn't about copying them — it's about finding the gap they're leaving open that you can fill better.",
+   secs:[["What to actually look for","What do their customers complain about in reviews? (a direct source of pain points and opportunities), What do they do well that customers clearly value?, What's missing that customers ask for but don't get?, How do they price and position themselves?"],
+    ["Turning research into an advantage","Look for a genuine gap (an underserved need, a common complaint you can solve, an audience they're ignoring) rather than trying to copy everything they do; being different in a way customers actually value beats being identical but slightly cheaper."],
+    ["Staying honest and focused","Research competitors periodically, not obsessively — checking every day creates anxiety, not insight; never copy their content, branding, or claims directly (both an ethics issue and a legal risk); use what you learn to sharpen your own positioning, not to become a copy of someone else."]],
+   illus:"roles",roleCards:[["😠","Customer Complaints","What they don't like"],["✅","Strengths","What they do well"],["🕳️","Gap/Missing Need","What's missing"],["💲","Price/Positioning","How they position"]],
+   ex:"Pick one real or perceived competitor. Name one thing their customers complain about that you could genuinely do better.",
+   quiz:[
+    {q:"What's the real purpose of competitor research?",opts:["To copy everything a competitor does","To find a genuine gap you can fill better, not to copy them","To always undercut their price","It has no real purpose"],ans:1,fb:"The purpose is finding a genuine gap to fill better."},
+    {q:"Where can you find useful competitor information?",opts:["Only by asking the competitor directly","Reviews and complaints about them, what customers say they value, and what's missing","It cannot be researched at all","Only from their private internal documents"],ans:1,fb:"Reviews, value, and gaps are useful sources."},
+    {q:"What's a real risk of copying a competitor's content or branding directly?",opts:["There's no risk at all","It's both an ethics issue and a legal risk","It always guarantees more sales","It's required for good marketing"],ans:1,fb:"It's both an ethics issue and a legal risk."},
+    {q:"How often should you research competitors?",opts:["Every single day, obsessively","Periodically, not obsessively","Never, it's a waste of time","Only once, at the very start"],ans:1,fb:"Periodically, not obsessively, is the right approach."}],
+   close:{learned:"Competitor research finds a genuine gap to fill better — not something to copy, and not something to check obsessively.",
+    mistake:"Copying a competitor's content, branding, or claims directly, which carries both ethical and legal risk.",
+    tip:"Read the negative reviews of your top competitor — that's often the clearest map of an opportunity you can fill.",
+    assign:"Name one real gap a competitor leaves open and one way you could genuinely fill it better.",
+    dl:"Worksheet: Competitor Gap Finder",
+    checklist:["Real gap identified (not just 'be cheaper')?","Nothing copied directly?","Used to sharpen your own positioning?"],
+    ai:"My competitors are [describe]. Based on common complaints in this industry, suggest one gap I could genuinely fill better."}}},
+
+7:{ht:{lede:"Avata, pwen fristrasyon, objektif, objeksyon, ak rechèch dekri menm moun nan de diferan angle — leson sa a mete yo ansanm nan yon sèl dokiman ou ap reyèlman itilize.",
+   secs:[["Poukisa yon sèl pwofil konbine konte","Genyen 5 nòt separe gaye pi mwens itil pase yon sèl paj ou ka gade rapid anvan w ekri nenpòt kontni, piblisite, oswa repons; yon pwofil konbine vin filtè chak desizyon maketing nan lavni pase."],
+    ["Sa ki fè pati pwofil la","Avata prensipal ou (kiyès yo ye), 1-2 pwen fristrasyon prensipal yo (nan pwòp mo yo), objektif prensipal yo (sa yo ap deplase vè), 1-2 objeksyon prensipal yo (ak repons onèt ou pou chak), yon vrè insight ki soti nan rechèch mache/konkirans."],
+    ["Itilize pwofil la pou lavni","Verifye nouvo kontni, òf, ak piblisite kont li anvan w pibliye ('èske sa pale ak vrè pwen fristrasyon/objektif yo? èske li adrese yon vrè objeksyon?'); mete l ajou lè vrè konvèsasyon oswa rechèch revele yon bagay nouvo — se yon dokiman vivan, pa yon egzèsis yon sèl fwa."]],
+   illus:"hub",hubLabels:["Avata","Pwen Fristrasyon","Objektif","Objeksyon","Rechèch"],hubCenter:"Pwofil Kliyan",
+   ex:"Itilize tout bagay nan modil sa a, ekri pwofil kliyan konbine ou an 5-6 fraz (avata, pwen fristrasyon prensipal, objektif prensipal, objeksyon prensipal + repons, yon insight rechèch).",
+   quiz:[
+    {q:"Poukisa yon sèl pwofil kliyan konbine pi itil pase 5 nòt separe gaye?",opts:["Li pa itil, nòt gaye pi bon","Yon sèl paj ou ka verifye rapid fè l yon vrè filtè itilizab pou desizyon","Pwofil konbine obligatwa pa lalwa","Li pa gen okenn benefis pratik"],ans:1,fb:"Yon sèl paj ki fasil verifye vin yon vrè filtè itilizab."},
+    {q:"Kisa ki fè pati yon pwofil kliyan konbine?",opts:["Sèlman avata a, anyen dòt","Avata, pwen fristrasyon prensipal, objektif prensipal, objeksyon prensipal ak repons, ak yon insight rechèch","Sèlman non konkirans yo","Sèlman enfòmasyon pri"],ans:1,fb:"Tout eleman yo konbine ansanm."},
+    {q:"Kijan pwofil la ta dwe itilize pou lavni?",opts:["Ekri yon fwa epi pa janm gade l ankò","Verifye kont nouvo kontni/òf anvan pibliye, e mete l ajou pandan w aprann plis","Sèlman montre bay konkirans","Kenbe l konplètman prive e san itilize"],ans:1,fb:"Verifye e mete ajou se kijan pou itilize l."},
+    {q:"Ki kalite dokiman yon pwofil kliyan ye?",opts:["Yon egzèsis yon sèl fwa ki pa chanje","Yon dokiman vivan ki mete ajou pandan w aprann plis","Yon egzijans legal san itilizasyon pratik","Yon bagay sèlman gwo konpayi bezwen"],ans:1,fb:"Se yon dokiman vivan, pa yon egzèsis fiks."}],
+   close:{learned:"Avata, pwen fristrasyon, objektif, objeksyon, ak rechèch konbine an yon sèl pwofil kliyan itilizab — yon dokiman vivan ou verifye desizyon nan lavni kont li.",
+    mistake:"Fè travay sa a yon fwa kòm yon egzèsis epi pa janm refere bay li ankò lè w reyèlman ekri maketing.",
+    tip:"Kenbe pwofil kliyan ou yon kote ou ap reyèlman wè l (kole, enprime, sove kòm yon nòt) — pa antere nan yon dosye ou bliye.",
+    assign:"Ekri pwofil kliyan konbine ou an itilize tout bagay nan modil sa a, epi sove l yon kote ou ap verifye regilyèman.",
+    dl:"Modèl: Pwofil Kliyan Yon Paj",
+    checklist:["Avata ekri?","Pwen fristrasyon prensipal ak objektif enkli?","Objeksyon prensipal ak repons enkli?","Yon insight rechèch enkli?"],
+    ai:"Men sa m konnen sou kliyan mwen: [kole nòt ou nan modil sa a]. Ede m òganize sa an yon sèl pwofil kliyan klè, yon paj."}},
+ fr:{lede:"Avatar, points de friction, objectifs, objections, et recherche décrivent tous la même personne sous différents angles — cette leçon les rassemble en un seul document que vous utiliserez réellement.",
+   secs:[["Pourquoi un profil combiné compte","Avoir 5 notes séparées éparpillées est bien moins utile qu'une seule page que vous pouvez consulter rapidement avant d'écrire tout contenu, pub, ou réponse ; un profil combiné devient le filtre à travers lequel passe chaque future décision marketing."],
+    ["Ce qui appartient au profil","Votre avatar principal (qui ils sont), leurs 1-2 principaux points de friction (dans leurs mots), leur objectif principal (vers quoi ils avancent), leurs 1-2 principales objections (et votre réponse honnête à chacune), une vraie information tirée de l'étude de marché/concurrence."],
+    ["Utiliser le profil à l'avenir","Vérifiez le nouveau contenu, les offres, et les publicités par rapport à lui avant de publier (« est-ce que ça parle à leur vrai point de friction/objectif ? adresse-t-il une vraie objection ? ») ; mettez-le à jour quand de vraies conversations ou recherches révèlent quelque chose de nouveau — c'est un document vivant, pas un exercice ponctuel."]],
+   illus:"hub",hubLabels:["Avatar","Point de Friction","Objectif","Objection","Recherche"],hubCenter:"Profil Client",
+   ex:"En utilisant tout ce module, écrivez votre profil client combiné en 5-6 phrases (avatar, principal point de friction, principal objectif, principale objection + réponse, une information de recherche).",
+   quiz:[
+    {q:"Pourquoi un seul profil client combiné est-il plus utile que 5 notes séparées éparpillées ?",opts:["Ce n'est pas le cas, les notes éparpillées sont meilleures","Une seule page à vérifier rapidement en fait un vrai filtre utilisable pour les décisions","Les profils combinés sont requis par la loi","Ça n'a aucun bénéfice pratique"],ans:1,fb:"Une seule page facile à vérifier devient un vrai filtre utilisable."},
+    {q:"Qu'est-ce qui appartient à un profil client combiné ?",opts:["Seulement l'avatar, rien d'autre","Avatar, principaux points de friction, objectif principal, principales objections avec réponses, et une information de recherche","Seulement les noms des concurrents","Seulement les informations de prix"],ans:1,fb:"Tous les éléments combinés ensemble."},
+    {q:"Comment le profil devrait-il être utilisé à l'avenir ?",opts:["Écrit une fois et jamais revu","Vérifié par rapport au nouveau contenu/offres avant publication, et mis à jour en apprenant plus","Seulement montré aux concurrents","Gardé complètement privé et inutilisé"],ans:1,fb:"Vérifier et mettre à jour est la bonne façon de l'utiliser."},
+    {q:"Quel type de document est un profil client ?",opts:["Un exercice ponctuel et immuable","Un document vivant mis à jour en apprenant plus","Une exigence légale sans usage pratique","Quelque chose dont seules les grandes entreprises ont besoin"],ans:1,fb:"C'est un document vivant, pas un exercice fixe."}],
+   close:{learned:"Avatar, points de friction, objectifs, objections, et recherche se combinent en un profil client utilisable — un document vivant contre lequel vérifier les décisions futures.",
+    mistake:"Faire ce travail une fois comme un exercice puis ne jamais y revenir en écrivant réellement du marketing.",
+    tip:"Gardez votre profil client quelque part où vous le verrez réellement (épinglé, imprimé, sauvegardé en note) — pas enterré dans un dossier oublié.",
+    assign:"Écrivez votre profil client combiné en utilisant tout ce module, et sauvegardez-le quelque part où vous le vérifierez régulièrement.",
+    dl:"Modèle : Profil Client d'Une Page",
+    checklist:["Avatar écrit ?","Principal point de friction et objectif inclus ?","Principale objection avec réponse incluse ?","Une information de recherche incluse ?"],
+    ai:"Voici ce que je sais sur mon client : [coller vos notes de ce module]. Aide-moi à organiser ça en un profil client clair d'une page."}},
+ en:{lede:"Avatar, pain points, goals, objections, and research all describe the same person from different angles — this lesson brings them together into one document you'll actually use.",
+   secs:[["Why one combined profile matters","Having 5 separate scattered notes is far less useful than one page you can glance at before writing any content, ad, or reply; a combined profile becomes the filter every future marketing decision passes through."],
+    ["What belongs in the profile","Your core avatar (who they are), their top 1-2 pain points (in their words), their top goal (what they're moving toward), their top 1-2 objections (and your honest answer to each), one real insight from market/competitor research."],
+    ["Using the profile going forward","Check new content, offers, and ads against it before publishing ('does this speak to their real pain point/goal? does it address a real objection?'); update it when real conversations or research reveal something new — it's a living document, not a one-time exercise."]],
+   illus:"hub",hubLabels:["Avatar","Pain Point","Goal","Objection","Research"],hubCenter:"Customer Profile",
+   ex:"Using everything from this module, write your combined customer profile in 5-6 sentences (avatar, top pain point, top goal, top objection + answer, one research insight).",
+   quiz:[
+    {q:"Why is one combined customer profile more useful than 5 separate scattered notes?",opts:["It isn't, scattered notes are better","One page you can quickly check makes it a real, usable filter for decisions","Combined profiles are required by law","It has no practical benefit"],ans:1,fb:"One easy-to-check page becomes a real, usable filter."},
+    {q:"What belongs in a combined customer profile?",opts:["Only the avatar, nothing else","Avatar, top pain points, top goal, top objections with answers, and a research insight","Only competitor names","Only pricing information"],ans:1,fb:"All the pieces combined together."},
+    {q:"How should the profile be used going forward?",opts:["Written once and never looked at again","Checked against new content/offers before publishing, and updated as you learn more","Only shown to competitors","Kept completely private and unused"],ans:1,fb:"Checking and updating is how it should be used."},
+    {q:"What kind of document is a customer profile?",opts:["A one-time, unchangeable exercise","A living document updated as you learn more","A legal requirement with no practical use","Something only large companies need"],ans:1,fb:"It's a living document, not a fixed exercise."}],
+   close:{learned:"Avatar, pain points, goals, objections, and research combine into one usable customer profile — a living document you check future decisions against.",
+    mistake:"Doing this work once as an exercise and then never referring back to it when actually writing marketing.",
+    tip:"Keep your customer profile somewhere you'll actually see it (pinned, printed, saved as a note) — not buried in a folder you forget.",
+    assign:"Write your combined customer profile using everything from this module, and save it somewhere you'll check regularly.",
+    dl:"Template: One-Page Customer Profile",
+    checklist:["Avatar written?","Top pain point and goal included?","Top objection with answer included?","One research insight included?"],
+    ai:"Here's what I know about my customer: [paste your notes from this module]. Help me organize this into one clear, one-page customer profile."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module4-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD4_LESSON_SLUGS=["building-a-customer-avatar","finding-pain-points","understanding-customer-goals","handling-common-objections","market-research-basics","competitor-research","your-customer-profile"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD4_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===4;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M4[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="fbmap"){
+  let h='<div style="max-width:660px;margin:0 auto">';
+  d.fbRows.forEach(r=>{
+   h+='<div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">'+
+    '<div style="flex:1;background:var(--ink-600);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:var(--mute);font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.fbFeat+'</div>'+r[0]+'</div>'+
+    '<div style="color:var(--brand);font-size:20px">→</div>'+
+    '<div style="flex:1;background:rgba(var(--brand-rgb),.14);border:1px solid var(--brand);border-radius:10px;padding:12px 14px;font-size:13px"><div style="font-size:10.5px;color:var(--brand);font-weight:700;text-transform:uppercase;margin-bottom:4px">'+d.fbBen+'</div>'+r[1]+'</div>'+
+   '</div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="hub"){
+  const cx=330,cy=150,r=150;
+  const pts=d.hubLabels.map((lbl,i)=>{const a=(Math.PI*2*i)/d.hubLabels.length-Math.PI/2;return{x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,lbl};});
+  let svg='<svg viewBox="0 0 660 300" style="width:100%;height:auto;max-width:660px;display:block;margin:0 auto">';
+  pts.forEach(p=>{svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+p.x+'" y2="'+p.y+'" stroke="var(--edge2)" stroke-width="2"/>';});
+  svg+='<circle cx="'+cx+'" cy="'+cy+'" r="52" fill="var(--brand)"/><text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">'+d.hubCenter+'</text>';
+  pts.forEach(p=>{svg+='<circle cx="'+p.x+'" cy="'+p.y+'" r="44" fill="var(--ink-600)" stroke="var(--edge2)"/><text x="'+p.x+'" y="'+(p.y+5)+'" text-anchor="middle" fill="var(--text)" font-size="11" font-weight="600">'+p.lbl+'</text>';});
+  svg+="</svg>";return svg;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 4 · 4."+n;
+ $("topTitle").textContent=M4[lang][n-1];
+ document.title="Academy · "+M4[lang][n-1];
+ renderRail();
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 4 · 4.'+n+'</span><h2 class="labh2">'+M4[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M4[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+}
+
+function updateFinishBtn(){
+ const st=S.st[S.cur];const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 4?":S.lang==="fr"?"Voulez-vous recommencer le Module 4 ?":"Restart Module 4?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(4).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
