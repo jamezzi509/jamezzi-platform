@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 12 — Google Business Profile</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ============ GBP tool surface (generic SaaS dashboard, neutral accent) ============ */
+.gbpwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;background:#fff;border-radius:10px;overflow:hidden;color:#1b1f27;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.gbptabs{display:flex;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.gbptab{padding:12px 16px;font-size:13px;font-weight:600;color:#5b6472;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.gbptab.on{color:#3B6FE0;border-bottom-color:#3B6FE0}
+.gbpbody{padding:18px}
+.gbprow{margin-bottom:14px}
+.gbplbl{font-size:11.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px}
+.gbpinput,.gbpselect,.gbptextarea{width:100%;border:1px solid #d7dce3;border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:#1b1f27}
+.gbpinput:focus,.gbpselect:focus,.gbptextarea:focus{outline:2px solid #3B6FE0}
+.gbpdays{display:flex;gap:6px;flex-wrap:wrap}
+.gbpday{padding:7px 10px;border-radius:8px;border:1px solid #d7dce3;font-size:12.5px;cursor:pointer;background:#f7f8fa;font-family:inherit}
+.gbpday.on{background:#3B6FE0;color:#fff;border-color:#3B6FE0}
+.gbpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.gbpphoto{border:1px solid #e5e7eb;border-radius:10px;padding:10px;text-align:center;background:#f9fafb}
+.gbpphoto .em{font-size:26px;margin-bottom:6px}
+.gbpphoto .lb{font-size:11.5px;font-weight:600;margin-bottom:8px}
+.gbpphoto .tags{display:flex;gap:3px;justify-content:center;flex-wrap:wrap;margin-bottom:6px;min-height:16px}
+.gbptag{font-size:9.5px;font-weight:700;background:#dbeafe;color:#1d4ed8;border-radius:999px;padding:2px 7px}
+.gbpphoto button{font-size:10.5px;border:1px solid #d7dce3;background:#fff;border-radius:6px;padding:5px 6px;cursor:pointer;margin:1px;font-family:inherit}
+.gbpphoto button.pri{background:#3B6FE0;color:#fff;border-color:#3B6FE0}
+.gbpslot{font-size:12px;color:#6b7280;margin-bottom:10px}
+.gbpslot b{color:#1b1f27}
+.gbpreview{border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.gbprevhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px}
+.gbpstars{color:#f59e0b;font-size:13px}
+.gbprevtext{font-size:13px;color:#374151;margin-bottom:10px}
+.gbpreplybtns{display:flex;flex-direction:column;gap:6px}
+.gbpreplybtn{text-align:left;font-size:12.5px;border:1px solid #d7dce3;background:#fff;border-radius:8px;padding:8px 10px;cursor:pointer;font-family:inherit}
+.gbpreplybtn:hover{border-color:#3B6FE0}
+.gbpreplied{font-size:12px;color:#166534;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 10px}
+.gbppost{display:flex;flex-direction:column;gap:10px;max-width:400px}
+.gbppostlist{margin-top:14px}
+.gbppostcard{border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12.5px}
+.gbpinsight{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.gbptile{flex:1;min-width:110px;border:1px solid #e5e7eb;border-radius:10px;padding:12px;text-align:center;cursor:pointer;background:#f9fafb}
+.gbptile.sel{border-color:#3B6FE0;background:#eef2ff}
+.gbptile .n{font-size:22px;font-weight:700}
+.gbptile .l{font-size:11px;color:#6b7280;margin-top:2px}
+.gbpbars{display:flex;align-items:flex-end;gap:6px;height:100px;margin-top:10px}
+.gbpbarcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.gbpbar{width:100%;background:#3B6FE0;border-radius:4px 4px 0 0;min-height:4px}
+.gbpbarlbl{font-size:9.5px;color:#6b7280;text-align:center;margin-top:4px}
+.gbpqueries{font-size:12.5px;color:#374151;margin-top:6px;padding-left:18px}
+.gbpqueries li{margin-bottom:3px}
+.gbpscore{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.gbpfactor{display:flex;justify-content:space-between;align-items:center;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px}
+.gbpfactor.on{border-color:#22c55e;background:#f0fdf4}
+.gbpfactor .st{font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:#fee2e2;color:#b91c1c}
+.gbpfactor.on .st{background:#dcfce7;color:#166534}
+.gbpmeter{height:10px;border-radius:6px;background:#e5e7eb;overflow:hidden;margin:10px 0}
+.gbpmeter>span{display:block;height:100%;background:#3B6FE0}
+.gbptask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+@media (max-width:640px){.gbpinsight{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 12 · 12.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay tablo a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   tabInfo:"Enfòmasyon",tabPhotos:"Foto",tabReviews:"Revi",tabPosts:"Pòs",tabInsights:"Apèsi",
+   name:"Non Biznis",category:"Kategori",address:"Adrès",phone:"Telefòn",hours:"Jou Ouvè",description:"Deskripsyon",
+   catPh:"Chwazi yon kategori...",catRest:"Restoran",catRetail:"Magazen Detay",catBeauty:"Salon Bote",catService:"Sèvis Pwofesyonèl",catOther:"Lòt",
+   setAsLogo:"Mete kòm Logo",setAsCover:"Mete kòm Kouvèti",addToGallery:"Ajoute nan Galri",logoSet:"Logo",coverSet:"Kouvèti",inGallery:"Nan Galri",
+   logoSlot:"Logo",coverSlot:"Kouvèti",galleryCount:"foto nan galri a",replyBtn:"Reponn",replied:"Ou reponn ✓",
+   postType:"Kalite Pòs",postUpdate:"Mizajou",postOffer:"Ofri",postEvent:"Evènman",postText:"Tèks Pòs",postPhoto:"Chwazi Foto",publish:"Pibliye",published:"Pibliye ✓",
+   viewsLbl:"Vizit sou 7 Jou",queriesLbl:"Rechèch ki Mennen Isit",actionsLbl:"Aksyon Kliyan (klike pou idantifye pi gwo a)",
+   dayNames:["Len","Mad","Mèk","Jed","Van","Sam","Dim"],
+   factorInfo:"Enfòmasyon Konplè",factorPhotos:"Gen Bon Foto",factorReviews:"Revi Reponn",factorPosts:"Ap Poste Aktivman",
+   scoreOn:"Sou",scoreOff:"Manke",visScore:"Nòt Vizibilite",
+   stampTitle:"Ou fini Modil 12!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche du tableau",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   tabInfo:"Infos",tabPhotos:"Photos",tabReviews:"Avis",tabPosts:"Publications",tabInsights:"Aperçus",
+   name:"Nom de l'Entreprise",category:"Catégorie",address:"Adresse",phone:"Téléphone",hours:"Jours Ouverts",description:"Description",
+   catPh:"Choisir une catégorie...",catRest:"Restaurant",catRetail:"Magasin de Détail",catBeauty:"Salon de Beauté",catService:"Service Professionnel",catOther:"Autre",
+   setAsLogo:"Définir comme Logo",setAsCover:"Définir comme Couverture",addToGallery:"Ajouter à la Galerie",logoSet:"Logo",coverSet:"Couverture",inGallery:"Dans la Galerie",
+   logoSlot:"Logo",coverSlot:"Couverture",galleryCount:"photos dans la galerie",replyBtn:"Répondre",replied:"Vous avez répondu ✓",
+   postType:"Type de Publication",postUpdate:"Mise à Jour",postOffer:"Offre",postEvent:"Événement",postText:"Texte de la Publication",postPhoto:"Choisir une Photo",publish:"Publier",published:"Publié ✓",
+   viewsLbl:"Vues sur 7 Jours",queriesLbl:"Recherches qui Ont Mené Ici",actionsLbl:"Actions des Clients (cliquez pour identifier la plus grande)",
+   dayNames:["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],
+   factorInfo:"Infos Complètes",factorPhotos:"Bonnes Photos",factorReviews:"Avis Répondus",factorPosts:"Publie Activement",
+   scoreOn:"Actif",scoreOff:"Manquant",visScore:"Score de Visibilité",
+   stampTitle:"Module 12 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the dashboard task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   tabInfo:"Info",tabPhotos:"Photos",tabReviews:"Reviews",tabPosts:"Posts",tabInsights:"Insights",
+   name:"Business Name",category:"Category",address:"Address",phone:"Phone",hours:"Open Days",description:"Description",
+   catPh:"Choose a category...",catRest:"Restaurant",catRetail:"Retail Store",catBeauty:"Beauty Salon",catService:"Professional Service",catOther:"Other",
+   setAsLogo:"Set as Logo",setAsCover:"Set as Cover",addToGallery:"Add to Gallery",logoSet:"Logo",coverSet:"Cover",inGallery:"In Gallery",
+   logoSlot:"Logo",coverSlot:"Cover",galleryCount:"photos in gallery",replyBtn:"Reply",replied:"You replied ✓",
+   postType:"Post Type",postUpdate:"Update",postOffer:"Offer",postEvent:"Event",postText:"Post Text",postPhoto:"Choose Photo",publish:"Publish",published:"Published ✓",
+   viewsLbl:"Views Over 7 Days",queriesLbl:"Searches That Led Here",actionsLbl:"Customer Actions (click to identify the biggest one)",
+   dayNames:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+   factorInfo:"Complete Info",factorPhotos:"Has Good Photos",factorReviews:"Reviews Answered",factorPosts:"Actively Posting",
+   scoreOn:"On",scoreOff:"Missing",visScore:"Visibility Score",
+   stampTitle:"You finished Module 12!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M12={
+ ht:["Rankontre Pwofil Biznis Ou","Konfigire Pwofil Ou","Ajoute Foto","Jwenn ak Reponn Revi","Pòs ak Mizajou","Konprann Apèsi Ou","Faktè Klasman ak Vizibilite Lokal"],
+ fr:["Découvrir Votre Profil d'Entreprise","Configurer Votre Profil","Ajouter des Photos","Obtenir et Répondre aux Avis","Publications et Mises à Jour","Comprendre Vos Aperçus","Facteurs de Classement et Visibilité Locale"],
+ en:["Meet Your Business Profile","Setting Up Your Profile","Adding Photos","Getting & Responding to Reviews","Posts & Updates","Understanding Your Insights","Ranking Factors & Local Visibility"]};
+
+const PHOTOS=[
+ {id:"ext",emoji:"🏬",ht:"Deyò Biznis la",fr:"Extérieur de l'Entreprise",en:"Business Exterior"},
+ {id:"int",emoji:"🪑",ht:"Anndan an",fr:"Intérieur",en:"Interior"},
+ {id:"p1",emoji:"📦",ht:"Pwodwi 1",fr:"Produit 1",en:"Product 1"},
+ {id:"p2",emoji:"🎁",ht:"Pwodwi 2",fr:"Produit 2",en:"Product 2"},
+ {id:"team",emoji:"👥",ht:"Ekip la",fr:"L'Équipe",en:"The Team"},
+ {id:"menu",emoji:"📋",ht:"Meni/Katalòg",fr:"Menu/Catalogue",en:"Menu/Catalog"},
+ {id:"logo",emoji:"🔷",ht:"Opsyon Logo",fr:"Option de Logo",en:"Logo Option"},
+ {id:"cover",emoji:"🖼️",ht:"Opsyon Kouvèti",fr:"Option de Couverture",en:"Cover Option"}];
+
+const REVIEWS=[
+ {id:"r1",author:"Marie L.",rating:5,neg:false,ht:"Sèvis la te ekselan, mwen renmen anpil!",fr:"Le service était excellent, j'ai adoré !",en:"The service was excellent, I loved it!"},
+ {id:"r2",author:"Jean P.",rating:4,neg:false,ht:"Bon kalite, men te pran yon ti tan pou resevwa li.",fr:"Bonne qualité, mais ça a pris un peu de temps à recevoir.",en:"Good quality, but it took a little while to receive."},
+ {id:"r3",author:"Sophie D.",rating:2,neg:true,ht:"Mwen te dwe tann anpil pou yo reponn mwen, sa te fristran.",fr:"J'ai dû attendre longtemps qu'on me réponde, c'était frustrant.",en:"I had to wait a long time for a reply, it was frustrating."},
+ {id:"r4",author:"Marc A.",rating:5,neg:false,ht:"Rekòmande san ezite!",fr:"Recommandé sans hésiter !",en:"Recommended without hesitation!"}];
+
+const REPLY_POS={
+ ht:["Mèsi anpil pou revi sa a! Nou apresye w.","Kontan pou tande sa! Espere wè w ankò.","Mèsi pou konfyans ou, sa vle di anpil pou nou."],
+ fr:["Merci beaucoup pour cet avis ! Nous vous apprécions.","Content d'entendre ça ! On espère vous revoir.","Merci pour votre confiance, ça compte beaucoup pour nous."],
+ en:["Thanks so much for this review! We appreciate you.","Happy to hear that! Hope to see you again.","Thanks for your trust, it means a lot to us."]};
+const REPLY_NEG={
+ ht:[{t:"Nou pa dakò, nou toujou reponn rapid.",good:false},{t:"Mèsi pou revi ou.",good:false},{t:"Nou dezole pou tan reponn nan, sa pa jan nou vle sèvi w. Tanpri kontakte nou dirèkteman pou nou ka rezoud sa.",good:true}],
+ fr:[{t:"Nous ne sommes pas d'accord, nous répondons toujours vite.",good:false},{t:"Merci pour votre avis.",good:false},{t:"Nous sommes désolés pour le délai de réponse, ce n'est pas ainsi que nous voulons vous servir. Contactez-nous directement pour que nous puissions résoudre ça.",good:true}],
+ en:[{t:"We disagree, we always reply fast.",good:false},{t:"Thanks for your review.",good:false},{t:"We're sorry for the response time, that's not how we want to serve you. Please contact us directly so we can resolve this.",good:true}]};
+
+const INSIGHTS={views:[12,18,22,19,25,31,28],
+ queries:{ht:["non biznis la","[kategori] tou pre m","[non biznis] + [vil]"],fr:["le nom de l'entreprise","[catégorie] près de chez moi","[nom de l'entreprise] + [ville]"],en:["the business name","[category] near me","[business name] + [city]"]},
+ actions:{calls:14,directions:9,website:22}};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Yon Google Business Profile se yon tablo gratis ki kontwole jan biznis ou parèt lè moun chèche l sou Google Search ak Maps — sa a se yon vèsyon operab pou pratike anvan ou touche vrè pwofil ou.",
+   secs:[["5 seksyon prensipal","Tablo a gen 5 seksyon: Enfòmasyon, Foto, Revi, Pòs, ak Apèsi (Insights) — chak youn kontwole yon pati diferan nan jan biznis ou parèt."],
+    ["Poukisa chak seksyon konte","Byen konplete chak seksyon se sa ki fè diferans ant yon pwofil envizib ak youn ki parèt an premye lè yon kliyan tou pre chèche sa ou ofri."]],
+   ex:"Ki 2 seksyon nan tablo a ou panse ki pi enpòtan pou biznis ou, e poukisa?",
+   quiz:[
+    {q:"Kisa yon Google Business Profile ye?",opts:["Yon sit web peye pou fè","Yon tablo gratis ki kontwole jan biznis ou parèt sou Google Search ak Maps","Yon kont rezo sosyal","Yon sèvis livrezon manje"],ans:1,fb:"Se yon tablo gratis ki kontwole aparans biznis ou."},
+    {q:"Konbyen seksyon prensipal tablo a genyen?",opts:["2","5","10","20"],ans:1,fb:"Gen 5 seksyon: Enfòmasyon, Foto, Revi, Pòs, Apèsi."},
+    {q:"Poukisa konplete chak seksyon enpòtan?",opts:["Li pa enpòtan ditou","Sa fè diferans ant yon pwofil envizib ak youn ki parèt an premye","Sèlman non biznis la konte","Google chwazi o aza kiyès ki parèt"],ans:1,fb:"Chak seksyon konplè ede pwofil ou parèt."}],
+   close:{learned:"Yon Google Business Profile gen 5 seksyon (Enfòmasyon, Foto, Revi, Pòs, Apèsi) ki ansanm kontwole jan biznis ou parèt gratis sou rechèch lokal.",
+    mistake:"Kwè yon pwofil pati sèlman nan non biznis la, san konplete lòt seksyon yo ki fè li parèt an premye.",
+    tip:"Vizite chak seksyon regilyèman — yon pwofil ki konplè e aktif toujou pi vizib pase youn ki abandone.",
+    assign:"Ki 2 seksyon nan tablo a ou panse ki pi enpòtan pou biznis ou, e poukisa?",
+    dl:"Referans: 5 Seksyon Google Business Profile a",
+    checklist:["Vizite tab Enfòmasyon?","Vizite tab Foto?","Vizite tab Revi?","Vizite tab Pòs?","Vizite tab Apèsi?"],
+    ai:"Eksplike kisa chak nan 5 seksyon yon Google Business Profile fè, an tèm senp pou yon pwopriyetè ti biznis."}},
+ fr:{lede:"Un profil Google Business est un tableau de bord gratuit qui contrôle comment votre entreprise apparaît quand les gens la recherchent sur Google Search et Maps — ceci est une version opérable pour pratiquer avant de toucher votre vrai profil.",
+   secs:[["5 sections principales","Le tableau a 5 sections : Infos, Photos, Avis, Publications, et Aperçus (Insights) — chacune contrôle une partie différente de comment votre entreprise apparaît."],
+    ["Pourquoi chaque section compte","Bien compléter chaque section fait la différence entre un profil invisible et un qui apparaît en premier quand un client à proximité cherche ce que vous offrez."]],
+   ex:"Quelles 2 sections du tableau pensez-vous sont les plus importantes pour votre entreprise, et pourquoi ?",
+   quiz:[
+    {q:"Qu'est-ce qu'un profil Google Business ?",opts:["Un site web payant à créer","Un tableau de bord gratuit qui contrôle comment votre entreprise apparaît sur Google Search et Maps","Un compte de réseau social","Un service de livraison de nourriture"],ans:1,fb:"C'est un tableau de bord gratuit qui contrôle votre apparence."},
+    {q:"Combien de sections principales le tableau a-t-il ?",opts:["2","5","10","20"],ans:1,fb:"Il y a 5 sections : Infos, Photos, Avis, Publications, Aperçus."},
+    {q:"Pourquoi compléter chaque section est-il important ?",opts:["Ce n'est pas important du tout","Ça fait la différence entre un profil invisible et un qui apparaît en premier","Seul le nom de l'entreprise compte","Google choisit au hasard qui apparaît"],ans:1,fb:"Chaque section complète aide votre profil à apparaître."}],
+   close:{learned:"Un profil Google Business a 5 sections (Infos, Photos, Avis, Publications, Aperçus) qui contrôlent ensemble comment votre entreprise apparaît gratuitement dans la recherche locale.",
+    mistake:"Croire qu'un profil ne dépend que du nom de l'entreprise, sans compléter les autres sections qui le font apparaître en premier.",
+    tip:"Visitez chaque section régulièrement — un profil complet et actif est toujours plus visible qu'un profil abandonné.",
+    assign:"Quelles 2 sections du tableau pensez-vous sont les plus importantes pour votre entreprise, et pourquoi ?",
+    dl:"Référence : Les 5 Sections d'un Profil Google Business",
+    checklist:["Onglet Infos visité ?","Onglet Photos visité ?","Onglet Avis visité ?","Onglet Publications visité ?","Onglet Aperçus visité ?"],
+    ai:"Explique ce que fait chacune des 5 sections d'un profil Google Business, en termes simples pour un propriétaire de petite entreprise."}},
+ en:{lede:"A Google Business Profile is a free dashboard that controls how your business shows up when people search for it on Google Search and Maps — this is an operable version to practice on before you touch your real profile.",
+   secs:[["5 main sections","The dashboard has 5 sections: Info, Photos, Reviews, Posts, and Insights — each one controls a different part of how your business shows up."],
+    ["Why each section matters","Fully completing each section is what makes the difference between an invisible profile and one that shows up first when a nearby customer searches for what you offer."]],
+   ex:"Which 2 sections of the dashboard do you think are most important for your business, and why?",
+   quiz:[
+    {q:"What is a Google Business Profile?",opts:["A paid website you have to build","A free dashboard that controls how your business shows up on Google Search and Maps","A social media account","A food delivery service"],ans:1,fb:"It's a free dashboard controlling your appearance."},
+    {q:"How many main sections does the dashboard have?",opts:["2","5","10","20"],ans:1,fb:"There are 5 sections: Info, Photos, Reviews, Posts, Insights."},
+    {q:"Why does completing each section matter?",opts:["It doesn't matter at all","It makes the difference between an invisible profile and one that shows up first","Only the business name matters","Google randomly chooses who shows up"],ans:1,fb:"Each complete section helps your profile show up."}],
+   close:{learned:"A Google Business Profile has 5 sections (Info, Photos, Reviews, Posts, Insights) that together control how your business shows up for free in local search.",
+    mistake:"Believing a profile depends only on the business name, without completing the other sections that make it show up first.",
+    tip:"Visit each section regularly — a complete, active profile is always more visible than an abandoned one.",
+    assign:"Which 2 sections of the dashboard do you think are most important for your business, and why?",
+    dl:"Reference: The 5 Sections of a Google Business Profile",
+    checklist:["Info tab visited?","Photos tab visited?","Reviews tab visited?","Posts tab visited?","Insights tab visited?"],
+    ai:"Explain what each of the 5 sections of a Google Business Profile does, in simple terms for a small business owner."}}},
+
+2:{ht:{lede:"Bon konfigirasyon se fondasyon an — non, kategori, adrès, telefòn, jou ouvè, ak yon deskripsyon klè se enfòmasyon debaz Google itilize pou matche w ak moun k ap chèche.",
+   secs:[["Chak chan gen yon rezon","Kategori a ede Google konnen ki kalite rechèch pou montre w ladan; jou ouvè yo enpòtan paske Google montre 'Ouvè Kounye a' oswa 'Fèmen' dirèkteman nan rezilta rechèch."],
+    ["Yon deskripsyon klè","Deskripsyon an se kote ou eksplike an kèk fraz sa biznis ou fè e pou kiyès — itilize mo kle natirèl (Modil 11) olye jis non biznis la sèl."]],
+   ex:"Ekri yon lis 3 mo kle ou ta renmen deskripsyon biznis ou genyen ladan l natirèlman.",
+   quiz:[
+    {q:"Poukisa kategori biznis ou enpòtan?",opts:["Li pa enpòtan ditou","Li ede Google konnen ki kalite rechèch pou montre w ladan","Li sèlman yon detay dekoratif","Li ranplase bezwen pou yon non biznis"],ans:1,fb:"Kategori a matche w ak bon rechèch yo."},
+    {q:"Poukisa jou ouvè yo enpòtan?",opts:["Yo pa gen okenn efè","Google montre 'Ouvè Kounye a' oswa 'Fèmen' dirèkteman nan rezilta rechèch","Yo sèlman pou dekorasyon","Yo ranplase bezwen pou yon adrès"],ans:1,fb:"Google montre estati ouvè/fèmen dirèkteman."},
+    {q:"Kisa yon bon deskripsyon ta dwe genyen?",opts:["Sèlman non biznis la repete plizyè fwa","Mo kle natirèl ki eksplike sa biznis ou fè e pou kiyès","Okenn enfòmasyon spesifik","Yon lis pri konplè"],ans:1,fb:"Deskripsyon an ta dwe itilize mo kle natirèl."}],
+   close:{learned:"Konfigirasyon debaz (non, kategori, adrès, telefòn, jou ouvè, deskripsyon) se fondasyon Google itilize pou matche biznis ou ak moun k ap chèche.",
+    mistake:"Kite chan tankou kategori oswa jou ouvè vid oswa enkonplè, ki fè Google pa ka matche biznis ou ak bon rechèch yo.",
+    tip:"Itilize mo kle natirèl (Modil 11) nan deskripsyon an, pa jis non biznis la repete.",
+    assign:"Ekri yon lis 3 mo kle ou ta renmen deskripsyon biznis ou genyen ladan l natirèlman.",
+    dl:"Fèy Travay: Lis Verifikasyon Konfigirasyon Pwofil",
+    checklist:["Non, kategori, adrès, telefòn ranpli?","Omwen yon jou ouvè make?","Deskripsyon gen omwen 20 karaktè?"],
+    ai:"Ekri yon deskripsyon Google Business Profile pou yon [kalite biznis] ki itilize mo kle natirèl."}},
+ fr:{lede:"Une bonne configuration est la fondation — le nom, la catégorie, l'adresse, le téléphone, les jours ouverts, et une description claire sont les infos de base que Google utilise pour vous faire correspondre aux chercheurs.",
+   secs:[["Chaque champ a une raison","La catégorie aide Google à savoir pour quel type de recherche vous montrer ; les jours ouverts comptent car Google affiche « Ouvert Maintenant » ou « Fermé » directement dans les résultats de recherche."],
+    ["Une description claire","La description est où vous expliquez en quelques phrases ce que fait votre entreprise et pour qui — utilisez des mots-clés naturels (Module 11) plutôt que juste le nom de l'entreprise seul."]],
+   ex:"Écrivez une liste de 3 mots-clés que vous aimeriez voir dans la description de votre entreprise naturellement.",
+   quiz:[
+    {q:"Pourquoi la catégorie de votre entreprise compte-t-elle ?",opts:["Elle n'a aucune importance","Elle aide Google à savoir pour quel type de recherche vous montrer","C'est seulement un détail décoratif","Elle remplace le besoin d'un nom d'entreprise"],ans:1,fb:"La catégorie vous fait correspondre aux bonnes recherches."},
+    {q:"Pourquoi les jours ouverts comptent-ils ?",opts:["Ils n'ont aucun effet","Google affiche « Ouvert Maintenant » ou « Fermé » directement dans les résultats","Ils sont seulement décoratifs","Ils remplacent le besoin d'une adresse"],ans:1,fb:"Google affiche le statut ouvert/fermé directement."},
+    {q:"Que devrait contenir une bonne description ?",opts:["Seulement le nom de l'entreprise répété plusieurs fois","Des mots-clés naturels expliquant ce que fait votre entreprise et pour qui","Aucune information spécifique","Une liste de prix complète"],ans:1,fb:"La description devrait utiliser des mots-clés naturels."}],
+   close:{learned:"La configuration de base (nom, catégorie, adresse, téléphone, jours ouverts, description) est la fondation que Google utilise pour faire correspondre votre entreprise aux chercheurs.",
+    mistake:"Laisser des champs comme la catégorie ou les jours ouverts vides ou incomplets, ce qui empêche Google de faire correspondre votre entreprise aux bonnes recherches.",
+    tip:"Utilisez des mots-clés naturels (Module 11) dans la description, pas juste le nom de l'entreprise répété.",
+    assign:"Écrivez une liste de 3 mots-clés que vous aimeriez voir dans la description de votre entreprise naturellement.",
+    dl:"Fiche de travail : Liste de Vérification de Configuration du Profil",
+    checklist:["Nom, catégorie, adresse, téléphone remplis ?","Au moins un jour ouvert marqué ?","Description a au moins 20 caractères ?"],
+    ai:"Écris une description de profil Google Business pour un(e) [type d'entreprise] utilisant des mots-clés naturels."}},
+ en:{lede:"Good setup is the foundation — name, category, address, phone, open days, and a clear description are the basic info Google uses to match you with searchers.",
+   secs:[["Every field has a reason","Category helps Google know what kind of search to show you in; open days matter because Google displays \"Open Now\" or \"Closed\" directly in search results."],
+    ["A clear description","The description is where you explain in a few sentences what your business does and for whom — use natural keywords (Module 11) instead of just the business name alone."]],
+   ex:"Write a list of 3 keywords you'd like your business description to naturally include.",
+   quiz:[
+    {q:"Why does your business category matter?",opts:["It doesn't matter at all","It helps Google know what kind of search to show you in","It's only a decorative detail","It replaces the need for a business name"],ans:1,fb:"Category matches you to the right searches."},
+    {q:"Why do open days matter?",opts:["They have no effect","Google shows \"Open Now\" or \"Closed\" directly in results","They're only decorative","They replace the need for an address"],ans:1,fb:"Google shows open/closed status directly."},
+    {q:"What should a good description include?",opts:["Only the business name repeated several times","Natural keywords explaining what your business does and for whom","No specific information","A full price list"],ans:1,fb:"The description should use natural keywords."}],
+   close:{learned:"Basic setup (name, category, address, phone, open days, description) is the foundation Google uses to match your business with searchers.",
+    mistake:"Leaving fields like category or open days empty or incomplete, which stops Google from matching your business to the right searches.",
+    tip:"Use natural keywords (Module 11) in the description, not just the business name repeated.",
+    assign:"Write a list of 3 keywords you'd like your business description to naturally include.",
+    dl:"Worksheet: Profile Setup Checklist",
+    checklist:["Name, category, address, phone filled?","At least one open day marked?","Description has at least 20 characters?"],
+    ai:"Write a Google Business Profile description for a [type of business] using natural keywords."}}},
+
+3:{ht:{lede:"Foto se souvan premye bagay yon moun gade sou yon pwofil — yon logo, yon foto kouvèti, ak kèk foto reyèl bay konfyans anvan yon moun menm li yon revi.",
+   secs:[["3 kalite foto ou bezwen","Yon logo (idantite mak ou), yon foto kouvèti (premye enpresyon), ak omwen 3 foto galri (enteryè, pwodwi, ekip) ki montre reyalite biznis ou."],
+    ["Poukisa sa fè yon diferans","Pwofil ki gen bon foto bay moun konfyans pou vizite oswa achte — yon pwofil san foto souvan santi sispèk oswa abandone."]],
+   ex:"Ki 3 foto ou ta pran an premye pou pwofil vrè biznis ou, e poukisa?",
+   quiz:[
+    {q:"Ki 3 kalite foto yon bon pwofil bezwen?",opts:["Sèlman yon logo","Yon logo, yon foto kouvèti, ak omwen 3 foto galri","Sèlman foto pwodwi","Pa gen foto bezwen ditou"],ans:1,fb:"Yon bon pwofil bezwen logo, kouvèti, ak foto galri."},
+    {q:"Poukisa foto fè yon diferans?",opts:["Yo pa fè okenn diferans","Yo bay moun konfyans pou vizite oswa achte anvan yo li yon revi","Yo sèlman pou dekorasyon","Yo ranplase bezwen pou revi"],ans:1,fb:"Foto bay konfyans anvan menm revi."},
+    {q:"Kisa yon foto kouvèti fè?",opts:["Anyen espesyal","Bay premye enpresyon lè yon moun jwenn pwofil la","Se sèlman pou anplwaye yo wè","Ranplase logo a"],ans:1,fb:"Foto kouvèti bay premye enpresyon."}],
+   close:{learned:"Yon bon pwofil bezwen yon logo, yon foto kouvèti, ak omwen 3 foto galri ki montre reyalite biznis ou — foto bay konfyans anvan menm yon revi.",
+    mistake:"Kite pwofil la san okenn foto oswa ak sèlman yon sèl foto jenerik, ki fè li santi abandone oswa pa serye.",
+    tip:"Foto reyèl (menm senp) toujou bat okenn foto ditou — yo se premye siyal konfyans yon vizitè wè.",
+    assign:"Ki 3 foto ou ta pran an premye pou pwofil vrè biznis ou, e poukisa?",
+    dl:"Lis Verifikasyon: Foto Pwofil Ou Bezwen",
+    checklist:["Logo mete?","Foto kouvèti mete?","Omwen 3 foto nan galri a?"],
+    ai:"Sijere 5 kalite foto yon [kalite biznis] ta dwe genyen nan Google Business Profile li."}},
+ fr:{lede:"Les photos sont souvent la première chose que quelqu'un regarde sur un profil — un logo, une photo de couverture, et quelques vraies photos donnent confiance avant même qu'on lise un avis.",
+   secs:[["3 types de photos dont vous avez besoin","Un logo (l'identité de votre marque), une photo de couverture (première impression), et au moins 3 photos de galerie (intérieur, produits, équipe) qui montrent la réalité de votre entreprise."],
+    ["Pourquoi ça fait une différence","Un profil avec de bonnes photos donne aux gens confiance pour visiter ou acheter — un profil sans photos semble souvent suspect ou abandonné."]],
+   ex:"Quelles 3 photos prendriez-vous en premier pour le vrai profil de votre entreprise, et pourquoi ?",
+   quiz:[
+    {q:"Quels 3 types de photos un bon profil a-t-il besoin ?",opts:["Seulement un logo","Un logo, une photo de couverture, et au moins 3 photos de galerie","Seulement des photos de produits","Aucune photo n'est nécessaire"],ans:1,fb:"Un bon profil a besoin de logo, couverture, et photos de galerie."},
+    {q:"Pourquoi les photos font-elles une différence ?",opts:["Elles ne font aucune différence","Elles donnent confiance pour visiter ou acheter avant même de lire un avis","Elles sont seulement décoratives","Elles remplacent le besoin d'avis"],ans:1,fb:"Les photos donnent confiance avant même les avis."},
+    {q:"Que fait une photo de couverture ?",opts:["Rien de spécial","Donne la première impression quand quelqu'un trouve le profil","Est seulement pour les employés","Remplace le logo"],ans:1,fb:"La photo de couverture donne la première impression."}],
+   close:{learned:"Un bon profil a besoin d'un logo, d'une photo de couverture, et d'au moins 3 photos de galerie qui montrent la réalité de l'entreprise — les photos donnent confiance avant même un avis.",
+    mistake:"Laisser le profil sans aucune photo ou avec seulement une photo générique, ce qui le fait sembler abandonné ou peu sérieux.",
+    tip:"De vraies photos (même simples) battent toujours l'absence de photo — elles sont le premier signal de confiance qu'un visiteur voit.",
+    assign:"Quelles 3 photos prendriez-vous en premier pour le vrai profil de votre entreprise, et pourquoi ?",
+    dl:"Liste de Vérification : Photos dont Votre Profil a Besoin",
+    checklist:["Logo défini ?","Photo de couverture définie ?","Au moins 3 photos dans la galerie ?"],
+    ai:"Suggère 5 types de photos qu'un(e) [type d'entreprise] devrait avoir dans son profil Google Business."}},
+ en:{lede:"Photos are often the first thing someone looks at on a profile — a logo, a cover photo, and a few real photos build trust before someone even reads a review.",
+   secs:[["3 kinds of photos you need","A logo (your brand identity), a cover photo (first impression), and at least 3 gallery photos (interior, products, team) that show the real business."],
+    ["Why it makes a difference","A profile with good photos gives people confidence to visit or buy — a profile with no photos often feels suspicious or abandoned."]],
+   ex:"Which 3 photos would you take first for your real business profile, and why?",
+   quiz:[
+    {q:"What 3 kinds of photos does a good profile need?",opts:["Only a logo","A logo, a cover photo, and at least 3 gallery photos","Only product photos","No photos are needed at all"],ans:1,fb:"A good profile needs logo, cover, and gallery photos."},
+    {q:"Why do photos make a difference?",opts:["They make no difference","They build confidence to visit or buy before someone even reads a review","They're only decorative","They replace the need for reviews"],ans:1,fb:"Photos build trust before even a review."},
+    {q:"What does a cover photo do?",opts:["Nothing special","Gives the first impression when someone finds the profile","It's only for employees to see","It replaces the logo"],ans:1,fb:"The cover photo gives the first impression."}],
+   close:{learned:"A good profile needs a logo, a cover photo, and at least 3 gallery photos that show the real business — photos build trust before even a review.",
+    mistake:"Leaving the profile with no photos at all or only one generic photo, which makes it feel abandoned or unserious.",
+    tip:"Real photos (even simple ones) always beat no photos at all — they're the first trust signal a visitor sees.",
+    assign:"Which 3 photos would you take first for your real business profile, and why?",
+    dl:"Checklist: Photos Your Profile Needs",
+    checklist:["Logo set?","Cover photo set?","At least 3 photos in the gallery?"],
+    ai:"Suggest 5 kinds of photos a [type of business] should have on its Google Business Profile."}}},
+
+4:{ht:{lede:"Revi se youn nan sinyal konfyans ki pi fò moun tou pre wè — men kijan ou reponn yo, sitou yon move revi, konte plis pase revi a limenm.",
+   secs:[["Reponn tout revi, bon ak move","Reponn yon revi pozitif montre w apresye kliyan yo; men se kijan ou reponn yon revi negatif ki reyèlman montre karaktè biznis ou bay lòt moun k ap li."],
+    ["Yon repons pwofesyonèl pou yon plent","Yon bon repons rekonèt pwoblèm nan espesifikman, di dezole san fè eskiz, epi ofri yon fason pou rezoud li — pa nye pwoblèm nan e pa jis kopye-kole yon repons jenerik."]],
+   ex:"Ekri kijan ou ta reponn yon revi 2-etwal ki plenyen sou yon reta nan sèvis.",
+   quiz:[
+    {q:"Poukisa reponn revi enpòtan?",opts:["Li pa enpòtan ditou","Kijan ou reponn, sitou yon move revi, montre karaktè biznis ou bay lòt moun k ap li","Sèlman revi 5-etwal merite yon repons","Google efase revi ou pa reponn"],ans:1,fb:"Repons ou vizib pou tout moun k ap li revi yo."},
+    {q:"Kisa yon bon repons a yon plent ta dwe fè?",opts:["Nye pwoblèm nan e di kliyan an mal","Rekonèt pwoblèm nan espesifikman e ofri yon fason pou rezoud li","Inyore revi a nèt","Kopye-kole menm repons jenerik la pou tout moun"],ans:1,fb:"Yon bon repons rekonèt e ofri rezoud."},
+    {q:"Kisa ki fè yon repons santi jenerik/move?",opts:["Rekonèt pwoblèm espesifik la","Yon repons ki pa adrese detay reyèl plent lan e ki santi kopye-kole","Ofri yon fason pou rezoud li","Di dezole san fè eskiz"],ans:1,fb:"Yon repons ki pa adrese detay reyèl la santi jenerik."}],
+   close:{learned:"Reponn tout revi konte, men kijan ou reponn yon plent — rekonèt pwoblèm nan espesifikman e ofri rezoud li — se sa ki montre bon karaktè biznis ou bay lòt moun k ap li.",
+    mistake:"Nye oswa diskite ak yon revi negatif, oswa reponn ak yon mesaj jenerik ki pa rekonèt detay reyèl plent la.",
+    tip:"Yon repons pwofesyonèl a yon move revi ka konvenk yon lòt moun k ap li plis pase 10 bon revi.",
+    assign:"Ekri kijan ou ta reponn yon revi 2-etwal ki plenyen sou yon reta nan sèvis.",
+    dl:"Referans: Kijan pou Reponn Revi Negatif",
+    checklist:["Tout 4 revi yo reponn?","Revi negatif la reponn ak yon mesaj pwofesyonèl, pa yon mesaj jenerik oswa defansif?"],
+    ai:"Ekri yon repons pwofesyonèl a yon revi 2-etwal ki plenyen sou [dekri pwoblèm nan]."}},
+ fr:{lede:"Les avis sont l'un des signaux de confiance les plus forts que les gens à proximité voient — mais la façon dont vous y répondez, surtout à un mauvais avis, compte plus que l'avis lui-même.",
+   secs:[["Répondre à tous les avis, bons et mauvais","Répondre à un avis positif montre que vous appréciez vos clients ; mais c'est la façon dont vous répondez à un avis négatif qui montre vraiment le caractère de votre entreprise aux autres qui le lisent."],
+    ["Une réponse professionnelle à une plainte","Une bonne réponse reconnaît le problème spécifiquement, s'excuse sincèrement, et offre un moyen de le résoudre — sans nier le problème et sans juste copier-coller une réponse générique."]],
+   ex:"Écrivez comment vous répondriez à un avis 2 étoiles se plaignant d'un retard de service.",
+   quiz:[
+    {q:"Pourquoi répondre aux avis est-il important ?",opts:["Ce n'est pas important du tout","La façon dont vous répondez, surtout à un mauvais avis, montre le caractère de votre entreprise à tous ceux qui le lisent","Seuls les avis 5 étoiles méritent une réponse","Google supprime les avis auxquels vous ne répondez pas"],ans:1,fb:"Votre réponse est visible par tous ceux qui lisent les avis."},
+    {q:"Que devrait faire une bonne réponse à une plainte ?",opts:["Nier le problème et dire au client qu'il a tort","Reconnaître le problème spécifiquement et offrir un moyen de le résoudre","Ignorer complètement l'avis","Copier-coller la même réponse générique pour tout le monde"],ans:1,fb:"Une bonne réponse reconnaît et offre de résoudre."},
+    {q:"Qu'est-ce qui rend une réponse générique/mauvaise ?",opts:["Reconnaître le problème spécifique","Une réponse qui n'aborde pas les vrais détails de la plainte et semble copiée-collée","Offrir un moyen de le résoudre","S'excuser sincèrement"],ans:1,fb:"Une réponse qui n'aborde pas les vrais détails semble générique."}],
+   close:{learned:"Répondre à tous les avis compte, mais la façon dont vous répondez à une plainte — en reconnaissant le problème spécifiquement et en offrant de le résoudre — montre le vrai caractère de votre entreprise.",
+    mistake:"Nier ou débattre avec un avis négatif, ou répondre avec un message générique qui n'aborde pas les vrais détails de la plainte.",
+    tip:"Une réponse professionnelle à un mauvais avis peut convaincre un autre lecteur plus que 10 bons avis.",
+    assign:"Écrivez comment vous répondriez à un avis 2 étoiles se plaignant d'un retard de service.",
+    dl:"Référence : Comment Répondre aux Avis Négatifs",
+    checklist:["Les 4 avis ont-ils reçu une réponse ?","L'avis négatif a-t-il reçu un message professionnel, pas générique ou défensif ?"],
+    ai:"Écris une réponse professionnelle à un avis 2 étoiles se plaignant de [décris le problème]."}},
+ en:{lede:"Reviews are one of the strongest trust signals nearby people see — but how you reply to them, especially a bad one, matters more than the review itself.",
+   secs:[["Reply to every review, good and bad","Replying to a positive review shows you appreciate your customers; but it's how you reply to a negative one that really shows your business's character to everyone else reading it."],
+    ["A professional reply to a complaint","A good reply acknowledges the specific problem, apologizes sincerely, and offers a way to resolve it — not denying the issue and not just copy-pasting a generic reply."]],
+   ex:"Write how you would reply to a 2-star review complaining about a service delay.",
+   quiz:[
+    {q:"Why does replying to reviews matter?",opts:["It doesn't matter at all","How you reply, especially to a bad review, shows your business's character to everyone reading it","Only 5-star reviews deserve a reply","Google deletes reviews you don't reply to"],ans:1,fb:"Your reply is visible to everyone reading the reviews."},
+    {q:"What should a good reply to a complaint do?",opts:["Deny the problem and tell the customer they're wrong","Acknowledge the specific problem and offer a way to resolve it","Ignore the review entirely","Copy-paste the same generic reply for everyone"],ans:1,fb:"A good reply acknowledges and offers to resolve."},
+    {q:"What makes a reply feel generic/bad?",opts:["Acknowledging the specific problem","A reply that doesn't address the real details of the complaint and feels copy-pasted","Offering a way to resolve it","Apologizing sincerely"],ans:1,fb:"A reply that doesn't address real details feels generic."}],
+   close:{learned:"Replying to every review matters, but how you reply to a complaint — acknowledging the specific problem and offering to resolve it — is what shows your business's real character to everyone reading it.",
+    mistake:"Denying or arguing with a negative review, or replying with a generic message that doesn't address the real details of the complaint.",
+    tip:"A professional reply to a bad review can convince another reader more than 10 good reviews.",
+    assign:"Write how you would reply to a 2-star review complaining about a service delay.",
+    dl:"Reference: How to Reply to Negative Reviews",
+    checklist:["All 4 reviews replied to?","The negative review replied to with a professional message, not generic or defensive?"],
+    ai:"Write a professional reply to a 2-star review complaining about [describe the problem]."}}},
+
+5:{ht:{lede:"Pòs sou pwofil ou tankou ti mizajou ki kenbe l vivan — yo montre Google (ak vizitè) ke biznis ou aktif, pa yon pwofil moun te kreye epi bliye.",
+   secs:[["3 kalite pòs","Mizajou (nouvèl jeneral), Ofri (yon pwomosyon espesifik), ak Evènman (yon dat espesifik) — chak kalite gen yon rezon diferan pou itilize li."],
+    ["Poukisa poste regilyèman konte","Yon pwofil ki poste regilyèman siyale li aktif e byen jere, ki se yon faktè Google konsidere pou vizibilite lokal (n ap wè sa an detay nan Leson 12.7)."]],
+   ex:"Ekri tèks yon pòs 'Mizajou' pou biznis ou ki ta enterese yon vrè kliyan.",
+   quiz:[
+    {q:"Ki 3 kalite pòs ou ka kreye?",opts:["Sèlman yon kalite","Mizajou, Ofri, ak Evènman","Sèlman Ofri","Pòs pa gen kalite"],ans:1,fb:"Gen 3 kalite: Mizajou, Ofri, Evènman."},
+    {q:"Poukisa poste regilyèman konte?",opts:["Li pa gen okenn efè","Li siyale pwofil la aktif e byen jere, ki ede vizibilite lokal","Sèlman fè pwofil la parèt plen","Google inyore pòs yo nèt"],ans:1,fb:"Poste aktif se yon faktè vizibilite lokal."},
+    {q:"Kisa yon pòs 'Ofri' ye?",opts:["Yon nouvèl jeneral san detay","Yon pwomosyon espesifik","Yon dat evènman","Yon revi kliyan"],ans:1,fb:"Yon pòs Ofri se yon pwomosyon espesifik."}],
+   close:{learned:"Pòs (Mizajou, Ofri, Evènman) kenbe pwofil ou vivan e siyale Google ke biznis ou aktif e byen jere.",
+    mistake:"Kreye yon pwofil epi pa janm poste ankò, ki fè li santi abandone menm si enfòmasyon debaz yo korèk.",
+    tip:"Yon ti pòs regilye (menm chak kèk semèn) fè plis pase okenn pòs ditou pou montre biznis ou aktif.",
+    assign:"Ekri tèks yon pòs 'Mizajou' pou biznis ou ki ta enterese yon vrè kliyan.",
+    dl:"Modèl: Estrikti Pòs Google Business Profile",
+    checklist:["Kalite pòs chwazi?","Tèks pòs ekri?","Foto chwazi pou pòs la?","Pòs pibliye?"],
+    ai:"Ekri yon pòs 'Ofri' kout pou yon [kalite biznis] ki anonse [dekri ofri a]."}},
+ fr:{lede:"Les publications sur votre profil sont comme de petites mises à jour qui le gardent vivant — elles montrent à Google (et aux visiteurs) que votre entreprise est active, pas un profil que quelqu'un a créé puis oublié.",
+   secs:[["3 types de publications","Mise à Jour (nouvelle générale), Offre (une promotion spécifique), et Événement (une date spécifique) — chaque type a une raison différente d'être utilisé."],
+    ["Pourquoi publier régulièrement compte","Un profil qui publie régulièrement signale qu'il est actif et bien géré, ce qui est un facteur que Google considère pour la visibilité locale (nous le verrons en détail à la Leçon 12.7)."]],
+   ex:"Écrivez le texte d'une publication « Mise à Jour » pour votre entreprise qui intéresserait un vrai client.",
+   quiz:[
+    {q:"Quels 3 types de publications pouvez-vous créer ?",opts:["Seulement un type","Mise à Jour, Offre, et Événement","Seulement Offre","Les publications n'ont pas de type"],ans:1,fb:"Il y a 3 types : Mise à Jour, Offre, Événement."},
+    {q:"Pourquoi publier régulièrement compte-t-il ?",opts:["Ça n'a aucun effet","Ça signale que le profil est actif et bien géré, ce qui aide la visibilité locale","Ça fait seulement paraître le profil rempli","Google ignore complètement les publications"],ans:1,fb:"Publier activement est un facteur de visibilité locale."},
+    {q:"Qu'est-ce qu'une publication « Offre » ?",opts:["Une nouvelle générale sans détail","Une promotion spécifique","Une date d'événement","Un avis client"],ans:1,fb:"Une publication Offre est une promotion spécifique."}],
+   close:{learned:"Les publications (Mise à Jour, Offre, Événement) gardent votre profil vivant et signalent à Google que votre entreprise est active et bien gérée.",
+    mistake:"Créer un profil et ne plus jamais publier, ce qui le fait sembler abandonné même si les infos de base sont correctes.",
+    tip:"Une petite publication régulière (même toutes les quelques semaines) fait plus qu'aucune publication du tout pour montrer que l'entreprise est active.",
+    assign:"Écrivez le texte d'une publication « Mise à Jour » pour votre entreprise qui intéresserait un vrai client.",
+    dl:"Modèle : Structure de Publication Google Business Profile",
+    checklist:["Type de publication choisi ?","Texte de publication écrit ?","Photo choisie pour la publication ?","Publication publiée ?"],
+    ai:"Écris une courte publication « Offre » pour un(e) [type d'entreprise] annonçant [décris l'offre]."}},
+ en:{lede:"Posts on your profile are like little updates that keep it alive — they show Google (and visitors) that your business is active, not a profile someone created and forgot about.",
+   secs:[["3 kinds of posts","Update (general news), Offer (a specific promotion), and Event (a specific date) — each type has a different reason to use it."],
+    ["Why posting regularly matters","A profile that posts regularly signals it's active and well-managed, which is a factor Google considers for local visibility (we'll see this in detail in Lesson 12.7)."]],
+   ex:"Write the text of an \"Update\" post for your business that would interest a real customer.",
+   quiz:[
+    {q:"What 3 kinds of posts can you create?",opts:["Only one kind","Update, Offer, and Event","Only Offer","Posts don't have a type"],ans:1,fb:"There are 3 kinds: Update, Offer, Event."},
+    {q:"Why does posting regularly matter?",opts:["It has no effect","It signals the profile is active and well-managed, which helps local visibility","It only makes the profile look full","Google ignores posts entirely"],ans:1,fb:"Actively posting is a local visibility factor."},
+    {q:"What is an \"Offer\" post?",opts:["A general update with no detail","A specific promotion","An event date","A customer review"],ans:1,fb:"An Offer post is a specific promotion."}],
+   close:{learned:"Posts (Update, Offer, Event) keep your profile alive and signal to Google that your business is active and well-managed.",
+    mistake:"Creating a profile and then never posting again, which makes it feel abandoned even if the basic info is correct.",
+    tip:"A small, regular post (even every few weeks) does more than no post at all to show the business is active.",
+    assign:"Write the text of an \"Update\" post for your business that would interest a real customer.",
+    dl:"Template: Google Business Profile Post Structure",
+    checklist:["Post type chosen?","Post text written?","Photo chosen for the post?","Post published?"],
+    ai:"Write a short \"Offer\" post for a [type of business] announcing [describe the offer]."}}},
+
+6:{ht:{lede:"Seksyon Apèsi (Insights) montre vrè done sou kijan moun jwenn e itilize pwofil ou — konprann yo ede w konnen sa k ap mache e sa pou amelyore.",
+   secs:[["Sa Apèsi montre","Konbyen moun wè pwofil ou chak jou, ki mo yo chèche ki mennen yo isit la, ak ki aksyon yo pran (rele, mande direksyon, oswa vizite sit web ou)."],
+    ["Itilize done yo, pa jis gade yo","Si pifò moun rele olye vizite sit web ou, sa ka vle di nimewo telefòn ou fasil pou jwenn men sit web ou ta ka bezwen amelyore (Modil 14)."]],
+   ex:"Ki yon aksyon (rele, direksyon, sit web) ou panse ta pi souvan pou biznis ou, e poukisa?",
+   quiz:[
+    {q:"Kisa seksyon Apèsi montre?",opts:["Sèlman konbyen lajan ou fè","Vrè done sou kijan moun jwenn e itilize pwofil ou","Revi kliyan yo sèlman","Lis konkirans ou"],ans:1,fb:"Apèsi montre vrè done itilizasyon pwofil la."},
+    {q:"Poukisa itilize done sa yo enpòtan?",opts:["Yo pa itil ditou","Yo ede w konnen sa k ap mache e sa pou amelyore","Yo sèlman pou kirye","Google mande w regade yo chak jou san rezon"],ans:1,fb:"Done yo montre kijan pou amelyore pwofil ou."},
+    {q:"Ki egzanp aksyon kliyan Apèsi ka montre?",opts:["Rele, mande direksyon, vizite sit web","Sèlman kantite revi","Sèlman kantite foto","Okenn aksyon pa swiv"],ans:1,fb:"Aksyon kliyan gen rele, direksyon, ak vizit sit web."}],
+   close:{learned:"Seksyon Apèsi montre vrè done — vizit, rechèch ki mennen isit la, ak aksyon kliyan pran — pou ede w konnen sa k ap mache reyèlman.",
+    mistake:"Inyore seksyon Apèsi nèt e pa janm gade ki aksyon kliyan yo pran, sa fè w pèdi enfòmasyon itil pou amelyore pwofil ou.",
+    tip:"Si yon aksyon (tankou vizit sit web) ba, konsidere si sit web ou (Modil 14) fasil pou itilize e klè.",
+    assign:"Ki yon aksyon (rele, direksyon, sit web) ou panse ta pi souvan pou biznis ou, e poukisa?",
+    dl:"Referans: Konprann Apèsi Google Business Profile",
+    checklist:["Gade done vizit yo?","Gade rechèch ki mennen isit yo?","Idantifye aksyon kliyan ki pi souvan?"],
+    ai:"Eksplike kisa done Apèsi Google Business Profile yo vle di pou yon [kalite biznis], e ki aksyon ki ta ka pran ak yo."}},
+ fr:{lede:"La section Aperçus montre de vraies données sur comment les gens trouvent et utilisent votre profil — les comprendre vous aide à savoir ce qui fonctionne et quoi améliorer.",
+   secs:[["Ce que montrent les Aperçus","Combien de gens voient votre profil chaque jour, quels mots ils cherchent qui les mènent ici, et quelles actions ils prennent (appeler, demander l'itinéraire, ou visiter votre site web)."],
+    ["Utiliser les données, pas juste les regarder","Si la plupart des gens appellent plutôt que de visiter votre site web, ça pourrait signifier que votre numéro de téléphone est facile à trouver mais votre site web pourrait avoir besoin d'être amélioré (Module 14)."]],
+   ex:"Quelle action (appel, itinéraire, site web) pensez-vous serait la plus fréquente pour votre entreprise, et pourquoi ?",
+   quiz:[
+    {q:"Que montre la section Aperçus ?",opts:["Seulement combien d'argent vous gagnez","De vraies données sur comment les gens trouvent et utilisent votre profil","Seulement les avis clients","Une liste de vos concurrents"],ans:1,fb:"Les Aperçus montrent de vraies données d'utilisation du profil."},
+    {q:"Pourquoi utiliser ces données est-il important ?",opts:["Elles ne sont pas utiles du tout","Elles vous aident à savoir ce qui fonctionne et quoi améliorer","Elles sont seulement pour la curiosité","Google vous demande de les regarder chaque jour sans raison"],ans:1,fb:"Les données montrent comment améliorer votre profil."},
+    {q:"Quel exemple d'action client les Aperçus peuvent-ils montrer ?",opts:["Appeler, demander l'itinéraire, visiter le site web","Seulement le nombre d'avis","Seulement le nombre de photos","Aucune action n'est suivie"],ans:1,fb:"Les actions client incluent appel, itinéraire, et visite du site web."}],
+   close:{learned:"La section Aperçus montre de vraies données — vues, recherches qui ont mené ici, et actions client — pour vous aider à savoir ce qui fonctionne vraiment.",
+    mistake:"Ignorer complètement la section Aperçus et ne jamais regarder quelles actions les clients prennent, ce qui vous fait perdre des informations utiles pour améliorer votre profil.",
+    tip:"Si une action (comme les visites du site web) est faible, considérez si votre site web (Module 14) est facile à utiliser et clair.",
+    assign:"Quelle action (appel, itinéraire, site web) pensez-vous serait la plus fréquente pour votre entreprise, et pourquoi ?",
+    dl:"Référence : Comprendre les Aperçus de Google Business Profile",
+    checklist:["Données de vues consultées ?","Recherches qui ont mené ici consultées ?","Action client la plus fréquente identifiée ?"],
+    ai:"Explique ce que signifient les données d'Aperçus de Google Business Profile pour un(e) [type d'entreprise], et quelles actions pourraient être prises avec elles."}},
+ en:{lede:"The Insights section shows real data on how people find and use your profile — understanding it helps you know what's working and what to improve.",
+   secs:[["What Insights shows","How many people see your profile each day, what words they searched that led them here, and what actions they take (calling, requesting directions, or visiting your website)."],
+    ["Using the data, not just looking at it","If most people call rather than visit your website, that might mean your phone number is easy to find but your website could need improving (Module 14)."]],
+   ex:"Which action (call, directions, website) do you think would be most common for your business, and why?",
+   quiz:[
+    {q:"What does the Insights section show?",opts:["Only how much money you make","Real data on how people find and use your profile","Only customer reviews","A list of your competitors"],ans:1,fb:"Insights shows real profile usage data."},
+    {q:"Why does using this data matter?",opts:["It isn't useful at all","It helps you know what's working and what to improve","It's only for curiosity","Google requires you to look at it daily for no reason"],ans:1,fb:"The data shows how to improve your profile."},
+    {q:"What example of customer action can Insights show?",opts:["Calling, requesting directions, visiting the website","Only the number of reviews","Only the number of photos","No actions are tracked"],ans:1,fb:"Customer actions include calls, directions, and website visits."}],
+   close:{learned:"The Insights section shows real data — views, searches that led here, and customer actions — to help you know what's actually working.",
+    mistake:"Ignoring the Insights section entirely and never looking at what actions customers take, which loses useful information for improving your profile.",
+    tip:"If one action (like website visits) is low, consider whether your website (Module 14) is easy to use and clear.",
+    assign:"Which action (call, directions, website) do you think would be most common for your business, and why?",
+    dl:"Reference: Understanding Google Business Profile Insights",
+    checklist:["Views data checked?","Searches that led here checked?","Most common customer action identified?"],
+    ai:"Explain what Google Business Profile Insights data means for a [type of business], and what actions could be taken with it."}}},
+
+7:{ht:{lede:"Google eksplike piblikman vizibilite lokal soti nan 3 faktè: Pètinans, Distans, ak Enpòtans (Prominence) — ou pa ka kontwole distans, men ou ka kontwole anpil bagay ki nouri pètinans ak enpòtans.",
+   secs:[["Pètinans ak Enpòtans, sa ou ka kontwole","Pètinans se jan byen pwofil ou matche ak sa yon moun chèche (kategori, mo kle, deskripsyon); enpòtans se jan biznis ou byen konni — foto, revi, ak pòs aktif tout ede pètinans ak enpòtans."],
+    ["Distans, sa ou pa ka kontwole","Distans se senp distans jewografik ant moun k ap chèche a ak biznis ou — sa deyò kontwòl ou, kidonk konsantre sou sa ou ka reyèlman chanje."]],
+   ex:"Ki 1 faktè (enfòmasyon, foto, revi, oswa pòs) ou panse pwofil ou pi fèb sou li kounye a, e ki pwochen etap ou ta pran?",
+   quiz:[
+    {q:"Ki 3 faktè Google itilize pou vizibilite lokal?",opts:["Pri, koulè, ak longè non","Pètinans, Distans, ak Enpòtans (Prominence)","Sèlman kantite revi","Sèlman laj biznis la"],ans:1,fb:"Se Pètinans, Distans, ak Enpòtans."},
+    {q:"Ki faktè ou pa ka kontwole?",opts:["Enfòmasyon konplè","Distans jewografik ant moun k ap chèche a ak biznis ou","Foto","Pòs aktif"],ans:1,fb:"Distans se senp jewografi, deyò kontwòl ou."},
+    {q:"Kisa ki ede pètinans ak enpòtans?",opts:["Anyen ou ka fè","Enfòmasyon konplè, bon foto, revi reponn, ak pòs aktif","Sèlman laj biznis la","Sèlman lajan ou depanse"],ans:1,fb:"Tout 4 faktè sa yo ede pètinans/enpòtans."}],
+   close:{learned:"Vizibilite lokal soti nan Pètinans, Distans, ak Enpòtans — ou pa ka kontwole distans, men enfòmasyon konplè, bon foto, revi reponn, ak pòs aktif tout ede pètinans ak enpòtans.",
+    mistake:"Konsantre sèlman sou youn nan faktè yo (tankou jis foto) pandan w inyore lòt yo, ki kite nòt vizibilite jeneral ou ba.",
+    tip:"Yon pwofil ki gen tout 4 faktè yo (enfòmasyon, foto, revi, pòs) aktif toujou pi vizib pase youn ki fò nan yon sèl domèn men fèb nan lòt yo.",
+    assign:"Ki 1 faktè (enfòmasyon, foto, revi, oswa pòs) ou panse pwofil ou pi fèb sou li kounye a, e ki pwochen etap ou ta pran?",
+    dl:"Referans: Pètinans, Distans, ak Enpòtans Eksplike",
+    checklist:["Konprann diferans ant Pètinans, Distans, ak Enpòtans?","Idantifye ki faktè ki pi fèb nan pwofil ou?","Konnen ki aksyon pou amelyore chak faktè?"],
+    ai:"Eksplike ki jan Pètinans, Distans, ak Enpòtans afekte vizibilite lokal yon [kalite biznis], an tèm senp."}},
+ fr:{lede:"Google explique publiquement que la visibilité locale vient de 3 facteurs : Pertinence, Distance, et Notoriété (Prominence) — vous ne pouvez pas contrôler la distance, mais vous pouvez contrôler beaucoup de choses qui nourrissent la pertinence et la notoriété.",
+   secs:[["Pertinence et Notoriété, ce que vous contrôlez","La pertinence est à quel point votre profil correspond à ce que quelqu'un cherche (catégorie, mots-clés, description) ; la notoriété est à quel point votre entreprise est connue — photos, avis, et publications actives aident tous la pertinence et la notoriété."],
+    ["Distance, ce que vous ne contrôlez pas","La distance est simplement la distance géographique entre le chercheur et votre entreprise — c'est hors de votre contrôle, donc concentrez-vous sur ce que vous pouvez réellement changer."]],
+   ex:"Quel 1 facteur (infos, photos, avis, ou publications) pensez-vous que votre profil est le plus faible en ce moment, et quelle serait votre prochaine étape ?",
+   quiz:[
+    {q:"Quels 3 facteurs Google utilise-t-il pour la visibilité locale ?",opts:["Prix, couleur, et longueur du nom","Pertinence, Distance, et Notoriété (Prominence)","Seulement le nombre d'avis","Seulement l'âge de l'entreprise"],ans:1,fb:"Ce sont Pertinence, Distance, et Notoriété."},
+    {q:"Quel facteur ne pouvez-vous pas contrôler ?",opts:["Infos complètes","La distance géographique entre le chercheur et votre entreprise","Photos","Publications actives"],ans:1,fb:"La distance est simplement géographique, hors de votre contrôle."},
+    {q:"Qu'est-ce qui aide la pertinence et la notoriété ?",opts:["Rien de ce que vous pouvez faire","Infos complètes, bonnes photos, avis répondus, et publications actives","Seulement l'âge de l'entreprise","Seulement l'argent que vous dépensez"],ans:1,fb:"Ces 4 facteurs aident tous la pertinence/notoriété."}],
+   close:{learned:"La visibilité locale vient de la Pertinence, la Distance, et la Notoriété — vous ne pouvez pas contrôler la distance, mais des infos complètes, de bonnes photos, des avis répondus, et des publications actives aident tous la pertinence et la notoriété.",
+    mistake:"Se concentrer uniquement sur un des facteurs (comme seulement les photos) tout en ignorant les autres, ce qui laisse votre score de visibilité global faible.",
+    tip:"Un profil avec les 4 facteurs (infos, photos, avis, publications) actifs est toujours plus visible qu'un profil fort dans un seul domaine mais faible dans les autres.",
+    assign:"Quel 1 facteur (infos, photos, avis, ou publications) pensez-vous que votre profil est le plus faible en ce moment, et quelle serait votre prochaine étape ?",
+    dl:"Référence : Pertinence, Distance, et Notoriété Expliquées",
+    checklist:["Comprend la différence entre Pertinence, Distance, et Notoriété ?","A identifié quel facteur est le plus faible dans son profil ?","Sait quelle action prendre pour améliorer chaque facteur ?"],
+    ai:"Explique comment la Pertinence, la Distance, et la Notoriété affectent la visibilité locale d'un(e) [type d'entreprise], en termes simples."}},
+ en:{lede:"Google publicly explains that local visibility comes from 3 factors: Relevance, Distance, and Prominence — you can't control distance, but you can control a lot that feeds relevance and prominence.",
+   secs:[["Relevance and Prominence, what you control","Relevance is how well your profile matches what someone is searching for (category, keywords, description); prominence is how well-known your business is — photos, reviews, and active posts all help relevance and prominence."],
+    ["Distance, what you don't control","Distance is simply the geographic distance between the searcher and your business — that's outside your control, so focus on what you can actually change."]],
+   ex:"Which 1 factor (info, photos, reviews, or posts) do you think your profile is weakest on right now, and what would your next step be?",
+   quiz:[
+    {q:"What 3 factors does Google use for local visibility?",opts:["Price, color, and name length","Relevance, Distance, and Prominence","Only the number of reviews","Only how old the business is"],ans:1,fb:"They are Relevance, Distance, and Prominence."},
+    {q:"Which factor can't you control?",opts:["Complete info","Geographic distance between the searcher and your business","Photos","Active posts"],ans:1,fb:"Distance is simply geographic, outside your control."},
+    {q:"What helps relevance and prominence?",opts:["Nothing you can do","Complete info, good photos, answered reviews, and active posts","Only how old the business is","Only how much money you spend"],ans:1,fb:"These 4 factors all help relevance/prominence."}],
+   close:{learned:"Local visibility comes from Relevance, Distance, and Prominence — you can't control distance, but complete info, good photos, answered reviews, and active posts all help relevance and prominence.",
+    mistake:"Focusing only on one factor (like just photos) while ignoring the others, which leaves your overall visibility score low.",
+    tip:"A profile with all 4 factors (info, photos, reviews, posts) active is always more visible than one strong in a single area but weak in the others.",
+    assign:"Which 1 factor (info, photos, reviews, or posts) do you think your profile is weakest on right now, and what would your next step be?",
+    dl:"Reference: Relevance, Distance, and Prominence Explained",
+    checklist:["Understands the difference between Relevance, Distance, and Prominence?","Identified which factor is weakest in their profile?","Knows what action to take to improve each factor?"],
+    ai:"Explain how Relevance, Distance, and Prominence affect local visibility for a [type of business], in simple terms."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module12-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD12_LESSON_SLUGS=["meet-your-business-profile","setting-up-your-profile","adding-photos","getting-and-responding-to-reviews","posts-and-updates","understanding-your-insights","ranking-factors-and-local-visibility"];
+function freshBiz(){
+ return {name:"",category:"",address:"",phone:"",
+  hours:{mon:false,tue:false,wed:false,thu:false,fri:false,sat:false,sun:false},
+  description:"",logo:null,cover:null,gallery:[],
+  reviewReplies:{r1:null,r2:null,r3:null,r4:null},
+  posts:[],
+  visited:{info:false,photos:false,reviews:false,posts:false,insights:false},
+  insightAnswered:false};
+}
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{},tab:"info",biz:freshBiz()};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+if(!S.biz)S.biz=freshBiz();
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD12_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===12;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M12[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ GBP tool engine ============ */
+function checkTask(n){
+ const st=S.st[n];
+ const done=C[n].check(S.biz);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function factorScore(){
+ const b=S.biz,ui=UI[S.lang];
+ const f1=!!(b.name.trim()&&b.category&&b.address.trim()&&b.phone.trim()&&Object.values(b.hours).some(Boolean)&&b.description.trim().length>=20);
+ const f2=!!(b.logo&&b.cover&&b.gallery.length>=3);
+ const f3=REVIEWS.every(r=>b.reviewReplies[r.id]!=null);
+ const f4=b.posts.length>=1;
+ return [[ui.factorInfo,f1],[ui.factorPhotos,f2],[ui.factorReviews,f3],[ui.factorPosts,f4]];
+}
+function renderToolPanel(){
+ const lang=S.lang,ui=UI[lang],b=S.biz;
+ let h='<div class="gbpwrap"><div class="gbptabs">';
+ [["info",ui.tabInfo],["photos",ui.tabPhotos],["reviews",ui.tabReviews],["posts",ui.tabPosts],["insights",ui.tabInsights]].forEach(([id,lbl])=>{
+  h+='<button class="gbptab'+(S.tab===id?" on":"")+'" data-tab="'+id+'">'+lbl+"</button>";
+ });
+ h+='</div><div class="gbpbody" id="gbpBody">';
+
+ if(S.tab==="info"){
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.name+'</div><input class="gbpinput" id="gbpName" value="'+(b.name||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.category+'</div><select class="gbpselect" id="gbpCat">'+
+   '<option value="">'+ui.catPh+"</option>"+
+   ["catRest","catRetail","catBeauty","catService","catOther"].map(k=>'<option value="'+k+'"'+(b.category===k?" selected":"")+">"+ui[k]+"</option>").join("")+
+   "</select></div>";
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.address+'</div><input class="gbpinput" id="gbpAddr" value="'+(b.address||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.phone+'</div><input class="gbpinput" id="gbpPhone" value="'+(b.phone||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.hours+'</div><div class="gbpdays">'+
+   ["mon","tue","wed","thu","fri","sat","sun"].map((d,i)=>'<div class="gbpday'+(b.hours[d]?" on":"")+'" data-day="'+d+'">'+ui.dayNames[i]+"</div>").join("")+
+   "</div></div>";
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.description+'</div><textarea class="gbptextarea" id="gbpDesc" rows="3">'+(b.description||"")+"</textarea></div>";
+ } else if(S.tab==="photos"){
+  h+='<div class="gbpslot">'+ui.logoSlot+": <b>"+(b.logo?PHOTOS.find(p=>p.id===b.logo)[lang]:"—")+"</b> · "+ui.coverSlot+": <b>"+(b.cover?PHOTOS.find(p=>p.id===b.cover)[lang]:"—")+"</b> · "+b.gallery.length+" "+ui.galleryCount+"</div>";
+  h+='<div class="gbpgrid">';
+  PHOTOS.forEach(p=>{
+   const tags=[];
+   if(b.logo===p.id)tags.push(ui.logoSet);
+   if(b.cover===p.id)tags.push(ui.coverSet);
+   if(b.gallery.includes(p.id))tags.push(ui.inGallery);
+   h+='<div class="gbpphoto"><div class="em">'+p.emoji+'</div><div class="lb">'+p[lang]+'</div><div class="tags">'+tags.map(t=>'<span class="gbptag">'+t+"</span>").join("")+"</div>"+
+    '<button data-act="logo" data-id="'+p.id+'"'+(b.logo===p.id?' class="pri"':"")+">"+ui.setAsLogo+"</button>"+
+    '<button data-act="cover" data-id="'+p.id+'"'+(b.cover===p.id?' class="pri"':"")+">"+ui.setAsCover+"</button>"+
+    '<button data-act="gallery" data-id="'+p.id+'"'+(b.gallery.includes(p.id)?' class="pri"':"")+">"+ui.addToGallery+"</button></div>";
+  });
+  h+="</div>";
+ } else if(S.tab==="reviews"){
+  REVIEWS.forEach(r=>{
+   const replied=b.reviewReplies[r.id];
+   h+='<div class="gbpreview"><div class="gbprevhead"><b>'+r.author+'</b><span class="gbpstars">'+"★".repeat(r.rating)+"☆".repeat(5-r.rating)+'</span></div><div class="gbprevtext">'+r[lang]+"</div>";
+   if(replied!=null)h+='<div class="gbpreplied">'+ui.replied+"</div>";
+   if(replied!=="good"){
+    const opts=r.neg?REPLY_NEG[lang]:REPLY_POS[lang].map(t=>({t,good:true}));
+    h+='<div class="gbpreplybtns">'+opts.map((o,i)=>'<button class="gbpreplybtn" data-rid="'+r.id+'" data-oi="'+i+'" data-good="'+o.good+'">'+o.t+"</button>").join("")+"</div>";
+   }
+   h+="</div>";
+  });
+ } else if(S.tab==="posts"){
+  h+='<div class="gbppost"><div class="gbprow"><div class="gbplbl">'+ui.postType+'</div><select class="gbpselect" id="gbpPostType">'+
+   ["Update","Offer","Event"].map(k=>'<option value="'+k+'">'+ui["post"+k]+"</option>").join("")+"</select></div>";
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.postText+'</div><textarea class="gbptextarea" id="gbpPostText" rows="2"></textarea></div>';
+  h+='<div class="gbprow"><div class="gbplbl">'+ui.postPhoto+'</div><select class="gbpselect" id="gbpPostPhoto"><option value="">—</option>'+
+   PHOTOS.map(p=>'<option value="'+p.id+'">'+p[lang]+"</option>").join("")+"</select></div>";
+  h+='<button class="btn p" id="gbpPublish">'+ui.publish+"</button></div>";
+  h+='<div class="gbppostlist">'+b.posts.map(p=>'<div class="gbppostcard"><b>'+ui["post"+p.type]+"</b> — "+p.text+" ("+PHOTOS.find(ph=>ph.id===p.photo)[lang]+")</div>").join("")+"</div>";
+ } else if(S.tab==="insights"){
+  const maxV=Math.max(...INSIGHTS.views);
+  h+='<div class="gbplbl">'+ui.viewsLbl+'</div><div class="gbpbars">'+
+   INSIGHTS.views.map((v,i)=>'<div class="gbpbarcol"><div class="gbpbar" style="height:'+Math.round((v/maxV)*100)+'%"></div><div class="gbpbarlbl">'+ui.dayNames[i]+"</div></div>").join("")+
+   "</div>";
+  h+='<div class="gbplbl" style="margin-top:16px">'+ui.queriesLbl+'</div><ul class="gbpqueries">'+INSIGHTS.queries[lang].map(q=>"<li>"+q+"</li>").join("")+"</ul>";
+  h+='<div class="gbplbl" style="margin-top:16px">'+ui.actionsLbl+'</div><div class="gbpinsight">'+
+   [["calls","📞"],["directions","🧭"],["website","🌐"]].map(([k,em])=>
+    '<div class="gbptile'+(b.insightAnswered&&S.insightPick===k?" sel":"")+'" data-action="'+k+'"><div class="n">'+em+" "+INSIGHTS.actions[k]+'</div><div class="l">'+k+"</div></div>").join("")+
+   "</div>";
+ }
+ h+="</div></div>";
+ return h;
+}
+function wireToolPanel(){
+ const box=$("gbpBody");if(!box)return;
+ document.querySelectorAll(".gbptab").forEach(t=>t.addEventListener("click",()=>{
+  S.tab=t.dataset.tab;S.biz.visited[S.tab]=true;persist();refreshTool();
+ }));
+ if(S.tab==="info"){
+  const nm=$("gbpName"),ca=$("gbpCat"),ad=$("gbpAddr"),ph=$("gbpPhone"),de=$("gbpDesc");
+  if(nm)nm.addEventListener("input",e=>{S.biz.name=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(ca)ca.addEventListener("change",e=>{S.biz.category=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(ad)ad.addEventListener("input",e=>{S.biz.address=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(ph)ph.addEventListener("input",e=>{S.biz.phone=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(de)de.addEventListener("input",e=>{S.biz.description=e.target.value;persist();checkTask(S.cur);renderRail();});
+  document.querySelectorAll(".gbpday").forEach(d=>d.addEventListener("click",()=>{
+   S.biz.hours[d.dataset.day]=!S.biz.hours[d.dataset.day];persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="photos"){
+  document.querySelectorAll("[data-act]").forEach(btn=>btn.addEventListener("click",()=>{
+   const id=btn.dataset.id,act=btn.dataset.act;
+   if(act==="logo")S.biz.logo=S.biz.logo===id?null:id;
+   else if(act==="cover")S.biz.cover=S.biz.cover===id?null:id;
+   else if(act==="gallery"){
+    const idx=S.biz.gallery.indexOf(id);
+    if(idx>=0)S.biz.gallery.splice(idx,1);else S.biz.gallery.push(id);
+   }
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="reviews"){
+  document.querySelectorAll(".gbpreplybtn").forEach(btn=>btn.addEventListener("click",()=>{
+   S.biz.reviewReplies[btn.dataset.rid]=btn.dataset.good==="true"?"good":"bad";
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="posts"){
+  const pub=$("gbpPublish");
+  if(pub)pub.addEventListener("click",()=>{
+   const type=$("gbpPostType").value,text=$("gbpPostText").value.trim(),photo=$("gbpPostPhoto").value;
+   if(!text||!photo)return;
+   S.biz.posts.push({type,text,photo});
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  });
+ } else if(S.tab==="insights"){
+  document.querySelectorAll(".gbptile").forEach(t=>t.addEventListener("click",()=>{
+   const k=t.dataset.action;
+   const top=Object.entries(INSIGHTS.actions).sort((a,b)=>b[1]-a[1])[0][0];
+   S.insightPick=k;
+   if(k===top)S.biz.insightAnswered=true;
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ }
+}
+function refreshTool(){
+ const root=$("gbpRoot");if(!root)return;
+ root.innerHTML=renderToolPanel();
+ wireToolPanel();
+}
+
+/* Lesson 7's ranking-factor view replaces the tool panel with a checklist derived from real state */
+function renderRankingPanel(){
+ const ui=UI[S.lang];
+ const factors=factorScore();
+ const on=factors.filter(f=>f[1]).length;
+ let h='<div class="gbpwrap"><div class="gbpbody">';
+ h+='<div class="gbplbl">'+ui.visScore+" — "+on+"/4</div>";
+ h+='<div class="gbpmeter"><span style="width:'+Math.round((on/4)*100)+'%"></span></div>';
+ h+='<div class="gbpscore">'+factors.map(([label,ok])=>'<div class="gbpfactor'+(ok?" on":"")+'"><span>'+label+'</span><span class="st">'+(ok?ui.scoreOn:ui.scoreOff)+"</span></div>").join("")+"</div>";
+ h+="</div></div>";
+ return h;
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 12 · 12."+n;
+ $("topTitle").textContent=M12[lang][n-1];
+ document.title="Academy · "+M12[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 12 · 12.'+n+'</span><h2 class="labh2">'+M12[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="gbpRoot"></div><div class="gbptask"><b>'+ui.objEd+':</b> '+C[n].task[lang]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ checkTask(n);
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const root=$("gbpRoot");
+ if(n===7)root.innerHTML=renderRankingPanel();
+ else{root.innerHTML=renderToolPanel();wireToolPanel();}
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function updateFinishBtn(){
+ const st=S.st[S.cur];
+ const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ per-lesson tasks & checks ============ */
+C[1].task={ht:"Klike sou chak nan 5 tab yo (Enfòmasyon, Foto, Revi, Pòs, Apèsi) omwen yon fwa.",fr:"Cliquez sur chacun des 5 onglets (Infos, Photos, Avis, Publications, Aperçus) au moins une fois.",en:"Click on each of the 5 tabs (Info, Photos, Reviews, Posts, Insights) at least once."};
+C[1].check=b=>Object.values(b.visited).every(Boolean);
+C[2].task={ht:"Ranpli non, kategori, adrès, telefòn, omwen yon jou ouvè, ak yon deskripsyon (omwen 20 karaktè).",fr:"Remplissez le nom, la catégorie, l'adresse, le téléphone, au moins un jour ouvert, et une description (au moins 20 caractères).",en:"Fill in name, category, address, phone, at least one open day, and a description (at least 20 characters)."};
+C[2].check=b=>!!(b.name.trim()&&b.category&&b.address.trim()&&b.phone.trim()&&Object.values(b.hours).some(Boolean)&&b.description.trim().length>=20);
+C[3].task={ht:"Mete yon logo, yon foto kouvèti, ak omwen 3 foto nan galri a.",fr:"Définissez un logo, une photo de couverture, et au moins 3 photos dans la galerie.",en:"Set a logo, a cover photo, and at least 3 photos in the gallery."};
+C[3].check=b=>!!(b.logo&&b.cover&&b.gallery.length>=3);
+C[4].task={ht:"Reponn tout 4 revi yo — chwazi repons pwofesyonèl la pou revi negatif la.",fr:"Répondez aux 4 avis — choisissez la réponse professionnelle pour l'avis négatif.",en:"Reply to all 4 reviews — choose the professional reply for the negative review."};
+C[4].check=b=>REVIEWS.every(r=>b.reviewReplies[r.id]!=null)&&b.reviewReplies.r3==="good";
+C[5].task={ht:"Kreye epi pibliye yon pòs ak yon kalite, yon tèks, ak yon foto.",fr:"Créez et publiez une publication avec un type, un texte, et une photo.",en:"Create and publish a post with a type, text, and a photo."};
+C[5].check=b=>b.posts.length>=1;
+C[6].task={ht:"Klike sou vinyèt aksyon kliyan ki gen pi gwo nimewo a.",fr:"Cliquez sur la vignette d'action client qui a le plus grand nombre.",en:"Click the customer-action tile with the biggest number."};
+C[6].check=b=>b.insightAnswered===true;
+C[7].task={ht:"Fè tout 4 faktè yo vin \"Sou\" nan tablo Nòt Vizibilite a (retounen nan lòt tab yo si sa nesesè).",fr:"Faites en sorte que les 4 facteurs soient « Actifs » dans le tableau de Score de Visibilité (retournez aux autres onglets si nécessaire).",en:"Get all 4 factors to show \"On\" in the Visibility Score panel (go back to the other tabs if needed)."};
+C[7].check=b=>factorScoreFor(b)===4;
+function factorScoreFor(b){
+ const f1=!!(b.name.trim()&&b.category&&b.address.trim()&&b.phone.trim()&&Object.values(b.hours).some(Boolean)&&b.description.trim().length>=20);
+ const f2=!!(b.logo&&b.cover&&b.gallery.length>=3);
+ const f3=REVIEWS.every(r=>b.reviewReplies[r.id]!=null);
+ const f4=b.posts.length>=1;
+ return [f1,f2,f3,f4].filter(Boolean).length;
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 12?":S.lang==="fr"?"Voulez-vous recommencer le Module 12 ?":"Restart Module 12?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{},tab:"info",biz:freshBiz()};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>

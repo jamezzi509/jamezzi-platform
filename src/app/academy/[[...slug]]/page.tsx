@@ -96,6 +96,7 @@ const dominateDigitalSimulatorModules: Record<
   m9: { moduleNumber: 9, title: "Modil 9 — Maketing sou Rezo Sosyal" },
   m10: { moduleNumber: 10, title: "Modil 10 — Maketing Kontni" },
   m11: { moduleNumber: 11, title: "Modil 11 — SEO (Referansman)" },
+  m12: { moduleNumber: 12, title: "Modil 12 — Google Business Profile" },
 };
 
 export async function generateMetadata({
