@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 9 — Maketing sou Rezo Sosyal</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 9 · 9.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 8</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 9!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 9 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 9!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M9={
+ ht:["Estrateji Facebook","Estrateji Instagram","Estrateji TikTok","Estrateji LinkedIn","Estrateji X (Twitter)","Estrateji Pinterest","Estrateji WhatsApp Business","Estrateji Chanèl YouTube"],
+ fr:["Stratégie Facebook","Stratégie Instagram","Stratégie TikTok","Stratégie LinkedIn","Stratégie X (Twitter)","Stratégie Pinterest","Stratégie WhatsApp Business","Stratégie de Chaîne YouTube"],
+ en:["Facebook Strategy","Instagram Strategy","TikTok Strategy","LinkedIn Strategy","X (Twitter) Strategy","Pinterest Strategy","WhatsApp Business Strategy","YouTube Channel Strategy"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Facebook toujou rive jwenn ranje laj ki pi laj e pi vari nan tout platfòm — odyans lan laj, men sa vle di kontni ou bezwen yon vrè rezon pou fè moun sispann defile.",
+   secs:[["Kiyès ki reyèlman sou Facebook","Yon gran ranje laj, souvan enkli anpil granmoun aje; Gwoup ak Paj Facebook itilize anpil pou dekouvèt biznis lokal, revi, ak diskisyon kominotè."],
+    ["Sa ki mache byen sou Facebook","Pòs klè, dirèk (foto, ti videyo, senp mizajou tèks); angajman kominotè (reponn kòmantè, patisipe nan gwoup lokal); Paj biznis ou kòm yon siyal konfyans (lè, kote, revi tout vizib nan yon sèl kote)."],
+    ["Yon abitid espesifik Facebook","Trete Paj ou tankou yon vitrin lokal: kenbe lè, enfòmasyon kontak, ak foto ajou, paske anpil moun verifye yon Paj Facebook menm jan yo ta verifye yon ansèy fizik anvan yo vizite."]],
+   illus:"roles",roleCards:[["👥","Odyans Laj Varye","Enkli granmoun aje"],["🏘️","Gwoup ak Kominote","Dekouvèt lokal"],["🏪","Paj kòm Vitrin","Siyal konfyans"]],
+   ex:"Gade (oswa imajine) Paj Facebook ou. Èske enfòmasyon debaz (lè, kontak, foto) ajou e konplè?",
+   quiz:[
+    {q:"Kiyès ki tipikman sou Facebook?",opts:["Sèlman jèn ki gen mwens pase 20 an","Yon gran ranje laj ki enkli anpil granmoun aje ak kominote lokal","Sèlman biznis","Sèlman moun ki gen mwens pase 20 an"],ans:1,fb:"Facebook rive jwenn yon gran ranje laj."},
+    {q:"Ki yon bon itilizasyon Facebook pou yon biznis lokal?",opts:["Inyore Paj la nèt","Kenbe lè, kontak, ak foto Paj la ajou kòm yon siyal konfyans","Sèlman poste yon fwa pa ane","Kache enfòmasyon kontak"],ans:1,fb:"Kenbe enfòmasyon ajou bati konfyans."},
+    {q:"Ki wòl Gwoup Facebook souvan jwe?",opts:["Okenn, yo pa itilize","Dekouvèt biznis lokal ak diskisyon kominotè","Sèlman pou gwo mak entènasyonal","Ranplase bezwen pou yon sit web"],ans:1,fb:"Gwoup sèvi pou dekouvèt lokal ak kominote."}],
+   close:{learned:"Facebook rive jwenn yon gran ranje laj e sèvi kòm yon vitrin ki bati konfyans — kenbe enfòmasyon debaz Paj ou ajou.",
+    mistake:"Kite lè, kontak, oswa foto Paj Facebook ou vin demode, ki mine konfyans li ta dwe bati.",
+    tip:"Verifye pwòp Paj ou tankou si w te yon etranje k ap deside si pou vizite — èske li sanble ajou e fyab?",
+    assign:"Revize enfòmasyon debaz Paj Facebook ou (lè, kontak, foto) epi mete ajou nenpòt bagay demode.",
+    dl:"Lis Verifikasyon: Siyal Konfyans Paj Facebook",
+    checklist:["Lè ajou?","Enfòmasyon kontak kòrèk?","Foto resan poste?","Kòmantè/mesaj reponn?"],
+    ai:"Sijere 3 lide pòs Facebook senp pou yon [kalite biznis] ki bati konfyans lokal ak angajman kominotè."}},
+ fr:{lede:"Facebook atteint toujours la tranche d'âge la plus large et la plus variée de toutes les plateformes — le public est large, mais ça veut dire que votre contenu a besoin d'une vraie raison d'arrêter le défilement.",
+   secs:[["Qui est vraiment sur Facebook","Une large tranche d'âge, incluant souvent beaucoup d'adultes plus âgés ; les Groupes et Pages Facebook sont beaucoup utilisés pour la découverte d'entreprises locales, les avis, et la discussion communautaire."],
+    ["Ce qui fonctionne bien sur Facebook","Des posts clairs et directs (photos, courtes vidéos, simples mises à jour texte) ; l'engagement communautaire (répondre aux commentaires, participer aux groupes locaux) ; votre Page d'entreprise comme signal de confiance (horaires, lieu, avis tous visibles au même endroit)."],
+    ["Une habitude spécifique à Facebook","Traitez votre Page comme une vitrine locale : gardez les horaires, coordonnées, et photos à jour, car beaucoup de gens vérifient une Page Facebook comme ils vérifieraient une enseigne physique avant de visiter."]],
+   illus:"roles",roleCards:[["👥","Public Large","Inclut les adultes âgés"],["🏘️","Groupes et Communauté","Découverte locale"],["🏪","Page comme Vitrine","Signal de confiance"]],
+   ex:"Regardez (ou imaginez) votre Page Facebook. Vos informations de base (horaires, contact, photos) sont-elles à jour et complètes ?",
+   quiz:[
+    {q:"Qui est typiquement sur Facebook ?",opts:["Seulement des jeunes de moins de 20 ans","Une large tranche d'âge incluant beaucoup d'adultes âgés et des communautés locales","Seulement des entreprises","Seulement des gens de moins de 20 ans"],ans:1,fb:"Facebook atteint une large tranche d'âge."},
+    {q:"Quelle est une bonne utilisation de Facebook pour une entreprise locale ?",opts:["Ignorer complètement la Page","Garder les horaires, contacts, et photos de la Page à jour comme signal de confiance","Ne poster qu'une fois par an","Cacher les informations de contact"],ans:1,fb:"Garder les informations à jour bâtit la confiance."},
+    {q:"Quel rôle jouent souvent les Groupes Facebook ?",opts:["Aucun, ils ne sont pas utilisés","Découverte d'entreprises locales et discussion communautaire","Seulement pour les grandes marques internationales","Remplacer le besoin d'un site web"],ans:1,fb:"Les groupes servent à la découverte locale et à la communauté."}],
+   close:{learned:"Facebook atteint une large tranche d'âge et sert de vitrine bâtissant la confiance — gardez les informations de base de votre Page à jour.",
+    mistake:"Laisser les horaires, contacts, ou photos de votre Page Facebook devenir obsolètes, ce qui mine la confiance qu'elle est censée bâtir.",
+    tip:"Vérifiez votre propre Page comme si vous étiez un étranger décidant de visiter — semble-t-elle à jour et fiable ?",
+    assign:"Révisez les informations de base de votre Page Facebook (horaires, contact, photos) et mettez à jour ce qui est obsolète.",
+    dl:"Liste de Vérification : Signaux de Confiance de la Page Facebook",
+    checklist:["Horaires à jour ?","Informations de contact correctes ?","Photos récentes publiées ?","Commentaires/messages répondus ?"],
+    ai:"Suggère 3 idées de posts Facebook simples pour un(e) [type d'entreprise] qui bâtissent la confiance locale et l'engagement communautaire."}},
+ en:{lede:"Facebook still reaches the widest, most varied age range of any platform — the audience is broad, but that means your content needs a clear reason to stop the scroll.",
+   secs:[["Who's actually on Facebook","A wide age range, often including many older adults; Facebook Groups and Pages are heavily used for local business discovery, reviews, and community discussion."],
+    ["What works well on Facebook","Clear, direct posts (photos, short video, simple text updates); community engagement (responding to comments, participating in local groups); Facebook's business Page as a trust signal (hours, location, reviews all visible in one place)."],
+    ["A Facebook-specific habit","Treat your Page like a local storefront: keep hours, contact info, and photos current, since many people check a Facebook Page the way they'd check a physical sign before visiting."]],
+   illus:"roles",roleCards:[["👥","Wide Age Range","Includes older adults"],["🏘️","Groups & Community","Local discovery"],["🏪","Page as Storefront","Trust signal"]],
+   ex:"Look at (or imagine) your Facebook Page. Is your basic info (hours, contact, photos) current and complete?",
+   quiz:[
+    {q:"Who is typically found on Facebook?",opts:["Only teenagers under 20","A wide age range including many older adults and local communities","Only businesses","Only people under 20"],ans:1,fb:"Facebook reaches a wide age range."},
+    {q:"What's a strong use of Facebook for a local business?",opts:["Ignoring the Page entirely","Keeping the Page's hours, contact info, and photos current as a trust signal","Only posting once a year","Hiding contact information"],ans:1,fb:"Keeping info current builds trust."},
+    {q:"What role do Facebook Groups often play?",opts:["None, they're unused","Local business discovery and community discussion","Only for large international brands","Replacing the need for a website"],ans:1,fb:"Groups serve local discovery and community."}],
+   close:{learned:"Facebook reaches a wide age range and serves as a trust-building storefront — keep your Page's basic info current.",
+    mistake:"Letting your Facebook Page's hours, contact info, or photos go stale, which undermines the trust it's supposed to build.",
+    tip:"Check your own Page as if you were a stranger deciding whether to visit — does it look current and trustworthy?",
+    assign:"Review your Facebook Page's basic info (hours, contact, photos) and update anything outdated.",
+    dl:"Checklist: Facebook Page Trust Signals",
+    checklist:["Hours current?","Contact info correct?","Recent photos posted?","Comments/messages responded to?"],
+    ai:"Suggest 3 simple Facebook post ideas for a [type of business] that build local trust and community engagement."}}},
+
+2:{ht:{lede:"Instagram se yon platfòm ki vizyèl an premye — jan kontni ou parèt konte otan ke sa li di.",
+   secs:[["Kiyès ki sou Instagram e sa yo atann","Yon odyans ki oryante vizyèlman ki atann poli ak konsistans nan estetik fil la, pandan Istwa ak Reels rekonpanse yon santiman pi kazyèl, dèyè-sèn — de fòma yo ka gen diferan ton menm sou menm kont la."],
+    ["Sa ki mache byen sou Instagram","Yon style vizyèl konsistan atravè fil prensipal la (koulè, font, anbyans ki soti nan kit mak Modil 3 ou), Istwa pou mizajou chak jou, kazyèl, ki gen limit tan, Reels pou rive lwen pi lwen pase abòne aktyèl ou yo."],
+    ["Yon abitid espesifik Instagram","Itilize Highlights ou (Istwa sove) kòm yon ti meni pèmanan pou biznis ou — lè, kesyon komen, kategori pwodwi — pou nouvo vizitè ka aprann baz yo san yo pa defile tout fil ou."]],
+   illus:"roles",roleCards:[["🎨","Fil Vizyèl Konsistan","Style ki matche mak"],["📱","Istwa Kazyèl","Mizajou chak jou"],["🚀","Reels pou Rive Lwen","Pi lwen pase abòne"]],
+   ex:"Dekri style vizyèl (koulè, anbyans) ou vle fil Instagram ou genyen, baze sou kit mak Modil 3 ou.",
+   quiz:[
+    {q:"Kisa Instagram rekonpanse nan fil prensipal la?",opts:["Pòs enkonsistan o aza","Yon style vizyèl konsistan ak estetik","Sèlman pòs tèks","Inyore koulè mak"],ans:1,fb:"Fil la rekonpanse konsistans vizyèl."},
+    {q:"Ki ton Istwa yo tipikman rekonpanse konpare ak fil prensipal la?",opts:["Menm ton fòmèl idantik","Yon santiman pi kazyèl, dèyè-sèn","Pa janm poste anyen kazyèl","Sèlman anons pwofesyonèl"],ans:1,fb:"Istwa rekonpanse yon ton pi kazyèl."},
+    {q:"Ki yon bon itilizasyon Instagram Highlights?",opts:["Efase yo imedyatman","Yon ti meni pèmanan (lè, kesyon, kategori) pou nouvo vizitè","Kache enfòmasyon biznis ou","Sèlman pou kont pèsonèl"],ans:1,fb:"Highlights fè yon bon ti meni pèmanan."}],
+   close:{learned:"Instagram rekonpanse konsistans vizyèl nan fil prensipal la, pandan Istwa/Reels pèmèt yon ton pi kazyèl ak rive lwen.",
+    mistake:"Poste yon fil ki vizyèlman enkonsistan san okenn koneksyon ak vrè koulè/style mak ou.",
+    tip:"Itilize Highlights kòm yon ti meni sove pou nouvo vizitè ka aprann baz ou san defile tout bagay.",
+    assign:"Dekri style vizyèl ideyal fil Instagram ou baze sou kit mak Modil 3 ou.",
+    dl:"Referans: Gid Fòma Instagram (Fil/Istwa/Reels)",
+    checklist:["Fil vizyèlman konsistan ak mak?","Istwa itilize pou mizajou kazyèl?","Reels itilize pou rive lwen?","Highlights òganize?"],
+    ai:"Sijere yon estrikti Instagram Highlights (kategori) pou yon [kalite biznis]."}},
+ fr:{lede:"Instagram est une plateforme visuelle avant tout — l'apparence de votre contenu compte autant que ce qu'il dit.",
+   secs:[["Qui est sur Instagram et ce qu'ils attendent","Un public orienté visuellement qui attend du poli et de la cohérence dans l'esthétique du fil, tandis que les Stories et Reels récompensent un sentiment plus décontracté, en coulisses — les deux formats peuvent avoir des tons différents sur le même compte."],
+    ["Ce qui fonctionne bien sur Instagram","Un style visuel cohérent à travers le fil principal (couleurs, polices, ambiance de votre kit de marque du Module 3), les Stories pour des mises à jour quotidiennes, décontractées, à durée limitée, les Reels pour atteindre au-delà de vos abonnés actuels."],
+    ["Une habitude spécifique à Instagram","Utilisez vos Épingles (Stories sauvegardées) comme un mini-menu permanent pour votre entreprise — horaires, FAQ, catégories de produits — pour que les nouveaux visiteurs apprennent les bases sans faire défiler tout votre fil."]],
+   illus:"roles",roleCards:[["🎨","Fil Visuel Cohérent","Style qui correspond à la marque"],["📱","Stories Décontractées","Mises à jour quotidiennes"],["🚀","Reels pour Portée","Au-delà des abonnés"]],
+   ex:"Décrivez le style visuel (couleurs, ambiance) que vous voulez pour votre fil Instagram, basé sur votre kit de marque du Module 3.",
+   quiz:[
+    {q:"Que récompense Instagram dans le fil principal ?",opts:["Des posts incohérents au hasard","Un style visuel cohérent et une esthétique","Seulement des posts texte","Ignorer les couleurs de marque"],ans:1,fb:"Le fil récompense la cohérence visuelle."},
+    {q:"Quel ton les Stories récompensent-elles typiquement par rapport au fil principal ?",opts:["Le même ton formel identique","Un sentiment plus décontracté, en coulisses","Ne jamais rien poster de décontracté","Seulement des annonces professionnelles"],ans:1,fb:"Les Stories récompensent un ton plus décontracté."},
+    {q:"Quelle est une bonne utilisation des Épingles Instagram ?",opts:["Les supprimer immédiatement","Un mini-menu permanent (horaires, FAQ, catégories) pour les nouveaux visiteurs","Cacher les informations de votre entreprise","Seulement pour les comptes personnels"],ans:1,fb:"Les Épingles font un bon mini-menu permanent."}],
+   close:{learned:"Instagram récompense la cohérence visuelle dans le fil principal, tandis que Stories/Reels permettent un ton plus décontracté et de la portée.",
+    mistake:"Publier un fil visuellement incohérent sans aucune connexion à vos vraies couleurs/style de marque.",
+    tip:"Utilisez les Épingles comme un mini-menu sauvegardé pour que les nouveaux visiteurs apprennent vos bases sans tout faire défiler.",
+    assign:"Décrivez le style visuel idéal de votre fil Instagram basé sur votre kit de marque du Module 3.",
+    dl:"Référence : Guide de Format Instagram (Fil/Stories/Reels)",
+    checklist:["Fil visuellement cohérent avec la marque ?","Stories utilisées pour des mises à jour décontractées ?","Reels utilisés pour la portée ?","Épingles organisées ?"],
+    ai:"Suggère une structure d'Épingles Instagram (catégories) pour un(e) [type d'entreprise]."}},
+ en:{lede:"Instagram is a visual-first platform — the look and feel of your content carries as much weight as what it says.",
+   secs:[["Who's on Instagram and what they expect","A visually-driven audience that expects polish and consistency in feed aesthetics, while Stories and Reels reward a more casual, behind-the-scenes feel — the two formats can have different tones from the same account."],
+    ["What works well on Instagram","A consistent visual style across the main feed (colors, fonts, mood from your Module 3 brand kit), Stories for daily, casual, time-limited updates, Reels for reach beyond your existing followers."],
+    ["An Instagram-specific habit","Use your Highlights (saved Stories) as a permanent mini-menu of your business — hours, FAQs, product categories — so new visitors can learn the basics without scrolling your whole feed."]],
+   illus:"roles",roleCards:[["🎨","Consistent Visual Feed","Matches your brand style"],["📱","Casual Stories","Daily updates"],["🚀","Reels for Reach","Beyond your followers"]],
+   ex:"Describe the visual style (colors, mood) you want your Instagram feed to have, based on your Module 3 brand kit.",
+   quiz:[
+    {q:"What does Instagram reward in the main feed?",opts:["Random inconsistent posts","A consistent visual style and aesthetic","Only text posts","Ignoring brand colors"],ans:1,fb:"The feed rewards visual consistency."},
+    {q:"What tone do Stories typically reward compared to the main feed?",opts:["Identical formal tone","A more casual, behind-the-scenes feel","Never post anything casual","Only professional announcements"],ans:1,fb:"Stories reward a more casual tone."},
+    {q:"What's a good use of Instagram Highlights?",opts:["Deleting them immediately","A permanent mini-menu (hours, FAQs, categories) for new visitors","Hiding your business information","Only for personal accounts"],ans:1,fb:"Highlights make a good permanent mini-menu."}],
+   close:{learned:"Instagram rewards visual consistency in the main feed, while Stories/Reels allow a more casual tone and reach.",
+    mistake:"Posting a visually inconsistent feed with no connection to your actual brand colors/style.",
+    tip:"Use Highlights as a saved mini-menu so new visitors can learn your basics without scrolling everything.",
+    assign:"Describe your ideal Instagram feed's visual style based on your brand kit from Module 3.",
+    dl:"Reference: Instagram Format Guide (Feed/Stories/Reels)",
+    checklist:["Feed visually consistent with brand?","Stories used for casual updates?","Reels used for reach?","Highlights organized?"],
+    ai:"Suggest an Instagram Highlights structure (categories) for a [type of business]."}}},
+
+3:{ht:{lede:"TikTok rekonpanse dekouvèt sou kantite abòne — videyo yon kont tou nèf ka rive jwenn dè milye etranje nan premye jou si kontni an menm merite atansyon.",
+   secs:[["Kijan distribisyon TikTok mache konseptyèlman","Kontni montre laj pou teste reyaksyon odyans lan, apre pouse pi lwen bay plis moun si li kenbe atansyon — sa vle di kantite abòne konte mwens isit la pase prèske nenpòt lòt kote, e konsistans/volim pòs konte plis pase sou platfòm ki pi lant."],
+    ["Sa ki mache byen sou TikTok","Kontni brit, otantik, ki pa two poli souvan fè pi byen pase videyo trè pwodwi; tandans/son/fòma espesifik nan platfòm lan (vo veye sa ki popilè kounye a, paske sa chanje san rete); valè rapid, dirèk nan premye segond yo (soti nan prensip kwochè videyo Modil 7)."],
+    ["Yon abitid espesifik TikTok","Poste konsistan olye pafè yon sèl videyo — paske dekouvèt pa depann sèlman de abòne, plis ti eseye otantik souvan fè pi byen pase okenn videyo trè poli."]],
+   illus:"roles",roleCards:[["🔍","Dekouvèt Pa Depann de Abòne","Angajman rekonpanse"],["🎬","Otantik Bat Poli","Brit fè pi byen"],["📅","Poste Souvan","Konsistans bat pèfeksyon"]],
+   ex:"Site yon lide videyo brit, otantik (pa two poli) ou ta ka reyèlman filme pou TikTok semèn sa a.",
+   quiz:[
+    {q:"Poukisa kantite abòne konte mwens sou TikTok pase sou anpil platfòm?",opts:["Li pa konte mwens, li idantik toupatou","Kontni ka rive jwenn nouvo moun baze sou angajman, pa jis abòne aktyèl","TikTok pa gen okenn sistèm distribisyon","Abòne kache sou TikTok"],ans:1,fb:"Rive lwen baze sou angajman, pa sèlman abòne."},
+    {q:"Kisa ki souvan fè pi byen pase videyo trè poli sou TikTok?",opts:["Anyen, poli toujou genyen","Kontni brit, otantik","Pòs sèlman tèks","Pa janm poste ditou"],ans:1,fb:"Kontni brit, otantik souvan fè pi byen."},
+    {q:"Ki yon bon abitid TikTok?",opts:["Poste yon fwa pa ane, pafè","Poste konsistan olye tann pou pafè yon sèl videyo","Sèlman itilize kontni ki soti nan lòt platfòm san chanje","Evite tandans nèt"],ans:1,fb:"Poste konsistan se yon bon abitid."}],
+   close:{learned:"Distribisyon TikTok rekonpanse angajman sou kantite abòne — kontni brit, otantik, konsistan souvan bat videyo poli okazyonèl.",
+    mistake:"Tann pou poste jiskaske yon videyo santi 'pafè', olye poste konsistan e otantikman.",
+    tip:"Veye sa ki tandans kounye a sou platfòm lan regilyèman — fòma ak son yo chanje san rete.",
+    assign:"Site yon lide videyo brit, otantik ou ta ka reyèlman filme pou TikTok semèn sa a.",
+    dl:"Lis Verifikasyon: Abitid Pòs TikTok",
+    checklist:["Poste konsistan, pa jis okazyonèlman?","Kontni santi otantik, pa two pwodwi?","Fò premye segond (Modil 7)?"],
+    ai:"Sijere 3 lide videyo TikTok brit, otantik pou yon [kalite biznis] ki pa mande pwodiksyon pwofesyonèl."}},
+ fr:{lede:"TikTok récompense la découverte plutôt que le nombre d'abonnés — la vidéo d'un tout nouveau compte peut atteindre des milliers d'inconnus dès le premier jour si le contenu lui-même mérite l'attention.",
+   secs:[["Comment fonctionne la distribution TikTok conceptuellement","Le contenu est montré largement pour tester la réaction du public, puis poussé plus loin vers plus de gens s'il retient l'attention — ce qui veut dire que le nombre d'abonnés compte moins ici que presque n'importe où ailleurs, et la constance/le volume de publication comptent plus que sur des plateformes plus lentes."],
+    ["Ce qui fonctionne bien sur TikTok","Le contenu brut, authentique, non poli surpasse souvent la vidéo très produite ; les tendances/sons/formats spécifiques à la plateforme (ça vaut le coup de regarder ce qui est populaire actuellement, car ça change constamment) ; une valeur directe et rapide dans les premières secondes (des principes d'accroche vidéo du Module 7)."],
+    ["Une habitude spécifique à TikTok","Publiez de façon constante plutôt que de perfectionner une seule vidéo — puisque la découverte ne dépend pas purement des abonnés, des tentatives plus fréquentes et authentiques surpassent souvent des vidéos occasionnelles très polies."]],
+   illus:"roles",roleCards:[["🔍","Découverte Sans Dépendre des Abonnés","L'engagement récompensé"],["🎬","Authentique Bat Poli","Le brut fonctionne mieux"],["📅","Publier Souvent","Constance bat perfection"]],
+   ex:"Nommez une idée de vidéo brute et authentique (pas trop polie) que vous pourriez réellement filmer pour TikTok cette semaine.",
+   quiz:[
+    {q:"Pourquoi le nombre d'abonnés compte-t-il moins sur TikTok que sur beaucoup de plateformes ?",opts:["Il ne compte pas moins, c'est identique partout","Le contenu peut atteindre de nouvelles personnes basé sur l'engagement, pas juste les abonnés actuels","TikTok n'a aucun système de distribution","Les abonnés sont cachés sur TikTok"],ans:1,fb:"La portée basée sur l'engagement, pas seulement les abonnés."},
+    {q:"Qu'est-ce qui surpasse souvent la vidéo très polie sur TikTok ?",opts:["Rien, le poli gagne toujours","Le contenu brut, authentique","Seulement les posts texte","Ne jamais rien publier"],ans:1,fb:"Le contenu brut, authentique surpasse souvent le poli."},
+    {q:"Quelle est une bonne habitude TikTok ?",opts:["Publier une fois par an, parfaitement","Publier de façon constante plutôt que d'attendre de perfectionner une seule vidéo","N'utiliser que du contenu d'autres plateformes sans changement","Éviter complètement les tendances"],ans:1,fb:"Publier de façon constante est une bonne habitude."}],
+   close:{learned:"La distribution TikTok récompense l'engagement plus que le nombre d'abonnés — un contenu brut, authentique, et constant bat souvent des vidéos polies occasionnelles.",
+    mistake:"Attendre de publier jusqu'à ce qu'une vidéo semble « parfaite », plutôt que de publier de façon constante et authentique.",
+    tip:"Regardez régulièrement ce qui est actuellement tendance sur la plateforme — les formats et sons changent constamment.",
+    assign:"Nommez une idée de vidéo brute et authentique que vous pourriez réellement filmer pour TikTok cette semaine.",
+    dl:"Liste de Vérification : Habitudes de Publication TikTok",
+    checklist:["Publication constante, pas juste occasionnelle ?","Le contenu semble authentique, pas trop produit ?","Fortes premières secondes (Module 7) ?"],
+    ai:"Suggère 3 idées de vidéos TikTok brutes et authentiques pour un(e) [type d'entreprise] qui ne nécessitent pas de production professionnelle."}},
+ en:{lede:"TikTok rewards discovery over follower count — a brand-new account's video can reach thousands of strangers on day one if the content itself earns attention.",
+   secs:[["How TikTok distribution works conceptually","Content is shown broadly to test audience reaction, then pushed further to more people if it holds attention — meaning follower count matters less here than almost anywhere else, and consistency/volume of posting matters more than on slower platforms."],
+    ["What works well on TikTok","Raw, authentic, unpolished content often outperforms highly produced video; trends/sounds/formats specific to the platform (worth watching what's currently popular, since this shifts constantly); direct, fast value in the first seconds (from Module 7's video hook principles)."],
+    ["A TikTok-specific habit","Post consistently rather than perfecting one video — since discovery isn't purely follower-based, more frequent, authentic attempts often outperform occasional highly-polished ones."]],
+   illus:"roles",roleCards:[["🔍","Discovery Not Follower-Based","Engagement rewarded"],["🎬","Authentic Beats Polished","Raw performs well"],["📅","Post Often","Consistency beats perfection"]],
+   ex:"Name one raw, authentic (not overly polished) video idea you could realistically film for TikTok this week.",
+   quiz:[
+    {q:"Why does follower count matter less on TikTok than on many platforms?",opts:["It doesn't matter less, it's identical everywhere","Content can reach new people based on engagement, not just existing followers","TikTok has no distribution system","Followers are hidden on TikTok"],ans:1,fb:"Reach is based on engagement, not just followers."},
+    {q:"What often outperforms highly polished video on TikTok?",opts:["Nothing, polish always wins","Raw, authentic content","Text-only posts","Never posting at all"],ans:1,fb:"Raw, authentic content often outperforms polish."},
+    {q:"What's a smart TikTok habit?",opts:["Post once a year, perfected","Post consistently rather than waiting to perfect one video","Only use content from other platforms unchanged","Avoid trends entirely"],ans:1,fb:"Posting consistently is a smart habit."}],
+   close:{learned:"TikTok distribution rewards engagement over follower count — raw, authentic, consistent posting often beats occasional polished videos.",
+    mistake:"Waiting to post until a video feels 'perfect,' instead of posting consistently and authentically.",
+    tip:"Watch what's currently trending on the platform regularly — formats and sounds shift constantly.",
+    assign:"Name one raw, authentic video idea you could realistically film for TikTok this week.",
+    dl:"Checklist: TikTok Posting Habits",
+    checklist:["Posting consistently, not just occasionally?","Content feels authentic, not overproduced?","Strong first seconds (Module 7)?"],
+    ai:"Suggest 3 raw, authentic TikTok video ideas for a [type of business] that don't require professional production."}}},
+
+4:{ht:{lede:"LinkedIn se yon platfòm nan kontèks pwofesyonèl — kontni isit la ta dwe bati kredibilite ak relasyon pwofesyonèl, pa kouri dèyè amizman viral.",
+   secs:[["Kiyès ki sou LinkedIn e poukisa","Pwofesyonèl, pwopriyetè biznis, ak moun ki pran desizyon, souvan aktivman ap chèche ekspètiz, sèvis, oswa koneksyon pwofesyonèl olye amizman."],
+    ["Sa ki mache byen sou LinkedIn","Pataje vrè ekspètiz ak insight (ki soti nan vrè travay/endistri ou), etap enpòtan pwofesyonèl ak etid ka, angajman jenwen nan konvèsasyon pwofesyonèl pètinan olye pòs pwomosyonèl jenerik."],
+    ["Yon abitid espesifik LinkedIn","Poste kòm yon moun espesifik (ou menm, pwopriyetè biznis la) plis pase kòm yon mak san figi — odyans LinkedIn reponn fò a ekspètiz endividyèl ak vrè istwa pwofesyonèl, plis pase mesaj mak poli."]],
+   illus:"roles",roleCards:[["💼","Kontèks Pwofesyonèl","Ekspètiz ak koneksyon"],["🧠","Pataje Ekspètiz Reyèl","Insight vrè travay"],["🙋","Pale kòm yon Moun","Pa yon mak san figi"]],
+   ex:"Ekri yon moso vrè ekspètiz oswa insight ki soti nan travay ou ou ta ka pataje kòm yon pòs LinkedIn.",
+   quiz:[
+    {q:"Kisa odyans LinkedIn tipikman ap chèche?",opts:["Pi bon amizman","Ekspètiz, sèvis, ak koneksyon pwofesyonèl","Meme viral","Anyen espesifik"],ans:1,fb:"LinkedIn chèche ekspètiz ak koneksyon."},
+    {q:"Kisa ki mache byen sou LinkedIn?",opts:["Sèlman pòs pwomosyonèl jenerik","Pataje vrè ekspètiz, insight, ak etap enpòtan pwofesyonèl","Inyore konvèsasyon pwofesyonèl","Evite nenpòt vwa pèsonèl"],ans:1,fb:"Vrè ekspètiz ak insight mache byen."},
+    {q:"Ki yon bon abitid LinkedIn?",opts:["Poste sèlman kòm yon mak san figi","Poste kòm yon moun espesifik ak vrè ekspètiz ak istwa","Pa janm angaje ak pòs lòt moun","Kopye kontni viral ki soti nan lòt platfòm"],ans:1,fb:"Poste kòm yon moun espesifik se bon abitid."}],
+   close:{learned:"LinkedIn rekonpanse vrè ekspètiz pwofesyonèl ak vwa endividyèl plis pase pwomosyon mak jenerik oswa amizman.",
+    mistake:"Poste kontni pwomosyonèl jenerik, san figi olye vrè ekspètiz ak insight pwofesyonèl.",
+    tip:"Poste kòm ou menm (pwopriyetè biznis la), pataje vrè ekspètiz — odyans LinkedIn reponn a vwa pwofesyonèl endividyèl.",
+    assign:"Ekri yon moso vrè ekspètiz oswa insight ki soti nan travay ou kòm yon lide pòs LinkedIn.",
+    dl:"Fèy Travay: Planifikasyon Pòs Ekspètiz LinkedIn",
+    checklist:["Kontni pataje vrè ekspètiz/insight?","Poste ak yon vwa pèsonèl, pa jis mesaj mak?","Angaje jenwenman ak lòt moun?"],
+    ai:"Sijere 3 lide pòs LinkedIn ki pataje vrè ekspètiz pou yon [kalite biznis/wòl]."}},
+ fr:{lede:"LinkedIn est une plateforme de contexte professionnel — le contenu ici devrait bâtir la crédibilité et des relations professionnelles, pas courir après le divertissement viral.",
+   secs:[["Qui est sur LinkedIn et pourquoi","Des professionnels, propriétaires d'entreprise, et décideurs, souvent activement à la recherche d'expertise, de services, ou de connexions professionnelles plutôt que de divertissement."],
+    ["Ce qui fonctionne bien sur LinkedIn","Partager de vraies expertises et insights (de votre vrai travail/secteur), des étapes professionnelles importantes et études de cas, un engagement authentique dans des conversations professionnelles pertinentes plutôt que des posts promotionnels génériques."],
+    ["Une habitude spécifique à LinkedIn","Publiez en tant que personne spécifique (vous, le propriétaire d'entreprise) plutôt qu'en tant que marque sans visage — les publics LinkedIn répondent fortement à l'expertise individuelle et aux vraies histoires professionnelles, plus qu'au message de marque poli."]],
+   illus:"roles",roleCards:[["💼","Contexte Professionnel","Expertise et connexions"],["🧠","Partager une Vraie Expertise","Insight de vrai travail"],["🙋","Parler comme une Personne","Pas une marque sans visage"]],
+   ex:"Écrivez un élément de vraie expertise ou d'insight de votre travail que vous pourriez partager comme post LinkedIn.",
+   quiz:[
+    {q:"Que recherche typiquement le public de LinkedIn ?",opts:["Du pur divertissement","De l'expertise, des services, et des connexions professionnelles","Des mèmes viraux","Rien de spécifique"],ans:1,fb:"LinkedIn recherche expertise et connexions."},
+    {q:"Qu'est-ce qui fonctionne bien sur LinkedIn ?",opts:["Seulement des posts promotionnels génériques","Partager de vraies expertises, insights, et étapes professionnelles importantes","Ignorer les conversations professionnelles","Éviter toute voix personnelle"],ans:1,fb:"De vraies expertises et insights fonctionnent bien."},
+    {q:"Quelle est une bonne habitude LinkedIn ?",opts:["Publier seulement en tant que marque sans visage","Publier en tant que personne spécifique avec une vraie expertise et des histoires","Ne jamais s'engager avec les posts des autres","Copier le contenu viral d'autres plateformes"],ans:1,fb:"Publier en tant que personne spécifique est une bonne habitude."}],
+   close:{learned:"LinkedIn récompense la vraie expertise professionnelle et la voix individuelle plus que la promotion de marque générique ou le divertissement.",
+    mistake:"Publier du contenu promotionnel générique et sans visage plutôt que de la vraie expertise et de l'insight professionnel.",
+    tip:"Publiez en tant que vous-même (le propriétaire d'entreprise), en partageant une vraie expertise — les publics LinkedIn répondent aux voix professionnelles individuelles.",
+    assign:"Écrivez un élément de vraie expertise ou d'insight de votre travail comme idée de post LinkedIn.",
+    dl:"Fiche de travail : Planificateur de Post d'Expertise LinkedIn",
+    checklist:["Le contenu partage-t-il une vraie expertise/insight ?","Publié avec une voix personnelle, pas juste un message de marque ?","S'engage-t-il authentiquement avec les autres ?"],
+    ai:"Suggère 3 idées de posts LinkedIn partageant une vraie expertise pour un(e) [type d'entreprise/rôle]."}},
+ en:{lede:"LinkedIn is a professional-context platform — content here should build credibility and professional relationships, not chase viral entertainment.",
+   secs:[["Who's on LinkedIn and why","Professionals, business owners, and decision-makers, often actively looking for expertise, services, or professional connections rather than entertainment."],
+    ["What works well on LinkedIn","Sharing real expertise and insights (from your actual work/industry), professional milestones and case studies, genuine engagement in relevant professional conversations rather than generic promotional posts."],
+    ["A LinkedIn-specific habit","Post as a specific person (you, the business owner) more than as a faceless brand — LinkedIn audiences respond strongly to individual expertise and real professional stories, more than polished brand messaging."]],
+   illus:"roles",roleCards:[["💼","Professional Context","Expertise and connections"],["🧠","Share Real Expertise","Insight from real work"],["🙋","Speak as a Person","Not a faceless brand"]],
+   ex:"Write one piece of real expertise or insight from your work you could share as a LinkedIn post.",
+   quiz:[
+    {q:"What is LinkedIn's audience typically looking for?",opts:["Pure entertainment","Expertise, services, and professional connections","Viral memes","Nothing specific"],ans:1,fb:"LinkedIn's audience looks for expertise and connections."},
+    {q:"What works well on LinkedIn?",opts:["Generic promotional posts only","Sharing real expertise, insights, and professional milestones","Ignoring professional conversations","Avoiding any personal voice"],ans:1,fb:"Real expertise and insights work well."},
+    {q:"What's a smart LinkedIn habit?",opts:["Posting only as a faceless brand","Posting as a specific person with real expertise and stories","Never engaging with others' posts","Copying viral content from other platforms"],ans:1,fb:"Posting as a specific person is a smart habit."}],
+   close:{learned:"LinkedIn rewards real professional expertise and individual voice over generic brand promotion or entertainment.",
+    mistake:"Posting generic, faceless promotional content instead of real expertise and professional insight.",
+    tip:"Post as yourself (the business owner), sharing real expertise — LinkedIn audiences respond to individual professional voices.",
+    assign:"Write one piece of real expertise or insight from your work as a LinkedIn post idea.",
+    dl:"Worksheet: LinkedIn Expertise Post Planner",
+    checklist:["Content shares real expertise/insight?","Posted with a personal voice, not just brand messaging?","Engages genuinely with others?"],
+    ai:"Suggest 3 LinkedIn post ideas sharing real expertise for a [type of business/role]."}}},
+
+5:{ht:{lede:"X mache an tan reyèl — konvèsasyon, opinyon, ak ti eklè tèks konte plis isit la pase kontni poli, planifye.",
+   secs:[["Sa X reyèlman ye pou fè","Tèks rapid, kout ak kòmantè, konvèsasyon ak reyaksyon an tan reyèl a evènman/tandans aktyèl, angajman dirèk (repons, pataje ak sitasyon) souvan konte otan ke pòs orijinal yo."],
+    ["Sa ki mache byen sou X","Tèks kout, dirèk, ki gen opinyon; antre nan konvèsasyon pètinan olye sèlman emèt; konsistans ak frekans, paske platfòm lan mache rapid e yon sèl pòs gen yon vi vizib kout."],
+    ["Yon abitid espesifik X","Reponn ak angaje ak lòt moun nan espas ou otan ke ou poste kontni orijinal — X rekonpanse fè pati yon konvèsasyon, pa jis rele nan li."]],
+   illus:"roles",roleCards:[["⏱️","Tan Reyèl","Konvèsasyon rapid"],["📝","Tèks Kout e Dirèk","Opinyon klè"],["💬","Angaje nan Konvèsasyon","Reponn otan ke poste"]],
+   ex:"Ekri yon pòs kout, dirèk (style X) ki pataje yon opinyon oswa mizajou pètinan pou biznis ou.",
+   quiz:[
+    {q:"Pou ki sa X prensipalman itilize?",opts:["Sèlman videyo long","Tèks rapid, kout ak konvèsasyon an tan reyèl","Sèlman rezime pwofesyonèl","Album foto sèlman"],ans:1,fb:"X sèvi pou tèks rapid ak konvèsasyon."},
+    {q:"Kisa ki konte otan ke pòs orijinal sou X?",opts:["Anyen dòt konte","Repons ak angajman nan konvèsasyon lòt moun","Inyore tout lòt kont","Poste yon fwa pa mwa"],ans:1,fb:"Repons ak angajman konte otan."},
+    {q:"Poukisa frekans konte sou X?",opts:["Li pa konte","Pòs yo gen yon vi vizib kout paske platfòm lan mache rapid","Sèlman yon pòs pa ane nesesè","Frekans pa gen okenn efè"],ans:1,fb:"Vi kout pòs yo mande frekans."}],
+   close:{learned:"X rekonpanse tèks rapid, dirèk ak vrè patisipasyon nan konvèsasyon — reponn ak angaje konte otan ke poste.",
+    mistake:"Sèlman emèt pòs pa ou san janm reponn oswa angaje ak konvèsasyon lòt moun.",
+    tip:"Pase tan angaje ak lòt moun nan espas ou, pa jis poste — X rekonpanse fè pati konvèsasyon an.",
+    assign:"Ekri yon pòs kout, dirèk ki pataje yon opinyon oswa mizajou pètinan pou biznis ou.",
+    dl:"Referans: Lis Verifikasyon Abitid Angajman X",
+    checklist:["Pòs kout e dirèk?","Angaje ak pòs lòt moun, pa jis emèt?","Poste ase souvan pou yon platfòm ki mache rapid?"],
+    ai:"Sijere 3 lide pòs X kout, dirèk pou yon [kalite biznis] ki ta ka lanse yon vrè konvèsasyon."}},
+ fr:{lede:"X bouge en temps réel — les conversations, opinions, et courtes rafales de texte comptent plus ici que le contenu poli et planifié.",
+   secs:[["Ce à quoi X sert réellement","Texte rapide, court, et commentaires, conversation et réaction en temps réel aux événements/tendances actuels, l'engagement direct (réponses, citations) compte souvent autant que les posts originaux."],
+    ["Ce qui fonctionne bien sur X","Un texte court, direct, avec une opinion ; rejoindre des conversations pertinentes plutôt que seulement diffuser ; la constance et la fréquence, car la plateforme bouge vite et un seul post a une courte durée de vie visible."],
+    ["Une habitude spécifique à X","Répondez et engagez-vous avec les autres dans votre domaine autant que vous publiez du contenu original — X récompense le fait de faire partie d'une conversation, pas juste de crier dedans."]],
+   illus:"roles",roleCards:[["⏱️","Temps Réel","Conversation rapide"],["📝","Texte Court et Direct","Opinion claire"],["💬","S'engager dans la Conversation","Répondre autant que publier"]],
+   ex:"Écrivez un post court et direct (style X) partageant une opinion ou une mise à jour pertinente pour votre entreprise.",
+   quiz:[
+    {q:"À quoi sert principalement X ?",opts:["Seulement la vidéo longue","Texte rapide, court, et conversation en temps réel","Seulement les CV professionnels","Uniquement des albums photo"],ans:1,fb:"X sert au texte rapide et à la conversation."},
+    {q:"Qu'est-ce qui compte autant que les posts originaux sur X ?",opts:["Rien d'autre ne compte","Les réponses et l'engagement dans les conversations des autres","Ignorer tous les autres comptes","Publier une fois par mois"],ans:1,fb:"Les réponses et l'engagement comptent autant."},
+    {q:"Pourquoi la fréquence compte-t-elle sur X ?",opts:["Elle ne compte pas","Les posts ont une courte durée de vie visible car la plateforme bouge vite","Un seul post par an suffit","La fréquence n'a aucun effet"],ans:1,fb:"La courte durée de vie des posts demande de la fréquence."}],
+   close:{learned:"X récompense le texte rapide, direct, et la vraie participation à la conversation — répondre et s'engager compte autant que publier.",
+    mistake:"Ne faire que diffuser vos propres posts sans jamais répondre ou vous engager dans les conversations des autres.",
+    tip:"Passez du temps à vous engager avec les autres dans votre domaine, pas juste à publier — X récompense le fait de faire partie de la conversation.",
+    assign:"Écrivez un post court et direct partageant une opinion ou une mise à jour pertinente pour votre entreprise.",
+    dl:"Référence : Liste de Vérification des Habitudes d'Engagement X",
+    checklist:["Posts courts et directs ?","Engagement avec les posts des autres, pas juste diffusion ?","Publication assez fréquente pour une plateforme rapide ?"],
+    ai:"Suggère 3 idées de posts X courts et directs pour un(e) [type d'entreprise] qui pourraient susciter une vraie conversation."}},
+ en:{lede:"X moves in real time — conversations, opinions, and short bursts of text matter more here than polished, planned content.",
+   secs:[["What X is actually for","Fast, short-form text and commentary, real-time conversation and reaction to current events/trends, direct engagement (replies, quote posts) often matters as much as original posts."],
+    ["What works well on X","Short, direct, opinion-forward text; joining relevant conversations rather than only broadcasting; consistency and frequency, since the platform moves fast and a single post has a short visible lifespan."],
+    ["An X-specific habit","Reply and engage with others in your space as much as you post original content — X rewards being part of a conversation, not just shouting into it."]],
+   illus:"roles",roleCards:[["⏱️","Real Time","Fast conversation"],["📝","Short, Direct Text","Clear opinion"],["💬","Engage in Conversation","Replying as much as posting"]],
+   ex:"Write one short, direct post (X-style) sharing an opinion or update relevant to your business.",
+   quiz:[
+    {q:"What is X primarily used for?",opts:["Long-form video only","Fast, short-form text and real-time conversation","Only professional resumes","Photo albums exclusively"],ans:1,fb:"X is for fast text and conversation."},
+    {q:"What matters as much as original posts on X?",opts:["Nothing else matters","Replies and engaging in others' conversations","Ignoring all other accounts","Posting once a month"],ans:1,fb:"Replies and engagement matter as much."},
+    {q:"Why does frequency matter on X?",opts:["It doesn't","Posts have a short visible lifespan since the platform moves fast","Only one post per year is needed","Frequency has no effect"],ans:1,fb:"The short lifespan of posts calls for frequency."}],
+   close:{learned:"X rewards fast, direct text and genuine participation in conversation — replying and engaging matters as much as posting.",
+    mistake:"Only broadcasting your own posts without ever replying to or engaging with others' conversations.",
+    tip:"Spend time engaging with others in your space, not just posting — X rewards being part of the conversation.",
+    assign:"Write one short, direct post sharing an opinion or update relevant to your business.",
+    dl:"Reference: X Engagement Habits Checklist",
+    checklist:["Posts short and direct?","Engaging with others' posts, not just broadcasting?","Posting frequently enough for a fast-moving platform?"],
+    ai:"Suggest 3 short, direct X post ideas for a [type of business] that could spark genuine conversation."}}},
+
+6:{ht:{lede:"Pinterest mache plis tankou yon motè rechèch vizyèl pase yon fil sosyal — moun vin isit ap planifye yon bagay, yo pa jis defile pou amizman.",
+   secs:[["Kijan Pinterest diferan","Moun fè rechèch sou Pinterest ak entansyon (planifye yon acha, pwojè, oswa evènman), pin ka kontinye parèt nan rechèch lontan apre yo poste (kontrèman ak vi kout pifò pòs sosyal), epi klike ale sou yon vrè sit web/paj pwodwi se yon pati debaz nan eksperyans lan."],
+    ["Sa ki mache byen sou Pinterest","Imaj vètikal, klè, ki atire ak tèks lizib sou li; tit/deskripsyon deskriptif ki matche jan moun reyèlman fè rechèch; lyen pin yo ak yon vrè paj (pwodwi, atik, sèvis) olye jis imaj la pou kont li."],
+    ["Yon abitid espesifik Pinterest","Ekri deskripsyon pin tankou tèm rechèch, pa jis lejand; panse ak kisa yon moun ta tape nan yon ba rechèch lè y ap chèche sa ou ofri a."]],
+   illus:"roles",roleCards:[["🔎","Rechèch ak Entansyon","Moun planifye yon bagay"],["⏳","Dire Lontan","Pa vi kout"],["🔗","Lyen Vè yon Vrè Paj","Pati debaz eksperyans"]],
+   ex:"Ekri yon tit/deskripsyon pin Pinterest pou yon pwodwi oswa sèvis, ekri tankou yon fraz rechèch.",
+   quiz:[
+    {q:"Kijan Pinterest mache diferan de yon fil sosyal tipik?",opts:["Idantikman ak lòt platfòm","Plis tankou yon motè rechèch vizyèl moun itilize ak entansyon","Sèlman pou amizman","Kontni disparèt an kèk segond"],ans:1,fb:"Pinterest mache tankou yon motè rechèch vizyèl."},
+    {q:"Kisa ki yon pati kle nan yon bon pin Pinterest?",opts:["Okenn tèks oswa deskripsyon ditou","Yon tit/deskripsyon deskriptif ki matche jan moun fè rechèch, plis yon vrè lyen","Yon vi vizib trè kout","Evite imaj vètikal"],ans:1,fb:"Deskriptif + lyen vrè se kle."},
+    {q:"Kijan deskripsyon Pinterest ta dwe ekri?",opts:["Tankou yon blag prive","Tankou tèm rechèch yon moun ta reyèlman tape","San okenn style espesifik","Sèlman an hashtag"],ans:1,fb:"Ekri tankou tèm rechèch."}],
+   close:{learned:"Pinterest mache tankou yon motè rechèch vizyèl ak vrè entansyon rechèch — ekri deskripsyon tankou tèm rechèch e toujou lyen ak yon vrè paj.",
+    mistake:"Trete Pinterest tankou yon fil sosyal regilye ak lejand vag e san vrè lyen dèyè pin an.",
+    tip:"Anvan w ekri yon deskripsyon pin, mande kisa yon moun ta reyèlman tape nan yon ba rechèch pou chèche sa a.",
+    assign:"Ekri yon tit/deskripsyon pin pou yon pwodwi/sèvis, ekri tankou yon vrè fraz rechèch.",
+    dl:"Fèy Travay: Deskripsyon Style Rechèch Pinterest",
+    checklist:["Imaj vètikal e klè?","Deskripsyon ekri tankou yon fraz rechèch?","Pin lye ak yon vrè paj?"],
+    ai:"Sijere 3 lide tit/deskripsyon pin Pinterest (ekri tankou fraz rechèch) pou yon [pwodwi/sèvis]."}},
+ fr:{lede:"Pinterest fonctionne plus comme un moteur de recherche visuel qu'un fil social — les gens viennent ici en planifiant quelque chose, pas juste en défilant pour se divertir.",
+   secs:[["En quoi Pinterest est différent","Les gens font des recherches sur Pinterest avec intention (planifier un achat, projet, ou événement), les épingles peuvent continuer à apparaître dans les recherches longtemps après publication (contrairement à la courte durée de vie de la plupart des posts sociaux), et cliquer vers un vrai site web/page produit est une partie centrale de l'expérience."],
+    ["Ce qui fonctionne bien sur Pinterest","Des images verticales, claires, visuellement attrayantes avec un texte superposé lisible, des titres/descriptions descriptifs qui correspondent à comment les gens recherchent réellement, lier les épingles à une vraie page (produit, article, service) plutôt que juste l'image seule."],
+    ["Une habitude spécifique à Pinterest","Écrivez les descriptions d'épingles comme des termes de recherche, pas juste des légendes — pensez à ce que quelqu'un taperait dans une barre de recherche en cherchant ce que vous offrez."]],
+   illus:"roles",roleCards:[["🔎","Recherche avec Intention","Les gens planifient quelque chose"],["⏳","Longue Durée","Pas de courte durée de vie"],["🔗","Lien vers une Vraie Page","Partie centrale de l'expérience"]],
+   ex:"Écrivez un titre/description d'épingle Pinterest pour un produit ou service, écrit comme une phrase de recherche.",
+   quiz:[
+    {q:"En quoi Pinterest fonctionne-t-il différemment d'un fil social typique ?",opts:["Identiquement aux autres plateformes","Plus comme un moteur de recherche visuel que les gens utilisent avec intention","Seulement pour le divertissement","Le contenu disparaît en quelques secondes"],ans:1,fb:"Pinterest fonctionne comme un moteur de recherche visuel."},
+    {q:"Quelle est une partie clé d'une bonne épingle Pinterest ?",opts:["Aucun texte ou description du tout","Un titre/description descriptif correspondant à comment les gens recherchent, plus un vrai lien","Une très courte durée de vie visible","Éviter les images verticales"],ans:1,fb:"Descriptif + vrai lien est la clé."},
+    {q:"Comment les descriptions Pinterest devraient-elles être écrites ?",opts:["Comme une blague privée","Comme des termes de recherche que quelqu'un taperait réellement","Sans style particulier","Seulement en hashtags"],ans:1,fb:"Écrivez comme des termes de recherche."}],
+   close:{learned:"Pinterest fonctionne comme un moteur de recherche visuel avec une vraie intention de recherche — écrivez les descriptions comme des termes de recherche et liez toujours à une vraie page.",
+    mistake:"Traiter Pinterest comme un fil social ordinaire avec des légendes vagues et aucun vrai lien derrière l'épingle.",
+    tip:"Avant d'écrire une description d'épingle, demandez-vous ce que quelqu'un taperait réellement dans une barre de recherche pour chercher ceci.",
+    assign:"Écrivez un titre/description d'épingle pour un produit/service, écrit comme une vraie phrase de recherche.",
+    dl:"Fiche de travail : Descriptions Style Recherche Pinterest",
+    checklist:["Image verticale et claire ?","Description écrite comme une phrase de recherche ?","Épingle liée à une vraie page ?"],
+    ai:"Suggère 3 idées de titre/description d'épingle Pinterest (écrites comme des phrases de recherche) pour un(e) [produit/service]."}},
+ en:{lede:"Pinterest works more like a visual search engine than a social feed — people come here planning something, not just scrolling for entertainment.",
+   secs:[["How Pinterest is different","People search Pinterest with intent (planning a purchase, project, or event), pins can keep showing up in search long after posting (unlike the short lifespan of most social posts), and clicking through to a real website/product page is a core part of the experience."],
+    ["What works well on Pinterest","Clear, vertical, visually appealing images with readable text overlay, descriptive titles/descriptions that match how people actually search, linking pins to a real page (product, article, service) rather than just the image alone."],
+    ["A Pinterest-specific habit","Write pin descriptions like search terms, not just captions — think about what someone would type into a search bar when looking for what you offer."]],
+   illus:"roles",roleCards:[["🔎","Search with Intent","People planning something"],["⏳","Long Lifespan","Not short-lived"],["🔗","Link to a Real Page","Core part of the experience"]],
+   ex:"Write a Pinterest-style pin title/description for one product or service, written like a search phrase.",
+   quiz:[
+    {q:"How does Pinterest work differently from a typical social feed?",opts:["Identically to other platforms","More like a visual search engine people use with intent","Only for entertainment","Content disappears within seconds"],ans:1,fb:"Pinterest works like a visual search engine."},
+    {q:"What's a key part of a strong Pinterest pin?",opts:["No text or description at all","A descriptive title/description matching how people search, plus a real link","A very short lifespan","Avoiding vertical images"],ans:1,fb:"Descriptive plus a real link is key."},
+    {q:"How should Pinterest descriptions be written?",opts:["Like a private joke","Like search terms someone would actually type","In no particular style","Only in hashtags"],ans:1,fb:"Write like search terms."}],
+   close:{learned:"Pinterest works like a visual search engine with real search intent — write descriptions like search terms and always link to a real page.",
+    mistake:"Treating Pinterest like a regular social feed with vague captions and no real link behind the pin.",
+    tip:"Before writing a pin description, ask what someone would actually type into a search bar looking for this.",
+    assign:"Write a pin title/description for one product/service, written like an actual search phrase.",
+    dl:"Worksheet: Pinterest Search-Style Descriptions",
+    checklist:["Image vertical and clear?","Description written like a search phrase?","Pin linked to a real page?"],
+    ai:"Suggest 3 Pinterest pin title/description ideas (written like search phrases) for a [product/service]."}}},
+
+7:{ht:{lede:"Pou odyans sa a espesyalman, WhatsApp se pa yon kanal segondè — se souvan la vrè relasyon ak yon kliyan viv, soti nan premye kesyon jiska vant final la.",
+   secs:[["Poukisa WhatsApp Business enpòtan isit la","Santral nan jan biznis deja fèt atravè Ayiti ak dyaspora a; santi pèsonèl e dirèk, pi pre yon vrè konvèsasyon pase yon pòs piblik; souvan kote yon kliyan deplase apre yo enterese soti nan yon lòt kanal (Facebook, Instagram) pou reyèlman fini yon acha."],
+    ["Sa karakteristik WhatsApp Business ye pou","Yon pwofil biznis (lè, katalòg, deskripsyon) ki bay menm siyal konfyans ak yon vitrin; mesaj akèy/absan otomatik pou kliyan pa rete tann; repons rapid pou kesyon komen pou sove tan san santi enpèsonèl."],
+    ["Kenbe l pèsonèl an gwo echèl","Menm ak otomatizasyon, vrè repons yo ta dwe toujou santi imen, pa tankou yon script fwad; itilize Estati WhatsApp jan ou ta itilize Istwa yon lòt kote — kazyèl, mizajou aktyèl."]],
+   illus:"roles",roleCards:[["💬","Kote Vrè Relasyon an Ye","Pi pre yon vrè konvèsasyon"],["🏪","Pwofil Biznis kòm Konfyans","Menm siyal ak yon vitrin"],["🤝","Repons Rapid San Pèdi Touch Imen","Otomatizasyon ki rete pèsonèl"]],
+   ex:"Site yon karakteristik WhatsApp Business (pwofil, katalòg, repons rapid, mesaj akèy) ou pa kounye a itilize men ou ta ka enstale semèn sa a.",
+   quiz:[
+    {q:"Poukisa WhatsApp enpòtan espesyalman pou odyans sa a?",opts:["Li pa enpòtan plis pase lòt kanal","Li santral nan jan biznis deja fèt, li santi pèsonèl e dirèk","Li sèlman itilize pou chat pèsonèl","Li ranplase bezwen pou nenpòt lòt kanal nèt"],ans:1,fb:"WhatsApp santral e pèsonèl isit la."},
+    {q:"Kisa yon pwofil WhatsApp Business bay?",opts:["Anyen itil","Menm siyal konfyans ak yon vitrin (lè, katalòg, deskripsyon)","Sèlman amizman","Yon ranplasman toujou pou yon sit web"],ans:1,fb:"Pwofil la bay siyal konfyans tankou yon vitrin."},
+    {q:"Kisa ki ta dwe rete vre menm lè w itilize otomatizasyon tankou repons rapid?",opts:["Repons yo ta dwe santi fwad e ekri davans","Repons yo ta dwe toujou santi imen, pa tankou yon script fwad","Otomatizasyon ta dwe ranplase tout vrè konvèsasyon","Anyen pa bezwen santi pèsonèl"],ans:1,fb:"Repons yo ta dwe toujou santi imen."}],
+   close:{learned:"WhatsApp Business se souvan kote vrè relasyon kliyan an viv — yon pwofil konplè bati konfyans, e otomatizasyon ta dwe toujou santi imen.",
+    mistake:"Kite pwofil/katalòg WhatsApp Business enkonplè pandan se reyèlman kote pifò vrè konvèsasyon kliyan rive.",
+    tip:"Itilize Estati WhatsApp jan ou ta itilize Istwa Instagram/Facebook — mizajou kazyèl, aktyèl, ki pa mande anpil efò.",
+    assign:"Enstale oswa amelyore yon karakteristik WhatsApp Business (pwofil, katalòg, mesaj akèy, repons rapid) semèn sa a.",
+    dl:"Lis Verifikasyon: Enstalasyon WhatsApp Business",
+    checklist:["Pwofil biznis konplè?","Katalòg enstale si pètinan?","Mesaj akèy/absan mete?","Repons rapid santi imen, pa fwad?"],
+    ai:"Sijere yon mesaj akèy zanmitay ak 2 modèl repons rapid pou yon kont WhatsApp Business pou yon [kalite biznis]."}},
+ fr:{lede:"Pour ce public en particulier, WhatsApp n'est pas un canal secondaire — c'est souvent là que vit la vraie relation avec un client, de la première question à la vente finale.",
+   secs:[["Pourquoi WhatsApp Business compte ici","Central à la façon dont les affaires se font déjà à travers Haïti et la diaspora ; se ressent personnel et direct, plus proche d'une vraie conversation qu'un post public ; souvent là où un client se déplace après s'être intéressé via un autre canal (Facebook, Instagram) pour réellement finaliser un achat."],
+    ["Ce à quoi servent les fonctionnalités de WhatsApp Business","Un profil d'entreprise (horaires, catalogue, description) qui donne le même signal de confiance qu'une vitrine, des messages d'accueil/absence automatiques pour que les clients n'attendent pas, des réponses rapides pour les questions courantes pour économiser du temps sans se sentir impersonnel."],
+    ["Rester personnel à grande échelle","Même avec l'automatisation, les vraies réponses devraient toujours se sentir humaines, pas comme un script froid ; utilisez le Statut WhatsApp comme vous utiliseriez les Stories ailleurs — décontracté, mises à jour actuelles."]],
+   illus:"roles",roleCards:[["💬","Où Vit la Vraie Relation","Plus proche d'une vraie conversation"],["🏪","Profil d'Entreprise comme Confiance","Même signal qu'une vitrine"],["🤝","Réponse Rapide Sans Perdre l'Humain","Automatisation qui reste personnelle"]],
+   ex:"Nommez une fonctionnalité WhatsApp Business (profil, catalogue, réponses rapides, message d'accueil) que vous n'utilisez pas actuellement mais pourriez configurer cette semaine.",
+   quiz:[
+    {q:"Pourquoi WhatsApp compte-t-il particulièrement pour ce public ?",opts:["Il ne compte pas plus que les autres canaux","Il est central à la façon dont les affaires se font déjà, se ressentant personnel et direct","Il n'est utilisé que pour les chats personnels","Il remplace complètement le besoin de tout autre canal"],ans:1,fb:"WhatsApp est central et personnel ici."},
+    {q:"Que fournit un profil WhatsApp Business ?",opts:["Rien d'utile","Le même signal de confiance qu'une vitrine (horaires, catalogue, description)","Seulement du divertissement","Un remplacement toujours nécessaire pour un site web"],ans:1,fb:"Le profil fournit un signal de confiance comme une vitrine."},
+    {q:"Qu'est-ce qui devrait rester vrai même en utilisant l'automatisation comme les réponses rapides ?",opts:["Les réponses devraient se sentir froides et scriptées","Les réponses devraient toujours se sentir humaines, pas comme un script froid","L'automatisation devrait remplacer toute vraie conversation","Rien n'a besoin de se sentir personnel"],ans:1,fb:"Les réponses devraient toujours se sentir humaines."}],
+   close:{learned:"WhatsApp Business est souvent là où vit la vraie relation client — un profil complet bâtit la confiance, et l'automatisation devrait toujours se sentir humaine.",
+    mistake:"Laisser le profil/catalogue WhatsApp Business incomplet alors que c'est réellement là où se passent la plupart des vraies conversations clients.",
+    tip:"Utilisez le Statut WhatsApp comme vous utiliseriez les Stories Instagram/Facebook — des mises à jour décontractées, actuelles, à faible effort.",
+    assign:"Configurez ou améliorez une fonctionnalité WhatsApp Business (profil, catalogue, accueil, réponses rapides) cette semaine.",
+    dl:"Liste de Vérification : Configuration WhatsApp Business",
+    checklist:["Profil d'entreprise complet ?","Catalogue configuré si pertinent ?","Message d'accueil/absence configuré ?","Réponses rapides se sentent humaines, pas froides ?"],
+    ai:"Suggère un message d'accueil amical et 2 modèles de réponse rapide pour un compte WhatsApp Business pour un(e) [type d'entreprise]."}},
+ en:{lede:"For this audience especially, WhatsApp isn't a secondary channel — it's often where the actual relationship with a customer lives, from first question to final sale.",
+   secs:[["Why WhatsApp Business matters here","Central to how business is already done across Haiti and the diaspora; feels personal and direct, closer to a real conversation than a public post; often where a customer moves after being interested from another channel (Facebook, Instagram) to actually complete a purchase."],
+    ["What WhatsApp Business features are for","A business profile (hours, catalog, description) that gives the same trust signal as a storefront, automated greeting/away messages so customers aren't left waiting, quick replies for common questions to save time without feeling impersonal."],
+    ["Keeping it personal at scale","Even with automation, real replies should still feel human, not like a cold script; use WhatsApp Status the way you'd use Stories elsewhere — casual, current updates."]],
+   illus:"roles",roleCards:[["💬","Where the Real Relationship Lives","Closer to real conversation"],["🏪","Business Profile as Trust","Same signal as a storefront"],["🤝","Fast Reply Without Losing Human Touch","Automation that stays personal"]],
+   ex:"List one WhatsApp Business feature (profile, catalog, quick replies, greeting message) you're not currently using but could set up this week.",
+   quiz:[
+    {q:"Why does WhatsApp matter especially for this audience?",opts:["It doesn't matter more than other channels","It's central to how business is already done, feeling personal and direct","It's only used for personal chats","It replaces the need for any other channel entirely"],ans:1,fb:"WhatsApp is central and personal here."},
+    {q:"What does a WhatsApp Business profile provide?",opts:["Nothing useful","The same trust signal as a storefront (hours, catalog, description)","Only entertainment","A replacement for a website always"],ans:1,fb:"The profile provides a trust signal like a storefront."},
+    {q:"What should stay true even when using automation like quick replies?",opts:["Replies should feel cold and scripted","Replies should still feel human, not like a cold script","Automation should replace all real conversation","Nothing needs to feel personal"],ans:1,fb:"Replies should still feel human."}],
+   close:{learned:"WhatsApp Business is often where the real customer relationship lives — a complete profile builds trust, and automation should still feel human.",
+    mistake:"Leaving WhatsApp Business profile/catalog incomplete while it's actually where most real customer conversations happen.",
+    tip:"Use WhatsApp Status the way you'd use Instagram/Facebook Stories — casual, current, low-effort updates.",
+    assign:"Set up or improve one WhatsApp Business feature (profile, catalog, greeting, quick replies) this week.",
+    dl:"Checklist: WhatsApp Business Setup",
+    checklist:["Business profile complete?","Catalog set up if relevant?","Greeting/away message set?","Quick replies feel human, not cold?"],
+    ai:"Suggest a friendly greeting message and 2 quick-reply templates for a WhatsApp Business account for a [type of business]."}}},
+
+8:{ht:{lede:"Modil 7 te kouvri fè yon bon videyo — leson sa a se sou chanèl la otou li: konsistans, kominote, ak sa ki fè moun tounen vin.",
+   secs:[["Panse nan nivo chanèl, pa jis videyo endividyèl","Yon sijè/tèm konsistan pou moun ki gade konnen sa pou atann de chanèl ou; yon rit pòs previzib (menm si pa frekan) bati yon odyans ki tounen vin; idantite mak chanèl (bannyè, deskripsyon, playlist) ki fè chanèl la santi òganize lè yon moun ateri sou li."],
+    ["Bati kominote sou YouTube","Reponn kòmantè (espesyalman premye yo) siyale bay tou de moun k ap gade ak platfòm lan chanèl la aktif e angaje; playlist òganize kontni ou pa sijè, ede yon nouvo moun k ap gade jwenn plis nan sa yo te vin chèche a."],
+    ["Konsistans sou frekans","Yon orè previzib, sostenab bat yon eklè videyo swiv pa silans; li pi bon angaje nan yon rit ou reyèlman ka kenbe pase pran twòp angajman epi disparèt."]],
+   illus:"roles",roleCards:[["🎯","Sijè Konsistan","Chanèl la santi klè"],["💬","Kominote/Kòmantè","Angajman siyale aktivite"],["📅","Woutin Sostenab","Konsistans bat frekans"]],
+   ex:"Dekri sijè/tèm konsistan ak rit pòs realis ou ta angaje pou yon chanèl YouTube.",
+   quiz:[
+    {q:"Kisa panse nan nivo chanèl ajoute pi lwen pase yon sèl bon videyo?",opts:["Anyen anplis","Tèm konsistan, rit previzib, ak idantite mak òganize ki bati yon odyans ki tounen vin","Li ranplase bezwen pou bon videyo endividyèl","Konte sèlman pou gwo chanèl"],ans:1,fb:"Tèm, rit, ak idantite mak bati yon odyans fidèl."},
+    {q:"Poukisa reponn kòmantè, espesyalman premye yo?",opts:["Sa pa gen okenn efè","Li siyale bay moun k ap gade ak platfòm lan chanèl la aktif e angaje","Kòmantè ta dwe toujou inyore","Sèlman pou plent"],ans:1,fb:"Sa siyale angajman aktif."},
+    {q:"Kisa ki konte plis pase frekans pòs bri?",opts:["Anyen, plis toujou pi bon","Konsistans ak yon orè sostenab, previzib","Pa janm poste ditou","Poste yon sèl fwa nèt"],ans:1,fb:"Konsistans ak sostenabilite konte plis."}],
+   close:{learned:"Yon chanèl YouTube ki reyisi bezwen konsistans (tèm, rit, idantite mak) ak angajman kominote (kòmantè, playlist), pa jis bon videyo endividyèl.",
+    mistake:"Poste yon eklè videyo epi disparèt nan silans, olye angaje nan yon orè realis, sostenab.",
+    tip:"Reponn premye kòmantè sou nouvo videyo yo — sa siyale vrè angajman bay tou de moun k ap gade ak platfòm lan.",
+    assign:"Dekri sijè/tèm konsistan ak rit pòs realis ou ta angaje pou chanèl ou.",
+    dl:"Fèy Travay: Planifikasyon Konsistans Chanèl YouTube",
+    checklist:["Tèm/sijè konsistan defini?","Rit pòs realis, sostenab etabli?","Idantite mak chanèl (bannyè/deskripsyon) òganize?","Kòmantè reponn?"],
+    ai:"Ede m planifye yon tèm chanèl YouTube konsistan ak yon orè pòs realis pou yon [kalite biznis/sijè]."}},
+ fr:{lede:"Le Module 7 couvrait la création d'une bonne vidéo — cette leçon porte sur la chaîne qui l'entoure : la constance, la communauté, et ce qui fait revenir les gens.",
+   secs:[["Penser au niveau de la chaîne, pas seulement des vidéos individuelles","Un sujet/thème constant pour que les spectateurs sachent à quoi s'attendre de votre chaîne, un rythme de publication prévisible (même si pas fréquent) bâtit un public qui revient, une image de marque de chaîne (bannière, description, playlists) qui fait sentir la chaîne organisée quand quelqu'un y arrive."],
+    ["Bâtir une communauté sur YouTube","Répondre aux commentaires (surtout les premiers) signale aux spectateurs et à la plateforme que la chaîne est active et engagée ; les playlists organisent votre contenu par sujet, aidant un nouveau spectateur à trouver plus de ce qu'il est venu chercher."],
+    ["La constance plutôt que la fréquence","Un calendrier prévisible et durable bat une rafale de vidéos suivie de silence ; il vaut mieux s'engager à un rythme que vous pouvez réellement maintenir que de trop s'engager et disparaître."]],
+   illus:"roles",roleCards:[["🎯","Thème Constant","La chaîne se sent claire"],["💬","Communauté/Commentaires","L'engagement signale l'activité"],["📅","Routine Durable","La constance bat la fréquence"]],
+   ex:"Décrivez le sujet/thème constant et le rythme de publication réaliste auquel vous vous engageriez pour une chaîne YouTube.",
+   quiz:[
+    {q:"Qu'est-ce que la pensée au niveau de la chaîne ajoute au-delà d'une seule bonne vidéo ?",opts:["Rien de plus","Un thème constant, un rythme prévisible, et une image de marque organisée qui bâtit un public fidèle","Ça remplace le besoin de bonnes vidéos individuelles","Ça ne compte que pour les grandes chaînes"],ans:1,fb:"Thème, rythme, et image de marque bâtissent un public fidèle."},
+    {q:"Pourquoi répondre aux commentaires, surtout les premiers ?",opts:["Ça n'a aucun effet","Ça signale aux spectateurs et à la plateforme que la chaîne est active et engagée","Les commentaires devraient toujours être ignorés","Seulement pour les plaintes"],ans:1,fb:"Ça signale un engagement actif."},
+    {q:"Qu'est-ce qui compte plus que la fréquence brute de publication ?",opts:["Rien, plus c'est toujours mieux","La constance et un calendrier durable et prévisible","Ne jamais publier du tout","Publier une seule fois pour toujours"],ans:1,fb:"La constance et la durabilité comptent plus."}],
+   close:{learned:"Une chaîne YouTube réussie a besoin de constance (thème, rythme, image de marque) et d'engagement communautaire (commentaires, playlists), pas seulement de bonnes vidéos individuelles.",
+    mistake:"Publier une rafale de vidéos puis disparaître dans le silence, plutôt que de s'engager à un calendrier réaliste et durable.",
+    tip:"Répondez aux premiers commentaires sur les nouvelles vidéos — ça signale un engagement authentique aux spectateurs et à la plateforme.",
+    assign:"Décrivez le sujet/thème constant et le rythme de publication réaliste auquel vous vous engageriez pour votre chaîne.",
+    dl:"Fiche de travail : Planificateur de Constance de Chaîne YouTube",
+    checklist:["Thème/sujet constant défini ?","Rythme de publication réaliste et durable établi ?","Image de marque de la chaîne (bannière/description) organisée ?","Commentaires répondus ?"],
+    ai:"Aide-moi à planifier un thème de chaîne YouTube constant et un calendrier de publication réaliste pour un(e) [type d'entreprise/sujet]."}},
+ en:{lede:"Module 7 covered making a good video — this lesson is about the channel around it: consistency, community, and what keeps people coming back.",
+   secs:[["Channel-level thinking, not just single videos","A consistent topic/theme so viewers know what to expect from your channel, a predictable posting rhythm (even if not frequent) builds a returning audience, channel branding (banner, description, playlists) that makes the channel feel organized when someone lands on it."],
+    ["Building community on YouTube","Responding to comments (especially early ones) signals to both viewers and the platform that the channel is active and engaged; playlists organize your content by topic, helping a new viewer find more of what they came for."],
+    ["Consistency over frequency","A predictable, sustainable schedule beats a burst of videos followed by silence; it's better to commit to a pace you can actually keep than to overcommit and disappear."]],
+   illus:"roles",roleCards:[["🎯","Consistent Theme","The channel feels clear"],["💬","Community/Comments","Engagement signals activity"],["📅","Sustainable Routine","Consistency beats frequency"]],
+   ex:"Describe the consistent topic/theme and realistic posting rhythm you'd commit to for a YouTube channel.",
+   quiz:[
+    {q:"What does channel-level thinking add beyond a single good video?",opts:["Nothing extra","Consistent theme, predictable rhythm, and organized branding that builds a returning audience","It replaces the need for good individual videos","Only matters for large channels"],ans:1,fb:"Theme, rhythm, and branding build a returning audience."},
+    {q:"Why respond to comments, especially early ones?",opts:["It has no effect","It signals to viewers and the platform that the channel is active and engaged","Comments should always be ignored","Only for complaints"],ans:1,fb:"It signals active engagement."},
+    {q:"What matters more than raw posting frequency?",opts:["Nothing, more is always better","Consistency and a sustainable, predictable schedule","Never posting at all","Posting only once ever"],ans:1,fb:"Consistency and sustainability matter more."}],
+   close:{learned:"A successful YouTube channel needs consistency (theme, rhythm, branding) and community engagement (comments, playlists), not just good individual videos.",
+    mistake:"Posting a burst of videos then going silent, instead of committing to a realistic, sustainable schedule.",
+    tip:"Respond to early comments on new videos — it signals genuine engagement to both viewers and the platform.",
+    assign:"Describe the consistent topic/theme and realistic posting rhythm you'd commit to for your channel.",
+    dl:"Worksheet: YouTube Channel Consistency Planner",
+    checklist:["Consistent theme/topic defined?","Realistic, sustainable posting rhythm set?","Channel branding (banner/description) organized?","Comments responded to?"],
+    ai:"Help me plan a consistent YouTube channel theme and realistic posting schedule for a [type of business/topic]."}}}
+};
+
+/* ============ state ============ */
+const NL=8,KEY="jamezzi:digital-marketing-ai:module9-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD9_LESSON_SLUGS=["facebook-strategy","instagram-strategy","tiktok-strategy","linkedin-strategy","x-twitter-strategy","pinterest-strategy","whatsapp-business-strategy","youtube-channel-strategy"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD9_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===9;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M9[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 9 · 9."+n;
+ $("topTitle").textContent=M9[lang][n-1];
+ document.title="Academy · "+M9[lang][n-1];
+ renderRail();
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 9 · 9.'+n+'</span><h2 class="labh2">'+M9[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M9[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 9?":S.lang==="fr"?"Voulez-vous recommencer le Module 9 ?":"Restart Module 9?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
