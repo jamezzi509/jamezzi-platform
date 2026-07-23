@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 13 — Maketing pa Imèl</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+/* ============ Email tool surface (generic SaaS dashboard, neutral accent) ============ */
+.emlwrap{font-family:-apple-system,'Segoe UI',Roboto,system-ui;background:#fff;border-radius:10px;overflow:hidden;color:#1b1f27;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.emltabs{display:flex;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.emltab{padding:12px 16px;font-size:13px;font-weight:600;color:#5b6472;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.emltab.on{color:#3B6FE0;border-bottom-color:#3B6FE0}
+.emlbody{padding:18px}
+.emlrow{margin-bottom:14px}
+.emllbl{font-size:11.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px}
+.emlinput,.emlselect,.emltextarea{width:100%;border:1px solid #d7dce3;border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:#1b1f27}
+.emlinput:focus,.emlselect:focus,.emltextarea:focus{outline:2px solid #3B6FE0}
+.emltoggles{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.emltoggle{padding:7px 10px;border-radius:8px;border:1px solid #d7dce3;font-size:12.5px;cursor:pointer;background:#f7f8fa;font-family:inherit}
+.emltoggle.on{background:#3B6FE0;color:#fff;border-color:#3B6FE0}
+.emlbadge{font-size:10.5px;font-weight:700;background:#dbeafe;color:#1d4ed8;border-radius:999px;padding:4px 10px}
+.emlblock{border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#f9fafb}
+.emlblockhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.emlblocktype{font-size:10.5px;font-weight:700;color:#6b7280;text-transform:uppercase}
+.emlblock input,.emlblock textarea{width:100%;border:1px solid #d7dce3;border-radius:6px;padding:7px 9px;font-size:13px;font-family:inherit}
+.emlremove{font-size:11px;border:1px solid #d7dce3;background:#fff;border-radius:6px;padding:4px 8px;cursor:pointer;color:#b91c1c}
+.emladdrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.emladdrow button{font-size:12.5px;border:1px solid #d7dce3;background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer;font-family:inherit}
+.emladdrow button:hover{border-color:#3B6FE0}
+.emlseqcard{display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#f9fafb}
+.emlseqcard.trig{border-color:#3B6FE0;background:#eef2ff}
+.emlseqlbl{flex:1;font-size:13px;font-weight:600}
+.emlseqtag{font-size:9.5px;font-weight:700;text-transform:uppercase;color:#6b7280;margin-right:8px}
+.emlseqbtns{display:flex;gap:4px}
+.emlseqbtns button{font-size:11px;border:1px solid #d7dce3;background:#fff;border-radius:6px;padding:5px 8px;cursor:pointer;font-family:inherit}
+.emladdseq{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.emltask{max-width:700px;margin-top:14px;font-size:13px;color:var(--dim);background:rgba(var(--brand-rgb),.08);border:1px solid rgba(var(--brand-rgb),.3);border-radius:10px;padding:11px 14px}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+@media (max-width:640px){.emladdrow,.emladdseq{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 13 · 13.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEd:"Fini travay tablo a",objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   tabMagnet:"Kado Dijital",tabForm:"Fòm",tabBuilder:"Bilding Imèl",tabSequence:"Sekans",
+   magnetTitle:"Tit Kado a",magnetFormat:"Fòma",magnetBenefit:"Benefis Kout",
+   fmtPh:"Chwazi yon fòma...",fmtChecklist:"Chèklis",fmtGuide:"Gid Kout",fmtDiscount:"Rabè",fmtTemplate:"Modèl",
+   formHeadline:"Tit Fòm lan",formButton:"Tèks Bouton",formFields:"Chan Siplemantè",
+   fldEmail:"Imèl (toujou obligatwa)",fldName:"Non",fldPhone:"Telefòn",fldCompany:"Biznis",
+   subject:"Sijè Imèl la",addHeading:"Ajoute Tit",addText:"Ajoute Tèks",addButton:"Ajoute Bouton",
+   blkHeading:"TIT",blkText:"TÈKS",blkButton:"BOUTON",remove:"Wete",
+   seqAdd:"Ajoute Etap",seqUp:"↑",seqDown:"↓",
+   stepTrigger:"Deklanchè: Nouvo Abòne",stepWelcome:"Imèl Byenveni",stepDeliver:"Livre Kado a",stepContent:"Pataje Pi Bon Kontni",stepStory:"Rakonte Istwa Ou",stepOffer:"Ofri Dou",
+   tagTrigger:"Deklanchè",tagEmail:"Imèl",
+   stampTitle:"Ou fini Modil 13!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEd:"Terminer la tâche du tableau",objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   tabMagnet:"Cadeau Numérique",tabForm:"Formulaire",tabBuilder:"Créateur d'Email",tabSequence:"Séquence",
+   magnetTitle:"Titre du Cadeau",magnetFormat:"Format",magnetBenefit:"Bénéfice Court",
+   fmtPh:"Choisir un format...",fmtChecklist:"Checklist",fmtGuide:"Guide Court",fmtDiscount:"Réduction",fmtTemplate:"Modèle",
+   formHeadline:"Titre du Formulaire",formButton:"Texte du Bouton",formFields:"Champs Supplémentaires",
+   fldEmail:"Email (toujours obligatoire)",fldName:"Nom",fldPhone:"Téléphone",fldCompany:"Entreprise",
+   subject:"Sujet de l'Email",addHeading:"Ajouter un Titre",addText:"Ajouter du Texte",addButton:"Ajouter un Bouton",
+   blkHeading:"TITRE",blkText:"TEXTE",blkButton:"BOUTON",remove:"Retirer",
+   seqAdd:"Ajouter une Étape",seqUp:"↑",seqDown:"↓",
+   stepTrigger:"Déclencheur : Nouvel Abonné",stepWelcome:"Email de Bienvenue",stepDeliver:"Livrer le Cadeau",stepContent:"Partager le Meilleur Contenu",stepStory:"Raconter Votre Histoire",stepOffer:"Offre Douce",
+   tagTrigger:"Déclencheur",tagEmail:"Email",
+   stampTitle:"Module 13 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEd:"Complete the dashboard task",objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   tabMagnet:"Lead Magnet",tabForm:"Form",tabBuilder:"Email Builder",tabSequence:"Sequence",
+   magnetTitle:"Magnet Title",magnetFormat:"Format",magnetBenefit:"Short Benefit",
+   fmtPh:"Choose a format...",fmtChecklist:"Checklist",fmtGuide:"Short Guide",fmtDiscount:"Discount",fmtTemplate:"Template",
+   formHeadline:"Form Headline",formButton:"Button Text",formFields:"Extra Fields",
+   fldEmail:"Email (always required)",fldName:"Name",fldPhone:"Phone",fldCompany:"Company",
+   subject:"Email Subject",addHeading:"Add Heading",addText:"Add Text",addButton:"Add Button",
+   blkHeading:"HEADING",blkText:"TEXT",blkButton:"BUTTON",remove:"Remove",
+   seqAdd:"Add Step",seqUp:"↑",seqDown:"↓",
+   stepTrigger:"Trigger: New Subscriber",stepWelcome:"Welcome Email",stepDeliver:"Deliver the Lead Magnet",stepContent:"Share Best Content",stepStory:"Tell Your Story",stepOffer:"Soft Offer",
+   tagTrigger:"Trigger",tagEmail:"Email",
+   stampTitle:"You finished Module 13!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M13={
+ ht:["Rankontre Zouti Maketing pa Imèl la","Kado Dijital (Lead Magnets)","Bati Fòm Enskripsyon Ou","Ekri Bilten ki Louvri","Sekans Byenveni","Ekri Imèl Vant","Otomatizasyon ak Deklanchè"],
+ fr:["Découvrir l'Outil de Marketing par Email","Cadeaux Numériques (Lead Magnets)","Construire Votre Formulaire d'Inscription","Écrire des Newsletters qu'on Ouvre","Séquences de Bienvenue","Écrire des Emails de Vente","Automatisation et Déclencheurs"],
+ en:["Meet the Email Marketing Tool","Lead Magnets","Building Your Signup Form","Writing Newsletters That Get Opened","Welcome Sequences","Writing Sales Emails","Automation & Triggers"]};
+
+const STEPS=[
+ {id:"trigger",type:"trigger",ht:"Deklanchè: Nouvo Abòne",fr:"Déclencheur : Nouvel Abonné",en:"Trigger: New Subscriber"},
+ {id:"welcome",type:"email",ht:"Imèl Byenveni",fr:"Email de Bienvenue",en:"Welcome Email"},
+ {id:"deliver",type:"email",ht:"Livre Kado a",fr:"Livrer le Cadeau",en:"Deliver the Lead Magnet"},
+ {id:"content",type:"email",ht:"Pataje Pi Bon Kontni",fr:"Partager le Meilleur Contenu",en:"Share Best Content"},
+ {id:"story",type:"email",ht:"Rakonte Istwa Ou",fr:"Raconter Votre Histoire",en:"Tell Your Story"},
+ {id:"offer",type:"email",ht:"Ofri Dou",fr:"Offre Douce",en:"Soft Offer"}];
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Imèl rete youn nan kanal ki pi dirèk ak posede nan tout maketing — zouti sa a gen 4 pati: Kado Dijital, Fòm, Bilding Imèl, ak Sekans — pratike sou li anvan w touche vrè kont ou.",
+   secs:[["4 pati zouti a","Kado Dijital pou fè moun enskri; Fòm pou kaptire imèl; Bilding Imèl pou ekri kontni; Sekans pou otomatize yon seri imèl."],
+    ["Poukisa imèl toujou konte","Kontrèman ak rezo sosyal, ou posede lis imèl ou nèt — okenn chanjman algoritm pa ka anpeche w rive nan bwat resepsyon moun ki enskri."]],
+   ex:"Ki 1 rezon ou panse yon lis imèl ta itil pou biznis ou?",
+   quiz:[
+    {q:"Konbyen pati prensipal zouti sa a genyen?",opts:["2","4","8","12"],ans:1,fb:"Gen 4 pati: Kado Dijital, Fòm, Bilding Imèl, Sekans."},
+    {q:"Poukisa lis imèl diferan de swiv rezo sosyal?",opts:["Pa gen diferans ditou","Ou posede lis la nèt, pa gen algoritm ki kontwole rive nan bwat resepsyon","Imèl toujou pi lan pase rezo sosyal","Lis imèl pa ka grandi"],ans:1,fb:"Ou posede lis la, san yon algoritm nan chemen."},
+    {q:"Ki 4 pati zouti a genyen?",opts:["Sèlman Bilding Imèl","Kado Dijital, Fòm, Bilding Imèl, ak Sekans","Sèlman Fòm ak Sekans","Pa gen okenn pati"],ans:1,fb:"Kado Dijital, Fòm, Bilding Imèl, Sekans."}],
+   close:{learned:"Zouti maketing pa imèl la gen 4 pati (Kado Dijital, Fòm, Bilding Imèl, Sekans) ki ansanm kite w posede yon relasyon dirèk ak odyans ou, san yon algoritm nan mitan.",
+    mistake:"Inyore imèl paske li santi 'demode' konpare ak rezo sosyal, san rekonèt ke se yon kanal ou posede nèt.",
+    tip:"Kòmanse ak yon lis piti men reyèl olye pa gen okenn lis ditou — chak abòne se yon relasyon dirèk.",
+    assign:"Ki 1 rezon ou panse yon lis imèl ta itil pou biznis ou?",
+    dl:"Referans: 4 Pati Zouti Maketing pa Imèl la",
+    checklist:["Vizite tab Kado Dijital?","Vizite tab Fòm?","Vizite tab Bilding Imèl?","Vizite tab Sekans?"],
+    ai:"Eksplike poukisa yon lis imèl itil pou yon [kalite biznis], an tèm senp."}},
+ fr:{lede:"L'email reste l'un des canaux les plus directs et les plus possédés de tout le marketing — cet outil a 4 parties : Cadeau Numérique, Formulaire, Créateur d'Email, et Séquence — pratiquez avant de toucher votre vrai compte.",
+   secs:[["Les 4 parties de l'outil","Cadeau Numérique pour faire s'inscrire les gens ; Formulaire pour capturer les emails ; Créateur d'Email pour écrire le contenu ; Séquence pour automatiser une série d'emails."],
+    ["Pourquoi l'email compte toujours","Contrairement aux réseaux sociaux, vous possédez entièrement votre liste d'emails — aucun changement d'algorithme ne peut vous empêcher d'atteindre la boîte de réception des abonnés."]],
+   ex:"Quelle 1 raison pensez-vous qu'une liste d'emails serait utile pour votre entreprise ?",
+   quiz:[
+    {q:"Combien de parties principales cet outil a-t-il ?",opts:["2","4","8","12"],ans:1,fb:"Il y a 4 parties : Cadeau Numérique, Formulaire, Créateur d'Email, Séquence."},
+    {q:"Pourquoi une liste d'emails est-elle différente de suivre les réseaux sociaux ?",opts:["Il n'y a aucune différence","Vous possédez entièrement la liste, aucun algorithme ne contrôle l'arrivée dans la boîte de réception","L'email est toujours plus lent que les réseaux sociaux","Une liste d'emails ne peut pas grandir"],ans:1,fb:"Vous possédez la liste, sans algorithme entre les deux."},
+    {q:"Quelles sont les 4 parties de l'outil ?",opts:["Seulement le Créateur d'Email","Cadeau Numérique, Formulaire, Créateur d'Email, et Séquence","Seulement Formulaire et Séquence","Il n'y a aucune partie"],ans:1,fb:"Cadeau Numérique, Formulaire, Créateur d'Email, Séquence."}],
+   close:{learned:"L'outil de marketing par email a 4 parties (Cadeau Numérique, Formulaire, Créateur d'Email, Séquence) qui ensemble vous permettent de posséder une relation directe avec votre audience, sans algorithme au milieu.",
+    mistake:"Ignorer l'email parce qu'il semble « démodé » comparé aux réseaux sociaux, sans reconnaître que c'est un canal que vous possédez entièrement.",
+    tip:"Commencez avec une petite liste mais réelle plutôt que de n'avoir aucune liste du tout — chaque abonné est une relation directe.",
+    assign:"Quelle 1 raison pensez-vous qu'une liste d'emails serait utile pour votre entreprise ?",
+    dl:"Référence : Les 4 Parties de l'Outil de Marketing par Email",
+    checklist:["Onglet Cadeau Numérique visité ?","Onglet Formulaire visité ?","Onglet Créateur d'Email visité ?","Onglet Séquence visité ?"],
+    ai:"Explique pourquoi une liste d'emails est utile pour un(e) [type d'entreprise], en termes simples."}},
+ en:{lede:"Email remains one of the most direct, owned channels in all of marketing — this tool has 4 parts: Lead Magnet, Form, Email Builder, and Sequence — practice on it before you touch your real account.",
+   secs:[["The tool's 4 parts","Lead Magnet to get people to sign up; Form to capture emails; Email Builder to write content; Sequence to automate a series of emails."],
+    ["Why email still matters","Unlike social media, you fully own your email list — no algorithm change can stop you from reaching a subscriber's inbox."]],
+   ex:"What's 1 reason you think an email list would be useful for your business?",
+   quiz:[
+    {q:"How many main parts does this tool have?",opts:["2","4","8","12"],ans:1,fb:"There are 4 parts: Lead Magnet, Form, Email Builder, Sequence."},
+    {q:"Why is an email list different from social media followers?",opts:["There's no difference at all","You fully own the list, no algorithm controls inbox arrival","Email is always slower than social media","An email list can't grow"],ans:1,fb:"You own the list, with no algorithm in the way."},
+    {q:"What are the tool's 4 parts?",opts:["Only the Email Builder","Lead Magnet, Form, Email Builder, and Sequence","Only Form and Sequence","There are no parts"],ans:1,fb:"Lead Magnet, Form, Email Builder, Sequence."}],
+   close:{learned:"The email marketing tool has 4 parts (Lead Magnet, Form, Email Builder, Sequence) that together let you own a direct relationship with your audience, with no algorithm in between.",
+    mistake:"Ignoring email because it feels \"old-fashioned\" compared to social media, without recognizing it's a channel you fully own.",
+    tip:"Start with a small but real list instead of no list at all — every subscriber is a direct relationship.",
+    assign:"What's 1 reason you think an email list would be useful for your business?",
+    dl:"Reference: The 4 Parts of the Email Marketing Tool",
+    checklist:["Lead Magnet tab visited?","Form tab visited?","Email Builder tab visited?","Sequence tab visited?"],
+    ai:"Explain why an email list is useful for a [type of business], in simple terms."}}},
+
+2:{ht:{lede:"Yon kado dijital (lead magnet) se yon bagay itil gratis ou bay an echanj pou yon adrès imèl — san yon rezon reyèl pou enskri, pifò moun pap bay imèl yo.",
+   secs:[["Sa ki fè yon bon kado","Li rezoud yon ti pwoblèm espesifik vrèman rapid (yon chèklis, yon gid kout, yon rabè) — pa yon gwo pwomès vag ki mande twòp tan pou konsome."],
+    ["Matche kado a ak odyans ou","Yon bon kado dijital ta dwe rele dirèkteman a menm kliyan ou dekri nan avata kliyan ou (Modil 4), pa yon bagay jeneral ki pa espesifik pou pèsonn."]],
+   ex:"Ki yon pwoblèm espesifik yon kado dijital pou biznis ou ta ka rezoud rapid?",
+   quiz:[
+    {q:"Kisa yon kado dijital (lead magnet) ye?",opts:["Yon pwodwi peye","Yon bagay itil gratis an echanj pou yon adrès imèl","Yon revi kliyan","Yon pòs rezo sosyal"],ans:1,fb:"Se yon bagay itil gratis an echanj pou yon imèl."},
+    {q:"Kisa ki fè yon bon kado dijital?",opts:["Yon gwo pwomès vag ki pran anpil tan","Rezoud yon ti pwoblèm espesifik vrèman rapid","Pa gen okenn valè reyèl","Yon lis pri"],ans:1,fb:"Yon bon kado rezoud yon ti pwoblèm rapid."},
+    {q:"Poukisa kado a ta dwe matche ak avata kliyan ou?",opts:["Sa pa gen enpòtans","Sa fè kado a rele dirèkteman a moun ki reyèlman ta enterese","Tout kado dwe idantik pou tout moun","Avata kliyan pa gen rapò ak kado dijital"],ans:1,fb:"Matche ak avata a rele dirèkteman a moun ki enterese."}],
+   close:{learned:"Yon kado dijital efikas rezoud yon ti pwoblèm espesifik vrèman rapid e matche ak vrè avata kliyan ou (Modil 4), pa yon pwomès jeneral vag.",
+    mistake:"Ofri yon 'gwo gid konplè sou tout bagay' ki mande twòp tan pou konsome — moun pito yon bagay ki rezoud yon sèl pwoblèm imedyatman.",
+    tip:"Yon chèklis oswa yon rabè senp souvan konvèti pi byen pase yon gid long, paske li livre valè imedyat.",
+    assign:"Ki yon pwoblèm espesifik yon kado dijital pou biznis ou ta ka rezoud rapid?",
+    dl:"Fèy Travay: Chwazi Kado Dijital Ou",
+    checklist:["Tit kado a ekri?","Fòma chwazi?","Benefis kout ekri (omwen 15 karaktè)?"],
+    ai:"Sijere 4 lide kado dijital pou yon [kalite biznis] ki rezoud yon pwoblèm espesifik rapid."}},
+ fr:{lede:"Un cadeau numérique (lead magnet) est quelque chose d'utile et gratuit que vous offrez en échange d'une adresse email — sans une vraie raison de s'inscrire, la plupart des gens ne donneront pas leur email.",
+   secs:[["Ce qui fait un bon cadeau","Il résout un petit problème spécifique vraiment vite (une checklist, un guide court, une réduction) — pas une grande promesse vague qui demande trop de temps à consommer."],
+    ["Faire correspondre le cadeau à votre audience","Un bon cadeau numérique devrait s'adresser directement au même client que vous décrivez dans votre avatar client (Module 4), pas quelque chose de générique qui ne parle à personne en particulier."]],
+   ex:"Quel problème spécifique un cadeau numérique pour votre entreprise pourrait-il résoudre rapidement ?",
+   quiz:[
+    {q:"Qu'est-ce qu'un cadeau numérique (lead magnet) ?",opts:["Un produit payant","Quelque chose d'utile et gratuit en échange d'une adresse email","Un avis client","Une publication sur les réseaux sociaux"],ans:1,fb:"C'est quelque chose d'utile et gratuit en échange d'un email."},
+    {q:"Qu'est-ce qui fait un bon cadeau numérique ?",opts:["Une grande promesse vague qui prend beaucoup de temps","Résoudre un petit problème spécifique vraiment vite","Aucune vraie valeur","Une liste de prix"],ans:1,fb:"Un bon cadeau résout un petit problème rapidement."},
+    {q:"Pourquoi le cadeau devrait-il correspondre à votre avatar client ?",opts:["Ça n'a pas d'importance","Ça fait que le cadeau s'adresse directement aux gens réellement intéressés","Tous les cadeaux doivent être identiques pour tout le monde","L'avatar client n'a aucun rapport avec le cadeau numérique"],ans:1,fb:"Correspondre à l'avatar s'adresse directement aux gens intéressés."}],
+   close:{learned:"Un cadeau numérique efficace résout un petit problème spécifique vraiment vite et correspond au vrai avatar client (Module 4), pas une promesse générique vague.",
+    mistake:"Offrir un « grand guide complet sur tout » qui demande trop de temps à consommer — les gens préfèrent quelque chose qui résout un seul problème immédiatement.",
+    tip:"Une checklist simple ou une réduction convertit souvent mieux qu'un long guide, car ça livre une valeur immédiate.",
+    assign:"Quel problème spécifique un cadeau numérique pour votre entreprise pourrait-il résoudre rapidement ?",
+    dl:"Fiche de travail : Choisir Votre Cadeau Numérique",
+    checklist:["Titre du cadeau écrit ?","Format choisi ?","Bénéfice court écrit (au moins 15 caractères) ?"],
+    ai:"Suggère 4 idées de cadeaux numériques pour un(e) [type d'entreprise] qui résolvent un problème spécifique rapidement."}},
+ en:{lede:"A lead magnet is something free and useful you give in exchange for an email address — without a real reason to sign up, most people won't hand over their email.",
+   secs:[["What makes a good magnet","It solves one specific problem really fast (a checklist, a short guide, a discount) — not a big vague promise that takes too much time to consume."],
+    ["Matching the magnet to your audience","A good lead magnet should speak directly to the same customer you describe in your customer avatar (Module 4), not something generic that speaks to nobody in particular."]],
+   ex:"What's one specific problem a lead magnet for your business could solve quickly?",
+   quiz:[
+    {q:"What is a lead magnet?",opts:["A paid product","Something free and useful in exchange for an email address","A customer review","A social media post"],ans:1,fb:"It's something free and useful in exchange for an email."},
+    {q:"What makes a good lead magnet?",opts:["A big vague promise that takes a long time","Solving one specific problem really fast","No real value at all","A price list"],ans:1,fb:"A good magnet solves a small problem fast."},
+    {q:"Why should the magnet match your customer avatar?",opts:["It doesn't matter","It makes the magnet speak directly to people actually interested","All magnets should be identical for everyone","Customer avatars have nothing to do with lead magnets"],ans:1,fb:"Matching the avatar speaks directly to interested people."}],
+   close:{learned:"An effective lead magnet solves one specific problem really fast and matches your real customer avatar (Module 4), not a vague generic promise.",
+    mistake:"Offering a \"big complete guide on everything\" that takes too much time to consume — people prefer something that solves one problem immediately.",
+    tip:"A simple checklist or discount often converts better than a long guide, because it delivers immediate value.",
+    assign:"What's one specific problem a lead magnet for your business could solve quickly?",
+    dl:"Worksheet: Choosing Your Lead Magnet",
+    checklist:["Magnet title written?","Format chosen?","Short benefit written (at least 15 characters)?"],
+    ai:"Suggest 4 lead magnet ideas for a [type of business] that solve one specific problem quickly."}}},
+
+3:{ht:{lede:"Yon fòm enskripsyon se pòt antre lis imèl ou — chak chan siplemantè ou mande diminye chans yon moun ranpli li nèt, kidonk pi kout li ye, pi byen li mache.",
+   secs:[["Prensip debaz: mande mwens","Chak chan ekstra (telefòn, non biznis) ajoute friksyon; sof si ou vrèman bezwen enfòmasyon an kounye a, kite chan an deyò e mande l pita si nesesè."],
+    ["Sa yon bon fòm genyen","Yon tit klè ki eksplike sa moun ap resevwa, yon bouton ak tèks aksyon (pa jis 'Voye'), ak sèlman chan ki vrèman esansyèl (adrès imèl toujou obligatwa)."]],
+   ex:"Ki chan siplemantè ou ta tante ajoute nan fòm ou, e èske li vrèman nesesè kounye a?",
+   quiz:[
+    {q:"Poukisa chak chan siplemantè nan yon fòm konte?",opts:["Yo pa gen okenn efè","Chak chan ekstra ajoute friksyon e diminye chans moun ranpli fòm lan","Plis chan toujou vle di plis enskripsyon","Chan yo pa afekte konvèsyon ditou"],ans:1,fb:"Chak chan ekstra ajoute friksyon."},
+    {q:"Ki chan ki toujou obligatwa nan yon fòm enskripsyon imèl?",opts:["Telefòn","Adrès imèl","Non biznis","Adrès postal"],ans:1,fb:"Adrès imèl toujou obligatwa."},
+    {q:"Kisa yon bon fòm ta dwe genyen?",opts:["Tit vag, bouton 'Voye' senp, tout chan posib","Tit klè, tèks bouton ak aksyon, sèlman chan esansyèl","Okenn tit ditou","Plis chan pou parèt pi pwofesyonèl"],ans:1,fb:"Tit klè, bouton ak aksyon, chan esansyèl sèlman."}],
+   close:{learned:"Chak chan siplemantè nan yon fòm ajoute friksyon — yon bon fòm gen yon tit klè, yon bouton ak aksyon, e sèlman chan ki vrèman esansyèl (imèl toujou obligatwa).",
+    mistake:"Ajoute chan siplemantè (telefòn, biznis) 'pou jis genyen enfòmasyon an' san yon vrè rezon imedyat, ki fè moun kite fòm lan san ranpli li.",
+    tip:"Si ou pa vrèman bezwen yon enfòmasyon kounye a, kite chan an deyò — ou ka toujou mande l pita nan yon lòt imèl.",
+    assign:"Ki chan siplemantè ou ta tante ajoute nan fòm ou, e èske li vrèman nesesè kounye a?",
+    dl:"Lis Verifikasyon: Konsepsyon Fòm Enskripsyon",
+    checklist:["Tit fòm ekri (omwen 10 karaktè)?","Tèks bouton ekri?","Tout chan siplemantè fèmen?"],
+    ai:"Ekri yon tit fòm ak yon tèks bouton pou yon [kalite biznis] ki kaptire imèl."}},
+ fr:{lede:"Un formulaire d'inscription est la porte d'entrée de votre liste d'emails — chaque champ supplémentaire que vous demandez diminue la chance qu'une personne le remplisse entièrement, donc plus il est court, mieux il fonctionne.",
+   secs:[["Principe de base : demander moins","Chaque champ supplémentaire (téléphone, nom d'entreprise) ajoute de la friction ; sauf si vous avez vraiment besoin de cette info maintenant, laissez le champ de côté et demandez-le plus tard si nécessaire."],
+    ["Ce qu'un bon formulaire contient","Un titre clair qui explique ce que la personne va recevoir, un bouton avec un texte d'action (pas juste « Envoyer »), et seulement les champs vraiment essentiels (l'adresse email toujours obligatoire)."]],
+   ex:"Quel champ supplémentaire seriez-vous tenté d'ajouter à votre formulaire, et est-il vraiment nécessaire maintenant ?",
+   quiz:[
+    {q:"Pourquoi chaque champ supplémentaire dans un formulaire compte-t-il ?",opts:["Ils n'ont aucun effet","Chaque champ ajoute de la friction et diminue la chance que les gens remplissent le formulaire","Plus de champs signifie toujours plus d'inscriptions","Les champs n'affectent pas du tout la conversion"],ans:1,fb:"Chaque champ supplémentaire ajoute de la friction."},
+    {q:"Quel champ est toujours obligatoire dans un formulaire d'inscription email ?",opts:["Téléphone","Adresse email","Nom d'entreprise","Adresse postale"],ans:1,fb:"L'adresse email est toujours obligatoire."},
+    {q:"Que devrait contenir un bon formulaire ?",opts:["Titre vague, bouton « Envoyer » simple, tous les champs possibles","Titre clair, texte de bouton avec action, seulement les champs essentiels","Aucun titre du tout","Plus de champs pour paraître plus professionnel"],ans:1,fb:"Titre clair, bouton d'action, seulement les champs essentiels."}],
+   close:{learned:"Chaque champ supplémentaire dans un formulaire ajoute de la friction — un bon formulaire a un titre clair, un bouton avec action, et seulement les champs vraiment essentiels (l'email toujours obligatoire).",
+    mistake:"Ajouter des champs supplémentaires (téléphone, entreprise) « juste pour avoir l'info » sans une vraie raison immédiate, ce qui fait que les gens abandonnent le formulaire sans le remplir.",
+    tip:"Si vous n'avez pas vraiment besoin d'une info maintenant, laissez le champ de côté — vous pouvez toujours le demander plus tard dans un autre email.",
+    assign:"Quel champ supplémentaire seriez-vous tenté d'ajouter à votre formulaire, et est-il vraiment nécessaire maintenant ?",
+    dl:"Liste de Vérification : Conception de Formulaire d'Inscription",
+    checklist:["Titre du formulaire écrit (au moins 10 caractères) ?","Texte du bouton écrit ?","Tous les champs supplémentaires désactivés ?"],
+    ai:"Écris un titre de formulaire et un texte de bouton pour un(e) [type d'entreprise] qui capture des emails."}},
+ en:{lede:"A signup form is the front door to your email list — every extra field you ask for decreases the chance someone fills it out completely, so the shorter it is, the better it works.",
+   secs:[["The core principle: ask for less","Every extra field (phone, company name) adds friction; unless you truly need that info right now, leave the field out and ask for it later if needed."],
+    ["What a good form has","A clear headline explaining what the person will get, a button with action text (not just \"Submit\"), and only truly essential fields (email is always required)."]],
+   ex:"What extra field would you be tempted to add to your form, and is it really necessary right now?",
+   quiz:[
+    {q:"Why does every extra field in a form matter?",opts:["They have no effect","Every extra field adds friction and lowers the chance people complete the form","More fields always means more signups","Fields don't affect conversion at all"],ans:1,fb:"Every extra field adds friction."},
+    {q:"What field is always required on an email signup form?",opts:["Phone","Email address","Company name","Mailing address"],ans:1,fb:"Email address is always required."},
+    {q:"What should a good form have?",opts:["A vague headline, a plain \"Submit\" button, every possible field","A clear headline, action button text, only essential fields","No headline at all","More fields to look more professional"],ans:1,fb:"Clear headline, action button, only essential fields."}],
+   close:{learned:"Every extra field on a form adds friction — a good form has a clear headline, an action button, and only truly essential fields (email always required).",
+    mistake:"Adding extra fields (phone, company) \"just to have the info\" without a real immediate reason, which makes people abandon the form without completing it.",
+    tip:"If you don't truly need a piece of info right now, leave the field out — you can always ask for it later in another email.",
+    assign:"What extra field would you be tempted to add to your form, and is it really necessary right now?",
+    dl:"Checklist: Signup Form Design",
+    checklist:["Form headline written (at least 10 characters)?","Button text written?","All extra fields turned off?"],
+    ai:"Write a form headline and button text for a [type of business] that captures emails."}}},
+
+4:{ht:{lede:"Yon sijè imèl espesifik fè moun louvri l — yon sijè vag tankou 'Bilten' pa bay okenn rezon pou yon moun pran tan pou li.",
+   secs:[["Sijè ki fè moun louvri","Yon bon sijè kreye kiryozite oswa pwomèt yon benefis klè — jeneral tankou 'Bilten Mwa Sa a' pa di anyen sou poukisa li vo tan lekti a."],
+    ["Estrikti kò imèl la","Konstwi imèl la ak blòk (tit, tèks, bouton) — menm jan yon paj blog (Modil 10), yon lektè k ap eskane ta dwe ka jwenn valè menm si li pa li tout mo."]],
+   ex:"Ekri 2 lide sijè imèl pou yon bilten — youn vag, youn espesifik. Ki diferans lan?",
+   quiz:[
+    {q:"Poukisa yon sijè vag tankou 'Bilten' mal?",opts:["Li pa mal ditou","Li pa bay okenn rezon espesifik pou moun pran tan pou li imèl la","Tout sijè vag mache byen","Sijè pa afekte si moun louvri imèl la"],ans:1,fb:"Li pa bay okenn rezon espesifik pou louvri."},
+    {q:"Kisa yon bon sijè fè?",opts:["Anyen espesyal","Kreye kiryozite oswa pwomèt yon benefis klè","Toujou mansyone pri","Dwe pi long posib"],ans:1,fb:"Bon sijè kreye kiryozite oswa pwomèt benefis."},
+    {q:"Kijan yon imèl ta dwe estriktire?",opts:["Yon sèl gwo paragraf san blòk","Ak blòk (tit, tèks, bouton) tankou yon paj blog","San okenn estrikti","Sèlman imaj, san tèks"],ans:1,fb:"Ak blòk, tankou yon paj blog."}],
+   close:{learned:"Yon sijè espesifik (pa vag) fè moun louvri imèl la, epi estriktire kò a ak blòk (tit, tèks, bouton) fè li fasil pou eskane e jwenn valè.",
+    mistake:"Itilize yon sijè jeneral tankou 'Bilten Mwa Sa a' ki pa bay okenn rezon espesifik pou louvri l kounye a olye pita.",
+    tip:"Yon bon sijè souvan mansyone yon benefis espesifik oswa kreye yon ti kiryozite — pa jis dekri kategori kontni an.",
+    assign:"Ekri 2 lide sijè imèl pou yon bilten — youn vag, youn espesifik. Ki diferans lan?",
+    dl:"Fèy Travay: Egzanp Sijè Imèl ki Mache",
+    checklist:["Sijè a espesifik (pa jis 'Bilten') epi omwen 10 karaktè?","Omwen 2 blòk ajoute nan kò a?"],
+    ai:"Sijere 5 lide sijè imèl espesifik (pa vag) pou yon bilten [kalite biznis]."}},
+ fr:{lede:"Un sujet d'email spécifique fait que les gens l'ouvrent — un sujet vague comme « Newsletter » ne donne aucune raison de prendre le temps de le lire.",
+   secs:[["Des sujets qui font ouvrir","Un bon sujet crée de la curiosité ou promet un bénéfice clair — un sujet générique comme « Newsletter du Mois » ne dit rien sur pourquoi ça vaut le temps de lecture."],
+    ["Structure du corps de l'email","Construisez l'email avec des blocs (titre, texte, bouton) — comme un article de blog (Module 10), un lecteur qui survole devrait pouvoir en tirer de la valeur même sans lire chaque mot."]],
+   ex:"Écrivez 2 idées de sujet d'email pour une newsletter — une vague, une spécifique. Quelle est la différence ?",
+   quiz:[
+    {q:"Pourquoi un sujet vague comme « Newsletter » est-il mauvais ?",opts:["Ce n'est pas mauvais du tout","Il ne donne aucune raison spécifique de prendre le temps de lire l'email","Tous les sujets vagues fonctionnent bien","Le sujet n'affecte pas si les gens ouvrent l'email"],ans:1,fb:"Il ne donne aucune raison spécifique d'ouvrir."},
+    {q:"Que fait un bon sujet ?",opts:["Rien de spécial","Crée de la curiosité ou promet un bénéfice clair","Mentionne toujours un prix","Doit être aussi long que possible"],ans:1,fb:"Un bon sujet crée de la curiosité ou promet un bénéfice."},
+    {q:"Comment un email devrait-il être structuré ?",opts:["Un seul gros paragraphe sans blocs","Avec des blocs (titre, texte, bouton) comme un article de blog","Sans aucune structure","Seulement des images, sans texte"],ans:1,fb:"Avec des blocs, comme un article de blog."}],
+   close:{learned:"Un sujet spécifique (pas vague) fait ouvrir l'email, et structurer le corps avec des blocs (titre, texte, bouton) le rend facile à survoler et à en tirer de la valeur.",
+    mistake:"Utiliser un sujet générique comme « Newsletter du Mois » qui ne donne aucune raison spécifique de l'ouvrir maintenant plutôt que plus tard.",
+    tip:"Un bon sujet mentionne souvent un bénéfice spécifique ou crée une petite curiosité — pas juste décrire la catégorie du contenu.",
+    assign:"Écrivez 2 idées de sujet d'email pour une newsletter — une vague, une spécifique. Quelle est la différence ?",
+    dl:"Fiche de travail : Exemples de Sujets d'Email qui Fonctionnent",
+    checklist:["Le sujet est-il spécifique (pas juste « Newsletter ») et a au moins 10 caractères ?","Au moins 2 blocs ajoutés dans le corps ?"],
+    ai:"Suggère 5 idées de sujets d'email spécifiques (pas vagues) pour une newsletter d'un(e) [type d'entreprise]."}},
+ en:{lede:"A specific email subject makes people open it — a vague subject like \"Newsletter\" gives no reason to spend time reading it.",
+   secs:[["Subjects that get opened","A good subject creates curiosity or promises a clear benefit — generic ones like \"This Month's Newsletter\" say nothing about why it's worth the reading time."],
+    ["Structuring the email body","Build the email with blocks (heading, text, button) — like a blog post (Module 10), a skimming reader should be able to get value even without reading every word."]],
+   ex:"Write 2 email subject ideas for a newsletter — one vague, one specific. What's the difference?",
+   quiz:[
+    {q:"Why is a vague subject like \"Newsletter\" bad?",opts:["It isn't bad at all","It gives no specific reason to spend time reading the email","All vague subjects work well","Subject doesn't affect whether people open the email"],ans:1,fb:"It gives no specific reason to open it."},
+    {q:"What does a good subject do?",opts:["Nothing special","Creates curiosity or promises a clear benefit","Always mentions a price","Should be as long as possible"],ans:1,fb:"A good subject creates curiosity or promises a benefit."},
+    {q:"How should an email be structured?",opts:["One big paragraph with no blocks","With blocks (heading, text, button) like a blog post","With no structure at all","Only images, no text"],ans:1,fb:"With blocks, like a blog post."}],
+   close:{learned:"A specific (not vague) subject gets the email opened, and structuring the body with blocks (heading, text, button) makes it easy to skim and get value from.",
+    mistake:"Using a generic subject like \"This Month's Newsletter\" that gives no specific reason to open it now rather than later.",
+    tip:"A good subject often mentions a specific benefit or creates a little curiosity — not just describing the content category.",
+    assign:"Write 2 email subject ideas for a newsletter — one vague, one specific. What's the difference?",
+    dl:"Worksheet: Email Subject Examples That Work",
+    checklist:["Is the subject specific (not just \"Newsletter\") and at least 10 characters?","At least 2 blocks added in the body?"],
+    ai:"Suggest 5 specific (not vague) email subject ideas for a [type of business] newsletter."}}},
+
+5:{ht:{lede:"Yon sekans byenveni se yon seri ti imèl ki otomatikman rive youn apre lòt lè yon moun fèk enskri — li prezante w, delivre sa ou te pwomèt, epi bati konfyans anvan ou menm mande yon vant.",
+   secs:[["Lòd ki fè sans","Premye imèl la toujou yon byenveni ki delivre kado a imedyatman (sa moun te enskri pou li); apre sa, imèl ki swiv ta dwe bati konfyans (pi bon kontni) anvan nenpòt ofri."],
+    ["Poukisa otomatize l","Yon sekans otomatik travay pou ou 24/7 san w pa bezwen voye chak imèl manyèlman — chak nouvo abòne resevwa menm bon eksperyans lan san w pa fè anyen apre premye enstalasyon an."]],
+   ex:"Ki yon 4yèm imèl ou ta ajoute apre 3 premye yo, e poukisa?",
+   quiz:[
+    {q:"Ki premye imèl nan yon sekans byenveni ta dwe ye?",opts:["Yon ofri vant","Yon imèl byenveni ki delivre kado a imedyatman","Yon revi kliyan","Yon evènman"],ans:1,fb:"Premye a se byenveni ki delivre kado a."},
+    {q:"Poukisa lòd sekans lan enpòtan?",opts:["Lòd pa gen enpòtans ditou","Bati konfyans anvan mande yon vant fè plis sans pase mande vant imedyatman","Tout imèl ta dwe menm jan an","Ofri vant ta dwe toujou premye"],ans:1,fb:"Bati konfyans anvan mande vant fè plis sans."},
+    {q:"Ki avantaj yon sekans otomatik genyen?",opts:["Li mande w voye chak imèl manyèlman","Li travay 24/7 san w pa bezwen aji chak fwa yon moun enskri","Li pa gen okenn avantaj","Li sèlman mache yon fwa"],ans:1,fb:"Li travay 24/7 otomatikman."}],
+   close:{learned:"Yon sekans byenveni kòmanse ak yon imèl ki delivre kado a imedyatman, apre sa bati konfyans anvan nenpòt ofri — otomatize l fè li travay pou chak nouvo abòne san w pa fè anyen.",
+    mistake:"Mete yon ofri vant kòm premye imèl la, anvan menm delivre sa moun te enskri pou li a — sa santi tankou yon twonpri.",
+    tip:"Yon sekans byenveni ki byen bati travay 24/7 — pandan w ap dòmi, chak nouvo abòne toujou resevwa menm bon eksperyans lan.",
+    assign:"Ki yon 4yèm imèl ou ta ajoute apre 3 premye yo, e poukisa?",
+    dl:"Modèl: Estrikti Sekans Byenveni Baz",
+    checklist:["Sekans lan gen 3 etap?","Lòd la se: Byenveni, Livre Kado a, Pataje Kontni?"],
+    ai:"Sijere yon sekans byenveni 4-etap pou yon [kalite biznis] apre yon moun enskri pou [kado dijital]."}},
+ fr:{lede:"Une séquence de bienvenue est une série de petits emails qui arrivent automatiquement l'un après l'autre quand quelqu'un vient de s'inscrire — elle vous présente, livre ce que vous avez promis, et bâtit la confiance avant même de demander une vente.",
+   secs:[["Un ordre qui a du sens","Le premier email est toujours une bienvenue qui livre le cadeau immédiatement (ce pour quoi la personne s'est inscrite) ; après ça, les emails suivants devraient bâtir la confiance (meilleur contenu) avant toute offre."],
+    ["Pourquoi l'automatiser","Une séquence automatique travaille pour vous 24/7 sans que vous ayez besoin d'envoyer chaque email manuellement — chaque nouvel abonné reçoit la même bonne expérience sans que vous fassiez quoi que ce soit après la configuration initiale."]],
+   ex:"Quel 4e email ajouteriez-vous après les 3 premiers, et pourquoi ?",
+   quiz:[
+    {q:"Quel devrait être le premier email d'une séquence de bienvenue ?",opts:["Une offre de vente","Un email de bienvenue qui livre le cadeau immédiatement","Un avis client","Un événement"],ans:1,fb:"Le premier est la bienvenue qui livre le cadeau."},
+    {q:"Pourquoi l'ordre de la séquence compte-t-il ?",opts:["L'ordre n'a aucune importance","Bâtir la confiance avant de demander une vente a plus de sens que de demander la vente immédiatement","Tous les emails devraient être identiques","L'offre de vente devrait toujours être en premier"],ans:1,fb:"Bâtir la confiance avant de demander la vente a plus de sens."},
+    {q:"Quel avantage a une séquence automatique ?",opts:["Elle vous demande d'envoyer chaque email manuellement","Elle travaille 24/7 sans que vous ayez besoin d'agir à chaque inscription","Elle n'a aucun avantage","Elle ne fonctionne qu'une seule fois"],ans:1,fb:"Elle travaille 24/7 automatiquement."}],
+   close:{learned:"Une séquence de bienvenue commence par un email qui livre le cadeau immédiatement, puis bâtit la confiance avant toute offre — l'automatiser la fait fonctionner pour chaque nouvel abonné sans que vous fassiez rien.",
+    mistake:"Mettre une offre de vente comme premier email, avant même de livrer ce pour quoi la personne s'est inscrite — ça donne l'impression d'un piège.",
+    tip:"Une séquence de bienvenue bien construite travaille 24/7 — pendant que vous dormez, chaque nouvel abonné reçoit toujours la même bonne expérience.",
+    assign:"Quel 4e email ajouteriez-vous après les 3 premiers, et pourquoi ?",
+    dl:"Modèle : Structure de Séquence de Bienvenue de Base",
+    checklist:["La séquence a-t-elle 3 étapes ?","L'ordre est-il : Bienvenue, Livrer le Cadeau, Partager du Contenu ?"],
+    ai:"Suggère une séquence de bienvenue en 4 étapes pour un(e) [type d'entreprise] après qu'une personne s'inscrive pour [cadeau numérique]."}},
+ en:{lede:"A welcome sequence is a series of small emails that automatically arrive one after another when someone just signed up — it introduces you, delivers what you promised, and builds trust before you even ask for a sale.",
+   secs:[["An order that makes sense","The first email is always a welcome that delivers the magnet immediately (what the person signed up for); after that, the following emails should build trust (best content) before any offer."],
+    ["Why automate it","An automatic sequence works for you 24/7 without you needing to send each email manually — every new subscriber gets the same good experience without you doing anything after the initial setup."]],
+   ex:"What 4th email would you add after the first 3, and why?",
+   quiz:[
+    {q:"What should the first email in a welcome sequence be?",opts:["A sales offer","A welcome email that delivers the magnet immediately","A customer review","An event"],ans:1,fb:"The first is a welcome that delivers the magnet."},
+    {q:"Why does the sequence order matter?",opts:["Order doesn't matter at all","Building trust before asking for a sale makes more sense than asking immediately","All emails should be the same","The sales offer should always be first"],ans:1,fb:"Building trust before asking for a sale makes more sense."},
+    {q:"What advantage does an automatic sequence have?",opts:["It requires you to send each email manually","It works 24/7 without you needing to act every time someone signs up","It has no advantage","It only works once"],ans:1,fb:"It works 24/7 automatically."}],
+   close:{learned:"A welcome sequence starts with an email that delivers the magnet immediately, then builds trust before any offer — automating it makes it work for every new subscriber without you doing anything.",
+    mistake:"Putting a sales offer as the first email, before even delivering what the person signed up for — it feels like a bait-and-switch.",
+    tip:"A well-built welcome sequence works 24/7 — while you sleep, every new subscriber still gets the same good experience.",
+    assign:"What 4th email would you add after the first 3, and why?",
+    dl:"Template: Basic Welcome Sequence Structure",
+    checklist:["Does the sequence have 3 steps?","Is the order: Welcome, Deliver the Magnet, Share Content?"],
+    ai:"Suggest a 4-step welcome sequence for a [type of business] after someone signs up for [lead magnet]."}}},
+
+6:{ht:{lede:"Yon imèl vant konbine yon sijè klè, yon kò ki bati enterè, ak yon apèl a aksyon (CTA) klè — san yon CTA, menm pi bon tèks vant lan pa mennen okenn aksyon.",
+   secs:[["Estrikti yon imèl vant","Yon sijè ki di sa ki ladan; kò a ki eksplike benefis (pa jis karakteristik, sonje Modil 5); ak yon bouton CTA klè ki di egzakteman ki aksyon pou pran."],
+    ["Erè komen","Ekri yon bèl imèl san okenn bouton oswa lyen klè se pi gwo erè — yon lektè enterese bezwen konnen egzakteman kisa pou fè apre."]],
+   ex:"Ekri yon tèks CTA kout (3-6 mo) pou yon imèl vant.",
+   quiz:[
+    {q:"Kisa yon imèl vant bezwen anplis yon sijè ak yon kò?",opts:["Anyen, sa ase","Yon apèl a aksyon (CTA) klè ki di ki aksyon pou pran","Yon lis pri konplè","Yon foto sèlman"],ans:1,fb:"Yon CTA klè se sa ki manke."},
+    {q:"Ki pi gwo erè komen nan yon imèl vant?",opts:["Ekri yon bèl imèl san okenn bouton oswa lyen klè","Gen yon CTA klè","Eksplike benefis pwodwi a","Gen yon sijè klè"],ans:1,fb:"San yon bouton klè, imèl la pa mennen okenn aksyon."},
+    {q:"Kisa yon kò imèl vant ta dwe eksplike, dapre Modil 5?",opts:["Sèlman karakteristik teknik","Benefis, pa jis karakteristik","Anyen espesifik","Sèlman pri a"],ans:1,fb:"Benefis konte plis pase karakteristik sèl."}],
+   close:{learned:"Yon imèl vant efikas gen yon sijè klè, yon kò ki eksplike benefis (pa jis karakteristik), ak yon bouton CTA ki di egzakteman ki aksyon pou pran.",
+    mistake:"Ekri yon bèl deskripsyon pwodwi san okenn bouton oswa lyen klè, ki kite lektè a san konnen ki pwochen etap pou pran.",
+    tip:"Yon CTA kout e dirèk (tankou 'Achte Kounye a' oswa 'Wè Ofri a') toujou pi klè pase yon bouton vag tankou 'Klike Isit'.",
+    assign:"Ekri yon tèks CTA kout (3-6 mo) pou yon imèl vant.",
+    dl:"Fèy Travay: Estrikti Imèl Vant",
+    checklist:["Sijè a klè?","Omwen 1 blòk bouton (CTA) ajoute?","Omwen 2 lòt blòk kontni ajoute?"],
+    ai:"Ekri yon imèl vant kout pou yon [pwodwi/sèvis] ki gen yon sijè, benefis kle, ak yon CTA klè."}},
+ fr:{lede:"Un email de vente combine un sujet clair, un corps qui bâtit l'intérêt, et un appel à l'action (CTA) clair — sans un CTA, même le meilleur texte de vente ne mène à aucune action.",
+   secs:[["Structure d'un email de vente","Un sujet qui dit ce qu'il y a dedans ; un corps qui explique les bénéfices (pas juste les caractéristiques, souvenez-vous du Module 5) ; et un bouton CTA clair qui dit exactement quelle action prendre."],
+    ["Erreur fréquente","Écrire un bel email sans aucun bouton ou lien clair est la plus grande erreur — un lecteur intéressé a besoin de savoir exactement quoi faire ensuite."]],
+   ex:"Écrivez un texte de CTA court (3-6 mots) pour un email de vente.",
+   quiz:[
+    {q:"De quoi un email de vente a-t-il besoin en plus d'un sujet et d'un corps ?",opts:["Rien, ça suffit","Un appel à l'action (CTA) clair qui dit quelle action prendre","Une liste de prix complète","Seulement une photo"],ans:1,fb:"Un CTA clair est ce qui manque."},
+    {q:"Quelle est la plus grande erreur fréquente dans un email de vente ?",opts:["Écrire un bel email sans aucun bouton ou lien clair","Avoir un CTA clair","Expliquer les bénéfices du produit","Avoir un sujet clair"],ans:1,fb:"Sans bouton clair, l'email ne mène à aucune action."},
+    {q:"Que devrait expliquer le corps d'un email de vente, selon le Module 5 ?",opts:["Seulement les caractéristiques techniques","Les bénéfices, pas juste les caractéristiques","Rien de spécifique","Seulement le prix"],ans:1,fb:"Les bénéfices comptent plus que les caractéristiques seules."}],
+   close:{learned:"Un email de vente efficace a un sujet clair, un corps qui explique les bénéfices (pas juste les caractéristiques), et un bouton CTA qui dit exactement quelle action prendre.",
+    mistake:"Écrire une belle description de produit sans aucun bouton ou lien clair, ce qui laisse le lecteur sans savoir quelle prochaine étape prendre.",
+    tip:"Un CTA court et direct (comme « Acheter Maintenant » ou « Voir l'Offre ») est toujours plus clair qu'un bouton vague comme « Cliquez Ici ».",
+    assign:"Écrivez un texte de CTA court (3-6 mots) pour un email de vente.",
+    dl:"Fiche de travail : Structure d'Email de Vente",
+    checklist:["Le sujet est-il clair ?","Au moins 1 bloc bouton (CTA) ajouté ?","Au moins 2 autres blocs de contenu ajoutés ?"],
+    ai:"Écris un court email de vente pour un(e) [produit/service] avec un sujet, des bénéfices clés, et un CTA clair."}},
+ en:{lede:"A sales email combines a clear subject, a body that builds interest, and a clear call to action (CTA) — without a CTA, even the best sales copy leads to no action.",
+   secs:[["Structure of a sales email","A subject that says what's inside; a body that explains benefits (not just features, remember Module 5); and a clear CTA button that says exactly what action to take."],
+    ["Common mistake","Writing a beautiful email with no clear button or link at all is the biggest mistake — an interested reader needs to know exactly what to do next."]],
+   ex:"Write a short CTA text (3-6 words) for a sales email.",
+   quiz:[
+    {q:"What does a sales email need beyond a subject and a body?",opts:["Nothing, that's enough","A clear call to action (CTA) that says what action to take","A full price list","Only a photo"],ans:1,fb:"A clear CTA is what's missing."},
+    {q:"What's the biggest common mistake in a sales email?",opts:["Writing a beautiful email with no clear button or link at all","Having a clear CTA","Explaining the product's benefits","Having a clear subject"],ans:1,fb:"Without a clear button, the email leads to no action."},
+    {q:"What should a sales email's body explain, per Module 5?",opts:["Only technical features","Benefits, not just features","Nothing specific","Only the price"],ans:1,fb:"Benefits matter more than features alone."}],
+   close:{learned:"An effective sales email has a clear subject, a body that explains benefits (not just features), and a CTA button that says exactly what action to take.",
+    mistake:"Writing a beautiful product description with no clear button or link, which leaves the reader not knowing what next step to take.",
+    tip:"A short, direct CTA (like \"Shop Now\" or \"See the Offer\") is always clearer than a vague button like \"Click Here\".",
+    assign:"Write a short CTA text (3-6 words) for a sales email.",
+    dl:"Worksheet: Sales Email Structure",
+    checklist:["Is the subject clear?","At least 1 button (CTA) block added?","At least 2 other content blocks added?"],
+    ai:"Write a short sales email for a [product/service] with a subject, key benefits, and a clear CTA."}}},
+
+7:{ht:{lede:"Yon otomatizasyon toujou kòmanse ak yon deklanchè (trigger) — yon evènman espesifik ki fè premye imèl la voye otomatikman, san okenn moun pa bezwen aji manyèlman.",
+   secs:[["Sa yon deklanchè ye","Yon evènman tankou 'Nouvo Abòne' oswa 'Klike sou yon Lyen' ki fè yon sekans kòmanse otomatikman — san yon deklanchè, yon sekans pa janm kòmanse pou pèsonn."],
+    ["Deklanchè a ale an premye","Nan nenpòt sekans otomatize, deklanchè a se toujou premye etap la — tout lòt imèl/etap yo swiv apre li, jan nou te wè nan Leson 13.5."]],
+   ex:"Ki yon deklanchè ou ta itilize pou kòmanse yon sekans pou yon nouvo kliyan ki fèk achte?",
+   quiz:[
+    {q:"Kisa yon deklanchè (trigger) fè?",opts:["Anyen espesyal","Li fè yon sekans kòmanse otomatikman lè yon evènman espesifik rive","Li ranplase bezwen pou yon imèl","Li sèlman yon dekorasyon"],ans:1,fb:"Deklanchè a fè sekans lan kòmanse otomatikman."},
+    {q:"Ki pozisyon yon deklanchè ta dwe genyen nan yon sekans?",opts:["Nan mitan","Premye etap la","Dènye etap la","Pa gen pozisyon espesifik"],ans:1,fb:"Deklanchè a toujou premye etap la."},
+    {q:"Ban yon egzanp yon deklanchè.",opts:["Yon koulè","Nouvo Abòne oswa Klike sou yon Lyen","Yon lojo","Yon adrès"],ans:1,fb:"Nouvo Abòne se yon egzanp deklanchè."}],
+   close:{learned:"Yon otomatizasyon toujou kòmanse ak yon deklanchè (yon evènman espesifik) ki toujou premye etap la — tout lòt imèl/etap yo swiv apre li otomatikman.",
+    mistake:"Panse yon sekans ka kòmanse san yon rezon espesifik — san yon deklanchè, sistèm lan pa gen okenn fason pou konnen kilè pou voye premye imèl la.",
+    tip:"Chwazi yon deklanchè ki matche vrèman moman aksyon an (tankou 'Nouvo Abòne' pou yon sekans byenveni, pa yon evènman ki pa gen rapò).",
+    assign:"Ki yon deklanchè ou ta itilize pou kòmanse yon sekans pou yon nouvo kliyan ki fèk achte?",
+    dl:"Referans: Deklanchè Komen nan Otomatizasyon Imèl",
+    checklist:["Yon etap deklanchè ajoute?","Deklanchè a se premye etap la nan sekans lan?"],
+    ai:"Sijere 4 deklanchè diferan ki ta ka kòmanse yon sekans otomatize pou yon [kalite biznis]."}},
+ fr:{lede:"Une automatisation commence toujours par un déclencheur (trigger) — un événement spécifique qui fait envoyer le premier email automatiquement, sans que personne n'ait besoin d'agir manuellement.",
+   secs:[["Ce qu'est un déclencheur","Un événement comme « Nouvel Abonné » ou « Clic sur un Lien » qui fait démarrer une séquence automatiquement — sans un déclencheur, une séquence ne démarre jamais pour personne."],
+    ["Le déclencheur va en premier","Dans n'importe quelle séquence automatisée, le déclencheur est toujours la première étape — tous les autres emails/étapes suivent après lui, comme nous l'avons vu à la Leçon 13.5."]],
+   ex:"Quel déclencheur utiliseriez-vous pour démarrer une séquence pour un nouveau client qui vient d'acheter ?",
+   quiz:[
+    {q:"Que fait un déclencheur (trigger) ?",opts:["Rien de spécial","Il fait démarrer une séquence automatiquement quand un événement spécifique se produit","Il remplace le besoin d'un email","C'est seulement une décoration"],ans:1,fb:"Le déclencheur fait démarrer la séquence automatiquement."},
+    {q:"Quelle position un déclencheur devrait-il avoir dans une séquence ?",opts:["Au milieu","La première étape","La dernière étape","Aucune position spécifique"],ans:1,fb:"Le déclencheur est toujours la première étape."},
+    {q:"Donne un exemple de déclencheur.",opts:["Une couleur","Nouvel Abonné ou Clic sur un Lien","Un logo","Une adresse"],ans:1,fb:"Nouvel Abonné est un exemple de déclencheur."}],
+   close:{learned:"Une automatisation commence toujours par un déclencheur (un événement spécifique) qui est toujours la première étape — tous les autres emails/étapes suivent après lui automatiquement.",
+    mistake:"Penser qu'une séquence peut démarrer sans une raison spécifique — sans un déclencheur, le système n'a aucun moyen de savoir quand envoyer le premier email.",
+    tip:"Choisissez un déclencheur qui correspond vraiment au moment de l'action (comme « Nouvel Abonné » pour une séquence de bienvenue, pas un événement sans rapport).",
+    assign:"Quel déclencheur utiliseriez-vous pour démarrer une séquence pour un nouveau client qui vient d'acheter ?",
+    dl:"Référence : Déclencheurs Courants en Automatisation Email",
+    checklist:["Une étape de déclencheur ajoutée ?","Le déclencheur est-il la première étape de la séquence ?"],
+    ai:"Suggère 4 déclencheurs différents qui pourraient démarrer une séquence automatisée pour un(e) [type d'entreprise]."}},
+ en:{lede:"An automation always starts with a trigger — a specific event that makes the first email send automatically, without anyone needing to act manually.",
+   secs:[["What a trigger is","An event like \"New Subscriber\" or \"Clicked a Link\" that makes a sequence start automatically — without a trigger, a sequence never starts for anyone."],
+    ["The trigger goes first","In any automated sequence, the trigger is always the first step — every other email/step follows after it, as we saw in Lesson 13.5."]],
+   ex:"What trigger would you use to start a sequence for a new customer who just made a purchase?",
+   quiz:[
+    {q:"What does a trigger do?",opts:["Nothing special","It makes a sequence start automatically when a specific event happens","It replaces the need for an email","It's only a decoration"],ans:1,fb:"The trigger makes the sequence start automatically."},
+    {q:"What position should a trigger have in a sequence?",opts:["In the middle","The first step","The last step","No specific position"],ans:1,fb:"The trigger is always the first step."},
+    {q:"Give an example of a trigger.",opts:["A color","New Subscriber or Clicked a Link","A logo","An address"],ans:1,fb:"New Subscriber is an example of a trigger."}],
+   close:{learned:"An automation always starts with a trigger (a specific event) that's always the first step — every other email/step follows after it automatically.",
+    mistake:"Thinking a sequence can start without a specific reason — without a trigger, the system has no way of knowing when to send the first email.",
+    tip:"Choose a trigger that truly matches the moment of action (like \"New Subscriber\" for a welcome sequence, not an unrelated event).",
+    assign:"What trigger would you use to start a sequence for a new customer who just made a purchase?",
+    dl:"Reference: Common Triggers in Email Automation",
+    checklist:["A trigger step added?","Is the trigger the first step in the sequence?"],
+    ai:"Suggest 4 different triggers that could start an automated sequence for a [type of business]."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module13-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD13_LESSON_SLUGS=["meet-the-email-marketing-tool","lead-magnets","building-your-signup-form","writing-newsletters-that-get-opened","welcome-sequences","writing-sales-emails","automation-and-triggers"];
+function freshTool(){
+ return {magnet:{title:"",format:"",benefit:""},
+  form:{headline:"",buttonText:"",fields:{name:false,phone:false,company:false}},
+  email:{subject:"",blocks:[]},
+  sequence:[],
+  visited:{magnet:false,form:false,builder:false,sequence:false}};
+}
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{},tab:"magnet",tool:freshTool()};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+if(!S.tool)S.tool=freshTool();
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD13_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===13;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M13[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.edDone,UI[S.lang].objEd],[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+/* ============ email tool engine ============ */
+function checkTask(n){
+ const st=S.st[n];
+ const done=C[n].check(S.tool);
+ if(done&&!st.edDone){st.edDone=true;persist();}
+ else if(!done&&st.edDone){st.edDone=false;persist();}
+ return done;
+}
+function renderToolPanel(){
+ const lang=S.lang,ui=UI[lang],t=S.tool;
+ let h='<div class="emlwrap"><div class="emltabs">';
+ [["magnet",ui.tabMagnet],["form",ui.tabForm],["builder",ui.tabBuilder],["sequence",ui.tabSequence]].forEach(([id,lbl])=>{
+  h+='<button class="emltab'+(S.tab===id?" on":"")+'" data-tab="'+id+'">'+lbl+"</button>";
+ });
+ h+='</div><div class="emlbody" id="emlBody">';
+
+ if(S.tab==="magnet"){
+  h+='<div class="emlrow"><div class="emllbl">'+ui.magnetTitle+'</div><input class="emlinput" id="emlMagTitle" value="'+(t.magnet.title||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="emlrow"><div class="emllbl">'+ui.magnetFormat+'</div><select class="emlselect" id="emlMagFormat"><option value="">'+ui.fmtPh+"</option>"+
+   ["fmtChecklist","fmtGuide","fmtDiscount","fmtTemplate"].map(k=>'<option value="'+k+'"'+(t.magnet.format===k?" selected":"")+">"+ui[k]+"</option>").join("")+"</select></div>";
+  h+='<div class="emlrow"><div class="emllbl">'+ui.magnetBenefit+'</div><textarea class="emltextarea" id="emlMagBenefit" rows="2">'+(t.magnet.benefit||"")+"</textarea></div>";
+ } else if(S.tab==="form"){
+  h+='<div class="emlrow"><div class="emllbl">'+ui.formHeadline+'</div><input class="emlinput" id="emlFormHeadline" value="'+(t.form.headline||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="emlrow"><div class="emllbl">'+ui.formButton+'</div><input class="emlinput" id="emlFormBtn" value="'+(t.form.buttonText||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div class="emlrow"><div class="emllbl">'+ui.formFields+'</div><div class="emltoggles"><span class="emlbadge">'+ui.fldEmail+'</span>'+
+   ["name","phone","company"].map(f=>'<div class="emltoggle'+(t.form.fields[f]?" on":"")+'" data-field="'+f+'">'+ui["fld"+f.charAt(0).toUpperCase()+f.slice(1)]+"</div>").join("")+
+   "</div></div>";
+ } else if(S.tab==="builder"){
+  h+='<div class="emlrow"><div class="emllbl">'+ui.subject+'</div><input class="emlinput" id="emlSubject" value="'+(t.email.subject||"").replace(/"/g,"&quot;")+'"/></div>';
+  h+='<div id="emlBlocks">'+t.email.blocks.map((b,i)=>{
+   const typeLbl=b.type==="heading"?ui.blkHeading:b.type==="button"?ui.blkButton:ui.blkText;
+   const field=b.type==="text"?'<textarea data-bi="'+i+'" rows="2">'+(b.text||"")+"</textarea>":'<input data-bi="'+i+'" value="'+(b.text||"").replace(/"/g,"&quot;")+'"/>';
+   return '<div class="emlblock"><div class="emlblockhead"><span class="emlblocktype">'+typeLbl+'</span><button class="emlremove" data-rmv="'+i+'">'+ui.remove+"</button></div>"+field+"</div>";
+  }).join("")+"</div>";
+  h+='<div class="emladdrow"><button data-add="heading">'+ui.addHeading+'</button><button data-add="text">'+ui.addText+'</button><button data-add="button">'+ui.addButton+"</button></div>";
+ } else if(S.tab==="sequence"){
+  h+='<div id="emlSeq">'+t.sequence.map((sid,i)=>{
+   const step=STEPS.find(s=>s.id===sid);
+   return '<div class="emlseqcard'+(step.type==="trigger"?" trig":"")+'"><span class="emlseqtag">'+(step.type==="trigger"?ui.tagTrigger:ui.tagEmail)+'</span><span class="emlseqlbl">'+step[lang]+'</span><div class="emlseqbtns">'+
+    '<button data-mv="up" data-i="'+i+'"'+(i===0?" disabled":"")+">"+ui.seqUp+"</button>"+
+    '<button data-mv="down" data-i="'+i+'"'+(i===t.sequence.length-1?" disabled":"")+">"+ui.seqDown+"</button>"+
+    '<button data-rmvseq="'+i+'">'+ui.remove+"</button></div></div>";
+  }).join("")+"</div>";
+  h+='<div class="emladdseq"><select class="emlselect" id="emlSeqPick">'+STEPS.map(s=>'<option value="'+s.id+'">'+s[lang]+"</option>").join("")+'</select><button class="btn g" id="emlSeqAdd">'+ui.seqAdd+"</button></div>";
+ }
+ h+="</div></div>";
+ return h;
+}
+function wireToolPanel(){
+ const box=$("emlBody");if(!box)return;
+ document.querySelectorAll(".emltab").forEach(bt=>bt.addEventListener("click",()=>{
+  S.tab=bt.dataset.tab;S.tool.visited[S.tab]=true;persist();checkTask(S.cur);renderRail();refreshTool();
+ }));
+ if(S.tab==="magnet"){
+  const ti=$("emlMagTitle"),fo=$("emlMagFormat"),be=$("emlMagBenefit");
+  if(ti)ti.addEventListener("input",e=>{S.tool.magnet.title=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(fo)fo.addEventListener("change",e=>{S.tool.magnet.format=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(be)be.addEventListener("input",e=>{S.tool.magnet.benefit=e.target.value;persist();checkTask(S.cur);renderRail();});
+ } else if(S.tab==="form"){
+  const hd=$("emlFormHeadline"),bt=$("emlFormBtn");
+  if(hd)hd.addEventListener("input",e=>{S.tool.form.headline=e.target.value;persist();checkTask(S.cur);renderRail();});
+  if(bt)bt.addEventListener("input",e=>{S.tool.form.buttonText=e.target.value;persist();checkTask(S.cur);renderRail();});
+  document.querySelectorAll(".emltoggle").forEach(tg=>tg.addEventListener("click",()=>{
+   const f=tg.dataset.field;S.tool.form.fields[f]=!S.tool.form.fields[f];persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="builder"){
+  const su=$("emlSubject");
+  if(su)su.addEventListener("input",e=>{S.tool.email.subject=e.target.value;persist();checkTask(S.cur);renderRail();});
+  document.querySelectorAll("#emlBlocks input, #emlBlocks textarea").forEach(el=>el.addEventListener("input",e=>{
+   const bi=+e.target.dataset.bi;S.tool.email.blocks[bi].text=e.target.value;persist();checkTask(S.cur);renderRail();
+  }));
+  document.querySelectorAll("[data-rmv]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.tool.email.blocks.splice(+bt.dataset.rmv,1);persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+  document.querySelectorAll("[data-add]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.tool.email.blocks.push({type:bt.dataset.add,text:""});persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+ } else if(S.tab==="sequence"){
+  document.querySelectorAll("[data-mv]").forEach(bt=>bt.addEventListener("click",()=>{
+   const i=+bt.dataset.i,dir=bt.dataset.mv,seq=S.tool.sequence;
+   const j=dir==="up"?i-1:i+1;
+   if(j<0||j>=seq.length)return;
+   [seq[i],seq[j]]=[seq[j],seq[i]];
+   persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+  document.querySelectorAll("[data-rmvseq]").forEach(bt=>bt.addEventListener("click",()=>{
+   S.tool.sequence.splice(+bt.dataset.rmvseq,1);persist();checkTask(S.cur);renderRail();refreshTool();
+  }));
+  const addBtn=$("emlSeqAdd");
+  if(addBtn)addBtn.addEventListener("click",()=>{
+   const pick=$("emlSeqPick").value;
+   S.tool.sequence.push(pick);persist();checkTask(S.cur);renderRail();refreshTool();
+  });
+ }
+}
+function refreshTool(){
+ const root=$("emlRoot");if(!root)return;
+ root.innerHTML=renderToolPanel();
+ wireToolPanel();
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 13 · 13."+n;
+ $("topTitle").textContent=M13[lang][n-1];
+ document.title="Academy · "+M13[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 13 · 13.'+n+'</span><h2 class="labh2">'+M13[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus"><div id="emlRoot"></div><div class="emltask"><b>'+ui.objEd+':</b> '+C[n].task[lang]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ checkTask(n);
+ const canFinish=st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ const root=$("emlRoot");
+ root.innerHTML=renderToolPanel();wireToolPanel();
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();updateFinishBtn();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+function updateFinishBtn(){
+ const st=S.st[S.cur];
+ const fb=$("finishBtn");
+ if(fb)fb.disabled=!(st.edDone&&st.exDone&&st.quizAns.every(a=>a!==null));
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ per-lesson tasks & checks ============ */
+C[1].task={ht:"Klike sou chak nan 4 tab yo (Kado Dijital, Fòm, Bilding Imèl, Sekans) omwen yon fwa.",fr:"Cliquez sur chacun des 4 onglets (Cadeau Numérique, Formulaire, Créateur d'Email, Séquence) au moins une fois.",en:"Click on each of the 4 tabs (Lead Magnet, Form, Email Builder, Sequence) at least once."};
+C[1].check=t=>Object.values(t.visited).every(Boolean);
+C[2].task={ht:"Ekri yon tit kado, chwazi yon fòma, epi ekri yon benefis kout (omwen 15 karaktè).",fr:"Écrivez un titre de cadeau, choisissez un format, et écrivez un bénéfice court (au moins 15 caractères).",en:"Write a magnet title, choose a format, and write a short benefit (at least 15 characters)."};
+C[2].check=t=>!!(t.magnet.title.trim()&&t.magnet.format&&t.magnet.benefit.trim().length>=15);
+C[3].task={ht:"Ekri yon tit (omwen 10 karaktè) ak yon tèks bouton, epi kite tout chan siplemantè yo (Non, Telefòn, Biznis) FÈMEN.",fr:"Écrivez un titre (au moins 10 caractères) et un texte de bouton, et laissez tous les champs supplémentaires (Nom, Téléphone, Entreprise) DÉSACTIVÉS.",en:"Write a headline (at least 10 characters) and button text, and leave all extra fields (Name, Phone, Company) OFF."};
+C[3].check=t=>t.form.headline.trim().length>=10&&!!t.form.buttonText.trim()&&!t.form.fields.name&&!t.form.fields.phone&&!t.form.fields.company;
+C[4].task={ht:"Ekri yon sijè espesifik (omwen 10 karaktè, pa jis mo 'Bilten') epi ajoute omwen 2 blòk nan kò imèl la.",fr:"Écrivez un sujet spécifique (au moins 10 caractères, pas juste le mot « Newsletter ») et ajoutez au moins 2 blocs dans le corps de l'email.",en:"Write a specific subject (at least 10 characters, not just the word \"Newsletter\") and add at least 2 blocks to the email body."};
+C[4].check=t=>t.email.subject.trim().length>=10&&t.email.subject.trim().toLowerCase()!=="newsletter"&&t.email.subject.trim().toLowerCase()!=="bilten"&&t.email.blocks.length>=2;
+C[5].task={ht:"Bati yon sekans 3-etap nan lòd sa a: Imèl Byenveni, Livre Kado a, Pataje Pi Bon Kontni.",fr:"Construisez une séquence en 3 étapes dans cet ordre : Email de Bienvenue, Livrer le Cadeau, Partager le Meilleur Contenu.",en:"Build a 3-step sequence in this order: Welcome Email, Deliver the Lead Magnet, Share Best Content."};
+C[5].check=t=>{const ids=t.sequence.filter(id=>{const s=STEPS.find(x=>x.id===id);return s&&s.type==="email";});return ids[0]==="welcome"&&ids[1]==="deliver"&&ids[2]==="content";};
+C[6].task={ht:"Asire sijè a klè epi ajoute omwen 1 blòk bouton (CTA) ak omwen 2 lòt blòk kontni.",fr:"Assurez-vous que le sujet est clair et ajoutez au moins 1 bloc bouton (CTA) et au moins 2 autres blocs de contenu.",en:"Make sure the subject is clear and add at least 1 button (CTA) block plus at least 2 other content blocks."};
+C[6].check=t=>t.email.subject.trim().length>=10&&t.email.blocks.some(b=>b.type==="button"&&b.text.trim())&&t.email.blocks.filter(b=>b.type!=="button").length>=2;
+C[7].task={ht:"Ajoute yon etap deklanchè epi fè l vin premye etap la nan sekans ou an.",fr:"Ajoutez une étape de déclencheur et faites-en la première étape de votre séquence.",en:"Add a trigger step and make it the first step in your sequence."};
+C[7].check=t=>t.sequence.length>0&&t.sequence[0]==="trigger";
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 13?":S.lang==="fr"?"Voulez-vous recommencer le Module 13 ?":"Restart Module 13?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{},tab:"magnet",tool:freshTool()};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null),edDone:false};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
