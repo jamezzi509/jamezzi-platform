@@ -62,6 +62,15 @@
   /* English for Beginners premium lesson shell only */
   --font-fraunces: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-lesson-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --color-lesson-brand: #6d5fd8;
+  --color-lesson-brand-2: #534ab7;
+  --color-lesson-brand-secondary: #3b6fe0;
+  --color-lesson-gold: #e8ab3f;
+  --color-lesson-mint: #3fb88a;
+  --color-lesson-ink: #1a1a2e;
+  --color-lesson-ink-dim: #6b6b80;
+  --color-lesson-paper: #fbfaf8;
+  --color-lesson-line: #eceaf5;
 
   /* Max container width */
   --container-max: 1340px;

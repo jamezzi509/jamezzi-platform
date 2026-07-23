@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { englishProgressStorageKey } from "@/components/academy/english-level-one-lessons";
+import { LessonIllustration, LessonMascot } from "@/components/academy/english-lesson-illustrations";
 import {
   CheckIcon,
   CopyIcon,
@@ -95,7 +96,7 @@ function AudioControls({ text }: { text: string }) {
       <button
         type="button"
         onClick={() => playEnglishAudio(text)}
-        className="text-indigo-dark inline-flex min-h-9 items-center gap-1 rounded-full bg-white px-2.5 py-1.5 text-xs font-semibold"
+        className="text-lesson-brand-2 inline-flex min-h-9 items-center gap-1 rounded-full bg-white px-2.5 py-1.5 text-xs font-semibold shadow-[0_1px_3px_rgba(20,20,50,.12)]"
         aria-label={`Koute pwononsyasyon pou ${text}`}
       >
         <VolumeIcon className="size-3.5" /> Jwe
@@ -103,7 +104,7 @@ function AudioControls({ text }: { text: string }) {
       <button
         type="button"
         onClick={() => playEnglishAudio(text, true)}
-        className="border-border text-muted inline-flex min-h-9 items-center rounded-full border bg-white px-2.5 py-1.5 text-[11px] font-semibold"
+        className="border-lesson-line text-lesson-ink-dim inline-flex min-h-9 items-center rounded-full border bg-white px-2.5 py-1.5 text-[11px] font-semibold"
         aria-label={`Koute ${text} pi dousman`}
       >
         0.7×
@@ -114,7 +115,7 @@ function AudioControls({ text }: { text: string }) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-lesson-mono text-indigo-dark/70 mb-2.5 text-[11px] tracking-[0.12em] uppercase">
+    <div className="font-lesson-mono text-lesson-brand-2 mb-3.5 flex items-center gap-2 text-[11px] tracking-[0.12em] uppercase before:h-[2px] before:w-[18px] before:rounded-full before:bg-[var(--color-lesson-brand)] before:content-['']">
       {children}
     </div>
   );
@@ -122,124 +123,93 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="bg-indigo-light text-indigo-dark inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12.5px] font-semibold">
+    <span className="bg-lesson-brand/10 text-lesson-brand-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12.5px] font-semibold">
       {children}
     </span>
   );
 }
 
-function WelcomeIllustration() {
+/** Path-style step progress: connected circular nodes, not a plain thin bar. */
+function PathProgress({ currentStep }: { currentStep: number }) {
   return (
-    <svg
-      viewBox="0 0 240 160"
-      className="block h-[140px] w-full"
-      aria-hidden="true"
-    >
-      <rect width="240" height="160" rx="18" className="fill-indigo-light" />
-      <circle cx="120" cy="66" r="34" className="fill-indigo" />
-      <circle cx="108" cy="60" r="4" className="fill-white" />
-      <circle cx="132" cy="60" r="4" className="fill-white" />
-      <path
-        d="M104 76 Q120 88 136 76"
-        stroke="white"
-        strokeWidth="4"
-        fill="none"
-        strokeLinecap="round"
-      />
-      <path
-        d="M150 44 Q168 30 178 44"
-        className="stroke-indigo-dark"
-        strokeWidth="6"
-        fill="none"
-        strokeLinecap="round"
-      />
-      <rect
-        x="30"
-        y="118"
-        width="60"
-        height="14"
-        rx="7"
-        className="fill-indigo"
-        opacity="0.35"
-      />
-      <rect
-        x="150"
-        y="118"
-        width="60"
-        height="14"
-        rx="7"
-        className="fill-indigo-dark"
-        opacity="0.3"
-      />
-    </svg>
+    <div className="mb-2.5 flex items-center gap-1 sm:gap-1.5">
+      {steps.map((item, index) => {
+        const done = index < currentStep;
+        const current = index === currentStep;
+        return (
+          <div key={item.key} className="flex flex-1 items-center gap-1 sm:gap-1.5">
+            <div
+              className={cn(
+                "grid size-[22px] shrink-0 place-items-center rounded-full text-[10px] font-bold shadow-[0_1px_2px_rgba(0,0,0,.1)] sm:size-[26px] sm:text-[11px]",
+                done && "bg-gradient-to-br from-[var(--color-lesson-mint)] to-[#2a9c72] text-white",
+                current &&
+                  "bg-gradient-to-br from-[var(--color-lesson-brand)] to-[var(--color-lesson-brand-2)] scale-[1.15] text-white shadow-[0_0_0_4px_rgba(109,95,216,.18),0_3px_8px_rgba(109,95,216,.35)]",
+                !done && !current && "bg-lesson-line text-lesson-ink-dim",
+              )}
+            >
+              {done ? (
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              ) : (
+                index + 1
+              )}
+            </div>
+            {index < steps.length - 1 && (
+              <div
+                className={cn(
+                  "h-[3px] flex-1 rounded-full",
+                  done
+                    ? "bg-gradient-to-r from-[var(--color-lesson-mint)] to-[#2a9c72]"
+                    : "bg-lesson-line",
+                )}
+              />
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
-function AlphabetIllustration() {
-  const blocks = [
-    { letter: "A", offsetY: 50 },
-    { letter: "B", offsetY: 40 },
-    { letter: "C", offsetY: 50 },
-  ];
-  return (
-    <svg
-      viewBox="0 0 240 160"
-      className="block h-[140px] w-full"
-      aria-hidden="true"
-    >
-      <rect width="240" height="160" rx="18" className="fill-indigo-light" />
-      {blocks.map((block, index) => (
-        <g
-          key={block.letter}
-          transform={`translate(${58 + index * 54}, ${block.offsetY})`}
-        >
-          <rect
-            width="44"
-            height="44"
-            rx="8"
-            className={index === 1 ? "fill-indigo-dark" : "fill-indigo"}
-          />
-          <text
-            x="22"
-            y="30"
-            textAnchor="middle"
-            fontWeight="700"
-            fontSize="22"
-            className="fill-white font-sans"
-          >
-            {block.letter}
-          </text>
-        </g>
-      ))}
-      <rect
-        x="30"
-        y="122"
-        width="60"
-        height="12"
-        rx="6"
-        className="fill-indigo-dark"
-        opacity="0.3"
-      />
-      <rect
-        x="150"
-        y="122"
-        width="60"
-        height="12"
-        rx="6"
-        className="fill-indigo"
-        opacity="0.25"
-      />
-    </svg>
-  );
-}
+const avatarTones = [
+  "from-[#F08A5D] to-[#E85D75]",
+  "from-[var(--color-lesson-mint)] to-[#2a9c72]",
+  "from-[var(--color-lesson-brand)] to-[var(--color-lesson-brand-2)]",
+];
 
-function EmojiIllustration({ emoji }: { emoji: string }) {
+function DialogueCard({
+  line,
+  tag,
+  emoji,
+  index,
+}: {
+  line: string;
+  tag: string;
+  emoji: string;
+  index: number;
+}) {
+  const tone = avatarTones[index % avatarTones.length];
   return (
-    <div
-      className="bg-indigo-light grid h-[140px] w-full place-items-center rounded-[18px] text-6xl"
-      aria-hidden="true"
-    >
-      {emoji}
+    <div className="border-lesson-line group flex items-center gap-3.5 rounded-2xl border bg-white px-4 py-3.5 shadow-[0_2px_10px_rgba(20,20,50,.05)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[0_6px_18px_rgba(109,95,216,.14)]">
+      <div
+        className={cn(
+          "grid size-10 shrink-0 place-items-center rounded-full bg-gradient-to-br text-lg shadow-[0_2px_6px_rgba(0,0,0,.15)]",
+          tone,
+        )}
+        aria-hidden="true"
+      >
+        {emoji}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+          <span className="text-[15.5px] font-semibold text-[var(--color-lesson-ink)]">
+            {line}
+          </span>
+          <AudioControls text={line} />
+        </div>
+        <div className="text-lesson-brand-2 mt-0.5 text-xs font-semibold">{tag}</div>
+      </div>
     </div>
   );
 }
@@ -305,12 +275,6 @@ export function EnglishPremiumLessonPlayer({
   const activePattern = lesson.patternBuilderOptions[patternIndex];
   const practiceCorrect = practiceSelected === lesson.practice.correctIndex;
   const unlocked = practiceChecked && practiceCorrect && missionDone;
-  const Illustration =
-    lesson.illustrationKey === "welcome"
-      ? WelcomeIllustration
-      : lesson.illustrationKey === "alphabet"
-        ? AlphabetIllustration
-        : null;
 
   useEffect(() => {
     if (!unlocked) return;
@@ -338,12 +302,12 @@ export function EnglishPremiumLessonPlayer({
   const continueDisabled = practiceStepBlocked || applyStepBlocked;
 
   return (
-    <main className="bg-white pt-[72px]">
-      <div className="mx-auto max-w-[620px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
+    <main className="bg-lesson-paper pt-[72px]">
+      <div className="mx-auto max-w-[680px] px-4 pt-3 pb-28 sm:px-5 sm:pt-5 sm:pb-16">
         {/* COURSE NAVIGATION */}
-        <div className="border-border sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
+        <div className="border-lesson-line sticky top-[72px] z-20 -mx-1 mb-5 border-b bg-white/95 px-1 pt-2.5 pb-3 backdrop-blur-sm sm:mb-6">
           <p
-            className="text-muted mb-2 truncate text-[12px] sm:text-[12.5px]"
+            className="text-lesson-ink-dim mb-2 truncate text-[12px] sm:text-[12.5px]"
             title={`Nivo ${currentLevel?.number} · Modil ${currentModuleNumber}: ${lesson.moduleTitle}`}
           >
             Nivo {currentLevel?.number} · Modil {currentModuleNumber}:{" "}
@@ -352,7 +316,7 @@ export function EnglishPremiumLessonPlayer({
           </p>
           <div className="mb-2 flex items-center gap-2.5">
             <div
-              className="bg-indigo-light h-1.5 flex-1 overflow-hidden rounded-full"
+              className="bg-lesson-line h-1.5 flex-1 overflow-hidden rounded-full"
               role="progressbar"
               aria-label={`Pwogrè Modil ${currentModuleNumber}`}
               aria-valuemin={0}
@@ -360,11 +324,11 @@ export function EnglishPremiumLessonPlayer({
               aria-valuenow={moduleProgressPercent}
             >
               <div
-                className="bg-indigo h-full rounded-full"
+                className="bg-lesson-brand h-full rounded-full"
                 style={{ width: `${moduleProgressPercent}%` }}
               />
             </div>
-            <span className="text-muted shrink-0 text-[11.5px] whitespace-nowrap">
+            <span className="text-lesson-ink-dim shrink-0 text-[11.5px] whitespace-nowrap">
               Modil {currentModuleNumber} · {moduleProgressPercent}%
             </span>
           </div>
@@ -372,25 +336,25 @@ export function EnglishPremiumLessonPlayer({
             {prevLesson ? (
               <Link
                 href={`/academy/courses/english-for-beginners/lessons/${prevLesson.slug}`}
-                className="text-indigo-dark min-w-0 truncate font-semibold"
+                className="text-lesson-brand-2 min-w-0 truncate font-semibold"
                 title={prevLesson.title}
               >
                 ← <span className="sm:hidden">Anvan</span>
                 <span className="hidden sm:inline">{prevLesson.title}</span>
               </Link>
             ) : (
-              <span className="text-border">← Premye leson</span>
+              <span className="text-lesson-line">← Premye leson</span>
             )}
             <Link
               href="/academy/courses/english-for-beginners/learn"
-              className="text-muted hover:text-indigo-dark font-semibold"
+              className="text-lesson-ink-dim hover:text-lesson-brand-2 font-semibold"
             >
               <span className="sm:hidden">Plan</span>
               <span className="hidden sm:inline">Tout leson</span>
             </Link>
             <Link
               href={nextCourseHref}
-              className="text-indigo-dark min-w-0 truncate text-right font-semibold"
+              className="text-lesson-brand-2 min-w-0 truncate text-right font-semibold"
               title={nextCourseLabel}
             >
               <span className="sm:hidden">Apre</span>
@@ -399,29 +363,19 @@ export function EnglishPremiumLessonPlayer({
           </div>
         </div>
 
-        {/* LESSON STEP PROGRESS */}
+        {/* LESSON STEP PROGRESS -- path-style, not a plain bar */}
         <div className="mb-7">
-          <div className="mb-2 flex gap-1.5">
-            {steps.map((item, index) => (
-              <div
-                key={item.key}
-                className={cn(
-                  "h-1.5 flex-1 rounded-full",
-                  index <= step ? "bg-indigo" : "bg-indigo-light",
-                )}
-              />
-            ))}
-          </div>
+          <PathProgress currentStep={step} />
           <p
             ref={stepStatusRef}
             tabIndex={-1}
             aria-live="polite"
-            className="font-lesson-mono text-indigo-dark/70 focus-visible:ring-indigo rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
+            className="font-lesson-mono text-lesson-brand-2 focus-visible:ring-lesson-brand rounded-sm text-[11px] tracking-[0.1em] uppercase focus-visible:ring-2 focus-visible:outline-none"
           >
             Etap {step + 1} sou {steps.length} · {steps[step].label}
           </p>
           {progressSaved && (
-            <p className="text-metadata text-indigo-dark mt-2" role="status">
+            <p className="text-lesson-brand-2 mt-2 text-[12.5px] font-medium" role="status">
               ✓ Pwogrè leson sa a anrejistre sou aparèy sa a.
             </p>
           )}
@@ -431,30 +385,62 @@ export function EnglishPremiumLessonPlayer({
         {step === 0 && (
           <>
             <div className="mb-7">
-              {Illustration ? (
-                <Illustration />
-              ) : (
-                <EmojiIllustration emoji={lesson.heroEmoji ?? "🇬🇧"} />
-              )}
-              <h1 className="font-fraunces text-indigo mt-4.5 mb-1.5 text-[30px] leading-[1.15] font-semibold italic">
+              <LessonIllustration
+                slug={lesson.slug}
+                illustrationKey={lesson.illustrationKey}
+                heroEmoji={lesson.heroEmoji}
+              />
+              <h1 className="font-fraunces text-lesson-brand-2 mt-5 mb-2 text-[28px] leading-[1.2] font-semibold italic sm:text-[30px]">
                 {lesson.heroTitle}
               </h1>
-              <p className="text-muted mb-2.5 text-[15.5px] leading-[1.55]">
+              <p className="text-lesson-ink-dim mb-4 text-[15.5px] leading-[1.6]">
                 {lesson.heroLede}
               </p>
-              <div className="bg-indigo-light text-ink rounded-[10px] px-3.5 py-3 text-sm">
-                {lesson.heroGoal}
+
+              <div className="from-lesson-gold/15 border-lesson-gold/40 mb-3 flex items-start gap-3 rounded-2xl border bg-gradient-to-br to-[#FDF1DC] px-4 py-4 shadow-[0_2px_8px_rgba(232,171,63,.14)]">
+                <div className="from-lesson-gold grid size-8 shrink-0 place-items-center rounded-[9px] bg-gradient-to-br to-[#d99a2e] shadow-[0_2px_6px_rgba(217,154,46,.4)]">
+                  <svg viewBox="0 0 24 24" className="size-4.5" fill="none" stroke="#fff" strokeWidth="2.2">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="mb-0.5 text-[11px] font-extrabold tracking-[0.04em] text-[#a3781f] uppercase">
+                    Objektif leson
+                  </div>
+                  <p className="text-[14px] leading-[1.5] text-[#4a3d1f]">
+                    {lesson.heroGoal.replace(
+                      /^🎯\s*(Objektif\s+[Ll]eson|Lesson\s+[Gg]oal)\s*:\s*/,
+                      "",
+                    )}
+                  </p>
+                </div>
               </div>
             </div>
 
             <div className="mb-7.5">
-              <SectionLabel>Anvan Ou Kòmanse</SectionLabel>
-              <div className="mb-3 grid gap-2.5">
-                <div className="bg-indigo-light rounded-[10px] px-3.5 py-2.5 text-sm">
-                  <b>Sa ou pral aprann:</b> {lesson.whatYouWillLearn}
+              <div className="bg-lesson-brand/[.06] border-lesson-brand/15 mb-3 flex items-start gap-3 rounded-2xl border px-4 py-4 shadow-[0_2px_8px_rgba(83,74,183,.08)]">
+                <div className="from-lesson-brand to-lesson-brand-2 grid size-8 shrink-0 place-items-center rounded-[9px] bg-gradient-to-br shadow-[0_2px_6px_rgba(109,95,216,.4)]">
+                  <svg viewBox="0 0 24 24" className="size-4.5" fill="none" stroke="#fff" strokeWidth="2.2">
+                    <path d="M12 5v16" />
+                    <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
+                  </svg>
                 </div>
-                <div className="bg-indigo/10 rounded-[10px] px-3.5 py-2.5 text-sm">
-                  <b>Prerekizi:</b> {lesson.prerequisite}
+                <div className="space-y-2">
+                  <div>
+                    <div className="text-lesson-brand-2 mb-0.5 text-[11px] font-extrabold tracking-[0.04em] uppercase">
+                      Anvan Ou Kòmanse
+                    </div>
+                    <p className="text-[14px] leading-[1.5] text-[#3a3550]">
+                      <b className="text-[var(--color-lesson-ink)]">Sa ou pral aprann:</b>{" "}
+                      {lesson.whatYouWillLearn}
+                    </p>
+                  </div>
+                  <p className="text-[13.5px] leading-[1.5] text-[#3a3550]">
+                    <b className="text-[var(--color-lesson-ink)]">Prerekizi:</b>{" "}
+                    {lesson.prerequisite}
+                  </p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -466,10 +452,10 @@ export function EnglishPremiumLessonPlayer({
 
             <div className="mb-7.5">
               <SectionLabel>Konprann</SectionLabel>
-              <h2 className="font-fraunces text-ink mb-2.5 text-[21px] leading-snug font-medium">
+              <h2 className="font-fraunces text-[var(--color-lesson-ink)] mb-2.5 text-[21px] leading-snug font-medium">
                 {lesson.understandHeading}
               </h2>
-              <p className="text-muted text-[14.5px] leading-[1.6]">
+              <p className="text-lesson-ink-dim text-[14.5px] leading-[1.6]">
                 {renderLessonText(lesson.understandBody)}
               </p>
             </div>
@@ -477,24 +463,14 @@ export function EnglishPremiumLessonPlayer({
             <div>
               <SectionLabel>Wè Sa An Aksyon</SectionLabel>
               <div className="grid gap-2.5">
-                {lesson.seeItInAction.map((example) => (
-                  <div
+                {lesson.seeItInAction.map((example, index) => (
+                  <DialogueCard
                     key={example.line}
-                    className="border-border flex items-center gap-2.5 rounded-xl border bg-[#FCFCFE] px-3.5 py-3"
-                  >
-                    <span className="text-lg" aria-hidden="true">
-                      {example.emoji}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-col items-start justify-between gap-3 text-[15px] font-semibold sm:flex-row sm:items-center">
-                        <span>{example.line}</span>
-                        <AudioControls text={example.line} />
-                      </div>
-                      <div className="text-indigo-dark/70 text-xs">
-                        {example.tag}
-                      </div>
-                    </div>
-                  </div>
+                    line={example.line}
+                    tag={example.tag}
+                    emoji={example.emoji}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
@@ -505,7 +481,7 @@ export function EnglishPremiumLessonPlayer({
         {step === 1 && (
           <div>
             <SectionLabel>⭐ Pattern Builder</SectionLabel>
-            <p className="text-muted mb-3 text-sm">
+            <p className="text-lesson-ink-dim mb-3 text-sm">
               {lesson.patternBuilderIntro}
             </p>
             <div className="mb-3.5 flex flex-wrap gap-2">
@@ -518,15 +494,15 @@ export function EnglishPremiumLessonPlayer({
                   className={cn(
                     "min-h-11 rounded-full px-4 py-2 text-sm font-semibold transition",
                     index === patternIndex
-                      ? "border-indigo bg-indigo-light border-2"
-                      : "border-border border bg-[#FCFCFE]",
+                      ? "border-lesson-brand bg-lesson-brand/10 border-2"
+                      : "border-lesson-line border bg-[#FCFCFE]",
                   )}
                 >
                   {option.chipLabel}
                 </button>
               ))}
             </div>
-            <div className="bg-indigo rounded-2xl px-5 py-5.5 text-center">
+            <div className="from-lesson-brand to-lesson-brand-2 rounded-2xl bg-gradient-to-br px-5 py-5.5 text-center shadow-[0_10px_26px_rgba(109,95,216,.28)]">
               <span className="font-fraunces block text-2xl font-semibold text-white italic">
                 {activePattern.display}
               </span>
@@ -552,20 +528,20 @@ export function EnglishPremiumLessonPlayer({
                   <div
                     key={item.word}
                     className={cn(
-                      "rounded-xl px-4 py-3.5",
-                      index % 2 === 0 ? "bg-indigo-light" : "bg-indigo/10",
+                      "rounded-2xl px-4 py-3.5 shadow-[0_2px_8px_rgba(20,20,50,.05)]",
+                      index % 2 === 0 ? "bg-lesson-brand/[.07]" : "bg-lesson-mint/10",
                     )}
                   >
                     <div className="mb-1 flex items-center justify-between">
-                      <span className="text-[16.5px] font-bold">
+                      <span className="text-[16.5px] font-bold text-[var(--color-lesson-ink)]">
                         {item.word}
                       </span>
                       <AudioControls text={item.word} />
                     </div>
-                    <div className="text-muted mb-1 text-[13px]">
+                    <div className="text-lesson-ink-dim mb-1 text-[13px]">
                       {item.ipa} · Kreyòl: <strong>{item.kreyol}</strong>
                     </div>
-                    <div className="text-ink text-[13.5px] italic">
+                    <div className="text-[13.5px] text-[var(--color-lesson-ink)] italic">
                       &ldquo;{item.example}&rdquo;
                     </div>
                   </div>
@@ -575,20 +551,20 @@ export function EnglishPremiumLessonPlayer({
 
             <div>
               <SectionLabel>Pwononsyasyon</SectionLabel>
-              <div className="border-border rounded-xl border bg-[#FCFCFE] px-4.5 py-4">
+              <div className="border-lesson-line rounded-2xl border bg-[#FCFCFE] px-4.5 py-4 shadow-[0_2px_8px_rgba(20,20,50,.05)]">
                 <div className="mb-2 flex items-center gap-2.5">
-                  <span className="text-xl font-bold">
+                  <span className="text-xl font-bold text-[var(--color-lesson-ink)]">
                     {lesson.pronunciationWord}
                   </span>
-                  <span className="font-lesson-mono text-indigo-dark/70 text-[13px]">
+                  <span className="font-lesson-mono text-lesson-brand-2 text-[13px]">
                     {lesson.pronunciationIpa}
                   </span>
                   <AudioControls text={lesson.pronunciationWord} />
                 </div>
-                <p className="text-muted mb-1.5 text-[13.5px]">
+                <p className="text-lesson-ink-dim mb-1.5 text-[13.5px]">
                   💡 {renderLessonText(lesson.mouthTip)}
                 </p>
-                <p className="text-muted text-[13.5px]">
+                <p className="text-lesson-ink-dim text-[13.5px]">
                   ⚠️ {renderLessonText(lesson.pronunciationMistake)}
                 </p>
               </div>
@@ -601,23 +577,23 @@ export function EnglishPremiumLessonPlayer({
           <div>
             <SectionLabel>⭐ Erè Komen</SectionLabel>
             <div className="mb-2 flex flex-wrap gap-2.5">
-              <div className="bg-error/10 flex-1 rounded-[10px] px-3.5 py-2.5">
+              <div className="bg-error/10 flex-1 rounded-2xl px-3.5 py-3">
                 <span className="text-error text-sm font-bold">
                   ❌ {lesson.mistakeWrong}
                 </span>
               </div>
-              <div className="bg-success/10 flex-1 rounded-[10px] px-3.5 py-2.5">
-                <span className="text-success text-sm font-bold">
+              <div className="bg-lesson-mint/10 flex-1 rounded-2xl px-3.5 py-3">
+                <span className="font-bold text-[#1f7a54] text-sm">
                   ✅ {lesson.mistakeCorrect}
                 </span>
               </div>
             </div>
-            <p className="text-muted text-[13.5px]">
+            <p className="text-lesson-ink-dim text-[13.5px]">
               {renderLessonText(lesson.mistakeWhy)}
             </p>
             {lesson.mistakeExtraNote && (
-              <div className="bg-error/10 mt-3.5 rounded-[10px] px-3.5 py-3">
-                <p className="text-ink text-[13.5px]">
+              <div className="bg-error/10 mt-3.5 rounded-2xl px-3.5 py-3">
+                <p className="text-[13.5px] text-[var(--color-lesson-ink)]">
                   {renderLessonText(lesson.mistakeExtraNote)}
                 </p>
               </div>
@@ -630,7 +606,7 @@ export function EnglishPremiumLessonPlayer({
           <>
             <div className="mb-7.5">
               <SectionLabel>Pratike</SectionLabel>
-              <p className="mb-3 text-[14.5px] font-semibold">
+              <p className="mb-3 text-[14.5px] font-semibold text-[var(--color-lesson-ink)]">
                 {lesson.practice.prompt}
               </p>
               <div className="mb-2.5 grid gap-2.5">
@@ -649,12 +625,12 @@ export function EnglishPremiumLessonPlayer({
                       }}
                       aria-pressed={isSelected}
                       className={cn(
-                        "min-h-11 rounded-[10px] px-4 py-3 text-left text-[14.5px] transition",
+                        "min-h-11 rounded-xl px-4 py-3 text-left text-[14.5px] transition",
                         isSelected
-                          ? "border-indigo border-2 font-semibold"
-                          : "border-border border bg-[#FCFCFE] font-medium",
+                          ? "border-lesson-brand border-2 font-semibold"
+                          : "border-lesson-line border bg-[#FCFCFE] font-medium",
                         showState &&
-                          (isCorrectOption ? "bg-success/10" : "bg-error/10"),
+                          (isCorrectOption ? "bg-lesson-mint/10" : "bg-error/10"),
                       )}
                     >
                       {option}
@@ -669,8 +645,8 @@ export function EnglishPremiumLessonPlayer({
                 className={cn(
                   "min-h-11 rounded-full px-5 py-2.5 text-sm font-semibold",
                   practiceSelected === null
-                    ? "bg-indigo-light text-muted cursor-not-allowed"
-                    : "bg-indigo-dark cursor-pointer text-white",
+                    ? "bg-lesson-brand/10 text-lesson-ink-dim cursor-not-allowed"
+                    : "bg-lesson-brand-2 cursor-pointer text-white",
                 )}
               >
                 Verifye Repons lan
@@ -680,7 +656,7 @@ export function EnglishPremiumLessonPlayer({
                   role={practiceCorrect ? "status" : "alert"}
                   className={cn(
                     "mt-2.5 text-[13.5px]",
-                    practiceCorrect ? "text-success" : "text-error",
+                    practiceCorrect ? "text-[#1f7a54]" : "text-error",
                   )}
                 >
                   {practiceCorrect
@@ -692,16 +668,16 @@ export function EnglishPremiumLessonPlayer({
 
             <div>
               <SectionLabel>⭐ Panse An Anglè</SectionLabel>
-              <div className="bg-indigo-light mb-3 rounded-2xl py-6.5 text-center text-4xl">
+              <div className="bg-lesson-brand/[.07] mb-3 rounded-2xl py-6.5 text-center text-4xl">
                 {lesson.thinkEmoji}
               </div>
-              <p className="text-muted mb-2.5 text-sm">{lesson.thinkPrompt}</p>
+              <p className="text-lesson-ink-dim mb-2.5 text-sm">{lesson.thinkPrompt}</p>
               <textarea
                 value={thinkText}
                 onChange={(event) => setThinkText(event.target.value)}
                 placeholder={lesson.thinkPlaceholder}
                 aria-label="Ekri repons ou an Anglè"
-                className="border-border min-h-16 w-full rounded-[10px] border p-3 text-[14.5px]"
+                className="border-lesson-line min-h-16 w-full rounded-xl border p-3 text-[14.5px]"
               />
             </div>
           </>
@@ -717,7 +693,7 @@ export function EnglishPremiumLessonPlayer({
                 <button
                   type="button"
                   onClick={copyPrompt}
-                  className="bg-indigo absolute top-3 right-3 inline-flex min-h-8 items-center gap-1.5 rounded-full px-3 py-1.5 font-sans text-[11.5px] font-semibold text-white"
+                  className="bg-lesson-brand absolute top-3 right-3 inline-flex min-h-8 items-center gap-1.5 rounded-full px-3 py-1.5 font-sans text-[11.5px] font-semibold text-white"
                 >
                   {copied ? (
                     <CheckIcon className="size-3.5" />
@@ -734,8 +710,8 @@ export function EnglishPremiumLessonPlayer({
 
             <div>
               <SectionLabel>Misyon</SectionLabel>
-              <div className="rounded-[10px] border-l-4 border-[#E07A3F] bg-[#FBEAE0] px-4.5 py-4">
-                <p className="text-ink mb-3 text-[14.5px]">
+              <div className="rounded-2xl border-l-4 border-[#E07A3F] bg-[#FBEAE0] px-4.5 py-4">
+                <p className="mb-3 text-[14.5px] text-[var(--color-lesson-ink)]">
                   {renderLessonText(lesson.missionTask)}
                 </p>
                 <label className="flex min-h-6 cursor-pointer items-center gap-2 text-sm font-semibold">
@@ -743,7 +719,7 @@ export function EnglishPremiumLessonPlayer({
                     type="checkbox"
                     checked={missionDone}
                     onChange={(event) => setMissionDone(event.target.checked)}
-                    className="accent-indigo size-4.5"
+                    className="accent-lesson-brand size-4.5"
                   />
                   Mwen fè misyon an
                 </label>
@@ -761,7 +737,7 @@ export function EnglishPremiumLessonPlayer({
                 {lesson.recap.map((item) => (
                   <div
                     key={item.text}
-                    className="bg-paper rounded-[10px] p-3 text-[13px]"
+                    className="bg-lesson-brand/[.06] rounded-xl p-3 text-[13px]"
                   >
                     <div className="mb-1 text-lg">{item.emoji}</div>
                     {item.text}
@@ -774,10 +750,10 @@ export function EnglishPremiumLessonPlayer({
               <SectionLabel>Reyalizasyon</SectionLabel>
               <div
                 className={cn(
-                  "rounded-[18px] px-5.5 py-7.5 text-center",
+                  "rounded-[20px] px-5.5 py-7.5 text-center",
                   unlocked
-                    ? "bg-indigo text-white"
-                    : "bg-indigo-light text-indigo-dark/70",
+                    ? "bg-gradient-to-br from-[var(--color-lesson-brand)] to-[var(--color-lesson-brand-2)] text-white shadow-[0_14px_34px_rgba(109,95,216,.32)]"
+                    : "bg-lesson-brand/[.08] text-lesson-brand-2",
                 )}
               >
                 <div
@@ -785,7 +761,7 @@ export function EnglishPremiumLessonPlayer({
                     "mx-auto mb-3.5 grid size-[70px] -rotate-6 place-items-center rounded-full border-[3px]",
                     unlocked
                       ? "border-white bg-white/15"
-                      : "border-indigo-light bg-transparent",
+                      : "border-lesson-brand/25 bg-transparent",
                   )}
                 >
                   {unlocked ? (
@@ -814,7 +790,7 @@ export function EnglishPremiumLessonPlayer({
                 {unlocked && (
                   <Link
                     href={nextCourseHref}
-                    className="text-indigo-dark mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
+                    className="text-lesson-brand-2 mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold"
                   >
                     <GraduationCapIcon className="size-4" />
                     {isLastLessonInLevel
@@ -823,18 +799,27 @@ export function EnglishPremiumLessonPlayer({
                   </Link>
                 )}
               </div>
+              {unlocked && (
+                <div className="bg-lesson-brand/[.07] mt-4 flex items-center gap-3.5 rounded-2xl px-4.5 py-4 shadow-[0_2px_10px_rgba(109,95,216,.1)]">
+                  <LessonMascot />
+                  <p className="text-[14px] leading-[1.5] text-[#3a3550]">
+                    <b className="text-lesson-brand-2">Bon travay!</b> Ou fèk aprann yon
+                    lòt bout Anglè. Kontinye pou vin pi alèz chak jou.
+                  </p>
+                </div>
+              )}
             </div>
           </>
         )}
 
         {/* STEP NAVIGATION */}
         {step < steps.length - 1 && (
-          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
+          <div className="border-lesson-line sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 flex items-center justify-between rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:rounded-none sm:border-x-0 sm:border-b-0 sm:bg-transparent sm:px-0 sm:pt-6 sm:pb-0 sm:shadow-none">
             <button
               type="button"
               onClick={() => moveTo(step - 1)}
               disabled={step === 0}
-              className="text-indigo-dark min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
+              className="text-lesson-brand-2 min-h-11 px-2 text-sm font-semibold disabled:pointer-events-none disabled:opacity-0"
             >
               ← Tounen
             </button>
@@ -843,22 +828,27 @@ export function EnglishPremiumLessonPlayer({
               onClick={() => moveTo(step + 1)}
               disabled={continueDisabled}
               className={cn(
-                "min-h-12 min-w-[132px] rounded-full px-6 text-sm font-semibold",
+                "flex min-h-12 min-w-[132px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold",
                 continueDisabled
-                  ? "bg-indigo-light text-muted cursor-not-allowed"
-                  : "bg-indigo cursor-pointer text-white",
+                  ? "bg-lesson-brand/10 text-lesson-ink-dim cursor-not-allowed"
+                  : "bg-gradient-to-br from-[var(--color-lesson-brand)] to-[var(--color-lesson-brand-2)] cursor-pointer text-white shadow-[0_6px_18px_rgba(109,95,216,.35)]",
               )}
             >
-              Kontinye →
+              Kontinye
+              {!continueDisabled && (
+                <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="#fff" strokeWidth="2.4">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              )}
             </button>
           </div>
         )}
         {step === steps.length - 1 && (
-          <div className="border-border sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
+          <div className="border-lesson-line sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-20 -mx-1 mt-8 rounded-full border bg-white/95 p-2 pl-4 shadow-[0_12px_35px_rgba(29,24,46,0.16)] backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
             <button
               type="button"
               onClick={() => moveTo(step - 1)}
-              className="text-indigo-dark min-h-11 text-sm font-semibold"
+              className="text-lesson-brand-2 min-h-11 text-sm font-semibold"
             >
               ← Tounen
             </button>

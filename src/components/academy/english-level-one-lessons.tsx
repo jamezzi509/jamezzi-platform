@@ -61,6 +61,9 @@ export function EnglishLevelOneLessons({
   const visibleModules = englishModules.filter((module) =>
     moduleNumbers?.includes(module.number),
   );
+  const currentSlug = englishLevelOneLessons.find(
+    (lesson) => !completed.includes(lesson.slug),
+  )?.slug;
 
   return (
     <div>
@@ -149,6 +152,8 @@ export function EnglishLevelOneLessons({
                       lesson={lesson}
                       index={lessonIndex}
                       completed={completed.includes(lesson.slug)}
+                      current={lesson.slug === currentSlug}
+                      isLast={lessonIndex === moduleLessons.length - 1}
                     />
                   ))}
                 </ol>
@@ -208,32 +213,36 @@ function LessonRow({
   lesson,
   index,
   completed,
+  current,
+  isLast,
 }: {
   lesson: EnglishLessonSummary;
   index: number;
   completed: boolean;
+  current: boolean;
+  isLast: boolean;
 }) {
   if (!lesson.available) {
     return (
-      <li className="border-border grid min-h-28 gap-3 border-b py-6 opacity-60 sm:grid-cols-[48px_1fr_auto] sm:items-center sm:gap-5">
-        <LessonNumber value={String(index + 1).padStart(2, "0")} muted />
+      <li className="grid min-h-28 gap-3 py-6 opacity-60 sm:grid-cols-[40px_1fr_auto] sm:items-start sm:gap-5">
+        <PathNode index={index} state="upcoming" isLast={isLast} />
         <LessonCopy lesson={lesson} />
         <span className="text-metadata text-muted">Coming soon</span>
       </li>
     );
   }
 
+  const state = completed ? "done" : current ? "current" : "upcoming";
+
   return (
-    <li className="border-border border-b">
+    <li>
       <Link
         href={`/academy/courses/english-for-beginners/lessons/${lesson.slug}`}
-        className="group grid min-h-28 gap-3 py-6 sm:grid-cols-[48px_1fr_auto] sm:items-center sm:gap-5"
+        className="group grid min-h-28 gap-3 py-6 sm:grid-cols-[40px_1fr_auto] sm:items-start sm:gap-5"
       >
-        <LessonNumber
-          value={completed ? "✓" : String(index + 1).padStart(2, "0")}
-        />
+        <PathNode index={index} state={state} isLast={isLast} />
         <LessonCopy lesson={lesson} />
-        <span className="text-button text-indigo-dark inline-flex items-center gap-2">
+        <span className="text-button text-lesson-brand-2 inline-flex items-center gap-2 sm:pt-0.5">
           {completed ? "Revize" : "Kòmanse"}
           <ArrowRightIcon className="size-4" />
         </span>
@@ -242,21 +251,47 @@ function LessonRow({
   );
 }
 
-function LessonNumber({
-  value,
-  muted = false,
+function PathNode({
+  index,
+  state,
+  isLast,
 }: {
-  value: string;
-  muted?: boolean;
+  index: number;
+  state: "done" | "current" | "upcoming";
+  isLast: boolean;
 }) {
   return (
-    <span
-      className={
-        muted ? "text-metadata text-muted" : "text-metadata text-indigo-dark"
-      }
-    >
-      {value}
-    </span>
+    <div className="relative flex flex-col items-center sm:pt-0.5">
+      <div
+        className={cn(
+          "grid size-8 shrink-0 place-items-center rounded-full text-[12px] font-bold shadow-[0_1px_2px_rgba(0,0,0,.08)]",
+          state === "done" &&
+            "bg-gradient-to-br from-[var(--color-lesson-mint)] to-[#2a9c72] text-white",
+          state === "current" &&
+            "bg-gradient-to-br from-[var(--color-lesson-brand)] to-[var(--color-lesson-brand-2)] text-white shadow-[0_0_0_4px_rgba(109,95,216,.18),0_2px_8px_rgba(109,95,216,.35)]",
+          state === "upcoming" && "bg-lesson-line text-lesson-ink-dim",
+        )}
+      >
+        {state === "done" ? (
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        ) : (
+          index + 1
+        )}
+      </div>
+      {!isLast && (
+        <div
+          className={cn(
+            "w-[3px] flex-1 rounded-full",
+            state === "done"
+              ? "bg-gradient-to-b from-[var(--color-lesson-mint)] to-[#2a9c72]"
+              : "bg-lesson-line",
+          )}
+          style={{ minHeight: "24px" }}
+        />
+      )}
+    </div>
   );
 }
 
