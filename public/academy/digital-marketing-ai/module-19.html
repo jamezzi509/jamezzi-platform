@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 19 — Maketing pou Diferan Biznis</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 19 · 19.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 19!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 19 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 19!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M19={
+ ht:["Maketing pou Biznis Sèvis Lokal","Maketing pou Kamyonaj ak Lojistik","Maketing pou Imobilye","Enpòtasyon/Ekspòtasyon Dyaspora ak Vant Estil Ti Machann","Maketing pou Sèvis ki Lye ak Voye Lajan","Maketing pou Legliz ak Kolekte Lajan Kominotè","Maketing pou Lekòl ak Òganizasyon San Bi Likratif"],
+ fr:["Marketing pour Entreprises de Services Locaux","Marketing pour le Transport et la Logistique","Marketing pour l'Immobilier","Import/Export Diaspora et Vente Style Ti Machann","Marketing pour Services Liés aux Transferts d'Argent","Marketing pour Églises et Collectes Communautaires","Marketing pour Écoles et Organisations à But Non Lucratif"],
+ en:["Marketing for Local Service Businesses","Marketing for Trucking & Logistics","Marketing for Real Estate","Diaspora Import/Export & Ti Machann-Style Selling","Marketing for Remittance-Adjacent Services","Marketing for Churches & Community Fundraising","Marketing for Schools & Nonprofits"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Biznis sèvis lokal tankou restoran, sèvis netwayaj, ak machin lave depann anpil sou vizibilite lokal ak konfyans kominote a — kliyan yo pito chwazi yon biznis yo konnen oswa yo wè lòt moun rekòmande.",
+   secs:[["Google Business Profile se fondasyon an","Pou biznis sa yo, yon Google Business Profile byen ranpli (Modil 12) souvan pi enpòtan pase menm yon sit web konplè — se premye kote kliyan lokal chèche."],
+    ["Revi ak rekòmandasyon bouch-a-zorèy","Yon sèl move revi ka fè kliyan potansyèl chanje lide — reponn revi yo (Modil 12) e ankouraje kliyan satisfè kite youn se yon envestisman ki vo lajan."]],
+   illus:"roles",roleCards:[["🍽️","Restoran","Foto ak meni aktyèl"],["🧹","Sèvis Netwayaj","Revi ak rekòmandasyon"],["🚗","Machin Lave","Fasil pou jwenn lokalizasyon"]],
+   ex:"Ki 1 aksyon (soti nan Modil 12) ou ta pran an premye pou amelyore vizibilite lokal yon restoran, sèvis netwayaj, oswa machin lave?",
+   quiz:[
+    {q:"Poukisa Google Business Profile enpòtan pou biznis sèvis lokal?",opts:["Li pa enpòtan","Se souvan premye kote kliyan lokal chèche","Sèlman gwo biznis bezwen l","Li ranplase bezwen pou bon sèvis"],ans:1,fb:"Se souvan premye kote kliyan lokal chèche."},
+    {q:"Poukisa reponn revi enpòtan pou biznis sa yo?",opts:["Sa pa gen efè","Yon sèl move revi ka fè kliyan potansyèl chanje lide","Revi pa afekte desizyon kliyan","Sèlman revi pozitif merite repons"],ans:1,fb:"Yon sèl move revi ka fè moun chanje lide."},
+    {q:"Ki 3 kalite biznis sèvis lokal yo mansyone?",opts:["Sèlman restoran","Restoran, sèvis netwayaj, ak machin lave","Sèlman machin lave","Pa gen egzanp espesifik"],ans:1,fb:"Restoran, sèvis netwayaj, ak machin lave."}],
+   close:{learned:"Pou biznis sèvis lokal (restoran, netwayaj, machin lave), yon Google Business Profile solid ak bon jesyon revi souvan konte plis pase menm yon sit web konplè.",
+    mistake:"Konsantre sèlman sou rezo sosyal pandan w inyore Google Business Profile, ki se souvan premye kote yon kliyan lokal ap chèche.",
+    tip:"Foto aktyèl (pa foto stock) e revi reyèl toujou bay plis konfyans pase yon deskripsyon jeneral byen ekri.",
+    assign:"Ki 1 aksyon (soti nan Modil 12) ou ta pran an premye pou amelyore vizibilite lokal yon restoran, sèvis netwayaj, oswa machin lave?",
+    dl:"Referans: Fondasyon Maketing pou Biznis Sèvis Lokal",
+    checklist:["Yon aksyon konkrè idantifye pou amelyore Google Business Profile?"],
+    ai:"Sijere 3 aksyon konkrè pou amelyore vizibilite lokal yon [restoran/sèvis netwayaj/machin lave] Ayisyen."}},
+ fr:{lede:"Les entreprises de services locaux comme les restaurants, les services de nettoyage, et les lave-autos dépendent énormément de la visibilité locale et de la confiance de la communauté — les clients préfèrent choisir une entreprise qu'ils connaissent ou que d'autres leur recommandent.",
+   secs:[["Google Business Profile est la fondation","Pour ces entreprises, un profil Google Business bien rempli (Module 12) compte souvent plus qu'un site web complet — c'est souvent le premier endroit où un client local cherche."],
+    ["Avis et recommandations de bouche à oreille","Un seul mauvais avis peut faire changer d'avis un client potentiel — répondre aux avis (Module 12) et encourager les clients satisfaits à en laisser un est un investissement qui en vaut la peine."]],
+   illus:"roles",roleCards:[["🍽️","Restaurant","Photos et menu actuels"],["🧹","Service de Nettoyage","Avis et recommandations"],["🚗","Lave-Auto","Facile à trouver"]],
+   ex:"Quelle 1 action (du Module 12) prendriez-vous en premier pour améliorer la visibilité locale d'un restaurant, d'un service de nettoyage, ou d'un lave-auto ?",
+   quiz:[
+    {q:"Pourquoi le profil Google Business est-il important pour les entreprises de services locaux ?",opts:["Il n'est pas important","C'est souvent le premier endroit où un client local cherche","Seules les grandes entreprises en ont besoin","Ça remplace le besoin d'un bon service"],ans:1,fb:"C'est souvent le premier endroit où un client local cherche."},
+    {q:"Pourquoi répondre aux avis est-il important pour ces entreprises ?",opts:["Ça n'a aucun effet","Un seul mauvais avis peut faire changer d'avis un client potentiel","Les avis n'affectent pas les décisions des clients","Seuls les avis positifs méritent une réponse"],ans:1,fb:"Un seul mauvais avis peut faire changer d'avis."},
+    {q:"Quels sont les 3 types d'entreprises de services locaux mentionnés ?",opts:["Seulement les restaurants","Restaurants, services de nettoyage, et lave-autos","Seulement les lave-autos","Aucun exemple spécifique"],ans:1,fb:"Restaurants, services de nettoyage, et lave-autos."}],
+   close:{learned:"Pour les entreprises de services locaux (restaurants, nettoyage, lave-autos), un profil Google Business solide et une bonne gestion des avis comptent souvent plus qu'un site web complet.",
+    mistake:"Se concentrer uniquement sur les réseaux sociaux tout en ignorant le profil Google Business, qui est souvent le premier endroit où un client local cherche.",
+    tip:"Des photos actuelles (pas des photos de stock) et de vrais avis donnent toujours plus confiance qu'une description générique bien écrite.",
+    assign:"Quelle 1 action (du Module 12) prendriez-vous en premier pour améliorer la visibilité locale d'un restaurant, d'un service de nettoyage, ou d'un lave-auto ?",
+    dl:"Référence : Fondations du Marketing pour Entreprises de Services Locaux",
+    checklist:["Une action concrète identifiée pour améliorer le profil Google Business ?"],
+    ai:"Suggère 3 actions concrètes pour améliorer la visibilité locale d'un [restaurant/service de nettoyage/lave-auto] haïtien."}},
+ en:{lede:"Local service businesses like restaurants, cleaning services, and car washes depend heavily on local visibility and community trust — customers prefer to choose a business they know or that others recommend.",
+   secs:[["Google Business Profile is the foundation","For these businesses, a well-filled-out Google Business Profile (Module 12) often matters more than even a full website — it's often the first place a local customer searches."],
+    ["Reviews and word-of-mouth recommendations","A single bad review can change a potential customer's mind — replying to reviews (Module 12) and encouraging satisfied customers to leave one is an investment worth making."]],
+   illus:"roles",roleCards:[["🍽️","Restaurant","Current photos and menu"],["🧹","Cleaning Service","Reviews and recommendations"],["🚗","Car Wash","Easy to find location"]],
+   ex:"What's 1 action (from Module 12) you'd take first to improve local visibility for a restaurant, cleaning service, or car wash?",
+   quiz:[
+    {q:"Why does a Google Business Profile matter for local service businesses?",opts:["It doesn't matter","It's often the first place a local customer searches","Only large businesses need it","It replaces the need for good service"],ans:1,fb:"It's often the first place a local customer searches."},
+    {q:"Why does replying to reviews matter for these businesses?",opts:["It has no effect","A single bad review can change a potential customer's mind","Reviews don't affect customer decisions","Only positive reviews deserve a reply"],ans:1,fb:"A single bad review can change someone's mind."},
+    {q:"What 3 kinds of local service businesses are mentioned?",opts:["Only restaurants","Restaurants, cleaning services, and car washes","Only car washes","No specific examples"],ans:1,fb:"Restaurants, cleaning services, and car washes."}],
+   close:{learned:"For local service businesses (restaurants, cleaning, car washes), a solid Google Business Profile and good review management often matter more than even a full website.",
+    mistake:"Focusing only on social media while ignoring the Google Business Profile, which is often the first place a local customer searches.",
+    tip:"Current photos (not stock photos) and real reviews always build more trust than a well-written generic description.",
+    assign:"What's 1 action (from Module 12) you'd take first to improve local visibility for a restaurant, cleaning service, or car wash?",
+    dl:"Reference: Marketing Foundations for Local Service Businesses",
+    checklist:["A concrete action identified to improve the Google Business Profile?"],
+    ai:"Suggest 3 concrete actions to improve local visibility for a Haitian [restaurant/cleaning service/car wash]."}}},
+
+2:{ht:{lede:"Biznis kamyonaj ak lojistik souvan vann bay lòt biznis (B2B) — sa vle di konfyans ak rekòmandasyon pwofesyonèl konte plis pase piblisite kolore.",
+   secs:[["LinkedIn ak rezo pwofesyonèl","Paske kliyan yo se lòt biznis, LinkedIn (Modil 15 ak 18) souvan yon kanal pi efikas pase rezo sosyal jeneral pou jwenn kontra."],
+    ["Fyabilite se mesaj prensipal la","Yon biznis kamyonaj vann konfyans (livrezon alè, machandiz an sekirite) — temwayaj ak istwa reyèl kliyan (Modil 14) montre sa pi byen pase deskripsyon jeneral."]],
+   illus:"roles",roleCards:[["🚚","Livrezon Alè","Konfyans nan orè"],["🤝","Rekòmandasyon B2B","Biznis a biznis"],["📋","Kontra Klè","Etandi byen defini (Modil 18)"]],
+   ex:"Ki 1 fason yon biznis kamyonaj ta ka montre fyabilite li bay kliyan biznis potansyèl?",
+   quiz:[
+    {q:"Poukisa LinkedIn souvan bon pou biznis kamyonaj/lojistik?",opts:["Li pa bon ditou","Kliyan yo se lòt biznis (B2B), LinkedIn bon pou sa","LinkedIn sèlman pou moun k ap chèche travay","Kamyonaj pa bezwen maketing dijital"],ans:1,fb:"Kliyan B2B yo, LinkedIn matche ak sa."},
+    {q:"Ki mesaj prensipal yon biznis kamyonaj ta dwe voye?",opts:["Pri ba sèlman","Fyabilite (livrezon alè, machandiz an sekirite)","Koulè kamyon an","Gwosè konpayi an"],ans:1,fb:"Fyabilite se mesaj prensipal la."},
+    {q:"Kisa ki montre fyabilite pi byen pase deskripsyon jeneral?",opts:["Yon lojo bèl","Temwayaj ak istwa reyèl kliyan","Yon sit web konplè sèlman","Pri ki pi ba"],ans:1,fb:"Temwayaj ak istwa reyèl montre fyabilite."}],
+   close:{learned:"Biznis kamyonaj/lojistik vann konfyans ak fyabilite bay lòt biznis (B2B) — LinkedIn ak temwayaj reyèl souvan pi efikas pase piblisite jeneral.",
+    mistake:"Itilize menm estrateji maketing pou konsomatè jeneral yo (piblisite kolore, rezo sosyal jeneral) pou yon biznis ki vann bay lòt biznis.",
+    tip:"Yon kontra klè (Modil 18) ki mansyone dat livrezon egzat bay yon kliyan biznis konfyans anvan menm premye kamyon an pati.",
+    assign:"Ki 1 fason yon biznis kamyonaj ta ka montre fyabilite li bay kliyan biznis potansyèl?",
+    dl:"Referans: Maketing pou Biznis Kamyonaj ak Lojistik",
+    checklist:["Yon fason konkrè idantifye pou montre fyabilite?"],
+    ai:"Sijere 3 fason yon biznis kamyonaj/lojistik Ayisyen ta ka montre fyabilite li bay kliyan biznis nouvo."}},
+ fr:{lede:"Les entreprises de transport et de logistique vendent souvent à d'autres entreprises (B2B) — ça veut dire que la confiance et les recommandations professionnelles comptent plus que la publicité colorée.",
+   secs:[["LinkedIn et le réseautage professionnel","Comme les clients sont d'autres entreprises, LinkedIn (Modules 15 et 18) est souvent un canal plus efficace que les réseaux sociaux généraux pour trouver des contrats."],
+    ["La fiabilité est le message principal","Une entreprise de transport vend de la confiance (livraison à l'heure, marchandise en sécurité) — les témoignages et vraies histoires de clients (Module 14) le montrent mieux qu'une description générique."]],
+   illus:"roles",roleCards:[["🚚","Livraison à l'Heure","Confiance dans l'horaire"],["🤝","Recommandation B2B","Entreprise à entreprise"],["📋","Contrat Clair","Portée bien définie (Module 18)"]],
+   ex:"Quelle 1 façon une entreprise de transport pourrait-elle montrer sa fiabilité à un client d'affaires potentiel ?",
+   quiz:[
+    {q:"Pourquoi LinkedIn est-il souvent bon pour les entreprises de transport/logistique ?",opts:["Ce n'est pas bon du tout","Les clients sont d'autres entreprises (B2B), LinkedIn est bon pour ça","LinkedIn est seulement pour ceux qui cherchent un emploi","Le transport n'a pas besoin de marketing digital"],ans:1,fb:"Les clients B2B correspondent à LinkedIn."},
+    {q:"Quel message principal une entreprise de transport devrait-elle envoyer ?",opts:["Seulement un prix bas","Fiabilité (livraison à l'heure, marchandise en sécurité)","La couleur du camion","La taille de l'entreprise"],ans:1,fb:"La fiabilité est le message principal."},
+    {q:"Qu'est-ce qui montre la fiabilité mieux qu'une description générique ?",opts:["Un beau logo","Des témoignages et vraies histoires de clients","Seulement un site web complet","Un prix plus bas"],ans:1,fb:"Les témoignages et vraies histoires montrent la fiabilité."}],
+   close:{learned:"Les entreprises de transport/logistique vendent de la confiance et de la fiabilité à d'autres entreprises (B2B) — LinkedIn et de vrais témoignages sont souvent plus efficaces que la publicité générale.",
+    mistake:"Utiliser la même stratégie marketing que pour les consommateurs généraux (publicité colorée, réseaux sociaux généraux) pour une entreprise qui vend à d'autres entreprises.",
+    tip:"Un contrat clair (Module 18) mentionnant une date de livraison exacte donne confiance à un client d'affaires avant même que le premier camion parte.",
+    assign:"Quelle 1 façon une entreprise de transport pourrait-elle montrer sa fiabilité à un client d'affaires potentiel ?",
+    dl:"Référence : Marketing pour Entreprises de Transport et Logistique",
+    checklist:["Une façon concrète identifiée pour montrer la fiabilité ?"],
+    ai:"Suggère 3 façons dont une entreprise de transport/logistique haïtienne pourrait montrer sa fiabilité à un nouveau client d'affaires."}},
+ en:{lede:"Trucking and logistics businesses often sell to other businesses (B2B) — meaning trust and professional recommendations matter more than colorful advertising.",
+   secs:[["LinkedIn and professional networking","Since customers are other businesses, LinkedIn (Modules 15 and 18) is often a more effective channel than general social media for finding contracts."],
+    ["Reliability is the main message","A trucking business sells trust (on-time delivery, secure cargo) — real customer testimonials and stories (Module 14) show this better than a generic description."]],
+   illus:"roles",roleCards:[["🚚","On-Time Delivery","Trust in the schedule"],["🤝","B2B Recommendation","Business to business"],["📋","Clear Contract","Well-defined scope (Module 18)"]],
+   ex:"What's 1 way a trucking business could show its reliability to a potential business client?",
+   quiz:[
+    {q:"Why is LinkedIn often good for trucking/logistics businesses?",opts:["It isn't good at all","Customers are other businesses (B2B), LinkedIn fits that","LinkedIn is only for job seekers","Trucking doesn't need digital marketing"],ans:1,fb:"B2B customers match LinkedIn."},
+    {q:"What main message should a trucking business send?",opts:["Only a low price","Reliability (on-time delivery, secure cargo)","The truck's color","The company's size"],ans:1,fb:"Reliability is the main message."},
+    {q:"What shows reliability better than a generic description?",opts:["A nice logo","Testimonials and real customer stories","Only a full website","A lower price"],ans:1,fb:"Testimonials and real stories show reliability."}],
+   close:{learned:"Trucking/logistics businesses sell trust and reliability to other businesses (B2B) — LinkedIn and real testimonials are often more effective than general advertising.",
+    mistake:"Using the same marketing strategy as for general consumers (colorful ads, general social media) for a business that sells to other businesses.",
+    tip:"A clear contract (Module 18) mentioning an exact delivery date gives a business client confidence even before the first truck leaves.",
+    assign:"What's 1 way a trucking business could show its reliability to a potential business client?",
+    dl:"Reference: Marketing for Trucking & Logistics Businesses",
+    checklist:["A concrete way identified to show reliability?"],
+    ai:"Suggest 3 ways a Haitian trucking/logistics business could show its reliability to a new business client."}}},
+
+3:{ht:{lede:"Imobilye se yon sektè vizyèl e konfyans — moun envesti anpil lajan nan yon kay, kidonk yo bezwen wè kalite ak fè konfyans anvan yo kontakte yon ajan.",
+   secs:[["Foto ak videyo kalite konte anpil","Yon pwopriyete ki gen bon foto (Modil 6) oswa yon ti videyo tou (Modil 7) jwenn plis enterè pase yon lis tèks san imaj."],
+    ["SEO lokal ak Google Business Profile","Anpil moun chèche 'kay pou vann [vil]' sou Google — SEO lokal (Modil 11) ak yon Google Business Profile solid (Modil 12) ede yon ajan parèt lè sa rive."]],
+   illus:"roles",roleCards:[["📸","Foto Kalite Wo","Prezante byen chak pyès"],["🎥","Ti Videyo Tou","Montre pwopriyete a an mouvman"],["🔍","Vizib nan Rechèch Lokal","Parèt lè moun chèche"]],
+   ex:"Ki 1 fason ou ta amelyore jan yon pwopriyete parèt online si li gen sèlman 2-3 foto flou?",
+   quiz:[
+    {q:"Poukisa foto kalite enpòtan anpil nan imobilye?",opts:["Yo pa enpòtan","Moun envesti anpil lajan, yo bezwen wè kalite anvan yo kontakte","Tèks sèlman ase","Foto pa afekte enterè moun"],ans:1,fb:"Moun envesti anpil lajan, yo bezwen wè kalite anvan."},
+    {q:"Ki modil ki kouvri Google Business Profile ki itil pou imobilye?",opts:["Modil 5","Modil 12","Modil 9","Modil 3"],ans:1,fb:"Modil 12 kouvri Google Business Profile."},
+    {q:"Kisa moun tipikman fè lè yo chèche kay pou vann?",opts:["Yo rele dirèkteman san chèche","Yo chèche sou Google 'kay pou vann [vil]'","Yo pa janm chèche online","Yo sèlman mande zanmi"],ans:1,fb:"Anpil moun chèche sou Google dabò."}],
+   close:{learned:"Nan imobilye, foto/videyo kalite (Modil 6 ak 7) ak vizibilite nan rechèch lokal (Modil 11 ak 12) fè yon gwo diferans nan konbyen enterè yon pwopriyete atire.",
+    mistake:"Poste yon pwopriyete ak foto flou oswa ki pa ase, ki fè moun sote pase l menm si pwopriyete a bon.",
+    tip:"Yon ti videyo tou 30-60 segond ka fè plis pase 10 foto estatik pou moun santi yo deja vizite pwopriyete a.",
+    assign:"Ki 1 fason ou ta amelyore jan yon pwopriyete parèt online si li gen sèlman 2-3 foto flou?",
+    dl:"Referans: Maketing Vizyèl pou Imobilye",
+    checklist:["Yon fason konkrè idantifye pou amelyore prezantasyon online pwopriyete a?"],
+    ai:"Sijere 3 fason pou amelyore prezantasyon online yon pwopriyete imobilye Ayisyen ak foto/videyo limite."}},
+ fr:{lede:"L'immobilier est un secteur visuel et de confiance — les gens investissent beaucoup d'argent dans une maison, donc ils ont besoin de voir la qualité et de faire confiance avant de contacter un agent.",
+   secs:[["Photos et vidéos de qualité comptent énormément","Une propriété avec de bonnes photos (Module 6) ou une petite vidéo de visite (Module 7) attire plus d'intérêt qu'une liste de texte sans image."],
+    ["SEO local et profil Google Business","Beaucoup de gens cherchent « maison à vendre [ville] » sur Google — le SEO local (Module 11) et un profil Google Business solide (Module 12) aident un agent à apparaître à ce moment-là."]],
+   illus:"roles",roleCards:[["📸","Photos Haute Qualité","Bien présenter chaque pièce"],["🎥","Petite Vidéo de Visite","Montrer la propriété en mouvement"],["🔍","Visible dans la Recherche Locale","Apparaître quand les gens cherchent"]],
+   ex:"Quelle 1 façon amélioreriez-vous la présentation en ligne d'une propriété si elle n'a que 2-3 photos floues ?",
+   quiz:[
+    {q:"Pourquoi les photos de qualité sont-elles si importantes en immobilier ?",opts:["Elles ne sont pas importantes","Les gens investissent beaucoup d'argent, ils ont besoin de voir la qualité avant","Le texte seul suffit","Les photos n'affectent pas l'intérêt des gens"],ans:1,fb:"Les gens investissent beaucoup, ils ont besoin de voir la qualité avant."},
+    {q:"Quel module couvre le profil Google Business utile pour l'immobilier ?",opts:["Module 5","Module 12","Module 9","Module 3"],ans:1,fb:"Le Module 12 couvre le profil Google Business."},
+    {q:"Que font typiquement les gens quand ils cherchent une maison à vendre ?",opts:["Ils appellent directement sans chercher","Ils cherchent sur Google « maison à vendre [ville] »","Ils ne cherchent jamais en ligne","Ils demandent seulement à des amis"],ans:1,fb:"Beaucoup de gens cherchent d'abord sur Google."}],
+   close:{learned:"En immobilier, des photos/vidéos de qualité (Modules 6 et 7) et la visibilité dans la recherche locale (Modules 11 et 12) font une grande différence dans combien d'intérêt une propriété attire.",
+    mistake:"Publier une propriété avec des photos floues ou insuffisantes, ce qui fait que les gens la passent même si la propriété est bonne.",
+    tip:"Une petite vidéo de visite de 30-60 secondes peut faire plus que 10 photos statiques pour que les gens se sentent déjà avoir visité la propriété.",
+    assign:"Quelle 1 façon amélioreriez-vous la présentation en ligne d'une propriété si elle n'a que 2-3 photos floues ?",
+    dl:"Référence : Marketing Visuel pour l'Immobilier",
+    checklist:["Une façon concrète identifiée pour améliorer la présentation en ligne de la propriété ?"],
+    ai:"Suggère 3 façons d'améliorer la présentation en ligne d'une propriété immobilière haïtienne avec des photos/vidéos limitées."}},
+ en:{lede:"Real estate is a visual, trust-based sector — people invest a lot of money in a home, so they need to see quality and build trust before contacting an agent.",
+   secs:[["Quality photos and video matter a lot","A property with good photos (Module 6) or a short walkthrough video (Module 7) gets more interest than a text listing with no images."],
+    ["Local SEO and Google Business Profile","Many people search \"house for sale [city]\" on Google — local SEO (Module 11) and a solid Google Business Profile (Module 12) help an agent show up at that moment."]],
+   illus:"roles",roleCards:[["📸","High-Quality Photos","Present each room well"],["🎥","Short Walkthrough Video","Show the property in motion"],["🔍","Visible in Local Search","Show up when people search"]],
+   ex:"What's 1 way you'd improve how a property shows up online if it only has 2-3 blurry photos?",
+   quiz:[
+    {q:"Why do quality photos matter so much in real estate?",opts:["They don't matter","People invest a lot of money, they need to see quality first","Text alone is enough","Photos don't affect people's interest"],ans:1,fb:"People invest a lot, they need to see quality first."},
+    {q:"Which module covers the Google Business Profile useful for real estate?",opts:["Module 5","Module 12","Module 9","Module 3"],ans:1,fb:"Module 12 covers Google Business Profile."},
+    {q:"What do people typically do when looking for a house for sale?",opts:["Call directly without searching","Search Google for \"house for sale [city]\"","Never search online","Only ask friends"],ans:1,fb:"Many people search Google first."}],
+   close:{learned:"In real estate, quality photos/videos (Modules 6 and 7) and visibility in local search (Modules 11 and 12) make a big difference in how much interest a property attracts.",
+    mistake:"Posting a property with blurry or insufficient photos, which makes people skip past it even if the property itself is good.",
+    tip:"A short 30-60 second walkthrough video can do more than 10 static photos to make people feel like they've already visited the property.",
+    assign:"What's 1 way you'd improve how a property shows up online if it only has 2-3 blurry photos?",
+    dl:"Reference: Visual Marketing for Real Estate",
+    checklist:["A concrete way identified to improve the property's online presentation?"],
+    ai:"Suggest 3 ways to improve the online presentation of a Haitian real estate property with limited photos/video."}}},
+
+4:{ht:{lede:"Anpil biznis Ayisyen vann bay dyaspora a oswa enpòte/ekspòte ant Ayiti ak lòt peyi — e anpil lòt vann style 'Ti Machann,' dirèkteman sou WhatsApp ak rezo sosyal, san yon gwo magazen an liy fòmèl.",
+   secs:[["Konfyans ak kominote a se tout bagay","Lè w vann bay dyaspora a oswa nan yon rezo Ti Machann, moun achte de moun yo konnen oswa moun zanmi yo rekòmande — prèv sosyal (Modil 2) ak revi soti nan kominote a konte plis pase yon mak enkoni."],
+    ["WhatsApp ak Facebook se souvan tout magazen an","Pito envesti nan yon sit web konplè imedyatman, anpil vant sa yo fèt dirèkteman nan mesaj — yon pwofil Facebook/Instagram klè ak yon fason senp pou kòmande (menm si se jis mesaj dirèk) souvan ase pou kòmanse."]],
+   illus:"roles",roleCards:[["🌍","Dyaspora ↔ Ayiti","Enpòtasyon/ekspòtasyon"],["📱","WhatsApp/Facebook","Souvan tout magazen an"],["🤝","Konfyans Kominote","Moun achte de moun yo konnen"]],
+   ex:"Si ou vann pwodwi bay dyaspora a (oswa nan yon estil Ti Machann), ki 1 fason ou ta bati konfyans ak kliyan ki poko konnen w?",
+   quiz:[
+    {q:"Poukisa konfyans kominote a enpòtan anpil nan vant style Ti Machann?",opts:["Li pa enpòtan","Moun achte de moun yo konnen oswa moun zanmi rekòmande","Konfyans pa gen rapò ak vant","Sèlman gwo mak bezwen konfyans"],ans:1,fb:"Moun achte de moun yo konnen oswa zanmi rekòmande."},
+    {q:"Kisa ki souvan sèvi kòm 'magazen' pou anpil vant style Ti Machann?",opts:["Yon gwo sit web konplè sèlman","WhatsApp ak Facebook dirèkteman","Yon biwo fizik obligatwa","Yon katalòg papye sèlman"],ans:1,fb:"WhatsApp ak Facebook souvan sèvi kòm magazen an."},
+    {q:"Ki modil kouvri prèv sosyal ki itil isit la?",opts:["Modil 6","Modil 2","Modil 14","Modil 17"],ans:1,fb:"Modil 2 kouvri prèv sosyal."}],
+   close:{learned:"Vant bay dyaspora a ak style Ti Machann depann anpil sou konfyans kominote a (prèv sosyal, Modil 2) — e WhatsApp/Facebook souvan ase pou kòmanse san yon gwo sit web fòmèl.",
+    mistake:"Panse ou dwe genyen yon sit web konplè ak yon panye achte anvan w ka kòmanse vann, pandan anpil vant sa yo reyèlman fèt dirèkteman nan mesaj.",
+    tip:"Mande kliyan satisfè yo pataje eksperyans yo (menm yon mesaj senp) — sa se prèv sosyal ki fè lòt moun nan menm kominote a fè konfyans.",
+    assign:"Si ou vann pwodwi bay dyaspora a (oswa nan yon estil Ti Machann), ki 1 fason ou ta bati konfyans ak kliyan ki poko konnen w?",
+    dl:"Referans: Maketing pou Vant Dyaspora ak Estil Ti Machann",
+    checklist:["Yon fason konkrè idantifye pou bati konfyans ak nouvo kliyan?"],
+    ai:"Sijere 3 fason pou bati konfyans ak nouvo kliyan pou yon biznis ki vann bay dyaspora Ayisyen an oswa nan yon estil Ti Machann."}},
+ fr:{lede:"Beaucoup d'entreprises haïtiennes vendent à la diaspora ou importent/exportent entre Haïti et d'autres pays — et beaucoup d'autres vendent style « Ti Machann », directement sur WhatsApp et les réseaux sociaux, sans grand magasin en ligne formel.",
+   secs:[["La confiance de la communauté est tout","Quand vous vendez à la diaspora ou dans un réseau de type Ti Machann, les gens achètent de personnes qu'ils connaissent ou que des amis recommandent — la preuve sociale (Module 2) et les avis de la communauté comptent plus qu'une marque inconnue."],
+    ["WhatsApp et Facebook sont souvent tout le magasin","Plutôt que d'investir immédiatement dans un site web complet, beaucoup de ces ventes se font directement en message — un profil Facebook/Instagram clair avec une façon simple de commander (même juste un message direct) suffit souvent pour commencer."]],
+   illus:"roles",roleCards:[["🌍","Diaspora ↔ Haïti","Import/export"],["📱","WhatsApp/Facebook","Souvent tout le magasin"],["🤝","Confiance Communautaire","Les gens achètent de gens qu'ils connaissent"]],
+   ex:"Si vous vendez des produits à la diaspora (ou dans un style Ti Machann), quelle 1 façon bâtiriez-vous la confiance avec un client qui ne vous connaît pas encore ?",
+   quiz:[
+    {q:"Pourquoi la confiance communautaire est-elle si importante dans la vente style Ti Machann ?",opts:["Elle n'est pas importante","Les gens achètent de personnes qu'ils connaissent ou que des amis recommandent","La confiance n'a aucun rapport avec la vente","Seules les grandes marques ont besoin de confiance"],ans:1,fb:"Les gens achètent de personnes connues ou recommandées."},
+    {q:"Qu'est-ce qui sert souvent de « magasin » pour beaucoup de ventes style Ti Machann ?",opts:["Seulement un grand site web complet","WhatsApp et Facebook directement","Un bureau physique obligatoire","Seulement un catalogue papier"],ans:1,fb:"WhatsApp et Facebook servent souvent de magasin."},
+    {q:"Quel module couvre la preuve sociale utile ici ?",opts:["Module 6","Module 2","Module 14","Module 17"],ans:1,fb:"Le Module 2 couvre la preuve sociale."}],
+   close:{learned:"La vente à la diaspora et style Ti Machann dépend fortement de la confiance communautaire (preuve sociale, Module 2) — et WhatsApp/Facebook suffisent souvent pour commencer sans grand site web formel.",
+    mistake:"Penser qu'il faut absolument un site web complet avec panier d'achat avant de pouvoir commencer à vendre, alors que beaucoup de ces ventes se font réellement directement en message.",
+    tip:"Demandez aux clients satisfaits de partager leur expérience (même un simple message) — c'est la preuve sociale qui fait que d'autres personnes de la même communauté font confiance.",
+    assign:"Si vous vendez des produits à la diaspora (ou dans un style Ti Machann), quelle 1 façon bâtiriez-vous la confiance avec un client qui ne vous connaît pas encore ?",
+    dl:"Référence : Marketing pour Vente Diaspora et Style Ti Machann",
+    checklist:["Une façon concrète identifiée pour bâtir la confiance avec un nouveau client ?"],
+    ai:"Suggère 3 façons de bâtir la confiance avec de nouveaux clients pour une entreprise vendant à la diaspora haïtienne ou dans un style Ti Machann."}},
+ en:{lede:"Many Haitian businesses sell to the diaspora or import/export between Haiti and other countries — and many others sell \"Ti Machann\"-style, directly over WhatsApp and social media, without a formal big online store.",
+   secs:[["Community trust is everything","When you sell to the diaspora or within a Ti Machann-style network, people buy from people they know or that friends recommend — social proof (Module 2) and reviews from within the community matter more than an unknown brand."],
+    ["WhatsApp and Facebook are often the whole store","Rather than investing immediately in a full website, a lot of this selling happens directly through messages — a clear Facebook/Instagram profile with a simple way to order (even just a direct message) is often enough to start."]],
+   illus:"roles",roleCards:[["🌍","Diaspora ↔ Haiti","Import/export"],["📱","WhatsApp/Facebook","Often the whole store"],["🤝","Community Trust","People buy from people they know"]],
+   ex:"If you sell products to the diaspora (or Ti Machann-style), what's 1 way you'd build trust with a customer who doesn't know you yet?",
+   quiz:[
+    {q:"Why does community trust matter so much in Ti Machann-style selling?",opts:["It doesn't matter","People buy from people they know or that friends recommend","Trust has nothing to do with selling","Only big brands need trust"],ans:1,fb:"People buy from known or recommended people."},
+    {q:"What often serves as the \"store\" for a lot of Ti Machann-style selling?",opts:["Only a big full website","WhatsApp and Facebook directly","A required physical office","Only a paper catalog"],ans:1,fb:"WhatsApp and Facebook often serve as the store."},
+    {q:"Which module covers the social proof useful here?",opts:["Module 6","Module 2","Module 14","Module 17"],ans:1,fb:"Module 2 covers social proof."}],
+   close:{learned:"Selling to the diaspora and Ti Machann-style selling depend heavily on community trust (social proof, Module 2) — and WhatsApp/Facebook are often enough to start without a formal big website.",
+    mistake:"Thinking you absolutely need a full website with a shopping cart before you can start selling, when a lot of this selling actually happens directly through messages.",
+    tip:"Ask satisfied customers to share their experience (even a simple message) — that's social proof that makes other people in the same community trust you.",
+    assign:"If you sell products to the diaspora (or Ti Machann-style), what's 1 way you'd build trust with a customer who doesn't know you yet?",
+    dl:"Reference: Marketing for Diaspora Selling and Ti Machann-Style Selling",
+    checklist:["A concrete way identified to build trust with a new customer?"],
+    ai:"Suggest 3 ways to build trust with new customers for a business selling to the Haitian diaspora or Ti Machann-style."}}},
+
+5:{ht:{lede:"Sèvis ki tou pre voye lajan (tankou peman bòdwo pou fanmi, ti kado, oswa lòt sèvis ki ede dyaspora a sipòte fanmi Ayiti) mande yon mesaj klè sou fyabilite ak rapidite.",
+   secs:[["Rapidite ak sekirite se mesaj kle a","Moun k ap voye sèvis pou fanmi yo vle konnen lajan/sèvis la ap rive san pwoblèm e rapid — mesaj maketing ta dwe konsantre sou sa, pa jis pri."],
+    ["Kominike klèman sou pwosesis la","Paske moun ka enkyè pou lajan/sèvis fanmi yo, eksplike pwosesis la etap pa etap (ekri klè, Modil 5) diminye enkyetid e bati konfyans."]],
+   illus:"roles",roleCards:[["⚡","Rapidite","Rive vit san reta"],["🔒","Sekirite","Konfyans nan chak etap"],["📋","Pwosesis Klè","Etap pa etap eksplike"]],
+   ex:"Ki 2 enkyetid yon moun ta genyen anvan yo itilize yon sèvis ki lye ak voye lajan/sipò pou fanmi, e kijan maketing ta ka adrese yo?",
+   quiz:[
+    {q:"Ki mesaj kle sèvis ki lye ak voye lajan ta dwe konsantre sou li?",opts:["Sèlman pri a","Rapidite ak sekirite","Koulè lojo a","Gwosè konpayi an"],ans:1,fb:"Rapidite ak sekirite se mesaj kle a."},
+    {q:"Poukisa eksplike pwosesis la etap pa etap itil?",opts:["Sa pa nesesè","Sa diminye enkyetid moun ka genyen sou lajan/sèvis fanmi yo","Pwosesis pa bezwen eksplike","Moun toujou konprann otomatikman"],ans:1,fb:"Sa diminye enkyetid sou lajan/sèvis fanmi."},
+    {q:"Ki modil kouvri ekri klè ki itil pou eksplike yon pwosesis?",opts:["Modil 5","Modil 9","Modil 16","Modil 1"],ans:0,fb:"Modil 5 kouvri ekri klè (copywriting)."}],
+   close:{learned:"Sèvis ki lye ak voye lajan/sipò fanmi mande yon mesaj klè sou rapidite ak sekirite, plis yon eksplikasyon etap-pa-etap ki diminye enkyetid moun genyen sou lajan/sèvis fanmi yo.",
+    mistake:"Konsantre mesaj maketing sèlman sou pri a, san adrese enkyetid reyèl moun genyen sou sekirite ak rapidite lè l gen rapò ak sipò pou fanmi.",
+    tip:"Yon FAQ (kesyon moun poze souvan) ki reponn dirèkteman enkyetid komen yo ka bati plis konfyans pase yon paj piblisite senp.",
+    assign:"Ki 2 enkyetid yon moun ta genyen anvan yo itilize yon sèvis ki lye ak voye lajan/sipò pou fanmi, e kijan maketing ta ka adrese yo?",
+    dl:"Referans: Maketing pou Sèvis ki Lye ak Voye Lajan",
+    checklist:["2 enkyetid idantifye ak yon fason pou adrese yo?"],
+    ai:"Ede m ekri yon mesaj maketing kout pou yon sèvis ki ede dyaspora Ayisyen an sipòte fanmi yo, ki konsantre sou rapidite ak sekirite."}},
+ fr:{lede:"Les services liés aux transferts d'argent (comme le paiement de factures pour la famille, les petits cadeaux, ou d'autres services qui aident la diaspora à soutenir la famille en Haïti) demandent un message clair sur la fiabilité et la rapidité.",
+   secs:[["Rapidité et sécurité sont le message clé","Les gens qui envoient un service pour leur famille veulent savoir que l'argent/service arrivera sans problème et rapidement — le message marketing devrait se concentrer là-dessus, pas juste sur le prix."],
+    ["Communiquer clairement sur le processus","Comme les gens peuvent être inquiets pour l'argent/le service de leur famille, expliquer le processus étape par étape (écriture claire, Module 5) diminue l'inquiétude et bâtit la confiance."]],
+   illus:"roles",roleCards:[["⚡","Rapidité","Arrive vite sans retard"],["🔒","Sécurité","Confiance à chaque étape"],["📋","Processus Clair","Expliqué étape par étape"]],
+   ex:"Quelles 2 inquiétudes une personne aurait-elle avant d'utiliser un service lié aux transferts d'argent/soutien familial, et comment le marketing pourrait-il les adresser ?",
+   quiz:[
+    {q:"Sur quel message clé un service lié aux transferts d'argent devrait-il se concentrer ?",opts:["Seulement le prix","Rapidité et sécurité","La couleur du logo","La taille de l'entreprise"],ans:1,fb:"Rapidité et sécurité sont le message clé."},
+    {q:"Pourquoi expliquer le processus étape par étape est-il utile ?",opts:["Ce n'est pas nécessaire","Ça diminue l'inquiétude que les gens peuvent avoir pour l'argent/le service de leur famille","Le processus n'a pas besoin d'être expliqué","Les gens comprennent toujours automatiquement"],ans:1,fb:"Ça diminue l'inquiétude sur l'argent/le service familial."},
+    {q:"Quel module couvre l'écriture claire utile pour expliquer un processus ?",opts:["Module 5","Module 9","Module 16","Module 1"],ans:0,fb:"Le Module 5 couvre l'écriture claire (rédaction)."}],
+   close:{learned:"Les services liés aux transferts d'argent/soutien familial demandent un message clair sur la rapidité et la sécurité, plus une explication étape par étape qui diminue l'inquiétude des gens sur l'argent/le service de leur famille.",
+    mistake:"Concentrer le message marketing uniquement sur le prix, sans adresser les vraies inquiétudes des gens sur la sécurité et la rapidité quand ça concerne le soutien familial.",
+    tip:"Une FAQ (questions fréquentes) qui répond directement aux inquiétudes courantes peut bâtir plus de confiance qu'une simple page publicitaire.",
+    assign:"Quelles 2 inquiétudes une personne aurait-elle avant d'utiliser un service lié aux transferts d'argent/soutien familial, et comment le marketing pourrait-il les adresser ?",
+    dl:"Référence : Marketing pour Services Liés aux Transferts d'Argent",
+    checklist:["2 inquiétudes identifiées avec une façon de les adresser ?"],
+    ai:"Aide-moi à écrire un court message marketing pour un service qui aide la diaspora haïtienne à soutenir sa famille, en se concentrant sur la rapidité et la sécurité."}},
+ en:{lede:"Services adjacent to sending money (like bill payments for family, small gifts, or other services that help the diaspora support family in Haiti) require a clear message about reliability and speed.",
+   secs:[["Speed and security are the key message","People sending a service for their family want to know the money/service will arrive without problems and quickly — the marketing message should focus on that, not just price."],
+    ["Communicating the process clearly","Since people can be worried about their family's money/service, explaining the process step by step (clear writing, Module 5) reduces worry and builds trust."]],
+   illus:"roles",roleCards:[["⚡","Speed","Arrives fast without delay"],["🔒","Security","Trust at every step"],["📋","Clear Process","Explained step by step"]],
+   ex:"What 2 worries would someone have before using a service related to sending money/family support, and how could marketing address them?",
+   quiz:[
+    {q:"What key message should a money-transfer-adjacent service focus on?",opts:["Only the price","Speed and security","The logo's color","The company's size"],ans:1,fb:"Speed and security are the key message."},
+    {q:"Why is explaining the process step by step useful?",opts:["It isn't necessary","It reduces worry people may have about their family's money/service","The process doesn't need explaining","People always understand automatically"],ans:1,fb:"It reduces worry about family money/service."},
+    {q:"Which module covers clear writing useful for explaining a process?",opts:["Module 5","Module 9","Module 16","Module 1"],ans:0,fb:"Module 5 covers clear writing (copywriting)."}],
+   close:{learned:"Services related to sending money/family support require a clear message about speed and security, plus a step-by-step explanation that reduces people's worry about their family's money/service.",
+    mistake:"Focusing the marketing message only on price, without addressing people's real worries about security and speed when it concerns family support.",
+    tip:"An FAQ (frequently asked questions) that directly answers common worries can build more trust than a simple advertising page.",
+    assign:"What 2 worries would someone have before using a service related to sending money/family support, and how could marketing address them?",
+    dl:"Reference: Marketing for Remittance-Adjacent Services",
+    checklist:["2 worries identified with a way to address them?"],
+    ai:"Help me write a short marketing message for a service that helps the Haitian diaspora support their family, focusing on speed and security."}}},
+
+6:{ht:{lede:"Legliz ak òganizasyon kominotè pa 'vann' yon pwodwi — yo envite moun patisipe nan yon misyon, kidonk maketing yo ta dwe santi tankou yon envitasyon otantik, pa yon anons vant.",
+   secs:[["Rakonte istwa a, pa jis mande lajan","Eksplike vrèman ki enpak yon kontribisyon fè (rakonte istwa, Modil 5) konvenk plis pase yon senp demand lajan san kontèks."],
+    ["Kalandriye ak imèl pou evènman","Yon kalandriye kontni (Modil 10) ak yon lis imèl (Modil 13) ede kenbe kominote a enfòme sou pwochen evènman, sèvis, oswa kanpay kolekte lajan."]],
+   illus:"roles",roleCards:[["❤️","Envitasyon pou Misyon","Pa yon anons vant"],["📖","Istwa sou Enpak","Sa yon kontribisyon vrèman fè"],["📅","Kalandriye ak Imèl","Enfòme kominote a sou evènman"]],
+   ex:"Ki 1 istwa (vrè oswa egzanp) ou ta ka rakonte pou eksplike enpak yon kontribisyon fè pou yon legliz oswa òganizasyon kominotè?",
+   quiz:[
+    {q:"Poukisa maketing legliz/kominote ta dwe santi tankou yon envitasyon olye yon anons vant?",opts:["Yo idantik nèt","Yo envite moun patisipe nan yon misyon, pa vann yon pwodwi","Legliz pa ta dwe fè maketing ditou","Anons vant toujou pi efikas"],ans:1,fb:"Yo envite moun nan yon misyon, pa vann yon pwodwi."},
+    {q:"Kisa ki konvenk plis pase yon senp demann lajan?",opts:["Yon foto sèlman","Rakonte vrèman ki enpak yon kontribisyon fè","Yon pri fiks","Yon deskripsyon jeneral"],ans:1,fb:"Rakonte enpak reyèl la konvenk plis."},
+    {q:"Ki 2 zouti ede kenbe yon kominote enfòme sou evènman?",opts:["Sèlman rezo sosyal","Yon kalandriye kontni ak yon lis imèl","Sèlman biwo a","Pa gen zouti ki itil"],ans:1,fb:"Kalandriye kontni ak lis imèl ede enfòme kominote a."}],
+   close:{learned:"Maketing pou legliz/kominote se yon envitasyon nan yon misyon, pa yon vant — istwa sou vrè enpak ak yon kalandriye/lis imèl kenbe kominote a angaje.",
+    mistake:"Voye demann lajan san kontèks san eksplike vrèman ki enpak yon kontribisyon fè, ki fè demand la santi enpèsonèl.",
+    tip:"Yon istwa kout sou yon fanmi oswa yon pwojè espesifik ki te resevwa èd toujou pi konvenkan pase yon demann jeneral.",
+    assign:"Ki 1 istwa (vrè oswa egzanp) ou ta ka rakonte pou eksplike enpak yon kontribisyon fè pou yon legliz oswa òganizasyon kominotè?",
+    dl:"Referans: Maketing pou Legliz ak Kominote",
+    checklist:["Yon istwa enpak idantifye?"],
+    ai:"Ede m ekri yon kout istwa enpak pou yon kanpay kolekte lajan legliz oswa kominote Ayisyen."}},
+ fr:{lede:"Les églises et les organisations communautaires ne « vendent » pas un produit — elles invitent les gens à participer à une mission, donc leur marketing devrait ressembler à une invitation authentique, pas une publicité de vente.",
+   secs:[["Racontez l'histoire, ne demandez pas juste de l'argent","Expliquer vraiment quel impact une contribution fait (narration, Module 5) convainc plus qu'une simple demande d'argent sans contexte."],
+    ["Calendrier et emails pour les événements","Un calendrier de contenu (Module 10) et une liste d'emails (Module 13) aident à garder la communauté informée sur les prochains événements, services, ou campagnes de collecte de fonds."]],
+   illus:"roles",roleCards:[["❤️","Invitation à une Mission","Pas une publicité de vente"],["📖","Histoire d'Impact","Ce qu'une contribution fait vraiment"],["📅","Calendrier et Emails","Informer la communauté des événements"]],
+   ex:"Quelle 1 histoire (vraie ou exemple) pourriez-vous raconter pour expliquer l'impact qu'une contribution fait pour une église ou une organisation communautaire ?",
+   quiz:[
+    {q:"Pourquoi le marketing d'église/communauté devrait-il ressembler à une invitation plutôt qu'à une publicité de vente ?",opts:["Ils sont complètement identiques","Ils invitent les gens à participer à une mission, pas à vendre un produit","L'église ne devrait pas faire de marketing du tout","La publicité de vente est toujours plus efficace"],ans:1,fb:"Ils invitent à une mission, pas à vendre un produit."},
+    {q:"Qu'est-ce qui convainc plus qu'une simple demande d'argent ?",opts:["Seulement une photo","Raconter vraiment quel impact une contribution fait","Un prix fixe","Une description générique"],ans:1,fb:"Raconter le vrai impact convainc plus."},
+    {q:"Quels 2 outils aident à garder une communauté informée des événements ?",opts:["Seulement les réseaux sociaux","Un calendrier de contenu et une liste d'emails","Seulement le bureau","Aucun outil utile"],ans:1,fb:"Le calendrier de contenu et la liste d'emails aident à informer la communauté."}],
+   close:{learned:"Le marketing d'église/communauté est une invitation à une mission, pas une vente — des histoires sur le vrai impact et un calendrier/liste d'emails gardent la communauté engagée.",
+    mistake:"Envoyer une demande d'argent sans contexte sans expliquer vraiment quel impact une contribution fait, ce qui rend la demande impersonnelle.",
+    tip:"Une courte histoire sur une famille ou un projet spécifique qui a reçu de l'aide est toujours plus convaincante qu'une demande générique.",
+    assign:"Quelle 1 histoire (vraie ou exemple) pourriez-vous raconter pour expliquer l'impact qu'une contribution fait pour une église ou une organisation communautaire ?",
+    dl:"Référence : Marketing pour Églises et Communautés",
+    checklist:["Une histoire d'impact identifiée ?"],
+    ai:"Aide-moi à écrire une courte histoire d'impact pour une campagne de collecte de fonds d'église ou de communauté haïtienne."}},
+ en:{lede:"Churches and community organizations don't \"sell\" a product — they invite people to participate in a mission, so their marketing should feel like an authentic invitation, not a sales ad.",
+   secs:[["Tell the story, don't just ask for money","Genuinely explaining what impact a contribution makes (storytelling, Module 5) convinces more than a simple ask for money with no context."],
+    ["Calendar and emails for events","A content calendar (Module 10) and an email list (Module 13) help keep the community informed about upcoming events, services, or fundraising campaigns."]],
+   illus:"roles",roleCards:[["❤️","Invitation to a Mission","Not a sales ad"],["📖","Impact Story","What a contribution really does"],["📅","Calendar and Emails","Keep the community informed on events"]],
+   ex:"What's 1 story (real or example) you could tell to explain the impact a contribution makes for a church or community organization?",
+   quiz:[
+    {q:"Why should church/community marketing feel like an invitation rather than a sales ad?",opts:["They're completely identical","They invite people to participate in a mission, not sell a product","Churches shouldn't do marketing at all","Sales ads are always more effective"],ans:1,fb:"They invite people to a mission, not sell a product."},
+    {q:"What convinces more than a simple ask for money?",opts:["Only a photo","Genuinely telling what impact a contribution makes","A fixed price","A generic description"],ans:1,fb:"Telling the real impact convinces more."},
+    {q:"What 2 tools help keep a community informed about events?",opts:["Only social media","A content calendar and an email list","Only the office","No useful tools"],ans:1,fb:"A content calendar and email list help inform the community."}],
+   close:{learned:"Church/community marketing is an invitation to a mission, not a sale — stories about real impact and a calendar/email list keep the community engaged.",
+    mistake:"Sending an ask for money with no context without genuinely explaining what impact a contribution makes, which makes the ask feel impersonal.",
+    tip:"A short story about a specific family or project that received help is always more convincing than a generic ask.",
+    assign:"What's 1 story (real or example) you could tell to explain the impact a contribution makes for a church or community organization?",
+    dl:"Reference: Marketing for Churches and Communities",
+    checklist:["An impact story identified?"],
+    ai:"Help me write a short impact story for a Haitian church or community fundraising campaign."}}},
+
+7:{ht:{lede:"Lekòl ak òganizasyon san bi likratif (nonprofit) souvan gen 2 odyans an menm tan: moun ki ta ka enskri oswa patisipe, ak moun ki ta ka bay sipò finansye — chak youn bezwen yon mesaj yon ti jan diferan.",
+   secs:[["Rezilta konkrè bay konfyans","Pou lekòl, sa vle di montre siksè elèv yo; pou nonprofit, sa vle di montre enpak reyèl travay la fè — tou de bezwen prèv, pa jis pwomès."],
+    ["Diferan mesaj pou diferan odyans","Yon mesaj pou paran k ap chèche yon lekòl pou pitit yo diferan de yon mesaj pou yon moun k ap konsidere fè yon don — konnen a ki moun w ap pale a chak fwa (Modil 4)."]],
+   illus:"roles",roleCards:[["🎓","Siksè Elèv","Pou lekòl yo"],["💚","Enpak Travay la","Pou nonprofit yo"],["🎯","Mesaj Diferan","Pou chak odyans"]],
+   ex:"Pou yon lekòl oswa nonprofit ou konnen, ki 2 mesaj diferan yo ta ka voye — youn pou moun k ap enskri/patisipe, youn pou moun k ap bay sipò?",
+   quiz:[
+    {q:"Ki 2 odyans lekòl/nonprofit souvan genyen an menm tan?",opts:["Sèlman yon sèl odyans","Moun ki ta ka enskri/patisipe, ak moun ki ta ka bay sipò finansye","Sèlman moun k ap bay lajan","Pa gen odyans espesifik"],ans:1,fb:"2 odyans yo: moun k ap enskri/patisipe, ak moun k ap bay sipò."},
+    {q:"Kisa ki bay konfyans pou lekòl ak nonprofit?",opts:["Yon lojo bèl sèlman","Rezilta konkrè (siksè elèv oswa enpak reyèl)","Pri ki ba","Yon sit web konplè sèlman"],ans:1,fb:"Rezilta konkrè bay konfyans."},
+    {q:"Poukisa konnen a ki moun w ap pale a enpòtan?",opts:["Sa pa gen enpòtans","Mesaj pou yon paran diferan de mesaj pou yon donatè","Tout moun ta dwe resevwa menm mesaj","Se sèlman pou gwo òganizasyon"],ans:1,fb:"Mesaj pou paran diferan de mesaj pou donatè."}],
+   close:{learned:"Lekòl ak nonprofit gen 2 odyans (moun k ap enskri/patisipe, ak moun k ap bay sipò finansye) ki chak bezwen yon mesaj yon ti jan diferan, tout de baze sou rezilta konkrè.",
+    mistake:"Voye menm mesaj jeneral bay tou de odyans yo, san adapte l pou sa chak grup reyèlman bezwen tande.",
+    tip:"Yon istwa siksè elèv espesifik (pou lekòl) oswa yon istwa enpak espesifik (pou nonprofit) toujou pi konvenkan pase estatistik jeneral sèlman.",
+    assign:"Pou yon lekòl oswa nonprofit ou konnen, ki 2 mesaj diferan yo ta ka voye — youn pou moun k ap enskri/patisipe, youn pou moun k ap bay sipò?",
+    dl:"Referans: Maketing pou Lekòl ak Nonprofit",
+    checklist:["2 mesaj diferan idantifye pou 2 odyans yo?"],
+    ai:"Ede m ekri 2 mesaj diferan pou yon [lekòl/nonprofit] Ayisyen — youn pou fanmi k ap enskri, youn pou moun k ap konsidere bay sipò."}},
+ fr:{lede:"Les écoles et les organisations à but non lucratif (nonprofit) ont souvent 2 audiences en même temps : les gens qui pourraient s'inscrire ou participer, et les gens qui pourraient donner un soutien financier — chacune a besoin d'un message un peu différent.",
+   secs:[["Des résultats concrets inspirent confiance","Pour une école, ça veut dire montrer la réussite des élèves ; pour un nonprofit, ça veut dire montrer le vrai impact du travail — les deux ont besoin de preuves, pas juste de promesses."],
+    ["Différents messages pour différentes audiences","Un message pour un parent qui cherche une école pour son enfant est différent d'un message pour quelqu'un qui considère faire un don — savoir à qui vous parlez à chaque fois (Module 4)."]],
+   illus:"roles",roleCards:[["🎓","Réussite des Élèves","Pour les écoles"],["💚","Impact du Travail","Pour les nonprofits"],["🎯","Message Différent","Pour chaque audience"]],
+   ex:"Pour une école ou un nonprofit que vous connaissez, quels 2 messages différents pourraient-ils envoyer — un pour ceux qui s'inscrivent/participent, un pour ceux qui donnent un soutien ?",
+   quiz:[
+    {q:"Quelles sont les 2 audiences qu'une école/nonprofit a souvent en même temps ?",opts:["Seulement une audience","Ceux qui pourraient s'inscrire/participer, et ceux qui pourraient donner un soutien financier","Seulement ceux qui donnent de l'argent","Aucune audience spécifique"],ans:1,fb:"2 audiences : ceux qui s'inscrivent/participent, et ceux qui soutiennent."},
+    {q:"Qu'est-ce qui inspire confiance pour les écoles et nonprofits ?",opts:["Seulement un beau logo","Des résultats concrets (réussite des élèves ou vrai impact)","Un prix bas","Seulement un site web complet"],ans:1,fb:"Les résultats concrets inspirent confiance."},
+    {q:"Pourquoi savoir à qui vous parlez est-il important ?",opts:["Ça n'a pas d'importance","Le message pour un parent est différent du message pour un donateur","Tout le monde devrait recevoir le même message","C'est seulement pour les grandes organisations"],ans:1,fb:"Le message pour un parent diffère du message pour un donateur."}],
+   close:{learned:"Les écoles et nonprofits ont 2 audiences (ceux qui s'inscrivent/participent, et ceux qui donnent un soutien financier) qui ont chacune besoin d'un message un peu différent, tous deux basés sur des résultats concrets.",
+    mistake:"Envoyer le même message général aux deux audiences, sans l'adapter à ce que chaque groupe a réellement besoin d'entendre.",
+    tip:"Une histoire de réussite d'élève spécifique (pour une école) ou une histoire d'impact spécifique (pour un nonprofit) est toujours plus convaincante que de simples statistiques générales.",
+    assign:"Pour une école ou un nonprofit que vous connaissez, quels 2 messages différents pourraient-ils envoyer — un pour ceux qui s'inscrivent/participent, un pour ceux qui donnent un soutien ?",
+    dl:"Référence : Marketing pour Écoles et Nonprofits",
+    checklist:["2 messages différents identifiés pour les 2 audiences ?"],
+    ai:"Aide-moi à écrire 2 messages différents pour un(e) [école/nonprofit] haïtien(ne) — un pour les familles qui s'inscrivent, un pour ceux qui considèrent donner un soutien."}},
+ en:{lede:"Schools and nonprofits often have 2 audiences at once: people who might enroll or participate, and people who might provide financial support — each needs a slightly different message.",
+   secs:[["Concrete results build trust","For a school, that means showing student success; for a nonprofit, that means showing the work's real impact — both need proof, not just promises."],
+    ["Different messages for different audiences","A message for a parent looking for a school for their child differs from a message for someone considering making a donation — know who you're talking to each time (Module 4)."]],
+   illus:"roles",roleCards:[["🎓","Student Success","For schools"],["💚","Work's Impact","For nonprofits"],["🎯","Different Message","For each audience"]],
+   ex:"For a school or nonprofit you know, what 2 different messages could they send — one for people enrolling/participating, one for people providing support?",
+   quiz:[
+    {q:"What 2 audiences do schools/nonprofits often have at once?",opts:["Only one audience","People who might enroll/participate, and people who might provide financial support","Only people giving money","No specific audience"],ans:1,fb:"2 audiences: people enrolling/participating, and people supporting."},
+    {q:"What builds trust for schools and nonprofits?",opts:["Only a nice logo","Concrete results (student success or real impact)","A low price","Only a full website"],ans:1,fb:"Concrete results build trust."},
+    {q:"Why does knowing who you're talking to matter?",opts:["It doesn't matter","The message for a parent differs from the message for a donor","Everyone should get the same message","It's only for large organizations"],ans:1,fb:"The message for a parent differs from the message for a donor."}],
+   close:{learned:"Schools and nonprofits have 2 audiences (people enrolling/participating, and people providing financial support) that each need a slightly different message, both grounded in concrete results.",
+    mistake:"Sending the same general message to both audiences, without adapting it to what each group actually needs to hear.",
+    tip:"A specific student success story (for a school) or a specific impact story (for a nonprofit) is always more convincing than general statistics alone.",
+    assign:"For a school or nonprofit you know, what 2 different messages could they send — one for people enrolling/participating, one for people providing support?",
+    dl:"Reference: Marketing for Schools and Nonprofits",
+    checklist:["2 different messages identified for the 2 audiences?"],
+    ai:"Help me write 2 different messages for a Haitian [school/nonprofit] — one for families enrolling, one for people considering giving support."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module19-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD19_LESSON_SLUGS=["marketing-for-local-service-businesses","marketing-for-trucking-and-logistics","marketing-for-real-estate","marketing-for-diaspora-import-export-and-ti-machann-selling","marketing-for-remittance-adjacent-services","marketing-for-churches-and-community-fundraising","marketing-for-schools-and-nonprofits"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD19_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder",15:"meet-the-ads-manager",16:"meet-the-analytics-dashboard",17:"meet-the-automation-tool",18:"freelancing-vs-starting-an-agency"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===19;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M19[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 19 · 19."+n;
+ $("topTitle").textContent=M19[lang][n-1];
+ document.title="Academy · "+M19[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 19 · 19.'+n+'</span><h2 class="labh2">'+M19[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M19[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 19?":S.lang==="fr"?"Voulez-vous recommencer le Module 19 ?":"Restart Module 19?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>
