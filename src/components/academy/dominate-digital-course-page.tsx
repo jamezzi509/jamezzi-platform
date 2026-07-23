@@ -42,8 +42,8 @@ export function DominateDigitalCoursePage() {
             </p>
             <p className="text-intro text-muted mt-7 max-w-xl">
               Build a practical marketing system using customer research,
-              useful content, and modern AI workflows. New modules are being
-              added regularly.
+              useful content, and modern AI workflows. All 20 modules are
+              ready now, from foundations to a full capstone project.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <CtaLink href={`${learnBase}/${firstLesson.slug}`}>
@@ -68,10 +68,10 @@ export function DominateDigitalCoursePage() {
           assessmentHref={`${learnBase}/${firstLesson.slug}`}
           language="ht"
           completeOverride={{
-            href: "/contact",
-            eyebrow: "TOUT LESON DISPONIB FINI",
-            title: "Ou fini tout sa ki disponib kounye a.",
-            action: "Jwenn nouvèl sou lòt modil",
+            href: "#course-path",
+            eyebrow: "TOUT 20 MODIL FINI",
+            title: "Ou fini tout 20 modil kou a — byen fèt!",
+            action: "Revize Kou a",
           }}
         />
       </Container>
@@ -87,9 +87,8 @@ export function DominateDigitalCoursePage() {
               20 modules, from foundations to a full capstone.
             </h2>
             <p className="text-body text-muted mt-4 max-w-2xl">
-              We&rsquo;re building this course module by module. Module 1 is
-              ready now — the rest are being added, in order, over the
-              coming months.
+              Every module is ready now, in order, ending with a capstone
+              project that pulls everything together for your own business.
             </p>
           </div>
 
