@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Academy · Modil 18 — Freelans ak Kreye Ajans</title>
+<style>
+:root{--brand:#6D5FD8;--brand2:#534AB7;--brand-rgb:109,95,216;--ink-900:#0b0f17;--ink-800:#0f1420;--ink-700:#151b28;--ink-600:#1c2434;--ink-500:#273143;
+ --edge:#232c3d;--edge2:#2a3346;--text:#e7edf6;--dim:#9aa6b8;--mute:#7c879a;--good:#22c55e;--warn:#e8a13a;--danger:#c42b1c;
+ --font:'Inter',-apple-system,system-ui,'Segoe UI',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
+body{font-family:var(--font);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 500px at 100% -10%,#241c46 0%,transparent 60%),var(--ink-900)}
+.app{display:flex;height:100vh}
+.side{width:246px;flex:none;background:var(--ink-800);border-right:1px solid #1d2536;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:15px 16px;border-bottom:1px solid #1d2536}
+.brand svg{width:25px;height:25px}.brand b{font-size:16px;font-weight:800}.brand .cs{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.mods{flex:1;overflow:auto;padding:8px}.mods::-webkit-scrollbar{width:8px}.mods::-webkit-scrollbar-thumb{background:#26304a;border-radius:10px}
+.mod .mh{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;font-size:13.5px;color:var(--dim);cursor:pointer}
+.mod .mh:hover{background:var(--ink-600)}.mod.active .mh{background:var(--ink-600);color:#fff;font-weight:600}
+.mod.locked .mh{cursor:default;opacity:.45}.mod.locked .mh:hover{background:none}
+.mod .num{width:20px;height:20px;border-radius:6px;background:var(--ink-500);color:var(--dim);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.mod.active .num{background:var(--brand);color:#fff}.mod .les{display:none;padding:2px 0 6px 8px}.mod.active .les{display:block}
+.li{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--mute);cursor:pointer}
+.li:hover{background:var(--ink-600);color:var(--dim)}.li.cur{background:rgba(var(--brand-rgb),.14);color:#fff}
+.li .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #46506a;flex:none;display:grid;place-items:center;font-size:9px;color:transparent}
+.li.done .dot{background:var(--good);border-color:var(--good);color:#fff}.li .lx{margin-left:auto;font-size:10.5px;color:var(--mute)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid #1a2231}
+.top .mt{font-size:11.5px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em}.top h1{font-size:18px;font-weight:700}
+.langs{margin-left:auto;display:flex;background:var(--ink-700);border:1px solid var(--edge2);border-radius:9px;padding:3px}
+.langs button{border:none;background:none;color:var(--dim);font-weight:700;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--brand);color:#fff}
+.reset{margin-left:6px;width:32px;height:32px;border-radius:8px;border:1px solid var(--edge2);background:var(--ink-700);color:var(--dim);cursor:pointer}
+.wsp{flex:1;min-height:0;display:flex}
+.stagewrap{flex:1;min-width:0;padding:16px}
+.stage{position:relative;height:100%;width:100%;border-radius:12px;overflow:auto;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);background:var(--ink-800);border:1px solid var(--edge);padding:28px 34px}
+.rail{width:312px;flex:none;border-left:1px solid #1a2231;display:flex;flex-direction:column}
+.rs{padding:17px 18px;border-bottom:1px solid #1a2231}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.pr{height:7px;border-radius:6px;background:var(--edge);overflow:hidden;margin-top:12px}.pr>span{display:block;height:100%;width:0;background:var(--good);transition:width .5s}
+.prtext{font-size:11.5px;color:var(--mute);margin-top:8px}
+.obj{display:flex;gap:10px;font-size:13.5px;margin:10px 0;color:var(--mute)}.obj.d{color:var(--text)}
+.obj .bx{width:18px;height:18px;border-radius:50%;border:1px solid #566078;display:grid;place-items:center;font-size:11px;color:transparent;flex:none;margin-top:1px}
+.obj.d .bx{background:var(--good);border-color:var(--good);color:#fff}.obj.d .tx{text-decoration:line-through;text-decoration-color:rgba(120,130,150,.55)}
+.assist{margin-top:auto;padding:17px}.abox{background:var(--ink-700);border:1px solid var(--edge);border-radius:14px;padding:15px}
+.ah{display:flex;align-items:center;gap:9px;margin-bottom:8px}.av{width:30px;height:30px;border-radius:50%;background:rgba(var(--brand-rgb),.18);display:grid;place-items:center;font-size:16px}
+.an{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}.am{font-size:14px;line-height:1.6;color:#dbe2ee;min-height:60px}
+.labhead{max-width:700px}.labtag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);background:rgba(var(--brand-rgb),.12);border-radius:999px;padding:5px 12px}
+.labh2{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}.lablead{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:660px;font-style:italic}
+.btn{border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.p:hover{background:var(--brand2)}.btn.p:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--ink-700);border:1px solid var(--edge2);color:var(--text)}
+.nextwrap{margin-top:26px;display:flex;gap:12px;align-items:center}
+.secs{max-width:700px;margin-top:24px}
+.sec{margin-bottom:20px}.sec h3{font-size:16.5px;font-weight:700;margin-bottom:7px}.sec p{font-size:14.5px;line-height:1.7;color:#c9d1e0}
+.illus{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:20px}
+.illus .cap{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
+.exwrap{max-width:700px;margin:26px 0;border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:18px 20px}
+.exwrap .extag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.exwrap p.exq{font-size:14.5px;margin:8px 0 12px;color:var(--text);line-height:1.6}
+.exwrap textarea{width:100%;min-height:80px;border-radius:10px;border:1px solid var(--edge2);background:var(--ink-800);color:var(--text);font-family:var(--font);font-size:14px;padding:12px;resize:vertical}
+.exwrap textarea:focus{outline:2px solid var(--brand)}
+.exsaved{font-size:12.5px;color:var(--good);margin-top:8px;display:none}
+.quiz{max-width:700px;margin:26px 0}
+.qtag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.qcard{border:1px solid var(--edge2);background:var(--ink-700);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.qcard .qq{font-size:14.5px;font-weight:600;margin-bottom:12px;line-height:1.55}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;border:1px solid var(--edge2);background:var(--ink-600);color:var(--text);border-radius:9px;padding:10px 13px;font-size:13.5px;cursor:pointer;font-family:var(--font)}
+.qopt:hover:not(:disabled){border-color:var(--brand)}
+.qopt:disabled{cursor:default}
+.qopt.correct{background:rgba(34,197,94,.16);border-color:var(--good);color:#c9f5d8}
+.qopt.wrong{background:rgba(196,43,28,.16);border-color:var(--danger);color:#ffd7d2}
+.qfb{font-size:13px;color:var(--dim);margin-top:10px;line-height:1.55}
+.close{max-width:700px;margin:26px 0 6px}
+.close .ctag{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.crow{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--edge2)}
+.crow:last-child{border-bottom:none}
+.crow .ck{font-weight:700;font-size:13.5px;margin-bottom:3px}
+.crow .cv{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.crow ul{margin:4px 0 0 18px;padding:0}
+.crow li{font-size:13.5px;color:#c9d1e0;line-height:1.6}
+.stampscreen{max-width:560px;margin:40px auto;text-align:center}
+.stamp{width:118px;height:118px;border-radius:50%;border:4px double var(--brand);display:grid;place-items:center;margin:0 auto 22px;background:rgba(var(--brand-rgb),.1);transform:rotate(-8deg)}
+.stamp .si{font-size:44px}
+.stampscreen h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.stampscreen p{font-size:14.5px;color:var(--dim);line-height:1.65;margin-bottom:22px}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+@media (max-width:860px){
+ body{overflow-y:auto}
+ .app{flex-direction:column;height:auto;min-height:100vh}
+ .side{width:100%;max-height:180px;border-right:none;border-bottom:1px solid #1d2536}
+ .brand{padding:12px 14px}
+ .mods{padding:6px}
+ .top{height:auto;flex-wrap:wrap;padding:10px 14px;gap:8px}
+ .top h1{font-size:16px}
+ .langs{margin-left:0}
+ .wsp{flex-direction:column}
+ .stagewrap{padding:12px}
+ .stage{height:min(78vh,680px);padding:20px 18px}
+ .rail{width:100%;border-left:none;border-top:1px solid #1a2231}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/academy/courses/digital-marketing-ai" target="_top" style="text-decoration:none;color:inherit"><img src="/brand/jamezzi-j.webp" alt="" style="width:19px;height:25px;object-fit:contain"/>
+      <div><b>Jamezzi Academy</b><div class="cs" id="cs">Maketing Dijital &amp; AI</div></div></a>
+    <div class="mods" id="mods"></div>
+  </aside>
+  <main class="main">
+    <header class="top"><div><div class="mt" id="topTag">Modil 18 · 18.1</div><h1 id="topTitle">—</h1></div>
+      <div class="langs" id="langs"><button data-l="ht" class="on">HT</button><button data-l="fr">FR</button><button data-l="en">EN</button></div>
+      <button class="reset" id="resetBtn">↺</button></header>
+    <div class="wsp">
+      <div class="stagewrap"><div class="stage" id="stage"></div></div>
+      <div class="rail">
+        <div class="rs"><div class="lbl" id="lblProg">Pwogrè modil la</div><div class="pr"><span id="prog"></span></div><div class="prtext" id="progText">0 / 7</div></div>
+        <div class="rs"><div class="lbl" id="lblObj">Objektif</div><div id="objList"></div></div>
+        <div class="assist"><div class="abox"><div class="ah"><div class="av" id="aiAva">🤖</div><div class="an" id="aiName">Asistan IA</div></div><div class="am" id="aiMsg"></div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const UI={
+ ht:{cs:"Maketing Dijital & AI",prog:"Pwogrè modil la",obj:"Objektif",ai:"Asistan IA",complete:"Fini Leson an",completed:"Fini ✓",next:"Pwochen →",
+   exTag:"TI EGZÈSIS",exSaved:"Anrejistre ✓",exBtn:"Anrejistre",quizTag:"KESYON REVIZYON",closeTag:"REZIME LESON AN",
+   cLearned:"🧠 Sa ou aprann",cMistake:"⚠️ Erè kèk moun fè",cTip:"💡 Konsèy pwo",cAssign:"✅ Devwa ou",cDl:"📥 Pou telechaje",cChecklist:"📋 Lis verifikasyon",cAi:"🤖 Pwonp IA pou leson sa a",
+   objEx:"Fè ti egzèsis la",objQuiz:"Reponn tout kesyon revizyon yo",
+   stampTitle:"Ou fini Modil 18!",stampBody:"Ou fèk mete yon lòt estanp nan Pasaport Aprantisaj ou.",
+   stampBtn:"Retounen nan Kou a →"},
+ fr:{cs:"Marketing Digital & IA",prog:"Progression du module",obj:"Objectifs",ai:"Assistant IA",complete:"Terminer la leçon",completed:"Terminé ✓",next:"Suivant →",
+   exTag:"MINI-EXERCICE",exSaved:"Enregistré ✓",exBtn:"Enregistrer",quizTag:"QUESTIONS DE RÉVISION",closeTag:"RÉSUMÉ DE LA LEÇON",
+   cLearned:"🧠 Ce que vous avez appris",cMistake:"⚠️ Erreur fréquente",cTip:"💡 Astuce pro",cAssign:"✅ Votre mission",cDl:"📥 À télécharger",cChecklist:"📋 Liste de vérification",cAi:"🤖 Prompt IA de la leçon",
+   objEx:"Faire le mini-exercice",objQuiz:"Répondre à toutes les questions",
+   stampTitle:"Module 18 terminé !",stampBody:"Vous venez d'obtenir un nouveau tampon de votre Passeport d'Apprentissage.",
+   stampBtn:"Retour au cours →"},
+ en:{cs:"Digital Marketing & AI",prog:"Module progress",obj:"Objectives",ai:"AI Assistant",complete:"Complete lesson",completed:"Completed ✓",next:"Next →",
+   exTag:"MINI-EXERCISE",exSaved:"Saved ✓",exBtn:"Save",quizTag:"REVIEW QUESTIONS",closeTag:"LESSON RECAP",
+   cLearned:"🧠 What you learned",cMistake:"⚠️ Common mistake",cTip:"💡 Pro tip",cAssign:"✅ Your assignment",cDl:"📥 Downloadable",cChecklist:"📋 Checklist",cAi:"🤖 AI prompt of the lesson",
+   objEx:"Complete the mini-exercise",objQuiz:"Answer every review question",
+   stampTitle:"You finished Module 18!",stampBody:"You just earned another stamp in your Learning Passport.",
+   stampBtn:"Back to the course →"}};
+
+const MODULES={
+ ht:["Baz Maketing Dijital","Sikoloji Vant","Idantite Mak (Branding)","Konnen Kliyan Ou","Ekri Tèks ki Vann","Kontni Grafik","Maketing Videyo","IA pou Maketing","Maketing sou Rezo Sosyal","Maketing Kontni","SEO (Referansman)","Google Business Profile","Maketing pa Imèl","Sit Web ak Paj Aterisaj","Piblisite Peye","Analitik","Otomatizasyon Maketing","Freelans ak Kreye Ajans","Maketing pou Diferan Biznis","Pwojè Final"],
+ fr:["Fondamentaux du Marketing Digital","Psychologie de la Vente","Image de Marque","Connaître Votre Client","Rédaction Publicitaire","Contenu Graphique","Marketing Vidéo","L'IA pour le Marketing","Marketing sur les Réseaux Sociaux","Marketing de Contenu","SEO (Référencement)","Google Business Profile","Email Marketing","Sites Web et Pages de Destination","Publicité Payante","Analytique","Automatisation Marketing","Freelance et Création d'Agence","Marketing pour Différents Types d'Entreprises","Projet Final"],
+ en:["Digital Marketing Foundations","Psychology of Selling","Branding","Know Your Customer","Copywriting","Graphic Content","Video Marketing","AI for Marketing","Social Media Marketing","Content Marketing","SEO","Google Business Profile","Email Marketing","Websites & Landing Pages","Paid Advertising","Analytics","Marketing Automation","Freelancing & Starting an Agency","Marketing for Different Businesses","Capstone Project"]};
+
+const M18={
+ ht:["Freelans kont Kreye yon Ajans","Bati Pòtfolyo Ou","Fikse Pri Sèvis Ou","Kontra ak Baz Etandi (Scope)","Jwenn Kliyan sou Upwork, Fiverr ak LinkedIn","Kontak Dirèk (Cold Outreach) ki Mache","Modèl Swipe-File"],
+ fr:["Freelance vs. Créer une Agence","Construire Votre Portfolio","Fixer le Prix de Vos Services","Contrats et Bases de la Portée (Scope)","Trouver des Clients sur Upwork, Fiverr et LinkedIn","Prospection à Froid qui Fonctionne","Modèles de Swipe-File"],
+ en:["Freelancing vs. Starting an Agency","Building Your Portfolio","Pricing Your Services","Contracts & Scope Basics","Finding Clients on Upwork, Fiverr & LinkedIn","Cold Outreach That Works","Swipe-File Scripts"]};
+
+/* ============ lesson content ============ */
+const C={
+1:{ht:{lede:"Ni freelans ni ajans se de bon fason pou bati yon biznis maketing — men yo mande diferan konpetans ak diferan style travay.",
+   secs:[["Freelans: ou menm sèl","Ou fè travay la dirèkteman pou kliyan yo, ou kontwole tout desizyon, men revni ou limite pa konbyen èdtan ou genyen."],
+    ["Ajans: bati yon ekip","Yon ajans anplwaye oswa kontrakte lòt moun pou fè travay la, sa kite w grandi pi lwen pase pwòp tan ou, men li mande plis konpetans jesyon."]],
+   illus:"myths",mythsCards:[["Freelans",["Ou menm sèl fè travay la","Ou kontwole tout desizyon","Revni limite pa tan ou"]],["Ajans",["Bati yon ekip","Grandi pi lwen pase tan pa w","Mande konpetans jesyon"]]],
+   ex:"Ki chemen (freelans oswa ajans) ou panse ta pi bon pou ou kounye a, e poukisa?",
+   quiz:[
+    {q:"Ki diferans debaz ant freelans ak ajans?",opts:["Pa gen diferans","Freelans se ou menm sèl, ajans bati yon ekip","Ajans toujou pi piti","Freelans mande plis anplwaye"],ans:1,fb:"Freelans se ou menm sèl; ajans bati yon ekip."},
+    {q:"Ki limit prensipal freelans genyen?",opts:["Pa gen limit","Revni limite pa konbyen èdtan ou genyen","Ou pa ka janm chwazi kliyan","Freelans pa ka fè maketing"],ans:1,fb:"Revni freelans limite pa tan disponib ou."},
+    {q:"Kisa yon ajans bezwen ki freelans pa bezwen menm jan an?",opts:["Okenn bagay diferan","Konpetans jesyon pou dirije lòt moun","Yon lojo sèlman","Yon biwo fizik obligatwa"],ans:1,fb:"Yon ajans mande konpetans jesyon pou dirije yon ekip."}],
+   close:{learned:"Freelans kite w kontwole tout desizyon men limite revni ou pa tan disponib ou; yon ajans kite w grandi pi lwen men mande konpetans jesyon yon ekip.",
+    mistake:"Eseye bati yon ajans konplè anvan menm gen eksperyans freelans byen etabli, san konprann konpetans jesyon sa mande.",
+    tip:"Anpil moun kòmanse kòm freelans epi grandi vè yon ajans lè yo gen twòp travay pou fè sèl.",
+    assign:"Ki chemen (freelans oswa ajans) ou panse ta pi bon pou ou kounye a, e poukisa?",
+    dl:"Referans: Freelans kont Ajans",
+    checklist:["Konprann diferans debaz ant de chemen yo?","Chwazi youn ki matche ak sitiyasyon ou kounye a?"],
+    ai:"Ede m konpare freelans ak ajans pou yon moun k ap kòmanse nan [dekri sèvis/konpetans ou]."}},
+ fr:{lede:"Le freelance et la création d'une agence sont tous deux de bonnes façons de bâtir une entreprise de marketing — mais ils demandent des compétences et un style de travail différents.",
+   secs:[["Freelance : vous seul","Vous faites le travail directement pour les clients, vous contrôlez toutes les décisions, mais votre revenu est limité par le nombre d'heures que vous avez."],
+    ["Agence : bâtir une équipe","Une agence emploie ou sous-traite d'autres personnes pour faire le travail, ce qui vous permet de grandir au-delà de votre propre temps, mais demande plus de compétences en gestion."]],
+   illus:"myths",mythsCards:[["Freelance",["Vous faites le travail seul","Vous contrôlez toutes les décisions","Revenu limité par votre temps"]],["Agence",["Bâtir une équipe","Grandir au-delà de votre temps","Demande des compétences de gestion"]]],
+   ex:"Quel chemin (freelance ou agence) pensez-vous serait le meilleur pour vous en ce moment, et pourquoi ?",
+   quiz:[
+    {q:"Quelle est la différence de base entre freelance et agence ?",opts:["Il n'y a pas de différence","Le freelance c'est vous seul, l'agence bâtit une équipe","Les agences sont toujours plus petites","Le freelance demande plus d'employés"],ans:1,fb:"Le freelance c'est vous seul ; l'agence bâtit une équipe."},
+    {q:"Quelle est la principale limite du freelance ?",opts:["Il n'y a pas de limite","Le revenu est limité par le nombre d'heures que vous avez","Vous ne pouvez jamais choisir vos clients","Le freelance ne peut pas faire de marketing"],ans:1,fb:"Le revenu du freelance est limité par votre temps disponible."},
+    {q:"De quoi une agence a-t-elle besoin que le freelance n'a pas de la même façon ?",opts:["Rien de différent","Des compétences de gestion pour diriger d'autres personnes","Seulement un logo","Un bureau physique obligatoire"],ans:1,fb:"Une agence demande des compétences de gestion d'équipe."}],
+   close:{learned:"Le freelance vous laisse contrôler toutes les décisions mais limite votre revenu à votre temps disponible ; une agence vous laisse grandir au-delà mais demande des compétences de gestion d'équipe.",
+    mistake:"Essayer de bâtir une agence complète avant même d'avoir une expérience freelance bien établie, sans comprendre les compétences de gestion que ça demande.",
+    tip:"Beaucoup de gens commencent en freelance et grandissent vers une agence quand ils ont trop de travail pour le faire seuls.",
+    assign:"Quel chemin (freelance ou agence) pensez-vous serait le meilleur pour vous en ce moment, et pourquoi ?",
+    dl:"Référence : Freelance vs. Agence",
+    checklist:["Comprend la différence de base entre les deux chemins ?","A choisi celui qui correspond à sa situation actuelle ?"],
+    ai:"Aide-moi à comparer le freelance et l'agence pour quelqu'un qui débute dans [décris tes services/compétences]."}},
+ en:{lede:"Both freelancing and starting an agency are good ways to build a marketing business — but they require different skills and a different working style.",
+   secs:[["Freelancing: just you","You do the work directly for clients, you control every decision, but your income is limited by how many hours you have."],
+    ["Agency: building a team","An agency employs or contracts other people to do the work, letting you grow beyond your own time, but it requires more management skill."]],
+   illus:"myths",mythsCards:[["Freelancing",["You do the work alone","You control every decision","Income limited by your time"]],["Agency",["Build a team","Grow beyond your own time","Requires management skill"]]],
+   ex:"Which path (freelancing or agency) do you think would be best for you right now, and why?",
+   quiz:[
+    {q:"What's the basic difference between freelancing and an agency?",opts:["There's no difference","Freelancing is just you, an agency builds a team","Agencies are always smaller","Freelancing requires more employees"],ans:1,fb:"Freelancing is just you; an agency builds a team."},
+    {q:"What's freelancing's main limit?",opts:["There's no limit","Income is limited by how many hours you have","You can never choose your clients","Freelancing can't do marketing"],ans:1,fb:"Freelance income is limited by your available time."},
+    {q:"What does an agency need that freelancing doesn't the same way?",opts:["Nothing different","Management skill to direct other people","Just a logo","A required physical office"],ans:1,fb:"An agency requires team management skill."}],
+   close:{learned:"Freelancing lets you control every decision but limits your income to your available time; an agency lets you grow beyond that but requires team management skill.",
+    mistake:"Trying to build a full agency before even having well-established freelance experience, without understanding the management skill that requires.",
+    tip:"Many people start as freelancers and grow toward an agency when they have too much work to do alone.",
+    assign:"Which path (freelancing or agency) do you think would be best for you right now, and why?",
+    dl:"Reference: Freelancing vs. Agency",
+    checklist:["Understands the basic difference between the two paths?","Chose the one matching their current situation?"],
+    ai:"Help me compare freelancing and starting an agency for someone starting out in [describe your services/skills]."}}},
+
+2:{ht:{lede:"Yon pòtfolyo montre travay ou ka fè, menm anvan ou gen anpil kliyan peye — li se prèv konkrè olye jis pale sou konpetans ou.",
+   secs:[["Pa gen kliyan? Kreye pwòp pwojè ou","Fè yon pwojè egzanp pou yon biznis fiktif oswa yon òganizasyon lokal ou admire — kalite konte plis pase si li te peye."],
+    ["Montre rezilta, pa jis bèl bagay","Yon bon pòtfolyo eksplike pwoblèm nan, sa ou te fè, ak rezilta a (menm si se yon estimasyon) — pa jis montre yon foto san kontèks."]],
+   illus:"fbmap",fbmapPairs:[["San Pòtfolyo","Ap Tann Kliyan Peye"],["Ak Pòtfolyo","Pwojè Egzanp Kreye"]],
+   ex:"Ki 1 pwojè egzanp ou ta ka kreye pou pòtfolyo ou si ou pa gen ase kliyan peye kounye a?",
+   quiz:[
+    {q:"Kisa ou ta ka fè si ou pa gen ase kliyan peye pou yon pòtfolyo?",opts:["Tann jiskaske ou gen kliyan","Kreye pwòp pwojè egzanp pou yon biznis fiktif oswa lokal","Pa gen okenn opsyon","Achte yon pòtfolyo"],ans:1,fb:"Kreye pwòp pwojè egzanp ou se yon bon opsyon."},
+    {q:"Kisa yon bon antre pòtfolyo ta dwe eksplike?",opts:["Sèlman yon bèl foto san kontèks","Pwoblèm nan, sa ou te fè, ak rezilta a","Sèlman pri travay la","Non kliyan an sèlman"],ans:1,fb:"Yon bon antre eksplike pwoblèm, aksyon, ak rezilta."},
+    {q:"Ki konte plis nan yon pwojè egzanp pòtfolyo?",opts:["Si li te peye","Kalite travay la kèlkeswa si li te peye","Konbyen tan li te pran","Non pwojè a"],ans:1,fb:"Kalite konte plis pase si li te yon travay peye."}],
+   close:{learned:"Yon pòtfolyo pa mande kliyan peye — pwòp pwojè egzanp ou kreye ka montre kalite travay ou si yo eksplike pwoblèm nan, aksyon ou, ak rezilta a.",
+    mistake:"Tann gen anpil kliyan peye anvan menm kreye yon pòtfolyo, ki fè li difisil pou moun konvenk yo bay ou premye chans lan.",
+    tip:"Yon pwojè egzanp pou yon biznis lokal ou admire souvan pi konvenkan pase yon egzanp jenerik san kontèks.",
+    assign:"Ki 1 pwojè egzanp ou ta ka kreye pou pòtfolyo ou si ou pa gen ase kliyan peye kounye a?",
+    dl:"Fèy Travay: Kreye Premye Antre Pòtfolyo Ou",
+    checklist:["Yon pwojè egzanp idantifye?","Pwoblèm, aksyon, ak rezilta klè pou pwojè sa a?"],
+    ai:"Sijere 3 pwojè egzanp mwen ta ka kreye pou yon pòtfolyo nan [dekri sèvis ou]."}},
+ fr:{lede:"Un portfolio montre le travail que vous pouvez faire, même avant d'avoir beaucoup de clients payants — c'est une preuve concrète plutôt que de juste parler de vos compétences.",
+   secs:[["Pas de clients ? Créez vos propres projets","Faites un projet exemple pour une entreprise fictive ou une organisation locale que vous admirez — la qualité compte plus que si c'était payé."],
+    ["Montrez des résultats, pas juste de belles choses","Un bon portfolio explique le problème, ce que vous avez fait, et le résultat (même si c'est une estimation) — pas juste montrer une photo sans contexte."]],
+   illus:"fbmap",fbmapPairs:[["Sans Portfolio","En Attente de Clients Payants"],["Avec Portfolio","Projets Exemples Créés"]],
+   ex:"Quel 1 projet exemple pourriez-vous créer pour votre portfolio si vous n'avez pas assez de clients payants en ce moment ?",
+   quiz:[
+    {q:"Que pourriez-vous faire si vous n'avez pas assez de clients payants pour un portfolio ?",opts:["Attendre d'avoir des clients","Créer vos propres projets exemples pour une entreprise fictive ou locale","Il n'y a aucune option","Acheter un portfolio"],ans:1,fb:"Créer vos propres projets exemples est une bonne option."},
+    {q:"Que devrait expliquer une bonne entrée de portfolio ?",opts:["Seulement une belle photo sans contexte","Le problème, ce que vous avez fait, et le résultat","Seulement le prix du travail","Seulement le nom du client"],ans:1,fb:"Une bonne entrée explique problème, action, et résultat."},
+    {q:"Qu'est-ce qui compte le plus dans un projet exemple de portfolio ?",opts:["Si c'était payé","La qualité du travail peu importe si c'était payé","Combien de temps ça a pris","Le nom du projet"],ans:1,fb:"La qualité compte plus que si c'était un travail payé."}],
+   close:{learned:"Un portfolio ne demande pas de clients payants — vos propres projets exemples peuvent montrer la qualité de votre travail s'ils expliquent le problème, votre action, et le résultat.",
+    mistake:"Attendre d'avoir beaucoup de clients payants avant même de créer un portfolio, ce qui rend difficile de convaincre les gens de vous donner leur première chance.",
+    tip:"Un projet exemple pour une entreprise locale que vous admirez est souvent plus convaincant qu'un exemple générique sans contexte.",
+    assign:"Quel 1 projet exemple pourriez-vous créer pour votre portfolio si vous n'avez pas assez de clients payants en ce moment ?",
+    dl:"Fiche de travail : Créer Votre Première Entrée de Portfolio",
+    checklist:["Un projet exemple identifié ?","Problème, action, et résultat clairs pour ce projet ?"],
+    ai:"Suggère 3 projets exemples que je pourrais créer pour un portfolio dans [décris tes services]."}},
+ en:{lede:"A portfolio shows the work you can do, even before you have many paying clients — it's concrete proof rather than just talking about your skills.",
+   secs:[["No clients? Create your own sample projects","Do a sample project for a fictional business or a local organization you admire — quality matters more than whether it was paid."],
+    ["Show results, not just pretty things","A good portfolio entry explains the problem, what you did, and the result (even if it's an estimate) — not just showing a photo with no context."]],
+   illus:"fbmap",fbmapPairs:[["No Portfolio","Waiting for Paying Clients"],["With Portfolio","Sample Projects Created"]],
+   ex:"What's 1 sample project you could create for your portfolio if you don't have enough paying clients right now?",
+   quiz:[
+    {q:"What could you do if you don't have enough paying clients for a portfolio?",opts:["Wait until you have clients","Create your own sample projects for a fictional or local business","There's no option","Buy a portfolio"],ans:1,fb:"Creating your own sample projects is a good option."},
+    {q:"What should a good portfolio entry explain?",opts:["Just a nice photo with no context","The problem, what you did, and the result","Just the price of the work","Just the client's name"],ans:1,fb:"A good entry explains the problem, action, and result."},
+    {q:"What matters more in a portfolio sample project?",opts:["Whether it was paid","The quality of the work regardless of whether it was paid","How long it took","The project's name"],ans:1,fb:"Quality matters more than whether it was paid work."}],
+   close:{learned:"A portfolio doesn't require paying clients — your own sample projects can show your work's quality if they explain the problem, your action, and the result.",
+    mistake:"Waiting to have lots of paying clients before even creating a portfolio, which makes it hard to convince people to give you their first chance.",
+    tip:"A sample project for a local business you admire is often more convincing than a generic example with no context.",
+    assign:"What's 1 sample project you could create for your portfolio if you don't have enough paying clients right now?",
+    dl:"Worksheet: Creating Your First Portfolio Entry",
+    checklist:["A sample project identified?","Problem, action, and result clear for that project?"],
+    ai:"Suggest 3 sample projects I could create for a portfolio in [describe your services]."}}},
+
+3:{ht:{lede:"Pri ou mete pou sèvis ou fè yon gwo diferans nan kalite kliyan ak pwojè ou jwenn — pri twò ba souvan atire pi move kliyan yo.",
+   secs:[["3 modèl pri komen","Pri pa èdtan (senp men limite revni ou), pri pa pwojè (yon pri fiks pou tout travay la), ak retenè (yon pèman regilye pou aksè kontinyèl)."],
+    ["Pa soupriye tèt ou","Anpil nouvo freelans mete pri twò ba paske yo gen pè pèdi kliyan — sa souvan atire kliyan ki pa respekte valè travay la e fè yo eplwate."]],
+   illus:"roles",roleCards:[["⏱️","Pa Èdtan","Senp men limite revni"],["📦","Pa Pwojè","Yon pri fiks pou tout travay"],["🔁","Retenè","Pèman regilye pou aksè kontinyèl"]],
+   ex:"Ki modèl pri (pa èdtan, pa pwojè, retenè) ou panse ta matche pi byen ak sèvis ou ofri?",
+   quiz:[
+    {q:"Ki 3 modèl pri komen yo?",opts:["Sèlman pa èdtan","Pa èdtan, pa pwojè, ak retenè","Sèlman gratis","Pa gen modèl"],ans:1,fb:"3 modèl yo se pa èdtan, pa pwojè, ak retenè."},
+    {q:"Poukisa mete pri twò ba yon erè komen?",opts:["Li pa yon erè","Li souvan atire kliyan ki pa respekte valè travay la","Pri ba toujou pi bon","Pri pa afekte kalite kliyan"],ans:1,fb:"Pri ba atire kliyan ki ka eplwate travay ou."},
+    {q:"Kisa yon modèl retenè ye?",opts:["Yon pri inik pou tout travay","Yon pèman regilye pou aksè kontinyèl","Yon travay gratis","Yon pri pa èdtan sèlman"],ans:1,fb:"Retenè se yon pèman regilye pou aksè kontinyèl."}],
+   close:{learned:"3 modèl pri komen yo (pa èdtan, pa pwojè, retenè) chak gen avantaj diferan — men mete pri twò ba souvan atire move kliyan.",
+    mistake:"Mete pri byen ba paske w gen pè pèdi kliyan, san reyalize sa souvan atire kliyan ki pa respekte valè travay ou e fè eplwatasyon.",
+    tip:"Konsidere valè rezilta ou bay kliyan an, pa jis konbyen tan travay la pran, lè w ap fikse pri ou.",
+    assign:"Ki modèl pri (pa èdtan, pa pwojè, retenè) ou panse ta matche pi byen ak sèvis ou ofri?",
+    dl:"Fèy Travay: Chwazi Modèl Pri Ou",
+    checklist:["Yon modèl pri chwazi (pa èdtan, pa pwojè, oswa retenè)?","Modèl la matche ak sèvis ou ofri?"],
+    ai:"Ede m chwazi ant pri pa èdtan, pa pwojè, ak retenè pou yon sèvis [dekri sèvis ou]."}},
+ fr:{lede:"Le prix que vous fixez pour vos services fait une grande différence dans la qualité des clients et projets que vous obtenez — un prix trop bas attire souvent les pires clients.",
+   secs:[["3 modèles de prix courants","Prix à l'heure (simple mais limite votre revenu), prix par projet (un prix fixe pour tout le travail), et forfait mensuel (un paiement régulier pour un accès continu)."],
+    ["Ne vous sous-évaluez pas","Beaucoup de nouveaux freelances fixent des prix trop bas par peur de perdre des clients — ça attire souvent des clients qui ne respectent pas la valeur du travail et les exploitent."]],
+   illus:"roles",roleCards:[["⏱️","À l'Heure","Simple mais limite le revenu"],["📦","Par Projet","Un prix fixe pour tout le travail"],["🔁","Forfait Mensuel","Paiement régulier pour accès continu"]],
+   ex:"Quel modèle de prix (à l'heure, par projet, forfait) pensez-vous correspondrait le mieux à vos services ?",
+   quiz:[
+    {q:"Quels sont les 3 modèles de prix courants ?",opts:["Seulement à l'heure","À l'heure, par projet, et forfait mensuel","Seulement gratuit","Il n'y a pas de modèle"],ans:1,fb:"Les 3 modèles sont à l'heure, par projet, et forfait."},
+    {q:"Pourquoi fixer un prix trop bas est-il une erreur courante ?",opts:["Ce n'est pas une erreur","Ça attire souvent des clients qui ne respectent pas la valeur du travail","Un prix bas est toujours mieux","Le prix n'affecte pas la qualité des clients"],ans:1,fb:"Un prix bas attire des clients qui peuvent exploiter le travail."},
+    {q:"Qu'est-ce qu'un modèle de forfait mensuel ?",opts:["Un prix unique pour tout le travail","Un paiement régulier pour un accès continu","Un travail gratuit","Seulement un prix à l'heure"],ans:1,fb:"Le forfait est un paiement régulier pour un accès continu."}],
+   close:{learned:"Les 3 modèles de prix courants (à l'heure, par projet, forfait) ont chacun des avantages différents — mais fixer un prix trop bas attire souvent de mauvais clients.",
+    mistake:"Fixer un prix très bas par peur de perdre des clients, sans réaliser que ça attire souvent des clients qui ne respectent pas la valeur du travail et causent de l'exploitation.",
+    tip:"Considérez la valeur du résultat que vous apportez au client, pas juste combien de temps le travail prend, en fixant votre prix.",
+    assign:"Quel modèle de prix (à l'heure, par projet, forfait) pensez-vous correspondrait le mieux à vos services ?",
+    dl:"Fiche de travail : Choisir Votre Modèle de Prix",
+    checklist:["Un modèle de prix choisi (à l'heure, par projet, ou forfait) ?","Le modèle correspond-il aux services que vous offrez ?"],
+    ai:"Aide-moi à choisir entre prix à l'heure, par projet, et forfait mensuel pour un service de [décris ton service]."}},
+ en:{lede:"The price you set for your services makes a big difference in the quality of clients and projects you get — too low a price often attracts the worst clients.",
+   secs:[["3 common pricing models","Hourly pricing (simple but limits your income), project-based pricing (a fixed price for all the work), and retainer (a regular payment for ongoing access)."],
+    ["Don't undersell yourself","Many new freelancers set prices too low out of fear of losing clients — this often attracts clients who don't respect the value of the work and lead to being taken advantage of."]],
+   illus:"roles",roleCards:[["⏱️","Hourly","Simple but limits income"],["📦","Project-Based","A fixed price for all the work"],["🔁","Retainer","Regular payment for ongoing access"]],
+   ex:"What pricing model (hourly, project-based, retainer) do you think would fit your services best?",
+   quiz:[
+    {q:"What are the 3 common pricing models?",opts:["Only hourly","Hourly, project-based, and retainer","Only free","There's no model"],ans:1,fb:"The 3 models are hourly, project-based, and retainer."},
+    {q:"Why is setting too low a price a common mistake?",opts:["It isn't a mistake","It often attracts clients who don't respect the value of the work","A low price is always better","Price doesn't affect client quality"],ans:1,fb:"A low price attracts clients who may take advantage of the work."},
+    {q:"What is a retainer model?",opts:["A one-time price for all work","A regular payment for ongoing access","Free work","Only hourly pricing"],ans:1,fb:"A retainer is a regular payment for ongoing access."}],
+   close:{learned:"The 3 common pricing models (hourly, project-based, retainer) each have different advantages — but setting too low a price often attracts bad clients.",
+    mistake:"Setting a very low price out of fear of losing clients, without realizing this often attracts clients who don't respect the work's value and leads to being exploited.",
+    tip:"Consider the value of the result you bring to the client, not just how long the work takes, when setting your price.",
+    assign:"What pricing model (hourly, project-based, retainer) do you think would fit your services best?",
+    dl:"Worksheet: Choosing Your Pricing Model",
+    checklist:["A pricing model chosen (hourly, project-based, or retainer)?","Does the model match the services you offer?"],
+    ai:"Help me choose between hourly, project-based, and retainer pricing for a [describe your service] service."}}},
+
+4:{ht:{lede:"Yon kontra senp pwoteje ni ou ni kliyan an — li klèman defini sa ki enkli, konbyen sa koute, ak sa ki pa fè pati travay la.",
+   secs:[["Sa yon kontra debaz ta dwe genyen","Yon deskripsyon klè travay la (scope), pri ak fason pèman, dat delivrans, ak sa ki pase si yo vle chanjman."],
+    ["Scope creep: pi gwo danje a","Se lè yon kliyan mande plis ak plis bagay san peye plis — yon kontra klè bay ou yon fason pou di 'sa se deyò kontra a' san yon deba."]],
+   illus:"roles",roleCards:[["📝","Deskripsyon Travay","Sa ki enkli, klèman"],["💵","Pri ak Pèman","Konbyen e kijan"],["📅","Dat Delivrans","Kilè travay la fini"],["🔄","Chanjman","Sa ki pase si yo mande plis"]],
+   ex:"Ki 1 fwa (nan travay ou oswa yon lòt moun) yon 'scope creep' te rive, e kijan yon kontra ta ka evite l?",
+   quiz:[
+    {q:"Ki 4 pati yon kontra debaz genyen?",opts:["Sèlman pri a","Deskripsyon travay la, pri/pèman, dat, ak chanjman","Sèlman non kliyan an","Pa gen pati espesifik"],ans:1,fb:"4 pati yo: deskripsyon, pri/pèman, dat, chanjman."},
+    {q:"Kisa 'scope creep' ye?",opts:["Yon kalite kontra","Lè yon kliyan mande plis bagay san peye plis","Yon fason pou bay rabè","Yon erè nan pri a"],ans:1,fb:"Scope creep se lè yo mande plis san peye plis."},
+    {q:"Poukisa yon kontra klè itil kont scope creep?",opts:["Li pa itil","Li bay yon fason pou di 'sa deyò kontra a' san deba","Kontra toujou konplike inutil","Sa pa gen rapò ak kontra"],ans:1,fb:"Yon kontra klè bay yon fason objektif pou refize san deba."}],
+   close:{learned:"Yon kontra debaz gen 4 pati (deskripsyon travay, pri/pèman, dat, chanjman) e li pwoteje kont 'scope creep' — lè yon kliyan mande plis san peye plis.",
+    mistake:"Kòmanse yon pwojè san yon kontra ekri, ki kite pòt louvri pou konfizyon sou sa ki enkli e ki mennen a diskisyon pita.",
+    tip:"Menm yon kontra trè senp (yon paj) pi bon pase pa gen okenn kontra ditou.",
+    assign:"Ki 1 fwa (nan travay ou oswa yon lòt moun) yon 'scope creep' te rive, e kijan yon kontra ta ka evite l?",
+    dl:"Modèl: Estrikti Kontra Debaz",
+    checklist:["Konprann 4 pati yon kontra debaz?","Ka eksplike 'scope creep' ak yon egzanp?"],
+    ai:"Ekri yon kontra senp pou yon [dekri sèvis ou] ki gen tout 4 pati debaz yo."}},
+ fr:{lede:"Un contrat simple protège à la fois vous et le client — il définit clairement ce qui est inclus, combien ça coûte, et ce qui ne fait pas partie du travail.",
+   secs:[["Ce qu'un contrat de base devrait avoir","Une description claire du travail (portée/scope), le prix et la méthode de paiement, la date de livraison, et ce qui se passe s'ils veulent des changements."],
+    ["Le scope creep : le plus grand danger","C'est quand un client demande de plus en plus de choses sans payer plus — un contrat clair vous donne une façon de dire « c'est en dehors du contrat » sans débat."]],
+   illus:"roles",roleCards:[["📝","Description du Travail","Ce qui est inclus, clairement"],["💵","Prix et Paiement","Combien et comment"],["📅","Date de Livraison","Quand le travail se termine"],["🔄","Changements","Ce qui se passe s'ils demandent plus"]],
+   ex:"Quelle fois (dans votre travail ou celui de quelqu'un d'autre) un « scope creep » est-il arrivé, et comment un contrat aurait-il pu l'éviter ?",
+   quiz:[
+    {q:"Quelles sont les 4 parties d'un contrat de base ?",opts:["Seulement le prix","Description du travail, prix/paiement, date, et changements","Seulement le nom du client","Aucune partie spécifique"],ans:1,fb:"Les 4 parties : description, prix/paiement, date, changements."},
+    {q:"Qu'est-ce que le « scope creep » ?",opts:["Un type de contrat","Quand un client demande plus de choses sans payer plus","Une façon de donner une réduction","Une erreur dans le prix"],ans:1,fb:"Le scope creep, c'est quand ils demandent plus sans payer plus."},
+    {q:"Pourquoi un contrat clair est-il utile contre le scope creep ?",opts:["Ce n'est pas utile","Ça donne une façon de dire « c'est en dehors du contrat » sans débat","Les contrats sont toujours compliqués inutilement","Ça n'a aucun rapport avec les contrats"],ans:1,fb:"Un contrat clair donne une façon objective de refuser sans débat."}],
+   close:{learned:"Un contrat de base a 4 parties (description du travail, prix/paiement, date, changements) et protège contre le « scope creep » — quand un client demande plus sans payer plus.",
+    mistake:"Commencer un projet sans contrat écrit, ce qui laisse la porte ouverte à la confusion sur ce qui est inclus et mène à des disputes plus tard.",
+    tip:"Même un contrat très simple (une page) vaut mieux que pas de contrat du tout.",
+    assign:"Quelle fois (dans votre travail ou celui de quelqu'un d'autre) un « scope creep » est-il arrivé, et comment un contrat aurait-il pu l'éviter ?",
+    dl:"Modèle : Structure de Contrat de Base",
+    checklist:["Comprend les 4 parties d'un contrat de base ?","Peut expliquer le « scope creep » avec un exemple ?"],
+    ai:"Écris un contrat simple pour un(e) [décris ton service] avec les 4 parties de base."}},
+ en:{lede:"A simple contract protects both you and the client — it clearly defines what's included, how much it costs, and what isn't part of the work.",
+   secs:[["What a basic contract should have","A clear description of the work (scope), price and payment method, delivery date, and what happens if they want changes."],
+    ["Scope creep: the biggest danger","This is when a client asks for more and more things without paying more — a clear contract gives you a way to say \"that's outside the contract\" without an argument."]],
+   illus:"roles",roleCards:[["📝","Work Description","What's included, clearly"],["💵","Price & Payment","How much and how"],["📅","Delivery Date","When the work finishes"],["🔄","Changes","What happens if they ask for more"]],
+   ex:"What's 1 time (in your work or someone else's) \"scope creep\" happened, and how could a contract have prevented it?",
+   quiz:[
+    {q:"What are the 4 parts of a basic contract?",opts:["Only the price","Work description, price/payment, date, and changes","Only the client's name","No specific parts"],ans:1,fb:"The 4 parts: description, price/payment, date, changes."},
+    {q:"What is \"scope creep\"?",opts:["A type of contract","When a client asks for more things without paying more","A way to give a discount","A pricing error"],ans:1,fb:"Scope creep is when they ask for more without paying more."},
+    {q:"Why is a clear contract useful against scope creep?",opts:["It isn't useful","It gives you a way to say \"that's outside the contract\" without an argument","Contracts are always unnecessarily complicated","It has nothing to do with contracts"],ans:1,fb:"A clear contract gives an objective way to decline without argument."}],
+   close:{learned:"A basic contract has 4 parts (work description, price/payment, date, changes) and protects against \"scope creep\" — when a client asks for more without paying more.",
+    mistake:"Starting a project without a written contract, which leaves the door open to confusion about what's included and leads to disputes later.",
+    tip:"Even a very simple (one-page) contract beats having no contract at all.",
+    assign:"What's 1 time (in your work or someone else's) \"scope creep\" happened, and how could a contract have prevented it?",
+    dl:"Template: Basic Contract Structure",
+    checklist:["Understands the 4 parts of a basic contract?","Can explain \"scope creep\" with an example?"],
+    ai:"Write a simple contract for a [describe your service] with all 4 basic parts."}}},
+
+5:{ht:{lede:"Chak platfòm freelans gen yon fòs diferan — konnen ki youn ki matche ak sèvis ou ofri ede w pa gaspiye tan sou move platfòm nan.",
+   secs:[["Fòs chak platfòm","Upwork bon pou pwojè pi gwo ak kliyan biznis; Fiverr bon pou sèvis pake byen defini ak pri fiks; LinkedIn bon pou rezo pwofesyonèl ak kontakte kliyan dirèkteman."],
+    ["Yon pwofil ki fè konfyans","Kèlkeswa platfòm, yon pwofil klè ak egzanp travay reyèl toujou pi enpòtan pase yon deskripsyon jeneral."]],
+   illus:"roles",roleCards:[["💼","Upwork","Pwojè pi gwo ak kliyan biznis"],["🛍️","Fiverr","Sèvis pake ak pri fiks"],["🔗","LinkedIn","Rezo pwofesyonèl ak kontak dirèk"]],
+   ex:"Ki platfòm (Upwork, Fiverr, oswa LinkedIn) ou panse ta pi bon pou kòmanse jwenn kliyan pou sèvis ou, e poukisa?",
+   quiz:[
+    {q:"Ki platfòm bon pou sèvis pake ak pri fiks?",opts:["Upwork","Fiverr","LinkedIn","Okenn nan yo"],ans:1,fb:"Fiverr bon pou sèvis pake ak pri fiks."},
+    {q:"Ki platfòm bon pou rezo pwofesyonèl ak kontak dirèk?",opts:["Fiverr","LinkedIn","Okenn","Yo tout menm jan"],ans:1,fb:"LinkedIn bon pou rezo pwofesyonèl."},
+    {q:"Kisa ki toujou pi enpòtan pase yon deskripsyon jeneral nan yon pwofil freelans?",opts:["Non biznis la sèl","Egzanp travay reyèl","Pri a sèlman","Lang ou pale"],ans:1,fb:"Egzanp travay reyèl toujou pi enpòtan."}],
+   close:{learned:"Chak platfòm gen yon fòs diferan (Upwork pou pwojè biznis pi gwo, Fiverr pou sèvis pake, LinkedIn pou rezo dirèk) — men yon pwofil ak egzanp travay reyèl toujou konte plis pase platfòm ou chwazi.",
+    mistake:"Eseye itilize tout platfòm yo an menm tan san yon pwofil solid sou okenn, olye konsantre sou youn ak bati yon pwofil fò.",
+    tip:"Kòmanse ak yon sèl platfòm ki pi matche ak sèvis ou, epi elaji sèlman apre ou gen yon pwofil solid la.",
+    assign:"Ki platfòm (Upwork, Fiverr, oswa LinkedIn) ou panse ta pi bon pou kòmanse jwenn kliyan pou sèvis ou, e poukisa?",
+    dl:"Referans: Fòs Chak Platfòm Freelans",
+    checklist:["Yon platfòm chwazi pou kòmanse?","Rezon platfòm sa a matche ak sèvis ou?"],
+    ai:"Ede m chwazi ant Upwork, Fiverr, ak LinkedIn pou yon [dekri sèvis ou]."}},
+ fr:{lede:"Chaque plateforme freelance a une force différente — savoir laquelle correspond à vos services vous aide à ne pas perdre de temps sur la mauvaise plateforme.",
+   secs:[["La force de chaque plateforme","Upwork est bon pour les projets plus importants et les clients d'affaires ; Fiverr est bon pour les services en forfait bien définis et à prix fixe ; LinkedIn est bon pour le réseautage professionnel et contacter les clients directement."],
+    ["Un profil qui inspire confiance","Peu importe la plateforme, un profil clair avec de vrais exemples de travail compte toujours plus qu'une description générique."]],
+   illus:"roles",roleCards:[["💼","Upwork","Projets plus importants et clients d'affaires"],["🛍️","Fiverr","Services en forfait à prix fixe"],["🔗","LinkedIn","Réseautage professionnel et contact direct"]],
+   ex:"Quelle plateforme (Upwork, Fiverr, ou LinkedIn) pensez-vous serait la meilleure pour commencer à trouver des clients pour vos services, et pourquoi ?",
+   quiz:[
+    {q:"Quelle plateforme est bonne pour les services en forfait à prix fixe ?",opts:["Upwork","Fiverr","LinkedIn","Aucune d'elles"],ans:1,fb:"Fiverr est bon pour les services en forfait à prix fixe."},
+    {q:"Quelle plateforme est bonne pour le réseautage professionnel et le contact direct ?",opts:["Fiverr","LinkedIn","Aucune","Elles sont toutes pareilles"],ans:1,fb:"LinkedIn est bon pour le réseautage professionnel."},
+    {q:"Qu'est-ce qui compte toujours plus qu'une description générique dans un profil freelance ?",opts:["Seulement le nom de l'entreprise","De vrais exemples de travail","Seulement le prix","La langue que vous parlez"],ans:1,fb:"De vrais exemples de travail comptent toujours plus."}],
+   close:{learned:"Chaque plateforme a une force différente (Upwork pour les gros projets d'affaires, Fiverr pour les services en forfait, LinkedIn pour le réseautage direct) — mais un profil avec de vrais exemples compte toujours plus que la plateforme choisie.",
+    mistake:"Essayer d'utiliser toutes les plateformes en même temps sans un profil solide sur aucune, plutôt que de se concentrer sur une et bâtir un profil fort.",
+    tip:"Commencez avec une seule plateforme qui correspond le mieux à vos services, puis élargissez seulement après avoir un profil solide là-bas.",
+    assign:"Quelle plateforme (Upwork, Fiverr, ou LinkedIn) pensez-vous serait la meilleure pour commencer à trouver des clients pour vos services, et pourquoi ?",
+    dl:"Référence : La Force de Chaque Plateforme Freelance",
+    checklist:["Une plateforme choisie pour commencer ?","La raison de ce choix correspond-elle à vos services ?"],
+    ai:"Aide-moi à choisir entre Upwork, Fiverr, et LinkedIn pour un(e) [décris ton service]."}},
+ en:{lede:"Every freelance platform has a different strength — knowing which one matches your services helps you avoid wasting time on the wrong platform.",
+   secs:[["Each platform's strength","Upwork is good for larger projects and business clients; Fiverr is good for well-defined packaged services at a fixed price; LinkedIn is good for professional networking and contacting clients directly."],
+    ["A profile that builds trust","Regardless of platform, a clear profile with real work examples always matters more than a generic description."]],
+   illus:"roles",roleCards:[["💼","Upwork","Larger projects and business clients"],["🛍️","Fiverr","Packaged services at a fixed price"],["🔗","LinkedIn","Professional networking and direct contact"]],
+   ex:"What platform (Upwork, Fiverr, or LinkedIn) do you think would be best for starting to find clients for your services, and why?",
+   quiz:[
+    {q:"What platform is good for packaged services at a fixed price?",opts:["Upwork","Fiverr","LinkedIn","None of them"],ans:1,fb:"Fiverr is good for packaged, fixed-price services."},
+    {q:"What platform is good for professional networking and direct contact?",opts:["Fiverr","LinkedIn","None","They're all the same"],ans:1,fb:"LinkedIn is good for professional networking."},
+    {q:"What always matters more than a generic description in a freelance profile?",opts:["Only the business name","Real work examples","Only the price","What language you speak"],ans:1,fb:"Real work examples always matter more."}],
+   close:{learned:"Each platform has a different strength (Upwork for larger business projects, Fiverr for packaged services, LinkedIn for direct networking) — but a profile with real examples always matters more than the platform chosen.",
+    mistake:"Trying to use every platform at once without a solid profile on any of them, rather than focusing on one and building a strong profile.",
+    tip:"Start with the one platform that best matches your services, then expand only after you have a solid profile there.",
+    assign:"What platform (Upwork, Fiverr, or LinkedIn) do you think would be best for starting to find clients for your services, and why?",
+    dl:"Reference: Each Freelance Platform's Strength",
+    checklist:["A platform chosen to start with?","Does the reason match your services?"],
+    ai:"Help me choose between Upwork, Fiverr, and LinkedIn for a [describe your service]."}}},
+
+6:{ht:{lede:"Yon bon mesaj kontak dirèk (cold outreach) santi tankou li ekri espesyalman pou moun sa a, pa yon kopi-kole jenerik voye bay san moun.",
+   secs:[["Rechèch anvan ou ekri","Gade sit web/rezo sosyal moun nan anvan pou mansyone yon bagay espesifik — sa fè mesaj la santi otantik olye spam."],
+    ["Kout e klè, pa long e jeneral","Yon bon mesaj cold outreach di byen vit ki moun ou ye, poukisa w ekri, ak yon sèl pwochen etap klè."]],
+   illus:"fbmap",fbmapPairs:[["Jenerik","Kopi-Kole Menm Mesaj Pou Tout Moun"],["Espesifik","Mansyone yon Bagay Vrè Sou Moun Nan"]],
+   ex:"Ekri yon egzanp premye fraz pou yon mesaj cold outreach ki mansyone yon bagay espesifik sou biznis moun nan.",
+   quiz:[
+    {q:"Poukisa rechèch anvan ou ekri yon mesaj cold outreach enpòtan?",opts:["Li pa nesesè","Sa fè mesaj la santi otantik olye spam","Rechèch pèdi tan san rezon","Tout mesaj yo dwe idantik"],ans:1,fb:"Rechèch fè mesaj la santi otantik."},
+    {q:"Kisa yon bon mesaj cold outreach ta dwe ye?",opts:["Long e jeneral","Kout e klè ak yon sèl pwochen etap","San okenn detay espesifik","Yon kopi-kole menm mesaj pou tout moun"],ans:1,fb:"Yon bon mesaj kout e klè."},
+    {q:"Ki sa ki fè yon mesaj santi tankou spam?",opts:["Yon mesaj espesifik pou moun nan","Yon mesaj jenerik ki ka aplike a nenpòt moun","Yon mesaj kout","Yon mesaj ak yon pwochen etap klè"],ans:1,fb:"Yon mesaj jenerik santi tankou spam."}],
+   close:{learned:"Yon bon mesaj cold outreach fèt ak rechèch anvan (mansyone yon bagay espesifik) e li kout e klè ak yon sèl pwochen etap — pa jenerik e long.",
+    mistake:"Voye menm mesaj jenerik bay chak moun san okenn detay espesifik, ki fè li santi tankou spam e diminye chans yon repons.",
+    tip:"Menm 5 minit rechèch sou moun nan anvan ou ekri ka fè yon gwo diferans nan jan mesaj la resevwa.",
+    assign:"Ekri yon egzanp premye fraz pou yon mesaj cold outreach ki mansyone yon bagay espesifik sou biznis moun nan.",
+    dl:"Fèy Travay: Estrikti Mesaj Cold Outreach",
+    checklist:["Premye fraz mansyone yon bagay espesifik?","Mesaj la kout e gen yon sèl pwochen etap klè?"],
+    ai:"Ekri yon egzanp mesaj cold outreach kout pou yon [kalite kliyan] ki mansyone [yon detay espesifik]."}},
+ fr:{lede:"Un bon message de prospection à froid (cold outreach) semble écrit spécialement pour cette personne, pas un copier-coller générique envoyé à tout le monde.",
+   secs:[["Rechercher avant d'écrire","Regardez le site web/réseaux sociaux de la personne avant pour mentionner quelque chose de spécifique — ça fait paraître le message authentique plutôt que du spam."],
+    ["Court et clair, pas long et générique","Un bon message de prospection à froid dit rapidement qui vous êtes, pourquoi vous écrivez, et une seule prochaine étape claire."]],
+   illus:"fbmap",fbmapPairs:[["Générique","Copier-Coller le Même Message pour Tous"],["Spécifique","Mentionne Quelque Chose de Vrai sur la Personne"]],
+   ex:"Écrivez un exemple de première phrase pour un message de prospection à froid qui mentionne quelque chose de spécifique sur l'entreprise de la personne.",
+   quiz:[
+    {q:"Pourquoi rechercher avant d'écrire un message de prospection à froid est-il important ?",opts:["Ce n'est pas nécessaire","Ça fait paraître le message authentique plutôt que du spam","Rechercher fait perdre du temps sans raison","Tous les messages devraient être identiques"],ans:1,fb:"La recherche fait paraître le message authentique."},
+    {q:"Que devrait être un bon message de prospection à froid ?",opts:["Long et générique","Court et clair avec une seule prochaine étape","Sans aucun détail spécifique","Un copier-coller du même message pour tous"],ans:1,fb:"Un bon message est court et clair."},
+    {q:"Qu'est-ce qui fait qu'un message ressemble à du spam ?",opts:["Un message spécifique à la personne","Un message générique qui pourrait s'appliquer à n'importe qui","Un message court","Un message avec une prochaine étape claire"],ans:1,fb:"Un message générique ressemble à du spam."}],
+   close:{learned:"Un bon message de prospection à froid est fait avec une recherche préalable (mentionne quelque chose de spécifique) et est court et clair avec une seule prochaine étape — pas générique et long.",
+    mistake:"Envoyer le même message générique à tout le monde sans aucun détail spécifique, ce qui le fait ressembler à du spam et diminue les chances d'une réponse.",
+    tip:"Même 5 minutes de recherche sur la personne avant d'écrire peuvent faire une grande différence dans la façon dont le message est reçu.",
+    assign:"Écrivez un exemple de première phrase pour un message de prospection à froid qui mentionne quelque chose de spécifique sur l'entreprise de la personne.",
+    dl:"Fiche de travail : Structure de Message de Prospection à Froid",
+    checklist:["La première phrase mentionne-t-elle quelque chose de spécifique ?","Le message est-il court avec une seule prochaine étape claire ?"],
+    ai:"Écris un exemple de message de prospection à froid court pour un(e) [type de client] qui mentionne [un détail spécifique]."}},
+ en:{lede:"A good cold outreach message feels like it was written specifically for that person, not a generic copy-paste sent to nobody in particular.",
+   secs:[["Research before you write","Look at the person's website/social media beforehand to mention something specific — this makes the message feel authentic instead of spam."],
+    ["Short and clear, not long and generic","A good cold outreach message quickly says who you are, why you're writing, and one clear next step."]],
+   illus:"fbmap",fbmapPairs:[["Generic","Copy-Pasting the Same Message to Everyone"],["Specific","Mentioning Something Real About the Person"]],
+   ex:"Write an example opening line for a cold outreach message that mentions something specific about the person's business.",
+   quiz:[
+    {q:"Why does researching before writing a cold outreach message matter?",opts:["It isn't necessary","It makes the message feel authentic instead of spam","Research wastes time for no reason","All messages should be identical"],ans:1,fb:"Research makes the message feel authentic."},
+    {q:"What should a good cold outreach message be?",opts:["Long and generic","Short and clear with one next step","With no specific details at all","A copy-paste of the same message for everyone"],ans:1,fb:"A good message is short and clear."},
+    {q:"What makes a message feel like spam?",opts:["A message specific to the person","A generic message that could apply to anyone","A short message","A message with a clear next step"],ans:1,fb:"A generic message feels like spam."}],
+   close:{learned:"A good cold outreach message is made with research beforehand (mentioning something specific) and is short and clear with one next step — not generic and long.",
+    mistake:"Sending the same generic message to everyone with no specific details, which makes it feel like spam and lowers the chance of a reply.",
+    tip:"Even 5 minutes of research on the person before writing can make a big difference in how the message is received.",
+    assign:"Write an example opening line for a cold outreach message that mentions something specific about the person's business.",
+    dl:"Worksheet: Cold Outreach Message Structure",
+    checklist:["Does the opening line mention something specific?","Is the message short with one clear next step?"],
+    ai:"Write a short example cold outreach message for a [type of client] that mentions [a specific detail]."}}},
+
+7:{ht:{lede:"Yon 'swipe file' se yon koleksyon modèl ekri ki mache byen ou ka adapte pou chak sitiyasyon — pa mande w reekri tout bagay soti nan zewo chak fwa.",
+   secs:[["Adapte, pa kopye egzat","Yon bon modèl bay yon estrikti solid, men detay espesifik yo (non moun nan, bezwen espesifik yo) dwe toujou chanje pou chak mesaj."],
+    ["3 modèl debaz yon freelans bezwen","Yon modèl cold outreach, yon modèl pwopozisyon pwojè, ak yon modèl swiv apre yon kliyan pa reponn."]],
+   illus:"roles",roleCards:[["📨","Cold Outreach","Premye kontak ak yon kliyan potansyèl"],["📋","Pwopozisyon","Detay ak pri pou yon pwojè"],["🔔","Swiv","Lè yon kliyan pa reponn"]],
+   ex:"Chwazi youn nan 3 modèl yo epi ekri yon premye vèsyon adapte pou biznis ou.",
+   quiz:[
+    {q:"Kisa yon 'swipe file' ye?",opts:["Yon kalite kontra","Yon koleksyon modèl ekri ou ka adapte","Yon lis kliyan","Yon zouti pou fè peman"],ans:1,fb:"Yon swipe file se yon koleksyon modèl adaptab."},
+    {q:"Poukisa adapte yon modèl pi bon pase kopye l egzat?",opts:["Adapte pa nesesè, kopye ase","Detay espesifik yo fè mesaj la santi reyèl pou moun nan","Kopye egzat toujou pi rapid e pi bon","Modèl yo pa ta dwe janm chanje"],ans:1,fb:"Detay espesifik fè mesaj la santi reyèl."},
+    {q:"Ki 3 modèl debaz yon freelans bezwen?",opts:["Sèlman yon modèl vant","Cold outreach, pwopozisyon, ak swiv","Sèlman yon kontra","Pa gen modèl ki nesesè"],ans:1,fb:"3 modèl yo: cold outreach, pwopozisyon, swiv."}],
+   close:{learned:"Yon swipe file (cold outreach, pwopozisyon, swiv) bay yon estrikti solid pou pa reekri chak mesaj soti nan zewo — men detay espesifik yo toujou dwe chanje.",
+    mistake:"Kopye yon modèl egzat san chanje okenn detay, ki fè mesaj la santi jenerik e diminye chans li mache.",
+    tip:"Gade tounen sou modèl ou yo apre chak sitiyasyon epi amelyore yo dapre sa ki te mache oswa pa mache.",
+    assign:"Chwazi youn nan 3 modèl yo epi ekri yon premye vèsyon adapte pou biznis ou.",
+    dl:"Modèl: 3 Modèl Swipe-File Debaz",
+    checklist:["Yon modèl chwazi (cold outreach, pwopozisyon, oswa swiv)?","Vèsyon adapte a ekri pou biznis ou?"],
+    ai:"Ekri 3 modèl swipe-file (cold outreach, pwopozisyon, swiv) pou yon [dekri sèvis ou]."}},
+ fr:{lede:"Un « swipe file » est une collection de modèles écrits qui fonctionnent bien que vous pouvez adapter à chaque situation — pas besoin de tout réécrire à partir de zéro à chaque fois.",
+   secs:[["Adapter, pas copier exactement","Un bon modèle donne une structure solide, mais les détails spécifiques (nom de la personne, leurs besoins spécifiques) doivent toujours changer pour chaque message."],
+    ["3 modèles de base dont un freelance a besoin","Un modèle de prospection à froid, un modèle de proposition de projet, et un modèle de suivi après qu'un client ne répond pas."]],
+   illus:"roles",roleCards:[["📨","Prospection à Froid","Premier contact avec un client potentiel"],["📋","Proposition","Détails et prix pour un projet"],["🔔","Suivi","Quand un client ne répond pas"]],
+   ex:"Choisissez l'un des 3 modèles et écrivez une première version adaptée pour votre entreprise.",
+   quiz:[
+    {q:"Qu'est-ce qu'un « swipe file » ?",opts:["Un type de contrat","Une collection de modèles écrits que vous pouvez adapter","Une liste de clients","Un outil pour faire des paiements"],ans:1,fb:"Un swipe file est une collection de modèles adaptables."},
+    {q:"Pourquoi adapter un modèle est-il mieux que le copier exactement ?",opts:["Adapter n'est pas nécessaire, copier suffit","Les détails spécifiques font que le message semble réel pour la personne","Copier exactement est toujours plus rapide et mieux","Les modèles ne devraient jamais changer"],ans:1,fb:"Les détails spécifiques font que le message semble réel."},
+    {q:"Quels sont les 3 modèles de base dont un freelance a besoin ?",opts:["Seulement un modèle de vente","Prospection à froid, proposition, et suivi","Seulement un contrat","Aucun modèle n'est nécessaire"],ans:1,fb:"Les 3 modèles : prospection à froid, proposition, suivi."}],
+   close:{learned:"Un swipe file (prospection à froid, proposition, suivi) donne une structure solide pour ne pas réécrire chaque message à partir de zéro — mais les détails spécifiques doivent toujours changer.",
+    mistake:"Copier un modèle exactement sans changer aucun détail, ce qui fait paraître le message générique et diminue ses chances de fonctionner.",
+    tip:"Revenez sur vos modèles après chaque situation et améliorez-les selon ce qui a fonctionné ou non.",
+    assign:"Choisissez l'un des 3 modèles et écrivez une première version adaptée pour votre entreprise.",
+    dl:"Modèle : Les 3 Modèles de Swipe-File de Base",
+    checklist:["Un modèle choisi (prospection à froid, proposition, ou suivi) ?","La version adaptée écrite pour votre entreprise ?"],
+    ai:"Écris 3 modèles de swipe-file (prospection à froid, proposition, suivi) pour un(e) [décris ton service]."}},
+ en:{lede:"A swipe file is a collection of written templates that work well, which you can adapt for each situation — no need to rewrite everything from scratch every time.",
+   secs:[["Adapt, don't copy exactly","A good template gives a solid structure, but the specific details (the person's name, their specific needs) should always change for each message."],
+    ["3 basic templates a freelancer needs","A cold outreach template, a project proposal template, and a follow-up template for when a client doesn't reply."]],
+   illus:"roles",roleCards:[["📨","Cold Outreach","First contact with a potential client"],["📋","Proposal","Details and price for a project"],["🔔","Follow-Up","When a client doesn't reply"]],
+   ex:"Choose one of the 3 templates and write a first version adapted for your business.",
+   quiz:[
+    {q:"What is a \"swipe file\"?",opts:["A type of contract","A collection of written templates you can adapt","A client list","A tool for making payments"],ans:1,fb:"A swipe file is a collection of adaptable templates."},
+    {q:"Why is adapting a template better than copying it exactly?",opts:["Adapting isn't necessary, copying is enough","Specific details make the message feel real to the person","Copying exactly is always faster and better","Templates should never change"],ans:1,fb:"Specific details make the message feel real."},
+    {q:"What are the 3 basic templates a freelancer needs?",opts:["Only a sales template","Cold outreach, proposal, and follow-up","Only a contract","No templates are needed"],ans:1,fb:"The 3 templates: cold outreach, proposal, follow-up."}],
+   close:{learned:"A swipe file (cold outreach, proposal, follow-up) gives a solid structure so you don't rewrite every message from scratch — but specific details should always change.",
+    mistake:"Copying a template exactly without changing any details, which makes the message feel generic and lowers its chances of working.",
+    tip:"Look back at your templates after each situation and improve them based on what worked or didn't.",
+    assign:"Choose one of the 3 templates and write a first version adapted for your business.",
+    dl:"Template: The 3 Basic Swipe-File Templates",
+    checklist:["A template chosen (cold outreach, proposal, or follow-up)?","The adapted version written for your business?"],
+    ai:"Write 3 swipe-file templates (cold outreach, proposal, follow-up) for a [describe your service]."}}}
+};
+
+/* ============ state ============ */
+const NL=7,KEY="jamezzi:digital-marketing-ai:module18-sim-state";
+const PROGRESS_KEY="jamezzi:digital-marketing-ai:completed";
+const PROGRESS_EVENT="jamezzi:course-progress-changed";
+const MOD18_LESSON_SLUGS=["freelancing-vs-starting-an-agency","building-your-portfolio","pricing-your-services","contracts-and-scope-basics","finding-clients-on-upwork-fiverr-and-linkedin","cold-outreach-that-works","swipe-file-scripts"];
+let S={lang:"ht",cur:1,done:Array(NL).fill(false),st:{}};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch{}
+for(let i=1;i<=NL;i++){if(!S.st[i])S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch{}}
+function markModuleComplete(){
+ if(!S.done.every(Boolean))return;
+ try{
+  const raw=localStorage.getItem(PROGRESS_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  const list=Array.isArray(parsed)?parsed:[];
+  let changed=false;
+  MOD18_LESSON_SLUGS.forEach(slug=>{if(!list.includes(slug)){list.push(slug);changed=true;}});
+  if(changed){
+   localStorage.setItem(PROGRESS_KEY,JSON.stringify(list));
+   window.parent.dispatchEvent(new CustomEvent(PROGRESS_EVENT,{detail:{storageKey:PROGRESS_KEY}}));
+  }
+ }catch{}
+}
+function $(id){return document.getElementById(id);}
+
+function renderMods(){
+ const wrap=$("mods");wrap.innerHTML="";
+ const firstLessonBySlug={1:"what-is-digital-marketing",2:"why-people-really-buy",3:"naming-your-business",4:"building-a-customer-avatar",5:"writing-headlines-that-get-read",6:"meet-the-editor",7:"why-video-works",8:"meet-the-ai-chat-tool",9:"facebook-strategy",10:"what-are-content-pillars",11:"how-google-search-actually-works",12:"meet-your-business-profile",13:"meet-the-email-marketing-tool",14:"meet-the-page-builder",15:"meet-the-ads-manager",16:"meet-the-analytics-dashboard",17:"meet-the-automation-tool"};
+ MODULES[S.lang].forEach((title,i)=>{
+  const n=i+1,isActive=n===18;
+  const mod=document.createElement("div");mod.className="mod"+(isActive?" active":" locked");
+  const mh=document.createElement("div");mh.className="mh";
+  if(firstLessonBySlug[n]){
+   mh.style.cursor="pointer";
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+'</div>';
+   mh.addEventListener("click",()=>{window.top.location.href="/academy/courses/digital-marketing-ai/learn/"+firstLessonBySlug[n];});
+  }else{
+   mh.innerHTML='<div class="num">'+n+'</div><div>'+title+(isActive?"":" 🔒")+"</div>";
+  }
+  mod.appendChild(mh);
+  if(isActive){
+   const les=document.createElement("div");les.className="les";
+   M18[S.lang].forEach((lt,li)=>{
+    const n2=li+1;
+    const item=document.createElement("div");item.className="li"+(n2===S.cur?" cur":"")+(S.done[li]?" done":"");
+    item.innerHTML='<div class="dot">✓</div><div>'+n2+". "+lt+"</div>";
+    item.addEventListener("click",()=>{S.cur=n2;persist();render();});
+    les.appendChild(item);
+   });
+   mod.appendChild(les);
+  }
+  wrap.appendChild(mod);
+ });
+}
+
+function renderRail(){
+ const st=S.st[S.cur];
+ $("prog").style.width=(Math.round((S.done.filter(Boolean).length/NL)*100))+"%";
+ $("progText").textContent=S.done.filter(Boolean).length+" / "+NL;
+ $("lblProg").textContent=UI[S.lang].prog;$("lblObj").textContent=UI[S.lang].obj;$("aiName").textContent=UI[S.lang].ai;
+ const objs=[[st.exDone,UI[S.lang].objEx],[st.quizAns.every(a=>a!==null),UI[S.lang].objQuiz]];
+ $("objList").innerHTML=objs.map(([done,label])=>'<div class="obj'+(done?" d":"")+'"><div class="bx">✓</div><div class="tx">'+label+"</div></div>").join("");
+}
+
+function aiSay(msg){$("aiMsg").textContent=msg;}
+
+function renderDiagram(d){
+ if(d.illus==="roles"){
+  let h='<div style="max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">';
+  d.roleCards.forEach(r=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center">'+
+    '<div style="font-size:26px;margin-bottom:8px">'+r[0]+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">'+r[1]+'</div><div style="font-size:11.5px;color:var(--mute)">'+r[2]+'</div></div>';
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="myths"){
+  let h='<div style="max-width:600px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px">';
+  d.mythsCards.forEach((c,i)=>{
+   const accent=i===0?"#3B6FE0":"var(--good)";
+   h+='<div style="background:var(--ink-600);border:1px solid '+accent+';border-radius:12px;padding:14px">'+
+    '<div style="font-weight:800;font-size:13px;color:'+accent+';margin-bottom:8px">'+c[0]+"</div>"+
+    '<ul style="margin:0;padding-left:18px">'+c[1].map(x=>'<li style="font-size:12.5px;color:#c9d1e0;margin-bottom:4px">'+x+"</li>").join("")+"</ul></div>";
+  });
+  h+="</div>";return h;
+ }
+ if(d.illus==="fbmap"){
+  let h='<div style="max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center">';
+  d.fbmapPairs.forEach((p,i)=>{
+   h+='<div style="background:var(--ink-600);border:1px solid var(--edge2);border-radius:12px;padding:14px;text-align:center;min-width:160px;flex:1">'+
+    '<div style="font-weight:800;font-size:13px;margin-bottom:6px">'+p[0]+'</div><div style="font-size:12px;color:var(--mute)">'+p[1]+"</div></div>";
+   if(i<d.fbmapPairs.length-1)h+='<div style="color:var(--mute);font-size:20px">→</div>';
+  });
+  h+="</div>";return h;
+ }
+ return "";
+}
+
+function render(){
+ renderMods();
+ const lang=S.lang,n=S.cur,d=C[n][lang],ui=UI[lang],st=S.st[n];
+ $("cs").textContent=ui.cs;
+ $("topTag").textContent="Modil 18 · 18."+n;
+ $("topTitle").textContent=M18[lang][n-1];
+ document.title="Academy · "+M18[lang][n-1];
+ aiSay(d.lede);
+
+ const stage=$("stage");
+ let h='<div class="labhead"><span class="labtag">Modil 18 · 18.'+n+'</span><h2 class="labh2">'+M18[lang][n-1]+'</h2><p class="lablead">'+d.lede+"</p></div>";
+ h+='<div class="secs">'+d.secs.map(s=>'<div class="sec"><h3>'+s[0]+"</h3><p>"+s[1]+"</p></div>").join("")+"</div>";
+ h+='<div class="illus">'+renderDiagram(d)+'<div class="cap">'+M18[lang][n-1]+"</div></div>";
+ h+='<div class="exwrap"><div class="extag">'+ui.exTag+'</div><p class="exq">'+d.ex+'</p><textarea id="exArea" placeholder="...">'+(st.exText||"")+'</textarea><div style="margin-top:10px;display:flex;align-items:center;gap:12px"><button class="btn g" id="exSaveBtn">'+ui.exBtn+'</button><span class="exsaved" id="exSaved" style="'+(st.exDone?"display:inline":"")+'">'+ui.exSaved+"</span></div></div>";
+
+ h+='<div class="quiz"><div class="qtag">'+ui.quizTag+'</div>';
+ d.quiz.forEach((q,qi)=>{
+  h+='<div class="qcard"><div class="qq">'+(qi+1)+". "+q.q+'</div><div class="qopts" id="qopts'+qi+'">';
+  q.opts.forEach((o,oi)=>{
+   let cls="qopt";const answered=st.quizAns[qi]!==null;
+   if(answered){if(oi===q.ans)cls+=" correct";else if(oi===st.quizAns[qi])cls+=" wrong";}
+   h+='<button class="'+cls+'" data-qi="'+qi+'" data-oi="'+oi+'"'+(answered?" disabled":"")+">"+o+"</button>";
+  });
+  h+="</div>";
+  if(st.quizAns[qi]!==null)h+='<div class="qfb">'+q.fb+"</div>";
+  h+="</div>";
+ });
+ h+="</div>";
+
+ h+='<div class="close"><div class="ctag">'+ui.closeTag+'</div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cLearned+'</div>'+d.close.learned+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cMistake+'</div>'+d.close.mistake+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cTip+'</div>'+d.close.tip+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAssign+'</div>'+d.close.assign+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cDl+'</div>'+d.close.dl+'</div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cChecklist+'</div><ul>'+d.close.checklist.map(c=>"<li>"+c+"</li>").join("")+'</ul></div></div>'+
+  '<div class="crow"><div class="cv"><div class="ck">'+ui.cAi+'</div>"'+d.close.ai+'"</div></div>'+
+ "</div>";
+
+ const canFinish=st.exDone&&st.quizAns.every(a=>a!==null);
+ h+='<div class="nextwrap">';
+ if(!S.done[n-1]){
+  h+='<button class="btn p" id="finishBtn"'+(canFinish?"":" disabled")+">"+ui.complete+"</button>";
+ }else{
+  h+='<span style="color:var(--good);font-weight:700;font-size:14px">'+ui.completed+"</span>";
+  if(n<NL)h+='<button class="btn g" id="nextBtn">'+ui.next+"</button>";
+  else h+='<button class="btn g" id="finalBtn">'+ui.stampBtn+"</button>";
+ }
+ h+="</div>";
+
+ stage.innerHTML=h;stage.classList.add("fade");
+ stage.scrollTop=0;
+
+ $("exArea").addEventListener("input",e=>{st.exText=e.target.value;});
+ $("exSaveBtn").addEventListener("click",()=>{
+  if(st.exText&&st.exText.trim().length>0){st.exDone=true;$("exSaved").style.display="inline";persist();renderRail();}
+ });
+ d.quiz.forEach((q,qi)=>{
+  if(st.quizAns[qi]!==null)return;
+  document.querySelectorAll('#qopts'+qi+' .qopt').forEach(btn=>{
+   btn.addEventListener("click",()=>{
+    st.quizAns[qi]=+btn.dataset.oi;persist();render();
+   });
+  });
+ });
+ const fb=$("finishBtn");
+ if(fb)fb.addEventListener("click",()=>{
+  S.done[n-1]=true;persist();markModuleComplete();render();
+ });
+ const nb=$("nextBtn");
+ if(nb)nb.addEventListener("click",()=>{S.cur=n+1;persist();render();});
+ const flb=$("finalBtn");
+ if(flb)flb.addEventListener("click",showStamp);
+ renderRail();
+}
+
+function showStamp(){
+ const ui=UI[S.lang];
+ $("stage").innerHTML='<div class="stampscreen fade"><div class="stamp"><div class="si">🎟️</div></div><h2>'+ui.stampTitle+"</h2><p>"+ui.stampBody+'</p><a href="/academy/courses/digital-marketing-ai" target="_top" class="btn p" style="text-decoration:none;display:inline-block">'+ui.stampBtn+"</a></div>";
+}
+
+/* ============ chrome wiring ============ */
+$("langs").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ S.lang=b.dataset.l;persist();
+ document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+ render();
+});
+$("resetBtn").addEventListener("click",()=>{
+ if(!confirm(S.lang==="ht"?"Ou vle rekòmanse Modil 18?":S.lang==="fr"?"Voulez-vous recommencer le Module 18 ?":"Restart Module 18?"))return;
+ S={lang:S.lang,cur:1,done:Array(NL).fill(false),st:{}};
+ for(let i=1;i<=NL;i++)S.st[i]={exDone:false,exText:"",quizAns:Array(3).fill(null)};
+ persist();render();
+});
+document.querySelectorAll("#langs button").forEach(x=>x.classList.toggle("on",x.dataset.l===S.lang));
+render();
+</script>
+</body>
+</html>

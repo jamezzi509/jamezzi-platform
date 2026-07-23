@@ -102,6 +102,7 @@ const dominateDigitalSimulatorModules: Record<
   m15: { moduleNumber: 15, title: "Modil 15 — Piblisite Peye" },
   m16: { moduleNumber: 16, title: "Modil 16 — Analitik" },
   m17: { moduleNumber: 17, title: "Modil 17 — Otomatizasyon Maketing" },
+  m18: { moduleNumber: 18, title: "Modil 18 — Freelans ak Kreye Ajans" },
 };
 
 export async function generateMetadata({
