@@ -1,15 +1,12 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { PurchaseButton } from "@/components/payments/purchase-button";
 import { dominateDigitalLessons } from "@/content/dominate-digital/lessons";
 import { dominateDigitalModules } from "@/content/dominate-digital/modules";
 
 export const dominateDigitalProgressStorageKey =
   "jamezzi:digital-marketing-ai:completed";
-
-const learnBase = "/academy/courses/digital-marketing-ai/learn";
 
 export function DominateDigitalCoursePage() {
   return (
