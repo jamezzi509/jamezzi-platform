@@ -4,6 +4,7 @@ export interface AcademyBook {
   topic: string;
   language: "Kreyòl";
   cover: string;
+  price: number;
 }
 
 export const academyBooks: AcademyBook[] = [
@@ -13,13 +14,7 @@ export const academyBooks: AcademyBook[] = [
     topic: "Artificial Intelligence",
     language: "Kreyòl",
     cover: "/images/academy/books/ai-de-a-rive-nan-z.webp",
-  },
-  {
-    slug: "lajan-ak-biznis",
-    title: "Lajan & Biznis",
-    topic: "Money & Business",
-    language: "Kreyòl",
-    cover: "/images/academy/books/lajan-ak-biznis.webp",
+    price: 14.99,
   },
   {
     slug: "odinate-ak-entenet",
@@ -27,6 +22,7 @@ export const academyBooks: AcademyBook[] = [
     topic: "Digital Skills",
     language: "Kreyòl",
     cover: "/images/academy/books/odinate-ak-entenet.webp",
+    price: 19.99,
   },
   {
     slug: "plis-lavant-sou-entenet",
@@ -34,6 +30,7 @@ export const academyBooks: AcademyBook[] = [
     topic: "Digital Marketing",
     language: "Kreyòl",
     cover: "/images/academy/books/plis-lavant-sou-entenet.webp",
+    price: 14.99,
   },
   {
     slug: "youtube-de-a-rive-nan-z",
@@ -41,6 +38,7 @@ export const academyBooks: AcademyBook[] = [
     topic: "Content Creation",
     language: "Kreyòl",
     cover: "/images/academy/books/youtube-de-a-rive-nan-z.webp",
+    price: 19.99,
   },
   {
     slug: "capcut-mobile-desktop",
@@ -48,5 +46,6 @@ export const academyBooks: AcademyBook[] = [
     topic: "Video Editing",
     language: "Kreyòl",
     cover: "/images/academy/books/capcut-mobile-desktop.webp",
+    price: 9.99,
   },
 ];
