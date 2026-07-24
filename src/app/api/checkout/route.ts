@@ -7,28 +7,34 @@ export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const authorization = request.headers.get("authorization");
-    if (!authorization?.startsWith("Bearer ")) {
-      return NextResponse.json({ error: "Sign in before purchasing." }, { status: 401 });
-    }
-
-    const token = authorization.slice("Bearer ".length);
-    const user = await adminAuth.verifyIdToken(token);
-    if (!user.email) {
-      return NextResponse.json({ error: "Your account needs a verified email." }, { status: 400 });
-    }
-
     const body = (await request.json()) as { productId?: string };
     const product = body.productId ? getSellableProduct(body.productId) : undefined;
     if (!product) {
       return NextResponse.json({ error: "This product is unavailable." }, { status: 400 });
     }
 
+    const authorization = request.headers.get("authorization");
+    let user: { uid: string; email?: string } | undefined;
+
+    if (authorization?.startsWith("Bearer ")) {
+      const token = authorization.slice("Bearer ".length);
+      const verifiedUser = await adminAuth.verifyIdToken(token);
+      user = { uid: verifiedUser.uid, email: verifiedUser.email };
+    }
+
+    if (product.kind === "course" && !user) {
+      return NextResponse.json({ error: "Sign in before purchasing a course." }, { status: 401 });
+    }
+
+    if (user && !user.email) {
+      return NextResponse.json({ error: "Your account needs an email address." }, { status: 400 });
+    }
+
     const origin = new URL(request.url).origin;
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      customer_email: user.email,
-      client_reference_id: user.uid,
+      ...(user?.email ? { customer_email: user.email } : {}),
+      ...(user?.uid ? { client_reference_id: user.uid } : {}),
       line_items: [
         {
           quantity: 1,
@@ -44,7 +50,7 @@ export async function POST(request: Request) {
         },
       ],
       metadata: {
-        firebaseUid: user.uid,
+        firebaseUid: user?.uid ?? "guest",
         productId: product.id,
         productKind: product.kind,
       },
