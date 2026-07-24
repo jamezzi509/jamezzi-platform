@@ -2,13 +2,9 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
 import { PurchaseButton } from "@/components/payments/purchase-button";
-import { CourseResumeCard } from "@/components/academy/course-resume-card";
-import { computerProgressStorageKey } from "@/components/academy/computer-essentials-lesson-list";
 import {
   computerRebuildLessons,
-  computerRebuildLessonsForGating,
 } from "@/content/computer-rebuild/lessons";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 
@@ -18,7 +14,7 @@ export function ComputerCoursePage() {
       <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
           <Image
-            src="/images/academy/courses/computer-internet-essentials.webp"
+            src="/images/academy/courses/computer-internet-essentials-v2.webp"
             alt="An adult learner using a computer with confidence"
             fill
             priority
@@ -30,18 +26,16 @@ export function ComputerCoursePage() {
         <Container className="relative z-10">
           <div className="max-w-2xl py-10 sm:py-14">
             <p className="text-eyebrow text-indigo-dark">
-              JAMEZZI ACADEMY · BEGINNER DIGITAL SKILLS
+              COMPLETE COURSE · ENROLLMENT OPEN
             </p>
             <h1 className="text-editorial-headline text-ink mt-5 max-w-4xl">
               Computer &amp; Internet Essentials
             </h1>
             <p className="font-display text-ink mt-5 max-w-3xl text-2xl leading-tight sm:text-3xl md:text-4xl">
-              Concepts before buttons — build real digital confidence.
+              Learn the computer skills everyday life now requires.
             </p>
             <p className="text-intro text-muted mt-7 max-w-xl">
-              A practical course for complete beginners. No computer required to
-              start. Every lesson explains what it is and why it matters before
-              showing you where to click.
+              A complete, step-by-step program for beginners who want to use a computer, the internet, email, files, and online services without depending on someone else.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <PurchaseButton
@@ -52,7 +46,7 @@ export function ComputerCoursePage() {
                 Buy Course — $97
               </PurchaseButton>
               <CtaLink href="#course-path" variant="secondary">
-                See the Course Path
+                Preview the Curriculum
               </CtaLink>
             </div>
             <div className="border-border mt-7 grid max-w-xl grid-cols-3 gap-3 border-y py-4">
@@ -68,26 +62,13 @@ export function ComputerCoursePage() {
         </Container>
       </section>
 
-      <Container>
-        <CourseResumeCard
-          lessons={computerRebuildLessonsForGating.map((lesson) => ({
-            slug: lesson.slug,
-            title: lesson.titleHt,
-          }))}
-          progressStorageKey={computerProgressStorageKey}
-          lessonBaseHref="/academy/courses/computer-internet-essentials/learn"
-          assessmentHref="/academy/courses/computer-internet-essentials/learn/final-exam"
-          language="ht"
-        />
-      </Container>
-
       <section
         id="course-path"
         className="scroll-mt-24 bg-white py-20 lg:py-24"
       >
         <Container>
           <div className="max-w-3xl">
-            <p className="text-eyebrow text-indigo-dark">YOUR COURSE PATH</p>
+            <p className="text-eyebrow text-indigo-dark">FULL CURRICULUM · INCLUDED WITH ENROLLMENT</p>
             <h2 className="text-editorial-headline text-ink mt-4">
               You&rsquo;re not behind. Start where you are.
             </h2>
@@ -117,14 +98,9 @@ export function ComputerCoursePage() {
                   </h3>
                   <p className="text-body text-muted mt-3">{module.purpose}</p>
                   {firstLesson && (
-                    <CtaLink
-                      href={`/academy/courses/computer-internet-essentials/learn/${firstLesson.slug}`}
-                      variant="link"
-                      className="mt-7"
-                    >
-                      Open Module {module.order}{" "}
-                      <ArrowRightIcon className="size-4" />
-                    </CtaLink>
+                    <p className="text-metadata text-muted mt-7 inline-flex items-center gap-2">
+                      <span aria-hidden="true">🔒</span> Included with enrollment
+                    </p>
                   )}
                 </article>
               );
@@ -179,11 +155,6 @@ export function ComputerCoursePage() {
         </Container>
       </section>
 
-      <section className="bg-paper py-16 lg:py-20">
-        <Container>
-          <CourseProgressBackup course="computer" />
-        </Container>
-      </section>
     </main>
   );
 }
