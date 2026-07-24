@@ -32,31 +32,37 @@ export function CourseLibrary() {
           </p>
         </header>
 
-        <section
-          aria-label="Featured courses"
-          className="grid gap-6 lg:grid-cols-2"
-        >
+        <section aria-label="Available courses" className="grid gap-6 lg:grid-cols-2">
           {launchingFirstCourses.map((course, index) => (
             <CourseCard key={course.slug} course={course} wide={index === 0} />
           ))}
         </section>
 
         <section className="border-border mt-20 border-t pt-12">
-          <div className="grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-eyebrow text-indigo-dark">COMING LATER</p>
               <h2 className="text-feature-headline-sm text-ink mt-4">
                 More paths are being shaped.
               </h2>
+              <p className="text-body text-muted mt-4 max-w-sm">
+                These courses are planned but are not available for purchase yet.
+              </p>
             </div>
             <div className="border-border border-t">
               {plannedCourses.map((course) => (
                 <div
                   key={course.slug}
-                  className="border-border grid gap-2 border-b py-6 sm:grid-cols-[1fr_1.25fr] sm:gap-8"
+                  className="border-border grid gap-3 border-b py-6 sm:grid-cols-[1fr_1.25fr_auto] sm:items-start sm:gap-8"
                 >
-                  <h3 className="text-card-title text-ink">{course.title}</h3>
+                  <div>
+                    <p className="text-metadata text-indigo-dark">COMING LATER</p>
+                    <h3 className="text-card-title text-ink mt-1">{course.title}</h3>
+                  </div>
                   <p className="text-body text-muted">{course.description}</p>
+                  <p className="text-ink whitespace-nowrap text-base font-semibold">
+                    {course.free ? "Free" : `$${course.price}`}
+                  </p>
                 </div>
               ))}
             </div>
@@ -74,6 +80,8 @@ function CourseCard({
   course: CourseSummary;
   wide?: boolean;
 }) {
+  const priceLabel = course.free ? "Free" : `$${course.price}`;
+
   return (
     <Link
       href={`/academy/courses/${course.slug}`}
@@ -95,15 +103,21 @@ function CourseCard({
         />
       </div>
       <div className="flex flex-col justify-center p-7 lg:p-10">
-        <p className="text-metadata text-indigo-dark">
-          {course.category} {course.free ? "· Free" : ""}
-        </p>
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-metadata text-indigo-dark">
+            {course.category} · {course.free ? "OPEN ACCESS" : "LIFETIME ACCESS"}
+          </p>
+          <span className="rounded-full bg-[#f0edff] px-3 py-1 text-sm font-semibold text-indigo-dark">
+            {priceLabel}
+          </span>
+        </div>
         <h2 className="text-feature-headline-sm text-ink mt-4">
           {course.title}
         </h2>
         <p className="text-body text-muted mt-4">{course.description}</p>
         <span className="text-button text-indigo-dark mt-7 inline-flex items-center gap-2">
-          Explore Course <ArrowRightIcon className="size-4" />
+          {course.free ? "Start Free Course" : `View Course · ${priceLabel}`}
+          <ArrowRightIcon className="size-4" />
         </span>
       </div>
     </Link>
