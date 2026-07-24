@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
+import { PurchaseButton } from "@/components/payments/purchase-button";
 import { CourseResumeCard } from "@/components/academy/course-resume-card";
 import { dominateDigitalLessons } from "@/content/dominate-digital/lessons";
 import { dominateDigitalModules } from "@/content/dominate-digital/modules";
@@ -45,14 +46,27 @@ export function DominateDigitalCoursePage() {
               useful content, and modern AI workflows. All 20 modules are
               ready now, from foundations to a full capstone project.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <CtaLink href={`${learnBase}/${firstLesson.slug}`}>
-                Start Learning <ArrowRightIcon className="size-4" />
-              </CtaLink>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <PurchaseButton
+                productId="course:digital-marketing-ai"
+                productKind="course"
+                className="text-button bg-indigo hover:bg-indigo-dark inline-flex min-h-11 items-center justify-center rounded-[10px] px-6 text-white transition-colors disabled:opacity-60"
+              >
+                Buy Course — $127
+              </PurchaseButton>
               <CtaLink href="#course-path" variant="secondary">
                 See the Course Path
               </CtaLink>
             </div>
+            <div className="border-border mt-7 grid max-w-xl grid-cols-3 gap-3 border-y py-4">
+              <CourseFact label="Price" value="$127 once" />
+              <CourseFact label="Access" value="Lifetime" />
+              <CourseFact label="Includes" value="Certificate" />
+            </div>
+            <p className="text-sm text-muted mt-3">
+              A free Jamezzi account is required before checkout so the course
+              stays connected to the student.
+            </p>
           </div>
         </Container>
       </section>
@@ -163,9 +177,13 @@ export function DominateDigitalCoursePage() {
               You&rsquo;re not behind. You just haven&rsquo;t started yet.
             </h2>
           </div>
-          <CtaLink href={`${learnBase}/${firstLesson.slug}`} variant="inverse">
-            Start Learning <ArrowRightIcon className="size-4" />
-          </CtaLink>
+          <PurchaseButton
+            productId="course:digital-marketing-ai"
+            productKind="course"
+            className="text-button inline-flex min-h-11 items-center justify-center rounded-[10px] bg-white px-6 text-indigo-dark transition-colors hover:bg-white/90 disabled:opacity-60"
+          >
+            Buy Course — $127
+          </PurchaseButton>
         </Container>
       </section>
 
@@ -195,5 +213,14 @@ function ApproachRow({
         <p className="text-body text-muted mt-2">{copy}</p>
       </div>
     </article>
+  );
+}
+
+function CourseFact({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-metadata text-muted">{label}</p>
+      <p className="text-ink mt-1 text-sm font-semibold sm:text-base">{value}</p>
+    </div>
   );
 }
