@@ -1,11 +1,8 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { PurchaseButton } from "@/components/payments/purchase-button";
-import {
-  computerRebuildLessons,
-} from "@/content/computer-rebuild/lessons";
+import { computerRebuildLessons } from "@/content/computer-rebuild/lessons";
 import { computerRebuildModules } from "@/content/computer-rebuild/modules";
 
 export function ComputerCoursePage() {
