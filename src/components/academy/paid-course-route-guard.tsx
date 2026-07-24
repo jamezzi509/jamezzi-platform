@@ -40,7 +40,8 @@ export function PaidCourseRouteGuard({
   );
 
   useEffect(() => {
-    if (!course) {
+    const activeCourse = course;
+    if (!activeCourse) {
       setStatus("open");
       return;
     }
@@ -55,7 +56,7 @@ export function PaidCourseRouteGuard({
 
       try {
         const response = await fetch(
-          `/api/course-access?productId=${encodeURIComponent(course.productId)}`,
+          `/api/course-access?productId=${encodeURIComponent(activeCourse.productId)}`,
           {
             headers: {
               authorization: `Bearer ${await user.getIdToken()}`,
