@@ -56,7 +56,7 @@ export function PaidCourseRouteGuard({
 
       try {
         const response = await fetch(
-          `/api/course-access?productId=${encodeURIComponent(productId)}`,
+          `/api/course-access?productId=${encodeURIComponent(productId!)}`,
           {
             headers: {
               authorization: `Bearer ${await user.getIdToken()}`,
