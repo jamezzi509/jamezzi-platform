@@ -35,13 +35,13 @@ export function PaidCourseRouteGuard({
 }) {
   const pathname = usePathname();
   const course = protectedCourse(pathname);
+  const productId = course?.productId;
   const [status, setStatus] = useState<"loading" | "signed-out" | "locked" | "open">(
     course ? "loading" : "open",
   );
 
   useEffect(() => {
-    const activeCourse = course;
-    if (!activeCourse) {
+    if (!productId) {
       setStatus("open");
       return;
     }
@@ -56,7 +56,7 @@ export function PaidCourseRouteGuard({
 
       try {
         const response = await fetch(
-          `/api/course-access?productId=${encodeURIComponent(activeCourse.productId)}`,
+          `/api/course-access?productId=${encodeURIComponent(productId)}`,
           {
             headers: {
               authorization: `Bearer ${await user.getIdToken()}`,
@@ -77,7 +77,7 @@ export function PaidCourseRouteGuard({
       cancelled = true;
       unsubscribe();
     };
-  }, [course?.productId]);
+  }, [productId]);
 
   if (!course || status === "open") return children;
 
