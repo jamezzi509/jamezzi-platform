@@ -31,11 +31,17 @@ function ProductGrid({ kind }: { kind: "course" | "book" }) {
             </span>
             <PurchaseButton
               productId={product.id}
+              productKind={product.kind}
               className="min-h-12 rounded-xl bg-violet-700 px-5 font-semibold text-white transition hover:bg-violet-800 disabled:opacity-60"
             >
               Buy securely
             </PurchaseButton>
           </div>
+          {kind === "book" && (
+            <p className="mt-4 text-sm leading-6 text-slate-500">
+              No account required. Use the email where you want to receive access.
+            </p>
+          )}
         </article>
       ))}
     </div>
@@ -54,7 +60,8 @@ export default function StorePage() {
             Practical learning you can keep.
           </h1>
           <p className="mt-5 text-lg leading-8 text-slate-600">
-            Pay once through Stripe’s secure checkout. Your purchase stays connected to your Jamezzi account.
+            Pay once through Stripe’s secure checkout. Courses stay connected to your
+            Jamezzi account; PDF books can be purchased without creating one.
           </p>
           <Link href="/account" className="mt-5 inline-block text-sm font-semibold text-violet-700 underline">
             Sign in or create an account
