@@ -3,6 +3,7 @@ import Link from "next/link";
 import { academyBooks, type AcademyBook } from "@/content/books";
 import { Container } from "@/components/ui/container";
 import { ArrowRightIcon } from "@/components/ui/icons";
+import { BookCheckoutButton } from "@/components/payments/book-checkout-button";
 
 export function BookLibrary() {
   return (
@@ -97,17 +98,20 @@ export function BookDetail({ book }: { book: AcademyBook }) {
                 A practical Jamezzi book created to make useful knowledge clear,
                 accessible, and easier to apply in Kreyòl.
               </p>
-              <p className="text-body text-muted border-border mt-8 max-w-2xl border-t pt-7">
-                Release and purchase details will be published here when they
-                are ready.
-              </p>
+              <div className="border-border mt-8 max-w-2xl border-t pt-7">
+                <p className="text-body text-muted">
+                  Secure one-time payment. Download your PDF immediately after
+                  purchase. No account required.
+                </p>
+                <p className="text-ink mt-3 text-lg font-semibold">
+                  ${book.price.toFixed(2)} USD
+                </p>
+              </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="text-button bg-indigo hover:bg-indigo-dark inline-flex min-h-11 items-center justify-center rounded-[10px] px-6 text-white transition-colors"
-                >
-                  Ask About This Book
-                </Link>
+                <BookCheckoutButton
+                  productId={`book:${book.slug}`}
+                  price={book.price}
+                />
                 <Link
                   href="/academy/books"
                   className="text-button border-border inline-flex min-h-11 items-center justify-center rounded-[10px] border px-6 transition-colors hover:bg-white"
