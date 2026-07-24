@@ -6,20 +6,14 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { firebaseAuth } from "@/lib/firebase/client";
 
 export default function AccountPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
-
-  const destination = (() => {
-    const next = searchParams.get("next");
-    return next?.startsWith("/") && !next.startsWith("//") ? next : "/academy";
-  })();
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,6 +29,9 @@ export default function AccountPage() {
       } else {
         await signInWithEmailAndPassword(firebaseAuth, email, password);
       }
+      const next = new URLSearchParams(window.location.search).get("next");
+      const destination =
+        next?.startsWith("/") && !next.startsWith("//") ? next : "/academy";
       router.replace(destination);
     } catch {
       setMessage("We could not complete that request. Check your email and password, then try again.");
