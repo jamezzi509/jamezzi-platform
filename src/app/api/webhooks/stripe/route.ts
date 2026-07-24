@@ -1,12 +1,68 @@
 import { FieldValue } from "firebase-admin/firestore";
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
+import { bookPurchaseEmail, getResend } from "@/lib/email/resend";
 import { adminDb } from "@/lib/firebase/admin";
+import { getSellableProduct } from "@/lib/payments/catalog";
 import { stripe } from "@/lib/payments/stripe";
 
 export const runtime = "nodejs";
 
-async function fulfillCheckout(session: Stripe.Checkout.Session) {
+async function sendBookEmail({
+  session,
+  customerEmail,
+  origin,
+}: {
+  session: Stripe.Checkout.Session;
+  customerEmail: string;
+  origin: string;
+}) {
+  const productId = session.metadata?.productId;
+  const product = productId ? getSellableProduct(productId) : undefined;
+  if (!product || product.kind !== "book") return;
+
+  const orderRef = adminDb.collection("orders").doc(session.id);
+  const order = await orderRef.get();
+  if (order.get("emailSentAt")) return;
+
+  const downloadUrl = `${origin}/api/books/download?session_id=${encodeURIComponent(session.id)}`;
+  const message = bookPurchaseEmail({
+    productName: product.name,
+    downloadUrl,
+  });
+
+  const { data, error } = await getResend().emails.send(
+    {
+      from: "Jamezzi <info@jamezzi.com>",
+      to: customerEmail,
+      subject: message.subject,
+      text: message.text,
+      html: message.html,
+    },
+    {
+      headers: {
+        "Idempotency-Key": `book-purchase-${session.id}`,
+      },
+    },
+  );
+
+  if (error) {
+    throw new Error(`Resend could not send the purchase email: ${error.message}`);
+  }
+
+  await orderRef.set(
+    {
+      emailSentAt: FieldValue.serverTimestamp(),
+      resendEmailId: data?.id ?? null,
+    },
+    { merge: true },
+  );
+}
+
+async function fulfillCheckout(
+  session: Stripe.Checkout.Session,
+  origin: string,
+) {
   if (session.payment_status !== "paid") return;
 
   const rawUid = session.metadata?.firebaseUid;
@@ -75,6 +131,10 @@ async function fulfillCheckout(session: Stripe.Checkout.Session) {
       });
     }
   });
+
+  if (productKind === "book") {
+    await sendBookEmail({ session, customerEmail, origin });
+  }
 }
 
 export async function POST(request: Request) {
@@ -93,7 +153,7 @@ export async function POST(request: Request) {
 
   try {
     if (event.type === "checkout.session.completed") {
-      await fulfillCheckout(event.data.object);
+      await fulfillCheckout(event.data.object, new URL(request.url).origin);
     }
     return NextResponse.json({ received: true });
   } catch (error) {
