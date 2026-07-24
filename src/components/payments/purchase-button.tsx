@@ -6,10 +6,12 @@ import { firebaseAuth } from "@/lib/firebase/client";
 
 export function PurchaseButton({
   productId,
+  productKind,
   children = "Buy now",
   className = "",
 }: {
   productId: string;
+  productKind: "course" | "book";
   children?: React.ReactNode;
   className?: string;
 }) {
@@ -20,7 +22,7 @@ export function PurchaseButton({
 
   async function purchase() {
     const user = firebaseAuth.currentUser;
-    if (!user) {
+    if (productKind === "course" && !user) {
       router.push(`/account?next=${encodeURIComponent(pathname)}`);
       return;
     }
@@ -28,12 +30,16 @@ export function PurchaseButton({
     setBusy(true);
     setError("");
     try {
+      const headers: Record<string, string> = {
+        "content-type": "application/json",
+      };
+      if (user) {
+        headers.authorization = `Bearer ${await user.getIdToken()}`;
+      }
+
       const response = await fetch("/api/checkout", {
         method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${await user.getIdToken()}`,
-        },
+        headers,
         body: JSON.stringify({ productId }),
       });
       const result = (await response.json()) as { url?: string; error?: string };
