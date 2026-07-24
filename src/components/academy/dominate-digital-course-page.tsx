@@ -2,9 +2,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { CtaLink } from "@/components/ui/cta-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { CourseProgressBackup } from "@/components/academy/course-progress-backup";
 import { PurchaseButton } from "@/components/payments/purchase-button";
-import { CourseResumeCard } from "@/components/academy/course-resume-card";
 import { dominateDigitalLessons } from "@/content/dominate-digital/lessons";
 import { dominateDigitalModules } from "@/content/dominate-digital/modules";
 
@@ -14,14 +12,12 @@ export const dominateDigitalProgressStorageKey =
 const learnBase = "/academy/courses/digital-marketing-ai/learn";
 
 export function DominateDigitalCoursePage() {
-  const firstLesson = dominateDigitalLessons[0];
-
   return (
     <main className="bg-paper">
       <section className="relative flex min-h-[560px] items-center overflow-hidden bg-[#f8f5f0] pt-20 sm:min-h-[620px] sm:pt-24 lg:min-h-[650px] lg:pt-[72px]">
         <div className="absolute inset-y-0 right-0 w-full sm:w-[72%] lg:w-[61%]">
           <Image
-            src="/images/academy/courses/digital-marketing-ai.webp"
+            src="/images/academy/courses/digital-marketing-ai-v2.webp"
             alt="A small business owner planning digital marketing on a laptop"
             fill
             priority
@@ -33,18 +29,16 @@ export function DominateDigitalCoursePage() {
         <Container className="relative z-10">
           <div className="max-w-2xl py-10 sm:py-14">
             <p className="text-eyebrow text-indigo-dark">
-              JAMEZZI ACADEMY · MARKETING &amp; AI
+              COMPLETE COURSE · ENROLLMENT OPEN
             </p>
             <h1 className="text-editorial-headline text-ink mt-5 max-w-4xl">
               Digital Marketing &amp; AI
             </h1>
             <p className="font-display text-ink mt-5 max-w-3xl text-2xl leading-tight sm:text-3xl md:text-4xl">
-              Marketing &amp; AI for real businesses.
+              Build a marketing system you can actually operate.
             </p>
             <p className="text-intro text-muted mt-7 max-w-xl">
-              Build a practical marketing system using customer research,
-              useful content, and modern AI workflows. All 20 modules are
-              ready now, from foundations to a full capstone project.
+              A complete program for business owners and aspiring marketers: understand customers, create stronger content, use AI with purpose, run campaigns, measure results, and finish with a real capstone.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <PurchaseButton
@@ -55,7 +49,7 @@ export function DominateDigitalCoursePage() {
                 Buy Course — $127
               </PurchaseButton>
               <CtaLink href="#course-path" variant="secondary">
-                See the Course Path
+                Preview the Curriculum
               </CtaLink>
             </div>
             <div className="border-border mt-7 grid max-w-xl grid-cols-3 gap-3 border-y py-4">
@@ -71,26 +65,13 @@ export function DominateDigitalCoursePage() {
         </Container>
       </section>
 
-      <Container>
-        <CourseResumeCard
-          lessons={dominateDigitalLessons.map((lesson) => ({
-            slug: lesson.slug,
-            title: lesson.titleHt,
-          }))}
-          progressStorageKey={dominateDigitalProgressStorageKey}
-          lessonBaseHref={learnBase}
-          assessmentHref={`${learnBase}/final-exam`}
-          language="ht"
-        />
-      </Container>
-
       <section
         id="course-path"
         className="scroll-mt-24 bg-white py-20 lg:py-24"
       >
         <Container>
           <div className="max-w-3xl">
-            <p className="text-eyebrow text-indigo-dark">YOUR COURSE PATH</p>
+            <p className="text-eyebrow text-indigo-dark">FULL CURRICULUM · INCLUDED WITH ENROLLMENT</p>
             <h2 className="text-editorial-headline text-ink mt-4">
               20 modules, from foundations to a full capstone.
             </h2>
@@ -120,20 +101,10 @@ export function DominateDigitalCoursePage() {
                   <p className="text-body text-muted mt-3">
                     {module.purpose}
                   </p>
-                  {firstModuleLesson ? (
-                    <CtaLink
-                      href={`${learnBase}/${firstModuleLesson.slug}`}
-                      variant="link"
-                      className="mt-7"
-                    >
-                      Open Module {module.order}{" "}
-                      <ArrowRightIcon className="size-4" />
-                    </CtaLink>
-                  ) : (
-                    <p className="text-metadata text-muted mt-7">
-                      Coming soon
-                    </p>
-                  )}
+                  <p className="text-metadata text-muted mt-7 inline-flex items-center gap-2">
+                    <span aria-hidden="true">🔒</span>{" "}
+                    {firstModuleLesson ? "Included with enrollment" : "In development"}
+                  </p>
                 </article>
               );
             })}
@@ -187,11 +158,6 @@ export function DominateDigitalCoursePage() {
         </Container>
       </section>
 
-      <section className="bg-paper py-16 lg:py-20">
-        <Container>
-          <CourseProgressBackup course="digitalMarketing" />
-        </Container>
-      </section>
     </main>
   );
 }
