@@ -38,11 +38,16 @@ export function EnglishCoursePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <CtaLink href="/academy/courses/english-for-beginners/learn">
-                Start Learning <ArrowRightIcon className="size-4" />
+                Start Free Course <ArrowRightIcon className="size-4" />
               </CtaLink>
               <CtaLink href="#course-path" variant="secondary">
                 See the Course Path
               </CtaLink>
+            </div>
+            <div className="border-border mt-7 grid max-w-xl grid-cols-3 gap-3 border-y py-4">
+              <CourseFact label="Price" value="Free" />
+              <CourseFact label="Lessons" value="151" />
+              <CourseFact label="Account" value="Not required" />
             </div>
           </div>
         </Container>
@@ -169,5 +174,14 @@ function AccessRow({
         <p className="text-body text-muted mt-2">{copy}</p>
       </div>
     </article>
+  );
+}
+
+function CourseFact({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-metadata text-muted">{label}</p>
+      <p className="text-ink mt-1 text-sm font-semibold sm:text-base">{value}</p>
+    </div>
   );
 }
